@@ -4,197 +4,463 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finance Dashboards Hub</title>
+<meta name="description" content="Free interactive financial analysis dashboards — Indian banking, markets & sector results.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Libre+Franklin:wght@300;400;500;600&display=swap');
+
+:root {
+  --navy:     #1a56db;
+  --navy-mid: #f0f4ff;
+  --navy-l:   #e8f0fe;
+  --gold:     #1a56db;
+  --gold-l:   #1e429f;
+  --cream:    #1e3a8a;
+  --dim:      rgba(30,58,138,0.6);
+  --border:   rgba(26,86,219,0.18);
+  --card:     rgba(239,246,255,0.9);
+  --green:    #16a34a;
+  --red:      #dc2626;
+  --blue:     #1a56db;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#ffffff;color:#1e3a8a;font-family:'Libre Franklin',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 5%, rgba(26,86,219,0.05) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 70% at 90% 90%, rgba(219,234,254,0.4) 0%,transparent 55%),
+    repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(26,86,219,0.018) 80px,rgba(26,86,219,0.018) 81px),
+    repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(26,86,219,0.01) 80px,rgba(26,86,219,0.01) 81px);
+  pointer-events:none;z-index:0;
+}
+
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 28px 100px}
+
+.hero{padding:60px 0 48px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;animation:fadeDown .8s ease both}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,108px);line-height:.88;letter-spacing:.01em}
+h1 em{color:var(--gold);font-style:normal}
+.hero-sub{margin-top:14px;font-size:13.5px;color:var(--dim);max-width:500px;line-height:1.7}
+.hero-right{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.stat-pill{background:rgba(26,86,219,0.08);border:1px solid var(--border);border-radius:2px;padding:10px 18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold-l);text-align:center;line-height:1.9}
+.stat-pill strong{display:block;font-size:28px;font-family:'Bebas Neue',sans-serif;color:var(--cream);letter-spacing:.05em}
+
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:40px 0 24px;animation:fadeUp .7s ease both}
+.search-box{position:relative;flex:1;min-width:200px;max-width:320px}
+.search-box input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:2px;color:var(--cream);font-family:'DM Mono',monospace;font-size:12px;padding:11px 14px 11px 36px;outline:none;transition:border-color .2s;letter-spacing:.05em}
+.search-box input::placeholder{color:var(--dim)}
+.search-box input:focus{border-color:var(--gold)}
+.s-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:15px;pointer-events:none}
+.fbtns{display:flex;gap:8px;flex-wrap:wrap}
+.fb{background:transparent;border:1px solid var(--border);color:var(--dim);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:9px 15px;border-radius:2px;cursor:pointer;transition:all .2s}
+.fb:hover{border-color:var(--gold);color:var(--gold)}
+.fb.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:600}
+.sort-sel{background:var(--card);border:1px solid var(--border);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;padding:9px 13px;border-radius:2px;outline:none;cursor:pointer}
+.sort-sel option{background:var(--navy-mid)}
+
+.results-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.1em;margin-bottom:18px}
+.results-label span{color:var(--gold)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
+
+.card{background:var(--card);border:1px solid var(--border);backdrop-filter:blur(10px);border-radius:4px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;animation:fadeUp .6s ease both;display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.card:hover{transform:translateY(-5px);border-color:rgba(200,146,42,.55);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+.card-top{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-l),transparent)}
+.card-thumb{background:linear-gradient(135deg,var(--navy-l) 0%,var(--navy-mid) 100%);height:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card-thumb::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(200,146,42,.03) 20px,rgba(200,146,42,.03) 21px)}
+.card-icon{font-size:48px;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
+.new-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--navy);font-family:'DM Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.15em;padding:3px 8px;border-radius:2px}
+.card-body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;gap:7px}
+.card-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px}
+.card-tag::before{content:'';display:inline-block;width:16px;height:1px;background:var(--gold)}
+.card-title{font-family:'DM Serif Display',serif;font-size:19px;line-height:1.25;color:var(--cream);margin:2px 0}
+.card-desc{font-size:12.5px;color:var(--dim);line-height:1.6;flex:1}
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.card-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.06em}
+.card-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;padding:6px 14px;border-radius:2px;transition:all .2s}
+.card:hover .card-btn{background:var(--gold);color:var(--navy)}
+
+.loading-state,.empty-state,.error-state{grid-column:1/-1;text-align:center;padding:80px 20px;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--dim);line-height:1.8}
+.state-icon{font-size:48px;display:block;margin-bottom:18px}
+.spinner{width:36px;height:36px;border:2px solid rgba(26,86,219,0.18);border-top-color:#1a56db;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 18px}
+
+/* Setup box */
+.setup-box{background:rgba(200,146,42,0.06);border:1px solid var(--gold);border-radius:4px;padding:28px 32px;margin:32px 0;font-size:13.5px;line-height:1.8;display:none}
+.setup-box h3{font-family:'DM Serif Display',serif;color:var(--gold-l);font-size:20px;margin-bottom:14px}
+.setup-box code{background:rgba(26,86,219,0.12);padding:3px 10px;border-radius:2px;color:var(--gold-l);font-family:'DM Mono',monospace;font-size:12px}
+
+.how{margin:64px 0 0;background:rgba(200,146,42,0.05);border:1px solid var(--border);border-radius:4px;padding:36px}
+.how h2{font-family:'DM Serif Display',serif;font-size:22px;color:var(--gold-l);margin-bottom:24px}
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:rgba(200,146,42,.2);margin-bottom:6px}
+.step-title{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:5px}
+.step-desc{font-size:12px;color:var(--dim);line-height:1.6}
+
+footer{position:relative;z-index:1;max-width:1280px;margin:72px auto 0;padding:28px 28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--dim);border-top:1px solid var(--border)}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#f0f4ff}
+::-webkit-scrollbar-thumb{background:#1a56db;border-radius:3px}
+
+@media(max-width:700px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{flex-direction:row;align-items:flex-start}
+  h1{font-size:56px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<script>
-const GITHUB_USERNAME = "Elangocauvery";
-const GITHUB_REPO     = "CB-Finance";
-
-function cleanTitle(name) {
-  return name.replace(/\.html$/i,'').replace(/[_\-]+/g,' ')
-    .replace(/\b(q)([1-4])\b/gi,'Q$2').replace(/\b(fy)(\d{2,4})\b/gi,'FY$2')
-    .replace(/\bsbi\b/gi,'SBI').replace(/\bhdfc\b/gi,'HDFC')
-    .replace(/\bicici\b/gi,'ICICI').replace(/\baxis\b/gi,'Axis')
-    .replace(/\bkotak\b/gi,'Kotak').replace(/\brbl\b/gi,'RBL')
-    .replace(/\byes\b/gi,'YES').replace(/\bpnb\b/gi,'PNB')
-    .replace(/\bnifty\b/gi,'Nifty').replace(/\brbi\b/gi,'RBI')
-    .trim().replace(/\b\w/g,c=>c.toUpperCase());
-}
-function detectCategory(name){
-  const f=name.toLowerCase();
-  if(/nbfc|bajaj|muthoot|shriram|insurance|housing/.test(f))return'nbfc';
-  if(/nifty|sensex|market|index|sector/.test(f))return'markets';
-  if(/rbi|gdp|inflation|macro|budget/.test(f))return'macro';
-  return'banking';
-}
-function pickIcon(name){
-  const f=name.toLowerCase();
-  if(/sbi|pnb|bob|union|canara/.test(f))return'🏦';
-  if(/hdfc|icici|axis|kotak|yes|rbl|indusind|federal/.test(f))return'💳';
-  if(/insurance|lic/.test(f))return'🛡️';
-  if(/nifty|sensex|index/.test(f))return'📈';
-  if(/rbi|budget|macro/.test(f))return'🏛️';
-  return'📋';
-}
-function makeDesc(name){
-  const title=cleanTitle(name),f=name.toLowerCase();
-  const q=(f.match(/q([1-4])/i)||[])[1],fy=(f.match(/fy(\d{2,4})/i)||[])[1];
-  const p=[q?'Q'+q:'',fy?'FY'+fy:''].filter(Boolean).join(' ');
-  if(detectCategory(name)==='banking')return`Interactive analysis of ${title}${p?' '+p:''} — NII, NIM, asset quality, capital adequacy and peer comparison.`;
-  return`Interactive financial analysis — ${title}${p?' '+p:''}.`;
-}
-function extractDate(name){
-  const q=name.match(/q([1-4])fy(\d{2})/i);
-  const fy=name.match(/fy(\d{2})/i);
-  if(q){const qn=parseInt(q[1]),yr=2000+parseInt(q[2]),ms=[null,6,9,0,3];
-    return new Date(qn<=2?yr-1:yr,ms[qn],15).toISOString().slice(0,10);}
-  if(fy)return`${2000+parseInt(fy[1])}-04-01`;
-  return new Date().toISOString().slice(0,10);
-}
-function fmtDate(iso){return new Date(iso).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}
-function isNew(iso){return(Date.now()-new Date(iso))/86400000<14;}
-
-const CAT_LABEL={banking:'Banking Results',markets:'Markets',macro:'Macro / Economy',nbfc:'NBFC / Insurance'};
-let all=[],filter='all',query='',sort='newest';
-
-function render(){
-  let items=[...all];
-  if(filter!=='all')items=items.filter(d=>d.category===filter);
-  if(query){const q=query.toLowerCase();items=items.filter(d=>d.title.toLowerCase().includes(q)||d.file.toLowerCase().includes(q));}
-  if(sort==='newest')items.sort((a,b)=>b.date.localeCompare(a.date));
-  if(sort==='oldest')items.sort((a,b)=>a.date.localeCompare(b.date));
-  if(sort==='alpha')items.sort((a,b)=>a.title.localeCompare(b.title));
-  document.getElementById('countLabel').textContent=items.length;
-  document.getElementById('totalCount').textContent=all.length;
-  const grid=document.getElementById('grid');
-  grid.innerHTML='';
-  if(items.length===0){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:#aaa;font-family:monospace">No dashboards found. Upload HTML files to your GitHub repo.</div>';return;}
-  items.forEach((d,i)=>{
-    const a=document.createElement('a');
-    a.href=d.file;a.style.cssText='text-decoration:none;color:inherit;background:#122544;border:1px solid rgba(200,146,42,0.3);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;animation:fadeUp .5s ease both';
-    a.style.animationDelay=`${i*0.07}s`;
-    a.onmouseenter=()=>{a.style.transform='translateY(-4px)';a.style.boxShadow='0 12px 40px rgba(0,0,0,0.4)';};
-    a.onmouseleave=()=>{a.style.transform='';a.style.boxShadow='';};
-    a.innerHTML=`<div style="height:3px;background:linear-gradient(90deg,#c8922a,#e8b84b,transparent)"></div>
-      <div style="background:linear-gradient(135deg,#1a3560,#122544);height:120px;display:flex;align-items:center;justify-content:center;position:relative">
-        ${d.isNew?'<div style="position:absolute;top:10px;left:10px;background:#c8922a;color:#0b1f3a;font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:.1em">NEW</div>':''}
-        <span style="font-size:44px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))">${d.icon}</span>
-      </div>
-      <div style="padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;gap:6px">
-        <div style="font-family:monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#c8922a">${CAT_LABEL[d.category]||d.category}</div>
-        <div style="font-size:18px;font-weight:600;color:#f4f0e8;line-height:1.25">${d.title}</div>
-        <div style="font-size:12px;color:rgba(244,240,232,0.55);line-height:1.6;flex:1">${d.desc}</div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid rgba(200,146,42,0.15)">
-          <span style="font-family:monospace;font-size:10px;color:rgba(244,240,232,0.45)">📅 ${fmtDate(d.date)}</span>
-          <span style="border:1px solid #c8922a;color:#c8922a;font-family:monospace;font-size:10px;padding:5px 13px;border-radius:2px">Open →</span>
-        </div>
-      </div>`;
-    grid.appendChild(a);
-  });
-}
-
-function buildFilters(){
-  const cats=[...new Set(all.map(d=>d.category))];
-  const box=document.getElementById('filterBtns');
-  box.innerHTML='<button onclick="setFilter(\'all\')" id="fb-all" style="background:#c8922a;border:1px solid #c8922a;color:#0b1f3a;font-family:monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border-radius:2px;cursor:pointer;font-weight:700">All</button>';
-  cats.forEach(cat=>{
-    const b=document.createElement('button');
-    b.id='fb-'+cat;b.textContent=CAT_LABEL[cat]||cat;
-    b.style.cssText='background:transparent;border:1px solid rgba(200,146,42,.3);color:rgba(244,240,232,.5);font-family:monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border-radius:2px;cursor:pointer';
-    b.onclick=()=>setFilter(cat);
-    box.appendChild(b);
-  });
-}
-
-function setFilter(f){
-  filter=f;
-  document.querySelectorAll('#filterBtns button').forEach(b=>{
-    const active=b.id==='fb-'+f;
-    b.style.background=active?'#c8922a':'transparent';
-    b.style.color=active?'#0b1f3a':'rgba(244,240,232,.5)';
-    b.style.fontWeight=active?'700':'400';
-  });
-  render();
-}
-
-async function load(){
-  try{
-    const res=await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/`,{headers:{Accept:'application/vnd.github.v3+json'}});
-    if(!res.ok)throw new Error(`GitHub error ${res.status} — make sure repo is Public`);
-    const files=await res.json();
-    const html=files.filter(f=>f.type==='file'&&f.name.toLowerCase().endsWith('.html')&&f.name.toLowerCase()!=='index.html');
-    if(html.length===0){document.getElementById('grid').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:#aaa;font-family:monospace">No dashboards yet. Upload your first HTML file to GitHub!</div>';document.getElementById('totalCount').textContent='0';document.getElementById('countLabel').textContent='0';return;}
-    all=html.map(f=>{const date=extractDate(f.name);return{file:f.name,title:cleanTitle(f.name),desc:makeDesc(f.name),category:detectCategory(f.name),icon:pickIcon(f.name),date,isNew:isNew(date)};});
-    buildFilters();render();
-  }catch(err){
-    document.getElementById('grid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px;color:#f87171;font-family:monospace">${err.message}</div>`;
-  }
-}
-
-window.onload=load;
-</script>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#0b1f3a;color:#f4f0e8;font-family:'Libre Franklin',sans-serif;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 5%,rgba(200,146,42,0.08) 0%,transparent 55%);pointer-events:none;z-index:0}
-.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 28px 80px}
-.hero{padding:56px 0 44px;border-bottom:1px solid rgba(200,146,42,0.2);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;animation:fadeDown .8s ease both}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,100px);line-height:.9;letter-spacing:.01em}
-h1 em{color:#c8922a;font-style:normal}
-.hero-sub{margin-top:12px;font-size:13px;color:rgba(244,240,232,0.5);max-width:480px;line-height:1.7}
-.pill{background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.2);border-radius:2px;padding:10px 18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:#e8b84b;text-align:center;line-height:1.9}
-.pill strong{display:block;font-size:28px;font-family:'Bebas Neue',sans-serif;color:#f4f0e8}
-.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:36px 0 20px}
-.search-wrap{position:relative;min-width:200px;max-width:300px;flex:1}
-.search-wrap input{width:100%;background:rgba(26,53,96,0.45);border:1px solid rgba(200,146,42,0.2);border-radius:2px;color:#f4f0e8;font-family:'DM Mono',monospace;font-size:12px;padding:10px 14px 10px 34px;outline:none}
-.search-wrap input:focus{border-color:#c8922a}
-.search-wrap input::placeholder{color:rgba(244,240,232,0.4)}
-.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#c8922a;font-size:14px}
-.count-label{font-family:'DM Mono',monospace;font-size:11px;color:rgba(244,240,232,0.45);letter-spacing:.1em;margin-bottom:16px}
-.count-label span{color:#c8922a}
-#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-select{background:rgba(26,53,96,0.45);border:1px solid rgba(200,146,42,0.2);color:#f4f0e8;font-family:'DM Mono',monospace;font-size:10px;padding:9px 13px;border-radius:2px;outline:none;cursor:pointer}
-select option{background:#122544}
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-track{background:#0b1f3a}
-::-webkit-scrollbar-thumb{background:#c8922a;border-radius:3px}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:700px){.hero{flex-direction:column;align-items:flex-start}h1{font-size:56px}#grid{grid-template-columns:1fr}}
-</style>
-
 <div class="wrap">
+
   <header class="hero">
     <div>
-      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;color:#c8922a;text-transform:uppercase;margin-bottom:12px">Interactive Finance · India Markets · Free for All Viewers</div>
+      <div class="eyebrow">Interactive Finance · India Markets · Free for All Viewers</div>
       <h1>Finance<br><em>Hub</em></h1>
-      <p class="hero-sub">Every interactive dashboard from the channel — automatically listed here. Just upload a new HTML file to GitHub and it appears instantly. No editing ever needed.</p>
+      <p class="hero-sub">Every interactive dashboard from the channel — automatically listed here. Just upload a new HTML file to GitHub and it appears here instantly. No editing ever.</p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="pill"><strong id="totalCount">—</strong>DASHBOARDS</div>
-      <div class="pill"><strong>FREE</strong>NO LOGIN</div>
+    <div class="hero-right">
+      <div class="stat-pill"><strong id="totalCount">—</strong>DASHBOARDS</div>
+      <div class="stat-pill"><strong>FREE</strong>NO LOGIN</div>
     </div>
   </header>
 
+  <!-- shown only until user sets their username/repo -->
+  <div class="setup-box" id="setupBox">
+    <h3>⚙️ One-time setup — takes 30 seconds</h3>
+    Open this <code>index.html</code> file in Notepad.<br>
+    Find these two lines near the top of the &lt;script&gt; tag:<br><br>
+    <code>const GITHUB_USERNAME = "YOUR_USERNAME";</code><br>
+    <code>const GITHUB_REPO &nbsp;&nbsp;&nbsp;= "YOUR_REPO_NAME";</code><br><br>
+    Replace <code>YOUR_USERNAME</code> with your GitHub username.<br>
+    Replace <code>YOUR_REPO_NAME</code> with your repo name.<br>
+    Save the file → upload to GitHub → <strong>never open this file again.</strong> ✅
+  </div>
+
   <div class="toolbar">
-    <div class="search-wrap">
-      <span class="si">⌕</span>
-      <input type="text" id="searchInput" placeholder="Search dashboards…" oninput="query=this.value.trim();render()">
+    <div class="search-box">
+      <span class="s-icon">⌕</span>
+      <input type="text" id="searchInput" placeholder="Search dashboards…" autocomplete="off">
     </div>
-    <div id="filterBtns" style="display:flex;gap:8px;flex-wrap:wrap"></div>
-    <select onchange="sort=this.value;render()">
+    <div class="fbtns" id="filterBtns">
+      <button class="fb active" data-filter="all">All</button>
+    </div>
+    <select class="sort-sel" id="sortSel">
       <option value="newest">Newest First</option>
       <option value="oldest">Oldest First</option>
       <option value="alpha">A → Z</option>
     </select>
   </div>
 
-  <div class="count-label">Showing <span id="countLabel">—</span> dashboards</div>
-  <div id="grid"><div style="grid-column:1/-1;text-align:center;padding:60px;color:#aaa;font-family:monospace"><div style="width:32px;height:32px;border:2px solid rgba(200,146,42,.3);border-top-color:#c8922a;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px"></div>Loading dashboards from GitHub…</div></div>
+  <div class="results-label">Showing <span id="countLabel">—</span> dashboards</div>
+
+  <div class="grid" id="grid">
+    <div class="loading-state">
+      <div class="spinner"></div>
+      Loading dashboards…
+    </div>
+  </div>
+
+  <div class="how">
+    <h2>🚀 How This Hub Works</h2>
+    <div class="steps">
+      <div>
+        <div class="step-num">01</div>
+        <div class="step-title">Claude Makes Dashboard</div>
+        <div class="step-desc">Ask Claude to create an interactive HTML dashboard for any bank result or topic.</div>
+      </div>
+      <div>
+        <div class="step-num">02</div>
+        <div class="step-title">Upload to GitHub</div>
+        <div class="step-desc">Drag the HTML file into your GitHub repo. That is literally all you do.</div>
+      </div>
+      <div>
+        <div class="step-num">03</div>
+        <div class="step-title">Auto Appears Here</div>
+        <div class="step-desc">This hub reads your GitHub repo and shows every HTML file as a card automatically.</div>
+      </div>
+      <div>
+        <div class="step-num">04</div>
+        <div class="step-title">One Link Forever</div>
+        <div class="step-desc">Share this hub link once in your YouTube bio. Every future video auto-adds to it.</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+<footer>
+  <div>Finance Hub · All dashboards free for viewers</div>
+  <div>Data from BSE / NSE filings · Not investment advice</div>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════════════════════
+//  STEP 1 — PUT YOUR GITHUB USERNAME AND REPO NAME HERE
+//  Open this file in Notepad, change the two lines below, save.
+//  You will NEVER need to open or edit this file again after that.
+// ════════════════════════════════════════════════════════════════════
+const GITHUB_USERNAME = "Elangocauvery";   // ← your GitHub username
+const GITHUB_REPO     = "CB-Finance";      // ← your repo name
+// ════════════════════════════════════════════════════════════════════
+
+// ── Helpers ─────────────────────────────────────────────────────────
+
+function cleanTitle(name) {
+  return name
+    .replace(/\.html$/i, '')
+    .replace(/[_\-]+/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\b(q)([1-4])\b/gi,  'Q$2')
+    .replace(/\b(fy)(\d{2,4})\b/gi, 'FY$2')
+    .replace(/\bsbi\b/gi,    'SBI')
+    .replace(/\bhdfc\b/gi,   'HDFC')
+    .replace(/\bicici\b/gi,  'ICICI')
+    .replace(/\baxis\b/gi,   'Axis')
+    .replace(/\bkotak\b/gi,  'Kotak')
+    .replace(/\brbl\b/gi,    'RBL')
+    .replace(/\byes\b/gi,    'YES')
+    .replace(/\bpnb\b/gi,    'PNB')
+    .replace(/\bbob\b/gi,    'BOB')
+    .replace(/\bnpa\b/gi,    'NPA')
+    .replace(/\bnim\b/gi,    'NIM')
+    .replace(/\bnii\b/gi,    'NII')
+    .replace(/\brbi\b/gi,    'RBI')
+    .replace(/\bnifty\b/gi,  'Nifty')
+    .replace(/\bbse\b/gi,    'BSE')
+    .replace(/\bnse\b/gi,    'NSE')
+    .trim()
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function detectCategory(name) {
+  const f = name.toLowerCase();
+  if (/nbfc|bajaj|muthoot|shriram|mahindra|lic|insurance|hfc|housing/.test(f)) return 'nbfc';
+  if (/nifty|sensex|market|index|sector|bse|nse|midcap|smallcap/.test(f))      return 'markets';
+  if (/rbi|gdp|inflation|cpi|macro|economy|budget|fiscal|monetary/.test(f))     return 'macro';
+  return 'banking'; // default — most uploads will be bank results
+}
+
+function pickIcon(name) {
+  const f = name.toLowerCase();
+  if (/sbi|pnb|bob|union|canara|uco|central/.test(f)) return '🏦';
+  if (/hdfc|icici|axis|kotak|yes|rbl|indusind|federal|idfc|bandhan/.test(f)) return '💳';
+  if (/nbfc|bajaj|muthoot|shriram/.test(f)) return '💰';
+  if (/insurance|lic/.test(f))  return '🛡️';
+  if (/housing|hfc/.test(f))    return '🏠';
+  if (/nifty|sensex|index/.test(f)) return '📈';
+  if (/rbi|budget|macro/.test(f))   return '🏛️';
+  if (/sector|compare|peer/.test(f)) return '📊';
+  return '📋';
+}
+
+function makeDesc(name) {
+  const f   = name.toLowerCase();
+  const title = cleanTitle(name);
+  const q   = (f.match(/q([1-4])/i) || [])[1];
+  const fy  = (f.match(/fy(\d{2,4})/i) || [])[1];
+  const period = [q ? `Q${q}` : '', fy ? `FY${fy}` : ''].filter(Boolean).join(' ');
+  const p   = period ? ` ${period}` : '';
+  const cat = detectCategory(name);
+  if (cat === 'banking') return `Interactive analysis of ${title}${p} — NII, NIM, asset quality, capital adequacy and peer comparison. Hover charts for details.`;
+  if (cat === 'nbfc')    return `Deep-dive into ${title}${p} financials — AUM, credit costs, NIM trends and profitability ratios.`;
+  if (cat === 'markets') return `${title} — interactive sector overview, valuations and performance breakdown.`;
+  if (cat === 'macro')   return `${title}${p} — macro indicators, policy impact and economic trend analysis.`;
+  return `Interactive financial analysis — ${title}${p}.`;
+}
+
+function extractDate(name) {
+  const q  = name.match(/q([1-4])fy(\d{2})/i);
+  const fy = name.match(/fy(\d{2})/i);
+  if (q) {
+    const quarter = parseInt(q[1]);
+    const year    = 2000 + parseInt(q[2]);
+    const months  = [null, 6, 9, 0, 3];
+    const d = new Date(quarter <= 2 ? year - 1 : year, months[quarter], 15);
+    return d.toISOString().slice(0, 10);
+  }
+  if (fy) return `${2000 + parseInt(fy[1])}-04-01`;
+  return new Date().toISOString().slice(0, 10);
+}
+
+function fmtDate(iso) {
+  return new Date(iso).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function isNew(iso) {
+  return (Date.now() - new Date(iso)) / 86400000 < 14;
+}
+
+const CAT_LABEL = {
+  banking: 'Banking Results',
+  markets: 'Markets',
+  macro:   'Macro / Economy',
+  nbfc:    'NBFC / Insurance'
+};
+
+// ── State ────────────────────────────────────────────────────────────
+let all    = [];
+let filter = 'all';
+let query  = '';
+let sort   = 'newest';
+
+// ── Render ───────────────────────────────────────────────────────────
+function render() {
+  let items = [...all];
+  if (filter !== 'all') items = items.filter(d => d.category === filter);
+  if (query) {
+    const q = query.toLowerCase();
+    items = items.filter(d =>
+      d.title.toLowerCase().includes(q) ||
+      d.file.toLowerCase().includes(q)  ||
+      d.category.includes(q)
+    );
+  }
+  if (sort === 'newest') items.sort((a,b) => b.date.localeCompare(a.date));
+  if (sort === 'oldest') items.sort((a,b) => a.date.localeCompare(b.date));
+  if (sort === 'alpha')  items.sort((a,b) => a.title.localeCompare(b.title));
+
+  document.getElementById('countLabel').textContent = items.length;
+  document.getElementById('totalCount').textContent = all.length;
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><span class="state-icon">🔍</span>No dashboards match.<br>Try a different search or filter.</div>`;
+    return;
+  }
+
+  items.forEach((d, i) => {
+    const a = document.createElement('a');
+    a.className = 'card';
+    a.href = d.file;
+    a.style.animationDelay = `${i * 0.06}s`;
+    a.innerHTML = `
+      <div class="card-top"></div>
+      <div class="card-thumb">
+        ${d.isNew ? '<div class="new-badge">NEW</div>' : ''}
+        <div class="card-icon">${d.icon}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">${CAT_LABEL[d.category] || d.category}</div>
+        <div class="card-title">${d.title}</div>
+        <div class="card-desc">${d.desc}</div>
+        <div class="card-meta">
+          <span class="card-date">📅 ${fmtDate(d.date)}</span>
+          <span class="card-btn">Open →</span>
+        </div>
+      </div>`;
+    grid.appendChild(a);
+  });
+}
+
+function buildFilters() {
+  const cats = [...new Set(all.map(d => d.category))];
+  const box  = document.getElementById('filterBtns');
+  box.innerHTML = '<button class="fb active" data-filter="all">All</button>';
+  cats.forEach(cat => {
+    const b = document.createElement('button');
+    b.className = 'fb';
+    b.dataset.filter = cat;
+    b.textContent = CAT_LABEL[cat] || cat;
+    box.appendChild(b);
+  });
+  box.querySelectorAll('.fb').forEach(b => {
+    b.addEventListener('click', () => {
+      box.querySelectorAll('.fb').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      filter = b.dataset.filter;
+      render();
+    });
+  });
+}
+
+// ── Main: fetch from GitHub API ──────────────────────────────────────
+async function load() {
+  if (GITHUB_USERNAME === 'YOUR_USERNAME' || GITHUB_REPO === 'YOUR_REPO_NAME') {
+    document.getElementById('setupBox').style.display = 'block';
+    document.getElementById('grid').innerHTML = `
+      <div class="error-state">
+        <span class="state-icon">⚙️</span>
+        <strong style="color:var(--gold);display:block;margin-bottom:10px">Setup needed — see the yellow box above</strong>
+        Open index.html in Notepad · add your GitHub username and repo name · save · upload.
+      </div>`;
+    document.getElementById('totalCount').textContent = '0';
+    document.getElementById('countLabel').textContent = '0';
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/`,
+      { headers: { Accept: 'application/vnd.github.v3+json' } }
+    );
+
+    if (!res.ok) throw new Error(`GitHub replied with error ${res.status}. Check that your repo is PUBLIC and the username/repo name are correct.`);
+
+    const files = await res.json();
+
+    // Only HTML files, skip index.html itself
+    const htmlFiles = files.filter(f =>
+      f.type === 'file' &&
+      f.name.toLowerCase().endsWith('.html') &&
+      f.name.toLowerCase() !== 'index.html'
+    );
+
+    if (htmlFiles.length === 0) {
+      document.getElementById('grid').innerHTML = `
+        <div class="empty-state">
+          <span class="state-icon">📂</span>
+          No dashboard files uploaded yet.<br><br>
+          Go to your GitHub repo → Add file → Upload files<br>
+          Drop your HTML dashboard file there.<br>
+          Come back here and refresh — it will appear automatically.
+        </div>`;
+      document.getElementById('totalCount').textContent = '0';
+      document.getElementById('countLabel').textContent = '0';
+      return;
+    }
+
+    all = htmlFiles.map(f => {
+      const date = extractDate(f.name);
+      return {
+        file:     f.name,
+        title:    cleanTitle(f.name),
+        desc:     makeDesc(f.name),
+        category: detectCategory(f.name),
+        icon:     pickIcon(f.name),
+        date,
+        isNew:    isNew(date),
+      };
+    });
+
+    buildFilters();
+    render();
+
+  } catch (err) {
+    document.getElementById('grid').innerHTML = `
+      <div class="error-state">
+        <span class="state-icon">⚠️</span>
+        <strong style="color:var(--red);display:block;margin-bottom:10px">${err.message}</strong>
+        • Make sure your GitHub repo is set to <strong>Public</strong><br>
+        • Username in file: <strong>${GITHUB_USERNAME}</strong><br>
+        • Repo name in file: <strong>${GITHUB_REPO}</strong>
+      </div>`;
+  }
+}
+
+document.getElementById('searchInput').addEventListener('input', e => { query = e.target.value.trim(); render(); });
+document.getElementById('sortSel').addEventListener('change', e => { sort = e.target.value; render(); });
+
+load();
+</script>
 </body>
 </html>
