@@ -7,21 +7,21 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Libre+Franklin:wght@300;400;500;600&display=swap');
 :root{
-  --bg:#07080f;--bg2:#0d1020;--bg3:#12152a;
-  --gold:#f0a500;--gold-l:#ffc542;--gold-p:#ffe49a;
-  --cream:#f0ece2;--dim:rgba(240,236,226,0.52);--dim2:rgba(240,236,226,0.22);
-  --border:rgba(240,165,0,0.18);--card:rgba(18,21,42,0.85);
-  --green:#22c55e;--red:#f87171;--blue:#38bdf8;--orange:#fb923c;
+  --bg:#ffffff;--bg2:#f0f4ff;--bg3:#e8f0fe;
+  --gold:#1a56db;--gold-l:#1e429f;--gold-p:#c7d7fd;
+  --cream:#1e3a8a;--dim:rgba(30,58,138,0.6);--dim2:rgba(30,58,138,0.35);
+  --border:rgba(26,86,219,0.18);--card:rgba(239,246,255,0.9);
+  --green:#16a34a;--red:#dc2626;--blue:#1a56db;--orange:#ea580c;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--cream);font-family:'Libre Franklin',sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh}
+body{background:#ffffff;color:#1e3a8a;font-family:'Libre Franklin',sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background:
-    radial-gradient(ellipse 65% 40% at 90% 5%,rgba(240,165,0,0.07) 0%,transparent 55%),
-    radial-gradient(ellipse 45% 55% at 5% 90%,rgba(56,189,248,0.04) 0%,transparent 50%),
-    repeating-linear-gradient(0deg,transparent,transparent 68px,rgba(240,165,0,0.016) 68px,rgba(240,165,0,0.016) 69px),
-    repeating-linear-gradient(90deg,transparent,transparent 68px,rgba(240,165,0,0.009) 68px,rgba(240,165,0,0.009) 69px)}
+    radial-gradient(ellipse 65% 40% at 90% 5%,rgba(26,86,219,0.06) 0%,transparent 55%),
+    radial-gradient(ellipse 45% 55% at 5% 90%,rgba(219,234,254,0.5) 0%,transparent 50%),
+    repeating-linear-gradient(0deg,transparent,transparent 68px,rgba(26,86,219,0.018) 68px,rgba(26,86,219,0.018) 69px),
+    repeating-linear-gradient(90deg,transparent,transparent 68px,rgba(26,86,219,0.01) 68px,rgba(26,86,219,0.01) 69px)}
 .wrap{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:0 28px 90px}
 
 /* ── HEADER ── */
@@ -77,7 +77,7 @@ h1 em{color:var(--gold);font-style:normal}
 @media(max-width:800px){.ana-grid{grid-template-columns:1fr}}
 .ana{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:26px 22px}
 .ana h3{font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:var(--gold-l);margin-bottom:11px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.ana p{font-size:13px;line-height:1.78;color:rgba(240,236,226,.82);margin-bottom:9px}
+.ana p{font-size:13px;line-height:1.78;color:rgba(30,58,138,0.85);margin-bottom:9px}
 .ana p:last-child{margin-bottom:0}
 .hl{color:var(--gold-l);font-weight:500}
 .good{color:#4ade80;font-weight:500}
@@ -111,7 +111,7 @@ footer{position:relative;z-index:1;max-width:1300px;margin:72px auto 0;padding:2
 .kpi:nth-child(5){animation-delay:.20s}.kpi:nth-child(6){animation-delay:.24s}
 .kpi:nth-child(7){animation-delay:.28s}.kpi:nth-child(8){animation-delay:.32s}
 ::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-track{background:#f0f4ff}
 ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
 @media(max-width:680px){header{grid-template-columns:1fr}.badges{flex-direction:row}h1{font-size:60px}}
 </style>
@@ -126,12 +126,7 @@ footer{position:relative;z-index:1;max-width:1300px;margin:72px auto 0;padding:2
     <h1>MCX<br><em>Q4 FY26</em><br>Analysis</h1>
     <p class="hero-sub">Multi Commodity Exchange of India — India's largest commodity derivatives exchange. World's largest commodity options exchange. Q4 FY26 delivered a record-shattering quarter driven by gold volatility, crude oil surge &amp; operating leverage.</p>
   </div>
-  <div class="badges">
-    <div class="badge"><strong>₹3,097</strong>SHARE PRICE (MAY 9)</div>
-    <div class="badge"><strong>291%</strong>PAT GROWTH YOY</div>
-    <div class="badge"><strong>75%</strong>EBITDA MARGIN</div>
-    <div class="badge"><strong>~98%</strong>MARKET SHARE</div>
-  </div>
+
 </header>
 
 <!-- KPI -->
@@ -255,14 +250,14 @@ const EBITDA = [152, 204, 189, 270, 270, 527, 703];
 const MARGIN = [65,  72,  65,  72,  72,  79,  79];
 const ADT    = [1.09,1.55,2.19,4.11,4.11,7.50,5.40]; // lakh crore
 
-const GOLD='#f0a500',GOLD_L='#ffc542',CREAM='rgba(240,236,226,0.75)';
-const NAVY='#07080f',GREEN='#4ade80',RED='#f87171',BLUE='#38bdf8',ORG='#fb923c';
+const GOLD='#1a56db',GOLD_L='#1e429f',CREAM='rgba(30,58,138,0.85)';
+const NAVY='#ffffff',GREEN='#4ade80',RED='#dc2626',BLUE='#1a56db',ORG='#ea580c';
 
 Chart.defaults.color=CREAM;
-Chart.defaults.borderColor='rgba(240,165,0,0.12)';
+Chart.defaults.borderColor='rgba(26,86,219,0.12)';
 Chart.defaults.font.family="'DM Mono',monospace";
 Chart.defaults.font.size=11;
-const TP={backgroundColor:'#0d1020',borderColor:GOLD,borderWidth:1,titleColor:GOLD,bodyColor:CREAM,padding:12,cornerRadius:2,titleFont:{family:"'DM Mono',monospace",size:11},bodyFont:{family:"'DM Mono',monospace",size:11}};
+const TP={backgroundColor:'#f0f4ff',borderColor:'#1a56db',borderWidth:1,titleColor:'#1a56db',bodyColor:'#1e3a8a',padding:12,cornerRadius:2,titleFont:{family:"'DM Mono',monospace",size:11},bodyFont:{family:"'DM Mono',monospace",size:11}};
 
 // ── KPI CARDS ────────────────────────────────────────────────────────
 const KPIS=[
@@ -325,14 +320,14 @@ document.getElementById('tlGrid').innerHTML=TL.map(t=>`
 let earningsChart=new Chart(document.getElementById('earningsChart').getContext('2d'),{
   type:'bar',
   data:{labels:QS,datasets:[
-    {label:'Revenue (₹Cr)',data:REV,backgroundColor:GOLD+'33',borderColor:GOLD,borderWidth:2,borderRadius:2},
+    {label:'Revenue (₹Cr)',data:REV,backgroundColor:GOLD+'33',borderColor:'#1a56db',borderWidth:2,borderRadius:2},
     {label:'EBITDA (₹Cr)', data:EBITDA,backgroundColor:GREEN+'33',borderColor:GREEN,borderWidth:2,borderRadius:2,hidden:false},
     {label:'PAT (₹Cr)',    data:PAT,backgroundColor:BLUE+'33',borderColor:BLUE,borderWidth:2,borderRadius:2},
   ]},
   options:{responsive:true,interaction:{mode:'index'},
     plugins:{legend:{labels:{color:CREAM,boxWidth:12}},tooltip:TP},
-    scales:{x:{grid:{color:'rgba(240,165,0,0.08)'},ticks:{color:CREAM}},
-            y:{grid:{color:'rgba(240,165,0,0.08)'},ticks:{color:CREAM,callback:v=>'₹'+v}}}}
+    scales:{x:{grid:{color:'rgba(26,86,219,0.1)'},ticks:{color:CREAM}},
+            y:{grid:{color:'rgba(26,86,219,0.1)'},ticks:{color:CREAM,callback:v=>'₹'+v}}}}
 });
 document.querySelectorAll('#earningsCtrl .cb').forEach(b=>{
   b.addEventListener('click',()=>{
@@ -354,12 +349,12 @@ new Chart(document.getElementById('adtChart').getContext('2d'),{
   type:'line',
   data:{labels:QS,datasets:[{
     label:'ADT (₹ Lakh Crore)',data:ADT,
-    borderColor:GOLD,backgroundColor:GOLD+'18',
+    borderColor:'#1a56db',backgroundColor:GOLD+'18',
     borderWidth:2.5,pointBackgroundColor:GOLD,pointRadius:5,pointHoverRadius:8,tension:.3,fill:true
   }]},
   options:{responsive:true,plugins:{legend:{labels:{color:CREAM,boxWidth:12}},tooltip:TP},
-    scales:{x:{grid:{color:'rgba(240,165,0,0.08)'},ticks:{color:CREAM}},
-            y:{grid:{color:'rgba(240,165,0,0.08)'},ticks:{color:CREAM,callback:v=>'₹'+v+' L Cr'}}}}
+    scales:{x:{grid:{color:'rgba(26,86,219,0.1)'},ticks:{color:CREAM}},
+            y:{grid:{color:'rgba(26,86,219,0.1)'},ticks:{color:CREAM,callback:v=>'₹'+v+' L Cr'}}}}
 });
 
 // ── MARGIN CHART ────────────────────────────────────────────────────────
@@ -372,8 +367,8 @@ new Chart(document.getElementById('marginChart').getContext('2d'),{
     borderWidth:2,borderRadius:2
   }]},
   options:{responsive:true,plugins:{legend:{labels:{color:CREAM,boxWidth:12}},tooltip:{...TP,callbacks:{label:c=>` Margin: ${c.parsed.y}%`}}},
-    scales:{x:{grid:{color:'rgba(240,165,0,0.08)'},ticks:{color:CREAM}},
-            y:{min:50,max:85,grid:{color:'rgba(240,165,0,0.08)'},ticks:{color:CREAM,callback:v=>v+'%'}}}}
+    scales:{x:{grid:{color:'rgba(26,86,219,0.1)'},ticks:{color:CREAM}},
+            y:{min:50,max:85,grid:{color:'rgba(26,86,219,0.1)'},ticks:{color:CREAM,callback:v=>v+'%'}}}}
 });
 
 // ── SEGMENT MIX DOUGHNUT ───────────────────────────────────────────────
@@ -403,7 +398,7 @@ new Chart(document.getElementById('growthChart').getContext('2d'),{
   },
   options:{indexAxis:'y',responsive:true,
     plugins:{legend:{display:false},tooltip:{...TP,callbacks:{label:c=>` +${c.parsed.x}% YoY`}}},
-    scales:{x:{min:0,max:550,grid:{color:'rgba(240,165,0,0.08)'},ticks:{color:CREAM,callback:v=>v+'%'}},
+    scales:{x:{min:0,max:550,grid:{color:'rgba(26,86,219,0.1)'},ticks:{color:CREAM,callback:v=>v+'%'}},
             y:{grid:{display:false},ticks:{color:CREAM}}}}
 });
 
