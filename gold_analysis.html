@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Jewellery Sector — Titan & Kalyan Q4 FY26 Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--gold:#a0722a;--gold2:#b8860b;--dark:#ffffff;--card:#f9f7f2;--card2:#f0ebe0;--text:#1a1a1a;--sub:#555566;--green:#1a7a4a;--red:#c0392b;--blue:#1a5ab8;--purple:#6b3fa0;--border:#d4c9b0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ffffff;color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);display:flex;align-items:center;gap:4px;padding:0 20px;height:52px;flex-wrap:wrap}
+.nav-brand{font-size:15px;font-weight:700;color:var(--gold);margin-right:16px;white-space:nowrap}
+.tab-btn{background:none;border:none;color:var(--sub);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:500;white-space:nowrap;transition:all .2s}
+.tab-btn:hover{color:var(--text);background:var(--card2)}
+.tab-btn.active{color:var(--gold);background:rgba(160,114,42,.1);border-bottom:2px solid var(--gold)}
+.section{display:none;padding:24px 20px;max-width:1300px;margin:0 auto}
+.section.active{display:block}
+h2{font-size:22px;font-weight:700;color:var(--gold);margin-bottom:4px}
+h3{font-size:15px;font-weight:600;color:var(--gold2);margin-bottom:12px}
+.subtitle{color:var(--sub);font-size:12px;margin-bottom:20px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.card-lg{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.kpi{text-align:center;padding:14px 10px}
+.kpi .val{font-size:24px;font-weight:800;color:var(--gold)}
+.kpi .lbl{font-size:11px;color:var(--sub);margin-top:4px}
+.kpi .chg{font-size:12px;font-weight:600;margin-top:2px}
+.up{color:var(--green)}.dn{color:var(--red)}.neu{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:var(--card2);color:var(--gold2);padding:9px 10px;text-align:left;font-weight:700;border-bottom:2px solid var(--border)}
+td{padding:8px 10px;border-bottom:1px solid rgba(212,201,176,.6);color:var(--text)}
+tr:hover td{background:rgba(0,0,0,.02)}
+.tbl-section td{background:#e8dfc8;color:var(--gold2);font-weight:700;font-size:11px}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600}
+.badge-gold{background:rgba(160,114,42,.15);color:var(--gold)}
+.badge-green{background:rgba(26,122,74,.15);color:var(--green)}
+.badge-red{background:rgba(192,57,43,.15);color:var(--red)}
+.badge-blue{background:rgba(26,90,184,.15);color:var(--blue)}
+.badge-purple{background:rgba(107,63,160,.15);color:var(--purple)}
+.progress-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:12px}
+.progress-bar{flex:1;height:8px;background:#e0d9cc;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),#d4a843)}
+.progress-fill.blue{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.progress-fill.green{background:linear-gradient(90deg,var(--green),#2ecc71)}
+.progress-fill.red{background:linear-gradient(90deg,var(--red),#e74c3c)}
+.toggle-group{display:flex;gap:6px;margin-bottom:16px}
+.toggle-btn{background:var(--card2);border:1px solid var(--border);color:var(--sub);padding:5px 14px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .2s}
+.toggle-btn.active{background:rgba(160,114,42,.12);border-color:var(--gold);color:var(--gold)}
+.risk-item{background:var(--card2);border-left:3px solid;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:8px}
+.risk-high{border-color:var(--red)}
+.risk-med{border-color:#d4800a}
+.risk-low{border-color:var(--green)}
+.risk-title{font-weight:600;font-size:13px;margin-bottom:3px;color:var(--text)}
+.risk-desc{font-size:11px;color:var(--sub)}
+.vs-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(212,201,176,.6);font-size:12px}
+.vs-mid{color:var(--sub);font-size:10px;text-align:center;font-weight:700}
+.vs-titan{color:var(--gold2);text-align:right;font-weight:600}
+.vs-kalyan{color:var(--blue);font-weight:600}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:#f0ebe0}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.chart-wrap{position:relative;height:260px}
+.chart-wrap-lg{position:relative;height:320px}
+.highlight{background:rgba(160,114,42,.06);border:1px solid rgba(160,114,42,.2);border-radius:10px;padding:14px;margin-bottom:14px}
+.highlight h4{color:var(--gold2);font-size:13px;margin-bottom:6px}
+.highlight li{font-size:12px;color:#333344;line-height:1.7}
+.highlight ul{padding-left:16px}
+.geo-box{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.geo-count{font-size:28px;font-weight:800;color:var(--gold2)}
+.geo-label{font-size:11px;color:var(--sub);margin-top:2px}
+.geo-sub{font-size:10px;color:var(--green);margin-top:2px}
+.note-mil{font-size:10px;color:#b35a00;font-weight:600;margin-top:3px}
+.disclaimer{font-size:10px;color:var(--sub);text-align:center;padding:20px;border-top:1px solid var(--border);margin-top:30px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">💎 Jewellery Sector Analysis</div>
+  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('financials')">Financials</button>
+  <button class="tab-btn" onclick="showTab('business')">Business Model</button>
+  <button class="tab-btn" onclick="showTab('geography')">Geography</button>
+  <button class="tab-btn" onclick="showTab('buyers')">Buyers & Trends</button>
+  <button class="tab-btn" onclick="showTab('debt')">Debt & GML</button>
+  <button class="tab-btn" onclick="showTab('valuation')">Valuation</button>
+  <button class="tab-btn" onclick="showTab('risks')">Risks</button>
+  <button class="tab-btn" onclick="showTab('compare')">Compare</button>
+</nav>
+
+<!-- ══ OVERVIEW ══ -->
+<div id="overview" class="section active">
+  <h2>Gold Jewellery Sector — Q4 FY26 Analysis</h2>
+  <p class="subtitle">Titan Company &amp; Kalyan Jewellers | India's Organised Jewellery Leaders</p>
+
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div>
+          <div style="font-size:18px;font-weight:800;color:var(--gold)">TITAN Company</div>
+          <div style="font-size:11px;color:var(--sub)">NSE: TITAN | Tata Group | Market Cap ₹2.5L Cr</div>
+        </div>
+        <span class="badge badge-gold">Diversified</span>
+      </div>
+      <div class="grid-3">
+        <div class="kpi"><div class="val">₹15,320Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 17.4%</div></div>
+        <div class="kpi"><div class="val">₹1,063Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 13.2%</div></div>
+        <div class="kpi"><div class="val">11.8%</div><div class="lbl">EBITDA Margin</div><div class="chg dn">▼ 30bps</div></div>
+      </div>
+      <div class="grid-3" style="margin-top:8px">
+        <div class="kpi"><div class="val">₹62,400Cr</div><div class="lbl">FY26 Revenue</div></div>
+        <div class="kpi"><div class="val">₹4,180Cr</div><div class="lbl">FY26 Net Profit</div></div>
+        <div class="kpi"><div class="val">85.4x</div><div class="lbl">P/E (TTM)</div></div>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div>
+          <div style="font-size:18px;font-weight:800;color:var(--blue)">KALYAN Jewellers</div>
+          <div style="font-size:11px;color:var(--sub)">NSE: KALYANKJIL | Promoter-led | Market Cap ₹38,062 Cr</div>
+        </div>
+        <span class="badge badge-blue">Pure Play</span>
+      </div>
+      <div class="grid-3">
+        <div class="kpi"><div class="val">₹10,275Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 66.2%</div></div>
+        <div class="kpi"><div class="val">₹409.5Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 118.3%</div></div>
+        <div class="kpi"><div class="val">7.1%</div><div class="lbl">EBITDA Margin</div><div class="chg up">▲ 70bps</div></div>
+      </div>
+      <div class="grid-3" style="margin-top:8px">
+        <div class="kpi"><div class="val">₹35,743Cr</div><div class="lbl">FY26 Revenue</div></div>
+        <div class="kpi"><div class="val">₹1,350Cr</div><div class="lbl">FY26 Net Profit</div></div>
+        <div class="kpi"><div class="val">~28x</div><div class="lbl">P/E (TTM)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-lg">
+    <h3>Sector Macro Tailwinds</h3>
+    <div class="grid-4">
+      <div class="kpi card" style="background:var(--card2)"><div class="val up">+22%</div><div class="lbl">Gold Price YoY (MCX)</div><div class="chg neu">₹94,000/10g avg Q4</div></div>
+      <div class="kpi card" style="background:var(--card2)"><div class="val up">18%</div><div class="lbl">Organised Sector Share</div><div class="chg up">▲ from 12% in FY20</div></div>
+      <div class="kpi card" style="background:var(--card2)"><div class="val">₹6.7L Cr</div><div class="lbl">India Gold Market Size</div><div class="chg up">2nd Largest Globally</div></div>
+      <div class="kpi card" style="background:var(--card2)"><div class="val up">35%</div><div class="lbl">Titan Studded Mix</div><div class="chg neu">Higher margin play</div></div>
+    </div>
+  </div>
+
+  <div class="card-lg">
+    <h3>Top Growth Drivers — FY26</h3>
+    <div class="grid-2">
+      <div>
+        <div class="progress-row"><span style="width:190px">Gold Price Rally (+22%)</span><div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div><span class="up">90%</span></div>
+        <div class="progress-row"><span style="width:190px">Wedding Season Demand</span><div class="progress-bar"><div class="progress-fill" style="width:82%"></div></div><span class="up">82%</span></div>
+        <div class="progress-row"><span style="width:190px">Store Expansion (FOCO)</span><div class="progress-bar"><div class="progress-fill blue" style="width:80%"></div></div><span class="neu">80%</span></div>
+        <div class="progress-row"><span style="width:190px">Premiumisation/Studded</span><div class="progress-bar"><div class="progress-fill green" style="width:68%"></div></div><span class="up">68%</span></div>
+        <div class="progress-row"><span style="width:190px">Organised Shift (BIS)</span><div class="progress-bar"><div class="progress-fill blue" style="width:65%"></div></div><span class="neu">65%</span></div>
+      </div>
+      <div>
+        <div class="progress-row"><span style="width:190px">Digital Discovery</span><div class="progress-bar"><div class="progress-fill green" style="width:72%"></div></div><span class="up">72%</span></div>
+        <div class="progress-row"><span style="width:190px">Middle-Class Income Growth</span><div class="progress-bar"><div class="progress-fill green" style="width:70%"></div></div><span class="up">70%</span></div>
+        <div class="progress-row"><span style="width:190px">NRI &amp; Gulf Demand</span><div class="progress-bar"><div class="progress-fill blue" style="width:58%"></div></div><span class="neu">58%</span></div>
+        <div class="progress-row"><span style="width:190px">Exchange/Upgrade Trigger</span><div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div><span class="up">60%</span></div>
+        <div class="progress-row"><span style="width:190px">Lab-Grown Diamond (Risk)</span><div class="progress-bar"><div class="progress-fill red" style="width:18%"></div></div><span class="dn">Headwind</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-lg">
+    <h3>Revenue Comparison — Titan vs Kalyan (₹ Crore)</h3>
+    <div class="chart-wrap-lg"><canvas id="chartRevenue"></canvas></div>
+  </div>
+</div>
+
+<!-- ══ FINANCIALS ══ -->
+<div id="financials" class="section">
+  <h2>Financial Deep Dive</h2>
+  <p class="subtitle">Quarterly &amp; Annual Performance | FY23–FY26</p>
+  <div class="toggle-group">
+    <button class="toggle-btn active" onclick="toggleFin('quarterly',this)">Quarterly</button>
+    <button class="toggle-btn" onclick="toggleFin('annual',this)">Annual</button>
+  </div>
+
+  <div id="fin-q">
+    <div class="grid-2" style="margin-bottom:16px">
+      <div class="card"><h3 style="color:var(--gold)">Titan — Quarterly Revenue (₹ Cr)</h3><div class="chart-wrap"><canvas id="chartTitanQ"></canvas></div></div>
+      <div class="card"><h3>Kalyan — Quarterly Revenue (₹ Cr)</h3><div class="chart-wrap"><canvas id="chartKalyanQ"></canvas></div></div>
+    </div>
+    <div class="card-lg">
+      <h3>Q4 FY26 — P&amp;L Snapshot</h3>
+      <table>
+        <tr><th>Metric</th><th>Titan Q4 FY26</th><th>Titan Q4 FY25</th><th>YoY</th><th>Kalyan Q4 FY26</th><th>Kalyan Q4 FY25</th><th>YoY</th></tr>
+        <tr><td>Revenue (₹ Cr)</td><td>15,320</td><td>13,054</td><td class="up">+17.4%</td><td>10,275</td><td>6,182</td><td class="up">+66.2%</td></tr>
+        <tr><td>Gross Profit (₹ Cr)</td><td>4,290</td><td>3,742</td><td class="up">+14.6%</td><td>1,952</td><td>1,113</td><td class="up">+75.4%</td></tr>
+        <tr><td>Gross Margin</td><td>28.0%</td><td>28.7%</td><td class="dn">-70bps</td><td>19.0%</td><td>18.0%</td><td class="up">+100bps</td></tr>
+        <tr><td>EBITDA (₹ Cr)</td><td>1,808</td><td>1,567</td><td class="up">+15.4%</td><td>736</td><td>399</td><td class="up">+84.5%</td></tr>
+        <tr><td>EBITDA Margin</td><td>11.8%</td><td>12.0%</td><td class="dn">-20bps</td><td>7.1%</td><td>6.4%</td><td class="up">+70bps</td></tr>
+        <tr><td>PAT (₹ Cr)</td><td>1,063</td><td>939</td><td class="up">+13.2%</td><td>409.5</td><td>187.6</td><td class="up">+118.3%</td></tr>
+        <tr><td>PAT Margin</td><td>6.9%</td><td>7.2%</td><td class="dn">-30bps</td><td>4.0%</td><td>3.0%</td><td class="up">+100bps</td></tr>
+        <tr><td>EPS (₹)</td><td>9.52</td><td>8.40</td><td class="up">+13.3%</td><td>3.97</td><td>1.82</td><td class="up">+118.1%</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="fin-a" style="display:none">
+    <div class="card-lg">
+      <h3>Annual P&amp;L — FY23 to FY26</h3>
+      <table>
+        <tr><th>Metric</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26 (Actual)</th><th>3Y CAGR</th></tr>
+        <tr class="tbl-section"><td colspan="6">TITAN COMPANY (₹ Crores)</td></tr>
+        <tr><td>Revenue</td><td>40,580</td><td>47,890</td><td>51,086</td><td>62,400</td><td class="up">+15.4%</td></tr>
+        <tr><td>EBITDA</td><td>4,460</td><td>5,630</td><td>6,068</td><td>7,363</td><td class="up">+18.2%</td></tr>
+        <tr><td>EBITDA Margin</td><td>11.0%</td><td>11.8%</td><td>11.9%</td><td>11.8%</td><td class="neu">Stable</td></tr>
+        <tr><td>PAT</td><td>2,868</td><td>3,324</td><td>3,496</td><td>4,180</td><td class="up">+13.3%</td></tr>
+        <tr><td>ROE</td><td>27.2%</td><td>28.5%</td><td>26.8%</td><td>27.4%</td><td class="neu">~27%</td></tr>
+        <tr><td>ROCE</td><td>33.1%</td><td>35.6%</td><td>34.2%</td><td>35.0%</td><td class="up">~35%</td></tr>
+        <tr class="tbl-section"><td colspan="6">KALYAN JEWELLERS — Consolidated (₹ Crores)</td></tr>
+        <tr><td>Revenue</td><td>14,109</td><td>18,631</td><td>25,045</td><td>35,743</td><td class="up">+36.3%</td></tr>
+        <tr><td>EBITDA</td><td>1,129</td><td>1,361</td><td>1,577</td><td>2,538</td><td class="up">+30.8%</td></tr>
+        <tr><td>EBITDA Margin</td><td>8.0%</td><td>7.3%</td><td>6.3%</td><td>7.1%</td><td class="up">Recovering</td></tr>
+        <tr><td>PAT</td><td>432</td><td>596</td><td>714</td><td>1,350</td><td class="up">+46.4%</td></tr>
+        <tr><td>ROE</td><td>11.9%</td><td>14.3%</td><td>14.9%</td><td>24.3%</td><td class="up">Improving</td></tr>
+        <tr><td>ROCE</td><td>25.4%</td><td>27.9%</td><td>28.8%</td><td>28.8%</td><td class="up">~29%</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card"><h3>Margin Trends</h3><div class="chart-wrap"><canvas id="chartMargins"></canvas></div></div>
+    <div class="card"><h3>ROE vs ROCE</h3><div class="chart-wrap"><canvas id="chartROE"></canvas></div></div>
+  </div>
+  <div class="card-lg" style="margin-top:16px">
+    <h3>Titan Segment Revenue — FY26</h3>
+    <div class="grid-2">
+      <div>
+        <table>
+          <tr><th>Segment</th><th>Revenue (₹Cr)</th><th>Mix</th><th>EBIT Margin</th><th>YoY</th></tr>
+          <tr><td>Jewellery (Tanishq+)</td><td>53,800</td><td>86.2%</td><td>11.2%</td><td class="up">+18.1%</td></tr>
+          <tr><td>Watches &amp; Wearables</td><td>4,680</td><td>7.5%</td><td>14.8%</td><td class="up">+9.2%</td></tr>
+          <tr><td>Eyewear (Titan Eye+)</td><td>1,020</td><td>1.6%</td><td>8.4%</td><td class="up">+12.3%</td></tr>
+          <tr><td>Emerging (CaratLane)</td><td>1,980</td><td>3.2%</td><td>3.2%</td><td class="up">+31.4%</td></tr>
+          <tr><td>Others</td><td>920</td><td>1.5%</td><td>6.1%</td><td class="up">+7.8%</td></tr>
+        </table>
+      </div>
+      <div class="chart-wrap"><canvas id="chartTitanSeg"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BUSINESS ══ -->
+<div id="business" class="section">
+  <h2>Business Model Analysis</h2>
+  <p class="subtitle">Revenue engines, USPs, and structural advantages</p>
+  <div class="card-lg" style="border-left:4px solid var(--gold)">
+    <h3 style="color:var(--gold)">Titan — The Conglomerate Jewellery Model</h3>
+    <div class="grid-2">
+      <div>
+        <div class="highlight"><h4>Multi-Brand Architecture</h4><ul>
+          <li><strong>Tanishq</strong> — flagship mass-premium, 22K/18K mix</li>
+          <li><strong>Mia by Tanishq</strong> — lightweight workwear, 14K/18K</li>
+          <li><strong>Zoya</strong> — ultra-luxury, diamonds, HNI</li>
+          <li><strong>CaratLane</strong> — online-first, daily wear (61% stake)</li>
+          <li><strong>Tanishq International</strong> — USA, UAE, UK, Singapore</li>
+        </ul></div>
+        <div class="highlight"><h4>Golden Harvest Scheme (GHS)</h4><ul>
+          <li>~7–8 million active subscribers (installment savings)</li>
+          <li>₹3,600 Cr deferred liability = captive demand float</li>
+          <li>Customers locked for 10–11 months before purchase</li>
+        </ul></div>
+        <div class="highlight"><h4>Manufacturing Moat</h4><ul>
+          <li>Hosur factory — India's largest vertically integrated jewellery plant</li>
+          <li>200+ in-house designers | 1,500+ new designs per quarter</li>
+        </ul></div>
+      </div>
+      <div>
+        <div class="highlight"><h4>Watches &amp; Wearables</h4><ul>
+          <li>Titan, Sonata, Fastrack, Helios — multi-price portfolio</li>
+          <li>Smartwatches: Titan Smart, Fastrack Reflex</li>
+          <li>Licensed brands: Tommy Hilfiger, Hugo Boss</li>
+        </ul></div>
+        <div class="highlight"><h4>Titan Eye+ — Eyewear (~940 stores)</h4><ul>
+          <li>Bundled optometry = recurring visits, high loyalty</li>
+          <li>Sunwear + prescription + contacts = full wallet share</li>
+        </ul></div>
+        <div class="highlight"><h4>COCO + FOCO Franchise</h4><ul>
+          <li>COCO — metro flagships (company-owned/operated)</li>
+          <li>FOCO — Tier 2/3 (franchisee capex, Titan ops)</li>
+          <li>~60% of new FY26 stores via FOCO = asset-light scaling</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-lg" style="border-left:4px solid var(--blue)">
+    <h3>Kalyan — The Franchise Scale Model</h3>
+    <div class="grid-2">
+      <div>
+        <div class="highlight"><h4>FOCO Hyper-Expansion</h4><ul>
+          <li>Franchisee funds capex; Kalyan owns inventory + ops</li>
+          <li>~55% of India showrooms franchise-owned</li>
+          <li>Target: 800+ showrooms by FY27 (from 542 now)</li>
+          <li>New store payback: 18–24 months</li>
+        </ul></div>
+        <div class="highlight"><h4>My Kalyan Sub-Network</h4><ul>
+          <li>1,800+ collection centres in Tier 3/4 towns</li>
+          <li>4M+ installment scheme subscribers</li>
+        </ul></div>
+        <div class="highlight"><h4>Candere — Digital Arm</h4><ul>
+          <li>Online-first platform, reached profitability FY25</li>
+          <li>~4% of India revenues</li>
+        </ul></div>
+      </div>
+      <div>
+        <div class="highlight"><h4>Middle East (USD Revenue)</h4><ul>
+          <li>62 showrooms: UAE, Oman, Kuwait, Qatar, Bahrain</li>
+          <li>Indian diaspora + Gulf locals — 22K gold demand</li>
+          <li>FY26 ME revenue: ~₹4,200 Cr (~14% of total)</li>
+        </ul></div>
+        <div class="highlight"><h4>Regional Brand Trust</h4><ul>
+          <li>Founded Kerala 1993 — South India stronghold</li>
+          <li>BIS hallmarking transparency = organised shift beneficiary</li>
+        </ul></div>
+        <div class="highlight"><h4>USA Entry FY26</h4><ul>
+          <li>2 showrooms — New Jersey (Indian diaspora focus)</li>
+          <li>Early stage, long-term option value</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-lg">
+    <h3>USP Comparison</h3>
+    <table>
+      <tr><th>Parameter</th><th>Titan / Tanishq</th><th>Kalyan Jewellers</th></tr>
+      <tr><td>Brand Trust</td><td>Tata halo, 38-yr legacy</td><td>30-yr South India stronghold</td></tr>
+      <tr><td>Design</td><td class="up">200+ designers, 1,500 designs/qtr</td><td>Regional design sensibility</td></tr>
+      <tr><td>Store Expansion</td><td>100–120/yr</td><td class="up">150+/yr (FOCO aggressive)</td></tr>
+      <tr><td>Digital</td><td class="up">CaratLane, strong omni-channel</td><td>Candere, improving</td></tr>
+      <tr><td>Loyalty Scheme</td><td class="up">GHS — 7–8M subscribers</td><td>My Kalyan — 4M+</td></tr>
+      <tr><td>Studded Mix</td><td class="up">~35% (highest margin)</td><td>~20%</td></tr>
+      <tr><td>International</td><td>USA, UAE, UK, Singapore</td><td class="up">UAE, Oman, Kuwait, Qatar, Bahrain, USA</td></tr>
+      <tr><td>Segment Diversity</td><td class="up">Watches + Eyewear + Jewellery</td><td>Pure jewellery</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══ GEOGRAPHY ══ -->
+<div id="geography" class="section">
+  <h2>Geography &amp; Store Network</h2>
+  <p class="subtitle">Domestic &amp; international footprint as of FY26</p>
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <h3 style="color:var(--gold)">Titan — Store Network</h3>
+      <div class="grid-3" style="margin-bottom:12px">
+        <div class="geo-box"><div class="geo-count">840</div><div class="geo-label">Tanishq India</div><div class="geo-sub">+95 YoY</div></div>
+        <div class="geo-box"><div class="geo-count">245</div><div class="geo-label">Mia by Tanishq</div><div class="geo-sub">+40 YoY</div></div>
+        <div class="geo-box"><div class="geo-count">280</div><div class="geo-label">CaratLane</div><div class="geo-sub">+55 YoY</div></div>
+        <div class="geo-box"><div class="geo-count">18</div><div class="geo-label">Zoya Luxury</div><div class="geo-sub">Metro only</div></div>
+        <div class="geo-box"><div class="geo-count">22</div><div class="geo-label">International</div><div class="geo-sub">US,UAE,UK,SG</div></div>
+        <div class="geo-box"><div class="geo-count">940</div><div class="geo-label">Titan Eye+</div><div class="geo-sub">Eyewear</div></div>
+      </div>
+      <table style="font-size:11px">
+        <tr><th>Region</th><th>Tanishq Stores</th><th>Revenue Mix</th></tr>
+        <tr><td>South India</td><td>~240 (29%)</td><td>32%</td></tr>
+        <tr><td>West India</td><td>~195 (23%)</td><td>26%</td></tr>
+        <tr><td>North India</td><td>~220 (26%)</td><td>24%</td></tr>
+        <tr><td>East India</td><td>~130 (15%)</td><td>13%</td></tr>
+        <tr><td>International</td><td>22</td><td>5%</td></tr>
+      </table>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue)">
+      <h3>Kalyan — Store Network</h3>
+      <div class="grid-3" style="margin-bottom:12px">
+        <div class="geo-box"><div class="geo-count">478</div><div class="geo-label">India Showrooms</div><div class="geo-sub">+112 YoY</div></div>
+        <div class="geo-box"><div class="geo-count">62</div><div class="geo-label">Middle East</div><div class="geo-sub">5 countries</div></div>
+        <div class="geo-box"><div class="geo-count">2</div><div class="geo-label">USA</div><div class="geo-sub">New FY26</div></div>
+        <div class="geo-box"><div class="geo-count">1,800+</div><div class="geo-label">My Kalyan Centres</div><div class="geo-sub">Collection pts</div></div>
+        <div class="geo-box"><div class="geo-count">19</div><div class="geo-label">States (India)</div><div class="geo-sub">Pan-India</div></div>
+        <div class="geo-box"><div class="geo-count">542</div><div class="geo-label">Total Showrooms</div><div class="geo-sub">India + Intl</div></div>
+      </div>
+      <table style="font-size:11px">
+        <tr><th>Region</th><th>Showrooms</th><th>Revenue Mix</th></tr>
+        <tr><td>South India</td><td>~185 (39%)</td><td>38%</td></tr>
+        <tr><td>West India</td><td>~110 (23%)</td><td>22%</td></tr>
+        <tr><td>North India</td><td>~105 (22%)</td><td>20%</td></tr>
+        <tr><td>East India</td><td>~78 (16%)</td><td>7%</td></tr>
+        <tr><td>Middle East + USA</td><td>64</td><td>13%</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card-lg"><h3>Store Expansion Trajectory</h3><div class="chart-wrap-lg"><canvas id="chartStores"></canvas></div></div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Kalyan — Middle East</h3>
+      <table>
+        <tr><th>Country</th><th>Showrooms</th><th>Key City</th></tr>
+        <tr><td>UAE</td><td>28</td><td>Dubai, Abu Dhabi</td></tr>
+        <tr><td>Oman</td><td>12</td><td>Muscat</td></tr>
+        <tr><td>Kuwait</td><td>10</td><td>Kuwait City</td></tr>
+        <tr><td>Qatar</td><td>7</td><td>Doha</td></tr>
+        <tr><td>Bahrain</td><td>5</td><td>Manama</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Titan — International</h3>
+      <table>
+        <tr><th>Market</th><th>Stores</th><th>Status</th></tr>
+        <tr><td>USA</td><td>8</td><td><span class="badge badge-green">Growing</span></td></tr>
+        <tr><td>UAE</td><td>6</td><td><span class="badge badge-green">Profitable</span></td></tr>
+        <tr><td>UK</td><td>4</td><td><span class="badge badge-gold">Scaling</span></td></tr>
+        <tr><td>Singapore</td><td>2</td><td><span class="badge badge-blue">Early</span></td></tr>
+        <tr><td>Canada</td><td>2</td><td><span class="badge badge-blue">Early</span></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BUYERS ══ -->
+<div id="buyers" class="section">
+  <h2>Buyer Analysis &amp; Changing Trends</h2>
+  <p class="subtitle">Customer segments, evolving preferences, and demand shifts</p>
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card"><h3>Revenue by Customer Segment</h3><div class="chart-wrap"><canvas id="chartBuyers"></canvas></div></div>
+    <div class="card"><h3>Purchase Occasion Mix</h3><div class="chart-wrap"><canvas id="chartOccasion"></canvas></div></div>
+  </div>
+  <div class="card-lg">
+    <h3>8 Key Buyer Shifts</h3>
+    <div class="grid-2">
+      <div>
+        <div class="risk-item risk-low"><div class="risk-title">1. Studded/Diamond Preference Rising</div><div class="risk-desc">22K plain → 18K studded. Titan studded mix: 35% (FY26) vs 27% (FY22). Higher margin, driven by younger buyers and gifting culture.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">2. Lightweight Daily-Wear Boom</div><div class="risk-desc">Working women driving office-wear gold. Mia, CaratLane boom. Daily wear now 22% of Titan revenues in FY26.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">3. Online Research → Offline Purchase</div><div class="risk-desc">73% of buyers research online first. CaratLane try-at-home + in-store pickup = winning model.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">4. Millennials Entering Bridal Market</div><div class="risk-desc">1990–98 birth cohort at peak wedding age. Larger budgets, design-opinionated buyers.</div></div>
+      </div>
+      <div>
+        <div class="risk-item risk-med"><div class="risk-title">5. Lab-Grown Diamond Watch</div><div class="risk-desc">LGD prices down 70% in 4 years. Risk to studded margin over FY27–29.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">6. BIS Hallmarking → Organised Shift</div><div class="risk-desc">Mandatory hallmarking since 2021. Organised share: 12% (FY20) → 18% (FY26). Direct benefit to Titan, Kalyan.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">7. Gold as Investment</div><div class="risk-desc">Gold coins/bars up 45% in FY26. High prices trigger exchange/upgrade behaviour.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">8. NRI Diaspora Surge</div><div class="risk-desc">Indian gold 25–30% cheaper than buying abroad. Kalyan Gulf + Tanishq USA capturing this.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card-lg">
+    <h3>Buyer Segments</h3>
+    <table>
+      <tr><th>Segment</th><th>Age</th><th>Avg Ticket</th><th>Occasion</th><th>Preference</th><th>% Revenue</th></tr>
+      <tr><td>Bridal Buyers</td><td>22–32</td><td>₹3–15 Lakh</td><td>Wedding, Engagement</td><td>Heavy gold, kundan, diamonds</td><td class="up">38%</td></tr>
+      <tr><td>Gifting Segment</td><td>All ages</td><td>₹15K–1.5L</td><td>Festivals, anniversaries</td><td>Lightweight, certified coins</td><td class="up">22%</td></tr>
+      <tr><td>Daily Wear</td><td>25–40F</td><td>₹10K–50K</td><td>Self-purchase, career</td><td>18K, diamond, platinum</td><td>18%</td></tr>
+      <tr><td>Investment Buyers</td><td>35–55</td><td>₹50K–5L</td><td>Gold price triggers</td><td>Coins, bars, 22K plain</td><td>12%</td></tr>
+      <tr><td>Heirloom/Occasion</td><td>40–60</td><td>₹1–5L</td><td>Religious, family</td><td>22K temple, traditional</td><td>10%</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══ DEBT & GML ══ -->
+<div id="debt" class="section">
+  <h2>Debt, Gold Metal Loan &amp; Working Capital</h2>
+  <p class="subtitle">Capital structure, GML mechanics, and inventory financing</p>
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <h3 style="color:var(--gold)">Titan — Balance Sheet (FY26)</h3>
+      <table>
+        <tr><th>Item</th><th>FY26 (₹Cr)</th><th>FY25 (₹Cr)</th><th>Change</th></tr>
+        <tr><td>Total Debt (incl. GML)</td><td>7,840</td><td>6,420</td><td class="dn">+22.1%</td></tr>
+        <tr><td>Gold Metal Loan (GML)</td><td>5,200</td><td>4,100</td><td class="dn">+26.8%</td></tr>
+        <tr><td>Cash Borrowings</td><td>2,640</td><td>2,320</td><td class="dn">+13.8%</td></tr>
+        <tr><td>Cash &amp; Equivalents</td><td>3,120</td><td>2,840</td><td class="up">+9.9%</td></tr>
+        <tr><td>Net Debt</td><td>4,720</td><td>3,580</td><td class="dn">+31.8%</td></tr>
+        <tr><td>Inventory (Gold)</td><td>18,400</td><td>15,200</td><td class="dn">+21.1%</td></tr>
+        <tr><td>GHS Liability</td><td>3,600</td><td>3,100</td><td class="dn">+16.1%</td></tr>
+        <tr><td>Debt/Equity</td><td>0.52x</td><td>0.47x</td><td class="up">Comfortable</td></tr>
+        <tr><td>Net Debt/EBITDA</td><td>0.64x</td><td>0.59x</td><td class="up">Very safe</td></tr>
+      </table>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue)">
+      <h3>Kalyan — Balance Sheet (FY26)</h3>
+      <table>
+        <tr><th>Item</th><th>FY26 (₹Cr)</th><th>FY25 (₹Cr)</th><th>Change</th></tr>
+        <tr><td>Total Debt (incl. GML)</td><td>5,640</td><td>4,320</td><td class="dn">+30.6%</td></tr>
+        <tr><td>Gold Metal Loan (GML)</td><td>3,800</td><td>2,950</td><td class="dn">+28.8%</td></tr>
+        <tr><td>Cash Borrowings</td><td>1,840</td><td>1,370</td><td class="dn">+34.3%</td></tr>
+        <tr><td>Cash &amp; Equivalents</td><td>1,240</td><td>980</td><td class="up">+26.5%</td></tr>
+        <tr><td>Net Debt</td><td>4,400</td><td>3,340</td><td class="dn">+31.7%</td></tr>
+        <tr><td>Inventory (Gold)</td><td>8,200</td><td>6,100</td><td class="dn">+34.4%</td></tr>
+        <tr><td>Debt/Equity</td><td>0.81x</td><td>0.78x</td><td class="dn">Watch</td></tr>
+        <tr><td>Net Debt/EBITDA</td><td>1.74x</td><td>1.89x</td><td class="up">Improving</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card-lg" style="border-left:4px solid var(--gold)">
+    <h3>Gold Metal Loan (GML) — Deep Dive</h3>
+    <div class="grid-2">
+      <div>
+        <div class="highlight"><h4>How GML Works</h4><ul>
+          <li>Borrow physical gold from banks — not cash</li>
+          <li>Interest rate: 2.5–4.5% p.a. vs 8–10% for cash loans</li>
+          <li>Manufactured into jewellery, repaid at maturity (30–180 days)</li>
+          <li>No gold price exposure on borrowed quantity</li>
+        </ul></div>
+        <div class="highlight"><h4>Structural Moat</h4><ul>
+          <li>Small jewellers cannot access GML (no creditworthiness)</li>
+          <li>Titan GML: ₹5,200 Cr at ~3% — saving ~₹285 Cr/yr vs cash</li>
+          <li>Permanent cost advantage vs unorganised sector</li>
+        </ul></div>
+      </div>
+      <div>
+        <div class="highlight"><h4>GML Risks</h4><ul>
+          <li>Gold price rally → repayment in gold more expensive</li>
+          <li>RBI can restrict GML limits or increase margins</li>
+          <li>Kalyan's higher GML/sales ratio = slightly more exposed</li>
+        </ul></div>
+        <div class="highlight"><h4>Working Capital</h4><ul>
+          <li>Inventory days: Titan ~130 | Kalyan ~96 (better turnover)</li>
+          <li>Titan hedges ~30–40% of gold risk via MCX futures</li>
+          <li>GHS prepayments = net WC benefit for Titan</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="card-lg"><h3>Debt Structure — GML vs Cash Debt (₹ Crore)</h3><div class="chart-wrap"><canvas id="chartDebt"></canvas></div></div>
+</div>
+
+<!-- ══ VALUATION ══ -->
+<div id="valuation" class="section">
+  <h2>Valuation Analysis</h2>
+  <p class="subtitle">Premium multiples, peer comparison, and fair value assessment</p>
+  <div class="grid-4" style="margin-bottom:16px">
+    <div class="kpi card"><div class="val">₹3,260</div><div class="lbl">Titan CMP</div><div class="chg neu">85.4x P/E</div></div>
+    <div class="kpi card"><div class="val">₹2,50,000Cr</div><div class="lbl">Titan Mkt Cap</div><div class="chg up">Tata Premium</div></div>
+    <div class="kpi card"><div class="val">₹424</div><div class="lbl">Kalyan CMP</div><div class="chg neu">~28x P/E</div></div>
+    <div class="kpi card"><div class="val">₹38,062Cr</div><div class="lbl">Kalyan Mkt Cap</div><div class="chg up">Growth Premium</div></div>
+  </div>
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card"><h3>P/E Multiple — Sector</h3><div class="chart-wrap"><canvas id="chartValuation"></canvas></div></div>
+    <div class="card"><h3>EV/EBITDA Historical Band</h3><div class="chart-wrap"><canvas id="chartEV"></canvas></div></div>
+  </div>
+  <div class="card-lg">
+    <h3>Peer Valuation Table</h3>
+    <table>
+      <tr><th>Company</th><th>Mkt Cap</th><th>P/E</th><th>EV/EBITDA</th><th>P/Sales</th><th>Rev Growth</th><th>PAT Margin</th><th>ROE</th><th>View</th></tr>
+      <tr><td><strong>Titan</strong></td><td>₹2,50,000Cr</td><td>85.4x</td><td>58.2x</td><td>4.0x</td><td class="up">+22.1%</td><td>6.7%</td><td>27.4%</td><td><span class="badge badge-gold">Hold/Accumulate</span></td></tr>
+      <tr><td><strong>Kalyan</strong></td><td>₹38,062Cr</td><td>~28x</td><td>~15x</td><td>1.07x</td><td class="up">+42.7%</td><td>3.8%</td><td>24.3%</td><td><span class="badge badge-green">Buy on Dips</span></td></tr>
+      <tr><td>Senco Gold</td><td>₹4,200Cr</td><td>22.4x</td><td>14.8x</td><td>0.42x</td><td class="up">+18.2%</td><td>3.2%</td><td>17.4%</td><td><span class="badge badge-blue">Value Play</span></td></tr>
+      <tr><td>PC Jeweller</td><td>₹3,800Cr</td><td>28.6x</td><td>18.2x</td><td>0.38x</td><td class="up">+14.6%</td><td>2.8%</td><td>12.1%</td><td><span class="badge badge-purple">Speculative</span></td></tr>
+      <tr><td>TBZ</td><td>₹1,200Cr</td><td>18.2x</td><td>11.4x</td><td>0.32x</td><td class="up">+11.2%</td><td>2.4%</td><td>14.2%</td><td><span class="badge badge-blue">Small Cap</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══ RISKS ══ -->
+<div id="risks" class="section">
+  <h2>Risk Analysis</h2>
+  <p class="subtitle">Sector, company-specific, and macro risk matrix</p>
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card"><h3>Risk Probability vs Impact</h3><div class="chart-wrap"><canvas id="chartRisk"></canvas></div></div>
+    <div class="card">
+      <h3>Risk by Company</h3>
+      <table style="font-size:11px">
+        <tr><th>Risk</th><th>Titan</th><th>Kalyan</th></tr>
+        <tr><td>Gold Price Correction</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td></tr>
+        <tr><td>Import Duty Reversal</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td></tr>
+        <tr><td>Lab-Grown Diamond</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-green">Low</span></td></tr>
+        <tr><td>Franchise Quality</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td></tr>
+        <tr><td>GML Regulatory</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
+        <tr><td>Promoter Governance</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
+        <tr><td>Valuation Risk</td><td><span class="badge badge-red">High</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div>
+      <div class="risk-item risk-high"><div class="risk-title">⚡ Gold Price Correction</div><div class="risk-desc">Gold at ₹94,000/10g — historically elevated. A 15–20% correction triggers demand pause, inventory loss, both stocks could correct 20–30%.</div></div>
+      <div class="risk-item risk-high"><div class="risk-title">⚡ Import Duty Reversal</div><div class="risk-desc">Budget 2024 cut duty from 15% → 6%. Any reversal would significantly impact volumes across the sector.</div></div>
+      <div class="risk-item risk-high"><div class="risk-title">⚡ Titan Valuation Risk</div><div class="risk-desc">At 85x P/E, any minor earnings miss triggers sharp correction. FY27 EPS growth needed: 18–20%.</div></div>
+    </div>
+    <div>
+      <div class="risk-item risk-med"><div class="risk-title">⚠ Lab-Grown Diamond Disruption</div><div class="risk-desc">LGD prices down 70% in 4 years. Risk to Titan's high-margin studded jewellery mix over FY27–29.</div></div>
+      <div class="risk-item risk-med"><div class="risk-title">⚠ Kalyan Franchise Quality Control</div><div class="risk-desc">Rapid FOCO expansion risks brand integrity. One major incident could damage regional trust built over decades.</div></div>
+      <div class="risk-item risk-med"><div class="risk-title">⚠ Kalyan Promoter Concentration</div><div class="risk-desc">Family holds ~62.9%. Limited independent oversight. High promoter concentration warrants governance monitoring.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ COMPARE ══ -->
+<div id="compare" class="section">
+  <h2>Head-to-Head Comparison</h2>
+  <p class="subtitle">Titan vs Kalyan — investor perspective</p>
+
+  <div class="card-lg">
+    <div style="font-size:10px;color:#b35a00;font-weight:600;margin-bottom:8px;text-align:center">All figures on Consolidated basis | ₹ Crores | Verify from BSE/NSE filings before investment decisions</div>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">
+      <div style="text-align:right;font-size:14px;font-weight:700;color:var(--gold2)">TITAN</div>
+      <div style="width:140px;text-align:center;font-size:11px;color:var(--sub)">METRIC</div>
+      <div style="font-size:14px;font-weight:700;color:var(--blue)">KALYAN</div>
+    </div>
+    <div class="vs-row"><div class="vs-titan">₹62,400 Cr</div><div class="vs-mid">FY26 Revenue (Turnover)</div><div class="vs-kalyan">₹35,743 Cr</div></div>
+    <div class="vs-row"><div class="vs-titan">22.1%</div><div class="vs-mid">Revenue Growth YoY</div><div class="vs-kalyan" style="color:var(--green)">42.7% ▲</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">11.8%</div><div class="vs-mid">EBITDA Margin</div><div class="vs-kalyan">7.1%</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">6.7%</div><div class="vs-mid">PAT Margin</div><div class="vs-kalyan">3.8%</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">27.4%</div><div class="vs-mid">ROE</div><div class="vs-kalyan">24.3%</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">35.0%</div><div class="vs-mid">ROCE</div><div class="vs-kalyan">28.8%</div></div>
+    <div class="vs-row"><div class="vs-titan">₹4,180 Cr</div><div class="vs-mid">FY26 Net Profit</div><div class="vs-kalyan">₹1,350 Cr</div></div>
+    <div class="vs-row"><div class="vs-titan">85.4x</div><div class="vs-mid">P/E (TTM)</div><div class="vs-kalyan" style="color:var(--green)">~28x ▼</div></div>
+    <div class="vs-row"><div class="vs-titan">58.2x</div><div class="vs-mid">EV/EBITDA</div><div class="vs-kalyan" style="color:var(--green)">~15x ▼</div></div>
+    <div class="vs-row"><div class="vs-titan">4.0x</div><div class="vs-mid">P/Sales</div><div class="vs-kalyan" style="color:var(--green)">1.07x ▼</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">0.64x</div><div class="vs-mid">Net Debt/EBITDA</div><div class="vs-kalyan">1.74x</div></div>
+    <div class="vs-row"><div class="vs-titan">~130 days</div><div class="vs-mid">Inventory Days</div><div class="vs-kalyan" style="color:var(--green)">~96 days ▲</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">35%</div><div class="vs-mid">Studded Mix</div><div class="vs-kalyan">20%</div></div>
+    <div class="vs-row"><div class="vs-titan">840 stores</div><div class="vs-mid">India Jewellery Stores</div><div class="vs-kalyan" style="color:var(--green)">478 (rapid)</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">Multi-segment</div><div class="vs-mid">Business Type</div><div class="vs-kalyan">Pure Jewellery</div></div>
+    <div class="vs-row"><div class="vs-titan">USA,UAE,UK,SG</div><div class="vs-mid">International</div><div class="vs-kalyan" style="color:var(--green)">UAE,Oman,Kuwait,Qatar,Bahrain,USA</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">Tata/Institutional</div><div class="vs-mid">Governance</div><div class="vs-kalyan">Family Promoter</div></div>
+    <div class="vs-row"><div class="vs-titan">₹2,50,000 Cr</div><div class="vs-mid">Market Cap</div><div class="vs-kalyan">₹38,062 Cr</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" style="border-left:4px solid var(--gold)">
+      <h3 style="color:var(--gold)">Choose Titan If...</h3>
+      <ul style="font-size:12px;color:var(--sub);padding-left:16px;line-height:2.1">
+        <li>Governance certainty — Tata group trust</li>
+        <li>Margin stability over raw growth speed</li>
+        <li>Multi-segment diversification comfort</li>
+        <li>Premium brand compounding over decades</li>
+        <li>CaratLane option on online jewellery</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--blue)">
+      <h3>Choose Kalyan If...</h3>
+      <ul style="font-size:12px;color:var(--sub);padding-left:16px;line-height:2.1">
+        <li>Faster growth at cheaper valuation (52x P/E)</li>
+        <li>FOCO franchise store-count explosion</li>
+        <li>Middle East USD revenue diversification</li>
+        <li>PAT growing 2x faster than revenue</li>
+        <li>PEG &lt;1.8x vs Titan PEG &gt;4x</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-lg" style="margin-top:16px">
+    <h3>Business Quality Radar</h3>
+    <div class="chart-wrap-lg"><canvas id="chartRadar"></canvas></div>
+  </div>
+
+  <div class="disclaimer"><strong>DISCLAIMER:</strong> Educational analysis only. Not investment advice. All figures on consolidated basis in ₹ Crores. Verify all figures from BSE/NSE filings before investment decisions.</div>
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  setTimeout(()=>initCharts(id),80);
+}
+function toggleFin(v,btn){
+  document.getElementById('fin-q').style.display=v==='quarterly'?'block':'none';
+  document.getElementById('fin-a').style.display=v==='annual'?'block':'none';
+  document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// White canvas background for all charts
+Chart.register({id:'whiteBackground',beforeDraw:(chart)=>{const ctx=chart.canvas.getContext('2d');ctx.save();ctx.globalCompositeOperation='destination-over';ctx.fillStyle='#ffffff';ctx.fillRect(0,0,chart.width,chart.height);ctx.restore()}});
+
+Chart.defaults.color='#333344';
+Chart.defaults.borderColor='rgba(180,170,150,0.5)';
+Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif";
+Chart.defaults.font.size=11;
+
+const GOLD='rgba(160,114,42,1)',  GOLDF='rgba(160,114,42,0.25)';
+const BLUE='rgba(26,90,184,1)',   BLUEF='rgba(26,90,184,0.2)';
+const GREEN='rgba(26,122,74,1)',  GREENF='rgba(26,122,74,0.2)';
+const RED='rgba(192,57,43,1)',    REDF='rgba(192,57,43,0.2)';
+const PURPLE='rgba(107,63,160,1)',PURPF='rgba(107,63,160,0.2)';
+const TEAL='rgba(13,120,110,1)',  TEALF='rgba(13,120,110,0.2)';
+const ORANGE='rgba(200,80,10,1)', ORGF='rgba(200,80,10,0.2)';
+const GR='rgba(180,170,150,0.4)';
+
+const C={};
+function mk(id,cfg){if(!C[id]){C[id]=new Chart(document.getElementById(id),cfg);}}
+
+function initCharts(tab){
+  if(tab==='overview'){
+    mk('chartRevenue',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+      {label:'Titan (₹Cr)',data:[40580,47890,51086,62400],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:6},
+      {label:'Kalyan (₹Cr)',data:[14109,18631,25045,35743],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:6}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'Revenue — Titan vs Kalyan (₹ Crore)',color:'#a0722a',font:{size:13}}},scales:{y:{grid:{color:GR},ticks:{callback:v=>'₹'+v.toLocaleString()}}}}});
+  }
+  if(tab==='financials'){
+    mk('chartTitanQ',{type:'bar',data:{labels:['Q1FY25','Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'],datasets:[{label:'Revenue (₹Cr)',data:[9080,9830,13180,13054,11400,11820,14480,15320],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:GR}}}}});
+    mk('chartKalyanQ',{type:'bar',data:{labels:['Q1FY25','Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'],datasets:[{label:'Revenue (₹Cr)',data:[5528,6058,7277,6182,7268,7856,10343,10275],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:GR}}}}});
+    mk('chartMargins',{type:'line',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+      {label:'Titan EBITDA%',data:[11.0,11.8,11.9,11.8],borderColor:GOLD,backgroundColor:GOLDF,fill:true,tension:0.4,pointRadius:5},
+      {label:'Kalyan EBITDA%',data:[8.0,7.3,6.3,7.1],borderColor:BLUE,backgroundColor:BLUEF,fill:true,tension:0.4,pointRadius:5},
+      {label:'Titan PAT%',data:[7.1,6.9,6.8,6.7],borderColor:GREEN,borderDash:[5,3],fill:false,tension:0.4,pointRadius:5},
+      {label:'Kalyan PAT%',data:[3.1,3.2,2.9,3.8],borderColor:PURPLE,borderDash:[5,3],fill:false,tension:0.4,pointRadius:5}
+    ]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{min:0,max:15,ticks:{callback:v=>v+'%'},grid:{color:GR}}}}});
+    mk('chartROE',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+      {label:'Titan ROE',data:[27.2,28.5,26.8,27.4],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4},
+      {label:'Titan ROCE',data:[33.1,35.6,34.2,35.0],backgroundColor:'rgba(201,168,76,0.45)',borderColor:GOLD,borderWidth:2,borderRadius:4},
+      {label:'Kalyan ROE',data:[11.9,14.3,14.9,24.3],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4},
+      {label:'Kalyan ROCE',data:[25.4,27.9,28.8,28.8],backgroundColor:'rgba(26,90,184,0.45)',borderColor:BLUE,borderWidth:2,borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:GR}}}}});
+    mk('chartTitanSeg',{type:'doughnut',data:{labels:['Jewellery 86.2%','Watches 7.5%','Eyewear 1.6%','Emerging 3.2%','Others 1.5%'],datasets:[{data:[86.2,7.5,1.6,3.2,1.5],backgroundColor:[GOLD,BLUE,GREEN,PURPLE,RED],borderColor:'#ffffff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#333344'}}}}});
+  }
+  if(tab==='geography'){
+    mk('chartStores',{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26E'],datasets:[
+      {label:'Titan Tanishq',data:[510,595,670,748,840],borderColor:GOLD,backgroundColor:GOLDF,fill:true,tension:0.4,pointRadius:5},
+      {label:'Kalyan India',data:[140,185,270,366,478],borderColor:BLUE,backgroundColor:BLUEF,fill:true,tension:0.4,pointRadius:5},
+      {label:'CaratLane',data:[90,125,175,228,280],borderColor:GREEN,fill:false,tension:0.4,pointRadius:5,borderDash:[5,3]},
+      {label:'Kalyan ME',data:[30,38,45,52,62],borderColor:PURPLE,fill:false,tension:0.4,pointRadius:5,borderDash:[5,3]}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'Store Count Growth',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
+  }
+  if(tab==='buyers'){
+    mk('chartBuyers',{type:'doughnut',data:{labels:['Bridal 38%','Gifting 22%','Daily Wear 18%','Investment 12%','Heirloom 10%'],datasets:[{data:[38,22,18,12,10],backgroundColor:[GOLD,BLUE,GREEN,PURPLE,RED],borderColor:'#ffffff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#333344'}}}}});
+    mk('chartOccasion',{type:'bar',data:{labels:['Wedding/Engage','Festival','Daily Wear','Gift/Anniversary','Investment'],datasets:[
+      {label:'Titan %',data:[42,28,16,10,4],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4},
+      {label:'Kalyan %',data:[48,26,10,8,8],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:GR}}}}});
+  }
+  if(tab==='debt'){
+    mk('chartDebt',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+      {label:'Titan GML',data:[2800,3400,4100,5200],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4},
+      {label:'Titan Cash Debt',data:[1800,2100,2320,2640],backgroundColor:'rgba(201,168,76,0.45)',borderColor:GOLD,borderWidth:2,borderRadius:4},
+      {label:'Kalyan GML',data:[1620,2200,2950,3800],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4},
+      {label:'Kalyan Cash Debt',data:[840,1020,1370,1840],backgroundColor:'rgba(91,141,238,0.45)',borderColor:BLUE,borderWidth:2,borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'GML vs Cash Debt (₹ Crore)',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
+  }
+  if(tab==='valuation'){
+    mk('chartValuation',{type:'bar',data:{labels:['Titan','Kalyan','Senco','PC Jeweller','TBZ'],datasets:[{label:'P/E (TTM)',data:[85.4,28.0,22.4,28.6,18.2],backgroundColor:[GOLDF,BLUEF,GREENF,REDF,PURPF],borderColor:[GOLD,BLUE,GREEN,RED,PURPLE],borderWidth:2,borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'P/E Multiple Comparison',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
+    mk('chartEV',{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26E'],datasets:[
+      {label:'Titan EV/EBITDA',data:[72,65,60,55,58],borderColor:GOLD,backgroundColor:GOLDF,fill:true,tension:0.4,pointRadius:5},
+      {label:'Kalyan EV/EBITDA',data:[18,16,18,20,15],borderColor:BLUE,backgroundColor:BLUEF,fill:true,tension:0.4,pointRadius:5}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'EV/EBITDA Band',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
+  }
+  if(tab==='risks'){
+    mk('chartRisk',{type:'bubble',data:{datasets:[
+      {label:'Gold Price Risk',data:[{x:8,y:9,r:18}],backgroundColor:REDF,borderColor:RED},
+      {label:'Duty Change',data:[{x:7,y:8,r:15}],backgroundColor:REDF,borderColor:RED},
+      {label:'Titan Valuation',data:[{x:6,y:9,r:14}],backgroundColor:REDF,borderColor:RED},
+      {label:'Lab-Grown Diamond',data:[{x:5,y:6,r:12}],backgroundColor:ORGF,borderColor:ORANGE},
+      {label:'GML Regulatory',data:[{x:4,y:7,r:10}],backgroundColor:ORGF,borderColor:ORANGE},
+      {label:'Franchise Quality',data:[{x:6,y:5,r:11}],backgroundColor:ORGF,borderColor:ORANGE},
+      {label:'Competition',data:[{x:3,y:4,r:8}],backgroundColor:GREENF,borderColor:GREEN},
+      {label:'Promoter Governance',data:[{x:5,y:6,r:10}],backgroundColor:ORGF,borderColor:ORANGE}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'Risk Matrix — Probability vs Impact',color:'#a0722a'}},scales:{x:{min:0,max:10,title:{display:true,text:'Probability →'},grid:{color:GR}},y:{min:0,max:10,title:{display:true,text:'Impact →'},grid:{color:GR}}}}});
+  }
+  if(tab==='compare'){
+    mk('chartRadar',{type:'radar',data:{labels:['Brand','Profitability','Growth','Governance','Valuation','Balance Sheet','Geo Diversity','Digital','Margin','Scale'],datasets:[
+      {label:'Titan',data:[95,82,72,95,35,85,65,88,85,92],borderColor:GOLD,backgroundColor:GOLDF,pointBackgroundColor:GOLD},
+      {label:'Kalyan',data:[72,58,90,60,72,52,82,55,60,68],borderColor:BLUE,backgroundColor:BLUEF,pointBackgroundColor:BLUE}
+    ]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:100,grid:{color:'rgba(180,170,150,0.5)'},angleLines:{color:'rgba(180,170,150,0.5)'},ticks:{display:false,backdropColor:'transparent'},pointLabels:{color:'#333344',font:{size:10}}}}}});
+  }
+}
+window.addEventListener('load',()=>setTimeout(()=>initCharts('overview'),100));
+</script>
+</body>
+</html>
