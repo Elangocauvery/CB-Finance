@@ -13,58 +13,67 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.6}
-.layout{display:flex;min-height:100vh}
-.sb{width:224px;background:var(--w);border-right:1px solid var(--br);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100;display:flex;flex-direction:column;flex-shrink:0}
-.mn{margin-left:224px;flex:1;min-width:0}
-.sb-logo{padding:16px;border-bottom:1px solid var(--br)}
-.sb-logo .t{font-size:13px;font-weight:800;color:var(--tx);letter-spacing:-.01em}
-.sb-logo .s{font-size:10px;color:var(--mu);font-family:monospace;margin-top:2px;letter-spacing:.06em}
-.sb-logo .bk{display:inline-block;background:#fef3c7;color:#92400e;font-size:9px;font-family:monospace;padding:2px 7px;border-radius:3px;font-weight:700;margin-top:6px}
-.ng{padding:10px 12px 3px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
-.ni{display:flex;align-items:center;gap:9px;padding:8px 14px;margin:1px 6px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:500;color:var(--tx2);border:none;background:transparent;width:calc(100% - 12px);text-align:left;transition:background .14s,color .14s}
-.ni:hover{background:#f0f2fb;color:var(--tx)}
-.ni.active{background:linear-gradient(135deg,#eef2ff,#e0e7ff);color:var(--in);font-weight:700}
-.ni .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.tb{background:var(--w);border-bottom:1px solid var(--br);padding:13px 26px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50;box-shadow:var(--sh)}
-.tb h1{font-size:16px;font-weight:800;color:var(--tx);letter-spacing:-.01em}
-.tb h1 span{color:var(--in)}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{background:#f0f2fb;color:var(--in);font-size:10px;font-family:monospace;padding:3px 8px;border-radius:20px;font-weight:600}
-.pg{display:none;padding:22px 26px 40px}.pg.active{display:block;animation:fi .2s ease}
-@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TOP HEADER ── */
+.site-header{background:linear-gradient(135deg,#0f172a,#1e3a5f);position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 28px;border-bottom:1px solid rgba(255,255,255,.08)}
+.header-brand{display:flex;align-items:center;gap:12px}
+.header-brand .logo{width:36px;height:36px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.header-brand .title{font-size:16px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.header-brand .sub{font-size:10px;color:#94a3b8;font-family:monospace;letter-spacing:.06em;margin-top:1px}
+.header-chips{display:flex;gap:6px;flex-wrap:wrap}
+.hchip{background:rgba(255,255,255,.1);color:#e2e8f0;font-size:10px;font-family:monospace;padding:3px 9px;border-radius:20px;font-weight:600;border:1px solid rgba(255,255,255,.15)}
+
+/* ── TOP NAVIGATION BAR ── */
+.topnav{display:flex;align-items:center;overflow-x:auto;padding:0 20px;background:rgba(0,0,0,.2);scrollbar-width:none;gap:2px}
+.topnav::-webkit-scrollbar{display:none}
+
+.tn-group{display:flex;align-items:center}
+.tn-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#64748b;padding:0 10px;white-space:nowrap;user-select:none}
+.tn-sep{width:1px;height:20px;background:rgba(255,255,255,.1);margin:0 4px;flex-shrink:0}
+
+.ni{display:flex;align-items:center;gap:6px;padding:10px 13px;cursor:pointer;font-size:12px;font-weight:500;color:#94a3b8;border:none;background:transparent;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap;font-family:-apple-system,sans-serif}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.05)}
+.ni.active{color:#fff;border-bottom-color:#6366f1;font-weight:700;background:rgba(99,102,241,.12)}
+.ni.cb-btn{color:#4ade80;border-bottom-color:transparent}
+.ni.cb-btn.active{color:#4ade80;border-bottom-color:#4ade80;background:rgba(74,222,128,.1)}
+.ni .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ── MAIN CONTENT ── */
+.mn{min-width:0}
+.pg{display:none;padding:24px 28px 48px;max-width:1400px;margin:0 auto;animation:fi .22s ease}
+.pg.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── All existing inner styles ── */
 .ph{margin-bottom:20px}.ph h2{font-size:19px;font-weight:800;letter-spacing:-.01em}.ph p{font-size:12px;color:var(--mu);margin-top:3px}
 .st{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--in);display:flex;align-items:center;gap:8px;margin-bottom:12px;margin-top:22px}
-.st:first-child{margin-top:0}
-.st::after{content:"";flex:1;height:1px;background:var(--br)}
+.st:first-child{margin-top:0}.st::after{content:"";flex:1;height:1px;background:var(--br)}
 .kg{display:grid;gap:11px;margin-bottom:18px}
 .kg4{grid-template-columns:repeat(4,1fr)}.kg3{grid-template-columns:repeat(3,1fr)}.kg2{grid-template-columns:repeat(2,1fr)}
 @media(max-width:1100px){.kg4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.kg4,.kg3,.kg2{grid-template-columns:1fr}}
 .kpi{background:var(--w);border:1px solid var(--br);border-radius:10px;padding:15px;box-shadow:var(--sh)}
 .kpi.at{border-top:3px solid var(--ta)}.kpi.am{border-top:3px solid var(--ma)}.kpi.ah{border-top:3px solid var(--hy)}.kpi.amm{border-top:3px solid var(--mm)}.kpi.ag{border-top:3px solid var(--gn)}.kpi.ar{border-top:3px solid var(--rd)}.kpi.ao{border-top:3px solid var(--or)}
-.kl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.kl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
 .kv{font-size:21px;font-weight:800;font-family:monospace;color:var(--tx);line-height:1.1}
-.kc{font-size:11px;font-family:monospace;font-weight:600;margin-top:4px}
-.kn{font-size:11px;color:var(--mu);margin-top:2px}
+.kc{font-size:11px;font-family:monospace;font-weight:600;margin-top:4px}.kn{font-size:11px;color:var(--mu);margin-top:2px}
 .up{color:var(--gn)}.dn{color:var(--rd)}.nu{color:var(--in)}
 .card{background:var(--w);border:1px solid var(--br);border-radius:11px;padding:18px;box-shadow:var(--sh);margin-bottom:16px}
 .card h3{font-size:14px;font-weight:700;margin-bottom:11px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:900px){.g2,.g3{grid-template-columns:1fr}}
 .tbl{width:100%;border-collapse:collapse;font-size:12px}
-.tbl th{background:#f3f4fb;padding:8px 10px;text-align:left;font-size:9px;font-family:monospace;letter-spacing:.05em;text-transform:uppercase;color:var(--mu);font-weight:700;border-bottom:2px solid var(--br)}
+.tbl th{background:#f3f4fb;padding:8px 10px;text-align:left;font-size:9px;font-family:monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:700;border-bottom:2px solid var(--br)}
 .tbl td{padding:9px 10px;border-bottom:1px solid #eef0f8;color:var(--tx)}
-.tbl tr:last-child td{border-bottom:none}
-.tbl tr:hover td{background:#f8f9ff}
+.tbl tr:last-child td{border-bottom:none}.tbl tr:hover td{background:#f8f9ff}
 .tbl .mn{font-family:monospace;font-size:11px}
-.tbl th:not(:first-child),.tbl td:not(:first-child){text-align:right}
-.tbl .hl{background:#fefce8!important}
+.tbl th:not(:first-child),.tbl td:not(:first-child){text-align:right}.tbl .hl{background:#fefce8!important}
 .brow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .brow .bl{font-size:12px;font-weight:600;color:var(--tx2);flex-shrink:0;min-width:110px}
-.brow .bt{flex:1;background:#eef0f8;border-radius:4px;height:10px;overflow:hidden}
-.brow .bf{height:100%;border-radius:4px}
-.brow .bv{font-family:monospace;font-size:11px;font-weight:700;min-width:75px;text-align:right}
+.brow .bt{flex:1;background:#eef0f8;border-radius:4px;height:9px;overflow:hidden}
+.brow .bf{height:100%;border-radius:4px}.brow .bv{font-family:monospace;font-size:11px;font-weight:700;min-width:75px;text-align:right}
 .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .pill{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:600;border:1.5px solid}
 .pg2{background:#d1fae5;border-color:#6ee7b7;color:#065f46}
@@ -86,54 +95,78 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .cme{background:linear-gradient(135deg,#ffe4e6,#fff1f2);border:1.5px solid #fda4af}
 .co-n{font-size:18px;font-weight:800;color:var(--tx)}
 .co-s{font-size:11px;color:var(--mu);margin-top:2px}
-.co-tk{font-family:monospace;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--in);margin-bottom:3px}
+.co-tk{font-family:monospace;font-size:10px;font-weight:700;color:var(--in);margin-bottom:3px}
 .co-stats{display:flex;gap:20px;flex-wrap:wrap}
-.co-sv{font-family:monospace;font-size:16px;font-weight:800}
-.co-sl{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.co-sv{font-family:monospace;font-size:16px;font-weight:800}.co-sl{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
 .ctabs{display:flex;gap:3px;background:#f3f4fb;border-radius:7px;padding:3px;margin-bottom:16px;flex-wrap:wrap}
 .ctab{padding:6px 12px;border-radius:5px;border:none;background:transparent;font-size:12px;font-weight:600;cursor:pointer;color:var(--mu);transition:all .13s}
 .ctab.active{background:var(--w);color:var(--tx);box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.csec{display:none}.csec.active{display:block;animation:fi .18s ease}
+.csec{display:none}.csec.active{display:block;animation:fi .2s ease}
 .rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-bottom:14px}
 .ri{padding:13px;border-radius:8px;border-left:4px solid}
 .rh{background:#fff1f2;border-color:#ef4444}.rm{background:#fffbeb;border-color:#f59e0b}.rl{background:#f0fdf4;border-color:#22c55e}
-.ri-t{font-size:12px;font-weight:700;margin-bottom:4px}
-.ri-b{font-size:12px;color:var(--tx2);line-height:1.5}
+.ri-t{font-size:12px;font-weight:700;margin-bottom:4px}.ri-b{font-size:12px;color:var(--tx2);line-height:1.5}
 .ib{border-radius:8px;padding:12px;font-size:12px;color:var(--tx2);line-height:1.6;border:1px solid;margin-top:10px;margin-bottom:10px}
 .ib-b{background:#eff6ff;border-color:#bfdbfe}.ib-g{background:#f0fdf4;border-color:#bbf7d0}
 .ib-r{background:#fff1f2;border-color:#fecdd3}.ib-o{background:#fffbeb;border-color:#fde68a}
 .cw{background:var(--w);border:1px solid var(--br);border-radius:11px;padding:16px;box-shadow:var(--sh);margin-bottom:16px}
-.ct2{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin-bottom:12px}
+.ct2{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin-bottom:11px}
 canvas{display:block;width:100%!important}
 ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#c8cfe8;border-radius:3px}
 </style>
 </head>
 <body>
-<div class="layout">
-<aside class="sb">
-  <div class="sb-logo">
-    <div class="t">India PV Sector</div>
-    <div class="s">EQUITY RESEARCH DASHBOARD</div>
-    <div class="bk">Q4 FY26 · MAY 2026</div>
+
+<!-- ═══════════════════════════
+     STICKY TOP HEADER + NAV
+═══════════════════════════ -->
+<header class="site-header">
+  <div class="header-top">
+    <div class="header-brand">
+      <div class="logo">📊</div>
+      <div>
+        <div class="title">India PV Sector — Q4 FY26</div>
+        <div class="sub">EQUITY RESEARCH DASHBOARD · MAY 2026</div>
+      </div>
+    </div>
+    <div class="header-chips">
+      <span class="hchip">Tata · Maruti · Hyundai · M&amp;M</span>
+      <span class="hchip">Jan–Mar 2026</span>
+      <span class="hchip">May 15, 2026</span>
+    </div>
   </div>
-  <div class="ng">Overview</div>
-  <button class="ni active" onclick="showPage('dashboard',this)">📊 Dashboard</button>
-  <div class="ng">Financials</div>
-  <button class="ni" onclick="showPage('revenue',this)">💰 Revenue</button>
-  <button class="ni" onclick="showPage('volumes',this)">🚗 Volumes</button>
-  <button class="ni" onclick="showPage('margins',this)">📈 Margins &amp; Profits</button>
-  <div class="ng">Analysis</div>
-  <button class="ni" onclick="showPage('risks',this)">⚠️ Risks</button>
-  <button class="ni" onclick="showPage('ratings',this)">⭐ Analyst Ratings</button>
-  <button class="ni" onclick="showPage('compare',this)">⚖️ Comparison</button>
-  <button class="ni" onclick="showPage('ev',this)">⚡ EV Tracker</button>
-  <div class="ng">Companies</div>
-  <button class="ni" onclick="showPage('tata',this)"><span class="dot" style="background:#1a6fd4"></span> Tata Motors</button>
-  <button class="ni" onclick="showPage('maruti',this)"><span class="dot" style="background:#d42a1a"></span> Maruti Suzuki</button>
-  <button class="ni" onclick="showPage('hyundai',this)"><span class="dot" style="background:#0a3fa0"></span> Hyundai India</button>
-  <button class="ni" onclick="showPage('mm',this)"><span class="dot" style="background:#b81c1c"></span> M&amp;M</button>
-</aside>
-<main class="mn">
+
+  <!-- Navigation Row -->
+  <nav class="topnav">
+    <!-- Overview -->
+    <button class="ni active" onclick="showPage('dashboard',this)">📊 Dashboard</button>
+
+    <div class="tn-sep"></div>
+    <span class="tn-label">Financials</span>
+    <button class="ni" onclick="showPage('revenue',this)">💰 Revenue</button>
+    <button class="ni" onclick="showPage('volumes',this)">🚗 Volumes</button>
+    <button class="ni" onclick="showPage('margins',this)">📈 Margins</button>
+
+    <div class="tn-sep"></div>
+    <span class="tn-label">Analysis</span>
+    <button class="ni" onclick="showPage('risks',this)">⚠️ Risks</button>
+    <button class="ni" onclick="showPage('ratings',this)">⭐ Ratings</button>
+    <button class="ni" onclick="showPage('compare',this)">⚖️ Comparison</button>
+    <button class="ni" onclick="showPage('ev',this)">⚡ EV Tracker</button>
+    <button class="ni cb-btn" onclick="showPage('cbassist',this)">🤖 CB Assist</button>
+
+    <div class="tn-sep"></div>
+    <span class="tn-label">Companies</span>
+    <button class="ni" onclick="showPage('tata',this)"><span class="dot" style="background:#1a6fd4"></span> Tata Motors</button>
+    <button class="ni" onclick="showPage('maruti',this)"><span class="dot" style="background:#d42a1a"></span> Maruti Suzuki</button>
+    <button class="ni" onclick="showPage('hyundai',this)"><span class="dot" style="background:#0a3fa0"></span> Hyundai India</button>
+    <button class="ni" onclick="showPage('mm',this)"><span class="dot" style="background:#b81c1c"></span> M&amp;M</button>
+  </nav>
+</header>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<div class="mn">
+
 <div class="tb">
   <h1>India PV Sector <span>Q4 FY26 Dashboard</span></h1>
   <div class="chips"><span class="chip">Tata · Maruti · Hyundai · M&amp;M · JLR</span><span class="chip">Jan–Mar 2026</span><span class="chip">May 15, 2026</span></div>
@@ -754,9 +787,382 @@ canvas{display:block;width:100%!important}
 <div style="margin:0 26px 40px;padding:16px;border-top:1px solid #e2e6f0;font-size:11px;color:#7880a0">
 <b style="color:#0f1523">Disclaimer:</b> Compiled from Q4 FY26 earnings releases, analyst reports, BSE/NSE filings, and financial media. For informational purposes only — not investment advice. Data as of May 15, 2026.
 </div>
-</main></div>
+
+<div class="pg" id="page-cbassist">
+
+<div class="cb-hero">
+  <div class="cb-badge"><span class="pulse"></span> LIVE · India PV Sector Q4 FY26</div>
+  <h2>🤖 CB Assist — Your Research Guide</h2>
+  <p>Browse the curated Q&amp;As below — click any question to reveal the answer. Use the chat box to ask your own question on the topic. Answers are based on Q4 FY26 data only.</p>
+</div>
+
+<div class="cb-action-row">
+  <button class="cb-act-btn green" onclick="scrollToChat()">💬 Ask a Question</button>
+  <button class="cb-act-btn blue"  onclick="scrollToFaq()">📋 Back to Q&amp;As</button>
+  <button class="cb-act-btn wa"    onclick="shareWhatsApp()">🟢 Share on WhatsApp</button>
+  <button class="cb-act-btn red"   onclick="clearChat()">🗑️ Clear Chat</button>
+</div>
+
+<!-- ── FAQ SECTION 1 ── -->
+<div class="faq-section-title" id="faq-top">📊 Dashboard &amp; Sector Overview</div>
+<div class="faq-grid">
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>Which company had the best Q4 FY26 performance overall?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans"><strong>M&amp;M</strong> was the clear sector winner. It posted the highest PAT (₹4,668 Cr, +41.7% YoY), highest revenue (₹54,982 Cr), best EBITDA margin (13.6%), and strongest volume growth (+21%). It was the only company where PAT grew — the other three all declined YoY. M&amp;M's diversified Auto + Farm + TechM + MMFSL business all fired simultaneously.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>Why did revenue rise but PAT fall for Tata, Maruti and Hyundai?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans"><strong>Tata −71%:</strong> JLR's cyberattack + China decline dragged consolidated PAT to ₹455 Cr despite India PV growing 43%.<br><br><strong>Maruti −6.9%:</strong> MTM losses on bond portfolio slashed other income from ₹1,528 Cr to ₹500 Cr — non-cash but hits reported PAT.<br><br><strong>Hyundai −22.2%:</strong> Vendor compensation payments + labour code adjustment pushed employee costs up 33.9% YoY. EBITDA margin hit an 8-quarter low of 10.4%.<br><br>Only M&amp;M had no exceptional drag — all segments contributed positively.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What drove record Q4 volumes across all four companies?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Five key drivers combined:<br><br>1. <strong>GST restructure</strong> — Small cars shifted to 18% GST, creating pull-forward demand. Maruti alone had 1.3 lakh pending orders in this bracket.<br>2. <strong>Government capex ₹10.2T FY26</strong> — Infrastructure boom → rural income growth → first-time buyers.<br>3. <strong>New model launches</strong> — Tata Harrier.ev, M&amp;M Thar Roxx, Hyundai New Venue all drove incremental demand.<br>4. <strong>Rural recovery</strong> — Hyundai's 25% rural penetration (record); good rabi crop season.<br>5. <strong>SUV boom</strong> — SUVs now &gt;45% of India PV sales; M&amp;M XUV700, Scorpio-N command premium pricing.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>How does India's auto sector compare globally in FY26?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">India delivered double-digit volume growth vs flat-to-negative in China, Europe and the USA.<br><br>• <strong>India FY26 PV:</strong> ~44 lakh units — record<br>• <strong>China:</strong> EV overcapacity + demand slowdown; luxury segment −34% (JLR impact)<br>• <strong>Europe:</strong> Flat demand; EV transition pressures<br>• <strong>USA:</strong> High rates dampening demand<br><br>India is the world's 3rd largest auto market and the fastest-growing major one. That is why all four OEMs reported volume records despite various margin pressures.</div>
+</button>
+
+</div>
+
+<!-- ── FAQ SECTION 2 ── -->
+<div class="faq-section-title">🚗 Volumes &amp; Market Share</div>
+<div class="faq-grid">
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>Who leads India's EV market and by how much?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans"><strong>Tata Motors PV</strong> is India's EV market leader with over 40% market share. FY26 EV sales: 92,120 units (+43% YoY). Q4 alone: 26,931 units (+69% YoY). April 2026: 9,150 EVs (+72%) — accelerating into FY27.<br><br>Cumulative EV sales crossed 250,000 — creating a strong loyalty moat through the Tata.ev network.<br><br>M&amp;M is the fast challenger (~22% share) with BE 6e + XEV 9e. Hyundai (~8%) and Maruti (~3%) are distant followers — both launching dedicated India EVs in FY27.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is Maruti's biggest competitive challenge right now?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Two structural challenges:<br><br>1. <strong>Market share at a 13-year low</strong> — From a historical ~50%+ down to the low-40s. M&amp;M, Hyundai and Kia have captured the premium SUV segment where Maruti has been absent.<br><br>2. <strong>Late EV entry</strong> — First domestic EV (e-Vitara/EVX) only launches FY27, by which time Tata has 250,000+ cumulative sales lead, M&amp;M has two active models, and Hyundai has a fresh model.<br><br>However, Maruti's strengths remain formidable: debt-free, ₹19,063 Cr operating FCF, record ₹140 dividend, and 3,000+ dealer network give it a structural distribution moat no competitor can replicate quickly.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>Why did JLR volumes collapse in FY26 and recover in Q4?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">JLR volumes went from 4,00,898 units in FY25 to 3,07,900 units in FY26 (−23.2%) for four reasons:<br><br>1. <strong>Sep 2025 Cyberattack</strong> — Ransomware shut production for weeks. Q3 volumes crashed to 59,200 (−43% YoY). Q3 EBIT: −6.8%.<br>2. <strong>US Tariffs on Defender</strong> — Slovakia-made Defender faces 15% US tariff (excluded from UK-US deal 10% quota).<br>3. <strong>China Luxury −34.6%</strong> — Chinese luxury buyers switching to BYD, NIO, Huawei-Aito.<br>4. <strong>Jaguar Gap Year</strong> — All Jaguar ICE models discontinued; Type 01 EV not until FY27.<br><br>Q4 recovered to 95,300 units (+61% QoQ) as production normalised post-cyberattack. Q4 EBIT reached 9.2% proving the underlying model is intact.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is M&amp;M's tractor business and why does it matter?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Mahindra Finance (MMFSL) and the Farm Equipment Segment are two separate subsidiaries that make M&amp;M unique among auto peers:<br><br><strong>Farm Equipment:</strong> 43.6% market share in tractors — highest ever. FY26 tractor billings exceeded 5 lakh units (record). Q4 farm revenue: ₹10,022 Cr.<br><br><strong>Mahindra Finance (MMFSL):</strong> Q4 PAT ₹938 Cr (+105% YoY). FY26 PAT ₹2,861 Cr (+27%). AUM ₹1,34,096 Cr (+12%). AAA rated.<br><br>This diversification means M&amp;M earns revenue from auto cycles AND rural/agriculture cycles — providing resilience when either segment softens.</div>
+</button>
+
+</div>
+
+<!-- ── FAQ SECTION 3 ── -->
+<div class="faq-section-title">📈 Margins, Profits &amp; Valuations</div>
+<div class="faq-grid">
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is a PEG ratio and why is M&amp;M's 0.68x considered attractive?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">PEG = P/E ratio ÷ Earnings Growth Rate. It tells you whether you're paying a fair price for the growth you're getting.<br><br>• PEG &lt; 1.0 = potentially undervalued relative to growth<br>• PEG = 1.0 = fairly valued<br>• PEG &gt; 1.0 = expensive relative to growth<br><br><strong>M&amp;M's PEG of 0.68x</strong> means: the company is growing PAT at 33%+ yet its P/E of 21.9x implies much slower growth. Investors are essentially getting growth at a discount. This is why analysts like CLSA and Nomura have Strong Buy ratings — quality growth at below-fair value pricing.<br><br>Compare: Maruti's PEG ~10x (expensive relative to its growth rate).</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>Why is Tata Motors at 1.12x P/Book considered deep value?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">P/Book (Price-to-Book) compares the stock price to the company's net asset value. At 1.12x, the market is valuing TMPV at almost exactly its assets — implying <strong>JLR is worth close to zero</strong> in the market's assessment.<br><br>But JLR generated £1.8 Bn net profit just 12 months ago (FY25). Q4 FY26 showed a 9.2% EBIT margin and £829 Mn free cash flow — proving the business model works when production is uninterrupted.<br><br>21 analysts have Strong Buy ratings with targets up to ₹1,200 (236% upside from ₹357 CMP). At 1.12x P/B, even a partial JLR recovery creates massive upside. High risk but maximum asymmetric reward in the sector.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>Is Maruti's PAT fall misleading? What should investors focus on?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Yes — Maruti's PAT decline of −6.9% YoY is <strong>largely a non-cash distortion</strong>, not an operational weakness.<br><br>The culprit: MTM (Mark-to-Market) losses on its bond portfolio. When bond yields changed, the portfolio was marked down, reducing "other income" from ₹1,528 Cr to ₹500 Cr. This is a paper loss — not cash leaving the business.<br><br><strong>What investors should actually focus on:</strong><br>• EBITDA grew +27.1% YoY to ₹6,157 Cr ✅<br>• Operating cash flow: ₹19,063 Cr FY26 (+18.2%) ✅<br>• Record volume: 6,76,209 units in Q4 ✅<br>• Dividend: ₹140/share (record) ✅<br>• Balance sheet: Debt-free ✅<br><br>The underlying business is strong. The PAT number is distorted by a one-off non-cash item.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>Why did TMPV stock rally even though PAT fell 71%?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Six reasons the market bought the stock despite poor headline numbers:<br><br>1. <strong>Q3 FY26 was the real disaster</strong> — ₹3,486 Cr consolidated loss. Stock already fell from ₹744 to ₹294. Extreme pessimism was priced in.<br>2. <strong>Massive QoQ recovery</strong> — Q3 loss to Q4 profit: ₹9,269 Cr swing. JLR revenue +51% QoQ.<br>3. <strong>April 2026 India: +31% YoY</strong> — Forward data confirmed FY27 acceleration.<br>4. <strong>₹3 dividend</strong> — Signals FCF confidence backed by Q4 FCF of ₹11,400 Cr.<br>5. <strong>JLR Q4 9.2% EBIT</strong> — Proved cyberattack was temporary, not structural.<br>6. <strong>P/B 1.12x</strong> — Short-covering + value accumulation at extreme undervaluation.<br><br>Markets price the future, not the past. Investors bought the FY27 recovery story.</div>
+</button>
+
+</div>
+
+<!-- ── FAQ SECTION 4 ── -->
+<div class="faq-section-title">⚡ EV Strategy &amp; Future Plans</div>
+<div class="faq-grid">
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is Tata's Panapakkam TN plant and why does it matter?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">The Panapakkam plant in Ranipet, Tamil Nadu (85 km from Chennai) was inaugurated on February 9, 2026 by CM MK Stalin and Tata Sons Chairman N. Chandrasekaran.<br><br><strong>Key facts:</strong><br>• Total investment: ₹9,000 Cr (3 phases)<br>• Phase 1: 30,000 units/yr CKD — Range Rover Evoque + Velar<br>• Full capacity: 2.5–3 lakh units/yr (EVs for Tata PV + JLR)<br>• Direct jobs: 5,000+<br><br><strong>Why it matters:</strong> India joins JLR's global manufacturing map. Local production slashes import duties on JLR models for Indian buyers. Supports India-UK FTA faster localisation. TN becomes a luxury auto manufacturing hub. Also uses Tata's "Earn While You Learn" B.Tech sponsorship programme for local polytechnic graduates.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is the JLR demerger and did it benefit shareholders?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">The demerger separated Tata Motors into two listed entities effective October 1, 2025:<br><br>• <strong>TMPV</strong> (Tata Motors PV) = Passenger Vehicles + JLR<br>• <strong>TMLCV</strong> = Commercial Vehicles (trucks, buses + Iveco pending)<br><br><strong>Share ratio:</strong> 1:1 — shareholders received 1 TMLCV share free per TML share held. TMLCV listed at ₹330 (26% premium).<br><br><strong>Benefits:</strong> Eliminates conglomerate discount (20–30%), sharper capital allocation per business, cleaner EV+JLR valuation for TMPV.<br><br><strong>Concern:</strong> One-time costs of ₹3,700 Cr hit FY26 PAT. JLR still anchors 87% of TMPV revenue — so the fundamental challenge remains JLR's recovery, not the demerger structure.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is Hyundai's Pune plant and how will it change their business?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Hyundai's Pune plant (Phase I) became operational in FY26. The first product — New Venue — received a 5-star NCAP rating.<br><br><strong>Phase II announced post-Q4:</strong> Adds 70,000 units, taking total India capacity to 1.14 million units/year by 2030.<br><br><strong>Why it matters:</strong><br>• Hyundai's Chennai plant was running near full capacity — Pune provides growth headroom<br>• First localised compact EV expected from Pune in FY27<br>• 26-model pipeline through FY30 — Pune enables the launch cadence<br>• Supports management's FY27 EBITDA guidance of 11–14% (from Q4's 10.4% low)<br><br>April 2026 domestic volumes already +17% YoY — Pune's capacity is helping meet pent-up demand.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is Maruti's e-Vitara and when does it come to India?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">The Maruti e-Vitara (also branded EVX in some markets) is Maruti's first dedicated electric SUV, developed with Suzuki Japan.<br><br><strong>Status as of May 2026:</strong><br>• Already exported to 44 countries internationally, including 7,000+ units to Europe<br>• India domestic launch planned for FY27<br>• Made in India — positions Maruti as an EV export hub<br><br><strong>The challenge:</strong> By India launch, Tata will have 250,000+ cumulative EV sales lead. M&amp;M will have BE 6e and XEV 9e actively scaling. Hyundai will have a fresh localised model. Late entry in a segment where first-mover loyalty is strong is a structural disadvantage — but Maruti's 3,000+ dealer network and mass-market pricing power could accelerate adoption if priced right.</div>
+</button>
+
+</div>
+
+<!-- ── FAQ SECTION 5 ── -->
+<div class="faq-section-title">⭐ Analyst Views &amp; Risks</div>
+<div class="faq-grid">
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What are analysts' top concerns for Hyundai India?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Three main concerns post-Q4 FY26:<br><br>1. <strong>Margin at 8-quarter low (10.4%)</strong> — 379 bps YoY erosion from vendor compensation, labour code impact (employee costs +33.9%), and adverse product mix.<br>2. <strong>FII stake declining</strong> — From 7.35% to 5.42% over 3 quarters (−193 bps). Signals institutional concern about margin recovery timeline.<br>3. <strong>Late EV entry</strong> — First localised EV only FY27.<br><br><strong>But:</strong> Nomura (Buy ₹2,407) and CLSA (Outperform ₹2,290) both see the margin compression as one-off. Management guided 11–14% EBITDA for FY27. April 2026 domestic volumes already +17% YoY — recovery has begun. Domestic MFs accumulated +43 bps to 6.23% — buying what FIIs are selling.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What risks should Tata Motors investors watch most closely?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Five critical watchpoints for TMPV investors:<br><br>1. <strong>JLR cyberattack risk</strong> — No guarantee of non-recurrence. Another incident could wipe a full quarter again.<br>2. <strong>US tariffs on Slovakia Defender</strong> — JLR's most profitable model faces 15% US tariff. Directly compresses the highest-margin product in the largest market.<br>3. <strong>China structural decline</strong> — JLR China Q4 retail −34.6%. Chinese luxury buyers shifting to BYD, NIO, Huawei-Aito — this may be structural, not cyclical.<br>4. <strong>Jaguar gap year</strong> — All ICE Jaguars discontinued; Type 01 EV only FY27. Zero Jaguar revenue until then.<br>5. <strong>Netherlands permit risk</strong> — Environment Agency indicated intent to revoke operating permits for Tata Steel Netherlands (separate company but Tata Group reputation risk).</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is M&amp;M's biggest risk despite its strong FY26 performance?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Despite the best FY26 in the sector, M&amp;M faces two key risks:<br><br>1. <strong>High consolidated leverage</strong> — D/E ratio of 1.07x with long-term debt of ₹83,782 Cr. Much of this is at MMFSL (NBFC — structurally normal), but consolidated interest coverage of 2.69x is adequate but not comfortable. FY27 capex adds more.<br><br>2. <strong>Stock down 13.4% YTD despite best results</strong> — The market is pricing in concerns about EV competition (Tata + Hyundai in FY27), farm sector monsoon risk, and leverage. The PEG of 0.68x is compelling but the stock's underperformance vs fundamentals signals investor caution that shouldn't be ignored.<br><br>Mitigation: ROE 18.75% (best sector), Growth Gems PAT +50%, TechM turnaround, MMFSL record PAT all provide earnings diversification buffers.</div>
+</button>
+
+<button class="faq-card" onclick="toggleFaq(this)">
+  <div class="faq-q"><span class="fq-icon">📌</span>What is the single most important metric to watch for FY27?<span class="fq-arrow">▼</span></div>
+  <div class="faq-ans">Different for each company:<br><br>• <strong>Tata TMPV:</strong> JLR Q1 FY27 EBIT margin — can it sustain 9%+? If yes, the recovery thesis is confirmed and the stock re-rates sharply.<br><br>• <strong>Maruti:</strong> e-Vitara India launch price — if under ₹15 lakh, it could recapture EV market share rapidly. If priced too high, EV share remains below 5%.<br><br>• <strong>Hyundai:</strong> Q1 FY27 EBITDA margin — has the 10.4% Q4 low been the trough? Any recovery toward 12%+ would confirm the one-off thesis.<br><br>• <strong>M&amp;M:</strong> BE 6e/XEV 9e monthly sales trend — can EVs reach 20,000 units/month by Q2 FY27? That would establish M&amp;M as a credible Tata challenger in the segment that commands the highest margins.</div>
+</button>
+
+</div>
+
+<!-- ── CHAT SECTION ── -->
+<div class="faq-section-title" id="chat-section">💬 Ask Your Own Question</div>
+<div class="cb-chat-wrap">
+  <div class="cb-chat-header">
+    <div class="av">🤖</div>
+    <div class="info">
+      <div class="name">CB Assist</div>
+      <div class="sub">India PV Sector Q4 FY26 · Answers within the topic only</div>
+    </div>
+    <div class="live"><span class="dot2"></span> READY</div>
+  </div>
+
+  <div class="cb-msgs" id="cbMsgs">
+    <div class="msg bot">
+      <div class="av2">🤖</div>
+      <div class="msg-bubble">
+        <div class="mb-tag">CB Assist</div>
+        Hello! I can answer questions about India's PV sector — Tata Motors, Maruti Suzuki, Hyundai India, and M&amp;M — based on Q4 FY26 data. Try asking about revenues, profits, EV strategy, JLR, analyst targets, or the demerger. What would you like to know?
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-pills">
+    <button class="qp" onclick="askQuick('What is JLR EBIT margin in Q4 FY26?')">JLR Q4 EBIT margin</button>
+    <button class="qp" onclick="askQuick('Which company has the highest EV market share?')">EV market leader</button>
+    <button class="qp" onclick="askQuick('What is Maruti dividend for FY26?')">Maruti dividend</button>
+    <button class="qp" onclick="askQuick('What is M&M PEG ratio?')">M&amp;M PEG ratio</button>
+    <button class="qp" onclick="askQuick('What caused Hyundai margin fall?')">Hyundai margin</button>
+    <button class="qp" onclick="askQuick('What is Tata TMPV target price?')">Tata target price</button>
+  </div>
+
+  <div class="cb-input-row">
+    <input class="cb-input" id="cbInput" type="text" placeholder="Ask about revenue, EV, JLR, margins, analyst targets…" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="cb-send" id="cbSend" onclick="sendMsg()" title="Send">➤</button>
+  </div>
+</div>
+
+<div style="text-align:center;padding:16px 0 4px">
+  <button class="cb-act-btn blue" onclick="scrollToFaq()" style="margin:0 auto">⬆ Back to Questions</button>
+</div>
+
+</div>
+
+
+<!-- ════════════════════ CB ASSIST CSS ════════════════════ -->
+<style>
+#page-cbassist{padding:22px 28px 60px;max-width:1400px;margin:0 auto}
+
+.cb-hero{background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:14px;padding:26px 28px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.cb-hero::before{content:"";position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(99,179,237,.12);border-radius:50%}
+.cb-hero h2{font-size:20px;font-weight:800;margin-bottom:5px}
+.cb-hero p{font-size:12px;color:#94a3b8;line-height:1.6;max-width:560px;position:relative}
+.cb-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#e2e8f0;font-size:10px;padding:3px 10px;border-radius:20px;margin-bottom:12px;font-family:monospace;font-weight:600}
+.cb-badge .pulse{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+
+.cb-action-row{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:20px}
+.cb-act-btn{padding:9px 18px;border-radius:22px;border:none;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;font-family:-apple-system,sans-serif}
+.cb-act-btn.green{background:#d1fae5;color:#065f46;border:1.5px solid #6ee7b7}
+.cb-act-btn.green:hover{background:#a7f3d0}
+.cb-act-btn.blue{background:#e0e7ff;color:#3730a3;border:1.5px solid #a5b4fc}
+.cb-act-btn.blue:hover{background:#c7d2fe}
+.cb-act-btn.wa{background:#dcfce7;color:#15803d;border:1.5px solid #4ade80}
+.cb-act-btn.wa:hover{background:#bbf7d0}
+.cb-act-btn.red{background:#fee2e2;color:#991b1b;border:1.5px solid #fca5a5}
+.cb-act-btn.red:hover{background:#fecaca}
+
+.faq-section-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4338ca;display:flex;align-items:center;gap:8px;margin:22px 0 12px}
+.faq-section-title::after{content:"";flex:1;height:1px;background:#e2e6f0}
+.faq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;margin-bottom:6px}
+.faq-card{background:#fff;border:1.5px solid #e2e6f0;border-radius:10px;padding:14px 15px;cursor:pointer;transition:all .18s;text-align:left;width:100%}
+.faq-card:hover{border-color:#a5b4fc;background:#f8f9ff;box-shadow:0 3px 12px rgba(67,56,202,.1)}
+.faq-card.open{border-color:#6366f1;background:#eef2ff}
+.faq-q{font-size:12px;font-weight:700;color:#0f1523;line-height:1.4;display:flex;align-items:flex-start;gap:8px}
+.fq-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.fq-arrow{margin-left:auto;font-size:11px;color:#94a3b8;flex-shrink:0;transition:transform .2s;padding-left:6px}
+.faq-card.open .fq-arrow{transform:rotate(180deg);color:#6366f1}
+.faq-ans{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #ddd6fe;font-size:12px;color:#374060;line-height:1.65}
+.faq-card.open .faq-ans{display:block;animation:fi .18s ease}
+.tag{display:inline-block;font-size:10px;font-family:monospace;padding:1px 6px;border-radius:3px;font-weight:700;margin-right:3px}
+.tg{background:#d1fae5;color:#065f46}.tr{background:#fee2e2;color:#991b1b}.ty{background:#fef3c7;color:#92400e}.tbg{background:#dbeafe;color:#1e40af}
+
+/* chat */
+.cb-chat-wrap{background:#fff;border:1.5px solid #e2e6f0;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.cb-chat-header{background:linear-gradient(135deg,#1e3a5f,#0f172a);padding:13px 18px;display:flex;align-items:center;gap:10px}
+.cb-chat-header .av{width:32px;height:32px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.cb-chat-header .info .name{font-size:13px;font-weight:700;color:#fff}
+.cb-chat-header .info .sub{font-size:10px;color:#94a3b8}
+.cb-chat-header .live{display:flex;align-items:center;gap:5px;margin-left:auto;font-size:10px;font-family:monospace;color:#4ade80;font-weight:700}
+.cb-chat-header .dot2{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:pulse 1.8s infinite}
+.cb-msgs{height:320px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px;background:#f8fafc}
+.cb-msgs::-webkit-scrollbar{width:4px}.cb-msgs::-webkit-scrollbar-thumb{background:#c8d0e8;border-radius:2px}
+.msg{display:flex;gap:8px;animation:fi .2s ease}
+.msg.user{flex-direction:row-reverse}
+.av2{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
+.msg.bot .av2{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff}
+.msg.user .av2{background:linear-gradient(135deg,#10b981,#0891b2);color:#fff}
+.msg-bubble{max-width:80%;padding:9px 13px;border-radius:12px;font-size:12px;line-height:1.6;color:#0f1523}
+.msg.bot .msg-bubble{background:#fff;border:1px solid #e2e6f0;border-bottom-left-radius:3px}
+.msg.user .msg-bubble{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-bottom-right-radius:3px}
+.mb-tag{font-size:9px;font-family:monospace;font-weight:700;background:rgba(99,102,241,.12);color:#4338ca;padding:1px 6px;border-radius:3px;margin-bottom:5px;display:inline-block}
+.msg.user .mb-tag{background:rgba(255,255,255,.2);color:#e0e7ff}
+.typing-dots{display:flex;gap:4px;align-items:center;padding:8px 12px;background:#fff;border:1px solid #e2e6f0;border-radius:12px;border-bottom-left-radius:3px;width:fit-content}
+.typing-dots span{width:6px;height:6px;background:#94a3b8;border-radius:50%;animation:bounce 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+.quick-pills{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px 6px;border-top:1px solid #f0f2fb;background:#f8fafc}
+.qp{font-size:11px;padding:4px 10px;border-radius:20px;border:1.5px solid #c7d2fe;color:#4338ca;background:#eef2ff;cursor:pointer;font-weight:600;transition:all .14s}
+.qp:hover{background:#e0e7ff;border-color:#a5b4fc}
+.cb-input-row{display:flex;gap:10px;padding:10px 14px;border-top:1px solid #e2e6f0;background:#fff}
+.cb-input{flex:1;border:1.5px solid #e2e6f0;border-radius:22px;padding:9px 16px;font-size:12px;font-family:-apple-system,sans-serif;outline:none;transition:border-color .15s;color:#0f1523;background:#f8fafc}
+.cb-input:focus{border-color:#6366f1;background:#fff}
+.cb-input::placeholder{color:#94a3b8}
+.cb-send{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.cb-send:hover{transform:scale(1.07)}
+.cb-send:disabled{opacity:.45;cursor:default;transform:none}
+</style>
+
+<!-- ════════════════════ CB ASSIST JS ════════════════════ -->
+<script>
+// ── FAQ toggle ───────────────────────────────────────────────
+function toggleFaq(card){
+  const isOpen = card.classList.contains('open');
+  // Close all others in same grid
+  card.closest('.faq-grid').querySelectorAll('.faq-card').forEach(c=>c.classList.remove('open'));
+  if(!isOpen) card.classList.add('open');
+}
+
+// ── Scroll helpers ───────────────────────────────────────────
+function scrollToChat(){
+  document.getElementById('chat-section').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>document.getElementById('cbInput').focus(),400);
+}
+function scrollToFaq(){
+  document.getElementById('faq-top').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Clear chat ───────────────────────────────────────────────
+function clearChat(){
+  const box=document.getElementById('cbMsgs');
+  box.innerHTML='';
+  addMsg('bot','Chat cleared. Ask me anything about India PV Sector Q4 FY26 — Tata Motors, Maruti Suzuki, Hyundai India, or M&amp;M.');
+}
+
+// ── WhatsApp share ───────────────────────────────────────────
+function shareWhatsApp(){
+  const text=encodeURIComponent('India PV Sector Q4 FY26 Dashboard — Interactive Research with CB Assist\n\nKey highlights:\n• M&M: Best Q4 — PAT ₹4,668 Cr (+41.7%)\n• Tata PV: Revenue ₹18,598 Cr (+43.3%), EV 26,931 units\n• Maruti: Record volume 6,76,209 units\n• Hyundai: ₹18,916 Cr revenue, margin at 10.4%\n\nExplore the full interactive dashboard for financials, risks, analyst views, EV tracker and CB Assist Q&A.');
+  window.open('https://wa.me/?text='+text,'_blank');
+}
+
+// ── Add message bubble ───────────────────────────────────────
+function addMsg(role,html){
+  const box=document.getElementById('cbMsgs');
+  const div=document.createElement('div');
+  div.className='msg '+role;
+  const icon=role==='bot'?'🤖':'👤';
+  const tag=role==='bot'?'CB Assist':'You';
+  div.innerHTML=`<div class="av2">${icon}</div><div class="msg-bubble"><div class="mb-tag">${tag}</div>${html}</div>`;
+  box.appendChild(div);
+  box.scrollTop=box.scrollHeight;
+}
+
+// ── Quick pill ───────────────────────────────────────────────
+function askQuick(q){
+  document.getElementById('cbInput').value=q;
+  sendMsg();
+}
+
+// ── Knowledge base (no external API — all built-in) ──────────
+
+const KB=[
+  {k:['revenue','sales','turnover'],a:`<strong>Q4 FY26 Revenue:</strong><br>• Tata PV (SA): ₹18,598 Cr (+43.3% YoY)<br>• Maruti: ₹50,079 Cr (+28.9% YoY) — all-time high<br>• Hyundai: ₹18,916 Cr (+5.4% YoY) — all-time high<br>• M&amp;M: ₹54,982 Cr (+29.1% YoY) — all-time high<br>• TMPV Consolidated: ₹1,05,447 Cr (+7.2% YoY)<br>• JLR: £6.9 Bn (+51.4% QoQ, −11.1% YoY)`},
+  {k:['pat','profit','net profit','earnings'],a:`<strong>Q4 FY26 PAT (Net Profit):</strong><br>• M&amp;M: ₹4,668 Cr (+41.7%) — Best in sector<br>• Maruti: ₹3,591 Cr (−6.9%) — MTM bond loss impact<br>• Hyundai: ₹1,256 Cr (−22.2%) — Vendor costs hit<br>• Tata PV (SA): ₹455 Cr (−71%) — JLR headwinds<br>• TMPV Consol.: ₹5,783 Cr (−32% YoY)<br><br>M&amp;M was the only company to grow PAT YoY.`},
+  {k:['ebitda','margin','operating profit'],a:`<strong>Q4 FY26 EBITDA Margins:</strong><br>• M&amp;M Auto: 13.6% (best in sector, down from Q3's 15.1%)<br>• Maruti: 12.3% (−20 bps YoY, stable)<br>• Hyundai: 10.4% (−379 bps YoY — 8-quarter low)<br>• Tata PV: 9.4% (+150 bps YoY — improving)<br><br>An EBITDA margin above 12% is considered healthy for Indian auto OEMs.`},
+  {k:['dividend'],a:`<strong>FY26 Dividends:</strong><br>• Maruti: ₹140/share — Record high (400%+ history)<br>• M&amp;M: ₹33/share (+30% YoY)<br>• Hyundai: ₹21/share (~1.1% yield)<br>• Tata TMPV: ₹3/share (signals FCF confidence despite JLR losses)<br><br>Maruti's ₹140 dividend is record-breaking and reflects its debt-free, cash-rich balance sheet.`},
+  {k:['volume','sales units','units sold','deliveries'],a:`<strong>Q4 FY26 Sales Volumes:</strong><br>• Maruti: 6,76,209 units (+11.8%) — All-time high quarter<br>• M&amp;M UV: 3,07,000 units (+21%)<br>• Hyundai: 2,08,275 units (+8.7%) — Highest ever domestic<br>• Tata PV: 2,01,800 units (+37%) incl. 26,931 EVs<br><br>All four companies set quarterly volume records in Q4 FY26.`},
+  {k:['ev','electric','ev market','ev share'],a:`<strong>India EV Market Q4 &amp; FY26:</strong><br>• Tata PV: 26,931 units Q4 (+69%), 92,120 FY26 (+43%) — Leader 40%+ share<br>• M&amp;M: ~16,000 Q4, ~50,000 FY26 — ~22% share, fast growing<br>• Hyundai: ~5,800 Q4, ~18,000 FY26 — ~8% share<br>• Maruti: ~2,000 Q4, ~6,000 FY26 — ~3% share (early stage)<br><br>Tata dominates with 250,000+ cumulative EV sales and 14 active variants. M&amp;M is the most credible challenger with BE 6e + XEV 9e.`},
+  {k:['jlr','jaguar','land rover','range rover'],a:`<strong>JLR Q4 FY26 Performance:</strong><br>• Revenue: £6.9 Bn (+51.4% QoQ, −11.1% YoY)<br>• EBIT Margin: 9.2% (recovered from −6.8% in Q3)<br>• Free Cash Flow: £829 Mn (strongly positive)<br>• Wholesale Volumes: 95,300 (+61% QoQ, −14.5% YoY)<br>• FY26 Net Loss: −£244 Mn (vs +£1.8 Bn FY25)<br><br>Q3 was the disaster (cyberattack). Q4 proved recovery — JLR's business model is intact when production runs normally.`},
+  {k:['jlr ebit','jlr margin','jlr profit'],a:`JLR Q4 FY26 EBIT margin was <strong>9.2%</strong> — a sharp recovery from Q3's −6.8% (cyberattack impact). Full-year FY26 EBIT margin was just 0.7% vs 8.5% in FY25. Range Rover Electric (65,000+ waitlist) and UK-US trade deal (10% tariff for UK-made cars) are key FY27 recovery catalysts.`},
+  {k:['cyberattack','cyber','ransomware'],a:`In September 2025, JLR suffered a ransomware cyberattack that shut production for several weeks. Q3 FY26 wholesale volumes crashed to 59,200 (−43% YoY). Q3 EBIT margin fell to −6.8%. TMPV consolidated Q3 loss: −₹3,486 Cr. Estimated impact: £500 Mn+. Production normalised in Q4 — volumes recovered to 95,300 and EBIT margin to 9.2%.`},
+  {k:['maruti','maruti suzuki'],a:`<strong>Maruti Suzuki Q4 FY26:</strong><br>• Revenue: ₹50,079 Cr (+28.9%) — All-time high<br>• PAT: ₹3,591 Cr (−6.9% — MTM bond loss, non-cash)<br>• EBITDA: ₹6,157 Cr (12.3% margin)<br>• Volumes: 6,76,209 units (+11.8%) — All-time high<br>• Exports: 1,37,215 units (+61.3%)<br>• Dividend: ₹140/share (record)<br>• FY26 OCF: ₹19,063 Cr (+18.2%)<br><br>Key strength: Debt-free with ~42% India PV market share. Key challenge: Late EV entry.`},
+  {k:['hyundai'],a:`<strong>Hyundai India Q4 FY26:</strong><br>• Revenue: ₹18,916 Cr (+5.4%) — Highest ever<br>• PAT: ₹1,256 Cr (−22.2%)<br>• EBITDA Margin: 10.4% (−379 bps — 8-quarter low)<br>• Volumes: 2,08,275 domestic (+8.7%) — Highest ever<br>• Rural Penetration: 25% (record); CNG share: 18% (record)<br>• FY27 EBITDA Target: 11–14%<br><br>Margin hit by vendor compensation + labour code. Recovery visible: April 2026 +17% YoY. Nomura target: ₹2,407.`},
+  {k:['tata','tmpv','tata motors'],a:`<strong>Tata Motors PV (TMPV) Q4 FY26:</strong><br>• PV Revenue (SA): ₹18,598 Cr (+43.3%)<br>• PAT (SA): ₹455 Cr (−71% — JLR FY26 collapse)<br>• EBITDA Margin: 9.4% (+150 bps YoY — improving)<br>• Q4 PV Volumes: 2,01,800 (+37%) incl. 26,931 EVs<br>• Consolidated Revenue: ₹1,05,447 Cr (+7.2%)<br>• CMP: ~₹357 | P/B: 1.12x | 21 analysts: Strong Buy<br><br>India PV is thriving — JLR dragged consolidated results. Q4 JLR 9.2% EBIT proved recovery is underway.`},
+  {k:['mahindra','m&m','mmm','mahindra mahindra'],a:`<strong>M&amp;M Q4 FY26:</strong><br>• Revenue: ₹54,982 Cr (+29.1%) — All-time high<br>• PAT: ₹4,668 Cr (+41.7%) — Best in sector<br>• Auto Revenue: ₹34,294 Cr (+32%)<br>• UV Volumes: 3,07,000 (+21%)<br>• ROE: 18.75% — Best in sector<br>• PEG Ratio: 0.68x — Highly attractive<br>• FY26 PAT: ₹17,099 Cr (+33.6%)<br>• TechM EBIT: +290 bps | MMFSL PAT: +105% Q4<br><br>Best all-round performer across all key metrics.`},
+  {k:['analyst','target','rating','buy','sell'],a:`<strong>Analyst Consensus (May 2026):</strong><br>• Tata TMPV: Strong Buy (21 analysts), targets ₹700–1,200. P/B 1.12x — extreme value.<br>• Maruti: Buy/Add, targets ₹13,500–18,700. Fair valued at 27x PE.<br>• Hyundai: Buy (Nomura ₹2,407, CLSA ₹2,290). 24–30% upside. Cyclical trough.<br>• M&amp;M: Strong Buy, targets ₹3,760–4,767. PEG 0.68x — quality at fair price.`},
+  {k:['target price','price target'],a:`<strong>Analyst Target Prices (May 2026):</strong><br>• Tata TMPV: ₹700–1,200 (CMP ~₹357, 96–236% upside)<br>• Maruti: ₹13,500–18,700 (CMP ~₹13,312, 9–40% upside)<br>• Hyundai: ₹2,290–2,407 (CMP ~₹1,853, 24–30% upside)<br>• M&amp;M: ₹3,760–4,767 (CMP ~₹3,174, 19–50% upside)<br><br>Tata has highest absolute upside; M&amp;M has best risk-adjusted case.`},
+  {k:['valuation','pe ratio','pb','book value'],a:`<strong>Sector Valuations (May 2026):</strong><br>• Tata TMPV: P/B 1.12x — near historical low, extreme value<br>• Maruti: P/E 27.2x, P/B 4.8x — fairly valued<br>• Hyundai: P/E ~21x — reasonable; recovery play<br>• M&amp;M: P/E 21.9x, PEG 0.68x — best value vs growth<br><br>M&amp;M's PEG of 0.68x is the standout — growing PAT at 33%+ while trading below fair-value multiple.`},
+  {k:['fta','trade deal','uk fta','uk trade'],a:`<strong>India-UK FTA Impact on Auto Sector:</strong><br>• JLR: UK-made cars get 10% US tariff (vs 27.5% before) within 100K quota<br>• Tata Panapakkam TN plant: FTA accelerates India-UK localisation cycles<br>• Maruti e-Vitara: FTA could support India-to-UK export pathway for EVs<br>• The UK-US trade deal is immediately more impactful for JLR than the India-UK FTA`},
+  {k:['demerger','split','tmlcv'],a:`<strong>Tata Motors Demerger (Oct 2025):</strong><br>• Effective: Oct 1, 2025 | TMLCV listed: Nov 12, 2025<br>• Ratio: 1:1 — shareholders received 1 TMLCV share free<br>• TMLCV listed at ₹330 (26% premium)<br>• TMPV = PV + JLR | TMLCV = CV + trucks + buses<br><br>Benefits: Eliminates 20–30% conglomerate discount; cleaner valuation for each entity.<br>Concern: JLR still 87% of TMPV revenue. Demerger costs: ₹3,700 Cr hit FY26 PAT.`},
+  {k:['hello','hi','help','what can you'],a:`Hello! I can answer questions about India's PV sector — Tata Motors (TMPV), Maruti Suzuki, Hyundai India, and M&amp;M — based on Q4 FY26 data.<br><br>Try asking about: revenue, PAT, EBITDA, EV sales, JLR, analyst targets, valuations, the demerger, dividends, or company-specific performance.`},
+];
+
+function findAnswer(q){
+  const lower=q.toLowerCase();
+  // Try to match keywords
+  for(const entry of KB){
+    if(entry.k.some(k=>lower.includes(k))) return entry.a;
+  }
+  return `I don't have a specific answer for that in my Q4 FY26 PV sector knowledge base. Try rephrasing — for example, ask about <strong>revenue, PAT, EBITDA, volumes, EV, JLR, Tata, Maruti, Hyundai, M&amp;M, dividends, analyst targets, FTA, or the demerger</strong>. Use the quick buttons above for common queries!`;
+}
+
+function sendMsg(){
+  const input=document.getElementById('cbInput');
+  const q=input.value.trim();
+  if(!q) return;
+  input.value='';
+  addMsg('user',q);
+  // Typing indicator
+  const box=document.getElementById('cbMsgs');
+  const typing=document.createElement('div');
+  typing.className='msg bot';
+  typing.id='typing-ind';
+  typing.innerHTML='<div class="av2">🤖</div><div class="typing-dots"><span></span><span></span><span></span></div>';
+  box.appendChild(typing);
+  box.scrollTop=box.scrollHeight;
+  // Reply after short delay
+  setTimeout(()=>{
+    const t=document.getElementById('typing-ind');
+    if(t)t.remove();
+    addMsg('bot',findAnswer(q));
+  },600);
+}
+</script>
+
 
 <script>
+// ── Colors ──────────────────────────────────────────────────
+const C={ta:'#1a6fd4',ma:'#d42a1a',hy:'#0a3fa0',mm:'#b81c1c',jl:'#1a2a50',gn:'#059669',rd:'#dc2626',or:'#f97316'};
+
 // ── Navigation ──────────────────────────────────────────────
 function showPage(id,btn){
   document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));
@@ -779,7 +1185,6 @@ function showSec(co,id,btn){
 
 // ── Chart Engine (no external library) ──────────────────────
 const DRAWN={};
-const C={ta:'#1a6fd4',ma:'#d42a1a',hy:'#0a3fa0',mm:'#b81c1c',jl:'#1a2a50',gn:'#059669',rd:'#dc2626',or:'#f97316'};
 
 function drawBar(id,labels,datasets,opts){
   const cv=document.getElementById(id);
@@ -982,5 +1387,8 @@ function drawAll(){
 }
 
 setTimeout(drawAll,300);
+
+setTimeout(drawAll,300);
 </script>
-</body></html>
+</body>
+</html>
