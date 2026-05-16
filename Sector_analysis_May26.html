@@ -129,6 +129,140 @@ body { -webkit-touch-callout: none; }
   color: #fff; font-size: 14px; font-weight: 700; cursor: pointer;
   margin-top: 16px; font-family: inherit;
 }
+
+
+/* ════════════ ADMIN PANEL ════════════ */
+#adminOverlay{
+  display:none;position:fixed;inset:0;z-index:19999;
+  background:rgba(0,0,0,.92);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+}
+#adminOverlay.show{display:flex}
+.admin-box{
+  background:#0f172a;border:1px solid rgba(99,102,241,.4);
+  border-radius:18px;width:min(540px,96vw);max-height:90vh;
+  overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 24px 64px rgba(0,0,0,.6);
+}
+.admin-hdr{
+  background:linear-gradient(135deg,#1e3a5f,#312e81);
+  padding:18px 22px;display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0;
+}
+.admin-hdr .ah-icon{font-size:22px}
+.admin-hdr .ah-title{font-size:16px;font-weight:800;color:#fff}
+.admin-hdr .ah-sub{font-size:11px;color:#94a3b8;margin-top:2px}
+.admin-hdr .ah-close{
+  margin-left:auto;background:rgba(239,68,68,.2);border:1px solid rgba(239,68,68,.4);
+  color:#f87171;font-size:18px;width:32px;height:32px;border-radius:8px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.admin-hdr .ah-close:hover{background:rgba(239,68,68,.35)}
+
+/* login gate */
+.admin-login{padding:28px;display:flex;flex-direction:column;gap:12px}
+.admin-login .al-title{font-size:13px;font-weight:700;color:#e2e8f0;margin-bottom:4px}
+.admin-login .al-hint{font-size:12px;color:#64748b;margin-bottom:6px}
+.admin-input{
+  width:100%;padding:11px 16px;border-radius:10px;
+  border:1.5px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);color:#fff;
+  font-size:14px;font-family:inherit;outline:none;
+  transition:border-color .15s;
+  -webkit-user-select:text;user-select:text;
+}
+.admin-input:focus{border-color:#6366f1;background:rgba(255,255,255,.1)}
+.admin-input::placeholder{color:#475569}
+.admin-login-btn{
+  padding:11px;border-radius:10px;border:none;
+  background:linear-gradient(135deg,#4338ca,#6366f1);
+  color:#fff;font-size:13px;font-weight:700;cursor:pointer;
+  font-family:inherit;transition:all .15s;
+}
+.admin-login-btn:hover{opacity:.9}
+.admin-err{color:#f87171;font-size:12px;display:none;margin-top:-4px}
+
+/* dashboard */
+.admin-dash{display:none;flex-direction:column;overflow:hidden;height:100%}
+.admin-dash.show{display:flex}
+.admin-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.06);
+  flex-shrink:0;
+}
+.astat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:12px;text-align:center}
+.astat .asv{font-size:22px;font-weight:800;font-family:monospace;color:#e2e8f0}
+.astat .asl{font-size:10px;color:#64748b;margin-top:3px;text-transform:uppercase;letter-spacing:.06em}
+
+.admin-toolbar{
+  display:flex;gap:8px;padding:12px 18px;
+  border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;flex-wrap:wrap;
+}
+.atb-input{
+  flex:1;min-width:180px;padding:9px 14px;border-radius:8px;
+  border:1.5px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);color:#fff;
+  font-size:13px;font-family:inherit;outline:none;
+  -webkit-user-select:text;user-select:text;
+}
+.atb-input:focus{border-color:#6366f1}
+.atb-input::placeholder{color:#475569}
+.atb-btn{
+  padding:9px 16px;border-radius:8px;border:none;
+  font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;
+  transition:all .15s;white-space:nowrap;
+}
+.atb-add{background:linear-gradient(135deg,#059669,#10b981);color:#fff}
+.atb-add:hover{opacity:.88}
+.atb-export{background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.3);color:#a5b4fc}
+.atb-export:hover{background:rgba(99,102,241,.3)}
+.atb-msg{font-size:12px;color:#4ade80;display:none;align-self:center;font-weight:600}
+
+.admin-list{overflow-y:auto;flex:1;padding:10px 18px 16px}
+.admin-list::-webkit-scrollbar{width:4px}
+.admin-list::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
+
+.member-row{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;border-radius:9px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.03);
+  margin-bottom:7px;transition:background .15s;
+}
+.member-row:hover{background:rgba(255,255,255,.06)}
+.member-row .mr-num{
+  font-family:monospace;font-size:13px;font-weight:700;color:#e2e8f0;flex:1;
+}
+.member-row .mr-tag{
+  font-size:10px;font-family:monospace;padding:2px 8px;border-radius:4px;
+  font-weight:700;
+}
+.tag-admin{background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
+.tag-member{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.3)}
+.member-row .mr-del{
+  background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);
+  color:#f87171;font-size:12px;padding:4px 10px;border-radius:6px;
+  cursor:pointer;font-family:inherit;font-weight:600;transition:all .15s;
+}
+.member-row .mr-del:hover{background:rgba(239,68,68,.3)}
+.member-row .mr-del:disabled{opacity:.35;cursor:default}
+
+.admin-footer{
+  padding:12px 18px;border-top:1px solid rgba(255,255,255,.06);
+  font-size:11px;color:#475569;text-align:center;flex-shrink:0;
+}
+
+/* trigger button in header */
+.admin-trigger{
+  display:none; /* shown only for admin member */
+  background:rgba(251,191,36,.15);
+  border:1px solid rgba(251,191,36,.3);
+  color:#fbbf24;font-size:11px;font-weight:700;
+  padding:4px 11px;border-radius:6px;cursor:pointer;
+  font-family:inherit;transition:all .15s;margin-left:4px;
+}
+.admin-trigger:hover{background:rgba(251,191,36,.25)}
 </style>
 
 <style>
@@ -339,6 +473,79 @@ canvas{display:block;width:100%!important}
 </div>
 
 <!-- ═══════════════════════════════════════
+     ADMIN PANEL
+═══════════════════════════════════════ -->
+<div id="adminOverlay">
+  <div class="admin-box">
+
+    <div class="admin-hdr">
+      <div class="ah-icon">🔧</div>
+      <div>
+        <div class="ah-title">Admin Panel — CB Research</div>
+        <div class="ah-sub">Member Management · Sector Analysis May 2026</div>
+      </div>
+      <button class="ah-close" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <!-- Login Gate -->
+    <div class="admin-login" id="adminLoginGate">
+      <div class="al-title">🔐 Admin Authentication Required</div>
+      <div class="al-hint">Enter your admin password to manage members. This is separate from your member OTP.</div>
+      <input class="admin-input" id="adminPwdInput" type="password"
+             placeholder="Admin password"
+             onkeydown="if(event.key==='Enter')checkAdminPwd()">
+      <div class="admin-err" id="adminErr">❌ Incorrect password. Try again.</div>
+      <button class="admin-login-btn" onclick="checkAdminPwd()">Unlock Admin Panel →</button>
+    </div>
+
+    <!-- Dashboard (shown after login) -->
+    <div class="admin-dash" id="adminDash">
+
+      <!-- Stats row -->
+      <div class="admin-stats">
+        <div class="astat">
+          <div class="asv" id="statTotal">0</div>
+          <div class="asl">Total Members</div>
+        </div>
+        <div class="astat">
+          <div class="asv" id="statAdmins" style="color:#fbbf24">1</div>
+          <div class="asl">Admins</div>
+        </div>
+        <div class="astat">
+          <div class="asv" id="statSessions" style="color:#4ade80">—</div>
+          <div class="asl">Active Now</div>
+        </div>
+      </div>
+
+      <!-- Toolbar: Add member -->
+      <div class="admin-toolbar">
+        <input class="atb-input" id="newPhoneInput" type="tel" maxlength="10"
+               placeholder="Enter 10-digit number to add"
+               oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)"
+               onkeydown="if(event.key==='Enter')addMember()">
+        <input class="atb-input" id="newNameInput" type="text" maxlength="30"
+               placeholder="Member name (optional)" style="max-width:160px"
+               onkeydown="if(event.key==='Enter')addMember()">
+        <button class="atb-btn atb-add" onclick="addMember()">➕ Add Member</button>
+        <button class="atb-btn atb-export" onclick="exportMembers()">📋 Copy List</button>
+        <span class="atb-msg" id="adminMsg"></span>
+      </div>
+
+      <!-- Members list -->
+      <div class="admin-list" id="memberList"></div>
+
+      <div class="admin-footer">
+        Changes are saved for this session only. To make permanent —
+        copy the list and update the MEMBERS array in the HTML file on GitHub.
+        <br>© 2026 CB Research &amp; Analytics · Admin Access
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
      SPLASH / PHONE VERIFICATION
 ═══════════════════════════════════════ -->
 <div id="splash">
@@ -411,6 +618,7 @@ canvas{display:block;width:100%!important}
       <span class="hchip">Tata · Maruti · Hyundai · M&amp;M</span>
       <span class="hchip">Jan–Mar 2026</span>
       <span class="hchip" style="background:rgba(74,222,128,.15);color:#4ade80;border-color:rgba(74,222,128,.3)" id="memberChip">Member</span>
+      <button class="admin-trigger" id="adminTriggerBtn" onclick="openAdmin()">🔧 Admin</button>
       <span class="hchip" style="cursor:pointer;background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)" onclick="logout()">⏻ Exit</span>
     </div>
   </div>
@@ -1859,7 +2067,7 @@ setTimeout(drawAll,300);
 // ── Authorised members list (phone numbers) ────────
 // Add/remove member phone numbers here (10-digit, no country code)
 // In production replace with a server-side API call
-const MEMBERS = [
+let MEMBERS = [
   '9999999999',  // Admin / Owner
   '8888888888',  // Member placeholder
   '7777777777',  // Member placeholder
@@ -2013,6 +2221,7 @@ function enterApp(){
   document.getElementById('splash').classList.add('hidden');
   document.getElementById('siteHeader').style.display = '';
   document.getElementById('mainContent').style.display = '';
+  checkAdminAccess(currentPhone);
   setTimeout(drawAll, 300);
 }
 
@@ -2072,6 +2281,203 @@ function goToStep(n){
 
 function showErr(el,msg){el.textContent=msg;el.style.display='block';}
 function hideErr(el){el.style.display='none';}
+
+
+
+// ══════════════════════════════════════════════════
+// ADMIN PANEL ENGINE
+// ══════════════════════════════════════════════════
+
+// ── Admin config ──────────────────────────────────
+// IMPORTANT: Change this password before sharing!
+const ADMIN_PASSWORD = 'CBResearch@2026';
+
+// ── Admin phone numbers (can open admin panel) ────
+// Must also be in MEMBERS list above
+const ADMIN_PHONES = ['9999999999'];
+
+// ── Member names store (phone → name) ─────────────
+let MEMBER_NAMES = {
+  '9999999999': 'Admin / Owner',
+  '8888888888': 'Member',
+  '7777777777': 'Member',
+};
+
+// ── Admin state ────────────────────────────────────
+let adminUnlocked = false;
+
+// ── Open / Close admin ────────────────────────────
+function openAdmin(){
+  adminUnlocked = false;
+  document.getElementById('adminLoginGate').style.display = '';
+  document.getElementById('adminDash').classList.remove('show');
+  document.getElementById('adminPwdInput').value = '';
+  document.getElementById('adminErr').style.display = 'none';
+  document.getElementById('adminOverlay').classList.add('show');
+  setTimeout(()=>document.getElementById('adminPwdInput').focus(), 200);
+}
+function closeAdmin(){
+  document.getElementById('adminOverlay').classList.remove('show');
+  adminUnlocked = false;
+}
+
+// ── Password check ────────────────────────────────
+function checkAdminPwd(){
+  const pwd = document.getElementById('adminPwdInput').value;
+  if(pwd === ADMIN_PASSWORD){
+    adminUnlocked = true;
+    document.getElementById('adminLoginGate').style.display = 'none';
+    document.getElementById('adminDash').classList.add('show');
+    renderMemberList();
+    updateStats();
+  } else {
+    const err = document.getElementById('adminErr');
+    err.style.display = 'block';
+    document.getElementById('adminPwdInput').value = '';
+    document.getElementById('adminPwdInput').focus();
+    setTimeout(()=>err.style.display='none', 3000);
+  }
+}
+
+// ── Render member list ────────────────────────────
+function renderMemberList(){
+  const list = document.getElementById('memberList');
+  list.innerHTML = '';
+  if(MEMBERS.length === 0){
+    list.innerHTML = '<div style="text-align:center;color:#475569;padding:30px;font-size:13px">No members yet. Add one above.</div>';
+    return;
+  }
+  MEMBERS.forEach(phone => {
+    const isAdmin   = ADMIN_PHONES.includes(phone);
+    const name      = MEMBER_NAMES[phone] || '';
+    const isCurrent = phone === currentPhone;
+    const row = document.createElement('div');
+    row.className = 'member-row';
+    row.id = 'row-' + phone;
+    row.innerHTML = `
+      <div style="font-size:16px">${isAdmin ? '👑' : '👤'}</div>
+      <div class="mr-num">${phone}</div>
+      ${name ? `<div style="font-size:12px;color:#64748b;flex:1">${name}</div>` : '<div style="flex:1"></div>'}
+      <span class="mr-tag ${isAdmin ? 'tag-admin' : 'tag-member'}">${isAdmin ? 'ADMIN' : 'MEMBER'}</span>
+      ${isCurrent ? '<span class="mr-tag" style="background:rgba(74,222,128,.15);color:#4ade80;border-color:rgba(74,222,128,.3)">YOU</span>' : ''}
+      <button class="mr-del" onclick="removeMember('${phone}')" ${isAdmin ? 'disabled title="Cannot remove admin"' : ''}>Remove</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+// ── Update stats ──────────────────────────────────
+function updateStats(){
+  document.getElementById('statTotal').textContent   = MEMBERS.length;
+  document.getElementById('statAdmins').textContent  = ADMIN_PHONES.filter(p=>MEMBERS.includes(p)).length;
+  // Active sessions — approximate from sessionStorage (same device only)
+  const sess = sessionStorage.getItem('sa_may26_verified');
+  document.getElementById('statSessions').textContent = sess ? '1+' : '0';
+}
+
+// ── Add member ────────────────────────────────────
+function addMember(){
+  if(!adminUnlocked) return;
+  const phoneEl = document.getElementById('newPhoneInput');
+  const nameEl  = document.getElementById('newNameInput');
+  const phone   = phoneEl.value.trim();
+  const name    = nameEl.value.trim();
+
+  if(phone.length !== 10){
+    showAdminMsg('❌ Enter a valid 10-digit number', '#f87171'); return;
+  }
+  if(MEMBERS.includes(phone)){
+    showAdminMsg('⚠️ Number already in the list', '#fbbf24'); return;
+  }
+
+  MEMBERS.push(phone);
+  if(name) MEMBER_NAMES[phone] = name;
+
+  phoneEl.value = '';
+  nameEl.value  = '';
+  phoneEl.focus();
+  renderMemberList();
+  updateStats();
+  showAdminMsg('✅ Member added — ' + phone, '#4ade80');
+
+  // Highlight the new row briefly
+  setTimeout(()=>{
+    const row = document.getElementById('row-'+phone);
+    if(row){
+      row.style.background = 'rgba(74,222,128,.12)';
+      row.style.borderColor = 'rgba(74,222,128,.3)';
+      setTimeout(()=>{row.style.background='';row.style.borderColor='';}, 2000);
+    }
+  }, 100);
+}
+
+// ── Remove member ─────────────────────────────────
+function removeMember(phone){
+  if(!adminUnlocked) return;
+  if(ADMIN_PHONES.includes(phone)){
+    showAdminMsg('❌ Cannot remove an admin', '#f87171'); return;
+  }
+  if(!confirm('Remove member ' + phone + ' from the list?')) return;
+  const idx = MEMBERS.indexOf(phone);
+  if(idx > -1) MEMBERS.splice(idx, 1);
+  delete MEMBER_NAMES[phone];
+  renderMemberList();
+  updateStats();
+  showAdminMsg('🗑️ Removed — ' + phone, '#f87171');
+}
+
+// ── Export / copy list ────────────────────────────
+function exportMembers(){
+  if(!adminUnlocked) return;
+  const lines = MEMBERS.map(p => {
+    const name = MEMBER_NAMES[p] ? ' // ' + MEMBER_NAMES[p] : '';
+    return "  '" + p + "'," + name;
+  });
+  const code = "let MEMBERS = [\n" + lines.join("\n") + "\n];";
+  // Try clipboard
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(code).then(()=>{
+      showAdminMsg('📋 Copied to clipboard!', '#4ade80');
+    }).catch(()=>fallbackCopy(code));
+  } else {
+    fallbackCopy(code);
+  }
+}
+function fallbackCopy(text){
+  // Show in a prompt so user can manually copy
+  prompt('Copy this MEMBERS array and paste it into your HTML file on GitHub:', text);
+}
+
+// ── Show temp message ─────────────────────────────
+function showAdminMsg(msg, color){
+  const el = document.getElementById('adminMsg');
+  el.textContent = msg;
+  el.style.color = color;
+  el.style.display = 'flex';
+  clearTimeout(el._t);
+  el._t = setTimeout(()=>el.style.display='none', 3500);
+}
+
+// ── Show admin button only for admin phones ────────
+function checkAdminAccess(phone){
+  if(ADMIN_PHONES.includes(phone)){
+    const btn = document.getElementById('adminTriggerBtn');
+    if(btn) btn.style.display = '';
+  }
+}
+
+// ── Keyboard shortcut: Ctrl+Shift+A opens admin ───
+document.addEventListener('keydown', e => {
+  if(e.ctrlKey && e.shiftKey && e.key === 'A'){
+    e.preventDefault();
+    openAdmin();
+  }
+});
+
+// ── Close on overlay click ────────────────────────
+document.getElementById('adminOverlay').addEventListener('click', e => {
+  if(e.target === document.getElementById('adminOverlay')) closeAdmin();
+});
 
 </script>
 
