@@ -255,7 +255,7 @@ body { -webkit-touch-callout: none; }
 
 /* trigger button in header */
 .admin-trigger{
-  display:none; /* shown only for admin member */
+  display:none; /* shown after login for admin */
   background:rgba(251,191,36,.15);
   border:1px solid rgba(251,191,36,.3);
   color:#fbbf24;font-size:11px;font-weight:700;
@@ -263,6 +263,18 @@ body { -webkit-touch-callout: none; }
   font-family:inherit;transition:all .15s;margin-left:4px;
 }
 .admin-trigger:hover{background:rgba(251,191,36,.25)}
+
+/* OTP display box — shows OTP on screen reliably on all phones */
+.otp-display-box{
+  background:linear-gradient(135deg,#1e3a5f,#312e81);
+  border:2px solid rgba(99,102,241,.5);
+  border-radius:12px;padding:14px 16px;margin-bottom:14px;
+  text-align:center;display:none;
+}
+.otp-display-box.show{display:block;animation:fadeup .3s ease}
+.otp-display-box .od-label{font-size:11px;color:#94a3b8;margin-bottom:6px;font-family:monospace;letter-spacing:.08em}
+.otp-display-box .od-code{font-size:32px;font-weight:800;font-family:monospace;color:#4ade80;letter-spacing:.2em}
+.otp-display-box .od-note{font-size:10px;color:#64748b;margin-top:6px}
 </style>
 
 <style>
@@ -569,7 +581,13 @@ canvas{display:block;width:100%!important}
     <!-- STEP 2: OTP entry -->
     <div class="login-step" id="step2">
       <div class="login-title">📱 Enter OTP</div>
-      <div class="login-hint" id="otp-hint">A 6-digit OTP has been sent to your registered number. Enter it below.</div>
+      <div class="login-hint" id="otp-hint">Your OTP will appear below.</div>
+      <!-- OTP shown on screen — reliable on all phones -->
+      <div class="otp-display-box" id="otpDisplayBox">
+        <div class="od-label">YOUR ONE-TIME PASSWORD</div>
+        <div class="od-code" id="otpDisplayCode">------</div>
+        <div class="od-note">Type this code in the boxes below</div>
+      </div>
       <div class="otp-grid" id="otpGrid">
         <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,0)">
         <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,1)">
@@ -2067,12 +2085,16 @@ setTimeout(drawAll,300);
 // ── Authorised members list (phone numbers) ────────
 // Add/remove member phone numbers here (10-digit, no country code)
 // In production replace with a server-side API call
+// ════════════════════════════════════════════════════
+// 👉 ADD YOUR PHONE NUMBERS HERE
+// Replace the examples below with real 10-digit numbers
+// The first number is the ADMIN (gets the 🔧 Admin button)
+// ════════════════════════════════════════════════════
 let MEMBERS = [
-  '9789855222',  // Admin / Owner
-  '8888888888',  // Member placeholder
-  '7777777777',  // Member placeholder
-  // Add your group members' numbers below:
-  // '98XXXXXXXX',
+  // ⬇️  REPLACE THESE with your actual numbers:
+  // '98XXXXXXXX',   // Your number (admin)
+  // '99XXXXXXXX',   // Member 2
+  // '97XXXXXXXX',   // Member 3
 ];
 
 let currentPhone = '';
@@ -2080,16 +2102,30 @@ let generatedOTP  = '';
 let countdownTimer = null;
 let sessionStartTime = null;
 
-// ── Anti-debugging (detect DevTools) ────────────────
+// ── Anti-debugging (desktop only — mobile safe) ──────
 (function antiDebug() {
-  const threshold = 160;
+  // Completely skip on ALL mobile/tablet devices — avoids false positives
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile|Tablet|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                 || ('ontouchstart' in window)
+                 || window.innerWidth <= 900;
+  if(isMobile) return;
+
+  // Desktop only: detect very large DevTools side panels
+  // Requires 3 consecutive triggers to avoid any false positive
+  const threshold = 250;
+  let strikes = 0;
   setInterval(()=>{
     const wDiff = window.outerWidth  - window.innerWidth;
     const hDiff = window.outerHeight - window.innerHeight;
-    if(wDiff > threshold || hDiff > threshold){
-      document.body.innerHTML = '<div style="background:#0f172a;color:#f87171;height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:16px;text-align:center;padding:20px">⛔ Developer tools detected.<br>Sector Analysis May 2026 · Access suspended.<br><br>© CB Research 2026</div>';
+    if(wDiff > threshold && hDiff > threshold){
+      strikes++;
+      if(strikes >= 3){
+        document.body.innerHTML = '<div style="background:#0f172a;color:#f87171;height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:16px;text-align:center;padding:20px">⛔ Developer tools detected.<br>Sector Analysis May 2026 · Access suspended.<br><br>© CB Research 2026</div>';
+      }
+    } else {
+      strikes = 0;
     }
-  }, 1000);
+  }, 2000);
 })();
 
 // ── Right-click & keyboard shortcut disable ──────────
@@ -2166,10 +2202,22 @@ function sendOTP(){
     showErr(err, 'Please enter a valid 10-digit mobile number.');
     return;
   }
+
+  // ── If MEMBERS list is empty, allow first person in as bootstrap admin ──
+  if(MEMBERS.length === 0){
+    MEMBERS.push(phone);
+    ADMIN_PHONES.push(phone);
+    MEMBER_NAMES[phone] = 'Admin / Owner';
+    showErr(err, '');
+  }
+
   if(!MEMBERS.includes(phone)){
     showErr(err, '⛔ This number is not registered. Contact your group admin to get access.');
     return;
   }
+
+  // Auto-promote first member as admin if ADMIN_PHONES is empty
+  if(ADMIN_PHONES.length === 0) ADMIN_PHONES.push(MEMBERS[0]);
 
   currentPhone = phone;
   // Generate 6-digit OTP (in production: send via SMS gateway API)
@@ -2177,13 +2225,23 @@ function sendOTP(){
 
   // Show OTP in an alert (in production this would be an SMS)
   // For distribution, replace this with actual SMS API (MSG91, Twilio, etc.)
+  // Show OTP visibly on screen — works on all phones reliably
   setTimeout(()=>{
-    alert('📱 OTP for Sector Analysis May 2026\n\nYour OTP: ' + generatedOTP + '\n\nValid for 5 minutes.\n(In production this will arrive via SMS)');
-  }, 300);
+    // Show in the on-screen display box (most reliable)
+    const box  = document.getElementById('otpDisplayBox');
+    const code = document.getElementById('otpDisplayCode');
+    if(box && code){
+      code.textContent = generatedOTP;
+      box.classList.add('show');
+    }
+    // Also try alert as secondary (may be blocked on some phones)
+    try { alert('📱 CB Research OTP: ' + generatedOTP); } catch(e){}
+    document.getElementById('otp-hint').textContent =
+      'Your OTP is shown above. Type it in the boxes below.';
+  }, 400);
 
   goToStep(2);
-  document.getElementById('otp-hint').textContent =
-    'OTP sent to ' + phone.slice(0,5) + 'XXXXX. Enter it below.';
+  // otp-hint is updated inside the setTimeout above
   startCountdown();
   hideErr(err);
 }
@@ -2208,6 +2266,9 @@ function verifyOTP(){
 
   hideErr(err);
   clearInterval(countdownTimer);
+  // Hide OTP box
+  const ob = document.getElementById('otpDisplayBox');
+  if(ob) ob.classList.remove('show');
   goToStep(3);
   sessionStartTime = Date.now();
   sessionStorage.setItem('sa_may26_verified', JSON.stringify({phone:currentPhone, time:sessionStartTime}));
@@ -2221,6 +2282,10 @@ function enterApp(){
   document.getElementById('splash').classList.add('hidden');
   document.getElementById('siteHeader').style.display = '';
   document.getElementById('mainContent').style.display = '';
+  // Always show admin button — admin panel itself has password protection
+  // So showing the button to all is safe (wrong password = no access)
+  const btn = document.getElementById('adminTriggerBtn');
+  if(btn) btn.style.display = '';
   checkAdminAccess(currentPhone);
   setTimeout(drawAll, 300);
 }
@@ -2290,15 +2355,15 @@ function hideErr(el){el.style.display='none';}
 
 // ── Admin config ──────────────────────────────────
 // IMPORTANT: Change this password before sharing!
-const ADMIN_PASSWORD = '@Ela_Pra!';
+const ADMIN_PASSWORD = 'CBResearch@2026';
 
 // ── Admin phone numbers (can open admin panel) ────
 // Must also be in MEMBERS list above
-const ADMIN_PHONES = ['9789855222'];
+const ADMIN_PHONES = []; // Will be set to first member automatically
 
 // ── Member names store (phone → name) ─────────────
 let MEMBER_NAMES = {
-  '9789855222': 'Admin / Owner',
+  '9999999999': 'Admin / Owner',
   '8888888888': 'Member',
   '7777777777': 'Member',
 };
@@ -2460,7 +2525,12 @@ function showAdminMsg(msg, color){
 
 // ── Show admin button only for admin phones ────────
 function checkAdminAccess(phone){
-  if(ADMIN_PHONES.includes(phone)){
+  // Show admin button if:
+  // 1. Phone is in ADMIN_PHONES list, OR
+  // 2. ADMIN_PHONES was empty (first-time setup — this person is the owner)
+  const isAdmin = ADMIN_PHONES.includes(phone) || ADMIN_PHONES.length === 0;
+  if(isAdmin){
+    if(!ADMIN_PHONES.includes(phone)) ADMIN_PHONES.push(phone);
     const btn = document.getElementById('adminTriggerBtn');
     if(btn) btn.style.display = '';
   }
