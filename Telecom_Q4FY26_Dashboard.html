@@ -1082,137 +1082,325 @@ body {
 
 <!-- ══ PANEL: CB ASSIST ══ -->
 <div class="panel" id="panel-cbassist">
-  <div style="max-width:900px;margin:0 auto;">
-    <div class="cba-lang-row">
-      <span class="cba-lang-lbl">Language / மொழி:</span>
-      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">🇬🇧 English</button>
-      <button class="lang-btn" id="btn-ta" onclick="setLang('ta')">🇮🇳 தமிழ்</button>
+  <div style="max-width:940px;margin:0 auto;">
+
+    <!-- ── Language Toggle ── -->
+    <div style="display:flex;justify-content:center;margin-bottom:22px;">
+      <div style="background:var(--offwhite);border:1px solid var(--border);border-radius:99px;padding:4px;display:inline-flex;">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')" style="border-radius:99px;padding:8px 26px;font-size:13px;font-weight:700;">🇬🇧 English</button>
+        <button class="lang-btn" id="btn-ta" onclick="setLang('ta')" style="border-radius:99px;padding:8px 26px;font-size:13px;font-weight:700;">🇮🇳 தமிழ்</button>
+      </div>
     </div>
 
+    <!-- ── Hero ── -->
     <div class="cba-hero">
       <div class="cba-hero-top">
         <div class="cba-icon">🤖</div>
         <div>
           <div class="cba-title">CB Assist</div>
-          <div id="cba-sub" class="cba-subtitle">Cauvery Business Knowledge Guide · Telecom Sector Q4 FY26</div>
+          <div class="cba-subtitle">
+            <span class="lang-en">Cauvery Business Knowledge Guide · Telecom Sector Q4 FY26</span>
+            <span class="lang-ta" style="display:none">காவேரி பிசினஸ் அறிவு வழிகாட்டி · தொலைத்தொடர்பு துறை Q4 FY26</span>
+          </div>
         </div>
       </div>
-      <div id="cba-desc" class="cba-desc">Your guide to the Airtel vs Vodafone Idea Q4 FY26 dashboard. Click any question below for an instant answer, or type your own question about the results.</div>
+      <div class="cba-desc">
+        <span class="lang-en">Your complete guide to the Airtel vs Vodafone Idea Q4 FY26 dashboard. Click any curated question below for an instant answer, or type your own at the bottom.</span>
+        <span class="lang-ta" style="display:none">Airtel மற்றும் Vodafone Idea Q4 FY26 டாஷ்போர்டிற்கான முழுமையான வழிகாட்டி. கீழுள்ள கேள்விகளில் கிளிக் செய்யுங்கள் அல்லது உங்கள் சொந்த கேள்வியை கீழே தட்டச்சு செய்யுங்கள்.</span>
+      </div>
     </div>
 
-    <div id="qa-lbl" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--accent);margin-bottom:4px;">📚 Curated Questions — Click to Reveal Answers</div>
-    <div id="qa-sub" style="font-size:12px;color:var(--textlt);margin-bottom:18px;">Organised by topic. Click any question to expand instantly.</div>
+    <!-- ── Section label ── -->
+    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--accent);margin-bottom:4px;">
+      <span class="lang-en">📚 Curated Questions — Click to Reveal Answers</span>
+      <span class="lang-ta" style="display:none">📚 தேர்ந்தெடுக்கப்பட்ட கேள்விகள் — பதில் காண கிளிக் செய்யுங்கள்</span>
+    </div>
+    <div style="font-size:12px;color:var(--textlt);margin-bottom:20px;">
+      <span class="lang-en">Organised by topic. Click any question to expand instantly.</span>
+      <span class="lang-ta" style="display:none">தலைப்பின்படி வகைப்படுத்தப்பட்டுள்ளது. விரிவாக்க கிளிக் செய்யுங்கள்.</span>
+    </div>
 
+    <!-- ══ SECTION 1: FINANCIAL RESULTS ══ -->
     <div class="cba-section">
-      <div class="cba-cat-label" style="background:var(--accentbg);color:var(--accent);">📊 Financial Results</div>
-
-      <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">Which company had the better Q4 FY26 performance?</div>
-        <div class="cba-q lang-ta" style="display:none">Q4 FY26-ல் சிறந்த நிறுவனம் எது?</div>
-        <div class="cba-a lang-en">Bharti Airtel was the clear outperformer by every financial metric. Revenue rose 15.7% YoY to ₹55,383 Cr vs Vi's ₹11,332 Cr (+2.9%). EBITDA grew 16.9% YoY to ₹32,038 Cr with a 57.8% margin — among the best in global telecom. Core net income (before exceptional) jumped 38.7% YoY to ₹7,245 Cr. India EBITDA margin reached 60.6%. The FY26 full year revenue crossed ₹2.1 lakh crore — a 22.6% YoY jump. Balance sheet improved dramatically: Net Debt/EBITDA dropped from 1.86x to 1.29x in one year. A ₹24/share final dividend underscores confidence.</div>
-        <div class="cba-a lang-ta" style="display:none">நிதி அடிப்படையில் Airtel தெளிவாக முன்னில் நிற்கிறது. வருவாய் 15.7% உயர்ந்து ₹55,383 கோடியாக உள்ளது. EBITDA ₹32,038 கோடியாக, 57.8% மார்ஜினில் உள்ளது — உலகத் தொலைத் தொடர்பு துறையிலேயே சிறந்தது. நிகர வருவாய் 38.7% உயர்ந்தது. Vi-ன் வருவாய் ₹11,332 கோடி மட்டுமே, வளர்ச்சி 2.9%. AGR தீர்வு Vi-க்கு உதவியது என்றாலும், அடிப்படை நடவடிக்கைகளில் இழப்பு தொடர்கிறது.</div>
+      <div class="cba-cat-label" style="background:var(--accentbg);color:var(--accent);">
+        <span class="lang-en">📊 Financial Results</span>
+        <span class="lang-ta" style="display:none">📊 நிதி முடிவுகள்</span>
       </div>
 
       <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">Why did Vodafone Idea show ₹51,970 Cr "profit" — is it real?</div>
-        <div class="cba-q lang-ta" style="display:none">Vi ₹51,970 கோடி "லாபம்" காட்டியது ஏன்? இது உண்மையான லாபமா?</div>
-        <div class="cba-a lang-en">No — it is an exceptional one-time accounting gain, not real operating profit. The DoT reassessed Vi's AGR dues: the total was revised downward from ₹87,695 Cr to ₹64,046 Cr (for the period FY2007 to FY2019). This ₹23,649 Cr reduction, combined with recognition of the present value of future payments at ₹24,880 Cr (lower than the earlier liability), created a large accounting credit under "Exceptional Items." Vi's core EBITDA was ₹4,889 Cr (+4.9% YoY) and the company remains operationally loss-making. The Q3 FY26 loss was ₹6,390 Cr. The accounting profit signals a structural improvement in liability picture, not cash profit generation.</div>
-        <div class="cba-a lang-ta" style="display:none">இல்லை — இது ஒரு முறை மட்டுமான கணக்கியல் ஆதாயம். DoT Vi-ன் AGR நிலுவைகளை ₹87,695 கோடியிலிருந்து ₹64,046 கோடியாக குறைத்தது. இந்த வேறுபாடு "Exceptional Items"-ல் கணக்கில் வந்தது. EBITDA ₹4,889 கோடி மட்டுமே, நடவடிக்கை இழப்பு தொடர்கிறது. ஆனால் இது கடன் சுமை குறைவதற்கான நம்பகமான அறிகுறி.</div>
+        <div class="cba-q">
+          <span class="lang-en">Which company had the better Q4 FY26 performance?</span>
+          <span class="lang-ta" style="display:none">Q4 FY26-ல் சிறந்த செயல்திறன் காட்டிய நிறுவனம் எது?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">Bharti Airtel was the clear outperformer on every metric. Revenue rose 15.7% YoY to ₹55,383 Cr vs Vi's ₹11,332 Cr (+2.9%). EBITDA grew 16.9% to ₹32,038 Cr at 57.8% margin — among the best in global telecom. Core net income before exceptional items jumped 38.7% to ₹7,245 Cr. India EBITDA margin reached 60.6%. FY26 full-year revenue crossed ₹2.1 lakh crore (+22.6%). Net Debt/EBITDA fell from 1.86x to 1.29x in one year. A ₹24/share final dividend was declared — highest ever.</span>
+          <span class="lang-ta" style="display:none">நிதி அளவீடுகளில் Airtel தெளிவாக முன்னிலை வகிக்கிறது. வருவாய் 15.7% உயர்ந்து ₹55,383 கோடி; Vi ₹11,332 கோடி மட்டுமே (+2.9%). EBITDA ₹32,038 கோடி, மார்ஜின் 57.8% — உலகளாவிய தொலைத்தொடர்பு துறையிலேயே சிறந்தது. நிகர வருவாய் (விதிவிலக்கிற்கு முன்) 38.7% உயர்வு. இந்தியா EBITDA மார்ஜின் 60.6%. FY26 முழு ஆண்டு வருவாய் ₹2.1 லட்சம் கோடியை கடந்தது (+22.6%). கடன்-EBITDA விகிதம் 1.86x → 1.29x. ₹24/பங்கு இறுதி ஈவுத்தொகை அறிவிக்கப்பட்டது — இதுவரை அதிகம்.</span>
+        </div>
       </div>
 
       <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">How does ARPU compare between Airtel and Vi?</div>
-        <div class="cba-q lang-ta" style="display:none">Airtel மற்றும் Vi-ன் ARPU ஒப்பீடு என்ன?</div>
-        <div class="cba-a lang-en">Airtel's ARPU in Q4 FY26 stood at ₹257 (+4.9% YoY from ₹245), while Vi's ARPU was ₹190 (+8.3% YoY from ₹175). Vi actually showed faster YoY ARPU growth in percentage terms, reflecting the benefit of its tariff hike in mid-2024. However, the absolute gap is large: Airtel earns ₹67 more per user per month than Vi. Airtel management targets ₹300 ARPU in the medium term. For context, Airtel ARPU in Q2 FY26 was ₹259 — slightly down sequentially in Q4 due to 2 fewer billing days.</div>
-        <div class="cba-a lang-ta" style="display:none">Airtel ARPU: ₹257 (+4.9% YoY). Vi ARPU: ₹190 (+8.3% YoY). Vi-ன் % வளர்ச்சி வேகமாக உள்ளது — கட்டண உயர்வின் பயன். ஆனால் ஒவ்வொரு பயனருக்கும் Airtel ₹67 அதிகம் ஈட்டுகிறது. Airtel இலக்கு ₹300 ARPU.</div>
+        <div class="cba-q">
+          <span class="lang-en">Why did Vodafone Idea show ₹51,970 Cr "profit" — is it real?</span>
+          <span class="lang-ta" style="display:none">Vodafone Idea ₹51,970 கோடி "லாபம்" காட்டியது எப்படி? இது உண்மையான லாபமா?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">No — it is a one-time exceptional accounting gain, not real operating profit. The DoT reduced Vi's AGR dues from ₹87,695 Cr to ₹64,046 Cr. This ₹23,649 Cr reduction, plus the revised present value of future payments at ₹24,880 Cr, created a large credit under "Exceptional Items." Vi's core EBITDA was only ₹4,889 Cr (+4.9% YoY) and the company remains operationally loss-making. Q3 FY26 operating loss was ₹6,390 Cr. This "profit" reflects liability relief — not cash generation.</span>
+          <span class="lang-ta" style="display:none">இல்லை — இது ஒரு முறை மட்டுமே வரும் கணக்கியல் ஆதாயம், உண்மையான இயக்க லாபம் அல்ல. DoT Vi-ன் AGR நிலுவையை ₹87,695 கோடியிலிருந்து ₹64,046 கோடியாக குறைத்தது. இந்த ₹23,649 கோடி குறைப்பு மற்றும் எதிர்கால கட்டணங்களின் தற்போதைய மதிப்பு ₹24,880 கோடியாக கணக்கிடப்பட்டு "விதிவிலக்கு இனங்கள்" என பதிவாகியது. EBITDA ₹4,889 கோடி மட்டுமே; இயக்க நட்டம் தொடர்கிறது. Q3 FY26 இயக்க நட்டம் ₹6,390 கோடி. இந்த "லாபம்" பொறுப்பு குறைப்பை காட்டுகிறது — பண வரவை அல்ல.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">How does ARPU compare between Airtel and Vi?</span>
+          <span class="lang-ta" style="display:none">Airtel மற்றும் Vi-ன் ARPU-வை ஒப்பிட்டால் என்ன தெரிகிறது?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">Airtel Q4 FY26 ARPU: ₹257 (+4.9% YoY from ₹245). Vi ARPU: ₹190 (+8.3% YoY from ₹175). Vi showed faster percentage growth — benefit of mid-2024 tariff hike. But the absolute gap is ₹67/month per user. Airtel targets ₹300 ARPU in medium term — every ₹10 gain adds ~₹2,500 Cr to annual EBITDA. Vi needs ₹250+ to sustainably service FY36 AGR repayments of ₹10,608 Cr/year.</span>
+          <span class="lang-ta" style="display:none">Airtel Q4 FY26 ARPU: ₹257 (+4.9% ஆண்டுவாரியம், ₹245-லிருந்து). Vi ARPU: ₹190 (+8.3% ஆண்டுவாரியம், ₹175-லிருந்து). Vi சதவீத வளர்ச்சியில் வேகமாக இருக்கிறது — 2024 நடுப்பகுதி கட்டண உயர்வின் பலன். ஆனால் முழுமையான இடைவெளி ₹67/மாதம். Airtel இலக்கு ₹300 ARPU — ஒவ்வொரு ₹10 உயர்வும் ஆண்டு EBITDA-ஐ ₹2,500 கோடி அதிகரிக்கும். FY36-லிருந்து ₹10,608 கோடி/ஆண்டு AGR தவணைகளை சமாளிக்க Vi ₹250+ அடைய வேண்டும்.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">How do FY26 full-year revenues compare?</span>
+          <span class="lang-ta" style="display:none">FY26 முழு ஆண்டு வருவாய் ஒப்பீடு என்ன?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">Airtel FY26 revenue: ₹2,10,973 Cr (+22.6% YoY). EBITDA: ₹1,21,268 Cr (+28.7%). Vi FY26 revenue: ₹44,873 Cr (+3.0%). EBITDA: ₹19,003 Cr (+4.8%). Scale gap is stark — Airtel revenue is nearly 5× Vi. Airtel crossed 650 million total customers globally. Vi's India subscriber base: 192.8 million — down from 213 million a year ago.</span>
+          <span class="lang-ta" style="display:none">Airtel FY26 வருவாய்: ₹2,10,973 கோடி (+22.6%). EBITDA: ₹1,21,268 கோடி (+28.7%). Vi FY26 வருவாய்: ₹44,873 கோடி (+3.0%). EBITDA: ₹19,003 கோடி (+4.8%). அளவு வித்தியாசம் பெரியது — Airtel வருவாய் Vi-ஐ விட சுமார் 5 மடங்கு. Airtel உலகளவில் 65 கோடி வாடிக்கையாளர் மைல்கல்லை கடந்தது. Vi சந்தாதாரர் தளம் 19.28 கோடி — ஒரு ஆண்டு முன்பு 21.3 கோடியிலிருந்து குறைந்துள்ளது.</span>
+        </div>
       </div>
     </div>
 
+    <!-- ══ SECTION 2: AGR & GOVERNMENT RELIEF ══ -->
     <div class="cba-section">
-      <div class="cba-cat-label" style="background:var(--vibg);color:var(--vi);">📶 Vi Turnaround</div>
-
-      <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">What are the key positive signals for Vodafone Idea in Q4 FY26?</div>
-        <div class="cba-q lang-ta" style="display:none">Q4 FY26-ல் Vi-க்கான முக்கியமான நேர்மறை அம்சங்கள் என்ன?</div>
-        <div class="cba-a lang-en">Multiple structural positives emerged for Vi in Q4 FY26: (1) AGR dues finalised at ₹64,046 Cr — removes the largest existential overhang. (2) ICRA credit rating upgraded to BBB (Positive) — improves borrowing ability. (3) Monthly subscriber additions turned positive from February 2026 — first time in ~6 years. (4) $500 million equity infusion committed — balance sheet support. (5) ARPU at ₹190 (+8.3% YoY) — highest growth pace in the sector. (6) 5G rollout underway across 17 priority circles with mmWave spectrum in 16 circles. The Q4 FY26 results mark the clearest inflection point in Vi's recent history.</div>
-        <div class="cba-a lang-ta" style="display:none">Vi-ன் நேர்மறை அம்சங்கள்: (1) AGR தீர்மானம் — மிகப்பெரிய தலைவலி நீங்கியது. (2) ICRA BBB மதிப்பீடு உயர்வு. (3) பெப் 2026 முதல் சந்தா சேர்ப்பு நேர்மறையானது. (4) $500 மில்லியன் முதலீடு. (5) ARPU ₹190 (+8.3%). (6) 17 மாநிலங்களில் 5G தொடக்கம்.</div>
+      <div class="cba-cat-label" style="background:#FFF0F0;color:var(--vi);">
+        <span class="lang-en">🏛 AGR &amp; Government Relief</span>
+        <span class="lang-ta" style="display:none">🏛 AGR மற்றும் அரசாங்க நிவாரணம்</span>
       </div>
 
       <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">What risks remain for Vodafone Idea despite the turnaround signals?</div>
-        <div class="cba-q lang-ta" style="display:none">திரும்ப வருவதற்கான சாத்தியம் இருந்தாலும் Vi-க்கு என்ன அபாயங்கள் உள்ளன?</div>
-        <div class="cba-a lang-en">Despite the positives, Vi faces serious execution risks: (1) Still operationally loss-making — Q3 FY26 loss was ₹6,390 Cr; cash burn continues. (2) ₹45,000 Cr 3-year capex plan depends on successful equity fundraising — any slippage could accelerate subscriber losses. (3) Subscriber base at 192.8 Mn vs Airtel's 373 Mn — the gap is structurally widening. (4) Competing against Jio (55% market share) and Airtel with much larger networks and balance sheets. (5) The turnaround is fragile — positive net adds in Feb 2026 need to sustain into FY27 to de-risk the investment thesis.</div>
-        <div class="cba-a lang-ta" style="display:none">Vi-க்கு முக்கியமான அபாயங்கள்: (1) இன்னும் நட்டம் தொடர்கிறது. (2) ₹45,000 கோடி முதலீட்டு திட்டம் நிதி திரட்டலை சார்ந்துள்ளது. (3) Airtel 373 Mn சந்தாதாரர்கள் — Vi 192 Mn மட்டுமே. (4) Jio-வின் ஆதிக்கம். (5) Feb 2026 நேர்மறை வளர்ச்சி தொடர வேண்டும்.</div>
+        <div class="cba-q">
+          <span class="lang-en">What is AGR and why did it threaten Vi's existence?</span>
+          <span class="lang-ta" style="display:none">AGR என்றால் என்ன? அது ஏன் Vi-ன் இருப்பையே அச்சுறுத்தியது?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">AGR stands for Adjusted Gross Revenue — the base used to calculate spectrum usage charges and licence fees payable to the government. The dispute: DoT defined AGR to include ALL revenue (including non-telecom income like interest and asset sales), while operators argued only telecom revenue should count. The Supreme Court sided with the government in October 2019 and directed all telcos to pay, including compounded interest and penalties. For Vi, this crystallised into a liability exceeding ₹87,695 Cr — a sum that would have forced insolvency. Without the 2021 moratorium, Vi would have ceased operations by FY26.</span>
+          <span class="lang-ta" style="display:none">AGR என்பது சரிசெய்யப்பட்ட மொத்த வருவாய் (Adjusted Gross Revenue) — அரசாங்கத்திற்கு செலுத்த வேண்டிய நிறமாலை கட்டணங்களை கணக்கிட பயன்படும் அடிப்படை. DoT அனைத்து வருவாயையும் (தொலைத்தொடர்பு சாரா வட்டி, சொத்து விற்பனை உட்பட) AGR-ல் சேர்க்க வேண்டும் என்றது; நிறுவனங்கள் தொலைத்தொடர்பு வருவாய் மட்டுமே என வாதிட்டன. உச்ச நீதிமன்றம் அக்டோபர் 2019-ல் அரசாங்கத்திற்கு ஆதரவாக தீர்ப்பளித்தது. Vi-க்கு இது ₹87,695 கோடிக்கும் மேலான பொறுப்பாக உருவெடுத்தது. 2021 ஒத்திவைப்பு இல்லாமல் Vi FY26-க்குள் மூடியிருக்கும்.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">What is the complete government relief timeline for Vi from 2021 to 2026?</span>
+          <span class="lang-ta" style="display:none">2021 முதல் 2026 வரை Vi-க்கு அரசாங்கம் வழங்கிய நிவாரணங்களின் முழு காலவரிசை என்ன?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en"><b>Sep 2021:</b> 4-year moratorium on all spectrum + AGR dues. No cash payments needed till Oct 2025. Option to convert interest on deferred dues into government equity granted.<br><b>Feb 2023:</b> ₹16,133 Cr of interest dues converted to equity — government acquired 33.1% stake in Vi.<br><b>2023–24:</b> Bank guarantee waiver of ~₹24,800 Cr on spectrum instalment dues — working capital freed.<br><b>Apr 2025:</b> ₹36,950 Cr of spectrum auction dues converted to equity — government stake raised to 48.99%. Avoided a ₹40,000 Cr+ annual payment burden.<br><b>Dec 2025:</b> AGR dues frozen at ₹87,695 Cr; staggered repayments extended to FY41.<br><b>Apr 2026:</b> DoT finalised AGR at ₹64,046 Cr (27% cut). ₹23,649 Cr accounting gain in Q4 FY26.<br><b>Q4 FY26:</b> Vodafone Group UK committed ₹5,836 Cr under CLAM agreement.<br><b>Total relief:</b> ~₹1,01,732 Cr+ in equity conversions, AGR cuts, moratorium, and BG waivers.</span>
+          <span class="lang-ta" style="display:none"><b>செப் 2021:</b> அனைத்து நிறமாலை + AGR நிலுவைகளுக்கும் 4 ஆண்டு ஒத்திவைப்பு. அக்டோபர் 2025 வரை பணம் செலுத்த தேவையில்லை. ஒத்திவைப்பு வட்டியை அரசு சேர்க்கையாக மாற்றும் விருப்பம் வழங்கப்பட்டது.<br><b>பிப் 2023:</b> ₹16,133 கோடி வட்டி நிலுவை சேர்க்கையாக மாற்றம் — அரசாங்கம் 33.1% பங்கு பெற்றது.<br><b>2023-24:</b> ~₹24,800 கோடி வங்கி உத்தரவாதம் நீக்கம் — செயல்பாட்டு மூலதனம் விடுவிக்கப்பட்டது.<br><b>ஏப் 2025:</b> ₹36,950 கோடி நிறமாலை ஏல நிலுவை சேர்க்கையாக மாற்றம் — அரசு பங்கு 48.99%-ஆக உயர்வு.<br><b>டிச் 2025:</b> AGR நிலுவை ₹87,695 கோடியில் நிறைவு; FY41 வரை படிப்படியான திருப்பிச் செலுத்தல்.<br><b>ஏப் 2026:</b> DoT AGR ₹64,046 கோடியாக இறுதி (27% குறைப்பு). Q4 FY26-ல் ₹23,649 கோடி ஆதாயம்.<br><b>Q4 FY26:</b> Vodafone Group UK ₹5,836 கோடி CLAM உறுதி.<br><b>மொத்த நிவாரணம்:</b> ~₹1,01,732 கோடி+ (சேர்க்கை மாற்றம் + AGR குறைப்பு + ஒத்திவைப்பு + வங்கி உத்தரவாதம் நீக்கம்).</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">What is the full AGR repayment schedule FY26 to FY41?</span>
+          <span class="lang-ta" style="display:none">FY26 முதல் FY41 வரை AGR திருப்பிச் செலுத்தல் அட்டவணை என்ன?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">The ₹64,046 Cr AGR dues are repaid in 3 phases over 16 years:<br><br><b>Phase 1 — FY26 to FY31 (6 years):</b> ₹124 Cr/year max. These cover FY18–FY19 dues under the 2020 SC order. Total: ₹744 Cr.<br><b>Phase 2 — FY32 to FY35 (4 years):</b> ₹100 Cr/year minimum. Total: ₹400 Cr.<br><b>Phase 3 — FY36 to FY41 (6 years):</b> ₹10,608 Cr/year in 6 equal instalments. This is the "FY36 cliff."<br><br>Total AGR cash outflow FY26–FY35: just ₹1,144 Cr. Near-term relief is massive. But Vi must be strongly cash-generative by FY36 to handle ₹10,608 Cr/year.</span>
+          <span class="lang-ta" style="display:none">₹64,046 கோடி AGR நிலுவை 16 ஆண்டுகளில் 3 கட்டங்களாக:<br><br><b>கட்டம் 1 — FY26 முதல் FY31 (6 ஆண்டுகள்):</b> ஆண்டுக்கு அதிகபட்சம் ₹124 கோடி. மொத்தம்: ₹744 கோடி.<br><b>கட்டம் 2 — FY32 முதல் FY35 (4 ஆண்டுகள்):</b> ஆண்டுக்கு குறைந்தபட்சம் ₹100 கோடி. மொத்தம்: ₹400 கோடி.<br><b>கட்டம் 3 — FY36 முதல் FY41 (6 ஆண்டுகள்):</b> 6 சம தவணைகளில் ஆண்டுக்கு ₹10,608 கோடி. இதுவே "FY36 திடீர் சுமை."<br><br>FY26-FY35 மொத்த AGR பணப்புழக்கம்: வெறும் ₹1,144 கோடி மட்டுமே — அருகிலுள்ள காலகட்ட நிவாரணம் மகத்தானது. ஆனால் FY36-ல் ₹10,608 கோடி/ஆண்டு தவணைகளை சமாளிக்க Vi வலுவான பணப்புழக்கத்தை உருவாக்க வேண்டும்.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">How does AGR relief practically help Vi's business?</span>
+          <span class="lang-ta" style="display:none">AGR நிவாரணம் Vi-ன் தொழிலுக்கு நடைமுறையில் எவ்வாறு உதவுகிறது?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en"><b>Cash flow:</b> Near-term AGR outflow is just ₹124 Cr/year vs ₹16,400 Cr due in March 2026. Full operating cash flow redirected to capex.<br><b>Balance sheet:</b> AGR liability dropped from ₹87,695 Cr to ₹24,880 Cr (PV basis) — ~₹63,000 Cr improvement. ICRA upgraded to BBB (Positive) immediately after.<br><b>Capex bandwidth:</b> The ₹45,000 Cr 3-year plan is executable without competing AGR priorities until FY36.<br><b>Investor confidence:</b> Govt 49% stake = sovereign credit backing. Banks and FIIs can lend with greater confidence.<br><b>FY36 requirement:</b> Vi must reach ₹250+ ARPU, stabilise subscribers, and generate ₹10,000+ Cr free cash flow — or face a second crisis.</span>
+          <span class="lang-ta" style="display:none"><b>பணப்புழக்கம்:</b> AGR அருகிலுள்ள காலகட்ட பணப்புழக்கம் வெறும் ₹124 கோடி/ஆண்டு — மார்ச் 2026-ல் மட்டும் செலுத்த வேண்டிய ₹16,400 கோடியிலிருந்து மிகப் பெரிய நிவாரணம். முழு இயக்க பணப்புழக்கமும் மூலதன செலவுக்கு திருப்பி விடலாம்.<br><b>இருப்புநிலை:</b> AGR பொறுப்பு ₹87,695 கோடியிலிருந்து ₹24,880 கோடியாக (தற்போதைய மதிப்பு) — ~₹63,000 கோடி மேம்பாடு. ICRA உடனடியாக BBB (நேர்மறை) தரம் உயர்த்தியது.<br><b>மூலதன செலவு இடம்:</b> ₹45,000 கோடி திட்டம் FY36 வரை AGR போட்டி இல்லாமல் செயல்படுத்தலாம்.<br><b>முதலீட்டாளர் நம்பிக்கை:</b> 49% அரசு பங்கு = இறையாண்மை கடன் ஆதரவு. வங்கிகள் மற்றும் FII களுக்கு அதிக நம்பிக்கை.<br><b>FY36 தேவை:</b> Vi ₹250+ ARPU, நிலையான சந்தாதாரர் தளம், ₹10,000+ கோடி இலவச பணப்புழக்கம் — இல்லையேல் இரண்டாவது நெருக்கடி.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">Why is the government supporting Vi so extensively?</span>
+          <span class="lang-ta" style="display:none">அரசாங்கம் ஏன் Vi-ஐ இவ்வளவு விரிவாக ஆதரிக்கிறது?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">Three reasons: (1) <b>Competition policy:</b> India cannot afford a Jio-Airtel duopoly. Three operators are needed for healthy consumer pricing. (2) <b>Protecting its own equity:</b> GoI holds 48.99% of Vi worth ~₹28,000 Cr at market. A Vi collapse means equity goes to zero AND ₹64,046 Cr in AGR dues becomes uncollectible. (3) <b>Employment and Digital India:</b> Vi supports millions of rural subscribers and thousands of jobs. The strategy: keep Vi viable until a strategic investor or revenue growth makes it self-sustaining.</span>
+          <span class="lang-ta" style="display:none">மூன்று காரணங்கள்: (1) <b>போட்டிக் கொள்கை:</b> இந்தியாவால் Jio-Airtel இரட்டை ஏகபோகத்தை தாங்க முடியாது. நல்ல நுகர்வோர் விலைக்கு மூன்று நிறுவனங்கள் தேவை. (2) <b>சொந்த சேர்க்கையை பாதுகாத்தல்:</b> அரசாங்கம் Vi-ல் 48.99% வைத்திருக்கிறது — சந்தையில் ~₹28,000 கோடி மதிப்பு. Vi சரிந்தால் சேர்க்கை பூஜ்யமாகும், மேலும் ₹64,046 கோடி AGR நிலுவையும் வசூலிக்க முடியாமல் போகும். (3) <b>வேலைவாய்ப்பும் டிஜிட்டல் இந்தியாவும்:</b> Vi கோடிக்கணக்கான கிராமப்புற சந்தாதாரர்களை ஆதரிக்கிறது. உத்தி: ஒரு மூலோபாய முதலீட்டாளர் வரும் வரை அல்லது வருவாய் வளர்ச்சி சுயாதீனம் பெறும் வரை Vi-ஐ உயிரோடு வைத்திருப்பது.</span>
+        </div>
       </div>
     </div>
 
+    <!-- ══ SECTION 3: VI TURNAROUND ══ -->
     <div class="cba-section">
-      <div class="cba-cat-label" style="background:var(--accentbg);color:var(--accent);">💰 Debt & Valuation</div>
-
-      <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">How is Airtel's balance sheet improving?</div>
-        <div class="cba-q lang-ta" style="display:none">Airtel-ன் நிதி நிலை எப்படி முன்னேறுகிறது?</div>
-        <div class="cba-a lang-en">Airtel's balance sheet is improving rapidly. Net debt fell from ₹2.11 lakh Cr (Q4 FY25) → ₹1.83 lakh Cr (Q3 FY26) → ₹1.65 lakh Cr (Q4 FY26). Net Debt/EBITDA ratio dropped from 1.86x to 1.29x in just one year — a strong de-leveraging signal. This improvement is driven by robust EBITDA generation (₹1.21 lakh Cr for FY26) and disciplined capital allocation. The board recommended ₹24/share final dividend — the highest ever — reflecting confidence in cash flow sustainability. The target is to further reduce leverage as ARPU grows toward ₹300.</div>
-        <div class="cba-a lang-ta" style="display:none">Airtel நிகர கடன் ₹2.11 லட்சம் கோடியிலிருந்து ₹1.65 லட்சம் கோடியாக குறைந்துள்ளது. Net Debt/EBITDA 1.86x → 1.29x. ₹24/பங்கு டிவிடெண்ட் — இதுவரை அதிகம். EBITDA ₹1.21 லட்சம் கோடி நிலையான பணப்புழக்கத்தை காட்டுகிறது.</div>
+      <div class="cba-cat-label" style="background:var(--vibg);color:var(--vi);">
+        <span class="lang-en">📶 Vi Turnaround Signals</span>
+        <span class="lang-ta" style="display:none">📶 Vi மீட்சி அறிகுறிகள்</span>
       </div>
 
       <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">Compare Airtel and Vi on key valuation metrics</div>
-        <div class="cba-q lang-ta" style="display:none">Airtel மற்றும் Vi-ன் மதிப்பீடு ஒப்பீடு</div>
-        <div class="cba-a lang-en">Airtel: CMP ~₹1,874, Market Cap ~₹11.2 lakh Cr, FY26 EBITDA ₹1.21 lakh Cr, EV/EBITDA ~10-11x, Net Debt/EBITDA 1.29x, P/E ~50x, Dividend ₹24/sh. Analyst targets ₹2,000–₹2,450. Vi: CMP ~₹8, Market Cap ~₹56,000 Cr, FY26 EBITDA ₹19,003 Cr, EV/EBITDA ~13–15x (complex due to spectrum/govt liabilities), P/E not meaningful (loss-making), No dividend. The key difference: Airtel is valued on strong and growing earnings, while Vi is valued as a turnaround option — a high-risk, high-reward binary bet on execution.</div>
-        <div class="cba-a lang-ta" style="display:none">Airtel: ₹1,874 CMP, ₹11.2 லட்சம் கோடி மார்க்கெட் கேப், EV/EBITDA ~10-11x, டிவிடெண்ட் ₹24. Vi: ₹8 CMP, ₹56,000 கோடி மார்க்கெட் கேப், EV/EBITDA ~13-15x, டிவிடெண்ட் இல்லை. Airtel நிலையான வருவாயின் அடிப்படையில் மதிப்பீடு செய்யப்படுகிறது; Vi ஒரு "turnaround bet".</div>
+        <div class="cba-q">
+          <span class="lang-en">What are the key positive signals for Vi in Q4 FY26?</span>
+          <span class="lang-ta" style="display:none">Q4 FY26-ல் Vi-க்கான முக்கியமான நேர்மறை அறிகுறிகள் என்ன?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">(1) AGR dues finalised at ₹64,046 Cr — largest existential risk removed. (2) ICRA upgraded to BBB (Positive) — borrowing capacity improving. (3) Monthly net subscriber additions turned positive from February 2026 — first time in ~6 years. (4) $500 million equity infusion committed. (5) ARPU at ₹190 (+8.3% YoY) — sector's fastest % growth. (6) 5G rollout in 17 priority circles with mmWave spectrum in 16 circles. (7) Vodafone Group UK committed ₹5,836 Cr under CLAM.</span>
+          <span class="lang-ta" style="display:none">(1) AGR நிலுவை ₹64,046 கோடியில் இறுதி — மிகப்பெரிய இருப்பு அபாயம் நீங்கியது. (2) ICRA BBB (நேர்மறை) மதிப்பீட்டிற்கு தரம் உயர்வு. (3) பிப்ரவரி 2026 முதல் மாதாந்திர நிகர சந்தாதாரர் சேர்ப்பு நேர்மறையானது — சுமார் 6 ஆண்டுகளில் முதல்முறை. (4) $500 மில்லியன் சேர்க்கை உட்செலுத்துதல் உறுதி. (5) ARPU ₹190 (+8.3%) — துறையிலேயே வேகமான % வளர்ச்சி. (6) 17 முன்னுரிமை வட்டங்களில் 5G தொடக்கம். (7) Vodafone Group UK ₹5,836 கோடி CLAM உறுதி.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">What risks remain for Vi despite the turnaround signals?</span>
+          <span class="lang-ta" style="display:none">மீட்சி அறிகுறிகள் இருந்தாலும் Vi-க்கு என்ன அபாயங்கள் தொடர்கின்றன?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">(1) Still operationally loss-making — Q3 FY26 loss ₹6,390 Cr. (2) ₹45,000 Cr capex plan depends on unconfirmed fundraising. (3) Subscriber base 192.8 Mn vs Airtel 373 Mn — widening gap. (4) Competing against Jio (55% market share) and Airtel with far larger balance sheets. (5) February 2026 subscriber inflection must sustain every month in FY27. (6) FY36 cliff — ₹10,608 Cr/year AGR instalments require strong profitability a decade from now.</span>
+          <span class="lang-ta" style="display:none">(1) இன்னும் இயக்க நட்டத்தில் — Q3 FY26 நட்டம் ₹6,390 கோடி. (2) ₹45,000 கோடி மூலதன திட்டம் உறுதிப்படாத நிதி திரட்டலை சார்ந்துள்ளது. (3) சந்தாதாரர் 19.28 கோடி vs Airtel 37.3 கோடி — விரிவடையும் இடைவெளி. (4) Jio (55% சந்தை பங்கு) மற்றும் Airtel-உடன் போட்டி. (5) பிப்ரவரி 2026 திருப்புமுனை FY27 முழுவதும் நீடிக்க வேண்டும். (6) FY36 திடீர் சுமை — ₹10,608 கோடி/ஆண்டு AGR தவணைக்கு ஒரு தசாப்தத்தில் வலுவான லாபம் தேவை.</span>
+        </div>
       </div>
     </div>
 
+    <!-- ══ SECTION 4: DEBT & VALUATION ══ -->
     <div class="cba-section">
-      <div class="cba-cat-label" style="background:var(--amberbg);color:var(--amber);">🎯 Analyst View</div>
-
-      <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">What do analysts say about Airtel post Q4 FY26?</div>
-        <div class="cba-q lang-ta" style="display:none">Q4 FY26 பிறகு ஆய்வாளர்கள் Airtel பற்றி என்ன சொல்கிறார்கள்?</div>
-        <div class="cba-a lang-en">Post Q4 FY26, analyst consensus on Airtel is strongly positive. Morgan Stanley: Overweight, TP ₹2,450. PL Capital: Buy, TP ₹2,226. JM Financial: Reiterated Buy, citing 12% ARPU CAGR over FY26-28. ICICI Securities: Buy. The stock rose 4.74% on results day to ₹1,874. Key thesis: ARPU expansion + Africa optionality + data centre / NBFC diversification. The bear concern is the premium P/E (~50x) and high capex. Shares are up from 52-week low of ₹1,400 but below the ₹1,900 52-week high, suggesting room to run if FY27 delivers.</div>
-        <div class="cba-a lang-ta" style="display:none">Morgan Stanley (TP ₹2,450), PL Capital (TP ₹2,226), JM Financial (BUY — 12% ARPU CAGR), ICICI Securities (BUY). பங்கு முடிவுகள் நாளில் 4.74% உயர்ந்தது. ARPU வளர்ச்சி + Africa + Data centres — இவை முக்கிய thesis. ~50x P/E அதிக மதிப்பீடு என்பது ஒரு risk.</div>
+      <div class="cba-cat-label" style="background:var(--accentbg);color:var(--accent);">
+        <span class="lang-en">💰 Debt &amp; Valuation</span>
+        <span class="lang-ta" style="display:none">💰 கடன் மற்றும் மதிப்பீடு</span>
       </div>
 
       <div class="cba-qa" onclick="toggleCBA(this)">
-        <div class="cba-q lang-en">What do analysts say about Vodafone Idea?</div>
-        <div class="cba-q lang-ta" style="display:none">ஆய்வாளர்கள் Vi பற்றி என்ன சொல்கிறார்கள்?</div>
-        <div class="cba-a lang-en">Vi has a deeply divided analyst community. Mean consensus: HOLD (21 analysts), average target ₹9.76 vs CMP ~₹8–9.47. Bull case: YES Securities has a Buy with TP ₹18 — AGR resolution + equity support changes the math. Bear case: Several analysts at ₹5–7 — cash burn, network gap, and execution uncertainty. The market treats Vi as a high-risk option — it could double or go to near-zero depending on FY27 execution. Key watch: whether subscriber additions sustain post Feb 2026, and whether the ₹45,000 Cr capex plan gets funded. ICRA BBB upgrade is a meaningful positive signal for institutional confidence.</div>
-        <div class="cba-a lang-ta" style="display:none">21 ஆய்வாளர்களின் சராசரி: HOLD, இலக்கு ₹9.76. YES Securities BUY TP ₹18 (AGR தீர்வு + ஈக்விட்டி). Bear case ₹5–7. Vi ஒரு "high risk option play" — FY27 செயல்திறனை பொருத்தே முடிவு. Feb 2026 subscriber நேர்மறை வளர்ச்சி நிலைத்திருக்க வேண்டும்.</div>
+        <div class="cba-q">
+          <span class="lang-en">How is Airtel's balance sheet improving?</span>
+          <span class="lang-ta" style="display:none">Airtel-ன் இருப்புநிலை எவ்வாறு மேம்படுகிறது?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">Net debt fell: ₹2.11 lakh Cr (Q4 FY25) → ₹1.83 lakh Cr (Q3 FY26) → ₹1.65 lakh Cr (Q4 FY26). Net Debt/EBITDA compressed from 1.86x to 1.29x in one year. Driven by FY26 EBITDA of ₹1.21 lakh Cr (+28.7%) and disciplined capital allocation. ₹24/share final dividend — highest ever, up from ₹16 in FY25 — confirms sustained free cash flow. Target: further deleverage as ARPU marches toward ₹300.</span>
+          <span class="lang-ta" style="display:none">நிகர கடன்: ₹2.11 லட்சம் கோடி (Q4 FY25) → ₹1.83 லட்சம் கோடி (Q3 FY26) → ₹1.65 லட்சம் கோடி (Q4 FY26). கடன்-EBITDA விகிதம் 1.86x → 1.29x — ஒரே ஆண்டில் கணிசமான குறைப்பு. FY26 EBITDA ₹1.21 லட்சம் கோடி (+28.7%) இதை இயக்குகிறது. ₹24/பங்கு ஈவுத்தொகை — இதுவரை அதிகம். ARPU ₹300-ஐ நோக்கி செல்லும்போது கடன் மேலும் குறையும்.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">Compare Airtel and Vi on key valuation metrics</span>
+          <span class="lang-ta" style="display:none">Airtel மற்றும் Vi-ஐ முக்கியமான மதிப்பீட்டு அளவுகோல்களில் ஒப்பிடவும்</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en"><b>Airtel:</b> CMP ~₹1,874 | Market Cap ~₹11.2 lakh Cr | EV/EBITDA ~10–11x | Net Debt/EBITDA 1.29x | P/E ~50x | Dividend ₹24/sh | Analyst targets ₹2,000–₹2,450.<br><b>Vi:</b> CMP ~₹8 | Market Cap ~₹56,000 Cr | EV/EBITDA ~13–15x | P/E — not meaningful (loss-making) | No dividend | Consensus target ~₹9.76 (HOLD).<br><b>Key difference:</b> Airtel = valued on growing visible earnings. Vi = high-risk binary turnaround bet. Fundamentally different risk categories.</span>
+          <span class="lang-ta" style="display:none"><b>Airtel:</b> தற்போதைய விலை ~₹1,874 | சந்தை மூலதனம் ~₹11.2 லட்சம் கோடி | EV/EBITDA ~10-11x | கடன்/EBITDA 1.29x | P/E ~50x | ஈவுத்தொகை ₹24 | ஆய்வாளர் இலக்கு ₹2,000-₹2,450.<br><b>Vi:</b> தற்போதைய விலை ~₹8 | சந்தை மூலதனம் ~₹56,000 கோடி | EV/EBITDA ~13-15x | P/E பொருந்தாது (நட்டம்) | ஈவுத்தொகை இல்லை | சராசரி இலக்கு ~₹9.76 (வைத்திரு).<br><b>முக்கிய வித்தியாசம்:</b> Airtel = வளரும் தெளிவான வருவாயின் அடிப்படை. Vi = அதிக ஆபத்தான இரு-முனை மீட்சி பந்தயம். அடிப்படையில் வேறுபட்ட ஆபத்து வகைகள்.</span>
+        </div>
       </div>
     </div>
 
-    <!-- Free text ask -->
-    <div style="margin-top:24px;">
-      <div id="ask-title" style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--accent);margin-bottom:6px;">💬 Ask CB Assist</div>
-      <div id="ask-desc" style="font-size:12.5px;color:var(--textlt);margin-bottom:12px;">Type your question about Airtel, Vi, ARPU, AGR, 5G, analysts, risks, or comparisons covered in this dashboard.</div>
+    <!-- ══ SECTION 5: ANALYST VIEW ══ -->
+    <div class="cba-section">
+      <div class="cba-cat-label" style="background:var(--amberbg);color:var(--amber);">
+        <span class="lang-en">🎯 Analyst Ratings &amp; Outlook</span>
+        <span class="lang-ta" style="display:none">🎯 ஆய்வாளர் மதிப்பீடுகள் மற்றும் கண்ணோட்டம்</span>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">What do analysts say about Airtel post Q4 FY26?</span>
+          <span class="lang-ta" style="display:none">Q4 FY26 முடிவுகளுக்கு பிறகு ஆய்வாளர்கள் Airtel பற்றி என்ன சொல்கிறார்கள்?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">Post Q4 FY26, analyst consensus on Airtel is overwhelmingly bullish. Morgan Stanley: Overweight, TP ₹2,450. PL Capital: Buy, TP ₹2,226. JM Financial: Reiterated Buy — ARPU CAGR ~12% FY26–28. ICICI Securities: Buy. Stock rose 4.74% on results day to ₹1,874. Bull thesis: ARPU expansion to ₹300, Africa high-growth optionality, Nxtra data centres ($1 Bn), NBFC (₹20,000 Cr), and rapid deleveraging. Bear: premium P/E (~50x) and ₹16,000 Cr/quarter capex. 25+ analysts, majority Buy.</span>
+          <span class="lang-ta" style="display:none">Q4 FY26 முடிவுகளுக்குப் பிறகு Airtel மீதான ஆய்வாளர் கருத்தொருமிப்பு மிகவும் நேர்மறையானது. Morgan Stanley: அதிக எடை (Overweight), TP ₹2,450. PL Capital: வாங்கு, TP ₹2,226. JM Financial: மீண்டும் வாங்கு — ARPU CAGR ~12% FY26-28. ICICI Securities: வாங்கு. முடிவுகள் நாளில் பங்கு 4.74% உயர்ந்து ₹1,874. விலை ஏற்ற காரணங்கள்: ARPU ₹300 பயணம், Africa வளர்ச்சி, Nxtra தரவு மையங்கள், NBFC, வேகமான கடன் குறைப்பு. கவலை: ~50x P/E மற்றும் ₹16,000 கோடி/காலாண்டு மூலதன செலவு. 25+ ஆய்வாளர்கள், பெரும்பான்மை வாங்கு மதிப்பீடு.</span>
+        </div>
+      </div>
+
+      <div class="cba-qa" onclick="toggleCBA(this)">
+        <div class="cba-q">
+          <span class="lang-en">What do analysts say about Vodafone Idea?</span>
+          <span class="lang-ta" style="display:none">ஆய்வாளர்கள் Vodafone Idea பற்றி என்ன கூறுகிறார்கள்?</span>
+        </div>
+        <div class="cba-a">
+          <span class="lang-en">Deeply divided. Mean consensus: HOLD from 21 analysts, average target ₹9.76 vs CMP ~₹8–9.47. Bull: YES Securities Buy, TP ₹18 — AGR resolution changes the math. Bear: ₹5–7 — cash burn, network gap, Jio pressure. Market treats Vi as high-risk speculative option — 2–3x if turnaround succeeds, near-zero if execution disappoints. Key watches: (1) net subs positive every month, (2) ₹45,000 Cr capex fundraising, (3) ARPU path to ₹220+ by FY28.</span>
+          <span class="lang-ta" style="display:none">ஆழமாக பிளவுபட்ட கருத்துகள். 21 ஆய்வாளர்களின் சராசரி: வைத்திரு (HOLD), சராசரி இலக்கு ₹9.76 vs தற்போதைய விலை ~₹8-9.47. விலை ஏற்றம்: YES Securities வாங்கு, TP ₹18 — AGR தீர்வு கணக்கை மாற்றுகிறது. குறைப்பு: ₹5-7 — பண எரிவு, நெட்வொர்க் இடைவெளி, Jio அழுத்தம். Vi ஒரு அதிக ஆபத்தான ஊக விருப்பமாக கருதப்படுகிறது — மீட்சி வெற்றியடைந்தால் 2-3 மடங்கு; ஏமாற்றமளித்தால் பூஜ்யத்தை நெருங்கலாம். முக்கிய கண்காணிப்புகள்: (1) ஒவ்வொரு மாதமும் நிகர சந்தாதாரர் நேர்மறை, (2) ₹45,000 கோடி மூலதன திட்ட நிதி திரட்டல், (3) FY28-க்குள் ARPU ₹220+ பாதை.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Free-text Ask ── -->
+    <div style="margin-top:28px;background:var(--offwhite);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--accent);margin-bottom:6px;">
+        <span class="lang-en">💬 Ask CB Assist — Your Own Question</span>
+        <span class="lang-ta" style="display:none">💬 CB Assist-ஐ கேளுங்கள் — உங்கள் சொந்த கேள்வி</span>
+      </div>
+      <div style="font-size:12.5px;color:var(--textlt);margin-bottom:14px;">
+        <span class="lang-en">Type any question about Airtel, Vi, ARPU, AGR repayment schedule, 5G, analysts, risks, or valuations.</span>
+        <span class="lang-ta" style="display:none">Airtel, Vi, ARPU, AGR திருப்பிச் செலுத்தல் அட்டவணை, 5G, ஆய்வாளர்கள், ஆபத்துகள் அல்லது மதிப்பீடுகள் பற்றி கேள்வி கேளுங்கள்.</span>
+      </div>
       <div class="cba-input-row">
-        <input class="cba-input" id="cba-input" placeholder='e.g. "What drove Airtel margin improvement?" or "Is Vi safe to invest?"' onkeydown="if(event.key==='Enter')askCBA()">
-        <button class="cba-send" onclick="askCBA()">Ask ▶</button>
-        <button style="padding:10px 14px;border:2px solid var(--border);border-radius:8px;background:white;cursor:pointer;font-size:12px;color:var(--textlt);" onclick="clearCBA()">Clear</button>
+        <input class="cba-input" id="cba-input"
+          placeholder='e.g. "What drove Airtel margin improvement?" or "Is Vi safe to invest?"'
+          onkeydown="if(event.key==='Enter')askCBA()">
+        <button class="cba-send" onclick="askCBA()">
+          <span class="lang-en">Ask ▶</span>
+          <span class="lang-ta" style="display:none">கேள் ▶</span>
+        </button>
+        <button style="padding:10px 14px;border:2px solid var(--border);border-radius:8px;background:white;cursor:pointer;font-size:12px;color:var(--textlt);" onclick="clearCBA()">
+          <span class="lang-en">Clear</span>
+          <span class="lang-ta" style="display:none">அழி</span>
+        </button>
       </div>
       <div class="cba-response" id="cba-response">
-        <div id="cba-resp-lbl" class="cba-resp-lbl">CB Assist · Telecom Dashboard Guide</div>
-        <div id="cba-loading" style="color:var(--textlt);font-size:13px;">⏳ Looking up your answer...</div>
+        <div class="cba-resp-lbl">
+          <span class="lang-en">CB Assist · Telecom Dashboard Guide</span>
+          <span class="lang-ta" style="display:none">CB Assist · தொலைத்தொடர்பு டாஷ்போர்டு வழிகாட்டி</span>
+        </div>
+        <div id="cba-loading" style="color:var(--textlt);font-size:13px;">
+          <span class="lang-en">⏳ Looking up your answer...</span>
+          <span class="lang-ta" style="display:none">⏳ பதில் தேடுகிறோம்...</span>
+        </div>
         <div class="cba-answer" id="cba-answer"></div>
-        <div id="cba-disc" class="cba-disc">⚠ CB Assist provides information from this dashboard only. Not investment advice.</div>
+        <div class="cba-disc">
+          <span class="lang-en">⚠ CB Assist provides information from this dashboard only. Not investment advice.</span>
+          <span class="lang-ta" style="display:none">⚠ CB Assist இந்த டாஷ்போர்டிலிருந்து மட்டும் தகவல் வழங்குகிறது. முதலீட்டு ஆலோசனை அல்ல.</span>
+        </div>
       </div>
     </div>
 
+    <!-- ── How to Use ── -->
     <div style="margin-top:28px;">
-      <div id="how-title" style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--accent);margin-bottom:12px;">📖 How to Use This Dashboard</div>
+      <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--accent);margin-bottom:12px;">
+        <span class="lang-en">📖 How to Use This Dashboard</span>
+        <span class="lang-ta" style="display:none">📖 இந்த டாஷ்போர்டை எவ்வாறு பயன்படுத்துவது</span>
+      </div>
       <div class="how-grid">
-        <div class="how-item"><div class="how-num">01</div><div class="how-lbl">Dashboard Tab</div><div class="how-desc">Start here — overview of both companies, key KPIs, and sector themes for Q4 FY26.</div></div>
-        <div class="how-item"><div class="how-num">02</div><div class="how-lbl">Financials Tab</div><div class="how-desc">Toggle between Airtel and Vi for detailed quarterly + annual P&L, ARPU trends, and charts.</div></div>
-        <div class="how-item"><div class="how-num">03</div><div class="how-lbl">Analysts Tab</div><div class="how-desc">See broker ratings, price targets, and consensus thesis for both companies post results.</div></div>
-        <div class="how-item"><div class="how-num">04</div><div class="how-lbl">Risks Tab</div><div class="how-desc">Sector-wide and company-specific risk matrix with management & governance overview.</div></div>
-        <div class="how-item"><div class="how-num">05</div><div class="how-lbl">CB Assist</div><div class="how-desc">Click curated Q&A in English or Tamil. Type your own question for an instant knowledge answer.</div></div>
-        <div class="how-item"><div class="how-num">06</div><div class="how-lbl">Valuation Tab</div><div class="how-desc">Side-by-side valuation metrics: EV/EBITDA, Net Debt, ARPU targets, dividend — for both companies.</div></div>
+        <div class="how-item"><div class="how-num">01</div>
+          <div class="how-lbl"><span class="lang-en">Dashboard</span><span class="lang-ta" style="display:none">டாஷ்போர்டு</span></div>
+          <div class="how-desc"><span class="lang-en">KPIs, sector snapshot, and 3 key themes for Q4 FY26.</span><span class="lang-ta" style="display:none">KPI கள், துறை சுருக்கம், Q4 FY26-ன் 3 முக்கிய கருப்பொருள்கள்.</span></div>
+        </div>
+        <div class="how-item"><div class="how-num">02</div>
+          <div class="how-lbl"><span class="lang-en">Financials</span><span class="lang-ta" style="display:none">நிதிகள்</span></div>
+          <div class="how-desc"><span class="lang-en">Detailed P&amp;L, ARPU trends, plus the Vi AGR Relief special section.</span><span class="lang-ta" style="display:none">விரிவான P&amp;L, ARPU போக்குகள், Vi AGR நிவாரண சிறப்பு பிரிவு.</span></div>
+        </div>
+        <div class="how-item"><div class="how-num">03</div>
+          <div class="how-lbl"><span class="lang-en">Analysts</span><span class="lang-ta" style="display:none">ஆய்வாளர்கள்</span></div>
+          <div class="how-desc"><span class="lang-en">Broker ratings, price targets, bull &amp; bear consensus.</span><span class="lang-ta" style="display:none">தரகர் மதிப்பீடுகள், விலை இலக்குகள், விலை ஏற்றம்-இறக்கம் கருத்தொருமிப்பு.</span></div>
+        </div>
+        <div class="how-item"><div class="how-num">04</div>
+          <div class="how-lbl"><span class="lang-en">Risks</span><span class="lang-ta" style="display:none">ஆபத்துகள்</span></div>
+          <div class="how-desc"><span class="lang-en">Sector and company-specific risk matrix with management overview.</span><span class="lang-ta" style="display:none">துறை மற்றும் நிறுவன சார்ந்த ஆபத்து அணி மற்றும் நிர்வாக கண்ணோட்டம்.</span></div>
+        </div>
+        <div class="how-item"><div class="how-num">05</div>
+          <div class="how-lbl"><span class="lang-en">CB Assist (This tab)</span><span class="lang-ta" style="display:none">CB Assist (இந்த தாவல்)</span></div>
+          <div class="how-desc"><span class="lang-en">15 curated Q&amp;A in English + Tamil. Toggle language anytime using the button above.</span><span class="lang-ta" style="display:none">15 தேர்ந்தெடுக்கப்பட்ட கேள்வி-பதில்கள் ஆங்கிலம் + தமிழில். மேலுள்ள பொத்தான் மூலம் மொழி மாற்றலாம்.</span></div>
+        </div>
+        <div class="how-item"><div class="how-num">06</div>
+          <div class="how-lbl"><span class="lang-en">Valuation</span><span class="lang-ta" style="display:none">மதிப்பீடு</span></div>
+          <div class="how-desc"><span class="lang-en">EV/EBITDA, net debt, ARPU targets, dividend — side by side.</span><span class="lang-ta" style="display:none">EV/EBITDA, நிகர கடன், ARPU இலக்குகள், ஈவுத்தொகை — இரண்டு நிறுவனங்களும் ஒப்பீடு.</span></div>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
-
 <script>
 // ─── PANEL NAVIGATION ────────────────────────────
 function showPanel(id, el) {
@@ -1255,29 +1443,27 @@ function toggleCBA(el) {
 
 // ─── LANGUAGE TOGGLE ────────────────────────────
 var currentLang = 'en';
-var langText = {
-  'cba-sub':    { en: 'Cauvery Business Knowledge Guide · Telecom Q4 FY26', ta: 'காவேரி பிசினஸ் கல்வி வழிகாட்டி · Telecom Q4 FY26' },
-  'cba-desc':   { en: 'Your guide to the Airtel vs Vi Q4 FY26 dashboard. Click any question below for an instant answer.', ta: 'Airtel மற்றும் Vi Q4 FY26 டாஷ்போர்டிற்கான வழிகாட்டி. எந்த கேள்வியையும் கிளிக் செய்யுங்கள்.' },
-  'qa-lbl':     { en: '📚 Curated Questions — Click to Reveal Answers', ta: '📚 தேர்ந்தெடுக்கப்பட்ட கேள்விகள் — பதில் காண கிளிக்' },
-  'qa-sub':     { en: 'Organised by topic. Click any question to expand.', ta: 'தலைப்பின்படி ஒழுங்குபடுத்தப்பட்டது.' },
-  'ask-title':  { en: '💬 Ask CB Assist', ta: '💬 CB Assist-ஐ கேளுங்கள்' },
-  'ask-desc':   { en: 'Type your question about Airtel, Vi, ARPU, AGR, 5G, analysts, or valuation.', ta: 'Airtel, Vi, ARPU, AGR, 5G, மதிப்பீடு பற்றி கேள்வி கேளுங்கள்.' },
-  'how-title':  { en: '📖 How to Use This Dashboard', ta: '📖 இந்த டாஷ்போர்டை எப்படி பயன்படுத்துவது' }
-};
 function setLang(lang) {
   currentLang = lang;
-  document.querySelectorAll('.lang-en').forEach(function(el) { el.style.display = lang === 'en' ? '' : 'none'; });
-  document.querySelectorAll('.lang-ta').forEach(function(el) { el.style.display = lang === 'ta' ? '' : 'none'; });
-  Object.keys(langText).forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el && langText[id][lang]) el.textContent = langText[id][lang];
+  // Show/hide all bilingual spans globally
+  document.querySelectorAll('.lang-en').forEach(function(el) {
+    el.style.display = lang === 'en' ? '' : 'none';
   });
+  document.querySelectorAll('.lang-ta').forEach(function(el) {
+    el.style.display = lang === 'ta' ? '' : 'none';
+  });
+  // Update input placeholder
   var inp = document.getElementById('cba-input');
   if (inp) inp.placeholder = lang === 'ta'
-    ? 'உதா: "Airtel மார்ஜின் ஏன் உயர்ந்தது?"'
-    : 'e.g. "What drove Airtel margin improvement in Q4?"';
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  document.getElementById('btn-ta').classList.toggle('active', lang === 'ta');
+    ? 'உதா: "Airtel மார்ஜின் ஏன் உயர்ந்தது?" அல்லது "Vi முதலீடு பாதுகாப்பானதா?"'
+    : 'e.g. "What drove Airtel margin improvement?" or "Is Vi safe to invest?"';
+  // Style toggle buttons
+  var btnEn = document.getElementById('btn-en');
+  var btnTa = document.getElementById('btn-ta');
+  if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+  if (btnTa) btnTa.classList.toggle('active', lang === 'ta');
+  // Close any open Q&A so next open shows correct language
+  document.querySelectorAll('.cba-qa.open').forEach(function(q) { q.classList.remove('open'); });
 }
 
 // ─── CB ASSIST LOCAL ANSWERS ────────────────────
