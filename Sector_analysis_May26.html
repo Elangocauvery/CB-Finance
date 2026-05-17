@@ -255,14 +255,24 @@ body { -webkit-touch-callout: none; }
 
 /* trigger button in header */
 .admin-trigger{
-  display:none; /* shown after login for admin */
-  background:rgba(251,191,36,.15);
-  border:1px solid rgba(251,191,36,.3);
-  color:#fbbf24;font-size:11px;font-weight:700;
-  padding:4px 11px;border-radius:6px;cursor:pointer;
-  font-family:inherit;transition:all .15s;margin-left:4px;
+  display:none; /* shown after login — always visible to all (panel is password protected) */
+  background:linear-gradient(135deg,#92400e,#d97706);
+  border:1px solid #f59e0b;
+  color:#fff;font-size:11px;font-weight:800;
+  padding:5px 13px;border-radius:16px;cursor:pointer;
+  font-family:inherit;transition:all .15s;
+  box-shadow:0 2px 8px rgba(217,119,6,.35);
+  white-space:nowrap;letter-spacing:.01em;
 }
-.admin-trigger:hover{background:rgba(251,191,36,.25)}
+.admin-trigger:hover{background:linear-gradient(135deg,#78350f,#f59e0b);transform:scale(1.04)}
+/* Exit button */
+.exit-btn{
+  background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);
+  color:#f87171;font-size:11px;font-weight:700;
+  padding:5px 10px;border-radius:16px;cursor:pointer;
+  font-family:inherit;transition:all .15s;white-space:nowrap;
+}
+.exit-btn:hover{background:rgba(239,68,68,.25)}
 
 /* OTP display box — shows OTP on screen reliably on all phones */
 .otp-display-box{
@@ -279,41 +289,91 @@ body { -webkit-touch-callout: none; }
 
 <style>
 :root{
-  --bg:#f8fafc;--w:#fff;--br:#e2e6f0;--tx:#0f1523;--tx2:#3a4060;--mu:#7880a0;
+  --bg:#f5f7fa;--w:#ffffff;--br:#dee2e8;--tx:#111827;--tx2:#374151;--mu:#6b7280;
   --ta:#1a6fd4;--ma:#d42a1a;--hy:#0a3fa0;--mm:#b81c1c;--jl:#1a2a50;
   --gn:#059669;--rd:#dc2626;--or:#d97706;--pu:#7c3aed;--in:#4338ca;
   --sh:0 2px 10px rgba(0,0,0,.07);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.6}
+body{background:#ffffff;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;line-height:1.6}
 
 /* ── TOP HEADER ── */
-.site-header{background:linear-gradient(135deg,#0f172a,#1e3a5f);position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.25)}
-.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 28px;border-bottom:1px solid rgba(255,255,255,.08)}
-.header-brand{display:flex;align-items:center;gap:12px}
-.header-brand .logo{width:36px;height:36px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.header-brand .title{font-size:16px;font-weight:800;color:#fff;letter-spacing:-.02em}
-.header-brand .sub{font-size:10px;color:#94a3b8;font-family:monospace;letter-spacing:.06em;margin-top:1px}
-.header-chips{display:flex;gap:6px;flex-wrap:wrap}
-.hchip{background:rgba(255,255,255,.1);color:#e2e8f0;font-size:10px;font-family:monospace;padding:3px 9px;border-radius:20px;font-weight:600;border:1px solid rgba(255,255,255,.15)}
-
-/* ── TOP NAVIGATION BAR ── */
-.topnav{display:flex;align-items:center;overflow-x:auto;padding:0 20px;background:rgba(0,0,0,.2);scrollbar-width:none;gap:2px}
-.topnav::-webkit-scrollbar{display:none}
-
-.tn-group{display:flex;align-items:center}
-.tn-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#64748b;padding:0 10px;white-space:nowrap;user-select:none}
-.tn-sep{width:1px;height:20px;background:rgba(255,255,255,.1);margin:0 4px;flex-shrink:0}
-
-.ni{display:flex;align-items:center;gap:6px;padding:10px 13px;cursor:pointer;font-size:12px;font-weight:500;color:#94a3b8;border:none;background:transparent;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap;font-family:-apple-system,sans-serif}
-.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.05)}
-.ni.active{color:#fff;border-bottom-color:#6366f1;font-weight:700;background:rgba(99,102,241,.12)}
-.ni.cb-btn{color:#4ade80;border-bottom-color:transparent}
+.site-header{
+  background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 3px 20px rgba(0,0,0,.35);
+}
+/* Row 1: Brand + Admin + Exit */
+.header-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.header-brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.header-brand .logo{
+  width:34px;height:34px;min-width:34px;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+.header-brand .title{font-size:14px;font-weight:800;color:#fff;white-space:nowrap;letter-spacing:-.01em}
+.header-brand .sub{font-size:9px;color:#64748b;font-family:monospace;margin-top:1px}
+.header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
+.hchip{
+  background:rgba(255,255,255,.1);color:#e2e8f0;
+  font-size:10px;font-family:monospace;padding:4px 10px;
+  border-radius:20px;font-weight:600;border:1px solid rgba(255,255,255,.15);white-space:nowrap;
+}
+/* Admin button - big and obvious */
+.admin-trigger{
+  display:none;
+  background:linear-gradient(135deg,#b45309,#f59e0b);
+  border:none;color:#fff;font-size:12px;font-weight:800;
+  padding:7px 16px;border-radius:20px;cursor:pointer;
+  font-family:inherit;white-space:nowrap;
+  box-shadow:0 3px 12px rgba(245,158,11,.55);
+  align-items:center;gap:5px;
+}
+.admin-trigger:hover{opacity:.88;transform:scale(1.03)}
+/* Exit button */
+.exit-btn{
+  background:rgba(239,68,68,.15);border:1.5px solid rgba(239,68,68,.35);
+  color:#fca5a5;font-size:11px;font-weight:700;
+  padding:6px 12px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;
+}
+.exit-btn:hover{background:rgba(239,68,68,.28)}
+/* Watermark row */
+#wm-tl{position:fixed;top:60px;left:0;right:0;z-index:8000;display:flex;justify-content:center;pointer-events:none;overflow:hidden}
+.wm-strip{font-size:9px;color:rgba(99,102,241,.2);font-family:monospace;letter-spacing:.08em;white-space:nowrap}
+/* Nav container */
+.topnav{display:flex;flex-direction:column;background:rgba(0,0,0,.28)}
+/* Each nav row */
+.nav-row{
+  display:flex;align-items:center;flex-wrap:wrap;
+  padding:2px 14px;min-height:36px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.nav-row:last-child{border-bottom:none}
+.tn-label{
+  font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#475569;padding:0 8px 0 2px;white-space:nowrap;user-select:none;flex-shrink:0;
+}
+.tn-sep{width:1px;height:16px;background:rgba(255,255,255,.12);margin:0 4px;align-self:center;flex-shrink:0}
+/* Nav buttons */
+.ni{
+  display:flex;align-items:center;gap:5px;
+  padding:7px 10px;cursor:pointer;
+  font-size:11px;font-weight:500;color:#94a3b8;
+  border:none;background:transparent;
+  border-bottom:2px solid transparent;
+  transition:all .14s;white-space:nowrap;font-family:inherit;
+}
+.ni:hover{color:#e2e8f0;background:rgba(255,255,255,.07)}
+.ni.active{color:#fff;border-bottom-color:#6366f1;font-weight:700;background:rgba(99,102,241,.15)}
+.ni.cb-btn{color:#4ade80}
 .ni.cb-btn.active{color:#4ade80;border-bottom-color:#4ade80;background:rgba(74,222,128,.1)}
-.ni .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ni .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;display:inline-block}
 
 /* ── MAIN CONTENT ── */
-.mn{min-width:0}
+.mn{min-width:0;background:#f5f7fa}
 .pg{display:none;padding:24px 28px 48px;max-width:1400px;margin:0 auto;animation:fi .22s ease}
 .pg.active{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
@@ -321,26 +381,26 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 /* ── All existing inner styles ── */
 .ph{margin-bottom:20px}.ph h2{font-size:19px;font-weight:800;letter-spacing:-.01em}.ph p{font-size:12px;color:var(--mu);margin-top:3px}
 .st{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--in);display:flex;align-items:center;gap:8px;margin-bottom:12px;margin-top:22px}
-.st:first-child{margin-top:0}.st::after{content:"";flex:1;height:1px;background:var(--br)}
+.st:first-child{margin-top:0}.st::after{content:"";flex:1;height:1px;background:#dee2e8}
 .kg{display:grid;gap:11px;margin-bottom:18px}
 .kg4{grid-template-columns:repeat(4,1fr)}.kg3{grid-template-columns:repeat(3,1fr)}.kg2{grid-template-columns:repeat(2,1fr)}
 @media(max-width:1100px){.kg4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.kg4,.kg3,.kg2{grid-template-columns:1fr}}
-.kpi{background:var(--w);border:1px solid var(--br);border-radius:10px;padding:15px;box-shadow:var(--sh)}
+.kpi{background:#ffffff;border:1px solid #dee2e8;border-radius:10px;padding:15px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
 .kpi.at{border-top:3px solid var(--ta)}.kpi.am{border-top:3px solid var(--ma)}.kpi.ah{border-top:3px solid var(--hy)}.kpi.amm{border-top:3px solid var(--mm)}.kpi.ag{border-top:3px solid var(--gn)}.kpi.ar{border-top:3px solid var(--rd)}.kpi.ao{border-top:3px solid var(--or)}
-.kl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.kl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;margin-bottom:6px}
 .kv{font-size:21px;font-weight:800;font-family:monospace;color:var(--tx);line-height:1.1}
-.kc{font-size:11px;font-family:monospace;font-weight:600;margin-top:4px}.kn{font-size:11px;color:var(--mu);margin-top:2px}
+.kc{font-size:11px;font-family:monospace;font-weight:600;margin-top:4px}.kn{font-size:11px;color:#9ca3af;margin-top:2px}
 .up{color:var(--gn)}.dn{color:var(--rd)}.nu{color:var(--in)}
-.card{background:var(--w);border:1px solid var(--br);border-radius:11px;padding:18px;box-shadow:var(--sh);margin-bottom:16px}
+.card{background:#ffffff;border:1px solid #dee2e8;border-radius:11px;padding:18px;box-shadow:0 1px 6px rgba(0,0,0,.07);margin-bottom:16px}
 .card h3{font-size:14px;font-weight:700;margin-bottom:11px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:900px){.g2,.g3{grid-template-columns:1fr}}
 .tbl{width:100%;border-collapse:collapse;font-size:12px}
-.tbl th{background:#f3f4fb;padding:8px 10px;text-align:left;font-size:9px;font-family:monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:700;border-bottom:2px solid var(--br)}
+.tbl th{background:#f3f4f8;padding:8px 10px;text-align:left;font-size:9px;font-family:monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:700;border-bottom:2px solid var(--br)}
 .tbl td{padding:9px 10px;border-bottom:1px solid #eef0f8;color:var(--tx)}
-.tbl tr:last-child td{border-bottom:none}.tbl tr:hover td{background:#f8f9ff}
+.tbl tr:last-child td{border-bottom:none}.tbl tr:hover td{background:#f0f4ff}
 .tbl .mn{font-family:monospace;font-size:11px}
 .tbl th:not(:first-child),.tbl td:not(:first-child){text-align:right}.tbl .hl{background:#fefce8!important}
 .brow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
@@ -377,13 +437,13 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .csec{display:none}.csec.active{display:block;animation:fi .2s ease}
 .rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-bottom:14px}
 .ri{padding:13px;border-radius:8px;border-left:4px solid}
-.rh{background:#fff1f2;border-color:#ef4444}.rm{background:#fffbeb;border-color:#f59e0b}.rl{background:#f0fdf4;border-color:#22c55e}
+.rh{background:#fff1f2;border-color:#dc2626}.rm{background:#fffbeb;border-color:#d97706}.rl{background:#f0fdf4;border-color:#16a34a}
 .ri-t{font-size:12px;font-weight:700;margin-bottom:4px}.ri-b{font-size:12px;color:var(--tx2);line-height:1.5}
 .ib{border-radius:8px;padding:12px;font-size:12px;color:var(--tx2);line-height:1.6;border:1px solid;margin-top:10px;margin-bottom:10px}
-.ib-b{background:#eff6ff;border-color:#bfdbfe}.ib-g{background:#f0fdf4;border-color:#bbf7d0}
-.ib-r{background:#fff1f2;border-color:#fecdd3}.ib-o{background:#fffbeb;border-color:#fde68a}
-.cw{background:var(--w);border:1px solid var(--br);border-radius:11px;padding:16px;box-shadow:var(--sh);margin-bottom:16px}
-.ct2{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin-bottom:11px}
+.ib-b{background:#eff6ff;border-color:#93c5fd}.ib-g{background:#f0fdf4;border-color:#6ee7b7}
+.ib-r{background:#fff1f2;border-color:#fca5a5}.ib-o{background:#fffbeb;border-color:#fcd34d}
+.cw{background:#ffffff;border:1px solid #dee2e8;border-radius:11px;padding:16px;box-shadow:0 1px 6px rgba(0,0,0,.07);margin-bottom:16px}
+.ct2{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;margin-bottom:11px}
 canvas{display:block;width:100%!important}
 ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#c8cfe8;border-radius:3px}
 </style>
@@ -412,7 +472,7 @@ canvas{display:block;width:100%!important}
 .faq-section-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4338ca;display:flex;align-items:center;gap:8px;margin:22px 0 12px}
 .faq-section-title::after{content:"";flex:1;height:1px;background:#e2e6f0}
 .faq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;margin-bottom:6px}
-.faq-card{background:#fff;border:1.5px solid #e2e6f0;border-radius:10px;padding:14px 15px;cursor:pointer;transition:all .18s;text-align:left;width:100%}
+.faq-card{background:#ffffff;border:1.5px solid #d1d5db;border-radius:10px;padding:14px 15px;cursor:pointer;transition:all .18s;text-align:left;width:100%}
 .faq-card:hover{border-color:#a5b4fc;background:#f8f9ff;box-shadow:0 3px 12px rgba(67,56,202,.1)}
 .faq-card.open{border-color:#6366f1;background:#eef2ff}
 .faq-q{font-size:12px;font-weight:700;color:#0f1523;line-height:1.4;display:flex;align-items:flex-start;gap:8px}
@@ -624,40 +684,51 @@ canvas{display:block;width:100%!important}
      SITE HEADER + TOP NAV (copied from dashboard)
 ═══════════════════════════════════════ -->
 <header class="site-header" id="siteHeader" style="display:none">
+
+  <!-- ── ROW 1: Brand + Member + Admin + Exit ── -->
   <div class="header-top">
     <div class="header-brand">
       <div class="logo">📊</div>
       <div>
         <div class="title">Sector Analysis — May 2026</div>
-        <div class="sub">CB RESEARCH · SECTOR ANALYSIS MAY 2026 · © 2026</div>
+        <div class="sub">CB RESEARCH · EXCLUSIVE MEMBER DASHBOARD · © 2026</div>
       </div>
     </div>
-    <div class="header-chips">
-      <span class="hchip">Tata · Maruti · Hyundai · M&amp;M</span>
-      <span class="hchip">Jan–Mar 2026</span>
-      <span class="hchip" style="background:rgba(74,222,128,.15);color:#4ade80;border-color:rgba(74,222,128,.3)" id="memberChip">Member</span>
-      <button class="admin-trigger" id="adminTriggerBtn" onclick="openAdmin()">🔧 Admin</button>
-      <span class="hchip" style="cursor:pointer;background:rgba(239,68,68,.15);color:#f87171;border-color:rgba(239,68,68,.3)" onclick="logout()">⏻ Exit</span>
+    <div class="header-right">
+      <span class="hchip" id="memberChip">✅ Member</span>
+      <button class="admin-trigger" id="adminTriggerBtn" onclick="openAdmin()">🔧 Admin Panel</button>
+      <button class="exit-btn" onclick="logout()">⏻ Exit</button>
     </div>
   </div>
+
+  <!-- ── ROW 2: Main Navigation — Overview, Financials, Analysis, CB Assist ── -->
   <nav class="topnav">
-    <button class="ni active" onclick="showPage('dashboard',this)">📊 Dashboard</button>
-    <div class="tn-sep"></div><span class="tn-label">Financials</span>
-    <button class="ni" onclick="showPage('revenue',this)">💰 Revenue</button>
-    <button class="ni" onclick="showPage('volumes',this)">🚗 Volumes</button>
-    <button class="ni" onclick="showPage('margins',this)">📈 Margins</button>
-    <div class="tn-sep"></div><span class="tn-label">Analysis</span>
-    <button class="ni" onclick="showPage('risks',this)">⚠️ Risks</button>
-    <button class="ni" onclick="showPage('ratings',this)">⭐ Ratings</button>
-    <button class="ni" onclick="showPage('compare',this)">⚖️ Comparison</button>
-    <button class="ni" onclick="showPage('ev',this)">⚡ EV Tracker</button>
-    <button class="ni cb-btn" onclick="showPage('cbassist',this)">🤖 CB Assist</button>
-    <div class="tn-sep"></div><span class="tn-label">Companies</span>
-    <button class="ni" onclick="showPage('tata',this)"><span class="dot" style="background:#1a6fd4"></span> Tata Motors</button>
-    <button class="ni" onclick="showPage('maruti',this)"><span class="dot" style="background:#d42a1a"></span> Maruti Suzuki</button>
-    <button class="ni" onclick="showPage('hyundai',this)"><span class="dot" style="background:#0a3fa0"></span> Hyundai India</button>
-    <button class="ni" onclick="showPage('mm',this)"><span class="dot" style="background:#b81c1c"></span> M&amp;M</button>
+    <div class="nav-row">
+      <span class="tn-label">Overview</span>
+      <button class="ni active" onclick="showPage('dashboard',this)">📊 Dashboard</button>
+      <div class="tn-sep"></div>
+      <span class="tn-label">Financials</span>
+      <button class="ni" onclick="showPage('revenue',this)">💰 Revenue</button>
+      <button class="ni" onclick="showPage('volumes',this)">🚗 Volumes</button>
+      <button class="ni" onclick="showPage('margins',this)">📈 Margins</button>
+      <div class="tn-sep"></div>
+      <span class="tn-label">Analysis</span>
+      <button class="ni" onclick="showPage('risks',this)">⚠️ Risks</button>
+      <button class="ni" onclick="showPage('ratings',this)">⭐ Ratings</button>
+      <button class="ni" onclick="showPage('compare',this)">⚖️ Comparison</button>
+      <button class="ni" onclick="showPage('ev',this)">⚡ EV Tracker</button>
+      <button class="ni cb-btn" onclick="showPage('cbassist',this)">🤖 CB Assist</button>
+    </div>
+    <!-- ── ROW 3: Companies ── -->
+    <div class="nav-row">
+      <span class="tn-label">Companies</span>
+      <button class="ni" onclick="showPage('tata',this)"><span class="dot" style="background:#1a6fd4"></span> Tata Motors</button>
+      <button class="ni" onclick="showPage('maruti',this)"><span class="dot" style="background:#d42a1a"></span> Maruti Suzuki</button>
+      <button class="ni" onclick="showPage('hyundai',this)"><span class="dot" style="background:#0a3fa0"></span> Hyundai India</button>
+      <button class="ni" onclick="showPage('mm',this)"><span class="dot" style="background:#b81c1c"></span> M&amp;M</button>
+    </div>
   </nav>
+
 </header>
 
 <!-- ═══════════════════════════════════════
@@ -1081,6 +1152,15 @@ canvas{display:block;width:100%!important}
   <button class="ctab" onclick="showSec('tata','usp',this)">USPs &amp; Risks</button>
 </div>
 <div class="csec active" id="tata-ov">
+<div class="g2">
+  <div class="cw"><div class="ct2">Tata PV — Quarterly Revenue FY26 (₹ Crore)</div><canvas id="tata-rev" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">Tata PV — Quarterly Volumes FY26 (Units)</div><canvas id="tata-vol" height="200"></canvas></div>
+</div>
+<div class="g2">
+  <div class="cw"><div class="ct2">EBITDA Margin Trend — Tata PV (%)</div><canvas id="tata-eb" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">Tata PV vs JLR — Q4 FY26 PAT (₹ Crore)</div><canvas id="tata-pat" height="200"></canvas></div>
+</div>
+
   <div class="kg kg4">
     <div class="kpi at"><div class="kl">PV Revenue (SA)</div><div class="kv" style="color:#1a6fd4">₹18,598 Cr</div><div class="kc up">▲ 43.3% YoY</div></div>
     <div class="kpi at"><div class="kl">PAT (SA)</div><div class="kv dn">₹455 Cr</div><div class="kc dn">▼ 71% YoY</div></div>
@@ -1214,6 +1294,15 @@ canvas{display:block;width:100%!important}
     <p style="font-size:13px;color:#3a4060">~1,90,000 pending orders and 12-day dealer inventory (historic low) underscore severe capacity constraint. Kharkhoda plant (Haryana) adds ~2.5 lakh units/yr in FY28. Until then, growth is supply-constrained — demand is clearly there and waiting.</p>
   </div>
 </div>
+
+<div class="g2">
+  <div class="cw"><div class="ct2">Maruti — Quarterly Revenue FY26 (₹ Crore)</div><canvas id="maruti-rev" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">Maruti — Quarterly Volumes FY26 (Units)</div><canvas id="maruti-vol" height="200"></canvas></div>
+</div>
+<div class="g2">
+  <div class="cw"><div class="ct2">Maruti — EBITDA Margin Trend FY26 (%)</div><canvas id="maruti-eb" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">Maruti — Revenue vs PAT Q4 (₹ Crore)</div><canvas id="maruti-pat" height="200"></canvas></div>
+</div>
 <div class="g2">
   <div class="card"><h3>🚀 USPs</h3><div class="pills"><span class="pill pg2">~42% India PV Share</span><span class="pill pg2">3,000+ Dealer Network</span><span class="pill pg2">Suzuki Tech &amp; Japan Backing</span><span class="pill pg2">CNG Leadership 18%</span><span class="pill pg2">Record 24.23L Annual Sales</span><span class="pill pg2">Export Hub 44 Countries</span><span class="pill pg2">Debt-Free Balance Sheet</span><span class="pill pg2">₹19,063 Cr Operating FCF</span><span class="pill pg2">Record ₹140 Dividend</span><span class="pill pb2">EVX India FY27</span><span class="pill pb2">Kharkhoda Plant FY28</span></div></div>
   <div class="card"><h3>⚠️ Risks</h3><div class="pills"><span class="pill pr2">Market Share 13-Year Low</span><span class="pill pr2">SUV Gap vs M&amp;M, Hyundai</span><span class="pill pr2">Late Domestic EV Entry</span><span class="pill pr2">Commodity Cost Pressure</span><span class="pill py2">Capacity Constrained</span><span class="pill py2">MTM Bond Volatility</span><span class="pill py2">PAT Margin Erosion</span><span class="pill py2">ROE 13% Below Peers</span></div></div>
@@ -1234,6 +1323,15 @@ canvas{display:block;width:100%!important}
   <div class="kpi ah"><div class="kl">Rural Penetration</div><div class="kv up">25%</div><div class="kc up">Record Q4</div></div>
   <div class="kpi ah"><div class="kl">CNG Share</div><div class="kv up">18%</div><div class="kc up">Highest ever</div></div>
   <div class="kpi ah"><div class="kl">FY27 EBITDA Target</div><div class="kv up">11–14%</div><div class="kc up">Mgmt guidance</div></div>
+</div>
+
+<div class="g2">
+  <div class="cw"><div class="ct2">Hyundai — Quarterly Revenue FY26 (₹ Crore)</div><canvas id="hy-rev" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">Hyundai — Quarterly Volumes FY26 (Units)</div><canvas id="hy-vol" height="200"></canvas></div>
+</div>
+<div class="g2">
+  <div class="cw"><div class="ct2">Hyundai — EBITDA Margin Trend FY26 (%)</div><canvas id="hy-eb" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">Hyundai — PAT Q4 FY26 vs Q4 FY25 (₹ Crore)</div><canvas id="hy-pat" height="200"></canvas></div>
 </div>
 <div class="g2">
   <div class="card"><h3>Why Margins Collapsed — Q4 Analysis</h3>
@@ -1268,6 +1366,15 @@ canvas{display:block;width:100%!important}
   <div class="kpi amm"><div class="kl">FY26 PAT</div><div class="kv up">₹17,099 Cr</div><div class="kc up">▲ 33.6% YoY</div></div>
   <div class="kpi amm"><div class="kl">Tractor Share</div><div class="kv up">43.6%</div><div class="kc up">Record high</div></div>
   <div class="kpi amm"><div class="kl">Dividend FY26</div><div class="kv up">₹33/share</div><div class="kc up">+30% YoY</div></div>
+</div>
+
+<div class="g2">
+  <div class="cw"><div class="ct2">M&amp;M — Quarterly Revenue FY26 (₹ Crore)</div><canvas id="mm-rev" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">M&amp;M — UV Volumes vs PAT (Q4 FY26)</div><canvas id="mm-vol" height="200"></canvas></div>
+</div>
+<div class="g2">
+  <div class="cw"><div class="ct2">M&amp;M — Segment Revenue Mix Q4 FY26 (₹ Crore)</div><canvas id="mm-seg" height="200"></canvas></div>
+  <div class="cw"><div class="ct2">M&amp;M — PAT Growth FY24 / FY25 / FY26 (₹ Crore)</div><canvas id="mm-pat" height="200"></canvas></div>
 </div>
 <div class="g2">
   <div class="card"><h3>Tech Mahindra (TECHM) — IT Subsidiary</h3>
@@ -1690,7 +1797,7 @@ canvas{display:block;width:100%!important}
 .faq-section-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4338ca;display:flex;align-items:center;gap:8px;margin:22px 0 12px}
 .faq-section-title::after{content:"";flex:1;height:1px;background:#e2e6f0}
 .faq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;margin-bottom:6px}
-.faq-card{background:#fff;border:1.5px solid #e2e6f0;border-radius:10px;padding:14px 15px;cursor:pointer;transition:all .18s;text-align:left;width:100%}
+.faq-card{background:#ffffff;border:1.5px solid #d1d5db;border-radius:10px;padding:14px 15px;cursor:pointer;transition:all .18s;text-align:left;width:100%}
 .faq-card:hover{border-color:#a5b4fc;background:#f8f9ff;box-shadow:0 3px 12px rgba(67,56,202,.1)}
 .faq-card.open{border-color:#6366f1;background:#eef2ff}
 .faq-q{font-size:12px;font-weight:700;color:#0f1523;line-height:1.4;display:flex;align-items:flex-start;gap:8px}
@@ -1856,7 +1963,19 @@ function showPage(id,btn){
   if(pg){pg.classList.add('active');}
   if(btn){btn.classList.add('active');}
   window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(drawAll,150);
+  // Clear DRAWN cache for the charts on THIS page so they redraw fresh
+  if(pg){
+    pg.querySelectorAll('canvas').forEach(cv=>{
+      if(cv.id && DRAWN[cv.id]){
+        delete DRAWN[cv.id];
+        // Destroy existing chart if tracked
+        if(typeof Chart !== 'undefined'){
+          // canvas-based charts just need DRAWN cleared
+        }
+      }
+    });
+  }
+  setTimeout(drawAll,200);
 }
 function showSec(co,id,btn){
   const pg=document.getElementById('page-'+co);
@@ -1894,13 +2013,13 @@ function drawBar(id,labels,datasets,opts){
   if(opts&&opts.max)maxV=opts.max;
   maxV=maxV*1.15||1;
   // Y-axis
-  ctx.fillStyle='#7880a0';ctx.font='10px -apple-system,sans-serif';ctx.textAlign='right';
+  ctx.fillStyle='#6b7280';ctx.font='10px -apple-system,sans-serif';ctx.textAlign='right';
   const steps=5;
   for(let i=0;i<=steps;i++){
     const val=maxV*(i/steps);
     const y=pad.t+ch-(ch*i/steps);
     ctx.fillText(val>=1000?(val/1000).toFixed(1)+'K':val.toFixed(val<10?1:0),pad.l-6,y+3);
-    ctx.strokeStyle='#eef0f8';ctx.lineWidth=1;
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+cw,y);ctx.stroke();
   }
   // Bars
@@ -1916,7 +2035,7 @@ function drawBar(id,labels,datasets,opts){
       ctx.fill();
     });
     // X label
-    ctx.fillStyle='#7880a0';ctx.textAlign='center';ctx.font='10px -apple-system,sans-serif';
+    ctx.fillStyle='#6b7280';ctx.textAlign='center';ctx.font='10px -apple-system,sans-serif';
     ctx.fillText(lbl,pad.l+gi*groupW+groupW/2,H-pad.b+16);
   });
   // Legend
@@ -1950,12 +2069,12 @@ function drawLine(id,labels,datasets,opts){
   const range=maxV-minV||1;
   // Grid
   const steps=5;
-  ctx.fillStyle='#7880a0';ctx.font='10px -apple-system,sans-serif';ctx.textAlign='right';
+  ctx.fillStyle='#6b7280';ctx.font='10px -apple-system,sans-serif';ctx.textAlign='right';
   for(let i=0;i<=steps;i++){
     const val=minV+range*(i/steps);
     const y=pad.t+ch-(ch*i/steps);
     ctx.fillText(val.toFixed(1),pad.l-6,y+3);
-    ctx.strokeStyle='#eef0f8';ctx.lineWidth=1;
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+cw,y);ctx.stroke();
   }
   // Lines
@@ -1967,7 +2086,7 @@ function drawLine(id,labels,datasets,opts){
   });
   // X labels
   labels.forEach((lbl,i)=>{
-    ctx.fillStyle='#7880a0';ctx.textAlign='center';ctx.font='10px -apple-system,sans-serif';
+    ctx.fillStyle='#6b7280';ctx.textAlign='center';ctx.font='10px -apple-system,sans-serif';
     ctx.fillText(lbl,pad.l+i*(cw/(labels.length-1)),H-pad.b+16);
   });
   // Legend
@@ -2071,7 +2190,127 @@ function drawAll(){
   drawDoughnut('e-ms',['Tata 40%+','M&M 22%','Hyundai 8%','Maruti 3%','Others 27%'],[40,22,8,3,27],[C.ta,C.mm,C.hy,C.ma,'#94a3b8']);
 }
 
+
+  // ── Tata Motors charts ────────────────────────────────────
+  drawBar('tata-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Revenue (₹ Cr)',data:[13000,13500,15466,18598],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#1a6fd4']}
+  ]);
+  drawBar('tata-vol',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'PV Volumes (units)',data:[146000,147000,147000,201800],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#1a6fd4']}
+  ]);
+  drawBar('tata-eb',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'EBITDA Margin %',data:[8.0,8.5,7.9,9.4],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#1a6fd4']}
+  ],{max:15});
+  drawBar('tata-pat',['Tata PV (SA)','TMPV Consol.','JLR (₹ equiv.)'],[
+    {label:'Q4 FY26 PAT (₹ Cr)',data:[455,5783,-4800],backgroundColor:['#1a6fd4','#3b82f6','#dc2626']}
+  ]);
+
+  // ── Maruti Suzuki charts ──────────────────────────────────
+  drawBar('maruti-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Revenue (₹ Cr)',data:[37000,40000,47537,50079],backgroundColor:['#fca5a5','#f87171','#ef4444','#d42a1a']}
+  ]);
+  drawBar('maruti-vol',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Sales Volumes',data:[564000,574000,608000,676209],backgroundColor:['#fca5a5','#f87171','#ef4444','#d42a1a']}
+  ]);
+  drawBar('maruti-eb',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'EBITDA Margin %',data:[11.8,12.0,13.2,12.3],backgroundColor:['#fca5a5','#f87171','#ef4444','#d42a1a']}
+  ],{max:16});
+  drawBar('maruti-pat',['Q4 FY25','Q4 FY26'],[
+    {label:'Revenue (₹ 1000 Cr)',data:[388,501],backgroundColor:['#fca5a5','#d42a1a']},
+    {label:'PAT (₹ Cr)',data:[3857,3591],backgroundColor:['#fcd34d','#f59e0b']}
+  ]);
+
+  // ── Hyundai India charts ──────────────────────────────────
+  drawBar('hy-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Revenue (₹ Cr)',data:[16800,17100,17973,18916],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#0a3fa0']}
+  ]);
+  drawBar('hy-vol',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Domestic Volumes',data:[188000,187000,196000,208275],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#0a3fa0']}
+  ]);
+  drawBar('hy-eb',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'EBITDA Margin %',data:[12.5,12.8,11.2,10.4],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#dc2626']}
+  ],{max:16});
+  drawBar('hy-pat',['Q4 FY25','Q4 FY26'],[
+    {label:'PAT (₹ Cr)',data:[1614,1256],backgroundColor:['#60a5fa','#dc2626']}
+  ]);
+
+  // ── M&M charts ────────────────────────────────────────────
+  drawBar('mm-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Consol. Revenue (₹ Cr)',data:[42000,44000,52100,54982],backgroundColor:['#fca5a5','#f87171','#ef4444','#b81c1c']}
+  ]);
+  drawBar('mm-vol',['Q3 FY26','Q4 FY26'],[
+    {label:'UV Volumes',data:[275000,307000],backgroundColor:['#fca5a5','#b81c1c']},
+    {label:'PAT (₹ Cr)',data:[3200,4668],backgroundColor:['#fcd34d','#f59e0b']}
+  ]);
+  drawBar('mm-seg',['Automotive','Farm Equip.','Fin. Services','Industrial'],[
+    {label:'Q4 Revenue (₹ Cr)',data:[34294,10022,5525,6622],
+     backgroundColor:['#b81c1c','#f97316','#a855f7','#14b8a6']}
+  ]);
+  drawBar('mm-pat',['FY24','FY25','FY26'],[
+    {label:'PAT (₹ Cr)',data:[6000,3491,17099],backgroundColor:['#fca5a5','#f87171','#b81c1c']}
+  ]);
+
 setTimeout(drawAll,300);
+
+
+  // ── Tata Motors charts ────────────────────────────────────
+  drawBar('tata-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Revenue (₹ Cr)',data:[13000,13500,15466,18598],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#1a6fd4']}
+  ]);
+  drawBar('tata-vol',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'PV Volumes (units)',data:[146000,147000,147000,201800],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#1a6fd4']}
+  ]);
+  drawBar('tata-eb',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'EBITDA Margin %',data:[8.0,8.5,7.9,9.4],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#1a6fd4']}
+  ],{max:15});
+  drawBar('tata-pat',['Tata PV (SA)','TMPV Consol.','JLR (₹ equiv.)'],[
+    {label:'Q4 FY26 PAT (₹ Cr)',data:[455,5783,-4800],backgroundColor:['#1a6fd4','#3b82f6','#dc2626']}
+  ]);
+
+  // ── Maruti Suzuki charts ──────────────────────────────────
+  drawBar('maruti-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Revenue (₹ Cr)',data:[37000,40000,47537,50079],backgroundColor:['#fca5a5','#f87171','#ef4444','#d42a1a']}
+  ]);
+  drawBar('maruti-vol',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Sales Volumes',data:[564000,574000,608000,676209],backgroundColor:['#fca5a5','#f87171','#ef4444','#d42a1a']}
+  ]);
+  drawBar('maruti-eb',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'EBITDA Margin %',data:[11.8,12.0,13.2,12.3],backgroundColor:['#fca5a5','#f87171','#ef4444','#d42a1a']}
+  ],{max:16});
+  drawBar('maruti-pat',['Q4 FY25','Q4 FY26'],[
+    {label:'Revenue (₹ 1000 Cr)',data:[388,501],backgroundColor:['#fca5a5','#d42a1a']},
+    {label:'PAT (₹ Cr)',data:[3857,3591],backgroundColor:['#fcd34d','#f59e0b']}
+  ]);
+
+  // ── Hyundai India charts ──────────────────────────────────
+  drawBar('hy-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Revenue (₹ Cr)',data:[16800,17100,17973,18916],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#0a3fa0']}
+  ]);
+  drawBar('hy-vol',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Domestic Volumes',data:[188000,187000,196000,208275],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#0a3fa0']}
+  ]);
+  drawBar('hy-eb',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'EBITDA Margin %',data:[12.5,12.8,11.2,10.4],backgroundColor:['#93c5fd','#60a5fa','#3b82f6','#dc2626']}
+  ],{max:16});
+  drawBar('hy-pat',['Q4 FY25','Q4 FY26'],[
+    {label:'PAT (₹ Cr)',data:[1614,1256],backgroundColor:['#60a5fa','#dc2626']}
+  ]);
+
+  // ── M&M charts ────────────────────────────────────────────
+  drawBar('mm-rev',['Q1 FY26','Q2 FY26','Q3 FY26','Q4 FY26'],[
+    {label:'Consol. Revenue (₹ Cr)',data:[42000,44000,52100,54982],backgroundColor:['#fca5a5','#f87171','#ef4444','#b81c1c']}
+  ]);
+  drawBar('mm-vol',['Q3 FY26','Q4 FY26'],[
+    {label:'UV Volumes',data:[275000,307000],backgroundColor:['#fca5a5','#b81c1c']},
+    {label:'PAT (₹ Cr)',data:[3200,4668],backgroundColor:['#fcd34d','#f59e0b']}
+  ]);
+  drawBar('mm-seg',['Automotive','Farm Equip.','Fin. Services','Industrial'],[
+    {label:'Q4 Revenue (₹ Cr)',data:[34294,10022,5525,6622],
+     backgroundColor:['#b81c1c','#f97316','#a855f7','#14b8a6']}
+  ]);
+  drawBar('mm-pat',['FY24','FY25','FY26'],[
+    {label:'PAT (₹ Cr)',data:[6000,3491,17099],backgroundColor:['#fca5a5','#f87171','#b81c1c']}
+  ]);
 
 setTimeout(drawAll,300);
 </script>
@@ -2280,14 +2519,13 @@ function verifyOTP(){
 // ── Enter app ─────────────────────────────────────────
 function enterApp(){
   document.getElementById('splash').classList.add('hidden');
-  document.getElementById('siteHeader').style.display = '';
-  document.getElementById('mainContent').style.display = '';
-  // Always show admin button — admin panel itself has password protection
-  // So showing the button to all is safe (wrong password = no access)
+  document.getElementById('siteHeader').style.display = 'block';
+  document.getElementById('mainContent').style.display = 'block';
+  // Always show Admin Panel button — panel itself is password protected
   const btn = document.getElementById('adminTriggerBtn');
-  if(btn) btn.style.display = '';
+  if(btn){ btn.style.display = 'inline-flex'; btn.style.visibility = 'visible'; }
   checkAdminAccess(currentPhone);
-  setTimeout(drawAll, 300);
+  setTimeout(drawAll, 400);
 }
 
 // ── Logout ────────────────────────────────────────────
