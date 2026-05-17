@@ -2,465 +2,864 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finance Dashboards Hub</title>
-<meta name="description" content="Free interactive financial analysis dashboards — Indian banking, markets & sector results.">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
+<title>CB Research — Member Portal</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Libre+Franklin:wght@300;400;500;600&display=swap');
-
-:root {
-  --navy:     #1a56db;
-  --navy-mid: #f0f4ff;
-  --navy-l:   #e8f0fe;
-  --gold:     #1a56db;
-  --gold-l:   #1e429f;
-  --cream:    #1e3a8a;
-  --dim:      rgba(30,58,138,0.6);
-  --border:   rgba(26,86,219,0.18);
-  --card:     rgba(239,246,255,0.9);
-  --green:    #16a34a;
-  --red:      #dc2626;
-  --blue:     #1a56db;
-}
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#ffffff;color:#1e3a8a;font-family:'Libre Franklin',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
-
-body::before{
-  content:'';position:fixed;inset:0;
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 5%, rgba(26,86,219,0.05) 0%,transparent 55%),
-    radial-gradient(ellipse 50% 70% at 90% 90%, rgba(219,234,254,0.4) 0%,transparent 55%),
-    repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(26,86,219,0.018) 80px,rgba(26,86,219,0.018) 81px),
-    repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(26,86,219,0.01) 80px,rgba(26,86,219,0.01) 81px);
-  pointer-events:none;z-index:0;
-}
-
-.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 28px 100px}
-
-.hero{padding:60px 0 48px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;animation:fadeDown .8s ease both}
-.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,108px);line-height:.88;letter-spacing:.01em}
-h1 em{color:var(--gold);font-style:normal}
-.hero-sub{margin-top:14px;font-size:13.5px;color:var(--dim);max-width:500px;line-height:1.7}
-.hero-right{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-.stat-pill{background:rgba(26,86,219,0.08);border:1px solid var(--border);border-radius:2px;padding:10px 18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold-l);text-align:center;line-height:1.9}
-.stat-pill strong{display:block;font-size:28px;font-family:'Bebas Neue',sans-serif;color:var(--cream);letter-spacing:.05em}
-
-.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:40px 0 24px;animation:fadeUp .7s ease both}
-.search-box{position:relative;flex:1;min-width:200px;max-width:320px}
-.search-box input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:2px;color:var(--cream);font-family:'DM Mono',monospace;font-size:12px;padding:11px 14px 11px 36px;outline:none;transition:border-color .2s;letter-spacing:.05em}
-.search-box input::placeholder{color:var(--dim)}
-.search-box input:focus{border-color:var(--gold)}
-.s-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:15px;pointer-events:none}
-.fbtns{display:flex;gap:8px;flex-wrap:wrap}
-.fb{background:transparent;border:1px solid var(--border);color:var(--dim);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:9px 15px;border-radius:2px;cursor:pointer;transition:all .2s}
-.fb:hover{border-color:var(--gold);color:var(--gold)}
-.fb.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:600}
-.sort-sel{background:var(--card);border:1px solid var(--border);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;padding:9px 13px;border-radius:2px;outline:none;cursor:pointer}
-.sort-sel option{background:var(--navy-mid)}
-
-.results-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.1em;margin-bottom:18px}
-.results-label span{color:var(--gold)}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
-
-.card{background:var(--card);border:1px solid var(--border);backdrop-filter:blur(10px);border-radius:4px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;animation:fadeUp .6s ease both;display:flex;flex-direction:column;text-decoration:none;color:inherit}
-.card:hover{transform:translateY(-5px);border-color:rgba(200,146,42,.55);box-shadow:0 16px 48px rgba(0,0,0,.35)}
-.card-top{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-l),transparent)}
-.card-thumb{background:linear-gradient(135deg,var(--navy-l) 0%,var(--navy-mid) 100%);height:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.card-thumb::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(200,146,42,.03) 20px,rgba(200,146,42,.03) 21px)}
-.card-icon{font-size:48px;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
-.new-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--navy);font-family:'DM Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.15em;padding:3px 8px;border-radius:2px}
-.card-body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;gap:7px}
-.card-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px}
-.card-tag::before{content:'';display:inline-block;width:16px;height:1px;background:var(--gold)}
-.card-title{font-family:'DM Serif Display',serif;font-size:19px;line-height:1.25;color:var(--cream);margin:2px 0}
-.card-desc{font-size:12.5px;color:var(--dim);line-height:1.6;flex:1}
-.card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
-.card-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.06em}
-.card-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;padding:6px 14px;border-radius:2px;transition:all .2s}
-.card:hover .card-btn{background:var(--gold);color:var(--navy)}
-
-.loading-state,.empty-state,.error-state{grid-column:1/-1;text-align:center;padding:80px 20px;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--dim);line-height:1.8}
-.state-icon{font-size:48px;display:block;margin-bottom:18px}
-.spinner{width:36px;height:36px;border:2px solid rgba(26,86,219,0.18);border-top-color:#1a56db;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 18px}
-
-/* Setup box */
-.setup-box{background:rgba(200,146,42,0.06);border:1px solid var(--gold);border-radius:4px;padding:28px 32px;margin:32px 0;font-size:13.5px;line-height:1.8;display:none}
-.setup-box h3{font-family:'DM Serif Display',serif;color:var(--gold-l);font-size:20px;margin-bottom:14px}
-.setup-box code{background:rgba(26,86,219,0.12);padding:3px 10px;border-radius:2px;color:var(--gold-l);font-family:'DM Mono',monospace;font-size:12px}
-
-.how{margin:64px 0 0;background:rgba(200,146,42,0.05);border:1px solid var(--border);border-radius:4px;padding:36px}
-.how h2{font-family:'DM Serif Display',serif;font-size:22px;color:var(--gold-l);margin-bottom:24px}
-.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px}
-.step-num{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:rgba(200,146,42,.2);margin-bottom:6px}
-.step-title{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:5px}
-.step-desc{font-size:12px;color:var(--dim);line-height:1.6}
-
-footer{position:relative;z-index:1;max-width:1280px;margin:72px auto 0;padding:28px 28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--dim);border-top:1px solid var(--border)}
-
-@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#0a0f1e;min-height:100vh;-webkit-user-select:none;user-select:none}
+input,textarea{-webkit-user-select:text!important;user-select:text!important}
+.bg-anim{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 20% 50%,rgba(99,102,241,.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(59,130,246,.12) 0%,transparent 60%),linear-gradient(135deg,#0a0f1e 0%,#0d1b35 50%,#0a0f1e 100%)}
+.grid-lines{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(99,102,241,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.04) 1px,transparent 1px);background-size:40px 40px}
+/* ── SPLASH ── */
+#splash{position:relative;z-index:100;min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+#splash.hidden{display:none}
+.brand-row{display:flex;flex-direction:column;align-items:center;margin-bottom:32px;text-align:center}
+.brand-logo{width:76px;height:76px;background:linear-gradient(135deg,#3b82f6,#6366f1,#8b5cf6);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 8px 32px rgba(99,102,241,.45);margin-bottom:18px}
+.brand-name{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:4px}
+.brand-tagline{font-size:12px;color:#64748b;font-family:monospace;letter-spacing:.1em;margin-bottom:10px}
+.brand-copy{font-size:11px;color:#334155;line-height:1.7;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:8px 18px;border-radius:20px}
+/* Login card */
+.login-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:30px 28px 24px;width:min(380px,100%);backdrop-filter:blur(20px);box-shadow:0 24px 64px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08)}
+.step{display:none}.step.active{display:block;animation:fu .28s ease}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.step-title{font-size:17px;font-weight:800;color:#fff;margin-bottom:5px}
+.step-hint{font-size:12px;color:#64748b;margin-bottom:20px;line-height:1.6}
+.inp{width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s,background .15s;margin-bottom:12px;-webkit-user-select:text;user-select:text}
+.inp:focus{border-color:#6366f1;background:rgba(255,255,255,.1)}
+.inp::placeholder{color:#475569}
+/* OTP display */
+.otp-box{background:linear-gradient(135deg,#1e3a5f,#312e81);border:2px solid rgba(99,102,241,.5);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+.otp-box.show{display:block;animation:fu .25s ease}
+.otp-label{font-size:10px;color:#94a3b8;font-family:monospace;letter-spacing:.1em;margin-bottom:6px}
+.otp-code{font-size:34px;font-weight:800;font-family:monospace;color:#4ade80;letter-spacing:.25em}
+.otp-note{font-size:10px;color:#475569;margin-top:6px}
+.otp-grid{display:flex;gap:8px;margin-bottom:12px;justify-content:center}
+.otp-cell{width:44px;height:52px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:22px;font-weight:800;text-align:center;outline:none;font-family:monospace;transition:border-color .15s;-webkit-user-select:text;user-select:text}
+.otp-cell:focus{border-color:#6366f1;background:rgba(255,255,255,.12)}
+/* Buttons */
+.btn-primary{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;box-shadow:0 4px 14px rgba(99,102,241,.4)}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.45;cursor:default;transform:none}
+.err-msg{color:#f87171;font-size:12px;margin-bottom:10px;display:none;padding:8px 12px;background:rgba(239,68,68,.1);border-radius:8px;border-left:3px solid #ef4444;line-height:1.5}
+.back-link{color:#64748b;font-size:12px;text-align:center;margin-top:12px;cursor:pointer}
+.back-link:hover{color:#e2e8f0}
+.resend-row{font-size:11px;color:#475569;text-align:center;margin-top:10px}
+.terms-txt{font-size:10px;color:#334155;text-align:center;margin-top:14px;line-height:1.6}
+.terms-txt a{color:#6366f1;cursor:pointer}
+.success-center{text-align:center;padding:12px 0}
+.success-icon{font-size:52px;margin-bottom:12px}
+.success-title{font-size:18px;font-weight:800;color:#4ade80;margin-bottom:6px}
+.success-sub{font-size:13px;color:#64748b}
+/* Loading state */
+.loading-state{text-align:center;padding:16px 0}
+.spinner{width:32px;height:32px;border:3px solid rgba(99,102,241,.2);border-top-color:#6366f1;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-track{background:#f0f4ff}
-::-webkit-scrollbar-thumb{background:#1a56db;border-radius:3px}
-
-@media(max-width:700px){
-  .hero{grid-template-columns:1fr}
-  .hero-right{flex-direction:row;align-items:flex-start}
-  h1{font-size:56px}
-  .grid{grid-template-columns:1fr}
-}
+/* ── PORTAL ── */
+#portal{display:none;position:relative;z-index:100;min-height:100vh;flex-direction:column}
+#portal.show{display:flex}
+.portal-header{background:rgba(15,23,42,.95);border-bottom:1px solid rgba(255,255,255,.08);padding:0 24px;display:flex;align-items:center;justify-content:space-between;min-height:60px;position:sticky;top:0;z-index:200;backdrop-filter:blur(16px);flex-wrap:wrap;gap:10px}
+.ph-brand{display:flex;align-items:center;gap:10px}
+.ph-logo{width:34px;height:34px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.ph-title{font-size:15px;font-weight:800;color:#fff}
+.ph-sub{font-size:10px;color:#64748b;font-family:monospace;margin-top:1px}
+.ph-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ph-chip{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25);font-size:10px;font-family:monospace;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.ph-admin{display:none;background:linear-gradient(135deg,#b45309,#f59e0b);border:none;color:#fff;font-size:11px;font-weight:800;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:inherit;box-shadow:0 2px 10px rgba(245,158,11,.4);white-space:nowrap}
+.ph-admin:hover{opacity:.88}
+.ph-exit{background:rgba(239,68,68,.12);border:1.5px solid rgba(239,68,68,.3);color:#f87171;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;font-family:inherit}
+.ph-exit:hover{background:rgba(239,68,68,.25)}
+.portal-body{flex:1;padding:28px 24px;max-width:1200px;margin:0 auto;width:100%}
+.portal-welcome{margin-bottom:28px}
+.portal-welcome h2{font-size:22px;font-weight:800;color:#fff;margin-bottom:5px}
+.portal-welcome p{font-size:13px;color:#64748b}
+.pw-name{color:#4ade80;font-weight:700}
+.section-head{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4338ca;display:flex;align-items:center;gap:8px;margin-bottom:16px;margin-top:28px}
+.section-head:first-child{margin-top:0}
+.section-head::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.07)}
+.reports-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.report-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px;cursor:pointer;transition:all .2s;text-decoration:none;display:block;position:relative;overflow:hidden}
+.report-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,102,241,.06),transparent);opacity:0;transition:opacity .2s}
+.report-card:hover{border-color:rgba(99,102,241,.4);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.report-card:hover::before{opacity:1}
+.report-card.new-badge::after{content:"NEW";position:absolute;top:14px;right:14px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:9px;font-weight:800;font-family:monospace;padding:2px 8px;border-radius:10px;letter-spacing:.08em}
+.report-card.coming::after{content:"COMING SOON";position:absolute;top:14px;right:14px;background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.3);color:#a5b4fc;font-size:9px;font-weight:700;font-family:monospace;padding:2px 8px;border-radius:10px}
+.rc-icon{font-size:28px;margin-bottom:12px}
+.rc-sector{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#64748b;margin-bottom:5px;font-family:monospace}
+.rc-title{font-size:15px;font-weight:800;color:#e2e8f0;margin-bottom:6px;line-height:1.3}
+.rc-meta{font-size:11px;color:#475569;margin-bottom:14px;line-height:1.5}
+.rc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.rc-tag{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;font-family:monospace}
+.tag-auto{background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.25)}
+.tag-steel{background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.25)}
+.tag-bank{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.25)}
+.tag-q4{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.25)}
+.rc-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.06);padding-top:12px}
+.rc-date{font-size:10px;color:#475569;font-family:monospace}
+.rc-open{font-size:11px;font-weight:700;color:#6366f1}
+.report-card.coming{opacity:.55;cursor:not-allowed;pointer-events:none}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:28px}
+.stat-tile{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;text-align:center}
+.stat-val{font-size:22px;font-weight:800;font-family:monospace;color:#e2e8f0}
+.stat-lbl{font-size:10px;color:#475569;text-align:center;margin-top:3px;text-transform:uppercase;letter-spacing:.07em}
+.notice{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);border-radius:12px;padding:14px 18px;margin-bottom:24px;font-size:12px;color:#a5b4fc;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+/* ── ADMIN PANEL ── */
+#adminModal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.9);align-items:center;justify-content:center}
+#adminModal.show{display:flex}
+.admin-box{background:#0f172a;border:1px solid rgba(99,102,241,.35);border-radius:18px;width:min(600px,96vw);max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.7)}
+.admin-hdr{background:linear-gradient(135deg,#1e3a5f,#312e81);padding:18px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.ah-close{margin-left:auto;background:rgba(239,68,68,.2);border:1px solid rgba(239,68,68,.35);color:#f87171;font-size:18px;width:32px;height:32px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.ah-close:hover{background:rgba(239,68,68,.35)}
+.admin-tabs{display:flex;background:rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.admin-tab{padding:10px 18px;border:none;background:transparent;color:#64748b;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;transition:all .14s}
+.admin-tab.active{color:#fff;border-bottom-color:#6366f1;background:rgba(99,102,241,.1)}
+.tab-pane{display:none;flex:1;overflow-y:auto}.tab-pane.active{display:flex;flex-direction:column}
+/* Members tab */
+.admin-toolbar{display:flex;gap:8px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);flex-shrink:0;flex-wrap:wrap;background:rgba(0,0,0,.1)}
+.atb-in{flex:1;min-width:130px;padding:9px 13px;border-radius:8px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:12px;font-family:inherit;outline:none;-webkit-user-select:text;user-select:text}
+.atb-in:focus{border-color:#6366f1}
+.atb-in::placeholder{color:#475569}
+.atb-btn{padding:9px 14px;border-radius:8px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn-add{background:linear-gradient(135deg,#059669,#10b981);color:#fff}
+.btn-copy{background:rgba(99,102,241,.2);border:1px solid rgba(99,102,241,.3);color:#a5b4fc}
+.atb-msg{font-size:12px;display:none;align-self:center;font-weight:600}
+.admin-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.astat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px;text-align:center}
+.asv{font-size:20px;font-weight:800;font-family:monospace;color:#e2e8f0}
+.asl{font-size:10px;color:#475569;margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.search-bar{padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.search-inp{width:100%;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:12px;font-family:inherit;outline:none;-webkit-user-select:text;user-select:text}
+.search-inp:focus{border-color:#6366f1}
+.search-inp::placeholder{color:#475569}
+.admin-list{overflow-y:auto;flex:1;padding:10px 18px 16px}
+.admin-list::-webkit-scrollbar{width:4px}
+.admin-list::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
+.member-row{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:9px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);margin-bottom:6px;transition:background .14s}
+.member-row:hover{background:rgba(255,255,255,.06)}
+.mr-num{font-family:monospace;font-size:12px;font-weight:700;color:#e2e8f0;flex-shrink:0;min-width:110px}
+.mr-name{font-size:12px;color:#64748b;flex:1}
+.mr-tag{font-size:9px;font-family:monospace;padding:2px 7px;border-radius:4px;font-weight:700;flex-shrink:0}
+.tag-adm{background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.3)}
+.tag-mbr{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.3)}
+.mr-del{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#f87171;font-size:11px;padding:3px 9px;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;flex-shrink:0}
+.mr-del:hover{background:rgba(239,68,68,.3)}
+.mr-del:disabled{opacity:.3;cursor:default}
+/* Import tab */
+.import-pane{padding:20px 18px;display:flex;flex-direction:column;gap:14px}
+.import-pane h4{font-size:13px;font-weight:700;color:#e2e8f0}
+.import-pane p{font-size:12px;color:#64748b;line-height:1.6}
+.import-textarea{width:100%;height:200px;padding:12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#e2e8f0;font-size:12px;font-family:monospace;resize:vertical;outline:none;-webkit-user-select:text;user-select:text}
+.import-textarea:focus{border-color:#6366f1}
+.import-result{font-size:12px;padding:8px 12px;border-radius:8px;display:none}
+.import-result.ok{background:rgba(16,185,129,.1);color:#4ade80;border:1px solid rgba(16,185,129,.2)}
+.import-result.err{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+/* How-to tab */
+.howto-pane{padding:20px 18px;overflow-y:auto;flex:1}
+.howto-step{display:flex;gap:14px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.05)}
+.howto-step:last-child{border-bottom:none}
+.hs-num{width:30px;height:30px;background:linear-gradient(135deg,#4338ca,#6366f1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+.hs-content h4{font-size:13px;font-weight:700;color:#e2e8f0;margin-bottom:4px}
+.hs-content p{font-size:12px;color:#64748b;line-height:1.6}
+.hs-content code{background:rgba(99,102,241,.15);color:#a5b4fc;padding:1px 6px;border-radius:4px;font-family:monospace;font-size:11px}
+.admin-footer{padding:10px 18px;border-top:1px solid rgba(255,255,255,.05);font-size:11px;color:#334155;text-align:center;flex-shrink:0}
+/* Admin login gate */
+.admin-login-gate{padding:28px;display:flex;flex-direction:column;gap:12px}
+.admin-err{color:#f87171;font-size:12px;display:none;padding:6px 10px;background:rgba(239,68,68,.1);border-radius:7px}
+/* Terms */
+#terms-modal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.88);align-items:center;justify-content:center}
+#terms-modal.show{display:flex}
+.terms-box{background:#0f172a;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;width:min(500px,94vw);max-height:82vh;overflow-y:auto;color:#e2e8f0;font-size:13px;line-height:1.7}
+.terms-box h3{font-size:17px;font-weight:800;margin-bottom:18px;color:#fff}
+.terms-box h4{font-size:12px;font-weight:700;margin:12px 0 4px;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em}
+.terms-box p{margin-bottom:10px;color:#94a3b8}
+.terms-accept{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;font-size:14px;font-weight:700;cursor:pointer;margin-top:16px;font-family:inherit}
+/* Watermark */
+#wm-corner{position:fixed;bottom:10px;right:14px;z-index:8000;font-size:10px;color:rgba(99,102,241,.3);font-family:monospace;pointer-events:none;letter-spacing:.04em}
+/* Portal footer */
+.portal-footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);padding:16px 24px;text-align:center;font-size:11px;color:#334155;line-height:1.8}
+@media(max-width:600px){.portal-body{padding:18px 14px}.portal-header{padding:0 14px}.login-card{padding:24px 18px 20px}.reports-grid{grid-template-columns:1fr}.admin-stats-row{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="bg-anim"></div>
+<div class="grid-lines"></div>
+<div id="wm-corner">© CB Research 2026</div>
 
-  <header class="hero">
-    <div>
-      <div class="eyebrow">Interactive Finance · India Markets · Free for All Viewers</div>
-      <h1>Finance<br><em>Hub</em></h1>
-      <p class="hero-sub">Every interactive dashboard from the channel — automatically listed here. Just upload a new HTML file to GitHub and it appears here instantly. No editing ever.</p>
-    </div>
-    <div class="hero-right">
-      <div class="stat-pill"><strong id="totalCount">—</strong>DASHBOARDS</div>
-      <div class="stat-pill"><strong>FREE</strong>NO LOGIN</div>
-    </div>
-  </header>
-
-  <!-- shown only until user sets their username/repo -->
-  <div class="setup-box" id="setupBox">
-    <h3>⚙️ One-time setup — takes 30 seconds</h3>
-    Open this <code>index.html</code> file in Notepad.<br>
-    Find these two lines near the top of the &lt;script&gt; tag:<br><br>
-    <code>const GITHUB_USERNAME = "YOUR_USERNAME";</code><br>
-    <code>const GITHUB_REPO &nbsp;&nbsp;&nbsp;= "YOUR_REPO_NAME";</code><br><br>
-    Replace <code>YOUR_USERNAME</code> with your GitHub username.<br>
-    Replace <code>YOUR_REPO_NAME</code> with your repo name.<br>
-    Save the file → upload to GitHub → <strong>never open this file again.</strong> ✅
-  </div>
-
-  <div class="toolbar">
-    <div class="search-box">
-      <span class="s-icon">⌕</span>
-      <input type="text" id="searchInput" placeholder="Search dashboards…" autocomplete="off">
-    </div>
-    <div class="fbtns" id="filterBtns">
-      <button class="fb active" data-filter="all">All</button>
-    </div>
-    <select class="sort-sel" id="sortSel">
-      <option value="newest">Newest First</option>
-      <option value="oldest">Oldest First</option>
-      <option value="alpha">A → Z</option>
-    </select>
-  </div>
-
-  <div class="results-label">Showing <span id="countLabel">—</span> dashboards</div>
-
-  <div class="grid" id="grid">
-    <div class="loading-state">
-      <div class="spinner"></div>
-      Loading dashboards…
-    </div>
-  </div>
-
-  <div class="how">
-    <h2>🚀 How This Hub Works</h2>
-    <div class="steps">
-      <div>
-        <div class="step-num">01</div>
-        <div class="step-title">Claude Makes Dashboard</div>
-        <div class="step-desc">Ask Claude to create an interactive HTML dashboard for any bank result or topic.</div>
-      </div>
-      <div>
-        <div class="step-num">02</div>
-        <div class="step-title">Upload to GitHub</div>
-        <div class="step-desc">Drag the HTML file into your GitHub repo. That is literally all you do.</div>
-      </div>
-      <div>
-        <div class="step-num">03</div>
-        <div class="step-title">Auto Appears Here</div>
-        <div class="step-desc">This hub reads your GitHub repo and shows every HTML file as a card automatically.</div>
-      </div>
-      <div>
-        <div class="step-num">04</div>
-        <div class="step-title">One Link Forever</div>
-        <div class="step-desc">Share this hub link once in your YouTube bio. Every future video auto-adds to it.</div>
-      </div>
-    </div>
-  </div>
-
+<!-- TERMS -->
+<div id="terms-modal">
+<div class="terms-box">
+  <h3>📄 Terms of Use — CB Research Member Portal</h3>
+  <h4>Copyright</h4>
+  <p>All research content is the exclusive intellectual property of <strong style="color:#e2e8f0">CB Research &amp; Analytics</strong>. © 2026. Protected under the Indian Copyright Act, 1957.</p>
+  <h4>Trademarks</h4>
+  <p><strong style="color:#e2e8f0">CB Research™</strong>, <strong style="color:#e2e8f0">CB Assist™</strong>, and <strong style="color:#e2e8f0">Sector Analysis™</strong> are trademarks of CB Research &amp; Analytics.</p>
+  <h4>No Investment Advice</h4>
+  <p>All research is for informational purposes only. Not investment advice. Consult a SEBI-registered advisor before any investment decision.</p>
+  <h4>Confidentiality</h4>
+  <p>Content is for authorised members only. Do not share, forward or redistribute. Violation may result in access revocation and legal action.</p>
+  <button class="terms-accept" onclick="acceptTerms()">✅ I Accept — Proceed to Login</button>
+</div>
 </div>
 
-<footer>
-  <div>Finance Hub · All dashboards free for viewers</div>
-  <div>Data from BSE / NSE filings · Not investment advice</div>
-</footer>
+<!-- ADMIN PANEL -->
+<div id="adminModal">
+<div class="admin-box">
+  <div class="admin-hdr">
+    <span style="font-size:20px">🔧</span>
+    <div>
+      <div style="font-size:16px;font-weight:800;color:#fff">Admin Panel — CB Research</div>
+      <div style="font-size:11px;color:#64748b;margin-top:2px">Member Management · Master Portal</div>
+    </div>
+    <button class="ah-close" onclick="closeAdmin()">✕</button>
+  </div>
+
+  <!-- Admin Login Gate -->
+  <div class="admin-login-gate" id="adminLoginGate">
+    <div style="font-size:14px;font-weight:700;color:#e2e8f0;margin-bottom:4px">🔐 Admin Authentication</div>
+    <div style="font-size:12px;color:#64748b;margin-bottom:14px">Enter your admin password</div>
+    <input class="atb-in" id="adminPwdInput" type="password" placeholder="Admin password" style="width:100%;margin-bottom:8px;padding:12px 16px;border-radius:10px" onkeydown="if(event.key==='Enter')checkAdminPwd()">
+    <div class="admin-err" id="adminErr">❌ Incorrect password.</div>
+    <button class="btn-primary" onclick="checkAdminPwd()">Unlock Admin Panel →</button>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="adminDash" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+    <!-- Tabs -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('members',this)">👥 Members</button>
+      <button class="admin-tab" onclick="switchAdminTab('import',this)">📥 Bulk Import</button>
+      <button class="admin-tab" onclick="switchAdminTab('howto',this)">❓ How To Use</button>
+    </div>
+
+    <!-- Members Tab -->
+    <div class="tab-pane active" id="tab-members" style="display:flex;flex-direction:column">
+      <div class="admin-stats-row">
+        <div class="astat"><div class="asv" id="statTotal">0</div><div class="asl">Total</div></div>
+        <div class="astat"><div class="asv" id="statAdmins" style="color:#fbbf24">0</div><div class="asl">Admins</div></div>
+        <div class="astat"><div class="asv" id="statActive" style="color:#4ade80">—</div><div class="asl">Online</div></div>
+      </div>
+      <div class="admin-toolbar">
+        <input class="atb-in" id="newPhone" type="tel" maxlength="10" placeholder="10-digit number" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)" onkeydown="if(event.key==='Enter')addMember()">
+        <input class="atb-in" id="newName" type="text" maxlength="30" placeholder="Member name" style="max-width:160px" onkeydown="if(event.key==='Enter')addMember()">
+        <button class="atb-btn btn-add" onclick="addMember()">➕ Add</button>
+        <button class="atb-btn btn-copy" onclick="exportMembers()">📋 Copy List</button>
+        <span class="atb-msg" id="adminMsg"></span>
+      </div>
+      <div class="search-bar">
+        <input class="search-inp" id="memberSearch" placeholder="🔍 Search by number or name…" oninput="searchMembers(this.value)">
+      </div>
+      <div class="admin-list" id="memberList"></div>
+      <div class="admin-footer">Changes are session-only. Use 📋 Copy List → paste in index.html on GitHub to save permanently. © 2026 CB Research</div>
+    </div>
+
+    <!-- Bulk Import Tab -->
+    <div class="tab-pane" id="tab-import">
+      <div class="import-pane">
+        <h4>📥 Bulk Import Members</h4>
+        <p>Paste a list of phone numbers below — one per line. You can include names after a comma. Example:<br>
+        <code>9876543210, Rajesh Kumar</code><br>
+        <code>8765432109</code><br>
+        <code>7654321098, Priya Sharma</code></p>
+        <textarea class="import-textarea" id="importText" placeholder="9876543210, Member Name&#10;8765432109&#10;7654321098, Another Name&#10;..."></textarea>
+        <button class="btn-primary" onclick="bulkImport()">📥 Import All Numbers</button>
+        <div class="import-result" id="importResult"></div>
+        <p style="margin-top:8px;font-size:11px;color:#475569">After importing, click 📋 Copy List in the Members tab and paste into index.html on GitHub to make permanent.</p>
+      </div>
+    </div>
+
+    <!-- How To Tab -->
+    <div class="tab-pane" id="tab-howto">
+      <div class="howto-pane">
+        <div class="howto-step">
+          <div class="hs-num">1</div>
+          <div class="hs-content">
+            <h4>Add Members via Admin Panel</h4>
+            <p>Log in → click 🔧 Admin Panel → enter admin password → type phone number + name → click Add. For large groups use the 📥 Bulk Import tab — paste all numbers at once.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="hs-num">2</div>
+          <div class="hs-content">
+            <h4>Save Members Permanently</h4>
+            <p>After adding members, click 📋 Copy List. It copies the code. Go to GitHub → open <code>index.html</code> → click pencil ✏️ → find <code>let MEMBERS = [</code> → paste → Commit. Done — permanent.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="hs-num">3</div>
+          <div class="hs-content">
+            <h4>Add a New Report</h4>
+            <p>Upload the new HTML file to GitHub. Open <code>index.html</code> → pencil ✏️ → find the Live Reports section → copy a report card block → update the filename, title and description → Commit. It appears on the portal for all members instantly.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="hs-num">4</div>
+          <div class="hs-content">
+            <h4>Members — One Login for All Reports</h4>
+            <p>Members log in once on this portal page. They see all your reports as cards. Each report opens in a new tab. You never need to add members separately to each report file.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="hs-num">5</div>
+          <div class="hs-content">
+            <h4>Change Admin Password</h4>
+            <p>Open <code>index.html</code> on GitHub → pencil ✏️ → find <code>const ADMIN_PASSWORD = 'CBResearch@2026'</code> → change the password → Commit.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="hs-num">6</div>
+          <div class="hs-content">
+            <h4>Share This Link with Members</h4>
+            <p>Your portal link: <code>https://elangocauvery.github.io/CB-Finance/</code><br>
+            This is the only link members ever need. All reports are accessible from here after login.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SPLASH / LOGIN -->
+<div id="splash">
+  <div class="brand-row">
+    <div class="brand-logo">📊</div>
+    <div class="brand-name">CB Research</div>
+    <div class="brand-tagline">SECTOR ANALYSIS · MEMBER PORTAL</div>
+    <div class="brand-copy">© 2026 CB Research &amp; Analytics · Exclusive Member Access</div>
+  </div>
+  <div class="login-card">
+    <div class="step active" id="step1">
+      <div class="step-title">🔐 Member Verification</div>
+      <div class="step-hint">Enter your registered mobile number to access all CB Research reports.</div>
+      <input class="inp" id="phoneInput" type="tel" maxlength="10" placeholder="10-digit mobile number" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)" onkeydown="if(event.key==='Enter')sendOTP()">
+      <div class="err-msg" id="err1"></div>
+      <button class="btn-primary" onclick="sendOTP()">Get OTP →</button>
+      <div class="terms-txt">By continuing you agree to our <a onclick="showTerms()">Terms of Use</a></div>
+    </div>
+    <div class="step" id="step2">
+      <div class="step-title">📱 Enter OTP</div>
+      <div class="step-hint" id="otpHint">Your OTP will appear below.</div>
+      <div class="otp-box" id="otpDisplayBox">
+        <div class="otp-label">YOUR ONE-TIME PASSWORD</div>
+        <div class="otp-code" id="otpCode">------</div>
+        <div class="otp-note">Type this code in the boxes below</div>
+      </div>
+      <div class="otp-grid">
+        <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,0)">
+        <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,1)">
+        <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,2)">
+        <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,3)">
+        <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,4)">
+        <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,5)">
+      </div>
+      <div class="err-msg" id="err2"></div>
+      <button class="btn-primary" onclick="verifyOTP()">Verify &amp; Enter →</button>
+      <div class="back-link" onclick="goBack()">← Change number</div>
+      <div class="resend-row" id="resendRow">Resend OTP in <span id="countdown">30</span>s</div>
+    </div>
+    <div class="step" id="step3">
+      <div class="success-center">
+        <div class="success-icon">✅</div>
+        <div class="success-title">Verified!</div>
+        <div class="success-sub">Welcome to CB Research.<br>Loading your reports…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTAL -->
+<div id="portal">
+  <div class="portal-header">
+    <div class="ph-brand">
+      <div class="ph-logo">📊</div>
+      <div>
+        <div class="ph-title">CB Research — Member Portal</div>
+        <div class="ph-sub">SECTOR ANALYSIS · EXCLUSIVE ACCESS · © 2026</div>
+      </div>
+    </div>
+    <div class="ph-right">
+      <span class="ph-chip" id="memberChip">✅ Member</span>
+      <button class="ph-admin" id="adminBtn" onclick="openAdmin()">🔧 Admin Panel</button>
+      <button class="ph-exit" onclick="logout()">⏻ Exit</button>
+    </div>
+  </div>
+  <div class="portal-body">
+    <div class="portal-welcome">
+      <h2>Welcome, <span class="pw-name" id="welcomeName">Member</span> 👋</h2>
+      <p>Your exclusive CB Research reports are below. Click any report to open the full interactive dashboard in a new tab.</p>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-tile"><div class="stat-val" style="color:#6366f1">2</div><div class="stat-lbl">Reports Live</div></div>
+      <div class="stat-tile"><div class="stat-val" style="color:#4ade80">7</div><div class="stat-lbl">Companies</div></div>
+      <div class="stat-tile"><div class="stat-val" style="color:#f59e0b">Q4 FY26</div><div class="stat-lbl">Latest Quarter</div></div>
+      <div class="stat-tile"><div class="stat-val" style="color:#34d399">May 2026</div><div class="stat-lbl">Last Updated</div></div>
+    </div>
+    <div class="notice"><span style="font-size:18px;flex-shrink:0">💡</span><div>Each report opens as a full interactive dashboard with charts, CB Assist Q&amp;A, analyst ratings &amp; more. <strong>Bookmark this page</strong> — new reports appear here automatically.</div></div>
+
+    <div class="section-head">📊 Live Reports — May 2026</div>
+    <div class="reports-grid">
+      <a class="report-card new-badge" href="Sector_analysis_May26.html" target="_blank">
+        <div class="rc-icon">🚗</div>
+        <div class="rc-sector">Equity Research · Auto / PV Sector</div>
+        <div class="rc-title">India PV Sector — Q4 FY26</div>
+        <div class="rc-meta">Tata Motors · Maruti Suzuki · Hyundai India · M&amp;M — full Q4 &amp; FY26 analysis with JLR deep dive, EV tracker, analyst ratings and CB Assist Q&amp;A.</div>
+        <div class="rc-tags">
+          <span class="rc-tag tag-auto">PV Sector</span>
+          <span class="rc-tag tag-q4">Q4 FY26</span>
+          <span class="rc-tag" style="background:rgba(74,222,128,.15);color:#4ade80;border:1px solid rgba(74,222,128,.25)">EV Tracker</span>
+          <span class="rc-tag" style="background:rgba(139,92,246,.15);color:#c084fc;border:1px solid rgba(139,92,246,.25)">CB Assist</span>
+        </div>
+        <div class="rc-footer"><span class="rc-date">15 May 2026</span><span class="rc-open">Open Dashboard →</span></div>
+      </a>
+      <a class="report-card new-badge" href="Sector_analysis_Steel_May26.html" target="_blank">
+        <div class="rc-icon">🏭</div>
+        <div class="rc-sector">Equity Research · Steel / Metals</div>
+        <div class="rc-title">India Steel Sector — Q4 FY26</div>
+        <div class="rc-meta">Tata Steel · JSW Steel · SAIL — volumes, EBITDA/tonne, safeguard duty, FTA impact, JSW BPSL exceptional explained, analyst views.</div>
+        <div class="rc-tags">
+          <span class="rc-tag tag-steel">Steel</span>
+          <span class="rc-tag tag-q4">Q4 FY26</span>
+          <span class="rc-tag" style="background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.25)">3 Companies</span>
+          <span class="rc-tag" style="background:rgba(139,92,246,.15);color:#c084fc;border:1px solid rgba(139,92,246,.25)">CB Assist</span>
+        </div>
+        <div class="rc-footer"><span class="rc-date">15 May 2026</span><span class="rc-open">Open Dashboard →</span></div>
+      </a>
+    </div>
+
+    <div class="section-head">🔜 Coming Soon</div>
+    <div class="reports-grid">
+      <div class="report-card coming"><div class="rc-icon">🏦</div><div class="rc-sector">Banking Sector</div><div class="rc-title">India Banking — Q4 FY26</div><div class="rc-meta">HDFC Bank · ICICI · SBI · Axis Bank — NIM, asset quality, credit growth.</div><div class="rc-tags"><span class="rc-tag tag-bank">Banking</span><span class="rc-tag tag-q4">Q4 FY26</span></div><div class="rc-footer"><span class="rc-date">Expected: Jun 2026</span><span class="rc-open" style="color:#475569">Coming Soon</span></div></div>
+      <div class="report-card coming"><div class="rc-icon">🏗️</div><div class="rc-sector">Infrastructure</div><div class="rc-title">India Infra — Q4 FY26</div><div class="rc-meta">L&amp;T · IRB · KNR — order books, execution pace, capex cycle.</div><div class="rc-tags"><span class="rc-tag" style="background:rgba(168,85,247,.15);color:#c084fc;border:1px solid rgba(168,85,247,.25)">Infra</span><span class="rc-tag tag-q4">Q4 FY26</span></div><div class="rc-footer"><span class="rc-date">Expected: Jun 2026</span><span class="rc-open" style="color:#475569">Coming Soon</span></div></div>
+      <div class="report-card coming"><div class="rc-icon">💊</div><div class="rc-sector">Pharma Sector</div><div class="rc-title">India Pharma — Q4 FY26</div><div class="rc-meta">Sun Pharma · Dr Reddy's · Cipla — US generics, domestic formulations, API margins.</div><div class="rc-tags"><span class="rc-tag tag-bank">Pharma</span><span class="rc-tag tag-q4">Q4 FY26</span></div><div class="rc-footer"><span class="rc-date">Expected: Jul 2026</span><span class="rc-open" style="color:#475569">Coming Soon</span></div></div>
+    </div>
+  </div>
+  <div class="portal-footer">
+    <strong style="color:#475569">© 2026 CB Research &amp; Analytics. All Rights Reserved.</strong><br>
+    CB Research™ · CB Assist™ · Sector Analysis™ are trademarks of CB Research &amp; Analytics.<br>
+    For authorised members only. Not investment advice. Indian Copyright Act, 1957.
+  </div>
+</div>
 
 <script>
-// ════════════════════════════════════════════════════════════════════
-//  STEP 1 — PUT YOUR GITHUB USERNAME AND REPO NAME HERE
-//  Open this file in Notepad, change the two lines below, save.
-//  You will NEVER need to open or edit this file again after that.
-// ════════════════════════════════════════════════════════════════════
-const GITHUB_USERNAME = "Elangocauvery";   // ← your GitHub username
-const GITHUB_REPO     = "CB-Finance";      // ← your repo name
-// ════════════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════
+// CB RESEARCH MASTER PORTAL © 2026
+// ════════════════════════════════════════════════
 
-// ── Helpers ─────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════
+// CB RESEARCH — CONFIGURATION
+// ════════════════════════════════════════════════
 
-function cleanTitle(name) {
-  return name
-    .replace(/\.html$/i, '')
-    .replace(/[_\-]+/g, ' ')
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/\b(q)([1-4])\b/gi,  'Q$2')
-    .replace(/\b(fy)(\d{2,4})\b/gi, 'FY$2')
-    .replace(/\bsbi\b/gi,    'SBI')
-    .replace(/\bhdfc\b/gi,   'HDFC')
-    .replace(/\bicici\b/gi,  'ICICI')
-    .replace(/\baxis\b/gi,   'Axis')
-    .replace(/\bkotak\b/gi,  'Kotak')
-    .replace(/\brbl\b/gi,    'RBL')
-    .replace(/\byes\b/gi,    'YES')
-    .replace(/\bpnb\b/gi,    'PNB')
-    .replace(/\bbob\b/gi,    'BOB')
-    .replace(/\bnpa\b/gi,    'NPA')
-    .replace(/\bnim\b/gi,    'NIM')
-    .replace(/\bnii\b/gi,    'NII')
-    .replace(/\brbi\b/gi,    'RBI')
-    .replace(/\bnifty\b/gi,  'Nifty')
-    .replace(/\bbse\b/gi,    'BSE')
-    .replace(/\bnse\b/gi,    'NSE')
-    .trim()
-    .replace(/\b\w/g, c => c.toUpperCase());
+// ── ADMIN PASSWORD ────────────────────────────────
+// Change this before sharing!
+const ADMIN_PASSWORD = 'CBResearch@2026';
+
+// ── ADMIN PHONES ──────────────────────────────────
+// These numbers get the 🔧 Admin Panel button
+const ADMIN_PHONES = ['9999999999']; // ← Put your number here
+
+// ── GOOGLE SHEETS MEMBER DATABASE ────────────────
+// HOW TO SET UP (one time only — 3 minutes):
+// 1. Create a Google Sheet with column A = phone numbers, column B = names
+// 2. File → Share → Publish to web → Sheet1 → CSV → Publish
+// 3. Copy the URL and paste it below
+// 4. That's it — add/remove members by editing the Sheet only
+//
+// Leave SHEET_CSV_URL empty ('') to use the local MEMBERS list below
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSIy0TiTQdOOgsJDDxkyU1v-b52nG0m0_-9BYJONz9dBonCw9eb4LaNQLOQySLiR0nsv6sT4UPh5Fhz/pub?gid=0&single=true&output=csv'; // ← Paste your Google Sheet CSV URL here
+
+// ── LOCAL MEMBERS LIST (fallback / small groups) ──
+// Used when SHEET_CSV_URL is empty
+// For large groups use Google Sheets above instead
+let MEMBERS = [
+  // '9999999999',  // Your number (admin)
+  // '9876543210',  // Member name
+];
+let MEMBER_NAMES = {};
+
+// ── RUNTIME STATE ─────────────────────────────────
+let membersLoaded  = false;  // true once sheet/list is loaded
+let membersLoading = false;  // true while fetching
+
+// ── STATE ──────────────────────────────────────────
+let currentPhone   = '';
+let generatedOTP   = '';
+let countdownTimer = null;
+let adminUnlocked  = false;
+
+// ── PROTECTION ────────────────────────────────────
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+  if(e.key==='F12'){e.preventDefault();return false;}
+  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['I','J','C'].includes(e.key)){e.preventDefault();return false;}
+  if((e.ctrlKey||e.metaKey)&&['U','S','P'].includes(e.key)){e.preventDefault();return false;}
+});
+document.addEventListener('copy',e=>{e.preventDefault();e.clipboardData.setData('text/plain','© CB Research 2026');});
+window.addEventListener('beforeprint',e=>{e.preventDefault();alert('Printing disabled.');window.stop();});
+(function(){
+  const mob=/Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent)||('ontouchstart' in window)||window.innerWidth<=900;
+  if(mob)return;
+  let s=0;
+  setInterval(()=>{
+    if(window.outerWidth-window.innerWidth>250&&window.outerHeight-window.innerHeight>250)s++;
+    else s=0;
+    if(s>=3)document.body.innerHTML='<div style="background:#0a0f1e;color:#f87171;height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;text-align:center;padding:20px">⛔ Developer tools detected.<br>CB Research · Access suspended.<br>© CB Research 2026</div>';
+  },2000);
+})();
+
+// ── WATERMARK ─────────────────────────────────────
+function setWatermark(phone){
+  const m=phone.slice(0,3)+'XXXXX'+phone.slice(8);
+  document.getElementById('wm-corner').textContent='© CB Research 2026 · '+m;
+  document.getElementById('memberChip').textContent='✅ '+m;
+  document.getElementById('welcomeName').textContent=MEMBER_NAMES[phone]||m;
 }
 
-function detectCategory(name) {
-  const f = name.toLowerCase();
-  if (/nbfc|bajaj|muthoot|shriram|mahindra|lic|insurance|hfc|housing/.test(f)) return 'nbfc';
-  if (/nifty|sensex|market|index|sector|bse|nse|midcap|smallcap/.test(f))      return 'markets';
-  if (/rbi|gdp|inflation|cpi|macro|economy|budget|fiscal|monetary/.test(f))     return 'macro';
-  return 'banking'; // default — most uploads will be bank results
-}
-
-function pickIcon(name) {
-  const f = name.toLowerCase();
-  if (/sbi|pnb|bob|union|canara|uco|central/.test(f)) return '🏦';
-  if (/hdfc|icici|axis|kotak|yes|rbl|indusind|federal|idfc|bandhan/.test(f)) return '💳';
-  if (/nbfc|bajaj|muthoot|shriram/.test(f)) return '💰';
-  if (/insurance|lic/.test(f))  return '🛡️';
-  if (/housing|hfc/.test(f))    return '🏠';
-  if (/nifty|sensex|index/.test(f)) return '📈';
-  if (/rbi|budget|macro/.test(f))   return '🏛️';
-  if (/sector|compare|peer/.test(f)) return '📊';
-  return '📋';
-}
-
-function makeDesc(name) {
-  const f   = name.toLowerCase();
-  const title = cleanTitle(name);
-  const q   = (f.match(/q([1-4])/i) || [])[1];
-  const fy  = (f.match(/fy(\d{2,4})/i) || [])[1];
-  const period = [q ? `Q${q}` : '', fy ? `FY${fy}` : ''].filter(Boolean).join(' ');
-  const p   = period ? ` ${period}` : '';
-  const cat = detectCategory(name);
-  if (cat === 'banking') return `Interactive analysis of ${title}${p} — NII, NIM, asset quality, capital adequacy and peer comparison. Hover charts for details.`;
-  if (cat === 'nbfc')    return `Deep-dive into ${title}${p} financials — AUM, credit costs, NIM trends and profitability ratios.`;
-  if (cat === 'markets') return `${title} — interactive sector overview, valuations and performance breakdown.`;
-  if (cat === 'macro')   return `${title}${p} — macro indicators, policy impact and economic trend analysis.`;
-  return `Interactive financial analysis — ${title}${p}.`;
-}
-
-function extractDate(name) {
-  const q  = name.match(/q([1-4])fy(\d{2})/i);
-  const fy = name.match(/fy(\d{2})/i);
-  if (q) {
-    const quarter = parseInt(q[1]);
-    const year    = 2000 + parseInt(q[2]);
-    const months  = [null, 6, 9, 0, 3];
-    const d = new Date(quarter <= 2 ? year - 1 : year, months[quarter], 15);
-    return d.toISOString().slice(0, 10);
+// ── SESSION CHECK ─────────────────────────────────
+window.addEventListener('load',()=>{
+  const saved=sessionStorage.getItem('cb_portal_v2');
+  if(saved){
+    try{
+      const d=JSON.parse(saved);
+      if(Date.now()-d.time<86400000){
+        currentPhone=d.phone;
+        setWatermark(d.phone);
+        enterPortal();
+        return;
+      }
+    }catch(e){}
+    sessionStorage.removeItem('cb_portal_v2');
   }
-  if (fy) return `${2000 + parseInt(fy[1])}-04-01`;
-  return new Date().toISOString().slice(0, 10);
-}
+  document.getElementById('terms-modal').classList.add('show');
+});
 
-function fmtDate(iso) {
-  return new Date(iso).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
-}
+// ── TERMS ─────────────────────────────────────────
+function acceptTerms(){document.getElementById('terms-modal').classList.remove('show');}
+function showTerms(){document.getElementById('terms-modal').classList.add('show');}
 
-function isNew(iso) {
-  return (Date.now() - new Date(iso)) / 86400000 < 14;
-}
+// ── LOAD MEMBERS FROM GOOGLE SHEETS OR LOCAL LIST ────
+async function loadMembers(){
+  if(membersLoaded) return true;
+  if(membersLoading) return false;
 
-const CAT_LABEL = {
-  banking: 'Banking Results',
-  markets: 'Markets',
-  macro:   'Macro / Economy',
-  nbfc:    'NBFC / Insurance'
-};
-
-// ── State ────────────────────────────────────────────────────────────
-let all    = [];
-let filter = 'all';
-let query  = '';
-let sort   = 'newest';
-
-// ── Render ───────────────────────────────────────────────────────────
-function render() {
-  let items = [...all];
-  if (filter !== 'all') items = items.filter(d => d.category === filter);
-  if (query) {
-    const q = query.toLowerCase();
-    items = items.filter(d =>
-      d.title.toLowerCase().includes(q) ||
-      d.file.toLowerCase().includes(q)  ||
-      d.category.includes(q)
-    );
-  }
-  if (sort === 'newest') items.sort((a,b) => b.date.localeCompare(a.date));
-  if (sort === 'oldest') items.sort((a,b) => a.date.localeCompare(b.date));
-  if (sort === 'alpha')  items.sort((a,b) => a.title.localeCompare(b.title));
-
-  document.getElementById('countLabel').textContent = items.length;
-  document.getElementById('totalCount').textContent = all.length;
-
-  const grid = document.getElementById('grid');
-  grid.innerHTML = '';
-
-  if (items.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><span class="state-icon">🔍</span>No dashboards match.<br>Try a different search or filter.</div>`;
-    return;
+  if(!SHEET_CSV_URL){
+    // No sheet URL — use local MEMBERS list
+    membersLoaded = true;
+    return true;
   }
 
-  items.forEach((d, i) => {
-    const a = document.createElement('a');
-    a.className = 'card';
-    a.href = d.file;
-    a.style.animationDelay = `${i * 0.06}s`;
-    a.innerHTML = `
-      <div class="card-top"></div>
-      <div class="card-thumb">
-        ${d.isNew ? '<div class="new-badge">NEW</div>' : ''}
-        <div class="card-icon">${d.icon}</div>
-      </div>
-      <div class="card-body">
-        <div class="card-tag">${CAT_LABEL[d.category] || d.category}</div>
-        <div class="card-title">${d.title}</div>
-        <div class="card-desc">${d.desc}</div>
-        <div class="card-meta">
-          <span class="card-date">📅 ${fmtDate(d.date)}</span>
-          <span class="card-btn">Open →</span>
-        </div>
-      </div>`;
-    grid.appendChild(a);
-  });
-}
-
-function buildFilters() {
-  const cats = [...new Set(all.map(d => d.category))];
-  const box  = document.getElementById('filterBtns');
-  box.innerHTML = '<button class="fb active" data-filter="all">All</button>';
-  cats.forEach(cat => {
-    const b = document.createElement('button');
-    b.className = 'fb';
-    b.dataset.filter = cat;
-    b.textContent = CAT_LABEL[cat] || cat;
-    box.appendChild(b);
-  });
-  box.querySelectorAll('.fb').forEach(b => {
-    b.addEventListener('click', () => {
-      box.querySelectorAll('.fb').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      filter = b.dataset.filter;
-      render();
-    });
-  });
-}
-
-// ── Main: fetch from GitHub API ──────────────────────────────────────
-async function load() {
-  if (GITHUB_USERNAME === 'YOUR_USERNAME' || GITHUB_REPO === 'YOUR_REPO_NAME') {
-    document.getElementById('setupBox').style.display = 'block';
-    document.getElementById('grid').innerHTML = `
-      <div class="error-state">
-        <span class="state-icon">⚙️</span>
-        <strong style="color:var(--gold);display:block;margin-bottom:10px">Setup needed — see the yellow box above</strong>
-        Open index.html in Notepad · add your GitHub username and repo name · save · upload.
-      </div>`;
-    document.getElementById('totalCount').textContent = '0';
-    document.getElementById('countLabel').textContent = '0';
-    return;
-  }
+  membersLoading = true;
 
   try {
-    const res = await fetch(
-      `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/`,
-      { headers: { Accept: 'application/vnd.github.v3+json' } }
-    );
+    // Fetch the published Google Sheet CSV
+    const resp = await fetch(SHEET_CSV_URL, {cache:'no-store'});
+    if(!resp.ok) throw new Error('Sheet fetch failed: '+resp.status);
+    const text = await resp.text();
 
-    if (!res.ok) throw new Error(`GitHub replied with error ${res.status}. Check that your repo is PUBLIC and the username/repo name are correct.`);
+    // Parse CSV — Column A = phone, Column B = name (optional)
+    const rows = text.trim().split('\n').slice(1); // skip header row
+    const freshMembers = [];
+    const freshNames   = {};
 
-    const files = await res.json();
-
-    // Only HTML files, skip index.html itself
-    const htmlFiles = files.filter(f =>
-      f.type === 'file' &&
-      f.name.toLowerCase().endsWith('.html') &&
-      f.name.toLowerCase() !== 'index.html'
-    );
-
-    if (htmlFiles.length === 0) {
-      document.getElementById('grid').innerHTML = `
-        <div class="empty-state">
-          <span class="state-icon">📂</span>
-          No dashboard files uploaded yet.<br><br>
-          Go to your GitHub repo → Add file → Upload files<br>
-          Drop your HTML dashboard file there.<br>
-          Come back here and refresh — it will appear automatically.
-        </div>`;
-      document.getElementById('totalCount').textContent = '0';
-      document.getElementById('countLabel').textContent = '0';
-      return;
-    }
-
-    all = htmlFiles.map(f => {
-      const date = extractDate(f.name);
-      return {
-        file:     f.name,
-        title:    cleanTitle(f.name),
-        desc:     makeDesc(f.name),
-        category: detectCategory(f.name),
-        icon:     pickIcon(f.name),
-        date,
-        isNew:    isNew(date),
-      };
+    rows.forEach(row => {
+      const cols  = row.split(',');
+      const phone = (cols[0]||'').trim().replace(/\D/g,'').slice(0,10);
+      const name  = (cols[1]||'').trim().replace(/^"|"$/g,''); // remove quotes
+      if(phone.length === 10){
+        freshMembers.push(phone);
+        if(name) freshNames[phone] = name;
+      }
     });
 
-    buildFilters();
-    render();
+    if(freshMembers.length > 0){
+      MEMBERS      = freshMembers;
+      MEMBER_NAMES = freshNames;
+      console.log('✅ Loaded', MEMBERS.length, 'members from Google Sheets');
+    } else {
+      console.warn('⚠️ Sheet returned 0 valid members — using local list');
+    }
 
-  } catch (err) {
-    document.getElementById('grid').innerHTML = `
-      <div class="error-state">
-        <span class="state-icon">⚠️</span>
-        <strong style="color:var(--red);display:block;margin-bottom:10px">${err.message}</strong>
-        • Make sure your GitHub repo is set to <strong>Public</strong><br>
-        • Username in file: <strong>${GITHUB_USERNAME}</strong><br>
-        • Repo name in file: <strong>${GITHUB_REPO}</strong>
-      </div>`;
+    membersLoaded  = true;
+    membersLoading = false;
+    return true;
+
+  } catch(e){
+    console.warn('⚠️ Could not load Google Sheet:', e.message, '— using local list');
+    membersLoaded  = true;
+    membersLoading = false;
+    return true; // fall back to local MEMBERS
   }
 }
 
-document.getElementById('searchInput').addEventListener('input', e => { query = e.target.value.trim(); render(); });
-document.getElementById('sortSel').addEventListener('change', e => { sort = e.target.value; render(); });
+// ── SEND OTP ──────────────────────────────────────
+async function sendOTP(){
+  const phone = document.getElementById('phoneInput').value.trim();
+  const err   = document.getElementById('err1');
+  const btn   = document.querySelector('#step1 .btn-primary');
 
-load();
+  if(phone.length !== 10){ showErr(err,'Enter a valid 10-digit mobile number.'); return; }
+
+  // Show loading state while fetching sheet
+  btn.disabled    = true;
+  btn.textContent = '⏳ Checking membership…';
+  hideErr(err);
+
+  await loadMembers();
+
+  btn.disabled    = false;
+  btn.textContent = 'Get OTP →';
+
+  // Bootstrap: if MEMBERS still empty after load, first person = admin
+  if(MEMBERS.length === 0){
+    MEMBERS.push(phone);
+    if(!ADMIN_PHONES.includes(phone)) ADMIN_PHONES.push(phone);
+    MEMBER_NAMES[phone] = 'Admin / Owner';
+  }
+
+  if(!MEMBERS.includes(phone)){
+    showErr(err,'⛔ This number is not registered. Contact your group admin for access.');
+    return;
+  }
+
+  currentPhone = phone;
+  generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+  setTimeout(()=>{
+    document.getElementById('otpCode').textContent   = generatedOTP;
+    document.getElementById('otpDisplayBox').classList.add('show');
+    document.getElementById('otpHint').textContent   = 'Your OTP is shown above — enter it below.';
+    try{ alert('📱 CB Research OTP: ' + generatedOTP); }catch(e){}
+  }, 350);
+
+  goStep(2);
+  startCountdown();
+}
+
+// ── VERIFY OTP ────────────────────────────────────
+function verifyOTP(){
+  const cells=document.querySelectorAll('.otp-cell');
+  const entered=Array.from(cells).map(c=>c.value).join('');
+  const err=document.getElementById('err2');
+  if(entered.length<6){showErr(err,'Enter all 6 digits.');return;}
+  if(entered!==generatedOTP){
+    showErr(err,'❌ Wrong OTP. Try again.');
+    cells.forEach(c=>{c.value='';c.style.borderColor='#ef4444';});
+    cells[0].focus();
+    setTimeout(()=>cells.forEach(c=>c.style.borderColor=''),2000);
+    return;
+  }
+  hideErr(err);
+  clearInterval(countdownTimer);
+  document.getElementById('otpDisplayBox').classList.remove('show');
+  goStep(3);
+  sessionStorage.setItem('cb_portal_v2',JSON.stringify({phone:currentPhone,time:Date.now()}));
+  setWatermark(currentPhone);
+  setTimeout(enterPortal,1600);
+}
+
+// ── ENTER PORTAL ──────────────────────────────────
+function enterPortal(){
+  document.getElementById('splash').classList.add('hidden');
+  const portal=document.getElementById('portal');
+  portal.style.display='flex';
+  if(ADMIN_PHONES.includes(currentPhone)){
+    document.getElementById('adminBtn').style.display='inline-flex';
+  }
+}
+
+// ── LOGOUT ────────────────────────────────────────
+function logout(){
+  if(!confirm('Exit CB Research Portal?'))return;
+  sessionStorage.removeItem('cb_portal_v2');
+  location.reload();
+}
+
+// ── OTP HELPERS ───────────────────────────────────
+function otpMove(cell,idx){
+  cell.value=cell.value.replace(/\D/,'').slice(0,1);
+  if(cell.value&&idx<5)document.querySelectorAll('.otp-cell')[idx+1].focus();
+  if(Array.from(document.querySelectorAll('.otp-cell')).every(c=>c.value.length===1))verifyOTP();
+}
+function startCountdown(){
+  let s=30;
+  document.getElementById('countdown').textContent=s;
+  clearInterval(countdownTimer);
+  countdownTimer=setInterval(()=>{
+    s--;
+    const el=document.getElementById('countdown');
+    if(el)el.textContent=s;
+    if(s<=0){
+      clearInterval(countdownTimer);
+      const row=document.getElementById('resendRow');
+      if(row)row.innerHTML='<span style="color:#6366f1;cursor:pointer" onclick="resendOTP()">Resend OTP</span>';
+    }
+  },1000);
+}
+function resendOTP(){
+  generatedOTP=Math.floor(100000+Math.random()*900000).toString();
+  document.getElementById('otpCode').textContent=generatedOTP;
+  document.getElementById('otpDisplayBox').classList.add('show');
+  document.querySelectorAll('.otp-cell').forEach(c=>c.value='');
+  document.querySelectorAll('.otp-cell')[0].focus();
+  document.getElementById('resendRow').innerHTML='Resend OTP in <span id="countdown">30</span>s';
+  startCountdown();
+  try{alert('📱 New CB Research OTP: '+generatedOTP);}catch(e){}
+}
+function goBack(){goStep(1);document.getElementById('phoneInput').value='';clearInterval(countdownTimer);}
+function goStep(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');}
+
+// ── ADMIN PANEL ───────────────────────────────────
+function openAdmin(){
+  adminUnlocked=false;
+  document.getElementById('adminLoginGate').style.display='';
+  document.getElementById('adminDash').style.display='none';
+  document.getElementById('adminPwdInput').value='';
+  document.getElementById('adminErr').style.display='none';
+  document.getElementById('adminModal').classList.add('show');
+  setTimeout(()=>document.getElementById('adminPwdInput').focus(),200);
+}
+function closeAdmin(){document.getElementById('adminModal').classList.remove('show');adminUnlocked=false;}
+document.getElementById('adminModal').addEventListener('click',e=>{if(e.target===document.getElementById('adminModal'))closeAdmin();});
+
+function checkAdminPwd(){
+  const pwd=document.getElementById('adminPwdInput').value;
+  const err=document.getElementById('adminErr');
+  if(pwd===ADMIN_PASSWORD){
+    adminUnlocked=true;
+    document.getElementById('adminLoginGate').style.display='none';
+    document.getElementById('adminDash').style.display='flex';
+    renderMembers();updateStats();
+    switchAdminTab('members',document.querySelector('.admin-tab'));
+  } else {
+    err.style.display='block';
+    document.getElementById('adminPwdInput').value='';
+    document.getElementById('adminPwdInput').focus();
+    setTimeout(()=>err.style.display='none',3000);
+  }
+}
+
+function switchAdminTab(tab,btn){
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const pane=document.getElementById('tab-'+tab);
+  if(pane)pane.classList.add('active');
+}
+
+// ── MEMBER MANAGEMENT ─────────────────────────────
+function renderMembers(filter){
+  const list=document.getElementById('memberList');
+  list.innerHTML='';
+  const filtered=filter?MEMBERS.filter(p=>p.includes(filter)||(MEMBER_NAMES[p]||'').toLowerCase().includes(filter.toLowerCase())):MEMBERS;
+  if(!filtered.length){
+    list.innerHTML='<div style="text-align:center;color:#475569;padding:28px;font-size:13px">'+(MEMBERS.length?'No results for "'+filter+'"':'No members yet. Add one above or use Bulk Import.')+'</div>';
+    return;
+  }
+  filtered.forEach(phone=>{
+    const isAdmin=ADMIN_PHONES.includes(phone);
+    const name=MEMBER_NAMES[phone]||'';
+    const isCurrent=phone===currentPhone;
+    const row=document.createElement('div');
+    row.className='member-row';row.id='row-'+phone;
+    row.innerHTML=`<div style="font-size:15px">${isAdmin?'👑':'👤'}</div>
+      <div class="mr-num">${phone}</div>
+      <div class="mr-name">${name||'—'}</div>
+      <span class="mr-tag ${isAdmin?'tag-adm':'tag-mbr'}">${isAdmin?'ADMIN':'MEMBER'}</span>
+      ${isCurrent?'<span class="mr-tag" style="background:rgba(74,222,128,.15);color:#4ade80;border-color:rgba(74,222,128,.3)">YOU</span>':''}
+      <button class="mr-del" onclick="removeMember('${phone}')" ${isAdmin?'disabled title="Cannot remove admin"':''}>Remove</button>`;
+    list.appendChild(row);
+  });
+}
+
+function searchMembers(q){renderMembers(q.trim());}
+
+function updateStats(){
+  document.getElementById('statTotal').textContent=MEMBERS.length;
+  document.getElementById('statAdmins').textContent=ADMIN_PHONES.filter(p=>MEMBERS.includes(p)).length;
+  document.getElementById('statActive').textContent=sessionStorage.getItem('cb_portal_v2')?'1+':'0';
+}
+
+function addMember(){
+  if(!adminUnlocked)return;
+  const phone=document.getElementById('newPhone').value.trim();
+  const name=document.getElementById('newName').value.trim();
+  if(phone.length!==10){showAdminMsg('❌ Enter valid 10-digit number','#f87171');return;}
+  if(MEMBERS.includes(phone)){showAdminMsg('⚠️ Already in list','#fbbf24');return;}
+  MEMBERS.push(phone);
+  if(name)MEMBER_NAMES[phone]=name;
+  document.getElementById('newPhone').value='';
+  document.getElementById('newName').value='';
+  document.getElementById('newPhone').focus();
+  renderMembers(document.getElementById('memberSearch').value);
+  updateStats();
+  showAdminMsg('✅ Added '+phone,'#4ade80');
+  const row=document.getElementById('row-'+phone);
+  if(row){row.style.background='rgba(74,222,128,.1)';row.style.borderColor='rgba(74,222,128,.3)';setTimeout(()=>{row.style.background='';row.style.borderColor='';},2000);}
+}
+
+function removeMember(phone){
+  if(!adminUnlocked)return;
+  if(ADMIN_PHONES.includes(phone)){showAdminMsg('❌ Cannot remove an admin','#f87171');return;}
+  if(!confirm('Remove member '+phone+'?'))return;
+  const idx=MEMBERS.indexOf(phone);
+  if(idx>-1)MEMBERS.splice(idx,1);
+  delete MEMBER_NAMES[phone];
+  renderMembers(document.getElementById('memberSearch').value);
+  updateStats();
+  showAdminMsg('🗑️ Removed '+phone,'#f87171');
+}
+
+function exportMembers(){
+  if(!adminUnlocked)return;
+  const lines=MEMBERS.map(p=>{const n=MEMBER_NAMES[p]?'  // '+MEMBER_NAMES[p]:'';return "  '"+p+"',"+n;});
+  const code="let MEMBERS = [\n"+lines.join("\n")+"\n];";
+  const names="let MEMBER_NAMES = "+JSON.stringify(MEMBER_NAMES,null,2)+";";
+  const full=code+"\n"+names;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(full).then(()=>showAdminMsg('📋 Copied! Paste into index.html on GitHub','#4ade80')).catch(()=>prompt('Copy this and paste into GitHub:',full));
+  } else {
+    prompt('Copy this and paste into GitHub:',full);
+  }
+}
+
+// ── BULK IMPORT ───────────────────────────────────
+function bulkImport(){
+  if(!adminUnlocked)return;
+  const text=document.getElementById('importText').value.trim();
+  const result=document.getElementById('importResult');
+  if(!text){result.textContent='❌ Please paste some numbers first.';result.className='import-result err';result.style.display='block';return;}
+  const lines=text.split('\n').map(l=>l.trim()).filter(l=>l);
+  let added=0,skipped=0,invalid=0;
+  lines.forEach(line=>{
+    const parts=line.split(',');
+    const phone=parts[0].trim().replace(/\D/g,'');
+    const name=(parts[1]||'').trim();
+    if(phone.length!==10){invalid++;return;}
+    if(MEMBERS.includes(phone)){skipped++;return;}
+    MEMBERS.push(phone);
+    if(name)MEMBER_NAMES[phone]=name;
+    added++;
+  });
+  renderMembers();updateStats();
+  result.textContent=`✅ Imported: ${added} added · ${skipped} already existed · ${invalid} invalid`;
+  result.className='import-result '+(added>0?'ok':'err');
+  result.style.display='block';
+  document.getElementById('importText').value='';
+  if(added>0)showAdminMsg('✅ '+added+' members added','#4ade80');
+}
+
+function showAdminMsg(msg,color){
+  const el=document.getElementById('adminMsg');
+  el.textContent=msg;el.style.color=color;el.style.display='flex';
+  clearTimeout(el._t);el._t=setTimeout(()=>el.style.display='none',3500);
+}
+
+// Ctrl+Shift+A → admin from anywhere
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();openAdmin();}
+});
+
+function showErr(el,msg){el.textContent=msg;el.style.display='block';}
+function hideErr(el){el.style.display='none';}
 </script>
 </body>
 </html>
