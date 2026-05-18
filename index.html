@@ -58,14 +58,33 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 /* ── PORTAL ── */
 #portal{display:none;position:relative;z-index:100;min-height:100vh;flex-direction:column}
 #portal.show{display:flex}
-.portal-header{background:#0f172a;border-bottom:1px solid rgba(255,255,255,.1);padding:0 24px;display:flex;align-items:center;justify-content:space-between;min-height:60px;position:sticky;top:0;z-index:200;backdrop-filter:blur(16px);flex-wrap:wrap;gap:10px}
-.ph-brand{display:flex;align-items:center;gap:10px}
-.ph-logo{width:34px;height:34px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
-.ph-title{font-size:15px;font-weight:800;color:#fff}
+.portal-header{
+  background:#0f172a;border-bottom:1px solid rgba(255,255,255,.1);
+  padding:10px 20px;position:sticky;top:0;z-index:200;
+  backdrop-filter:blur(16px);display:flex;flex-direction:column;gap:10px;
+}
+.ph-top-row{display:flex;align-items:center;justify-content:space-between;width:100%}
+.ph-bottom-row{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  min-height:36px;
+}
+.ph-brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.ph-logo{width:34px;height:34px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ph-title{font-size:15px;font-weight:800;color:#fff;white-space:nowrap}
 .ph-sub{font-size:10px;color:#64748b;font-family:monospace;margin-top:1px}
-.ph-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ph-chip{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25);font-size:10px;font-family:monospace;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap}
-.ph-admin{display:none;background:linear-gradient(135deg,#b45309,#f59e0b);border:2px solid #fbbf24;color:#fff;font-size:12px;font-weight:800;padding:8px 18px;border-radius:20px;cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(245,158,11,.5);white-space:nowrap;letter-spacing:.01em}
+.ph-chip{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25);font-size:11px;font-family:monospace;font-weight:700;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.ph-admin{
+  background:linear-gradient(135deg,#b45309,#f59e0b);
+  border:2px solid #fbbf24;color:#fff;font-size:12px;font-weight:800;
+  padding:8px 18px;border-radius:20px;cursor:pointer;font-family:inherit;
+  box-shadow:0 4px 16px rgba(245,158,11,.5);white-space:nowrap;letter-spacing:.01em;
+  display:none;  /* hidden by default — JS removes this class */
+}
+.ph-admin.visible{
+  display:inline-flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
 .ph-admin:hover{opacity:.88}
 .ph-exit{background:rgba(239,68,68,.12);border:1.5px solid rgba(239,68,68,.3);color:#f87171;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;font-family:inherit}
 .ph-exit:hover{background:rgba(239,68,68,.25)}
@@ -179,9 +198,10 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .portal-footer{background:#f0f4f8;border-top:1px solid #dde3f0;padding:16px 24px;text-align:center;font-size:11px;color:#6b7280;line-height:1.8}
 @media(max-width:768px){
   .portal-body{padding:18px 14px}
-  .portal-header{padding:8px 14px;flex-direction:column;align-items:flex-start;min-height:auto;gap:8px}
-  .ph-brand{width:100%}
-  .ph-right{width:100%;justify-content:flex-start;flex-wrap:wrap}
+  .portal-header{padding:8px 14px}
+  .ph-top-row{gap:8px}
+  .ph-brand{flex:1;min-width:0}
+  .ph-bottom-row{width:100%;gap:8px}
   .ph-title{font-size:13px}
   .ph-sub{display:none}
   .login-card{padding:24px 18px 20px}
@@ -189,7 +209,6 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
   .admin-stats-row{grid-template-columns:repeat(3,1fr)}
   .stats-bar{grid-template-columns:repeat(2,1fr)}
   .brand-name{font-size:22px}
-  .topnav .nav-row{flex-wrap:wrap}
 }
 </style>
 </head>
@@ -383,17 +402,21 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 <!-- PORTAL -->
 <div id="portal">
   <div class="portal-header">
-    <div class="ph-brand">
-      <div class="ph-logo">📊</div>
-      <div>
-        <div class="ph-title">CB Research — Member Portal</div>
-        <div class="ph-sub">SECTOR ANALYSIS · EXCLUSIVE ACCESS · © 2026</div>
+    <!-- Row 1: Brand -->
+    <div class="ph-top-row">
+      <div class="ph-brand">
+        <div class="ph-logo">📊</div>
+        <div>
+          <div class="ph-title">CB Research — Member Portal</div>
+          <div class="ph-sub">SECTOR ANALYSIS · EXCLUSIVE ACCESS · © 2026</div>
+        </div>
       </div>
+      <button class="ph-exit" onclick="logout()">⏻ Exit</button>
     </div>
-    <div class="ph-right">
+    <!-- Row 2: Member info + Admin button — always on its own row -->
+    <div class="ph-bottom-row">
       <span class="ph-chip" id="memberChip">✅ Member</span>
       <button class="ph-admin" id="adminBtn" onclick="openAdmin()">🔧 Admin Panel</button>
-      <button class="ph-exit" onclick="logout()">⏻ Exit</button>
     </div>
   </div>
   <div class="portal-body">
@@ -692,13 +715,17 @@ function verifyOTP(){
 // ── ENTER PORTAL ──────────────────────────────────
 function enterPortal(){
   document.getElementById('splash').classList.add('hidden');
-  const portal=document.getElementById('portal');
-  portal.style.display='flex';
-  // Always show admin button — panel is password-protected so safe for all to see
+  const portal = document.getElementById('portal');
+  portal.style.display = 'flex';
+  
+  // Show admin button using class (works reliably on all mobile browsers)
+  // Using class + !important beats any CSS specificity issue
   const adminBtn = document.getElementById('adminBtn');
   if(adminBtn){
-    adminBtn.style.display = 'inline-flex';
-    adminBtn.style.visibility = 'visible';
+    adminBtn.classList.add('visible');
+    // Belt and suspenders: also force via style with !important flag
+    adminBtn.setAttribute('style',
+      'display:inline-flex!important;visibility:visible!important;opacity:1!important;');
   }
 }
 
