@@ -447,24 +447,29 @@ const ADMIN_PHONES = ['9789855222'];
 // ╔══════════════════════════════════════════════════════════════════╗
 // ║  SECTION 2 — MEMBERS LIST  (edit this to add/remove members)    ║
 // ║  Each number on its own line inside the [ ] brackets            ║
-// ║  Format:  '9876543210',  (with quotes and comma)                ║
+// ║  Indian numbers: '9876543210',                                  ║
+// ║  International:  '+447911123456',  (+ country code + number)    ║
 // ╚══════════════════════════════════════════════════════════════════╝
-
-let MEMBER_NAMES = {
-  "9789855222": "Admin / Owner",
-  "7708358616": "Soundara Rajan",
-  "+96598969279": "Chadramouli",
-  "8722337751": "Karuppusamy",
-  "9845441232": "Saravanan",
-  "9791366580": "Chinnaraja Kesavan"
-};
-  // Indian numbers (10 digits):   '9876543210',
-  // International (with + code):  '+447911123456',   // UK
-  //                               '+971501234567',   // UAE
-  //                               '+6591234567',     // Singapore
-  //                               '+15551234567',    // USA
+let MEMBERS = [
+  '9789855222',      // Admin / Owner
+  '7708358616',      // Soundara Rajan
+  '+96598969279',    // Chandramouli (Kuwait)
+  '8722337751',      // Karuppusamy
+  '9845441232',      // Saravanan
+  '9791366580',      // Chinnaraja Kesavan
+  // ─── Add new members below this line ───
+  // Indian:        '9876543210',    // Member Name
+  // International: '+447911123456', // UK Member
+  // UAE:           '+971501234567', // UAE Member
 ];
-
+let MEMBER_NAMES = {
+  '9789855222':   'Admin / Owner',
+  '7708358616':   'Soundara Rajan',
+  '+96598969279': 'Chandramouli',
+  '8722337751':   'Karuppusamy',
+  '9845441232':   'Saravanan',
+  '9791366580':   'Chinnaraja Kesavan',
+};
 
 
 // ╔══════════════════════════════════════════════════════════════════╗
