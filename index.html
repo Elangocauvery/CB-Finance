@@ -242,8 +242,8 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
         <div class="astat"><div class="asv" id="stOnline" style="color:#4ade80">—</div><div class="asl">Online</div></div>
       </div>
       <div class="a-toolbar">
-        <input class="a-inp" id="newPhone" type="tel" maxlength="10" placeholder="10-digit number"
-               oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)"
+        <input class="a-inp" id="newPhone" type="tel" maxlength="16" placeholder="Number with country code (e.g. +44 7911 123456)"
+               oninput="sanitizePhone(this)"
                onkeydown="if(event.key==='Enter')addMember()">
         <input class="a-inp" id="newName" type="text" maxlength="30" placeholder="Name (optional)"
                style="max-width:150px" onkeydown="if(event.key==='Enter')addMember()">
@@ -256,7 +256,11 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
                oninput="renderMembers(this.value)">
       </div>
       <div class="a-list" id="memberList"></div>
-      <div class="a-footer">Changes are session-only. Use 📋 Copy List → paste into index.html on GitHub to save permanently.</div>
+      <div class="a-footer">
+  ✅ Members are <strong>automatically saved</strong> on this device via browser storage.<br>
+  To share the list across devices: click 📋 Copy List → paste into index.html on GitHub.<br>
+  <span style="cursor:pointer;color:#f87171" onclick="clearStoredMembers()">🗑️ Clear all stored members</span>
+</div>
     </div>
 
     <!-- Bulk Import -->
@@ -282,7 +286,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
           <div class="hs-n">1</div>
           <div class="hs-c">
             <h4>Add Members</h4>
-            <p>Type number + name → Add. For many at once use the 📥 Bulk Import tab. After adding click 📋 Copy List and paste into <code>index.html</code> on GitHub to make permanent.</p>
+            <p>Type number + name → Add. For Indian numbers: <code>9789855222</code>. For international (abroad): include country code like <code>+447911123456</code> or <code>+971501234567</code>. For many at once use 📥 Bulk Import. After adding click 📋 Copy List → paste into <code>index.html</code> on GitHub to make permanent.</p>
           </div>
         </div>
         <div class="howto-step">
@@ -332,9 +336,9 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
   <div class="login-card">
     <div class="step active" id="step1">
       <div class="step-title">🔐 Member Verification</div>
-      <div class="step-hint">Enter your registered mobile number to access all CB Research reports.</div>
-      <input class="inp" id="phoneInput" type="tel" maxlength="10" placeholder="10-digit mobile number"
-             oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)"
+      <div class="step-hint">Enter your registered mobile number. Include country code for international numbers (e.g. +44 7911 123456 or 9789855222).</div>
+      <input class="inp" id="phoneInput" type="tel" maxlength="16" placeholder="Mobile number (e.g. +44 7911 123456)"
+             oninput="sanitizePhone(this)"
              onkeydown="if(event.key==='Enter')sendOTP()">
       <div class="err" id="err1"></div>
       <button class="btn" onclick="sendOTP()">Get OTP →</button>
@@ -448,9 +452,11 @@ const ADMIN_PHONES = ['9789855222'];
 let MEMBERS = [
   '9789855222',   // Admin / Owner
   // Add members below — one per line:
-  // '9876543210',
-  // '8765432109',
-  // '7654321098',
+  // Indian numbers (10 digits):   '9876543210',
+  // International (with + code):  '+447911123456',   // UK
+  //                               '+971501234567',   // UAE
+  //                               '+6591234567',     // Singapore
+  //                               '+15551234567',    // USA
 ];
 let MEMBER_NAMES = {
   '9789855222': 'Admin / Owner',
@@ -550,6 +556,35 @@ function loadReports(){
 }
 
 // ════════════════════════════════════════════════════════════════════
+// PHONE HELPERS — supports Indian (10-digit) and international (+CC format)
+// ════════════════════════════════════════════════════════════════════
+
+function sanitizePhone(input){
+  // Allow: digits, +, spaces, hyphens, parentheses
+  // Remove anything else
+  let val = input.value.replace(/[^\d\+\s\-\(\)]/g, '');
+  // Limit length to 16 chars (+ and up to 15 digits per E.164 standard)
+  if(val.length > 16) val = val.slice(0, 16);
+  input.value = val;
+}
+
+function normalizePhone(raw){
+  // Normalize phone to a consistent storage format
+  // Remove spaces, hyphens, parentheses — keep + and digits
+  return raw.replace(/[\s\-\(\)]/g, '').trim();
+}
+
+function isValidPhone(phone){
+  const normalized = normalizePhone(phone);
+  // Must have at least 7 digits (shortest valid phone number)
+  const digits = normalized.replace(/\D/g, '');
+  if(digits.length < 7) return false;
+  // If it starts with +, must have country code (at least 8 digits total)
+  if(normalized.startsWith('+') && digits.length < 8) return false;
+  return true;
+}
+
+// ════════════════════════════════════════════════════════════════════
 // AUTH
 // ════════════════════════════════════════════════════════════════════
 let currentPhone='', generatedOTP='', countdown=null, adminOK=false;
@@ -571,7 +606,44 @@ function setWatermark(phone){
   document.getElementById('welcomeName').textContent = MEMBER_NAMES[phone] || m;
 }
 
+// ── Load members from localStorage on startup ────────────────────
+function loadStoredMembers(){
+  try {
+    const stored = localStorage.getItem('cb_members');
+    if(stored){
+      const data = JSON.parse(stored);
+      // Merge stored members with hardcoded list (avoid duplicates)
+      if(data.phones && Array.isArray(data.phones)){
+        data.phones.forEach(p => {
+          // Check by normalized form to avoid duplicates with different formatting
+          const norm = normalizePhone(p);
+          if(!MEMBERS.some(m => normalizePhone(m) === norm)) MEMBERS.push(p);
+        });
+      }
+      if(data.names){
+        Object.assign(MEMBER_NAMES, data.names);
+      }
+    }
+  } catch(e){ console.warn('Could not load stored members:', e); }
+}
+
+// ── Save members to localStorage ─────────────────────────────────
+function saveMembers(){
+  try {
+    // Only save members NOT in the hardcoded list (those are always there)
+    // Actually save ALL for simplicity — hardcoded ones will just be duplicated-safe
+    localStorage.setItem('cb_members', JSON.stringify({
+      phones: MEMBERS,
+      names:  MEMBER_NAMES,
+      saved:  Date.now()
+    }));
+  } catch(e){ console.warn('Could not save members:', e); }
+}
+
 window.addEventListener('load', ()=>{
+  // Load any members previously added via Admin Panel
+  loadStoredMembers();
+
   const s = sessionStorage.getItem('cb_portal_v2');
   if(s){
     try{
@@ -592,12 +664,16 @@ function acceptTerms(){ document.getElementById('termsModal').classList.remove('
 function showTerms(){   document.getElementById('termsModal').classList.add('show'); }
 
 function sendOTP(){
-  const phone = document.getElementById('phoneInput').value.trim();
+  const raw  = document.getElementById('phoneInput').value.trim();
+  const phone = normalizePhone(raw);
   const err   = document.getElementById('err1');
-  if(phone.length!==10){ showErr(err,'Enter a valid 10-digit number.'); return; }
+  if(!isValidPhone(phone)){ showErr(err,'Enter a valid phone number. For international add country code e.g. +447911123456'); return; }
   if(!MEMBERS.length){ showErr(err,'⛔ No members configured. Admin: add numbers to MEMBERS list.'); return; }
-  if(!MEMBERS.includes(phone)){ showErr(err,'⛔ Number not registered. Contact your group admin.'); return; }
-  currentPhone = phone;
+  // Check normalized form
+  const found = MEMBERS.some(m => normalizePhone(m) === phone);
+  if(!found){ showErr(err,'⛔ Number not registered. Contact your group admin.'); return; }
+  // Get the exact stored form (may have different formatting)
+  currentPhone = MEMBERS.find(m => normalizePhone(m) === phone) || phone;
   generatedOTP = Math.floor(100000+Math.random()*900000).toString();
   setTimeout(()=>{
     document.getElementById('otpCode').textContent = generatedOTP;
@@ -763,9 +839,10 @@ function updateStats(){
 
 function addMember(){
   if(!adminOK) return;
-  const phone = document.getElementById('newPhone').value.trim();
-  const name  = document.getElementById('newName').value.trim();
-  if(phone.length!==10){ showAdminMsg('❌ Enter valid 10-digit number','#f87171'); return; }
+  const rawPhone2 = document.getElementById('newPhone').value.trim();
+  const phone     = normalizePhone(rawPhone2);
+  const name      = document.getElementById('newName').value.trim();
+  if(!isValidPhone(phone)){ showAdminMsg('❌ Enter valid phone number (e.g. +447911123456 or 9789855222)','#f87171'); return; }
   if(MEMBERS.includes(phone)){ showAdminMsg('⚠️ Already in list','#fbbf24'); return; }
   MEMBERS.push(phone);
   if(name) MEMBER_NAMES[phone]=name;
@@ -774,7 +851,8 @@ function addMember(){
   document.getElementById('newPhone').focus();
   renderMembers(document.getElementById('memberSearch').value);
   updateStats();
-  showAdminMsg('✅ Added '+phone,'#4ade80');
+  saveMembers();  // ← persist to localStorage immediately
+  showAdminMsg('✅ Added '+phone+' — saved permanently','#4ade80');
   setTimeout(()=>{
     const row=document.getElementById('row-'+phone);
     if(row){ row.style.background='rgba(74,222,128,.1)'; row.style.borderColor='rgba(74,222,128,.3)';
@@ -790,6 +868,7 @@ function removeMember(phone){
   delete MEMBER_NAMES[phone];
   renderMembers(document.getElementById('memberSearch').value);
   updateStats();
+  saveMembers();  // ← persist removal to localStorage
   showAdminMsg('🗑️ Removed '+phone,'#f87171');
 }
 
@@ -813,9 +892,9 @@ function bulkImport(){
   let added=0,skipped=0,invalid=0;
   text.split('\n').map(l=>l.trim()).filter(l=>l).forEach(line=>{
     const parts=line.split(',');
-    const phone=parts[0].trim().replace(/\D/g,'');
+    const phone=normalizePhone(parts[0].trim());
     const name=(parts[1]||'').trim();
-    if(phone.length!==10){ invalid++; return; }
+    if(!isValidPhone(phone)){ invalid++; return; }
     if(MEMBERS.includes(phone)){ skipped++; return; }
     MEMBERS.push(phone);
     if(name) MEMBER_NAMES[phone]=name;
@@ -826,7 +905,18 @@ function bulkImport(){
   res.className='import-result '+(added>0?'import-ok':'import-err');
   res.style.display='block';
   document.getElementById('importText').value='';
-  if(added>0) showAdminMsg('✅ '+added+' members added','#4ade80');
+  if(added>0){
+    saveMembers();  // ← persist bulk import to localStorage
+    showAdminMsg('✅ '+added+' members saved permanently','#4ade80');
+  }
+}
+
+function clearStoredMembers(){
+  if(!adminOK) return;
+  if(!confirm('Clear ALL stored members? Hardcoded members in the file will remain.')) return;
+  localStorage.removeItem('cb_members');
+  // Reset to only hardcoded members
+  location.reload();
 }
 
 function showAdminMsg(msg,color){
