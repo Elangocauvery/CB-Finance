@@ -420,54 +420,33 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
     </div>
   </div>
   <div class="portal-body">
+
     <div class="portal-welcome">
       <h2>Welcome, <span class="pw-name" id="welcomeName">Member</span> 👋</h2>
-      <p>Your exclusive CB Research reports are below. Click any report to open the full interactive dashboard in a new tab.</p>
+      <p>All CB Research reports are listed below. New reports appear here automatically — no update needed.</p>
     </div>
+
+    <!-- Stats bar -->
     <div class="stats-bar">
-      <div class="stat-tile"><div class="stat-val" style="color:#6366f1">2</div><div class="stat-lbl">Reports Live</div></div>
-      <div class="stat-tile"><div class="stat-val" style="color:#4ade80">7</div><div class="stat-lbl">Companies</div></div>
+      <div class="stat-tile"><div class="stat-val" style="color:#6366f1" id="statReports">—</div><div class="stat-lbl">Reports Live</div></div>
+      <div class="stat-tile"><div class="stat-val" style="color:#4ade80">May 2026</div><div class="stat-lbl">Latest Update</div></div>
       <div class="stat-tile"><div class="stat-val" style="color:#f59e0b">Q4 FY26</div><div class="stat-lbl">Latest Quarter</div></div>
-      <div class="stat-tile"><div class="stat-val" style="color:#34d399">May 2026</div><div class="stat-lbl">Last Updated</div></div>
-    </div>
-    <div class="notice"><span style="font-size:18px;flex-shrink:0">💡</span><div>Each report opens as a full interactive dashboard with charts, CB Assist Q&amp;A, analyst ratings &amp; more. <strong>Bookmark this page</strong> — new reports appear here automatically.</div></div>
-
-    <div class="section-head">📊 Live Reports — May 2026</div>
-    <div class="reports-grid">
-      <a class="report-card new-badge" href="Sector_analysis_May26.html" target="_blank">
-        <div class="rc-icon">🚗</div>
-        <div class="rc-sector">Equity Research · Auto / PV Sector</div>
-        <div class="rc-title">India PV Sector — Q4 FY26</div>
-        <div class="rc-meta">Tata Motors · Maruti Suzuki · Hyundai India · M&amp;M — full Q4 &amp; FY26 analysis with JLR deep dive, EV tracker, analyst ratings and CB Assist Q&amp;A.</div>
-        <div class="rc-tags">
-          <span class="rc-tag tag-auto">PV Sector</span>
-          <span class="rc-tag tag-q4">Q4 FY26</span>
-          <span class="rc-tag" style="background:rgba(74,222,128,.15);color:#4ade80;border:1px solid rgba(74,222,128,.25)">EV Tracker</span>
-          <span class="rc-tag" style="background:rgba(139,92,246,.15);color:#c084fc;border:1px solid rgba(139,92,246,.25)">CB Assist</span>
-        </div>
-        <div class="rc-footer"><span class="rc-date">15 May 2026</span><span class="rc-open">Open Dashboard →</span></div>
-      </a>
-      <a class="report-card new-badge" href="Sector_analysis_Steel_May26.html" target="_blank">
-        <div class="rc-icon">🏭</div>
-        <div class="rc-sector">Equity Research · Steel / Metals</div>
-        <div class="rc-title">India Steel Sector — Q4 FY26</div>
-        <div class="rc-meta">Tata Steel · JSW Steel · SAIL — volumes, EBITDA/tonne, safeguard duty, FTA impact, JSW BPSL exceptional explained, analyst views.</div>
-        <div class="rc-tags">
-          <span class="rc-tag tag-steel">Steel</span>
-          <span class="rc-tag tag-q4">Q4 FY26</span>
-          <span class="rc-tag" style="background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.25)">3 Companies</span>
-          <span class="rc-tag" style="background:rgba(139,92,246,.15);color:#c084fc;border:1px solid rgba(139,92,246,.25)">CB Assist</span>
-        </div>
-        <div class="rc-footer"><span class="rc-date">15 May 2026</span><span class="rc-open">Open Dashboard →</span></div>
-      </a>
+      <div class="stat-tile"><div class="stat-val" style="color:#34d399" id="statUpdated">—</div><div class="stat-lbl">Last Refreshed</div></div>
     </div>
 
-    <div class="section-head">🔜 Coming Soon</div>
-    <div class="reports-grid">
-      <div class="report-card coming"><div class="rc-icon">🏦</div><div class="rc-sector">Banking Sector</div><div class="rc-title">India Banking — Q4 FY26</div><div class="rc-meta">HDFC Bank · ICICI · SBI · Axis Bank — NIM, asset quality, credit growth.</div><div class="rc-tags"><span class="rc-tag tag-bank">Banking</span><span class="rc-tag tag-q4">Q4 FY26</span></div><div class="rc-footer"><span class="rc-date">Expected: Jun 2026</span><span class="rc-open" style="color:#475569">Coming Soon</span></div></div>
-      <div class="report-card coming"><div class="rc-icon">🏗️</div><div class="rc-sector">Infrastructure</div><div class="rc-title">India Infra — Q4 FY26</div><div class="rc-meta">L&amp;T · IRB · KNR — order books, execution pace, capex cycle.</div><div class="rc-tags"><span class="rc-tag" style="background:rgba(168,85,247,.15);color:#c084fc;border:1px solid rgba(168,85,247,.25)">Infra</span><span class="rc-tag tag-q4">Q4 FY26</span></div><div class="rc-footer"><span class="rc-date">Expected: Jun 2026</span><span class="rc-open" style="color:#475569">Coming Soon</span></div></div>
-      <div class="report-card coming"><div class="rc-icon">💊</div><div class="rc-sector">Pharma Sector</div><div class="rc-title">India Pharma — Q4 FY26</div><div class="rc-meta">Sun Pharma · Dr Reddy's · Cipla — US generics, domestic formulations, API margins.</div><div class="rc-tags"><span class="rc-tag tag-bank">Pharma</span><span class="rc-tag tag-q4">Q4 FY26</span></div><div class="rc-footer"><span class="rc-date">Expected: Jul 2026</span><span class="rc-open" style="color:#475569">Coming Soon</span></div></div>
+    <!-- Loading state -->
+    <div id="reportsLoading" style="text-align:center;padding:40px 20px">
+      <div style="width:36px;height:36px;border:3px solid rgba(99,102,241,.2);border-top-color:#6366f1;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px"></div>
+      <div style="font-size:13px;color:#6b7280">Loading your reports…</div>
     </div>
+
+    <!-- Error state -->
+    <div id="reportsError" style="display:none;background:#fff1f2;border:1px solid #fca5a5;border-radius:12px;padding:20px;margin-bottom:20px;font-size:13px;color:#dc2626"></div>
+
+    <!-- Reports grid — auto-populated -->
+    <div class="section-head" id="reportsHeading" style="display:none">📊 All Reports</div>
+    <div class="reports-grid" id="reportsGrid"></div>
+
   </div>
   <div class="portal-footer">
     <strong style="color:#475569">© 2026 CB Research &amp; Analytics. All Rights Reserved.</strong><br>
@@ -477,6 +456,219 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 </div>
 
 <script>
+
+// ════════════════════════════════════════════════════════════════
+// AUTO REPORT LOADER — reads GitHub repo file list automatically
+// New files appear on the portal without ANY manual editing
+// ════════════════════════════════════════════════════════════════
+
+// Your GitHub repo details — update if you rename the repo
+const GITHUB_USER = 'Elangocauvery';
+const GITHUB_REPO = 'CB-Finance';
+
+// Files to EXCLUDE from the portal (system files, not reports)
+const EXCLUDE_FILES = ['index.html', 'README.md', 'readme.md', '.gitignore'];
+
+// ── REPORT METADATA ──────────────────────────────────────────────
+// Maps filename keywords → icon, sector label, description, tags
+// Add entries here when you add new sectors — OR leave empty and
+// the portal will auto-generate a card with a generic label
+const FILE_META = {
+  // ── PV / Auto ──
+  'pv_sector':      { icon:'🚗', sector:'Auto / PV Sector',     tags:['PV Sector','Auto'],      color:'#3b82f6' },
+  'Sector_analysis_May26': { icon:'🚗', sector:'Auto / PV Sector — Premium',
+                             desc:'Tata Motors · Maruti Suzuki · Hyundai India · M&M — Q4 FY26 full analysis with JLR deep dive, EV tracker, CB Assist and analyst ratings.',
+                             tags:['PV Sector','Q4 FY26','CB Assist','Premium'], color:'#3b82f6' },
+  // ── Steel ──
+  'steel':          { icon:'🏭', sector:'Steel / Metals',        tags:['Steel','Q4 FY26'],       color:'#f97316' },
+  // ── Banking / SBI ──
+  'sbi':            { icon:'🏦', sector:'Banking — SBI',          tags:['Banking','Q4 FY26','PSU'],color:'#10b981' },
+  'bank':           { icon:'🏦', sector:'Banking Sector',         tags:['Banking'],                color:'#10b981' },
+  // ── MCX / Exchange ──
+  'mcx':            { icon:'📈', sector:'Commodity Exchange',     tags:['MCX','Exchange','Q4 FY26'],color:'#6366f1' },
+  // ── EMS / Electronics ──
+  'ems':            { icon:'⚡', sector:'EMS / Electronics MFG',  tags:['EMS','PLI Scheme'],      color:'#8b5cf6' },
+  // ── Pharma ──
+  'pharma':         { icon:'💊', sector:'Pharma / Healthcare',    tags:['Pharma','Healthcare'],   color:'#059669' },
+  // ── Hotels / Hospitality ──
+  'hotel':          { icon:'🏨', sector:'Hospitality / Hotels',   tags:['Hotels','Hospitality'],  color:'#f59e0b' },
+  // ── FMCG ──
+  'fmcg':           { icon:'🛒', sector:'FMCG / Consumer',        tags:['FMCG','Consumer'],       color:'#ec4899' },
+  // ── REIT / InvIT ──
+  'reit':           { icon:'🏢', sector:'REIT / InvIT',           tags:['REIT','InvIT'],          color:'#7c3aed' },
+  'invit':          { icon:'🏗️', sector:'InvIT / Infrastructure', tags:['InvIT','Infra'],         color:'#7c3aed' },
+  // ── Gold / Commodity ──
+  'gold':           { icon:'🥇', sector:'Commodity — Gold',       tags:['Gold','Commodity'],      color:'#d97706' },
+  // ── Alcobev ──
+  'alcobev':        { icon:'🥃', sector:'Alcobev / Beverages',    tags:['Alcobev','Consumer'],    color:'#b45309' },
+  // ── Infra ──
+  'infra':          { icon:'🏗️', sector:'Infrastructure',         tags:['Infra','Capex'],         color:'#0891b2' },
+  // ── IT / Tech ──
+  'it_sector':      { icon:'💻', sector:'IT / Technology',        tags:['IT','Tech'],             color:'#4338ca' },
+  // ── Cement ──
+  'cement':         { icon:'🏛️', sector:'Cement / Building',      tags:['Cement','Infra'],        color:'#78716c' },
+  // ── Realty ──
+  'realt':          { icon:'🏘️', sector:'Real Estate',            tags:['Realty','Housing'],      color:'#0d9488' },
+  // ── Power / Energy ──
+  'power':          { icon:'⚡', sector:'Power / Energy',          tags:['Power','Energy'],        color:'#ca8a04' },
+  'energy':         { icon:'🔋', sector:'Energy / Renewables',    tags:['Energy','Green'],        color:'#15803d' },
+};
+
+// ── MATCH FILE TO METADATA ────────────────────────────────────────
+function getFileMeta(filename){
+  const lower = filename.toLowerCase();
+  // Try exact filename match first
+  for(const key of Object.keys(FILE_META)){
+    if(filename === key + '.html' || filename.startsWith(key)){
+      return FILE_META[key];
+    }
+  }
+  // Then try keyword match
+  for(const key of Object.keys(FILE_META)){
+    if(lower.includes(key.toLowerCase())){
+      return FILE_META[key];
+    }
+  }
+  // Generic fallback
+  return { icon:'📊', sector:'Sector Analysis', tags:['Research'], color:'#6366f1' };
+}
+
+// ── FORMAT FILENAME AS TITLE ──────────────────────────────────────
+function formatTitle(filename){
+  return filename
+    .replace('.html','')
+    .replace(/_/g,' ')
+    .replace(/-/g,' ')
+    .replace(/fy26/gi,'FY26')
+    .replace(/q4/gi,'Q4')
+    .replace(/q3/gi,'Q3')
+    .replace(/mcx/gi,'MCX')
+    .replace(/sbi/gi,'SBI')
+    .replace(/ems/gi,'EMS')
+    .replace(/pv/gi,'PV')
+    .replace(/fmcg/gi,'FMCG')
+    .replace(/reit/gi,'REIT')
+    .replace(/invit/gi,'InvIT')
+    .replace(/\w/g, l => l.toUpperCase())
+    .trim();
+}
+
+// ── BUILD REPORT CARD HTML ────────────────────────────────────────
+function buildCard(file){
+  const meta  = getFileMeta(file.name);
+  const title = meta.title || formatTitle(file.name);
+  const desc  = meta.desc  || `Interactive sector analysis dashboard — charts, financials, risks, analyst views and more.`;
+  const date  = file.date  || '2026';
+  const isPremium = file.name.startsWith('Sector_analysis');
+
+  const tagsHtml = (meta.tags || ['Research']).map(tag =>
+    `<span class="rc-tag" style="background:${meta.color}22;color:${meta.color};border:1px solid ${meta.color}44">${tag}</span>`
+  ).join('');
+
+  return `
+    <a class="report-card${isPremium ? ' new-badge' : ''}" href="${file.name}" target="_blank">
+      <div class="rc-icon">${meta.icon}</div>
+      <div class="rc-sector">${meta.sector}</div>
+      <div class="rc-title">${title}</div>
+      <div class="rc-meta">${desc}</div>
+      <div class="rc-tags">${tagsHtml}</div>
+      <div class="rc-footer">
+        <span class="rc-date">${date}</span>
+        <span class="rc-open">Open Dashboard →</span>
+      </div>
+    </a>`;
+}
+
+// ── FETCH FILES FROM GITHUB API ───────────────────────────────────
+async function loadReports(){
+  const grid    = document.getElementById('reportsGrid');
+  const loading = document.getElementById('reportsLoading');
+  const errBox  = document.getElementById('reportsError');
+  const heading = document.getElementById('reportsHeading');
+  const statRep = document.getElementById('statReports');
+  const statUpd = document.getElementById('statUpdated');
+
+  try {
+    // GitHub API — get list of all files in root of repo
+    // No auth needed for public repos (60 requests/hour per IP)
+    const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`;
+    let resp;
+    try {
+      resp = await fetch(apiUrl, {
+        headers: { 'Accept': 'application/vnd.github.v3+json' },
+        mode: 'cors'
+      });
+    } catch(fetchErr){
+      throw new Error('Network error — check internet connection');
+    }
+    if(!resp.ok) throw new Error(`GitHub API returned ${resp.status}`);
+    const files = await resp.json();
+
+    // Filter to only .html files, exclude system files
+    const reports = files
+      .filter(f =>
+        f.type === 'file' &&
+        f.name.endsWith('.html') &&
+        !EXCLUDE_FILES.includes(f.name)
+      )
+      .sort((a,b) => a.name.localeCompare(b.name));  // alphabetical
+
+    if(reports.length === 0){
+      errBox.textContent = '⚠️ No report files found in the repository yet.';
+      errBox.style.display = 'block';
+      loading.style.display = 'none';
+      return;
+    }
+
+    // Build all cards
+    grid.innerHTML = reports.map(f => buildCard({
+      name: f.name,
+      date: '2026',
+    })).join('');
+
+    // Update stats
+    statRep.textContent = reports.length;
+    statUpd.textContent = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+
+    // Show grid, hide loader
+    loading.style.display = 'none';
+    heading.style.display  = '';
+    errBox.style.display   = 'none';
+
+    console.log(`✅ Loaded ${reports.length} reports from GitHub`);
+
+  } catch(err){
+    console.warn('GitHub API unavailable:', err.message, '— using fallback list');
+    loading.style.display = 'none';
+    // Show fallback silently — no scary error message to members
+    const knownFiles = [
+      'Sector_analysis_May26.html',
+      'india_pv_sector_q4fy26_analysis.html',
+      'india_steel_fy26_dashboard.ai.html',
+      'SBI_Q4FY26_Analysis.html',
+      'MCX_Q4FY26_Analysis.html',
+      'EMS_Sector_Analysis_FY26.html',
+      'india-pharma-analysis.html',
+      'india-hotels-analysis.html',
+      'india-fmcg-analysis.html',
+      'india-reit-invit-dashboard.html',
+      'india_alcobev_fy26_dashboard.html',
+      'gold_analysis.html',
+    ];
+    grid.innerHTML = knownFiles.map(name => buildCard({name, date:'2026'})).join('');
+    heading.style.display = '';
+    statRep.textContent   = knownFiles.length;
+    statUpd.textContent   = 'Cached';
+  }
+}
+
+// ── TRIGGER ON LOGIN ──────────────────────────────────────────────
+// Called from enterPortal() so reports load only after auth
+function initReports(){
+  loadReports();
+}
+
+
 
 
 // ════════════════════════════════════════════════
@@ -547,16 +739,8 @@ document.addEventListener('keydown',e=>{
 });
 document.addEventListener('copy',e=>{e.preventDefault();e.clipboardData.setData('text/plain','© CB Research 2026');});
 window.addEventListener('beforeprint',e=>{e.preventDefault();alert('Printing disabled.');window.stop();});
-(function(){
-  const mob=/Android|iPhone|iPad|iPod|Mobile|Tablet/i.test(navigator.userAgent)||('ontouchstart' in window)||window.innerWidth<=900;
-  if(mob)return;
-  let s=0;
-  setInterval(()=>{
-    if(window.outerWidth-window.innerWidth>250&&window.outerHeight-window.innerHeight>250)s++;
-    else s=0;
-    if(s>=3)document.body.innerHTML='<div style="background:#0a0f1e;color:#f87171;height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;text-align:center;padding:20px">⛔ Developer tools detected.<br>CB Research · Access suspended.<br>© CB Research 2026</div>';
-  },2000);
-})();
+// Anti-debug removed — caused false positives on mobile browsers
+// Content protection: right-click disabled, copy disabled, print disabled
 
 // ── WATERMARK ─────────────────────────────────────
 function setWatermark(phone){
@@ -718,15 +902,16 @@ function enterPortal(){
   const portal = document.getElementById('portal');
   portal.style.display = 'flex';
   
-  // Show admin button using class (works reliably on all mobile browsers)
-  // Using class + !important beats any CSS specificity issue
+  // Show admin button — class + forced style (works on all mobile browsers)
   const adminBtn = document.getElementById('adminBtn');
   if(adminBtn){
     adminBtn.classList.add('visible');
-    // Belt and suspenders: also force via style with !important flag
     adminBtn.setAttribute('style',
       'display:inline-flex!important;visibility:visible!important;opacity:1!important;');
   }
+
+  // Auto-load all reports from GitHub
+  initReports();
 }
 
 // ── LOGOUT ────────────────────────────────────────
@@ -936,7 +1121,9 @@ function showErr(el,msg){el.textContent=msg;el.style.display='block';}
 function hideErr(el){el.style.display='none';}
 
 
+
 </script>
+
 
 
 </body>
