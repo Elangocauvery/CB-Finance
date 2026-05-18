@@ -270,10 +270,10 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
       <div class="import-pane">
         <h4>📥 Bulk Import Members</h4>
         <p>Paste a list of phone numbers below — one per line. You can include names after a comma. Example:<br>
-        <code>9789855222, Rajesh Kumar</code><br>
+        <code>9876543210, Rajesh Kumar</code><br>
         <code>8765432109</code><br>
         <code>7654321098, Priya Sharma</code></p>
-        <textarea class="import-textarea" id="importText" placeholder="9789855222, Member Name&#10;8765432109&#10;7654321098, Another Name&#10;..."></textarea>
+        <textarea class="import-textarea" id="importText" placeholder="9876543210, Member Name&#10;8765432109&#10;7654321098, Another Name&#10;..."></textarea>
         <button class="btn-primary" onclick="bulkImport()">📥 Import All Numbers</button>
         <div class="import-result" id="importResult"></div>
         <p style="margin-top:8px;font-size:11px;color:#475569">After importing, click 📋 Copy List in the Members tab and paste into index.html on GitHub to make permanent.</p>
@@ -315,7 +315,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
           <div class="hs-num">5</div>
           <div class="hs-content">
             <h4>Change Admin Password</h4>
-            <p>Open <code>index.html</code> on GitHub → pencil ✏️ → find <code>const ADMIN_PASSWORD = '@Ela_Pra!'</code> → change the password → Commit.</p>
+            <p>Go to <strong>emn178.github.io/online-tools/sha256.html</strong> → type your new password → copy the hash → open <code>index.html</code> on GitHub → pencil ✏️ → find <code>ADMIN_PWD_HASH</code> → replace the hash value → Commit. Your real password is never stored in the code.</p>
           </div>
         </div>
         <div class="howto-step">
@@ -466,11 +466,21 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 
 // ── ADMIN PASSWORD ────────────────────────────────
 // Change this before sharing!
-const ADMIN_PASSWORD = '@Ela_Pra!';
+// ═══════════════════════════════════════════════════════════
+// ADMIN PASSWORD — stored as SHA-256 hash for security
+// The real password is NEVER stored in this file
+// To change password: replace the hash below with the
+// SHA-256 hash of your new password
+// To change password:
+// 1. Go to: https://emn178.github.io/online-tools/sha256.html
+// 2. Type your new password → copy the hash shown
+// 3. Replace the hash value below with your new hash
+// ═══════════════════════════════════════════════════════════
+const ADMIN_PWD_HASH = '35ee576ebbef5af726476911fbc6ebc7469a9fa194106f6f1a7ff0da485d2e94';
 
 // ── ADMIN PHONES ──────────────────────────────────
 // These numbers get the 🔧 Admin Panel button
-const ADMIN_PHONES = ['9789855222']; // ← Put your number here
+const ADMIN_PHONES = ['9999999999']; // ← Put your number here
 
 // ── GOOGLE SHEETS MEMBER DATABASE ────────────────
 // HOW TO SET UP (one time only — 3 minutes):
@@ -485,9 +495,13 @@ const SHEET_CSV_URL = ''; // ← Paste your Google Sheet CSV URL here
 // ── LOCAL MEMBERS LIST (fallback / small groups) ──
 // Used when SHEET_CSV_URL is empty
 // For large groups use Google Sheets above instead
+// ═══════════════════════════════════════════════════════════════
+// STEP 1: Add YOUR phone number below to get access as admin
+// Remove the // at the start of the line to activate a number
+// After login, use Admin Panel to add all other members easily
+// ═══════════════════════════════════════════════════════════════
 let MEMBERS = [
-  // '9789855222',  // Your number (admin)
-  // '9789855222',  // Member name
+  // '9876543210',   // ← Remove the // and put YOUR number here
 ];
 let MEMBER_NAMES = {};
 
@@ -625,24 +639,15 @@ async function sendOTP(){
   btn.disabled    = false;
   btn.textContent = 'Get OTP →';
 
-  // SECURITY CHECK
+  // If MEMBERS is still empty after loading, block everyone
   if(MEMBERS.length === 0){
-    // First time setup — allow first person in as admin to configure
-    // This only works when BOTH local MEMBERS is empty AND no sheet URL set
-    if(!SHEET_CSV_URL){
-      // True first-time setup — let owner in to configure
-      MEMBERS.push(phone);
-      ADMIN_PHONES.length = 0;
-      ADMIN_PHONES.push(phone);
-      MEMBER_NAMES[phone] = 'Admin / Owner';
-      console.log('First-time setup: admin registered as', phone);
-    } else {
-      // Sheet is set but returned empty
-      showErr(err,'⛔ Member list is empty. Check your Google Sheet has phone numbers.');
-      return;
-    }
+    showErr(err,'⛔ Access not configured yet. Admin: add phone numbers to the Members list on GitHub.');
+    return;
   }
 
+  // ── STRICT SECURITY CHECK ────────────────────────────────
+  // No bypass. Phone must be in MEMBERS list OR Google Sheet.
+  // If MEMBERS is empty and no Sheet URL → nobody gets in.
   if(!MEMBERS.includes(phone)){
     showErr(err,'⛔ This number is not registered. Contact your group admin for access.');
     return;
@@ -751,10 +756,21 @@ function openAdmin(){
 function closeAdmin(){document.getElementById('adminModal').classList.remove('show');adminUnlocked=false;}
 document.getElementById('adminModal').addEventListener('click',e=>{if(e.target===document.getElementById('adminModal'))closeAdmin();});
 
-function checkAdminPwd(){
-  const pwd=document.getElementById('adminPwdInput').value;
-  const err=document.getElementById('adminErr');
-  if(pwd===ADMIN_PASSWORD){
+// Hash function using Web Crypto API (built into all browsers — no library needed)
+async function sha256(message){
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray  = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function checkAdminPwd(){
+  const pwd = document.getElementById('adminPwdInput').value;
+  const err = document.getElementById('adminErr');
+  // Hash what user typed and compare to stored hash
+  // Real password is never in the code
+  const enteredHash = await sha256(pwd);
+  if(enteredHash === ADMIN_PWD_HASH){
     adminUnlocked=true;
     document.getElementById('adminLoginGate').style.display='none';
     document.getElementById('adminDash').style.display='flex';
