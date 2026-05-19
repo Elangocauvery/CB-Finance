@@ -476,8 +476,8 @@ function setWatermark(phone){
 
 window.addEventListener('load',()=>{
   loadStored();
-  const s=sessionStorage.getItem('cb_pv2');
-  if(s){ try{ const d=JSON.parse(s); if(Date.now()-d.time<86400000){ currentPhone=d.phone; setWatermark(d.phone); enterPortal(); return; } }catch(e){} sessionStorage.removeItem('cb_pv2'); }
+  const s=localStorage.getItem('cb_pv2');
+  if(s){ try{ const d=JSON.parse(s); if(Date.now()-d.time<86400000){ currentPhone=d.phone; setWatermark(d.phone); enterPortal(); return; } }catch(e){} localStorage.removeItem('cb_pv2'); }
   document.getElementById('termsModal').classList.add('show');
 });
 
@@ -518,7 +518,7 @@ function verifyOTP(){
   hideErr(err); clearInterval(countdownTimer);
   document.getElementById('otpBox').classList.remove('show');
   goStep(3);
-  sessionStorage.setItem('cb_pv2',JSON.stringify({phone:currentPhone,time:Date.now()}));
+  localStorage.setItem('cb_pv2',JSON.stringify({phone:currentPhone,time:Date.now()}));
   setWatermark(currentPhone);
   setTimeout(enterPortal,1500);
 }
@@ -531,7 +531,7 @@ function enterPortal(){
   loadReports();
 }
 
-function logout(){ if(!confirm('Exit CB Research Portal?')) return; sessionStorage.removeItem('cb_pv2'); location.reload(); }
+function logout(){ if(!confirm('Exit CB Research Portal?')) return; localStorage.removeItem('cb_pv2'); location.reload(); }
 
 function otpMove(cell,idx){
   cell.value=cell.value.replace(/\D/,'').slice(0,1);
@@ -604,7 +604,7 @@ function renderMembers(filter){
 function updateStats(){
   document.getElementById('stTotal').textContent=MEMBERS.length;
   document.getElementById('stAdmins').textContent=ADMIN_PHONES.filter(p=>MEMBERS.includes(p)).length;
-  document.getElementById('stOnline').textContent=sessionStorage.getItem('cb_pv2')?'1+':'0';
+  document.getElementById('stOnline').textContent=localStorage.getItem('cb_pv2')?'1+':'0';
   document.getElementById('stMembers').textContent=MEMBERS.length;
 }
 
