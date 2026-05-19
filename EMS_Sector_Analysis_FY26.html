@@ -149,11 +149,12 @@
   /* ─── COMPANY GRID ─── */
   .company-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin-bottom: 40px;
   }
-  @media(max-width: 900px) { .company-grid { grid-template-columns: 1fr; } }
+  @media(max-width: 1100px) { .company-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px)  { .company-grid { grid-template-columns: 1fr; } }
 
   .company-card {
     border-radius: 16px;
@@ -477,11 +478,12 @@
   /* ─── CASHFLOW CARD ─── */
   .cf-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
     margin-bottom: 32px;
   }
-  @media(max-width: 760px) { .cf-grid { grid-template-columns: 1fr; } }
+  @media(max-width: 1100px) { .cf-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px)  { .cf-grid { grid-template-columns: 1fr; } }
   .cf-card {
     border: 1px solid var(--border);
     border-radius: 14px;
@@ -1622,8 +1624,6 @@
   </div>
   <div class="note-box">📌 Key Syrma analyst themes: (1) Q4 FY26 was the strongest performer of the three in terms of PAT growth (+55%), (2) Exports crossing ₹1,200 Cr is a significant structural milestone, (3) JM Financial and HDFC both name Syrma as top sector pick, (4) PCB JV (Shinhyup) seen as long-term value creator, (5) ROE improvement trajectory key to multiple re-rating.</div>
 
-  <div class="disclaimer">⚠️ Analyst targets cited are from research published between Feb–May 2026. Target prices are illustrative of analyst sentiment and should not be construed as investment advice. Investors must conduct their own due diligence.</div>
-</div>
   <div class="sub-heading">🟠 Amber Enterprises — Analyst Consensus</div>
   <div class="analyst-grid">
     <div class="analyst-card">
@@ -1652,10 +1652,10 @@
     </div>
   </div>
   <div class="note-box">📌 <strong>Key Amber analyst themes:</strong> (1) JV dispute resolution — timeline critical, (2) Working capital normalisation from 29 days back to ~15 days, (3) Electronics division — ₹1,000 Cr target for Ascent Medical by FY28, (4) Railways order book ₹2,600+ Cr = 2 years visibility, (5) Commodity cost pass-through ability in RAC contracts under scrutiny, (6) Capex peak in FY27 — FCF generation story from FY28.</div>
+  <div class="disclaimer">⚠️ Analyst targets cited are from research published between Feb–May 2026. Target prices are illustrative of analyst sentiment and should not be construed as investment advice. Investors must conduct their own due diligence.</div>
+</div>
 
-
-<!-- ═══════════ SECTION: RISKS ═══════════ -->
-<div id="risks" class="section">
+id="risks" class="section">
   <div class="section-title">Risk Analysis</div>
   <p class="section-sub">Key risks for investors — sector-wide and company-specific</p>
 
