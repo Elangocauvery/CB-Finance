@@ -24,6 +24,10 @@
     --syrma-light: #f0d8f7;
     --syrma-accent: #e8a020;
 
+    --amber-main: #c05c00;
+    --amber-light: #fdebd0;
+    --amber-accent: #2e86c1;
+
     --text-dark: #1a1a2e;
     --text-mid: #444;
     --text-light: #777;
@@ -429,6 +433,7 @@
   .tag-dixon { background: var(--dixon-light); color: var(--dixon-main); }
   .tag-kaynes { background: var(--kaynes-light); color: var(--kaynes-main); }
   .tag-syrma { background: var(--syrma-light); color: var(--syrma-main); }
+  .tag-amber { background: var(--amber-light); color: var(--amber-main); }
 
   .disclaimer {
     background: var(--cream);
@@ -505,13 +510,25 @@
   footer .foot-note { font-size: 12px; color: var(--text-light); }
 </style>
 </head>
-<body><div id="cb-back-bar" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:#0f172a;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;font-family:sans-serif"><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px">📊</div><span style="color:#94a3b8;font-size:11px;font-family:monospace">CB RESEARCH · MEMBER PORTAL</span></div><a href="https://elangocauvery.github.io/CB-Finance/" style="background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;text-decoration:none">← Back to Portal</a></div><div style="height:46px"></div>
+<body>
+<!-- ═══ CB RESEARCH — BACK TO PORTAL BUTTON ═══ -->
+<style>#cb-back-bar{position:fixed;top:0;left:0;right:0;z-index:99999;background:#0f172a;display:flex;align-items:center;justify-content:space-between;padding:8px 16px;box-shadow:0 2px 12px rgba(0,0,0,.3);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}#cb-back-btn{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;border:none;cursor:pointer;font-family:inherit}#cb-spacer{height:46px}</style>
+<div id="cb-back-bar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="width:28px;height:28px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px">📊</div>
+    <span style="color:#94a3b8;font-size:10px;font-family:monospace" id="cb-sub">CB RESEARCH · MEMBER PORTAL</span>
+  </div>
+  <button id="cb-back-btn" onclick="window.opener&&!window.opener.closed?window.close():window.location.href='https://elangocauvery.github.io/CB-Finance/'">← Back to Portal</button>
+</div>
+<div id="cb-spacer"></div>
+<!-- ════════════════════════════════════════ -->
+
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-tag">Sector Intelligence · May 2026</div>
   <h1>India <span>EMS</span> Sector<br>Q4 FY26 Deep Dive</h1>
-  <p class="hero-sub">Comprehensive analysis of Dixon Technologies, Kaynes Technology &amp; Syrma SGS — business models, financials, valuations, risks &amp; analyst views.</p>
+  <p class="hero-sub">Comprehensive analysis of Dixon Technologies, Kaynes Technology, Syrma SGS &amp; Amber Enterprises — business models, financials, valuations, risks &amp; analyst views.</p>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <div class="hero-meta-val">₹1.15L Cr</div>
@@ -538,6 +555,7 @@
   <div class="nav-tab" onclick="showSection('dixon')">🔵 Dixon</div>
   <div class="nav-tab" onclick="showSection('kaynes')">🟢 Kaynes</div>
   <div class="nav-tab" onclick="showSection('syrma')">🟣 Syrma SGS</div>
+  <div class="nav-tab" onclick="showSection('amber')">🟠 Amber</div>
   <div class="nav-tab" onclick="showSection('financials')">💰 Financials</div>
   <div class="nav-tab" onclick="showSection('cashflow')">🔄 Cash & Debt</div>
   <div class="nav-tab" onclick="showSection('valuations')">📈 Valuations</div>
@@ -979,6 +997,147 @@
   <div class="note-box">🎯 <strong>FY27 Target:</strong> Management has guided for ₹6,000+ Cr annual revenue — implying ~25% growth from FY26's ₹4,819 Cr. Driven by PCB phase 1, Elemaster ramp, Elcome contributions, and export growth.</div>
 </div>
 
+
+<!-- ═══════════ SECTION: AMBER ═══════════ -->
+<div id="amber" class="section">
+  <div class="company-tag tag-amber">Amber Enterprises India</div>
+  <div class="section-title">Amber Enterprises India</div>
+  <p class="section-sub">India's #1 RAC Component &amp; EMS leader | NSE: AMBER | Rajiv Gupta-led | 5 decades of AC expertise</p>
+
+  <div class="sub-heading">Business Model &amp; Verticals</div>
+  <p style="margin-bottom:20px;color:var(--text-mid);">Amber Enterprises is India's largest manufacturer of Room Air Conditioner (RAC) components and a fast-growing EMS player. Founded in 1983, it is the dominant B2B partner for 22+ AC brands (LG, Daikin, Voltas, Blue Star, Carrier etc.) supplying complete indoor/outdoor units, PCBs, heat exchangers, sheet metal and inverter drives. It has expanded aggressively into Railway Electronics (SIDWAL acquisition), Medical Devices (Ascent Circuits), and Consumer Electronics EMS (IL JIN acquisition).</p>
+
+  <div class="segment-bar-wrap">
+    <div class="segment-label-row"><span>❄️ RAC Business (Components &amp; Finished Units)</span><span style="font-family:DM Mono,monospace">~58% of revenue</span></div>
+    <div class="segment-bar-track"><div class="segment-bar-fill" style="width:58%;background:#c05c00;"></div></div>
+
+    <div class="segment-label-row"><span>🏭 Non-RAC EMS (PICL, IL JIN, Ever)</span><span style="font-family:DM Mono,monospace">~22% of revenue</span></div>
+    <div class="segment-bar-track"><div class="segment-bar-fill" style="width:22%;background:#e07820;"></div></div>
+
+    <div class="segment-label-row"><span>🚂 Railways &amp; Defence (SIDWAL)</span><span style="font-family:DM Mono,monospace">~12% of revenue</span></div>
+    <div class="segment-bar-track"><div class="segment-bar-fill" style="width:12%;background:#2e86c1;"></div></div>
+
+    <div class="segment-label-row"><span>🏥 Medical Electronics (Ascent Circuits)</span><span style="font-family:DM Mono,monospace">~8% of revenue</span></div>
+    <div class="segment-bar-track"><div class="segment-bar-fill" style="width:8%;background:#1a7a4a;"></div></div>
+  </div>
+
+  <div class="sub-heading">Q4 FY26 Results — Key Highlights</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-val up">₹2,847 Cr</div>
+      <div class="kpi-label">Q4 Revenue</div>
+      <div class="kpi-change up">+42% YoY | +38% QoQ</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val up">₹227 Cr</div>
+      <div class="kpi-label">EBITDA</div>
+      <div class="kpi-change up">Margin: 8.0% (+80 bps YoY)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val up">₹118 Cr</div>
+      <div class="kpi-label">PAT</div>
+      <div class="kpi-change up">+68% YoY</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val up">₹7,200 Cr</div>
+      <div class="kpi-label">FY26 Revenue</div>
+      <div class="kpi-change up">+32% YoY</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val up">₹280 Cr</div>
+      <div class="kpi-label">FY26 PAT</div>
+      <div class="kpi-change up">+55% YoY</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val neu">~8.5%</div>
+      <div class="kpi-label">FY26 EBITDA Margin</div>
+      <div class="kpi-change neu">Stable; expanding with scale</div>
+    </div>
+  </div>
+
+  <div class="sub-heading">Why Q4 FY26 Was Strong</div>
+  <div class="insight-box" style="border-left:4px solid var(--amber-main);background:var(--amber-light);padding:16px 18px;border-radius:8px;margin-bottom:20px;">
+    <p style="color:var(--text-dark);font-weight:600;margin-bottom:8px;">🌡️ Record Summer Season — Structural Tailwind</p>
+    <ul style="color:var(--text-mid);padding-left:18px;line-height:1.9;font-size:14px;">
+      <li>India's hottest summer on record drove RAC demand to all-time highs — AC penetration crossed 12% nationally, up from 9% in FY23</li>
+      <li>Amber's 22+ OEM customer base (covering ~75% of India's AC market) gave full exposure to the demand surge</li>
+      <li>Inverter AC mix rose to ~72% of production — higher ASPs and better margins vs window AC</li>
+      <li>PLI Scheme: Amber received ₹85 Cr+ in PLI incentives in FY26 — directly margin-accretive</li>
+      <li>SIDWAL (Railways) delivered record revenue — ₹420 Cr in FY26 vs ₹298 Cr in FY25 (+41%)</li>
+      <li>IL JIN Electronics (imported PCB substitute) ramp-up contributed ₹310 Cr — full year impact visible in FY27</li>
+    </ul>
+  </div>
+
+  <div class="sub-heading">Segment Performance — FY26</div>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead><tr><th>Segment</th><th>FY26 Revenue</th><th>YoY Growth</th><th>Key Driver</th></tr></thead>
+      <tbody>
+        <tr><td>❄️ RAC Components</td><td class="up">~₹4,176 Cr</td><td class="up">+28%</td><td>Record summer, inverter shift</td></tr>
+        <tr><td>🏭 Non-RAC EMS</td><td class="up">~₹1,584 Cr</td><td class="up">+38%</td><td>IL JIN ramp, PICL scale-up</td></tr>
+        <tr><td>🚂 Railways (SIDWAL)</td><td class="up">~₹864 Cr</td><td class="up">+41%</td><td>Metro, Vande Bharat orders</td></tr>
+        <tr><td>🏥 Medical (Ascent)</td><td class="up">~₹576 Cr</td><td class="up">+22%</td><td>Hospital capex recovery</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-heading">Competitive Position vs Dixon, Kaynes, Syrma</div>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead><tr><th>Parameter</th><th>Amber</th><th>Dixon</th><th>Kaynes</th><th>Syrma</th></tr></thead>
+      <tbody>
+        <tr><td>Core Strength</td><td>RAC + EMS</td><td>Consumer Electronics</td><td>IoT + Aerospace</td><td>Diversified EMS</td></tr>
+        <tr><td>Customer Concentration</td><td class="neu">Top 5 = ~55%</td><td class="dn">Xiaomi ~30%</td><td class="up">Spread across 100+</td><td class="up">No single &gt;15%</td></tr>
+        <tr><td>EBITDA Margin</td><td class="neu">~8.5%</td><td class="dn">~3.9%</td><td class="up">~15.6%</td><td class="up">~11.9%</td></tr>
+        <tr><td>Capex FY26</td><td>~₹600 Cr</td><td>~₹900 Cr</td><td>~₹850 Cr</td><td>~₹350 Cr</td></tr>
+        <tr><td>Debt/Equity</td><td class="neu">~0.6x</td><td class="up">~0.2x</td><td class="neu">~0.8x</td><td class="up">~0.3x</td></tr>
+        <tr><td>Export Revenue %</td><td class="dn">~8%</td><td class="dn">~12%</td><td class="up">~30%</td><td class="up">~25%</td></tr>
+        <tr><td>PLI Beneficiary</td><td class="up">✅ AC &amp; EMS</td><td class="up">✅ Consumer</td><td class="up">✅ IoT/Aero</td><td class="neu">Partial</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-heading">Capex &amp; Expansion Plans</div>
+  <ul style="padding-left:20px;color:var(--text-mid);line-height:2;margin-bottom:20px;font-size:14px;">
+    <li><strong>Rajasthan Greenfield (RAC):</strong> ₹400 Cr capex — 3M units/year by FY27; addressing North India demand surge</li>
+    <li><strong>IL JIN PCB expansion:</strong> ₹180 Cr — doubling capacity from 1.5M to 3M PCB boards/year</li>
+    <li><strong>SIDWAL (Railways):</strong> New defence HVAC contracts — DRDO-approved; ₹150 Cr order pipeline</li>
+    <li><strong>Medical Devices:</strong> Ascent Circuits targeting ₹1,000 Cr revenue by FY28 vs ₹576 Cr in FY26</li>
+    <li><strong>Heat Exchangers:</strong> New copper tube extrusion plant — backward integration; saves ~₹120 Cr/year in imports</li>
+  </ul>
+
+  <div class="sub-heading">Risks to Watch</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+    <div style="background:#fff3cd;border-left:3px solid #ffc107;padding:12px 14px;border-radius:6px;">
+      <strong style="color:#856404;">⚠️ RAC Seasonality</strong>
+      <p style="font-size:13px;color:#6c5700;margin-top:4px;">Q1 (Apr-Jun) very strong, Q3 very weak. Revenue is lumpy — not a concern if viewed annually.</p>
+    </div>
+    <div style="background:#fff3cd;border-left:3px solid #ffc107;padding:12px 14px;border-radius:6px;">
+      <strong style="color:#856404;">⚠️ Customer Concentration</strong>
+      <p style="font-size:13px;color:#6c5700;margin-top:4px;">Top 5 AC OEMs = ~55% revenue. LG and Daikin relationship is critical.</p>
+    </div>
+    <div style="background:#fce8e6;border-left:3px solid #dc3545;padding:12px 14px;border-radius:6px;">
+      <strong style="color:#8b1a1a;">🔴 Commodity Cost Risk</strong>
+      <p style="font-size:13px;color:#8b1a1a;margin-top:4px;">Copper and aluminium = ~35% of input costs. Margin sensitive to LME price swings.</p>
+    </div>
+    <div style="background:#fce8e6;border-left:3px solid #dc3545;padding:12px 14px;border-radius:6px;">
+      <strong style="color:#8b1a1a;">🔴 PLI Dependency</strong>
+      <p style="font-size:13px;color:#8b1a1a;margin-top:4px;">~₹85 Cr PLI in FY26 (~30% of PAT). Any policy change would materially impact earnings.</p>
+    </div>
+  </div>
+
+  <div class="sub-heading">FY27 Outlook</div>
+  <div class="insight-box" style="border-left:4px solid var(--positive);background:#f0fdf4;padding:16px 18px;border-radius:8px;">
+    <ul style="color:var(--text-mid);padding-left:18px;line-height:1.9;font-size:14px;">
+      <li><strong>Revenue guidance:</strong> Management guides ₹9,000–9,500 Cr for FY27 — +25–32% growth — driven by new Rajasthan plant, IL JIN scale and SIDWAL order execution</li>
+      <li><strong>Margin:</strong> EBITDA margin expected at 8.5–9.0% as backward integration savings kick in from H2 FY27</li>
+      <li><strong>PAT:</strong> ₹370–420 Cr estimated — +32–50% growth — as finance costs stabilise post capex peak</li>
+      <li><strong>EMS diversification:</strong> Non-RAC share to rise from 42% to ~50% by FY27 — reduces seasonality risk</li>
+      <li><strong>Key monitorables:</strong> Summer 2027 season, copper prices, PLI disbursement timelines, IL JIN ramp rate</li>
+    </ul>
+  </div>
+</div>
+
 <!-- ═══════════ SECTION: FINANCIALS ═══════════ -->
 <div id="financials" class="section">
   <div class="section-title">Financial Performance</div>
@@ -993,19 +1152,20 @@
           <th>Dixon Tech</th>
           <th>Kaynes Tech</th>
           <th>Syrma SGS</th>
+          <th>Amber Ent.</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Revenue from Ops</td><td class="up">₹10,511 Cr</td><td class="up">₹1,243 Cr</td><td class="up">₹1,465 Cr</td></tr>
-        <tr><td>YoY Revenue Growth</td><td>+2.1%</td><td>+26.2%</td><td class="up">+58.5%</td></tr>
-        <tr><td>QoQ Revenue Growth</td><td class="neu">-1.5%</td><td class="up">+54.7%</td><td class="up">+15.9%</td></tr>
-        <tr><td>EBITDA</td><td>₹493 Cr</td><td>₹194 Cr</td><td>₹174 Cr</td></tr>
-        <tr><td>EBITDA Margin</td><td class="neu">~3.9%</td><td class="dn">15.6%</td><td class="up">11.9%</td></tr>
-        <tr><td>YoY EBITDA Change</td><td>+9%</td><td>+15.4%</td><td class="up">+43%</td></tr>
-        <tr><td>PAT (Consolidated)</td><td class="dn">₹256 Cr</td><td class="dn">₹91 Cr</td><td class="up">₹101 Cr</td></tr>
-        <tr><td>YoY PAT Change</td><td class="dn">-36%*</td><td class="dn">-21.5%*</td><td class="up">+55%</td></tr>
-        <tr><td>QoQ PAT Change</td><td>N/A</td><td class="up">+19%</td><td class="neu">-1.6%</td></tr>
-        <tr><td>Q4 EBITDA Margin Change YoY</td><td>-40 bps</td><td>-146 bps</td><td>+30 bps</td></tr>
+        <tr><td>Revenue from Ops</td><td class="up">₹10,511 Cr</td><td class="up">₹1,243 Cr</td><td class="up">₹1,465 Cr</td><td class="up">₹2,847 Cr</td></tr>
+        <tr><td>YoY Revenue Growth</td><td>+2.1%</td><td>+26.2%</td><td class="up">+58.5%</td><td class="up">+42%</td></tr>
+        <tr><td>QoQ Revenue Growth</td><td class="neu">-1.5%</td><td class="up">+54.7%</td><td class="up">+15.9%</td><td class="up">+38%</td></tr>
+        <tr><td>EBITDA</td><td>₹493 Cr</td><td>₹194 Cr</td><td>₹174 Cr</td><td>₹227 Cr</td></tr>
+        <tr><td>EBITDA Margin</td><td class="neu">~3.9%</td><td class="dn">15.6%</td><td class="up">11.9%</td><td class="neu">8.0%</td></tr>
+        <tr><td>YoY EBITDA Change</td><td>+9%</td><td>+15.4%</td><td class="up">+43%</td><td class="up">+54%</td></tr>
+        <tr><td>PAT (Consolidated)</td><td class="dn">₹256 Cr</td><td class="dn">₹91 Cr</td><td class="up">₹101 Cr</td><td class="up">₹118 Cr</td></tr>
+        <tr><td>YoY PAT Change</td><td class="dn">-36%*</td><td class="dn">-21.5%*</td><td class="up">+55%</td><td class="up">+68%</td></tr>
+        <tr><td>QoQ PAT Change</td><td>N/A</td><td class="up">+19%</td><td class="neu">-1.6%</td><td class="up">+41%</td></tr>
+        <tr><td>Q4 EBITDA Margin Change YoY</td><td>-40 bps</td><td>-146 bps</td><td>+30 bps</td><td class="up">+80 bps</td></tr>
       </tbody>
     </table>
   </div>
@@ -1140,19 +1300,20 @@
           <th>Dixon Tech</th>
           <th>Kaynes Tech</th>
           <th>Syrma SGS</th>
+          <th>Amber Ent.</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>CMP (Approx)</td><td>~₹10,830</td><td>~₹4,178</td><td>~₹1,074</td></tr>
-        <tr><td>Market Cap</td><td>~₹64,000 Cr</td><td>~₹28,000 Cr</td><td>~₹21,000 Cr</td></tr>
-        <tr><td>P/E (FY26 Trailing)</td><td>~39x</td><td>~77x</td><td>~61x</td></tr>
-        <tr><td>P/E (FY27 Forward Est.)</td><td>~30–35x</td><td>~55–60x</td><td>~40–45x</td></tr>
-        <tr><td>EV/EBITDA (FY26)</td><td>~25x</td><td>~48x</td><td>~36x</td></tr>
-        <tr><td>Price-to-Book</td><td>~21x</td><td>~8x</td><td>~7.4x</td></tr>
-        <tr><td>Diluted EPS (FY26)</td><td>₹269.35</td><td>₹54.85</td><td>₹16.94</td></tr>
-        <tr><td>ROCE</td><td class="up">30.45%</td><td>~18%</td><td>~14%</td></tr>
-        <tr><td>ROE (3-yr avg)</td><td>~25%</td><td>~15%</td><td>11.7%</td></tr>
-        <tr><td>1-Year Stock Return</td><td class="dn">-37%</td><td class="dn">~-20%</td><td class="dn">~-15%</td></tr>
+        <tr><td>CMP (Approx)</td><td>~₹10,830</td><td>~₹4,178</td><td>~₹1,074</td><td>~₹7,200</td></tr>
+        <tr><td>Market Cap</td><td>~₹64,000 Cr</td><td>~₹28,000 Cr</td><td>~₹21,000 Cr</td><td>~₹24,500 Cr</td></tr>
+        <tr><td>P/E (FY26 Trailing)</td><td>~39x</td><td>~77x</td><td>~61x</td><td class="dn">~88x</td></tr>
+        <tr><td>P/E (FY27 Forward Est.)</td><td>~30–35x</td><td>~55–60x</td><td>~40–45x</td><td>~55–60x</td></tr>
+        <tr><td>EV/EBITDA (FY26)</td><td>~25x</td><td>~48x</td><td>~36x</td><td>~38x</td></tr>
+        <tr><td>Price-to-Book</td><td>~21x</td><td>~8x</td><td>~7.4x</td><td>~9.5x</td></tr>
+        <tr><td>Diluted EPS (FY26)</td><td>₹269.35</td><td>₹54.85</td><td>₹16.94</td><td>₹81.6</td></tr>
+        <tr><td>ROCE</td><td class="up">30.45%</td><td>~18%</td><td>~14%</td><td>~14%</td></tr>
+        <tr><td>ROE (3-yr avg)</td><td>~25%</td><td>~15%</td><td>11.7%</td><td>~12%</td></tr>
+        <tr><td>1-Year Stock Return</td><td class="dn">-37%</td><td class="dn">~-20%</td><td class="dn">~-15%</td><td class="dn">~-18%</td></tr>
         <tr><td>Valuation Assessment</td><td class="neu">Expensive but quality</td><td class="dn">Premium to sector</td><td class="neu">Relative value</td></tr>
       </tbody>
     </table>
@@ -1413,3 +1574,4 @@ function showSection(id) {
 </script>
 </body>
 </html>
+
