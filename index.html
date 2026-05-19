@@ -10,8 +10,7 @@
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#f5f7fa;min-height:100vh;-webkit-user-select:none;user-select:none}
 input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .bg{position:fixed;inset:0;z-index:0;background:linear-gradient(135deg,#f0f4ff 0%,#f8f9ff 100%)}
-.grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(99,102,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.05) 1px,transparent 1px);background-size:40px 40px}
-/* SPLASH */
+.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(99,102,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.05) 1px,transparent 1px);background-size:40px 40px}
 #splash{position:relative;z-index:100;min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px}
 #splash.hidden{display:none}
 .brand{display:flex;flex-direction:column;align-items:center;margin-bottom:28px;text-align:center}
@@ -19,7 +18,6 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .brand-name{font-size:26px;font-weight:800;color:#0f172a;margin-bottom:4px}
 .brand-tag{font-size:11px;color:#6366f1;font-family:monospace;letter-spacing:.1em;margin-bottom:10px}
 .brand-copy{font-size:11px;color:#64748b;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.15);padding:7px 16px;border-radius:20px}
-/* LOGIN CARD */
 .login-card{background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:28px 26px 22px;width:min(380px,100%);box-shadow:0 8px 28px rgba(99,102,241,.1)}
 .step{display:none}.step.active{display:block;animation:fu .25s ease}
 @keyframes fu{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
@@ -48,7 +46,6 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .ok-icon{font-size:50px;margin-bottom:10px}
 .ok-title{font-size:18px;font-weight:800;color:#059669;margin-bottom:5px}
 .ok-sub{font-size:12px;color:#64748b}
-/* PORTAL */
 #portal{display:none;position:relative;z-index:100;min-height:100vh;flex-direction:column}
 #portal.show{display:flex}
 .p-header{background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 20px;position:sticky;top:0;z-index:200;display:flex;flex-direction:column;gap:9px}
@@ -57,12 +54,14 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .p-logo{width:32px;height:32px;min-width:32px;background:linear-gradient(135deg,#3b82f6,#6366f1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px}
 .p-title{font-size:14px;font-weight:800;color:#fff;white-space:nowrap}
 .p-sub{font-size:9px;color:#475569;font-family:monospace;margin-top:1px}
-.p-exit{background:rgba(239,68,68,.12);border:1.5px solid rgba(239,68,68,.3);color:#f87171;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;font-family:inherit;flex-shrink:0}
+.hbtns{display:flex;gap:7px;flex-shrink:0;align-items:center}
+.p-nav-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#e2e8f0;font-size:11px;font-weight:600;padding:5px 11px;border-radius:20px;cursor:pointer;font-family:inherit;transition:all .14s}
+.p-nav-btn:hover{background:rgba(255,255,255,.16)}
+.p-exit{background:rgba(239,68,68,.12);border:1.5px solid rgba(239,68,68,.3);color:#f87171;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;cursor:pointer;font-family:inherit}
 .p-row2{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .p-chip{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25);font-size:10px;font-family:monospace;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap}
 .p-admin{display:none;background:linear-gradient(135deg,#b45309,#f59e0b);border:none;color:#fff;font-size:11px;font-weight:800;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(245,158,11,.4)}
 .p-admin.show{display:inline-flex!important;visibility:visible!important}
-/* BODY */
 .p-body{flex:1;padding:24px 22px;max-width:1200px;margin:0 auto;width:100%;background:#f5f7fa}
 .welcome h2{font-size:21px;font-weight:800;color:#0f172a;margin-bottom:4px}
 .welcome p{font-size:13px;color:#64748b;margin-bottom:22px}
@@ -71,14 +70,15 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .stat{background:#fff;border:1px solid #e2e8f0;border-radius:11px;padding:13px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
 .sv{font-size:20px;font-weight:800;font-family:monospace;color:#0f172a}
 .sl{font-size:10px;color:#9ca3af;margin-top:3px;text-transform:uppercase;letter-spacing:.06em}
-.notice{background:#eff6ff;border:1px solid #bfdbfe;border-radius:11px;padding:13px 16px;margin-bottom:22px;font-size:12px;color:#1d4ed8;line-height:1.6;display:flex;gap:10px}
-.sec-head{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4338ca;display:flex;align-items:center;gap:8px;margin-bottom:14px;margin-top:22px}
-.sec-head:first-child{margin-top:0}
+.notice{background:#eff6ff;border:1px solid #bfdbfe;border-radius:11px;padding:13px 16px;margin-bottom:16px;font-size:12px;color:#1d4ed8;line-height:1.6;display:flex;gap:10px}
+.quick-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.qnav-btn{background:#eef2ff;color:#4338ca;border:1px solid #c7d2fe;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
+.sec-head{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4338ca;display:flex;align-items:center;gap:8px;margin-bottom:14px}
 .sec-head::after{content:"";flex:1;height:1px;background:#e2e8f0}
 .grid-reports{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:15px}
-/* REPORT CARD */
 .rc{background:#fff;border:1px solid #e2e8f0;border-radius:15px;padding:20px;text-decoration:none;display:block;transition:all .18s;position:relative;overflow:hidden}
 .rc:hover{border-color:#6366f1;transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,.12)}
+.rc-new{position:absolute;top:14px;right:14px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:9px;font-weight:800;font-family:monospace;padding:2px 8px;border-radius:10px;letter-spacing:.06em}
 .rc-icon{font-size:26px;margin-bottom:10px}
 .rc-sector{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;margin-bottom:4px;font-family:monospace}
 .rc-title{font-size:14px;font-weight:800;color:#0f172a;margin-bottom:6px;line-height:1.3}
@@ -86,12 +86,9 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .rc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:13px}
 .rc-tag{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;font-family:monospace}
 .rc-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #f1f5f9;padding-top:11px}
-.rc-date{font-size:10px;color:#94a3b8;font-family:monospace}
+.rc-date{font-size:11px;color:#64748b;display:flex;align-items:center;gap:4px}
 .rc-open{font-size:11px;font-weight:700;color:#6366f1}
-/* LOADING */
-.loader{text-align:center;padding:50px 20px}
-.spinner{width:34px;height:34px;border:3px solid rgba(99,102,241,.15);border-top-color:#6366f1;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-/* ADMIN PANEL */
+/* ADMIN */
 #adminModal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);align-items:center;justify-content:center}
 #adminModal.show{display:flex}
 .admin-box{background:#0f172a;border:1px solid rgba(99,102,241,.3);border-radius:18px;width:min(580px,96vw);max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.6)}
@@ -104,7 +101,6 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .admin-tab.active{color:#fff;border-bottom-color:#6366f1;background:rgba(99,102,241,.1)}
 .tab-pane{display:none;flex-direction:column;overflow:hidden;flex:1}
 .tab-pane.active{display:flex}
-/* Members tab */
 .a-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:13px 17px;border-bottom:1px solid rgba(255,255,255,.05);flex-shrink:0}
 .astat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px;text-align:center}
 .asv{font-size:20px;font-weight:800;font-family:monospace;color:#e2e8f0}
@@ -135,32 +131,27 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .mbr-del{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#f87171;font-size:11px;padding:3px 9px;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;flex-shrink:0}
 .mbr-del:hover{background:rgba(239,68,68,.3)}
 .mbr-del:disabled{opacity:.3;cursor:default}
-/* Import tab */
 .import-wrap{padding:18px 17px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;flex:1}
 .import-wrap h4{font-size:13px;font-weight:700;color:#e2e8f0}
 .import-wrap p{font-size:12px;color:#64748b;line-height:1.6}
 .import-wrap code{background:rgba(99,102,241,.15);color:#a5b4fc;padding:1px 6px;border-radius:4px;font-family:monospace;font-size:11px}
-.import-ta{width:100%;height:180px;padding:11px;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#e2e8f0;font-size:12px;font-family:monospace;resize:vertical;outline:none;-webkit-user-select:text;user-select:text}
+.import-ta{width:100%;height:160px;padding:11px;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#e2e8f0;font-size:12px;font-family:monospace;resize:vertical;outline:none;-webkit-user-select:text;user-select:text}
 .import-ta:focus{border-color:#6366f1}
 .import-result{font-size:12px;padding:8px 11px;border-radius:8px;display:none}
 .import-ok{background:rgba(16,185,129,.1);color:#4ade80;border:1px solid rgba(16,185,129,.2)}
 .import-err{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.2)}
-/* Howto tab */
 .howto-wrap{padding:18px 17px;overflow-y:auto;flex:1}
-.howto-step{display:flex;gap:13px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.05)}
+.howto-step{display:flex;gap:13px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.05)}
 .howto-step:last-child{border-bottom:none}
 .hs-n{width:28px;height:28px;background:linear-gradient(135deg,#4338ca,#6366f1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
 .hs-c h4{font-size:13px;font-weight:700;color:#e2e8f0;margin-bottom:4px}
 .hs-c p{font-size:12px;color:#64748b;line-height:1.6}
 .hs-c code{background:rgba(99,102,241,.15);color:#a5b4fc;padding:1px 6px;border-radius:4px;font-family:monospace;font-size:11px}
-/* Admin login gate */
 .admin-gate{padding:26px 20px;display:flex;flex-direction:column;gap:11px}
 .admin-gate-title{font-size:14px;font-weight:700;color:#e2e8f0;margin-bottom:2px}
 .admin-gate-sub{font-size:12px;color:#64748b;margin-bottom:8px}
 .admin-err{color:#f87171;font-size:12px;display:none;padding:6px 10px;background:rgba(239,68,68,.1);border-radius:7px}
-/* Admin footer */
-.a-footer{padding:10px 17px;border-top:1px solid rgba(255,255,255,.05);font-size:11px;color:#334155;text-align:center;flex-shrink:0}
-/* TERMS */
+.a-footer{padding:10px 17px;border-top:1px solid rgba(255,255,255,.05);font-size:11px;color:#475569;text-align:center;flex-shrink:0}
 #termsModal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.85);align-items:center;justify-content:center}
 #termsModal.show{display:flex}
 .terms-box{background:#0f172a;border:1px solid rgba(255,255,255,.1);border-radius:15px;padding:26px;width:min(480px,94vw);max-height:82vh;overflow-y:auto;color:#94a3b8;font-size:13px;line-height:1.7}
@@ -168,73 +159,44 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 .terms-box h4{font-size:11px;font-weight:700;color:#64748b;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.06em}
 .terms-box p{margin-bottom:9px}
 .terms-btn{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px;font-family:inherit}
-/* WATERMARK */
 #wm{position:fixed;bottom:9px;right:13px;z-index:8000;font-size:10px;color:rgba(99,102,241,.35);font-family:monospace;pointer-events:none}
-/* PORTAL FOOTER */
 .p-footer{background:#f0f4f8;border-top:1px solid #e2e8f0;padding:14px 22px;text-align:center;font-size:11px;color:#64748b;line-height:1.8}
-@media(max-width:640px){
-  .p-body{padding:16px 14px}
-  .p-header{padding:8px 14px}
-  .grid-reports{grid-template-columns:1fr}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .login-card{padding:22px 16px 18px}
-  .brand-name{font-size:22px}
-}
+@media(max-width:640px){.p-body{padding:16px 14px}.p-header{padding:8px 14px}.grid-reports{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.login-card{padding:22px 16px 18px}.brand-name{font-size:22px}}
 </style>
 </head>
 <body>
 <div class="bg"></div>
-<div class="grid"></div>
+<div class="grid-bg"></div>
 <div id="wm">© CB Research 2026</div>
 
-<!-- TERMS MODAL -->
-<div id="termsModal">
-<div class="terms-box">
+<div id="termsModal"><div class="terms-box">
   <h3>📄 Terms of Use — CB Research</h3>
-  <h4>Copyright</h4>
-  <p>All research content is the exclusive property of <strong style="color:#e2e8f0">CB Research &amp; Analytics</strong>. © 2026. Protected under the Indian Copyright Act, 1957.</p>
-  <h4>Trademarks</h4>
-  <p><strong style="color:#e2e8f0">CB Research™</strong>, <strong style="color:#e2e8f0">CB Assist™</strong> and <strong style="color:#e2e8f0">Sector Analysis™</strong> are trademarks of CB Research &amp; Analytics.</p>
-  <h4>No Investment Advice</h4>
-  <p>All research is for informational purposes only — not investment advice. Consult a SEBI-registered advisor before any investment decision.</p>
-  <h4>Confidentiality</h4>
-  <p>Access is for authorised members only. Do not share, forward or redistribute content. Violation may result in legal action.</p>
+  <h4>Copyright</h4><p>All content is the exclusive property of <strong style="color:#e2e8f0">CB Research &amp; Analytics</strong>. © 2026. Indian Copyright Act, 1957.</p>
+  <h4>Trademarks</h4><p><strong style="color:#e2e8f0">CB Research™</strong>, <strong style="color:#e2e8f0">CB Assist™</strong>, <strong style="color:#e2e8f0">Sector Analysis™</strong> are trademarks of CB Research &amp; Analytics.</p>
+  <h4>No Investment Advice</h4><p>All research is for informational purposes only. Not investment advice. Consult a SEBI-registered advisor before any investment decision.</p>
+  <h4>Confidentiality</h4><p>For authorised members only. Do not share or redistribute.</p>
   <button class="terms-btn" onclick="acceptTerms()">✅ I Accept — Proceed to Login</button>
-</div>
-</div>
+</div></div>
 
-<!-- ADMIN MODAL -->
-<div id="adminModal">
-<div class="admin-box">
+<div id="adminModal"><div class="admin-box">
   <div class="admin-hdr">
     <span style="font-size:18px">🔧</span>
-    <div>
-      <div class="admin-hdr-title">Admin Panel — CB Research</div>
-      <div class="admin-hdr-sub">Member Management · Master Portal</div>
-    </div>
+    <div><div class="admin-hdr-title">Admin Panel — CB Research</div><div class="admin-hdr-sub">Member Management</div></div>
     <button class="admin-close" onclick="closeAdmin()">✕</button>
   </div>
-
-  <!-- Gate -->
   <div class="admin-gate" id="adminGate">
     <div class="admin-gate-title">🔐 Admin Authentication</div>
-    <div class="admin-gate-sub">Enter your admin password to manage members</div>
-    <input class="a-inp" id="adminPwd" type="password" placeholder="Admin password"
-           style="width:100%;padding:12px 15px;border-radius:10px;margin-bottom:4px"
-           onkeydown="if(event.key==='Enter')checkPwd()">
-    <div class="admin-err" id="adminErr">❌ Incorrect password. Try again.</div>
-    <button class="btn" onclick="checkPwd()">Unlock Admin Panel →</button>
+    <div class="admin-gate-sub">Enter admin password</div>
+    <input class="a-inp" id="adminPwd" type="password" placeholder="Admin password" style="width:100%;padding:12px 15px;border-radius:10px;margin-bottom:4px" onkeydown="if(event.key==='Enter')checkPwd()">
+    <div class="admin-err" id="adminErr">❌ Incorrect password.</div>
+    <button class="btn" onclick="checkPwd()">Unlock →</button>
   </div>
-
-  <!-- Dashboard -->
   <div id="adminDash" style="display:none;flex-direction:column;flex:1;overflow:hidden">
     <div class="admin-tabs">
       <button class="admin-tab active" onclick="switchTab('members',this)">👥 Members</button>
       <button class="admin-tab" onclick="switchTab('import',this)">📥 Bulk Import</button>
       <button class="admin-tab" onclick="switchTab('howto',this)">❓ How To</button>
     </div>
-
-    <!-- Members -->
     <div class="tab-pane active" id="tab-members">
       <div class="a-stats">
         <div class="astat"><div class="asv" id="stTotal">0</div><div class="asl">Total</div></div>
@@ -242,90 +204,36 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
         <div class="astat"><div class="asv" id="stOnline" style="color:#4ade80">—</div><div class="asl">Online</div></div>
       </div>
       <div class="a-toolbar">
-        <input class="a-inp" id="newPhone" type="tel" maxlength="16" placeholder="Number with country code (e.g. +44 7911 123456)"
-               oninput="sanitizePhone(this)"
-               onkeydown="if(event.key==='Enter')addMember()">
-        <input class="a-inp" id="newName" type="text" maxlength="30" placeholder="Name (optional)"
-               style="max-width:150px" onkeydown="if(event.key==='Enter')addMember()">
+        <input class="a-inp" id="newPhone" type="tel" maxlength="20" placeholder="Number (+44... or 98...)" oninput="sanitizePhone(this)" onkeydown="if(event.key==='Enter')addMember()">
+        <input class="a-inp" id="newName" type="text" maxlength="30" placeholder="Name (optional)" style="max-width:150px" onkeydown="if(event.key==='Enter')addMember()">
         <button class="a-btn a-add" onclick="addMember()">➕ Add</button>
         <button class="a-btn a-copy" onclick="exportList()">📋 Copy List</button>
         <span class="a-msg" id="adminMsg"></span>
       </div>
-      <div class="a-search">
-        <input class="a-search-inp" id="memberSearch" placeholder="🔍 Search by number or name…"
-               oninput="renderMembers(this.value)">
-      </div>
+      <div class="a-search"><input class="a-search-inp" id="memberSearch" placeholder="🔍 Search…" oninput="renderMembers(this.value)"></div>
       <div class="a-list" id="memberList"></div>
-      <div class="a-footer">
-  ✅ Members are <strong>automatically saved</strong> on this device via browser storage.<br>
-  To share the list across devices: click 📋 Copy List → paste into index.html on GitHub.<br>
-  <span style="cursor:pointer;color:#f87171" onclick="clearStoredMembers()">🗑️ Clear all stored members</span>
-</div>
+      <div class="a-footer">✅ Members saved automatically on this device. Use 📋 Copy List → paste to GitHub for all devices.<br><span style="cursor:pointer;color:#f87171" onclick="clearStored()">🗑️ Clear stored members</span></div>
     </div>
-
-    <!-- Bulk Import -->
     <div class="tab-pane" id="tab-import">
       <div class="import-wrap">
-        <h4>📥 Bulk Import Members</h4>
-        <p>Paste phone numbers — one per line. Optionally add a name after a comma:<br>
-        <code>9876543210, Rajesh Kumar</code><br>
-        <code>8765432109</code><br>
-        Numbers already in the list are skipped automatically.</p>
-        <textarea class="import-ta" id="importText"
-          placeholder="9876543210, Member Name&#10;8765432109&#10;7654321098, Another Name"></textarea>
+        <h4>📥 Bulk Import</h4>
+        <p>One number per line. Add name after comma:<br><code>9876543210, Rajesh Kumar</code><br><code>+447911123456, UK Member</code></p>
+        <textarea class="import-ta" id="importText" placeholder="9876543210, Name&#10;+447911123456, Name"></textarea>
         <button class="btn" onclick="bulkImport()">📥 Import All</button>
         <div class="import-result" id="importResult"></div>
-        <p style="font-size:11px;color:#475569">After importing click 📋 Copy List in the Members tab and paste into index.html on GitHub.</p>
       </div>
     </div>
-
-    <!-- How To -->
     <div class="tab-pane" id="tab-howto">
       <div class="howto-wrap">
-        <div class="howto-step">
-          <div class="hs-n">1</div>
-          <div class="hs-c">
-            <h4>Add Members</h4>
-            <p>Type number + name → Add. For Indian numbers: <code>9789855222</code>. For international (abroad): include country code like <code>+447911123456</code> or <code>+971501234567</code>. For many at once use 📥 Bulk Import. After adding click 📋 Copy List → paste into <code>index.html</code> on GitHub to make permanent.</p>
-          </div>
-        </div>
-        <div class="howto-step">
-          <div class="hs-n">2</div>
-          <div class="hs-c">
-            <h4>Add a New Report</h4>
-            <p>Upload your new HTML file to GitHub. Then open <code>index.html</code> → pencil ✏️ → find <code>ALL_REPORTS = [</code> → add the filename → Commit. It appears on the portal immediately.</p>
-          </div>
-        </div>
-        <div class="howto-step">
-          <div class="hs-n">3</div>
-          <div class="hs-c">
-            <h4>Change Admin Password</h4>
-            <p>Go to <strong style="color:#e2e8f0">emn178.github.io/online-tools/sha256.html</strong> → type your new password → copy the hash → open <code>index.html</code> on GitHub → find <code>ADMIN_PWD_HASH</code> → replace hash → Commit.</p>
-          </div>
-        </div>
-        <div class="howto-step">
-          <div class="hs-n">4</div>
-          <div class="hs-c">
-            <h4>Share Link with Members</h4>
-            <p>Portal link: <code>https://elangocauvery.github.io/CB-Finance/</code><br>
-            This is the only link members ever need. All reports appear here after login.</p>
-          </div>
-        </div>
-        <div class="howto-step">
-          <div class="hs-n">5</div>
-          <div class="hs-c">
-            <h4>Free Access for YouTube</h4>
-            <p>Share direct file links for free access (no login needed):<br>
-            <code>https://elangocauvery.github.io/CB-Finance/india_pv_sector_q4fy26_analysis.html</code></p>
-          </div>
-        </div>
+        <div class="howto-step"><div class="hs-n">1</div><div class="hs-c"><h4>Add Members</h4><p>Type number + name → ➕ Add. Saved automatically on your device. For bulk: use 📥 Import tab. Then click 📋 Copy List and paste into GitHub to make permanent across all devices.</p></div></div>
+        <div class="howto-step"><div class="hs-n">2</div><div class="hs-c"><h4>Add a New Report</h4><p>Upload HTML file to GitHub. Then open <code>index.html</code> → pencil ✏️ → find <code>PORTAL_CONFIG</code> at the very top of the script → add one line under Reports with filename and date. That's all.</p></div></div>
+        <div class="howto-step"><div class="hs-n">3</div><div class="hs-c"><h4>Change Password</h4><p>Go to <strong style="color:#e2e8f0">emn178.github.io/online-tools/sha256.html</strong> → type new password → copy hash → open <code>index.html</code> on GitHub → find <code>ADMIN_PWD_HASH</code> in PORTAL_CONFIG → replace hash → Commit.</p></div></div>
+        <div class="howto-step"><div class="hs-n">4</div><div class="hs-c"><h4>Portal Link</h4><p><code>https://elangocauvery.github.io/CB-Finance/</code> — only link members ever need.</p></div></div>
       </div>
     </div>
   </div>
-</div>
-</div>
+</div></div>
 
-<!-- SPLASH / LOGIN -->
 <div id="splash">
   <div class="brand">
     <div class="brand-logo">📊</div>
@@ -336,10 +244,8 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
   <div class="login-card">
     <div class="step active" id="step1">
       <div class="step-title">🔐 Member Verification</div>
-      <div class="step-hint">Enter your registered mobile number. Include country code for international numbers (e.g. +44 7911 123456 or 9789855222).</div>
-      <input class="inp" id="phoneInput" type="tel" maxlength="16" placeholder="Mobile number (e.g. +44 7911 123456)"
-             oninput="sanitizePhone(this)"
-             onkeydown="if(event.key==='Enter')sendOTP()">
+      <div class="step-hint">Enter your registered mobile number. International members include country code (e.g. +44... +971...)</div>
+      <input class="inp" id="phoneInput" type="tel" maxlength="20" placeholder="Mobile number" oninput="sanitizePhone(this)" onkeydown="if(event.key==='Enter')sendOTP()">
       <div class="err" id="err1"></div>
       <button class="btn" onclick="sendOTP()">Get OTP →</button>
       <div class="terms-txt">By continuing you agree to our <a onclick="showTerms()">Terms of Use</a></div>
@@ -347,11 +253,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
     <div class="step" id="step2">
       <div class="step-title">📱 Enter OTP</div>
       <div class="step-hint" id="otpHint">Your OTP will appear below.</div>
-      <div class="otp-box" id="otpBox">
-        <div class="otp-label">YOUR ONE-TIME PASSWORD</div>
-        <div class="otp-code" id="otpCode">------</div>
-        <div class="otp-note">Type this code in the boxes below</div>
-      </div>
+      <div class="otp-box" id="otpBox"><div class="otp-label">YOUR ONE-TIME PASSWORD</div><div class="otp-code" id="otpCode">------</div><div class="otp-note">Enter this code below</div></div>
       <div class="otp-grid">
         <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,0)">
         <input class="otp-cell" maxlength="1" type="tel" oninput="otpMove(this,1)">
@@ -365,307 +267,218 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
       <div class="back" onclick="goBack()">← Change number</div>
       <div class="resend" id="resendRow">Resend in <span id="countdown">30</span>s</div>
     </div>
-    <div class="step" id="step3">
-      <div class="ok">
-        <div class="ok-icon">✅</div>
-        <div class="ok-title">Verified!</div>
-        <div class="ok-sub">Welcome to CB Research.<br>Loading your reports…</div>
-      </div>
-    </div>
+    <div class="step" id="step3"><div class="ok"><div class="ok-icon">✅</div><div class="ok-title">Verified!</div><div class="ok-sub">Welcome to CB Research.<br>Loading reports…</div></div></div>
   </div>
 </div>
 
-<!-- PORTAL -->
 <div id="portal">
   <div class="p-header">
     <div class="p-row1">
-      <div class="p-brand">
-        <div class="p-logo">📊</div>
-        <div>
-          <div class="p-title">CB Research — Member Portal</div>
-          <div class="p-sub">SECTOR ANALYSIS · EXCLUSIVE ACCESS · © 2026</div>
-        </div>
+      <div class="p-brand"><div class="p-logo">📊</div><div><div class="p-title">CB Research — Member Portal</div><div class="p-sub">SECTOR ANALYSIS · EXCLUSIVE ACCESS · © 2026</div></div></div>
+      <div class="hbtns">
+        <button class="p-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">🏠 Home</button>
+        <button class="p-nav-btn" onclick="document.getElementById('reportsGrid').scrollIntoView({behavior:'smooth'})">📊 Reports</button>
+        <button class="p-exit" onclick="logout()">⏻ Exit</button>
       </div>
-      <button class="p-exit" onclick="logout()">⏻ Exit</button>
     </div>
     <div class="p-row2">
       <span class="p-chip" id="memberChip">✅ Member</span>
       <button class="p-admin" id="adminBtn" onclick="openAdmin()">🔧 Admin Panel</button>
     </div>
   </div>
-
   <div class="p-body">
     <div class="welcome">
       <h2>Welcome, <span class="pw" id="welcomeName">Member</span> 👋</h2>
-      <p>Your exclusive CB Research reports are below. Click any report to open the full interactive dashboard.</p>
+      <p>Your exclusive CB Research reports are below. Each opens in a new tab — press Back or close the tab to return here.</p>
     </div>
     <div class="stats">
       <div class="stat"><div class="sv" style="color:#6366f1" id="stReports">—</div><div class="sl">Reports</div></div>
-      <div class="stat"><div class="sv" style="color:#f59e0b">Q4 FY26</div><div class="sl">Latest Quarter</div></div>
+      <div class="stat"><div class="sv" style="color:#f59e0b" id="stMembers">—</div><div class="sl">Members</div></div>
       <div class="stat"><div class="sv" style="color:#4ade80">May 2026</div><div class="sl">Last Updated</div></div>
       <div class="stat"><div class="sv" style="color:#34d399" id="stTime">—</div><div class="sl">Loaded At</div></div>
     </div>
-    <div class="notice">
-      <span style="font-size:17px;flex-shrink:0">💡</span>
-      <span>Each report opens as a full interactive dashboard. <strong>Bookmark this page</strong> — new reports appear here automatically when published.</span>
+    <div class="notice"><span style="font-size:17px;flex-shrink:0">💡</span><span>Reports are sorted newest first. <strong>Bookmark this page</strong> — new reports appear automatically.</span></div>
+    <div class="quick-nav">
+      <button class="qnav-btn" onclick="document.getElementById('reportsGrid').scrollIntoView({behavior:'smooth'})">📊 All Reports</button>
+      <button class="qnav-btn" style="background:#f0fdf4;color:#059669;border-color:#6ee7b7" onclick="window.scrollTo({top:0,behavior:'smooth'})">🏠 Top</button>
+      <button class="qnav-btn" style="background:#fef3c7;color:#92400e;border-color:#fcd34d" onclick="openAdmin()">🔧 Admin</button>
     </div>
-    <div class="sec-head">📊 All Reports</div>
-    <div class="grid-reports" id="reportsGrid">
-      <div class="loader">
-        <div class="spinner"></div>
-        <div style="font-size:13px;color:#64748b">Loading reports…</div>
-      </div>
-    </div>
+    <div class="sec-head">📊 All Reports — Newest First</div>
+    <div class="grid-reports" id="reportsGrid"></div>
   </div>
-
-  <div class="p-footer">
-    <strong style="color:#475569">© 2026 CB Research &amp; Analytics. All Rights Reserved.</strong><br>
-    CB Research™ · CB Assist™ · Sector Analysis™ are trademarks of CB Research &amp; Analytics.<br>
-    For authorised members only. Not investment advice. Indian Copyright Act, 1957.
-  </div>
+  <div class="p-footer"><strong style="color:#475569">© 2026 CB Research &amp; Analytics. All Rights Reserved.</strong><br>CB Research™ · CB Assist™ · Sector Analysis™ are trademarks of CB Research &amp; Analytics.<br>For authorised members only. Not investment advice.</div>
 </div>
 
 <script>
-// ════════════════════════════════════════════════════════════════════
-// CB RESEARCH MASTER PORTAL © 2026
-// ════════════════════════════════════════════════════════════════════
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║                        PORTAL CONFIG                                    ║
+// ║  This is the ONLY section you need to edit for normal use               ║
+// ║  Everything else is automatic                                           ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+const PORTAL_CONFIG = {
 
+  // ── 1. ADMIN PASSWORD (SHA-256 hash — real password never stored) ─────────
+  // Current password: CBResearch@2026
+  // To change: go to emn178.github.io/online-tools/sha256.html
+  //            type new password → copy hash → paste below
+  adminPwdHash: '35ee576ebbef5af726476911fbc6ebc7469a9fa194106f6f1a7ff0da485d2e94',
 
-// ╔══════════════════════════════════════════════════════════════════╗
-// ║  SECTION 1 — ADMIN CONFIG  (edit these on GitHub)               ║
-// ╚══════════════════════════════════════════════════════════════════╝
+  // ── 2. ADMIN PHONE (gets the 🔧 Admin Panel button after login) ───────────
+  adminPhones: ['9789855222'],
 
-// Admin password stored as SHA-256 hash (real password never in code)
-// Current password: CBResearch@2026
-// To change: go to emn178.github.io/online-tools/sha256.html → hash your new password → paste below
-const ADMIN_PWD_HASH = '35ee576ebbef5af726476911fbc6ebc7469a9fa194106f6f1a7ff0da485d2e94';
+  // ── 3. MEMBERS LIST ───────────────────────────────────────────────────────
+  // Indian numbers: just the 10 digits
+  // International:  include + and country code  e.g. '+447911123456'
+  members: [
+    { phone: '9789855222',   name: 'Admin / Owner'      },
+    { phone: '7708358616',   name: 'Soundara Rajan'     },
+    { phone: '+96598969279', name: 'Chandramouli'       },
+    { phone: '8722337751',   name: 'Karuppusamy'        },
+    { phone: '9845441232',   name: 'Saravanan'          },
+    { phone: '9791366580',   name: 'Chinnaraja Kesavan' },
+    // Add new members below — copy the format above:
+    // { phone: '9876543210',   name: 'Member Name'     },
+    // { phone: '+447911123456',name: 'UK Member'       },
+  ],
 
-// Your phone number — gets the 🔧 Admin Panel button after login
-const ADMIN_PHONES = ['9789855222'];
+  // ── 4. REPORTS LIST ───────────────────────────────────────────────────────
+  // When you upload a new file to GitHub, add ONE line here
+  // Format: { file: 'filename.html', date: 'DD Mon YYYY' }
+  // Newest date at the top = appears first on the portal
+  reports: [
+    { file: 'Sector_analysis_v_2_May26.html',         date: '20 May 2026' },
+    { file: 'Telecom_Q4FY26_Dashboard_Bilingual.html',date: '19 May 2026' },
+    { file: 'Top_nbfc_q4fy26_dashboard.html',         date: '19 May 2026' },
+    { file: 'india_pv_sector_q4fy26_analysis.html',   date: '18 May 2026' },
+    { file: 'india_steel_fy26_dashboard.ai.html',     date: '18 May 2026' },
+    { file: 'EMS_Sector_Analysis_FY26.html',          date: '17 May 2026' },
+    { file: 'india-pharma-analysis.html',             date: '17 May 2026' },
+    { file: 'india_alcobev_fy26_dashboard.html',      date: '17 May 2026' },
+    { file: 'india-reit-invit-dashboard.html',        date: '17 May 2026' },
+    { file: 'india-fmcg-analysis.html',               date: '14 May 2026' },
+    { file: 'india-hotels-analysis.html',             date: '14 May 2026' },
+    { file: 'SBI_Q4FY26_Analysis.html',               date: '14 May 2026' },
+    { file: 'MCX_Q4FY26_Analysis.html',               date: '14 May 2026' },
+    { file: 'gold_analysis.html',                     date: '14 May 2026' },
+    // Add new reports above this line:
+    // { file: 'Banking_Q1FY27.html', date: '1 Jun 2026' },
+  ],
 
-
-// ╔══════════════════════════════════════════════════════════════════╗
-// ║  SECTION 2 — MEMBERS LIST  (edit this to add/remove members)    ║
-// ║  Each number on its own line inside the [ ] brackets            ║
-// ║  Indian numbers: '9876543210',                                  ║
-// ║  International:  '+447911123456',  (+ country code + number)    ║
-// ╚══════════════════════════════════════════════════════════════════╝
-let MEMBERS = [
-  '9789855222',      // Admin / Owner
-  '7708358616',      // Soundara Rajan
-  '+96598969279',    // Chandramouli (Kuwait)
-  '8722337751',      // Karuppusamy
-  '9845441232',      // Saravanan
-  '9791366580',      // Chinnaraja Kesavan
-  // ─── Add new members below this line ───
-  // Indian:        '9876543210',    // Member Name
-  // International: '+447911123456', // UK Member
-  // UAE:           '+971501234567', // UAE Member
-];
-let MEMBER_NAMES = {
-  '9789855222':   'Admin / Owner',
-  '7708358616':   'Soundara Rajan',
-  '+96598969279': 'Chandramouli',
-  '8722337751':   'Karuppusamy',
-  '9845441232':   'Saravanan',
-  '9791366580':   'Chinnaraja Kesavan',
 };
+// ╚══════════════════════════════════════════════════════════════════════════╝
+// ║  END OF CONFIG — do not edit below this line unless you know JS         ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 
-// ╔══════════════════════════════════════════════════════════════════╗
-// ║  SECTION 3 — REPORTS LIST  (add new files here when uploaded)   ║
-// ║  Just add the filename inside quotes with a comma at the end    ║
-// ║  Example:  'my_new_sector_analysis.html',                       ║
-// ╚══════════════════════════════════════════════════════════════════╝
-const ALL_REPORTS = [
-  'Sector_analysis_May26.html',
-  'india_pv_sector_q4fy26_analysis.html',
-  'india_steel_fy26_dashboard.ai.html',
-  'SBI_Q4FY26_Analysis.html',
-  'MCX_Q4FY26_Analysis.html',
-  'EMS_Sector_Analysis_FY26.html',
-  'Telecom_Q4FY26_Dashboard_Bilingual.html',   // ← Check exact filename in your GitHub repo
-  'Top_nbfc_q4fy26_dashboard.html',
-  'india-pharma-analysis.html',
-  'india-hotels-analysis.html',
-  'india-fmcg-analysis.html',
-  'india-reit-invit-dashboard.html',
-  'india_alcobev_fy26_dashboard.html',
-  'gold_analysis.html',
-  // ← ADD NEW FILES ABOVE THIS LINE
-];
+// ── Initialise from config ────────────────────────────────────────────────────
+let MEMBERS      = PORTAL_CONFIG.members.map(m => m.phone);
+let MEMBER_NAMES = Object.fromEntries(PORTAL_CONFIG.members.map(m => [m.phone, m.name]));
+const ADMIN_PHONES   = PORTAL_CONFIG.adminPhones;
+const ADMIN_PWD_HASH = PORTAL_CONFIG.adminPwdHash;
 
-
-// ════════════════════════════════════════════════════════════════════
-// REPORT CARD METADATA — icons and labels for each file type
-// ════════════════════════════════════════════════════════════════════
+// ── Report metadata map ───────────────────────────────────────────────────────
 const META_MAP = [
-  { keys:['Sector_analysis_May26'],    icon:'🚗', sector:'Auto / PV Sector — Premium', color:'#3b82f6', tags:['PV','Q4 FY26','CB Assist','Premium'] },
-  { keys:['pv_sector','pv_sector'],    icon:'🚗', sector:'Auto / PV Sector',            color:'#3b82f6', tags:['PV','Auto'] },
-  { keys:['steel'],                    icon:'🏭', sector:'Steel / Metals',              color:'#f97316', tags:['Steel','Q4 FY26'] },
-  { keys:['sbi'],                      icon:'🏦', sector:'Banking — SBI',              color:'#10b981', tags:['Banking','PSU','Q4 FY26'] },
-  { keys:['bank'],                     icon:'🏦', sector:'Banking Sector',             color:'#10b981', tags:['Banking'] },
-  { keys:['mcx'],                      icon:'📈', sector:'Commodity Exchange — MCX',   color:'#6366f1', tags:['MCX','Exchange','Q4 FY26'] },
-  { keys:['ems'],                      icon:'⚡', sector:'EMS / Electronics MFG',      color:'#8b5cf6', tags:['EMS','PLI'] },
-  { keys:['pharma'],                   icon:'💊', sector:'Pharma / Healthcare',         color:'#059669', tags:['Pharma'] },
-  { keys:['hotel'],                    icon:'🏨', sector:'Hospitality / Hotels',        color:'#f59e0b', tags:['Hotels'] },
-  { keys:['fmcg'],                     icon:'🛒', sector:'FMCG / Consumer',             color:'#ec4899', tags:['FMCG'] },
-  { keys:['reit','invit'],             icon:'🏢', sector:'REIT / InvIT',               color:'#7c3aed', tags:['REIT','InvIT'] },
-  { keys:['gold'],                     icon:'🥇', sector:'Commodity — Gold',            color:'#d97706', tags:['Gold'] },
-  { keys:['alcobev'],                  icon:'🥃', sector:'Alcobev / Beverages',         color:'#b45309', tags:['Alcobev'] },
-  { keys:['infra'],                    icon:'🏗️', sector:'Infrastructure',             color:'#0891b2', tags:['Infra'] },
-  { keys:['power','energy'],           icon:'🔋', sector:'Power / Energy',              color:'#15803d', tags:['Energy'] },
-  { keys:['cement'],                   icon:'🏛️', sector:'Cement / Building Materials',color:'#78716c', tags:['Cement'] },
-  { keys:['realt'],                    icon:'🏘️', sector:'Real Estate',                color:'#0d9488', tags:['Realty'] },
-  { keys:['it_','_it_','tech'],        icon:'💻', sector:'IT / Technology',             color:'#4338ca', tags:['IT','Tech'] },
-  { keys:['telecom'],                  icon:'📡', sector:'Telecom Sector',               color:'#0891b2', tags:['Telecom','Q4 FY26'] },
-  { keys:['nbfc'],                     icon:'🏦', sector:'NBFC / Finance',               color:'#7c3aed', tags:['NBFC','Finance','Q4 FY26'] },
+  { keys:['v_2_may26','sector_analysis_v'],icon:'🚗', sector:'Auto / PV Sector — Premium v2',color:'#3b82f6',tags:['PV','Q4 FY26','CB Assist'] },
+  { keys:['pv_sector'],   icon:'🚗', sector:'Auto / PV Sector',         color:'#3b82f6', tags:['PV','Auto']           },
+  { keys:['steel'],       icon:'🏭', sector:'Steel / Metals',           color:'#f97316', tags:['Steel','Q4 FY26']     },
+  { keys:['sbi'],         icon:'🏦', sector:'Banking — SBI',            color:'#10b981', tags:['Banking','Q4 FY26']   },
+  { keys:['bank'],        icon:'🏦', sector:'Banking Sector',           color:'#10b981', tags:['Banking']             },
+  { keys:['mcx'],         icon:'📈', sector:'Commodity Exchange',       color:'#6366f1', tags:['MCX','Q4 FY26']       },
+  { keys:['ems'],         icon:'⚡', sector:'EMS / Electronics',        color:'#8b5cf6', tags:['EMS','PLI']            },
+  { keys:['pharma'],      icon:'💊', sector:'Pharma / Healthcare',      color:'#059669', tags:['Pharma']              },
+  { keys:['hotel'],       icon:'🏨', sector:'Hotels / Hospitality',     color:'#f59e0b', tags:['Hotels']              },
+  { keys:['fmcg'],        icon:'🛒', sector:'FMCG / Consumer',          color:'#ec4899', tags:['FMCG']                },
+  { keys:['reit','invit'],icon:'🏢', sector:'REIT / InvIT',             color:'#7c3aed', tags:['REIT','InvIT']         },
+  { keys:['gold'],        icon:'🥇', sector:'Commodity — Gold',         color:'#d97706', tags:['Gold']                },
+  { keys:['alcobev'],     icon:'🥃', sector:'Alcobev / Beverages',      color:'#b45309', tags:['Alcobev']             },
+  { keys:['telecom'],     icon:'📡', sector:'Telecom Sector',           color:'#0891b2', tags:['Telecom','Q4 FY26']   },
+  { keys:['nbfc'],        icon:'🏦', sector:'NBFC / Finance',           color:'#7c3aed', tags:['NBFC','Q4 FY26']      },
+  { keys:['infra'],       icon:'🏗️', sector:'Infrastructure',          color:'#0891b2', tags:['Infra']               },
+  { keys:['power','energy'],icon:'🔋',sector:'Power / Energy',         color:'#15803d', tags:['Energy']              },
+  { keys:['cement'],      icon:'🏛️', sector:'Cement',                  color:'#78716c', tags:['Cement']              },
+  { keys:['realt'],       icon:'🏘️', sector:'Real Estate',             color:'#0d9488', tags:['Realty']              },
+  { keys:['it_','tech'],  icon:'💻', sector:'IT / Technology',          color:'#4338ca', tags:['IT','Tech']            },
 ];
 
-function getMeta(filename){
-  const lower = filename.toLowerCase();
-  for(const m of META_MAP){
-    if(m.keys.some(k => lower.includes(k.toLowerCase()))) return m;
-  }
-  return { icon:'📊', sector:'Sector Analysis', color:'#6366f1', tags:['Research'] };
+function getMeta(f){ const l=f.toLowerCase(); for(const m of META_MAP){ if(m.keys.some(k=>l.includes(k))) return m; } return {icon:'📊',sector:'Sector Analysis',color:'#6366f1',tags:['Research']}; }
+
+function fmtTitle(f){
+  return f.replace('.html','').replace(/_/g,' ').replace(/-/g,' ')
+    .replace(/\bfy26\b/gi,'FY26').replace(/\bq4\b/gi,'Q4').replace(/\bsbi\b/gi,'SBI')
+    .replace(/\bmcx\b/gi,'MCX').replace(/\bems\b/gi,'EMS').replace(/\bpv\b/gi,'PV')
+    .replace(/\bfmcg\b/gi,'FMCG').replace(/\breit\b/gi,'REIT').replace(/\binvit\b/gi,'InvIT')
+    .replace(/\bai\b/gi,'').replace(/\bv 2\b/gi,'v2').trim()
+    .replace(/\b\w/g,l=>l.toUpperCase()).replace(/\s+/g,' ').trim();
 }
 
-function fmtTitle(filename){
-  return filename
-    .replace('.html','').replace(/_/g,' ').replace(/-/g,' ')
-    .replace(/\bfy26\b/gi,'FY26').replace(/\bq4\b/gi,'Q4').replace(/\bq3\b/gi,'Q3')
-    .replace(/\bmcx\b/gi,'MCX').replace(/\bsbi\b/gi,'SBI').replace(/\bems\b/gi,'EMS')
-    .replace(/\bpv\b/gi,'PV').replace(/\bfmcg\b/gi,'FMCG').replace(/\breit\b/gi,'REIT')
-    .replace(/\binvit\b/gi,'InvIT').replace(/\bai\b/gi,'').trim()
-    .replace(/\b\w/g, l => l.toUpperCase()).replace(/\s+/g,' ').trim();
-}
-
-function buildCard(filename){
-  const m     = getMeta(filename);
-  const title = fmtTitle(filename);
-  const tags  = m.tags.map(t =>
-    `<span class="rc-tag" style="background:${m.color}18;color:${m.color};border:1px solid ${m.color}33">${t}</span>`
-  ).join('');
-  return `<a class="rc" href="${filename}" target="_blank">
+function buildCard(r){
+  const m    = getMeta(r.file);
+  const title= fmtTitle(r.file);
+  const tags = m.tags.map(t=>`<span class="rc-tag" style="background:${m.color}18;color:${m.color};border:1px solid ${m.color}33">${t}</span>`).join('');
+  const isNew= r.ts && (Date.now()-r.ts < 7*86400000);
+  return `<a class="rc" href="${r.file}" target="_blank">
+    ${isNew?'<span class="rc-new">NEW</span>':''}
     <div class="rc-icon">${m.icon}</div>
     <div class="rc-sector">${m.sector}</div>
     <div class="rc-title">${title}</div>
     <div class="rc-desc">Interactive dashboard — charts, financials, analyst views, risks and CB Assist Q&amp;A.</div>
     <div class="rc-tags">${tags}</div>
-    <div class="rc-footer"><span class="rc-date">2026</span><span class="rc-open">Open Dashboard →</span></div>
+    <div class="rc-footer">
+      <span class="rc-date">📅 ${r.date||'2026'}</span>
+      <span class="rc-open">Open →</span>
+    </div>
   </a>`;
 }
 
 function loadReports(){
-  const grid = document.getElementById('reportsGrid');
-  grid.innerHTML = ALL_REPORTS.map(buildCard).join('');
-  document.getElementById('stReports').textContent = ALL_REPORTS.length;
-  document.getElementById('stTime').textContent =
-    new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  // Sort by date descending (newest first) then build cards
+  const sorted = [...PORTAL_CONFIG.reports]
+    .map(r => ({ ...r, ts: new Date(r.date).getTime() }))
+    .sort((a,b) => b.ts - a.ts);
+  document.getElementById('reportsGrid').innerHTML = sorted.map(buildCard).join('');
+  document.getElementById('stReports').textContent  = sorted.length;
+  document.getElementById('stMembers').textContent  = MEMBERS.length;
+  document.getElementById('stTime').textContent     = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
 }
 
-// ════════════════════════════════════════════════════════════════════
-// PHONE HELPERS — supports Indian (10-digit) and international (+CC format)
-// ════════════════════════════════════════════════════════════════════
+// ── Phone helpers ─────────────────────────────────────────────────────────────
+function sanitizePhone(el){ el.value=el.value.replace(/[^\d+\s\-()]/g,'').slice(0,20); }
+function normalizePhone(r){ return r.replace(/[\s\-()]/g,'').trim(); }
+function isValidPhone(p){ const d=p.replace(/\D/g,''); return d.length>=7; }
 
-function sanitizePhone(input){
-  // Allow: digits, +, spaces, hyphens, parentheses
-  // Remove anything else
-  let val = input.value.replace(/[^\d\+\s\-\(\)]/g, '');
-  // Limit length to 16 chars (+ and up to 15 digits per E.164 standard)
-  if(val.length > 16) val = val.slice(0, 16);
-  input.value = val;
+// ── localStorage ──────────────────────────────────────────────────────────────
+function loadStored(){
+  try{
+    const s=localStorage.getItem('cb_members');
+    if(s){
+      const d=JSON.parse(s);
+      if(d.phones) d.phones.forEach(p=>{ const n=normalizePhone(p); if(!MEMBERS.some(m=>normalizePhone(m)===n)) MEMBERS.push(p); });
+      if(d.names)  Object.assign(MEMBER_NAMES,d.names);
+    }
+  }catch(e){}
+}
+function saveMembers(){
+  try{ localStorage.setItem('cb_members',JSON.stringify({phones:MEMBERS,names:MEMBER_NAMES,saved:Date.now()})); }catch(e){}
 }
 
-function normalizePhone(raw){
-  // Normalize phone to a consistent storage format
-  // Remove spaces, hyphens, parentheses — keep + and digits
-  return raw.replace(/[\s\-\(\)]/g, '').trim();
-}
+// ── Session ───────────────────────────────────────────────────────────────────
+let currentPhone='',generatedOTP='',countdownTimer=null,adminOK=false;
 
-function isValidPhone(phone){
-  const normalized = normalizePhone(phone);
-  // Must have at least 7 digits (shortest valid phone number)
-  const digits = normalized.replace(/\D/g, '');
-  if(digits.length < 7) return false;
-  // If it starts with +, must have country code (at least 8 digits total)
-  if(normalized.startsWith('+') && digits.length < 8) return false;
-  return true;
-}
-
-// ════════════════════════════════════════════════════════════════════
-// AUTH
-// ════════════════════════════════════════════════════════════════════
-let currentPhone='', generatedOTP='', countdown=null, adminOK=false;
-
-document.addEventListener('contextmenu', e=>e.preventDefault());
-document.addEventListener('keydown', e=>{
-  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key))||(e.ctrlKey&&['U','S','P'].includes(e.key)))
-    e.preventDefault();
-});
-document.addEventListener('copy', e=>{
-  e.preventDefault();
-  e.clipboardData.setData('text/plain','© CB Research 2026');
-});
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{ if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key))||(e.ctrlKey&&['U','S','P'].includes(e.key))) e.preventDefault(); });
+document.addEventListener('copy',e=>{ e.preventDefault(); e.clipboardData.setData('text/plain','© CB Research 2026'); });
 
 function setWatermark(phone){
-  const m = phone.slice(0,3)+'XXXXX'+phone.slice(8);
-  document.getElementById('wm').textContent = '© CB Research 2026 · '+m;
-  document.getElementById('memberChip').textContent = '✅ '+m;
-  document.getElementById('welcomeName').textContent = MEMBER_NAMES[phone] || m;
+  const m=phone.length>6?phone.slice(0,3)+'XXXXX'+phone.slice(-2):phone;
+  document.getElementById('wm').textContent='© CB Research 2026 · '+m;
+  document.getElementById('memberChip').textContent='✅ '+m;
+  document.getElementById('welcomeName').textContent=MEMBER_NAMES[phone]||MEMBER_NAMES[normalizePhone(phone)]||m;
 }
 
-// ── Load members from localStorage on startup ────────────────────
-function loadStoredMembers(){
-  try {
-    const stored = localStorage.getItem('cb_members');
-    if(stored){
-      const data = JSON.parse(stored);
-      // Merge stored members with hardcoded list (avoid duplicates)
-      if(data.phones && Array.isArray(data.phones)){
-        data.phones.forEach(p => {
-          // Check by normalized form to avoid duplicates with different formatting
-          const norm = normalizePhone(p);
-          if(!MEMBERS.some(m => normalizePhone(m) === norm)) MEMBERS.push(p);
-        });
-      }
-      if(data.names){
-        Object.assign(MEMBER_NAMES, data.names);
-      }
-    }
-  } catch(e){ console.warn('Could not load stored members:', e); }
-}
-
-// ── Save members to localStorage ─────────────────────────────────
-function saveMembers(){
-  try {
-    // Only save members NOT in the hardcoded list (those are always there)
-    // Actually save ALL for simplicity — hardcoded ones will just be duplicated-safe
-    localStorage.setItem('cb_members', JSON.stringify({
-      phones: MEMBERS,
-      names:  MEMBER_NAMES,
-      saved:  Date.now()
-    }));
-  } catch(e){ console.warn('Could not save members:', e); }
-}
-
-window.addEventListener('load', ()=>{
-  // Load any members previously added via Admin Panel
-  loadStoredMembers();
-
-  const s = sessionStorage.getItem('cb_portal_v2');
-  if(s){
-    try{
-      const d=JSON.parse(s);
-      if(Date.now()-d.time < 86400000){
-        currentPhone=d.phone;
-        setWatermark(d.phone);
-        enterPortal();
-        return;
-      }
-    }catch(e){}
-    sessionStorage.removeItem('cb_portal_v2');
-  }
+window.addEventListener('load',()=>{
+  loadStored();
+  const s=sessionStorage.getItem('cb_pv2');
+  if(s){ try{ const d=JSON.parse(s); if(Date.now()-d.time<86400000){ currentPhone=d.phone; setWatermark(d.phone); enterPortal(); return; } }catch(e){} sessionStorage.removeItem('cb_pv2'); }
   document.getElementById('termsModal').classList.add('show');
 });
 
@@ -673,85 +486,66 @@ function acceptTerms(){ document.getElementById('termsModal').classList.remove('
 function showTerms(){   document.getElementById('termsModal').classList.add('show'); }
 
 function sendOTP(){
-  const raw  = document.getElementById('phoneInput').value.trim();
-  const phone = normalizePhone(raw);
-  const err   = document.getElementById('err1');
-  if(!isValidPhone(phone)){ showErr(err,'Enter a valid phone number. For international add country code e.g. +447911123456'); return; }
-  if(!MEMBERS.length){ showErr(err,'⛔ No members configured. Admin: add numbers to MEMBERS list.'); return; }
-  // Check normalized form
-  const found = MEMBERS.some(m => normalizePhone(m) === phone);
+  const raw=document.getElementById('phoneInput').value.trim();
+  const phone=normalizePhone(raw);
+  const err=document.getElementById('err1');
+  if(!isValidPhone(phone)){ showErr(err,'Enter a valid phone number.'); return; }
+  if(!MEMBERS.length){ showErr(err,'⛔ No members configured yet.'); return; }
+  const found=MEMBERS.some(m=>normalizePhone(m)===phone);
   if(!found){ showErr(err,'⛔ Number not registered. Contact your group admin.'); return; }
-  // Get the exact stored form (may have different formatting)
-  currentPhone = MEMBERS.find(m => normalizePhone(m) === phone) || phone;
-  generatedOTP = Math.floor(100000+Math.random()*900000).toString();
+  currentPhone=MEMBERS.find(m=>normalizePhone(m)===phone)||phone;
+  generatedOTP=Math.floor(100000+Math.random()*900000).toString();
   setTimeout(()=>{
-    document.getElementById('otpCode').textContent = generatedOTP;
+    document.getElementById('otpCode').textContent=generatedOTP;
     document.getElementById('otpBox').classList.add('show');
-    document.getElementById('otpHint').textContent = 'Your OTP is shown above — enter it below.';
+    document.getElementById('otpHint').textContent='Your OTP is shown above — enter it below.';
     try{ alert('📱 CB Research OTP: '+generatedOTP); }catch(e){}
-  }, 350);
+  },300);
   goStep(2); startCountdown(); hideErr(err);
 }
 
 function verifyOTP(){
-  const cells   = document.querySelectorAll('.otp-cell');
-  const entered = Array.from(cells).map(c=>c.value).join('');
-  const err     = document.getElementById('err2');
+  const cells=document.querySelectorAll('.otp-cell');
+  const entered=Array.from(cells).map(c=>c.value).join('');
+  const err=document.getElementById('err2');
   if(entered.length<6){ showErr(err,'Enter all 6 digits.'); return; }
   if(entered!==generatedOTP){
-    showErr(err,'❌ Wrong OTP. Please try again.');
+    showErr(err,'❌ Wrong OTP. Try again.');
     cells.forEach(c=>{c.value='';c.style.borderColor='#ef4444';});
     cells[0].focus();
     setTimeout(()=>cells.forEach(c=>c.style.borderColor=''),2000);
     return;
   }
-  hideErr(err);
-  clearInterval(countdown);
+  hideErr(err); clearInterval(countdownTimer);
   document.getElementById('otpBox').classList.remove('show');
   goStep(3);
-  sessionStorage.setItem('cb_portal_v2', JSON.stringify({phone:currentPhone,time:Date.now()}));
+  sessionStorage.setItem('cb_pv2',JSON.stringify({phone:currentPhone,time:Date.now()}));
   setWatermark(currentPhone);
-  setTimeout(enterPortal, 1500);
+  setTimeout(enterPortal,1500);
 }
 
 function enterPortal(){
   document.getElementById('splash').classList.add('hidden');
-  const portal = document.getElementById('portal');
-  portal.style.display = 'flex';
-  // Always show admin button — protected by password
-  const btn = document.getElementById('adminBtn');
-  if(btn){ btn.classList.add('show'); }
+  document.getElementById('portal').style.display='flex';
+  const btn=document.getElementById('adminBtn');
+  if(btn) btn.classList.add('show');
   loadReports();
 }
 
-function logout(){
-  if(!confirm('Exit CB Research Portal?')) return;
-  sessionStorage.removeItem('cb_portal_v2');
-  location.reload();
-}
+function logout(){ if(!confirm('Exit CB Research Portal?')) return; sessionStorage.removeItem('cb_pv2'); location.reload(); }
 
 function otpMove(cell,idx){
-  cell.value = cell.value.replace(/\D/,'').slice(0,1);
-  if(cell.value && idx<5) document.querySelectorAll('.otp-cell')[idx+1].focus();
+  cell.value=cell.value.replace(/\D/,'').slice(0,1);
+  if(cell.value&&idx<5) document.querySelectorAll('.otp-cell')[idx+1].focus();
   if(Array.from(document.querySelectorAll('.otp-cell')).every(c=>c.value.length===1)) verifyOTP();
 }
 
 function startCountdown(){
-  let s=30;
-  document.getElementById('countdown').textContent=s;
-  clearInterval(countdown);
-  countdown=setInterval(()=>{
-    s--;
-    const el=document.getElementById('countdown');
-    if(el) el.textContent=s;
-    if(s<=0){
-      clearInterval(countdown);
-      const row=document.getElementById('resendRow');
-      if(row) row.innerHTML='<span style="color:#6366f1;cursor:pointer" onclick="resendOTP()">Resend OTP</span>';
-    }
+  let s=30; document.getElementById('countdown').textContent=s; clearInterval(countdownTimer);
+  countdownTimer=setInterval(()=>{ s--; const el=document.getElementById('countdown'); if(el) el.textContent=s;
+    if(s<=0){ clearInterval(countdownTimer); const r=document.getElementById('resendRow'); if(r) r.innerHTML='<span style="color:#6366f1;cursor:pointer" onclick="resendOTP()">Resend OTP</span>'; }
   },1000);
 }
-
 function resendOTP(){
   generatedOTP=Math.floor(100000+Math.random()*900000).toString();
   document.getElementById('otpCode').textContent=generatedOTP;
@@ -760,45 +554,29 @@ function resendOTP(){
   document.querySelectorAll('.otp-cell')[0].focus();
   document.getElementById('resendRow').innerHTML='Resend in <span id="countdown">30</span>s';
   startCountdown();
-  try{ alert('📱 New CB Research OTP: '+generatedOTP); }catch(e){}
+  try{ alert('📱 New OTP: '+generatedOTP); }catch(e){}
 }
-
-function goBack(){ goStep(1); document.getElementById('phoneInput').value=''; clearInterval(countdown); }
+function goBack(){ goStep(1); document.getElementById('phoneInput').value=''; clearInterval(countdownTimer); }
 function goStep(n){ document.querySelectorAll('.step').forEach(s=>s.classList.remove('active')); document.getElementById('step'+n).classList.add('active'); }
 function showErr(el,msg){ el.textContent=msg; el.style.display='block'; }
 function hideErr(el){ el.style.display='none'; }
 
-// ════════════════════════════════════════════════════════════════════
-// ADMIN PANEL
-// ════════════════════════════════════════════════════════════════════
-async function sha256(msg){
-  const buf  = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-}
+// ── Admin ─────────────────────────────────────────────────────────────────────
+async function sha256(msg){ const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(msg)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join(''); }
 
-function openAdmin(){
-  adminOK=false;
-  document.getElementById('adminGate').style.display='';
-  document.getElementById('adminDash').style.display='none';
-  document.getElementById('adminPwd').value='';
-  document.getElementById('adminErr').style.display='none';
-  document.getElementById('adminModal').classList.add('show');
-  setTimeout(()=>document.getElementById('adminPwd').focus(),200);
-}
+function openAdmin(){ adminOK=false; document.getElementById('adminGate').style.display=''; document.getElementById('adminDash').style.display='none'; document.getElementById('adminPwd').value=''; document.getElementById('adminErr').style.display='none'; document.getElementById('adminModal').classList.add('show'); setTimeout(()=>document.getElementById('adminPwd').focus(),200); }
 function closeAdmin(){ document.getElementById('adminModal').classList.remove('show'); adminOK=false; }
 document.getElementById('adminModal').addEventListener('click',e=>{ if(e.target===document.getElementById('adminModal')) closeAdmin(); });
 
 async function checkPwd(){
-  const pwd  = document.getElementById('adminPwd').value;
-  const err  = document.getElementById('adminErr');
-  const hash = await sha256(pwd);
-  if(hash===ADMIN_PWD_HASH){
+  const pwd=document.getElementById('adminPwd').value;
+  const err=document.getElementById('adminErr');
+  if(await sha256(pwd)===ADMIN_PWD_HASH){
     adminOK=true;
     document.getElementById('adminGate').style.display='none';
     document.getElementById('adminDash').style.display='flex';
-    renderMembers();
-    updateStats();
-    switchTab('members', document.querySelector('.admin-tab'));
+    renderMembers(); updateStats();
+    switchTab('members',document.querySelector('.admin-tab'));
   } else {
     err.style.display='block';
     document.getElementById('adminPwd').value='';
@@ -811,132 +589,90 @@ function switchTab(tab,btn){
   document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  const p=document.getElementById('tab-'+tab);
-  if(p) p.classList.add('active');
+  const p=document.getElementById('tab-'+tab); if(p) p.classList.add('active');
 }
 
 function renderMembers(filter){
-  const list   = document.getElementById('memberList');
-  const filtered = filter
-    ? MEMBERS.filter(p=>p.includes(filter)||(MEMBER_NAMES[p]||'').toLowerCase().includes(filter.toLowerCase()))
-    : MEMBERS;
-  if(!filtered.length){
-    list.innerHTML=`<div style="text-align:center;color:#475569;padding:26px;font-size:13px">
-      ${MEMBERS.length?'No results for "'+filter+'"':'No members yet. Add one above.'}</div>`;
-    return;
-  }
-  list.innerHTML = filtered.map(phone=>{
-    const isAdm = ADMIN_PHONES.includes(phone);
-    const isYou = phone===currentPhone;
-    const name  = MEMBER_NAMES[phone]||'—';
-    return `<div class="mbr" id="row-${phone}">
-      <div style="font-size:14px">${isAdm?'👑':'👤'}</div>
-      <div class="mbr-num">${phone}</div>
-      <div class="mbr-name">${name}</div>
-      <span class="mbr-tag ${isAdm?'tag-adm':'tag-mbr'}">${isAdm?'ADMIN':'MEMBER'}</span>
-      ${isYou?'<span class="mbr-tag tag-you">YOU</span>':''}
-      <button class="mbr-del" onclick="removeMember('${phone}')" ${isAdm?'disabled title="Cannot remove admin"':''}>Remove</button>
-    </div>`;
+  const list=document.getElementById('memberList');
+  const filtered=filter?MEMBERS.filter(p=>p.includes(filter)||(MEMBER_NAMES[p]||'').toLowerCase().includes(filter.toLowerCase())):MEMBERS;
+  if(!filtered.length){ list.innerHTML=`<div style="text-align:center;color:#475569;padding:26px;font-size:13px">${MEMBERS.length?'No results':'No members yet.'}</div>`; return; }
+  list.innerHTML=filtered.map(phone=>{
+    const isAdm=ADMIN_PHONES.includes(phone), isYou=phone===currentPhone, name=MEMBER_NAMES[phone]||'—';
+    return `<div class="mbr" id="row-${phone}"><div style="font-size:14px">${isAdm?'👑':'👤'}</div><div class="mbr-num">${phone}</div><div class="mbr-name">${name}</div><span class="mbr-tag ${isAdm?'tag-adm':'tag-mbr'}">${isAdm?'ADMIN':'MEMBER'}</span>${isYou?'<span class="mbr-tag tag-you">YOU</span>':''}<button class="mbr-del" onclick="removeMember('${phone}')" ${isAdm?'disabled':''}>Remove</button></div>`;
   }).join('');
 }
 
 function updateStats(){
-  document.getElementById('stTotal').textContent  = MEMBERS.length;
-  document.getElementById('stAdmins').textContent = ADMIN_PHONES.filter(p=>MEMBERS.includes(p)).length;
-  document.getElementById('stOnline').textContent = sessionStorage.getItem('cb_portal_v2')?'1+':'0';
+  document.getElementById('stTotal').textContent=MEMBERS.length;
+  document.getElementById('stAdmins').textContent=ADMIN_PHONES.filter(p=>MEMBERS.includes(p)).length;
+  document.getElementById('stOnline').textContent=sessionStorage.getItem('cb_pv2')?'1+':'0';
+  document.getElementById('stMembers').textContent=MEMBERS.length;
 }
 
 function addMember(){
   if(!adminOK) return;
-  const rawPhone2 = document.getElementById('newPhone').value.trim();
-  const phone     = normalizePhone(rawPhone2);
-  const name      = document.getElementById('newName').value.trim();
-  if(!isValidPhone(phone)){ showAdminMsg('❌ Enter valid phone number (e.g. +447911123456 or 9789855222)','#f87171'); return; }
-  if(MEMBERS.includes(phone)){ showAdminMsg('⚠️ Already in list','#fbbf24'); return; }
-  MEMBERS.push(phone);
-  if(name) MEMBER_NAMES[phone]=name;
-  document.getElementById('newPhone').value='';
-  document.getElementById('newName').value='';
+  const phone=normalizePhone(document.getElementById('newPhone').value.trim());
+  const name=document.getElementById('newName').value.trim();
+  if(!isValidPhone(phone)){ showAdminMsg('❌ Invalid number','#f87171'); return; }
+  if(MEMBERS.some(m=>normalizePhone(m)===phone)){ showAdminMsg('⚠️ Already exists','#fbbf24'); return; }
+  MEMBERS.push(phone); if(name) MEMBER_NAMES[phone]=name;
+  document.getElementById('newPhone').value=''; document.getElementById('newName').value='';
   document.getElementById('newPhone').focus();
   renderMembers(document.getElementById('memberSearch').value);
-  updateStats();
-  saveMembers();  // ← persist to localStorage immediately
-  showAdminMsg('✅ Added '+phone+' — saved permanently','#4ade80');
-  setTimeout(()=>{
-    const row=document.getElementById('row-'+phone);
-    if(row){ row.style.background='rgba(74,222,128,.1)'; row.style.borderColor='rgba(74,222,128,.3)';
-      setTimeout(()=>{ row.style.background=''; row.style.borderColor=''; },2000); }
-  },80);
+  updateStats(); saveMembers();
+  showAdminMsg('✅ Added — saved to device','#4ade80');
+  setTimeout(()=>{ const r=document.getElementById('row-'+phone); if(r){ r.style.background='rgba(74,222,128,.1)'; setTimeout(()=>r.style.background='',2000); } },80);
 }
 
 function removeMember(phone){
   if(!adminOK) return;
   if(ADMIN_PHONES.includes(phone)){ showAdminMsg('❌ Cannot remove admin','#f87171'); return; }
-  if(!confirm('Remove member '+phone+'?')) return;
+  if(!confirm('Remove '+phone+'?')) return;
   const i=MEMBERS.indexOf(phone); if(i>-1) MEMBERS.splice(i,1);
   delete MEMBER_NAMES[phone];
   renderMembers(document.getElementById('memberSearch').value);
-  updateStats();
-  saveMembers();  // ← persist removal to localStorage
-  showAdminMsg('🗑️ Removed '+phone,'#f87171');
+  updateStats(); saveMembers();
+  showAdminMsg('🗑️ Removed','#f87171');
 }
 
 function exportList(){
   if(!adminOK) return;
-  const mlines = MEMBERS.map(p=>`  '${p}',${MEMBER_NAMES[p]?'   // '+MEMBER_NAMES[p]:''}`).join('\n');
-  const nlines = JSON.stringify(MEMBER_NAMES,null,2);
-  const code   = `let MEMBERS = [\n${mlines}\n];\nlet MEMBER_NAMES = ${nlines};`;
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(code)
-      .then(()=>showAdminMsg('📋 Copied! Paste into index.html on GitHub','#4ade80'))
-      .catch(()=>prompt('Copy and paste into index.html on GitHub:',code));
-  } else { prompt('Copy and paste into index.html on GitHub:',code); }
+  const lines=MEMBERS.map(p=>`    { phone: '${p}',${' '.repeat(Math.max(1,20-p.length))}name: '${MEMBER_NAMES[p]||''}' },`).join('\n');
+  const code=`  members: [\n${lines}\n  ],`;
+  if(navigator.clipboard) navigator.clipboard.writeText(code).then(()=>showAdminMsg('📋 Copied! Paste into PORTAL_CONFIG members section on GitHub','#4ade80')).catch(()=>prompt('Copy and paste into PORTAL_CONFIG → members on GitHub:',code));
+  else prompt('Copy and paste into PORTAL_CONFIG → members on GitHub:',code);
 }
 
 function bulkImport(){
   if(!adminOK) return;
   const text=document.getElementById('importText').value.trim();
   const res=document.getElementById('importResult');
-  if(!text){ res.textContent='❌ Paste some numbers first.'; res.className='import-result import-err'; res.style.display='block'; return; }
+  if(!text){ res.textContent='❌ Paste numbers first.'; res.className='import-result import-err'; res.style.display='block'; return; }
   let added=0,skipped=0,invalid=0;
   text.split('\n').map(l=>l.trim()).filter(l=>l).forEach(line=>{
-    const parts=line.split(',');
-    const phone=normalizePhone(parts[0].trim());
-    const name=(parts[1]||'').trim();
+    const parts=line.split(','); const phone=normalizePhone(parts[0].trim()); const name=(parts[1]||'').trim();
     if(!isValidPhone(phone)){ invalid++; return; }
-    if(MEMBERS.includes(phone)){ skipped++; return; }
-    MEMBERS.push(phone);
-    if(name) MEMBER_NAMES[phone]=name;
-    added++;
+    if(MEMBERS.some(m=>normalizePhone(m)===phone)){ skipped++; return; }
+    MEMBERS.push(phone); if(name) MEMBER_NAMES[phone]=name; added++;
   });
   renderMembers(); updateStats();
+  if(added>0) saveMembers();
   res.textContent=`✅ Added: ${added} · Skipped: ${skipped} · Invalid: ${invalid}`;
   res.className='import-result '+(added>0?'import-ok':'import-err');
   res.style.display='block';
   document.getElementById('importText').value='';
-  if(added>0){
-    saveMembers();  // ← persist bulk import to localStorage
-    showAdminMsg('✅ '+added+' members saved permanently','#4ade80');
-  }
+  if(added>0) showAdminMsg('✅ '+added+' saved to device','#4ade80');
 }
 
-function clearStoredMembers(){
+function clearStored(){
   if(!adminOK) return;
-  if(!confirm('Clear ALL stored members? Hardcoded members in the file will remain.')) return;
-  localStorage.removeItem('cb_members');
-  // Reset to only hardcoded members
-  location.reload();
+  if(!confirm('Clear stored members? Hardcoded members remain.')) return;
+  localStorage.removeItem('cb_members'); location.reload();
 }
 
-function showAdminMsg(msg,color){
-  const el=document.getElementById('adminMsg');
-  el.textContent=msg; el.style.color=color; el.style.display='flex';
-  clearTimeout(el._t); el._t=setTimeout(()=>el.style.display='none',3500);
-}
+function showAdminMsg(msg,color){ const el=document.getElementById('adminMsg'); el.textContent=msg; el.style.color=color; el.style.display='flex'; clearTimeout(el._t); el._t=setTimeout(()=>el.style.display='none',3500); }
 
-document.addEventListener('keydown',e=>{
-  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){ e.preventDefault(); openAdmin(); }
-});
+document.addEventListener('keydown',e=>{ if(e.ctrlKey&&e.shiftKey&&e.key==='A'){ e.preventDefault(); openAdmin(); } });
 </script>
 </body>
 </html>
