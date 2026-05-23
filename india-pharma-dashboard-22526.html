@@ -244,7 +244,7 @@
   <button onclick="switchTab('projects',this)">🔭 Projects</button>
   <button onclick="switchTab('swot',this)">📋 SWOT</button>
   <button onclick="switchTab('verdict',this)">🏆 Verdict</button>
-  <button onclick="switchTab('qa',this)">❓ Q&amp;A</button>
+  <button onclick="switchTab('qa',this)">🤖 CB Assist</button>
   <button onclick="switchTab('charts',this)">📈 Charts</button>
   <button onclick="switchTab('table',this)">📋 Data Table</button>
   <button onclick="switchTab('rankings',this)">🥇 Rankings</button>
@@ -290,38 +290,60 @@
   </div>
 
   <div class="section-title">🌍 Geographic Revenue Mix Overview</div>
-  <div class="geo-filter">
-    <label style="font-size:.84rem;font-weight:600">Filter by Category:</label>
-    <select class="geo-sel" onchange="filterGeo(this.value)">
-      <option value="all">All Companies (Revenue ↓)</option>
-      <option value="domestic">Domestic-Focused (India &gt;50%)</option>
-      <option value="export">Export-Heavy (&gt;70% exports)</option>
-      <option value="cdmo">CDMO / Hybrid</option>
-      <option value="mixed">Mixed (40–70% exports)</option>
-    </select>
+  <div class="geo-filter" style="flex-wrap:wrap;gap:12px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <label style="font-size:.84rem;font-weight:600;white-space:nowrap">🔽 Filter:</label>
+      <select class="geo-sel" id="geoFilterSel" onchange="applyGeoFilterSort()">
+        <option value="all">All Companies</option>
+        <option value="domestic">Domestic-Focused (India &gt;50%)</option>
+        <option value="export">Export-Heavy (&gt;70% exports)</option>
+        <option value="cdmo">CDMO / Hybrid</option>
+        <option value="mixed">Mixed (40–70% exports)</option>
+      </select>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <label style="font-size:.84rem;font-weight:600;white-space:nowrap">↕️ Sort by:</label>
+      <select class="geo-sel" id="geoSortSel" onchange="applyGeoFilterSort()">
+        <option value="rev_desc">Revenue (High → Low)</option>
+        <option value="rev_asc">Revenue (Low → High)</option>
+        <option value="ebitda_desc">EBITDA % (High → Low)</option>
+        <option value="ebitda_asc">EBITDA % (Low → High)</option>
+        <option value="pat_desc">Profit / PAT (High → Low)</option>
+        <option value="pat_asc">Profit / PAT (Low → High)</option>
+        <option value="india_desc">India % (High → Low)</option>
+        <option value="export_desc">Export % (High → Low)</option>
+        <option value="az">Company Name (A → Z)</option>
+      </select>
+    </div>
+    <div id="geoRowCount" style="font-size:.78rem;color:var(--muted);align-self:center"></div>
   </div>
   <div class="tbl-wrap">
     <table class="geo-table">
       <thead><tr>
-        <th onclick="sortGT(0)">Company ⇅</th><th onclick="sortGT(1)">Revenue (Cr) ⇅</th><th>India %</th><th>US %</th><th>EU/ROW %</th><th>Key Market</th><th>Export Orientation</th><th>Category</th>
+        <th onclick="sortGT(0)" title="Click to sort">Company ⇅</th>
+        <th onclick="sortGT(1)" title="Click to sort">Revenue (Cr) ⇅</th>
+        <th onclick="sortGT(2)" title="Click to sort">EBITDA % ⇅</th>
+        <th onclick="sortGT(3)" title="Click to sort">PAT (Cr) ⇅</th>
+        <th>India %</th><th>US %</th><th>EU/ROW %</th>
+        <th>Key Market</th><th>Category</th>
       </tr></thead>
       <tbody id="geoTbody">
-        <tr data-cat="export"><td><strong>Sun Pharma</strong> ✓Q4</td><td>14,560</td><td>30%</td><td>32%</td><td>38%</td><td>US Specialty</td><td>High — 70%</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
-        <tr data-cat="export"><td><strong>Dr Reddy's</strong> ✓Q4</td><td>7,516</td><td>18%</td><td>46%</td><td>36%</td><td>US Generics</td><td>Very High — 82%</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
-        <tr data-cat="export"><td><strong>Lupin</strong> ✓Q4</td><td>7,475</td><td>28%</td><td>41%</td><td>31%</td><td>US Generics</td><td>High — 72%</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
-        <tr data-cat="export"><td><strong>Aurobindo</strong> ✓Q4</td><td>8,853</td><td>10%</td><td>45%</td><td>45%</td><td>US+Europe</td><td>Very High — 90%</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
-        <tr data-cat="mixed"><td><strong>Cipla</strong> ✓Q4</td><td>6,541</td><td>40%</td><td>28%</td><td>32%</td><td>India+South Africa</td><td>Moderate — 60%</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
-        <tr data-cat="mixed"><td><strong>Zydus</strong> ✓Q4</td><td>7,587</td><td>38%</td><td>35%</td><td>27%</td><td>US+India</td><td>Moderate — 62%</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
-        <tr data-cat="mixed"><td><strong>Glenmark</strong> ✓Q4</td><td>3,684</td><td>34%</td><td>26%</td><td>40%</td><td>India+Europe</td><td>Moderate — 66%</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
-        <tr data-cat="domestic"><td><strong>Mankind</strong> ✓Q4</td><td>3,443</td><td>82%</td><td>10%</td><td>8%</td><td>India Domestic</td><td>Low — 18%</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Domestic</span></td></tr>
-        <tr data-cat="mixed"><td><strong>Torrent</strong> ✓Q4</td><td>2,864</td><td>48%</td><td>5%</td><td>47%</td><td>India+Germany</td><td>Moderate — 52%</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
-        <tr data-cat="cdmo"><td><strong>Divi's Labs</strong> ✓Q4</td><td>2,585</td><td>5%</td><td>40%</td><td>55%</td><td>Europe API/CDMO</td><td>Very High — 95%</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
-        <tr data-cat="cdmo"><td><strong>Laurus Labs</strong> ✓Q4</td><td>1,812</td><td>8%</td><td>35%</td><td>57%</td><td>ARV/Europe CDMO</td><td>Very High — 92%</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
-        <tr data-cat="domestic"><td><strong>Eris Life</strong> ✓Q4</td><td>757</td><td>95%</td><td>2%</td><td>3%</td><td>India Branded</td><td>Very Low — 5%</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Domestic</span></td></tr>
-        <tr data-cat="export"><td><strong>Natco</strong> ✓Q4</td><td>647</td><td>25%</td><td>55%</td><td>20%</td><td>US Oncology</td><td>High — 75%</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
-        <tr data-cat="cdmo"><td><strong>Sai Life Sci</strong></td><td>580</td><td>2%</td><td>50%</td><td>48%</td><td>Global CDMO</td><td>Very High — 98%</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
-        <tr data-cat="cdmo"><td><strong>Neuland</strong> ✓Q4</td><td>570</td><td>5%</td><td>35%</td><td>60%</td><td>Europe/US APIs</td><td>Very High — 95%</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
-        <tr data-cat="cdmo"><td><strong>Anthem Bio</strong> ✓Q4</td><td>611</td><td>2%</td><td>50%</td><td>48%</td><td>Global Biologics</td><td>Very High — 98%</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
+        <tr data-rev="14560" data-ebitda="27.1" data-pat="2714" data-india="30" data-export="70" data-name="Sun Pharma" data-cat="export"><td><strong>Sun Pharma</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>14,560</td><td><span style="color:#16a34a;font-weight:700">27.1%</span></td><td><span style="color:#16a34a;font-weight:700">₹2,714</span></td><td>30%</td><td>32%</td><td>38%</td><td>US Specialty</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
+        <tr data-rev="7516" data-ebitda="13.0" data-pat="220" data-india="18" data-export="82" data-name="Dr Reddy's" data-cat="export"><td><strong>Dr Reddy's</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>7,516</td><td><span style="color:#dc2626;font-weight:700">13.0%</span></td><td><span style="color:#d97706;font-weight:700">₹220</span></td><td>18%</td><td>46%</td><td>36%</td><td>US Generics</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
+        <tr data-rev="7475" data-ebitda="29.4" data-pat="1460" data-india="28" data-export="72" data-name="Lupin" data-cat="export"><td><strong>Lupin</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>7,475</td><td><span style="color:#16a34a;font-weight:700">29.4%</span></td><td><span style="color:#16a34a;font-weight:700">₹1,460</span></td><td>28%</td><td>41%</td><td>31%</td><td>US Generics</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
+        <tr data-rev="8853" data-ebitda="20.3" data-pat="910" data-india="10" data-export="90" data-name="Aurobindo" data-cat="export"><td><strong>Aurobindo</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>8,853</td><td><span style="color:#d97706;font-weight:700">20.3%</span></td><td><span style="color:#d97706;font-weight:700">₹910</span></td><td>10%</td><td>45%</td><td>45%</td><td>US+Europe</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
+        <tr data-rev="6541" data-ebitda="15.2" data-pat="555" data-india="40" data-export="60" data-name="Cipla" data-cat="mixed"><td><strong>Cipla</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>6,541</td><td><span style="color:#dc2626;font-weight:700">15.2%</span></td><td><span style="color:#dc2626;font-weight:700">₹555</span></td><td>40%</td><td>28%</td><td>32%</td><td>India+South Africa</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
+        <tr data-rev="7587" data-ebitda="25.0" data-pat="1272" data-india="38" data-export="62" data-name="Zydus" data-cat="mixed"><td><strong>Zydus</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>7,587</td><td><span style="color:#16a34a;font-weight:700">25.0%</span></td><td><span style="color:#16a34a;font-weight:700">₹1,272</span></td><td>38%</td><td>35%</td><td>27%</td><td>US+India</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
+        <tr data-rev="3684" data-ebitda="16.8" data-pat="320" data-india="34" data-export="66" data-name="Glenmark" data-cat="mixed"><td><strong>Glenmark</strong> <span style="background:#fef9c3;color:#854d0e;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">⏳ Est</span></td><td>3,684</td><td><span style="color:#dc2626;font-weight:700">16.8%</span></td><td><span style="color:#dc2626;font-weight:700">₹320</span></td><td>34%</td><td>26%</td><td>40%</td><td>India+Europe</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
+        <tr data-rev="3443" data-ebitda="27.0" data-pat="554" data-india="82" data-export="18" data-name="Mankind" data-cat="domestic"><td><strong>Mankind</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>3,443</td><td><span style="color:#16a34a;font-weight:700">27.0%</span></td><td><span style="color:#16a34a;font-weight:700">₹554</span></td><td>82%</td><td>10%</td><td>8%</td><td>India Domestic</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Domestic</span></td></tr>
+        <tr data-rev="4197" data-ebitda="32.3" data-pat="364" data-india="48" data-export="52" data-name="Torrent" data-cat="mixed"><td><strong>Torrent</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>4,197</td><td><span style="color:#d97706;font-weight:700">32.3%</span></td><td><span style="color:#d97706;font-weight:700">₹364</span></td><td>48%</td><td>5%</td><td>47%</td><td>India+Germany</td><td><span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Mixed</span></td></tr>
+        <tr data-rev="2585" data-ebitda="34.3" data-pat="662" data-india="5" data-export="95" data-name="Divi's Labs" data-cat="cdmo"><td><strong>Divi's Labs</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>2,585</td><td><span style="color:#16a34a;font-weight:700">34.3%</span></td><td><span style="color:#16a34a;font-weight:700">₹662</span></td><td>5%</td><td>40%</td><td>55%</td><td>Europe API/CDMO</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
+        <tr data-rev="1812" data-ebitda="28.9" data-pat="279" data-india="8" data-export="92" data-name="Laurus Labs" data-cat="cdmo"><td><strong>Laurus Labs</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>1,812</td><td><span style="color:#16a34a;font-weight:700">28.9%</span></td><td><span style="color:#d97706;font-weight:700">₹279</span></td><td>8%</td><td>35%</td><td>57%</td><td>ARV/Europe CDMO</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
+        <tr data-rev="757" data-ebitda="37.0" data-pat="282" data-india="95" data-export="5" data-name="Eris Life" data-cat="domestic"><td><strong>Eris Life</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>757</td><td><span style="color:#16a34a;font-weight:700">37.0%</span></td><td><span style="color:#d97706;font-weight:700">₹282</span></td><td>95%</td><td>2%</td><td>3%</td><td>India Branded</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Domestic</span></td></tr>
+        <tr data-rev="647" data-ebitda="40.0" data-pat="151" data-india="25" data-export="75" data-name="Natco" data-cat="export"><td><strong>Natco</strong> <span style="background:#fef9c3;color:#854d0e;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">⏳ Est</span></td><td>647</td><td><span style="color:#16a34a;font-weight:700">40.0%</span></td><td><span style="color:#d97706;font-weight:700">₹151</span></td><td>25%</td><td>55%</td><td>20%</td><td>US Oncology</td><td><span style="background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">Export</span></td></tr>
+        <tr data-rev="580" data-ebitda="27.8" data-pat="88" data-india="2" data-export="98" data-name="Sai Life Sci" data-cat="cdmo"><td><strong>Sai Life Sci</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>580</td><td><span style="color:#d97706;font-weight:700">27.8%</span></td><td><span style="color:#d97706;font-weight:700">₹88</span></td><td>2%</td><td>50%</td><td>48%</td><td>Global CDMO</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
+        <tr data-rev="570" data-ebitda="27.0" data-pat="100" data-india="5" data-export="95" data-name="Neuland" data-cat="cdmo"><td><strong>Neuland</strong> <span style="background:#fef9c3;color:#854d0e;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">⏳ Est</span></td><td>570</td><td><span style="color:#d97706;font-weight:700">27.0%</span></td><td><span style="color:#d97706;font-weight:700">₹100</span></td><td>5%</td><td>35%</td><td>60%</td><td>Europe/US APIs</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
+        <tr data-rev="611" data-ebitda="41.0" data-pat="190" data-india="2" data-export="98" data-name="Anthem Bio" data-cat="cdmo"><td><strong>Anthem Bio</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>611</td><td><span style="color:#16a34a;font-weight:700">41.0%</span></td><td><span style="color:#d97706;font-weight:700">₹190</span></td><td>2%</td><td>50%</td><td>48%</td><td>Global Biologics</td><td><span style="background:#cffafe;color:#0e7490;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700">CDMO</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -566,9 +588,9 @@
         <div style="text-align:right"><span class="tag tag-q4">✓ Q4 FY26</span><br><span class="tag tag-generic" style="margin-top:4px;display:inline-block">Branded Generics</span></div>
       </div>
       <div class="metrics">
-        <div class="metric metric-green"><div class="metric-val">₹2,864 Cr</div><div class="metric-lbl">Revenue</div></div>
+        <div class="metric metric-green"><div class="metric-val">₹4,197 Cr</div><div class="metric-lbl">Revenue (+42% YoY)</div></div>
         <div class="metric"><div class="metric-val">29.0%</div><div class="metric-lbl">EBITDA%</div></div>
-        <div class="metric metric-green"><div class="metric-val">₹635 Cr</div><div class="metric-lbl">PAT (+26%)</div></div>
+        <div class="metric metric-green"><div class="metric-val">₹364 Cr</div><div class="metric-lbl">PAT (-27% — exceptional ₹66 Cr)</div></div>
       </div>
       <div class="debt-bar-wrap">
         <div class="debt-label"><span style="font-size:.75rem;color:var(--muted)">Gross Debt</span><span style="font-size:.75rem;color:var(--red);font-weight:700">~₹8,000 Cr (post JB Chem acq) 🔴</span></div>
@@ -954,7 +976,7 @@
 
 <!-- ═══ Q&A ═══ -->
 <div id="tab-qa" class="tab">
-  <div class="section-title">❓ Q&amp;A — Smart Questions for Each Company</div>
+  <div class="section-title">🤖 CB Assist</div>
   <div class="info-box">
     <span class="en">Pre-loaded smart questions covering financials, strategy, risks, and outlook — plus an interactive box where you can ask your own questions using the data in this dashboard. No API key needed.</span>
     <span class="ta">ஒவ்வொரு நிறுவனத்திற்கும் முன்னே ஏற்றப்பட்ட கேள்வி-பதில்கள், மேலும் உங்கள் சொந்த கேள்விகளையும் கேட்கலாம்.</span>
@@ -1044,13 +1066,13 @@
         <tr><td><strong>Zydus</strong></td><td>✓ Q4 FY26</td><td>Generics+Novel</td><td class="td-green">7,587</td><td>~25%</td><td>1,897</td><td class="td-green">1,272</td><td>16.8%</td><td>1,500</td><td class="td-green">+500 cash</td><td>38%</td><td>62%</td><td><strong>#5</strong></td></tr>
         <tr><td><strong>Glenmark</strong></td><td>⏳ Q4 FY26 Pending</td><td>Generics</td><td>3,684</td><td class="td-red">16.8%</td><td>619</td><td class="td-red">320</td><td>8.7%</td><td>4,250</td><td class="td-red">-3,500</td><td>34%</td><td>66%</td><td><strong>#15</strong></td></tr>
         <tr><td><strong>Mankind</strong></td><td>✓ Q4 FY26</td><td>India Branded</td><td>3,443</td><td>27.0%</td><td>929</td><td>554</td><td>16.1%</td><td>2,500</td><td class="td-amber">-1,000</td><td>82%</td><td>18%</td><td><strong>#9</strong></td></tr>
-        <tr><td><strong>Torrent</strong></td><td>⏳ Q4 FY26 Pending</td><td>Branded Gen.</td><td>2,864</td><td>29.0%</td><td>831</td><td>635</td><td>22.2%</td><td>8,000</td><td class="td-red">-6,500</td><td>48%</td><td>52%</td><td><strong>#7</strong></td></tr>
+        <tr><td><strong>Torrent</strong></td><td>✓ Q4 FY26</td><td>Branded Gen.</td><td class="td-green">4,197</td><td class="td-green">32.3%</td><td>1,356</td><td class="td-red">364</td><td>8.7%</td><td>9,500</td><td class="td-red">-8,000</td><td>48%</td><td>52%</td><td><strong>#7</strong></td></tr>
         <tr><td><strong>Divi's Labs</strong></td><td>✓ Q4 FY26</td><td>API+CDMO</td><td>2,585</td><td class="td-green">34.3%</td><td>886</td><td>662</td><td>25.6%</td><td>50</td><td class="td-green">+500 cash</td><td>5%</td><td>95%</td><td><strong>#3</strong></td></tr>
         <tr><td><strong>Eris Life</strong></td><td>✓ Q4 FY26</td><td>India Branded</td><td>757</td><td class="td-green">37.0%</td><td>280</td><td class="td-green">282</td><td>37.3%*</td><td>2,255</td><td class="td-amber">-2,255</td><td>95%</td><td>5%</td><td><strong>#11</strong></td></tr>
         <tr><td><strong>Laurus Labs</strong></td><td>✓ Q4 FY26</td><td>ARV+CDMO</td><td>1,812</td><td>28.9%</td><td>523</td><td>279</td><td>15.4%</td><td>2,000</td><td class="td-amber">-1,200</td><td>8%</td><td>92%</td><td><strong>#8</strong></td></tr>
         <tr><td><strong>Natco</strong></td><td>⏳ Q4 FY26 Pending</td><td>Oncology</td><td>647</td><td class="td-green">40.0%</td><td>259</td><td>151</td><td>23.3%</td><td>50</td><td class="td-green">+200 cash</td><td>25%</td><td>75%</td><td><strong>#12</strong></td></tr>
         <tr><td><strong>Neuland</strong></td><td>✓ Q4 FY26</td><td>CDMO+API</td><td>570</td><td>27.0%</td><td>154</td><td>100</td><td>17.5%</td><td>300</td><td class="td-amber">-100</td><td>5%</td><td>95%</td><td><strong>#14</strong></td></tr>
-        <tr><td><strong>Sai Life Sci</strong></td><td>† FY25 data</td><td>Pure CDMO</td><td>580</td><td>27.8%</td><td>161</td><td>88</td><td>15.2%</td><td>900</td><td class="td-amber">-600</td><td>2%</td><td>98%</td><td><strong>#13</strong></td></tr>
+        <tr><td><strong>Sai Life Sci</strong> <span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:.68rem;font-weight:700">✓ Q4</span></td><td>† FY25 data</td><td>Pure CDMO</td><td>580</td><td>27.8%</td><td>161</td><td>88</td><td>15.2%</td><td>900</td><td class="td-amber">-600</td><td>2%</td><td>98%</td><td><strong>#13</strong></td></tr>
         <tr><td><strong>Anthem Bio</strong></td><td>✓ Q4 FY26</td><td>Biologics CRDMO</td><td class="td-green">611</td><td class="td-green">~41%</td><td>251</td><td class="td-green">190</td><td>31.1%</td><td>0</td><td class="td-green">+1,231 cash</td><td>2%</td><td>98%</td><td><strong>#16★</strong></td></tr>
       </tbody>
     </table>
@@ -1391,15 +1413,51 @@ function filterCards(cat,btn){
 }
 
 // ── Geo filter ──
-function filterGeo(cat){
-  document.querySelectorAll('#geoTbody tr').forEach(r=>{
-    r.style.display=(cat==='all'||r.dataset.cat===cat)?'':'none';
+function applyGeoFilterSort(){
+  const cat = document.getElementById('geoFilterSel').value;
+  const sortKey = document.getElementById('geoSortSel').value;
+  const tb = document.getElementById('geoTbody');
+  const rows = Array.from(tb.querySelectorAll('tr'));
+
+  // Filter
+  rows.forEach(r => {
+    r.style.display = (cat==='all' || r.dataset.cat===cat) ? '' : 'none';
   });
+
+  // Sort visible rows
+  const visible = rows.filter(r => r.style.display !== 'none');
+
+  const numSort = (key, asc) => (a, b) => {
+    const av = parseFloat(a.dataset[key]||0);
+    const bv = parseFloat(b.dataset[key]||0);
+    return asc ? av - bv : bv - av;
+  };
+
+  const sortFns = {
+    'rev_desc':    numSort('rev', false),
+    'rev_asc':     numSort('rev', true),
+    'ebitda_desc': numSort('ebitda', false),
+    'ebitda_asc':  numSort('ebitda', true),
+    'pat_desc':    numSort('pat', false),
+    'pat_asc':     numSort('pat', true),
+    'india_desc':  numSort('india', false),
+    'export_desc': numSort('export', false),
+    'az': (a,b) => (a.dataset.name||'').localeCompare(b.dataset.name||''),
+  };
+
+  visible.sort(sortFns[sortKey] || sortFns['rev_desc']);
+  visible.forEach(r => tb.appendChild(r));
+
+  // Row count badge
+  const badge = document.getElementById('geoRowCount');
+  if(badge) badge.textContent = visible.length + ' companies shown';
 }
+
+// Legacy — column header clicks (works on visible rows only)
 let gd={};
 function sortGT(col){
   const tb=document.getElementById('geoTbody');
-  const rows=Array.from(tb.querySelectorAll('tr'));
+  const rows=Array.from(tb.querySelectorAll('tr')).filter(r=>r.style.display!=='none');
   const dir=(gd[col]=!gd[col]);
   rows.sort((a,b)=>{
     const av=a.cells[col].innerText.replace(/[^0-9.\-]/g,'');
@@ -1410,6 +1468,9 @@ function sortGT(col){
   });
   rows.forEach(r=>tb.appendChild(r));
 }
+
+// Run on page load to set default sort (revenue desc)
+document.addEventListener('DOMContentLoaded', () => applyGeoFilterSort());
 
 // ── Table sort ──
 let sortDir={};
@@ -1502,7 +1563,7 @@ const swotD=[
    o:'Ilumya peak $400 Mn US potential|Specialty re-rating as % revenue grows|Emerging markets expansion|Biosimilar optionality',
    t:'US FDA inspection risk|Generic price erosion|INR appreciation hurts export margins|Global pricing regulation',
    s_ta:'இந்தியா #1 மருந்து நிறுவனம்|~₹8,000 கோடி நிகர பணம்|US சிறப்பு பிராண்டுகள்',w_ta:'Q3 FY26 மட்டுமே தரவு|Specialty வருவாய் குறைவு',o_ta:'Ilumya US $400 Mn வாய்ப்பு|Specialty மறு மதிப்பீடு',t_ta:'FDA ஆய்வு அபாயம்|ஜெனரிக் விலை சரிவு'},
-  {n:"Dr Reddy's",s:'Net cash ~₹3,500 Cr|FY26 annual revenue ₹33,593 Cr (highest ever)|Semaglutide generic (Health Canada approved)|Russia/CIS defensive franchise|Large biosimilar pipeline',
+  {n:"Dr Reddy\'s",s:'Net cash ~₹3,500 Cr|FY26 annual revenue ₹33,593 Cr (highest ever)|Semaglutide generic (Health Canada approved)|Russia/CIS defensive franchise|Large biosimilar pipeline',
    w:'Q4 PAT ₹220 Cr (-86%) — heavy one-offs|gRevlimid cliff FY27 (-30%+ PAT impact)|Low reported EBITDA margin (13% Q4)',
    o:'Post-gRevlimid recovery: base business growing|Semaglutide/GLP-1 generic — massive opportunity|Biosimilar launches FY27+|India branded recovery',
    t:'gRevlimid revenue disappears FY27|US pricing headwinds for oral generics|Lenalidomide SSA recurrence risk',
@@ -1512,7 +1573,7 @@ const swotD=[
    o:'US biosimilar launch FY27 — re-rating trigger|India chronic therapy growth|Complex inhalers + injectables pipeline',
    t:'Biosimilar competition (Sandoz, Celltrion)|FDA inspection risk|Rising API input costs',
    s_ta:'Q4 +87.5% PAT|300+ US ANDA குழாய்',w_ta:'~₹2,500 கோடி கடன்|Biosimilar நிர்வாக அபாயம்',o_ta:'FY27 Biosimilar வெளியீடு|இந்திய நாள்பட்ட சிகிச்சை வளர்ச்சி',t_ta:'Biosimilar போட்டி|FDA ஆய்வு'},
-  {n:"Divi's Labs",s:'Highest EBITDA margin (34.3%) in Indian pharma|Near debt-free — self-funded capex|World #1 in Naproxen, Dextromethorphan|CDMO custom synthesis moat|China+1 tailwind — European customers diversifying',
+  {n:"Divi\'s Labs",s:'Highest EBITDA margin (34.3%) in Indian pharma|Near debt-free — self-funded capex|World #1 in Naproxen, Dextromethorphan|CDMO custom synthesis moat|China+1 tailwind — European customers diversifying',
    w:'95% export — INR appreciation hurts|Revenue concentrated in API|Kakinada capex execution risk',
    o:'China+1 CDMO order wins|Kakinada Phase 3 = capacity leap|Nutraceutical API pricing recovery',
    t:"Chinese API makers re-enter market|INR appreciation compresses margins|Client concentration risk",
@@ -1532,8 +1593,8 @@ const swotD=[
    o:'Saroglitazar licensing — $100-300 Mn potential|US biosimilar launches FY27|NASH market $30-40 Bn by 2030',
    t:'Saroglitazar may not find global partner|Biosimilar global competition|R&D overspend risk',
    s_ta:'FDA அனுமதி பெற்ற புதுமையான மருந்து|நிகர பண நேர்மறை',w_ta:'Q4 தரவு மதிப்பீட்டு மட்டுமே',o_ta:'Saroglitazar ₹800-2,500 கோடி|Biosimilar FY27',t_ta:'உலகளாவிய ஒப்பந்தம் கிடைக்காமல் போகலாம்'},
-  {n:'Torrent',s:'Best India branded franchise (CV, CNS)|Taurine Pharma Germany|JB Chem = India scale-up|Strong cash flows (~₹2,500 Cr/yr)|Consistent EBITDA margin (29%)',
-   w:'~₹8,000 Cr debt — highest large-cap|JB Chem integration risk|Limited US business (5% revenue)',
+  {n:'Torrent',s:'Q4 FY26 revenue ₹4,197 Cr (+42% YoY incl. JB Pharma)|Op. EBITDA margin 32.3% — best in years|JB Pharma integration expanding India scale|Germany Taurine Pharma adds Europe|FY26 annual revenue ₹13,980 Cr',
+   w:'~₹9,500 Cr gross debt — highest large-cap|PAT ₹364 Cr (-27% YoY) due to ₹66 Cr exceptional|JB integration expenses elevated expenses 37% YoY',
    o:'JB Chem synergies (MR, brands)|Debt reduction FY27-28 = re-rating|Germany branded growth',
    t:'High debt = large interest burden|JB Chem integration delay|India branded price controls',
    s_ta:'CV/CNS சிறந்த இந்திய பிராண்டட்|ஜெர்மனியில் Taurine Pharma',w_ta:'~₹8,000 கோடி கடன் — அதிகம்',o_ta:'JB Chem ஒத்திசைவுகள்|கடன் குறைப்பு = மறு மதிப்பீடு',t_ta:'அதிக கடன்|இந்திய விலை கட்டுப்பாடு'},
@@ -1603,69 +1664,87 @@ function buildSWOT(){
 // ── Q&A ──
 const qaD={
   'Sun Pharma':[
-    {q:'Why is Sun Pharma ranked #1?',a:'Sun leads on all dimensions: India\'s largest pharma by revenue — Q4 FY26 actual ₹14,560 Cr (+13.6% YoY), PAT ₹2,714 Cr (+26% YoY), EBITDA 27.1%. ~₹8,000 Cr net cash (best balance sheet). Successful US specialty brand transition (Ilumya, Cequa, Winlevi). 100+ country presence. Best-in-class management under Dilip Shanghvi. FY26 full-year EBITDA margin expanded to 30.3%.'},
-    {q:'What is the US specialty strategy?',a:'Sun is the only Indian pharma executing a genuine US specialty brand transition. Ilumya (IL-23 for psoriasis) targets $400 Mn peak sales. Cequa (dry eye) and Winlevi (acne — first androgen receptor inhibitor) add further pillars. This reduces commodity generic price erosion risk and commands premium multiples. Specialty revenue target: $600 Mn+ by FY28.'},
-    {q:'What should I watch in Q4 FY26 results?',a:'Key watchpoints: (1) US specialty revenue trajectory for Ilumya/Cequa/Winlevi, (2) EBITDA margin vs Q3 (29%), (3) Taro dermatology contribution, (4) FY27 guidance on revenue band and specialty milestones, (5) India branded growth rate. A strong Q4 could unlock the next re-rating.'},
+    {q:'Why is Sun Pharma the #1 Indian pharma company?',a:'Q4 FY26: ₹14,560 Cr revenue (+13.6%), PAT ₹2,714 Cr (+26%), EBITDA 27.1%. Net cash ~₹8,000 Cr — unmatched balance sheet. Specialty brands (Ilumya, Cequa, Winlevi) driving US re-rating.'},
+    {q:'What makes Sun\'s US strategy unique?',a:'Only Indian pharma with genuine US specialty brand execution. Ilumya (psoriasis) targets $400 Mn peak sales. Specialty revenue targeting $600 Mn+ by FY28.'},
+    {q:'What are the key risks for Sun Pharma?',a:'EBITDA margin dipped from 28.7% to 27.1% Q4 YoY — watch margin recovery. Any FDA import alert would be a material risk. Q4 FY26 results just out — Q1 FY27 guidance key.'},
   ],
-  "Dr Reddy's":[
-    {q:'Why did Dr Reddy\'s PAT fall 86% in Q4 FY26?',a:'Three specific one-time items: (1) ₹453 Cr lenalidomide shelf-stock adjustment — customers writing down gRevlimid inventory as pricing crashed, (2) ₹228 Cr CAR-T/asset impairment write-off, (3) ₹114 Cr VAT provisions. Adjusted EBITDA was ~19.5% — underlying base business grew double-digit ex-North America.'},
-    {q:'What is gRevlimid and why is it a FY27 risk?',a:'Lenalidomide (Revlimid) was a blockbuster oncology drug where DRL + Natco had limited generic exclusivity — generating super-normal profits. Exclusivity ends in FY27, so gRevlimid revenue will decline sharply (-30%+ PAT impact). This is the key near-term overhang. Post-cliff, the recovery story kicks in with biosimilars and semaglutide.'},
-    {q:'What is the semaglutide (generic Ozempic) opportunity?',a:'DRL received Health Canada approval for semaglutide — one of the earliest global generic entrants in the GLP-1 space. The GLP-1 market (diabetes + obesity) is the largest pharma category of the decade. US generic entry is pending (device/formulation patents). DRL is developing semaglutide for Canada, Australia, and Europe simultaneously. Even a partial US share could add 10-15% to FY29 earnings.'},
+  "Dr Reddy\'s":[
+    {q:'Why did Dr Reddy\'s PAT crash 86% in Q4 FY26?',a:'Three one-offs: ₹453 Cr lenalidomide shelf-stock adjustment + ₹228 Cr CAR-T impairment + ₹114 Cr VAT provisions. Adjusted EBITDA ~19.5% — underlying business healthy.'},
+    {q:'What is the gRevlimid cliff risk in FY27?',a:'Lenalidomide exclusivity ends — PAT could fall 30%+ YoY. FY27 is the trough year. Recovery driven by biosimilars and semaglutide pipeline from FY28.'},
+    {q:'What is the semaglutide opportunity?',a:'Generic Ozempic approved in Canada — one of the earliest globally. GLP-1 market is $20 Bn+. US entry expected FY28+ — could add 10-15% to FY29 earnings.'},
   ],
   'Lupin':[
-    {q:'What drove +87.5% PAT growth in Q4 FY26?',a:'Three factors: (1) US generic price recovery — key products gained pricing power, (2) India branded growing 12-15% (CVS, CNS), (3) Operating leverage on fixed cost base as revenues scaled. This is the best Q4 FY26 result among all 16 companies and validates Lupin\'s turnaround story.'},
-    {q:'What is the biosimilar strategy?',a:'Lupin has filed or approved biosimilars for: Pegfilgrastim (G-CSF), Etanercept (Enbrel), and Adalimumab (Humira). US launches targeted FY27. The US biosimilar market is $15-20 Bn+ and Lupin enters as a second-wave player with lower development risk. Biosimilar launch in FY27 is the key next re-rating catalyst not yet fully priced in.'},
+    {q:'What drove Lupin\'s +89% PAT surge in Q4 FY26?',a:'Revenue hit ₹7,475 Cr (+32% YoY). US generic price recovery + India branded growth 12-15%. Operating leverage on fixed cost base drove 29.4% EBITDA margin.'},
+    {q:'When will Lupin\'s biosimilars launch in the US?',a:'Pegfilgrastim and Etanercept targeted for US launch in FY27. US biosimilar market is $15-20 Bn — key re-rating trigger not yet priced in.'},
+    {q:'What is the key risk for Lupin?',a:'~₹2,500 Cr gross debt vs peers with net cash. Biosimilar launch execution unproven — competition from Sandoz and Celltrion is intense.'},
   ],
-  "Divi's Labs":[
-    {q:'Why does Divi\'s trade at 58x P/E?',a:"Divi's commands a premium because it combines rare attributes: (1) 34.3% EBITDA margin — best-in-class in Indian pharma, (2) Near-zero debt — self-funded all capex, (3) World-class process chemistry moat (world #1 in Naproxen/Dextromethorphan), (4) China+1 tailwind — European customers diversifying API sourcing, (5) Clean regulatory track record. The premium reflects quality + moat + defensibility."},
-    {q:'What is the Kakinada expansion?',a:"Divi's Phase 3 expansion at Kakinada (Andhra Pradesh) adds new API/CDMO capacity for custom synthesis molecules. This allows Divi's to win larger contracts from global innovators and expand high-demand APIs. Expected to ramp in FY27-28 and contribute significantly to revenue and EBITDA growth."},
+  "Divi\'s Labs":[
+    {q:'Why does Divi\'s trade at 58x P/E?',a:'34.3% EBITDA margin — best in Indian pharma. Near debt-free with self-funded capex. World #1 in Naproxen and Dextromethorphan with deep CDMO client moat.'},
+    {q:'What is the Kakinada expansion about?',a:'Phase 3 CDMO/API capacity addition in Andhra Pradesh. Targeting new contract synthesis wins from global innovators. Expected to ramp FY27-28.'},
+    {q:'What is the main threat to Divi\'s?',a:'95% exports — every 1% INR appreciation = ~1% EBITDA impact. Chinese API makers re-entering market could pressure pricing.'},
   ],
   'Cipla':[
-    {q:'Why is Cipla a defensive large-cap?',a:'Three reasons: (1) ~₹4,000 Cr net cash — fortress balance sheet, (2) Consistent delivery — never missed guidance recently, (3) Diversified revenue: India 40% + US 28% + South Africa 15% + ROW 17% — no single concentration. In times of FDA uncertainty or US generic headwinds, Cipla is where conservative pharma investors take cover.'},
-    {q:'When will US biosimilars launch?',a:'Filgrastim (G-CSF biosimilar) FDA filing submitted — launch expected FY27. Trastuzumab biosimilar in Phase 3 — FY28 launch. US biosimilar revenue could add ₹500-800 Cr by FY28 — a key re-rating trigger not yet fully priced in consensus.'},
+    {q:'Why did Cipla\'s PAT fall 55% in Q4 FY26?',a:'North America revenue fell 26% YoY — pricing pressure in key products. EBITDA margin dropped to 15.2%. India business grew 15% and remains strong.'},
+    {q:'What is Cipla\'s US biosimilar pipeline?',a:'Filgrastim filing submitted — FY27 launch targeted. Trastuzumab in Phase 3 — FY28 launch. Could add ₹500-800 Cr revenue by FY28.'},
+    {q:'Why is Cipla a defensive pick despite weak Q4?',a:'~₹4,000 Cr net cash, diversified across India/US/South Africa. North America weakness is cyclical not structural. FY26 annual revenue ₹28,163 Cr (record).'},
   ],
   'Aurobindo':[
-    {q:'What is the Penicillin G project?',a:"Aurobindo's subsidiary Penna Pharma is building India's first major domestic Penicillin G facility in Andhra Pradesh. India imports ~80% Penicillin G from China. Captive supply cuts API costs (30-40% of formulation), reduces China dependency, and enables surplus export. Phase 1 commissioned; commercial production FY27. Could improve EBITDA margins by 3-5% by FY28-29."},
-    {q:'What is the EU injectables strategy?',a:"Aurobindo targets ₹1 Bn (~₹8,300 Cr) in EU injectables revenue by FY27. EU injectable generics command 25-30% EBITDA vs ~19% for oral generics. Key markets: Germany, France, Netherlands. If achieved, could improve consolidated EBITDA from ~21% to 23-24%."},
+    {q:'What was Aurobindo\'s Q4 FY26 highlight?',a:'Record revenue ₹8,853 Cr (+5.6% YoY). EU formulations crossed €1 Bn annual milestone. API segment grew 25% QoQ. Net cash $317 Mn.'},
+    {q:'What is the Penicillin G project?',a:'Subsidiary Penna Pharma building India\'s first major domestic Penicillin G facility in AP. Phase 1 commissioned — commercial production FY27. Could improve EBITDA by 3-5% on full ramp.'},
+    {q:'What is the key risk for Aurobindo?',a:'US formulations revenue fell 18% YoY in Q4. EBITDA margin at 20.3% — below sector average. Heavy capex for Penicillin G has longer payback.'},
   ],
   'Zydus':[
-    {q:'What is Saroglitazar\'s global potential?',a:'Saroglitazar is Zydus\'s novel PPAR-α/γ agonist drug approved in India. NASH has no globally approved treatment — a $30-40 Bn market by 2030. Phase 2 US trials completed with positive data. Global licensing discussions with Big Pharma active — potential $100-300 Mn upfront + royalties. Most analysts model zero from this — it is pure unpriced upside optionality.'},
-    {q:'How is Zydus different from other Indian pharma?',a:"Zydus is the only Indian pharma with an FDA-approved novel drug (not just generics/biosimilars). It also developed ZyCov-D, the world's first approved DNA vaccine. The 3-pillar strategy (US generics + biosimilars + novel drug) offers multiple independent growth drivers — reducing single-theme risk."},
+    {q:'How did Zydus perform in Q4 FY26?',a:'Revenue ₹7,587 Cr (+16% YoY), PAT ₹1,272 Cr (+9%). India formulations +14%. Consumer wellness surged 61% YoY. Co-marketing semaglutide with Lupin and Torrent.'},
+    {q:'What is Saroglitazar\'s global potential?',a:'Novel PPAR agonist for NASH — $30-40 Bn global market with no approved drug. Phase 2 US trial data positive. Global licensing deal could bring $100-300 Mn upfront.'},
+    {q:'Why is Zydus the best long-term pick?',a:'Only Indian pharma with FDA-approved novel drug. Net cash positive. Three independent growth pillars: US generics + biosimilars + novel drug.'},
   ],
   'Torrent':[
-    {q:'How big is the JB Chem acquisition risk?',a:"Torrent acquired JB Chemicals for ~₹14,000 Cr in Jan 2026. Debt jumped to ~₹8,000 Cr (D/E ~1.5x). Synergies: MR overlap savings (~₹300-400 Cr/yr), brand complementarity in CVS/GI. Synergy realisation takes 2+ years, and interest burden (~₹750-900 Cr/yr) pressures PAT. Most analysts want 2 quarters of debt reduction before upgrading to Buy."},
+    {q:'What were Torrent\'s Q4 FY26 actual results?',a:'Revenue ₹4,197 Cr (+42% YoY incl. JB Pharma). Op. EBITDA margin 32.3% — strong. PAT ₹364 Cr (-27% YoY) due to ₹66 Cr exceptional expense on JB integration.'},
+    {q:'Will the JB Pharma acquisition create value?',a:'JB Pharma added scale — revenue now ₹4,200+ Cr. EBITDA margin held at 32.3% despite integration costs. Synergies (MR overlap, brands) expected to kick in FY27-28.'},
+    {q:'What is the key risk for Torrent?',a:'Gross debt ~₹9,500 Cr post JB integration — highest among large-cap peers. Interest burden ~₹800-900 Cr annually pressures PAT. Debt reduction pace is critical watch.'},
   ],
   'Mankind':[
-    {q:'Why is Mankind insulated from US FDA risk?',a:"82% of Mankind's revenue is India — consumer health (Manforce, Prega News, Gas-O-Fast) and branded generics. Zero manufacturing for US market exports. So any FDA import alert, Warning Letter, or US generic pricing crash has zero direct impact on Mankind. This is uniquely valuable in a sector where US FDA headline risk is constant."},
-    {q:'What is the Bharat Serums optionality?',a:"BSV (acquired ₹13,630 Cr) adds WHO-prequalified vaccines, plasma-derived biologics, and reproductive health biologics. Most analysts price this at breakeven currently. The optionality — biosimilar pipeline development, global vaccine export — is not in consensus. A successful 5-year integration could be transformational."},
+    {q:'How did Mankind perform in Q4 FY26?',a:'Revenue ₹3,443 Cr (-3.5% QoQ but +YoY). PAT ₹554 Cr (+31.7% YoY). EBITDA margin 27%. Chronic and OTC segments drove growth.'},
+    {q:'What is the Bharat Serums opportunity?',a:'BSV adds WHO-prequalified vaccines and plasma biologics. Biosimilar optionality not yet in consensus estimates. 50+ country presence diversifies Mankind\'s 82% India revenue.'},
+    {q:'Why is Mankind insulated from US FDA risk?',a:'82% revenue from India — zero US manufacturing exposure. FDA import alerts, warnings, or generic price crashes have no direct impact on Mankind.'},
   ],
   'Natco':[
-    {q:'What happens when gRevlimid fades in FY27?',a:'Analysts estimate Natco PAT could fall 25-35% in FY27 as gRevlimid exclusivity ends. The base business (US oncology generics, India branded) remains solid at ~30-35% EBITDA. New Para IV filings (carfilzomib, ibrutinib) provide pipeline. Near debt-free balance sheet provides cushion. Valuation likely compresses until new Para IV wins emerge.'},
+    {q:'What is Natco\'s key risk in FY27?',a:'gRevlimid exclusivity ends — PAT could fall 25-35%. FY27 is the trough year. New Para IV filings (carfilzomib, ibrutinib) are the recovery thesis. Results pending. ⏳ Estimate'},
+    {q:'What is Natco\'s edge in the US?',a:'Para IV first-to-file oncology specialist — near debt-free, 40% EBITDA margins. Crop protection as new vertical diversification. US oncology base business remains solid.'},
   ],
   'Glenmark':[
-    {q:'What is the GLS demerger?',a:"Glenmark Life Sciences (GLS) is Glenmark's API subsidiary. The demerger spins it out as a separate listed entity, using proceeds to reduce parent's ~₹4,000-4,500 Cr debt. GLS is valued at ~₹3,000 Cr. If successful, could reduce net debt by 60-70% — a transformational event. Timeline remains uncertain — key catalyst to watch."},
+    {q:'When will Glenmark report Q4 FY26?',a:'Board meeting scheduled May 29, 2026. Q4 FY26 results pending. FY26 full-year revenue ~₹16,468 Cr per Screener. ⏳ Q4 FY26 PENDING'},
+    {q:'What is the GLS demerger catalyst?',a:'GLS spinoff to unlock ~₹3,000 Cr value — proceeds to reduce parent\'s ~₹4,500 Cr debt. Timeline uncertain but is the single biggest re-rating trigger.'},
   ],
   'Laurus Labs':[
-    {q:'How is the CDMO transition progressing?',a:"Laurus's CDMO grew to ₹2,080 Cr (+36% YoY in FY26), now ~36% of revenue. Target: 50%+ of revenue by FY28. CDMO contracts are longer-duration (3-7 yr), higher-margin (~32-35% EBITDA vs ~25% ARV), and more visible. Capex peak likely passed. FY27 should see operating leverage and margin expansion. This transformation is the central investment thesis."},
+    {q:'How did Laurus perform in FY26?',a:'FY26 revenue ₹6,813 Cr (+23%). PAT surged 148% to ₹889 Cr. CDMO crossed ₹2,000 Cr (+36%). Q4 revenue ₹1,812 Cr, PAT ₹279 Cr (+19% YoY).'},
+    {q:'Why is CDMO the key thesis for Laurus?',a:'CDMO grew to ₹2,080 Cr (36% of revenue) in FY26. Target 50% of revenue by FY28. Higher margin (~32-35%) and longer contract duration vs ARV spot markets.'},
+    {q:'What is Laurus Bio?',a:'Biologics CRDMO subsidiary — fermentation, cell culture, biologics manufacturing. Early stage but gives long-term optionality in the fastest-growing CDMO segment.'},
   ],
   'Eris Life':[
-    {q:'Why does Eris have 36% EBITDA margins?',a:"Eris focuses exclusively on chronic therapy branded prescriptions in India (diabetes, hypertension, lipids, thyroid). High prescription loyalty — doctors repeatedly prescribe the same brand. Low promotional intensity after initial brand launch + inelastic chronic patient demand = 36% EBITDA. Zero US FDA risk (no US operations) also saves compliance costs vs export-oriented peers."},
+    {q:'What were Eris\'s Q4 FY26 actual results?',a:'Revenue ₹757 Cr (+7.3% YoY). PAT ₹282 Cr (+200%) — includes ₹120 Cr one-time tax reversal. Underlying PAT ~₹162 Cr. EBITDA margin 37%. Net debt ₹2,255 Cr.'},
+    {q:'Why does Eris have 37% EBITDA margins?',a:'Chronic therapy branded prescriptions have high loyalty — doctors repeat prescribe same brand. Low promotional spend post brand establishment. Zero US operations = no FDA compliance cost.'},
+    {q:'What is the key risk for Eris?',a:'Net debt increased to ₹2,255 Cr. Revenue growth slowing to 7% — slowest in recent quarters. Kinedex/Oaknet integration must deliver or margins disappoint.'},
   ],
   'Sai Life Sciences':[
-    {q:'What makes Sai Life unique among CDMOs?',a:"Sai Life is the only Indian CDMO with full Drug Discovery to Commercial Manufacturing under one roof — it can take a molecule from earliest stage (hit-to-lead) all the way to commercial supply. Top-10 Big Pharma client relationships are multi-year, multi-molecule partnerships — very sticky. This integrated capability is extremely rare in India."},
+    {q:'How did Sai Life perform in Q4 FY26?',a:'Revenue +4% YoY, EBITDA +12%, PAT +18% — slight miss vs estimates. Full-year CDMO +33% YoY. Management guides 15-20% revenue CAGR with 28-30% EBITDA margins. ✓ Q4 FY26 Actual'},
+    {q:'What makes Sai Life unique?',a:'Only Indian CDMO with Drug Discovery to Commercial manufacturing under one roof. Top-10 Big Pharma clients — multi-year, multi-molecule contracts. ~35% CAGR FY23-26.'},
+    {q:'Is the valuation justified?',a:'60-80x P/E on FY25 earnings — expensive. Justified only on FY27-28 growth earnings (35% CAGR). For 3-5 year investors; not value investors.'},
   ],
   'Neuland':[
-    {q:'What does Neuland do and why is it niche?',a:"Neuland focuses on Generic Drug Substances (GDS) and Custom Manufacturing Services (CMS) for regulated markets. Specialty: CNS, cardiovascular, and anti-infective APIs requiring complex multi-step synthesis chemistry — limited Indian competition. US FDA and EMA clean track record is a strong differentiator. Small cap but growing steadily on China+1 tailwinds."},
+    {q:'What does Neuland do?',a:'Complex API (CNS, CVS, anti-infectives) for regulated US/EU markets. GDS + CMS services — premium pricing. 95% exports. US FDA + EMA clean track record. ⏳ Q4 FY26 estimate ~₹570-610 Cr'},
+    {q:'Why is Neuland niche?',a:'Complex multi-step synthesis chemistry — limited Indian competitors. China+1 beneficiary. Low debt (~₹300 Cr), ~27% EBITDA. Small cap liquidity risk is the key constraint.'},
   ],
   'Anthem Bio':[
-    {q:'Why does Anthem have 41.8% EBITDA?',a:"Anthem's biologics fermentation CRDMO commands 40%+ margins because: (1) Highly specialised capability — very limited competition, (2) Long-term CRDMO contracts with milestone payments, (3) Specialty Ingredients segment has captive customer base, (4) Biologics manufacturing is complex — not commoditised — pricing power is real."},
-    {q:'How did Anthem Bio perform in Q4 FY26?',a:"Anthem delivered a blockbuster Q4 FY26 — record quarterly revenue of ₹611 Cr (+44% QoQ, +130% YoY PAT of ₹190 Cr). This confirmed the Q3 dip was purely timing-driven. Full-year FY26 showed the CRDMO thesis intact. The results validated Citigroup's Buy call with TP ₹870."},
+    {q:'What was Anthem Bio\'s Q4 FY26 performance?',a:'Record revenue ₹611 Cr (+44% QoQ). PAT ₹190 Cr (+130% YoY). Confirmed Q3 dip was purely timing-driven. Highest EBITDA margin (~41%) in Indian pharma sector.'},
+    {q:'Why does Anthem command 44x P/E?',a:'41% EBITDA margin — highest in sector. Full biologics CRDMO capability is rare in India. ₹1,231 Cr net cash. 130-140 pipeline molecules give multi-year revenue visibility.'},
+    {q:'What is the key risk?',a:'Revenue is milestone-driven — quarterly lumpy (Q3 dip proved this). Small scale vs global CRDMOs. Competition from WuXi Biologics and Samsung Bio at global level.'},
   ],
   'sector':[
-    {q:'What is China+1 and who benefits most?',a:"China+1 = global companies diversifying supply chains away from China. In pharma: moving API and CDMO manufacturing to India. India beneficiaries: Divi's Labs, Laurus Labs, Sai Life Sciences, Neuland, Anthem Bio, Aurobindo (Penicillin G). A multi-year structural tailwind worth $5-10 Bn annually for Indian CDMO revenues by 2030."},
-    {q:'How do I compare Indian pharma stocks?',a:"Use this framework: (1) EBITDA margin — quality indicator (Anthem 41.8%, Natco 40%, Eris 36%, Divi's 34.3% are top), (2) Balance sheet: net cash vs debt, (3) Revenue diversification, (4) CDMO/specialty vs commodity generic (premium valuation for former), (5) Pipeline depth: biosimilars, novel drugs, complex molecules, (6) Analyst consensus: broad Buy = confidence."},
-    {q:'Who has the best risk-reward in May 2026?',a:"Conservative: Cipla (net cash, consistent delivery, upcoming biosimilar), Divi's (debt-free moat). Growth: Lupin (best Q4 FY26 momentum, biosimilar FY27), Zydus (novel drug optionality unpriced). Contrarian: Dr Reddy's (buy on gRevlimid weakness, recovery story). High-risk/high-reward: Sai Life Sciences (35% CAGR CDMO), Anthem Bio (highest margins, biologics moat). Avoid near-term: Glenmark (high debt, low margins)."},
-    {q:'What is the difference between CDMO and generic pharma?',a:"Generic Pharma: makes copies of off-patent drugs, sells under own name. Revenue from own product portfolio. CDMO (Contract Development & Manufacturing): makes drugs FOR global innovators under contract — client's IP, CDMO's manufacturing. Higher value, stickier, longer contracts. CRDMO (Anthem Bio): does research, development AND manufacturing for biologics clients. Valuation hierarchy: CRDMO > CDMO > Specialty Generic > Plain Generic."},
+    {q:'Who is the champion of Indian pharma?',a:'Sun Pharma — largest by revenue (₹14,560 Cr Q4), net cash ₹8,000 Cr, US specialty transition (Ilumya), 100+ countries. FY26 EBITDA margin 30.3%.'},
+    {q:'Which companies reported Q4 FY26 results?',a:'Confirmed: Sun, Lupin, DRL, Divi\'s, Cipla, Aurobindo, Zydus, Torrent, Mankind, Laurus, Sai Life, Eris, Anthem. Pending: Natco, Glenmark, Neuland.'},
+    {q:'What is China+1 and who benefits most?',a:'Global supply chain shift away from China. India beneficiaries: Divi\'s, Laurus, Sai Life, Neuland, Anthem Bio. Worth $5-10 Bn annually for Indian CDMOs by 2030.'},
+    {q:'What is the difference between CDMO and generic pharma?',a:'Generic: sells own-branded copies of off-patent drugs. CDMO: manufactures FOR innovators under contract — client\'s IP, CDMO\'s process. Higher margins, longer contracts, stickier relationships.'},
   ],
 };
 function buildQA(){
@@ -1688,7 +1767,7 @@ const kb={
   cipla:{rev:'₹6,541 Cr (Q4 FY26 actual)',ebitda:'15.2% Q4 / 21% FY26',pat:'₹555 Cr (North America -26% YoY)',debt:'Net cash ~₹4,000 Cr',rank:'#4',analyst:'BUY',tp:'₹1,680-1,750',moat:'Respiratory India leader, South Africa dominant, biosimilar pipeline',hi:'Q4 FY26: revenue ₹6,541 Cr, EBITDA 15.2%, PAT ₹555 Cr (-55% YoY due to North America decline). FY26 annual revenue ₹28,163 Cr (record). India business +15% YoY.'},
   aurobindo:{rev:'₹8,853 Cr (Q4 FY26 actual — record)',ebitda:'20.3%',pat:'~₹910 Cr (+2% YoY)',debt:'Net cash $317 Mn (~₹2,650 Cr)',rank:'#10',analyst:'BUY',tp:'₹1,400-1,520',moat:'Volume scale, EU formulations hit €1 Bn milestone, Penicillin G project',hi:'Q4 FY26 record revenue ₹8,853 Cr (+5.6% YoY). EU hit €1 Bn annual milestone. API +25% QoQ. US formulations -18% YoY (headwind). Net cash $317 Mn.'},
   zydus:{rev:'₹7,587 Cr (Q4 FY26 actual)',ebitda:'~25%',pat:'₹1,272 Cr (+9% YoY)',debt:'Net cash positive',rank:'#5',analyst:'BUY',tp:'₹1,150-1,250',moat:'Only Indian novel drug (Saroglitazar), ZyCov-D vaccine, biosimilars',hi:'Q4 FY26 actual: revenue ₹7,587 Cr (+16% YoY), PAT ₹1,272 Cr (+9%). India formulations +14%. Consumer wellness +61% YoY. Semaglutide co-marketing with Lupin and Torrent in India.'},
-  torrent:{rev:'₹2,864 Cr (Q4 FY26)',ebitda:'29.0%',pat:'₹635 Cr (+26%)',debt:'~₹8,000 Cr (highest)',rank:'#7',analyst:'HOLD',tp:'₹3,400-3,600',moat:'Best India CV/CNS branded franchise, Taurine Germany',hi:'JB Chem acquisition (Jan 2026) drives debt. Watch deleveraging pace over FY27-28.'},
+  torrent:{rev:'₹4,197 Cr (Q4 FY26 actual — +42% YoY post JB Pharma)',ebitda:'32.3%',pat:'₹364 Cr (-27% YoY — exceptional ₹66 Cr)',debt:'~₹9,500 Cr gross (JB Pharma integration)',rank:'#7',analyst:'HOLD',tp:'₹3,400-3,600',moat:'Best India CV/CNS branded franchise, JB Pharma integrated, Germany Taurine',hi:'Q4 FY26 actual: revenue ₹4,197 Cr (+42% YoY incl. JB Pharma). Op.EBITDA margin 32.3% — strong. PAT ₹364 Cr impacted by ₹66 Cr exceptional expense. Expenses rose 37% YoY on JB integration.'},
   mankind:{rev:'₹3,443 Cr (Q4 FY26 actual)',ebitda:'27.0%',pat:'₹554 Cr (+31.7% YoY)',debt:'~₹2,500 Cr',rank:'#9',analyst:'BUY',tp:'₹2,900-3,100',moat:'Rural India Tier 2-4 distribution, consumer brands, Bharat Serums vaccines',hi:'Q4 FY26 actual: revenue ₹3,443 Cr, EBITDA margin 27%, PAT ₹554 Cr (+31.7% YoY). Revenue dipped 3.5% QoQ. 82% India = no US FDA risk.'},
   natco:{rev:'₹647 Cr (Q4 FY26)',ebitda:'40.0%',pat:'₹151 Cr',debt:'Near debt-free',rank:'#12',analyst:'HOLD',tp:'₹1,400-1,550',moat:'Para IV oncology specialist, clean balance sheet',hi:'gRevlimid windfall fading in FY27 → PAT normalisation expected -25-35%.'},
   glenmark:{rev:'₹3,684 Cr (Q4 FY26)',ebitda:'16.8%',pat:'₹320 Cr',debt:'~₹4,000-4,500 Cr (high)',rank:'#15',analyst:'HOLD/Turnaround Watch',tp:'₹1,450-1,600',moat:'Europe dermatology, Ryaltris inhaler, GLS demerger catalyst',hi:'Turnaround story. GLS demerger key catalyst. Lowest margins among large peers.'},
@@ -1729,10 +1808,10 @@ let chartsInit=false;
 function initCharts(){
   if(chartsInit)return;chartsInit=true;
   const labels=['Sun','DRL','Lupin',"Divi's",'Cipla','Auro','Zydus','Torrent','Mankind','Natco','Glenmark','Laurus','Anthem','Eris','Neuland','Sai Life'];
-  const revs=[13897,7516,7475,2585,6730,7249,5400,2864,3480,647,3684,1812,423,807,570,580];
-  const ebitda=[29.0,13.0,29.4,34.3,22.8,21.0,29.0,29.0,28.0,40.0,16.8,28.9,41.8,36.0,27.0,27.8];
-  const pats=[2980,220,1469,662,1350,694,970,635,678,151,320,279,93,180,100,88];
-  const debts=[0,0,2500,50,0,3000,1500,8000,2500,50,4250,2000,0,1800,300,900];
+  const revs=[14560,7516,7475,2585,6541,8853,7587,4197,3443,647,3684,1812,611,757,570,580]; // Q4 FY26 actuals; Glenmark/Natco/Neuland=estimates
+  const ebitda=[27.1,13.0,29.4,34.3,15.2,20.3,25.0,32.3,27.0,40.0,16.8,28.9,41.0,37.0,27.0,27.8]; // Q4 FY26 actuals
+  const pats=[2714,220,1469,662,555,910,1272,364,554,151,320,279,190,282,100,88]; // Q4 FY26 actuals
+  const debts=[0,0,2500,50,0,0,1500,9500,2500,50,4250,2000,0,2255,300,900]; // Auro net cash; Torrent post-JBChem; Eris net debt
   const domPct=[30,18,28,5,40,10,38,48,82,25,34,8,2,95,5,2];
   const expPct=[70,82,72,95,60,90,62,52,18,75,66,92,98,5,95,98];
   const blue1='rgba(3,105,161,0.85)',green='rgba(22,163,74,0.85)',amber='rgba(217,119,6,0.85)',red='rgba(220,38,38,0.85)';
