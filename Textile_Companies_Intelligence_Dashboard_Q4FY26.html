@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Textile Sector — Intelligence Dashboard | Q4 FY26</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f2;--surface:#fff;--surface2:#f2f0eb;--border:#e2ddd5;
+  --text:#181511;--muted:#6e6860;
+  --vardhman:#1d4ed8;--vardhman-soft:#eff6ff;
+  --welspun:#c84b2f;--welspun-soft:#fef3f0;
+  --kpr:#166534;--kpr-soft:#f0fdf4;
+  --indocount:#7c3aed;--indocount-soft:#f5f3ff;
+  --trident:#d97706;--trident-soft:#fffbeb;
+  --welspunliv:#0e7490;--welspunliv-soft:#ecfeff;
+  --spapparel:#be185d;--spapparel-soft:#fdf2f8;
+  --gokaldas:#92400e;--gokaldas-soft:#fef3c7;
+  --himat:#4338ca;--himat-soft:#eef2ff;
+  --pos:#166534;--neg:#dc2626;--warn:#ea580c;
+  --gold:#b8911e;--gold-soft:#fdf5e0;
+  --shadow:0 1px 8px rgba(24,21,17,.07);--shadow-md:0 4px 20px rgba(24,21,17,.10);
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:13.5px;line-height:1.55;}
+.hdr{background:#181511;color:#fff;padding:0 40px;display:flex;align-items:stretch;justify-content:space-between;min-height:72px;}
+.hdr-left{display:flex;align-items:center;padding:16px 0;}
+.hdr-left h1{font-family:'Playfair Display',serif;font-size:1.5rem;letter-spacing:-.01em;color:#fff;line-height:1.15;}
+.hdr-left .sub{font-size:11px;font-weight:500;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-top:4px;}
+.hdr-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:16px 0;}
+.chip{padding:4px 10px;border-radius:20px;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.chip-v{background:var(--vardhman);color:#fff;}.chip-wl{background:var(--welspunliv);color:#fff;}
+.chip-k{background:var(--kpr);color:#fff;}.chip-i{background:var(--indocount);color:#fff;}
+.chip-t{background:var(--trident);color:#fff;}.chip-sp{background:var(--spapparel);color:#fff;}
+.chip-g{background:var(--gokaldas);color:#fff;}.chip-h{background:var(--himat);color:#fff;}
+.chip-date{background:rgba(255,255,255,.08);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.12);}
+.tab-nav{background:var(--surface);border-bottom:2px solid var(--border);display:flex;align-items:center;padding:0 40px;overflow-x:auto;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(24,21,17,.06);}
+.tab-nav::-webkit-scrollbar{height:0;}
+.tab-btn{padding:14px 14px 12px;font-size:12px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;letter-spacing:.02em;transition:color .18s,border-color .18s;margin-bottom:-2px;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--welspun);font-weight:700;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.main{padding:26px 40px 48px;max-width:1460px;margin:0 auto;}
+.panel{display:none;animation:fadeIn .2s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+.sec-hdr{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:12px;}
+.sec-note{font-size:11px;color:var(--muted);font-weight:400;margin-left:4px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.gap-top{margin-top:22px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);}
+.card-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;}
+.co-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
+.co-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.co-card.vardhman::before{background:var(--vardhman);}
+.co-card.welspunliv::before{background:var(--welspunliv);}
+.co-card.kpr::before{background:var(--kpr);}
+.co-card.indocount::before{background:var(--indocount);}
+.co-card.trident::before{background:var(--trident);}
+.co-card.spapparel::before{background:var(--spapparel);}
+.co-card.gokaldas::before{background:var(--gokaldas);}
+.co-card.himat::before{background:var(--himat);}
+.co-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;margin-bottom:2px;}
+.co-seg{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:10px;}
+.m-row{display:flex;justify-content:space-between;margin-bottom:5px;align-items:center;}
+.m-lbl{font-size:11px;color:var(--muted);}
+.m-val{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;}
+.badge-row{margin-top:10px;display:flex;gap:4px;flex-wrap:wrap;}
+.badge{font-size:9.5px;padding:2px 7px;border-radius:4px;font-weight:700;font-family:'IBM Plex Mono',monospace;}
+.b-buy{background:#dcfce7;color:#15803d;}.b-hold{background:#fef9c3;color:#a16207;}
+.b-sell{background:#fee2e2;color:#b91c1c;}.b-spec{background:#f3f4f6;color:#4b5563;}
+.b-watch{background:#fff7ed;color:#c2410c;}.b-pos{background:#dcfce7;color:#15803d;}
+.b-neg{background:#fee2e2;color:#b91c1c;}.b-pend{background:#e0f2fe;color:#0369a1;}
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px;}
+.kpi-row2{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow);}
+.kpi.v-a{border-left:4px solid var(--vardhman);}.kpi.wl-a{border-left:4px solid var(--welspunliv);}
+.kpi.k-a{border-left:4px solid var(--kpr);}.kpi.i-a{border-left:4px solid var(--indocount);}
+.kpi.t-a{border-left:4px solid var(--trident);}.kpi.sp-a{border-left:4px solid var(--spapparel);}
+.kpi.g-a{border-left:4px solid var(--gokaldas);}.kpi.h-a{border-left:4px solid var(--himat);}
+.kpi .kl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:5px;}
+.kpi .kv{font-size:1.05rem;font-weight:800;color:var(--text);font-family:'IBM Plex Mono',monospace;}
+.kpi .kc{font-size:9.5px;font-weight:700;margin-top:2px;}
+.pos{color:var(--pos);}.neg{color:var(--neg);}.warn{color:var(--warn);}
+table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+th{background:#181511;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;padding:10px 12px;text-align:left;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;}
+td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px;white-space:nowrap;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:#fafaf8;}
+td.num{font-family:'IBM Plex Mono',monospace;text-align:right;}
+td.tpos{color:var(--pos);font-weight:700;font-family:'IBM Plex Mono',monospace;text-align:right;}
+td.tneg{color:var(--neg);font-weight:700;font-family:'IBM Plex Mono',monospace;text-align:right;}
+td.tb{font-weight:700;}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle;}
+.val-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);}
+.val-co{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;font-family:'IBM Plex Mono',monospace;}
+.val-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);}
+.val-row:last-child{border-bottom:none;}
+.val-lbl{font-size:11px;color:var(--muted);}
+.val-num{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;}
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
+.swot-cell{padding:12px 14px;}
+.swot-s{background:#e8f5ee;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.swot-w{background:#fbeee8;border-bottom:1px solid var(--border);}
+.swot-o{background:#f0edf8;border-right:1px solid var(--border);}
+.swot-t{background:var(--gold-soft);}
+.swot-lbl{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px;}
+.sl{color:#166534;}.wl{color:#dc2626;}.ol{color:#7c3aed;}.tl{color:var(--gold);}
+.swot-ul{list-style:none;font-size:10.5px;line-height:1.65;}
+.swot-ul li::before{content:"• ";color:var(--muted);}
+.co-hdr-swot{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:8px;}
+.seg-bar-wrap{background:var(--surface2);border-radius:20px;height:10px;overflow:hidden;margin-bottom:4px;}
+.seg-bar{height:10px;border-radius:20px;}
+.seg-row{margin-bottom:12px;}
+.seg-lbl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}
+.analyst-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);margin-bottom:14px;}
+.ac-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
+.ac-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.rat-pill{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:800;font-family:'IBM Plex Mono',monospace;}
+.rp-buy{background:#dcfce7;color:#15803d;}.rp-hold{background:#fef9c3;color:#a16207;}
+.rp-spec{background:#f3f4f6;color:#4b5563;}.rp-sell{background:#fee2e2;color:#b91c1c;}
+.ac-tp{font-size:1.1rem;font-weight:900;font-family:'IBM Plex Mono',monospace;color:var(--text);margin-bottom:3px;}
+.ac-cmp{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.ac-bar{background:var(--surface2);border-radius:20px;height:6px;overflow:hidden;margin-bottom:10px;}
+.ac-fill{height:6px;border-radius:20px;}
+.ac-text{font-size:12px;color:var(--text);line-height:1.6;}
+.moat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);}
+.moat-co{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+.moat-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.moat-body{font-size:10.5px;color:var(--muted);line-height:1.55;}
+.moat-tag{display:inline-block;margin-top:6px;padding:2px 8px;border-radius:10px;font-size:9.5px;font-weight:700;text-transform:uppercase;}
+.tariff-note{background:#fff8e1;border:1.5px solid #f59e0b;border-radius:var(--radius);padding:12px 16px;font-size:12px;color:#92400e;margin-bottom:20px;line-height:1.55;}
+.cbassist-chat{background:var(--surface);border:1.5px solid var(--welspun);border-radius:var(--radius);padding:20px 22px;}
+.cbassist-title{font-weight:800;font-size:12.5px;color:var(--welspun);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.cbassist-title .dot-live{width:8px;height:8px;background:var(--pos);border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.chat-msgs{min-height:120px;max-height:400px;overflow-y:auto;margin-bottom:12px;display:flex;flex-direction:column;gap:10px;}
+.chat-msg{padding:10px 14px;border-radius:10px;font-size:12px;max-width:90%;line-height:1.55;}
+.chat-msg.user{background:#181511;color:#fff;align-self:flex-end;border-radius:10px 10px 2px 10px;}
+.chat-msg.bot{background:var(--surface2);border:1px solid var(--border);align-self:flex-start;border-radius:10px 10px 10px 2px;}
+.chat-msg.bot strong{color:var(--welspun);}
+.chat-input-row{display:flex;gap:8px;}
+.chat-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);outline:none;transition:border-color .2s;}
+.chat-input:focus{border-color:var(--welspun);}
+.chat-send{background:var(--welspun);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:12px;font-weight:700;cursor:pointer;}
+.chat-send:disabled{opacity:.5;cursor:not-allowed;}
+.typing-ind{display:none;align-items:center;gap:5px;padding:8px 12px;}
+.typing-ind span{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:bounce 1.2s infinite;}
+.typing-ind span:nth-child(2){animation-delay:.2s;}.typing-ind span:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.lang-section{margin-bottom:20px;}
+.lang-section-hdr{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:6px 14px;border-radius:6px;margin-bottom:10px;display:inline-block;}
+.lang-en .lang-section-hdr{background:#eff6ff;color:#1d4ed8;}
+.lang-ta .lang-section-hdr{background:#fdf2f8;color:#be185d;}
+.preset-tab{padding:4px 12px;border-radius:20px;font-size:10.5px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;margin:2px 2px 6px 0;}
+.preset-tab:hover{border-color:var(--text);color:var(--text);}
+.pt-k.active{background:var(--kpr);border-color:var(--kpr);color:#fff;}
+.pt-v.active{background:var(--welspunliv);border-color:var(--welspunliv);color:#fff;}
+.pt-sp.active{background:var(--spapparel);border-color:var(--spapparel);color:#fff;}
+.pt-g.active{background:var(--gokaldas);border-color:var(--gokaldas);color:#fff;}
+.pt-sector.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.pt-ta.active{background:var(--spapparel);border-color:var(--spapparel);color:#fff;}
+.presets-panel{display:none;}.presets-panel.active{display:block;}
+.preset-qs{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.preset-q{padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:11px;cursor:pointer;transition:all .15s;line-height:1.45;}
+.preset-q:hover{border-color:var(--welspun);background:var(--welspun-soft);}
+.preset-q .pq-en{font-weight:600;color:var(--text);display:block;margin-bottom:2px;}
+.preset-q .pq-ta{font-size:10.5px;color:var(--muted);display:block;}
+.grp-hdr{margin-bottom:8px;padding:6px 13px;border-left:4px solid;border-radius:0 8px 8px 0;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);}
+.chart-card h3{font-size:10.5px;font-weight:700;color:var(--muted);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em;font-family:'IBM Plex Mono',monospace;}
+.chart-card p.sub{font-size:10.5px;color:var(--muted);margin-bottom:12px;}
+.metric-sel{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;box-shadow:var(--shadow);}
+.m-btn{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:500;cursor:pointer;color:var(--muted);transition:all .15s;}
+.m-btn.active{background:#181511;color:#fff;border-color:#181511;}
+.m-btn:hover:not(.active){border-color:var(--muted);color:var(--text);}
+.export-note{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px 14px;font-size:11px;color:#166534;margin-top:10px;}
+.note-block{background:var(--gold-soft);border:1px solid #d97706;border-radius:8px;padding:10px 14px;font-size:11px;color:#92400e;margin-bottom:14px;}
+.cb-wm{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.92);border:1.5px solid var(--border);border-radius:30px;padding:7px 14px 7px 8px;box-shadow:0 4px 20px rgba(24,21,17,.12);backdrop-filter:blur(8px);}
+.cb-wm-logo{width:28px;height:28px;background:var(--welspun);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.85rem;font-weight:900;color:#fff;}
+.cb-wm-name{font-size:11px;font-weight:700;color:var(--text);}
+.cb-wm-sub{font-size:9px;color:var(--muted);text-transform:uppercase;}
+.footer{text-align:center;font-size:10px;color:var(--muted);padding:14px 40px;border-top:1px solid var(--border);margin-top:28px;line-height:1.7;}
+@media(max-width:900px){
+  .main{padding:12px 14px 40px;}.hdr{padding:0 14px;flex-wrap:wrap;}
+  .tab-nav{padding:0 8px;}
+  .g2,.g3,.g4,.g9,.kpi-row,.kpi-row2{grid-template-columns:1fr;}
+}
+/* === NEW TAB CSS === */
+.seg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.seg-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.seg-header{padding:12px 16px;color:#fff;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;}
+.seg-body{padding:14px 16px;}
+.seg-desc{font-size:11.5px;color:var(--muted);margin-bottom:12px;line-height:1.55;}
+.seg-bars{margin-bottom:10px;}
+.seg-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.seg-bar-lbl{font-size:10px;color:var(--text);width:110px;flex-shrink:0;font-weight:600;}
+.seg-bar-track{flex:1;background:var(--surface2);border-radius:10px;height:10px;overflow:hidden;}
+.seg-bar-fill{height:10px;border-radius:10px;}
+.seg-bar-pct{font-family:'IBM Plex Mono',monospace;font-size:10px;width:32px;text-align:right;color:var(--muted);}
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.biz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.biz-header{padding:12px 16px;color:#fff;font-weight:800;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;}
+.biz-body{padding:14px 16px;}
+.biz-verdict{margin-top:10px;padding:8px 12px;background:var(--surface2);border-radius:8px;font-size:11px;line-height:1.55;}
+.swot-box{padding:10px 12px;font-size:11px;line-height:1.55;}
+.swot-s{background:#e8f5ee;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.swot-w{background:#fbeee8;border-bottom:1px solid var(--border);}
+.swot-o{background:#f0edf8;border-right:1px solid var(--border);}
+.swot-t{background:#fffbeb;}
+.swot-title{font-weight:800;font-size:10px;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;}
+.analyst-grid{display:flex;flex-direction:column;gap:0;}
+.analyst-co{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:4px;}
+.analyst-rating{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:800;font-family:'IBM Plex Mono',monospace;margin-bottom:6px;}
+.analyst-rating.buy{background:#dcfce7;color:#15803d;}.analyst-rating.hold{background:#fef9c3;color:#a16207;}.analyst-rating.avoid{background:#fee2e2;color:#b91c1c;}
+.analyst-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px;}
+.analyst-thesis{font-size:12px;line-height:1.6;margin-bottom:8px;}
+.analyst-metrics{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.analyst-metrics span{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:10.5px;font-family:'IBM Plex Mono',monospace;}
+.analyst-catalysts{font-size:11px;color:var(--muted);}
+.val-rating{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:800;margin-bottom:8px;}
+.val-rating.buy{background:#dcfce7;color:#15803d;}.val-rating.hold{background:#fef9c3;color:#a16207;}.val-rating.avoid{background:#fee2e2;color:#b91c1c;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.moat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.moat-icon{font-size:28px;margin-bottom:6px;}
+.moat-co{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:800;margin-bottom:4px;}
+.moat-type{font-size:10px;color:var(--muted);margin-bottom:8px;font-style:italic;}
+.moat-row{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 0;border-bottom:1px solid var(--border);font-size:11px;gap:8px;}
+.moat-row:last-child{border-bottom:none;}
+.moat-lbl{color:var(--muted);font-size:10px;flex-shrink:0;width:90px;}
+.cba-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.cba-lang-header{padding:10px 16px;font-weight:800;font-size:12px;}
+.preset-tabs{display:flex;gap:6px;padding:10px 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.pt{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;}
+.pt.active,.pt:hover{background:#181511;color:#fff;border-color:#181511;}
+.tpq-panel{display:none;padding:10px 12px;flex-direction:column;gap:5px;}
+.tpq-panel.active{display:flex;}
+.pq-btn{padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:11.5px;cursor:pointer;transition:all .15s;line-height:1.45;}
+.pq-btn:hover{border-color:#181511;background:#f0ede6;}
+.pq-en,.pq-ta{display:block;font-weight:600;color:var(--text);}
+.cba-chat-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.cba-chat-header{background:#181511;color:#fff;padding:10px 16px;font-weight:700;font-size:12px;}
+.cba-chat-output{min-height:150px;max-height:380px;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
+.cba-welcome{text-align:center;padding:20px;color:var(--muted);}
+.chat-user{background:#181511;color:#fff;align-self:flex-end;padding:10px 14px;border-radius:10px 10px 2px 10px;font-size:12px;line-height:1.55;max-width:80%;}
+.chat-bot{background:var(--surface2);border:1px solid var(--border);align-self:flex-start;padding:10px 14px;border-radius:10px 10px 10px 2px;font-size:12px;line-height:1.6;max-width:90%;}
+.chat-bot.loading{color:var(--muted);font-style:italic;}
+.cba-input-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);background:var(--surface2);}
+.cba-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);outline:none;}
+.cba-input:focus{border-color:#181511;}
+.cba-send-btn{background:#181511;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.note-box{background:#fef3c7;border:1.5px solid #f59e0b;border-radius:var(--radius);padding:10px 14px;font-size:12px;color:#92400e;margin-bottom:10px;}
+.val-co{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:800;text-transform:uppercase;margin-bottom:6px;}
+.chart-wrap{height:280px;position:relative;}
+@media(max-width:900px){.seg-grid,.biz-grid,.g4,.moat-grid{grid-template-columns:1fr;}.swot-grid{grid-template-columns:1fr;}}
+
+.chart-section-hdr{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text);padding:10px 16px;background:var(--surface2);border-left:4px solid var(--welspun);border-radius:0 var(--radius) var(--radius) 0;margin-bottom:4px;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div>
+      <h1>Textile Sector — Intelligence Dashboard</h1>
+      <div class="sub">9 Companies · Vardhman · Welspun Living · KPR · Indo Count · Himatsingka · Trident · SP Apparel · Gokaldas · EIL Research · Q4 FY26</div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <span class="chip chip-v">Vardhman</span>
+    <span class="chip chip-wl">Welspun Liv</span>
+    <span class="chip chip-k">KPR Mill</span>
+    <span class="chip chip-i">Indo Count</span>
+    <span class="chip chip-h">Himatsingka</span>
+    <span class="chip chip-t">Trident</span>
+    <span class="chip chip-sp">SP Apparel</span>
+    <span class="chip chip-g">Gokaldas</span>
+    <span class="chip chip-date">24 May 2026 · EIL Research</span>
+  </div>
+</div>
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
+  <button class="tab-btn" onclick="showTab('financials',this)">Financials</button>
+  <button class="tab-btn" onclick="showTab('charts',this)">Charts</button>
+  <button class="tab-btn" onclick="showTab('valuation',this)">Valuations</button>
+  <button class="tab-btn" onclick="showTab('segments',this)">Business Segments</button>
+  <button class="tab-btn" onclick="showTab('bizanalysis',this)">Business Analysis</button>
+  <button class="tab-btn" onclick="showTab('analyst',this)">Analyst Ratings</button>
+  <button class="tab-btn" onclick="showTab('exports',this)">Exports &amp; Geography</button>
+  <button class="tab-btn" onclick="showTab('moats',this)">Moats &amp; USPs</button>
+  <button class="tab-btn" onclick="showTab('verdict',this)" style="color:#b8911e;font-weight:800;">🏆 Verdict</button>
+  <button class="tab-btn" onclick="showTab('cbassist',this)" style="color:var(--welspun);font-weight:800;">🤖 CB Assist</button>
+</nav>
+<div class="main">
+<!-- ══ DASHBOARD ══ -->
+<div class="tab-content active" id="tab-dashboard">
+  <div class="sec-hdr">Dashboard Overview <span class="sec-note">· 9 companies · Q4 FY26 actuals where available · Cauvery Business Research</span></div>
+  <div class="tariff-note">⚠️ <strong>Sector Context FY26:</strong> US 26% reciprocal tariff (April 2026) dented exports; West Asia conflict hit shipping; cotton price volatility pressured margins. Despite this, KPR Mill and SP Apparels outperformed. Export-heavy players (Welspun Living, Gokaldas, Himatsingka) saw revenue/PAT pressure while integrated domestic players (KPR, Trident, SP Apparels) showed resilience.</div>
+  <div class="kpi-row">
+    <div class="kpi v-a"><div class="kl">Vardhman Q4 Revenue ✅</div><div class="kv">₹2,498 Cr</div><div class="kc neg">▼ 0.4% YoY</div></div>
+    <div class="kpi wl-a"><div class="kl">Welspun Liv Q4 Revenue ✅</div><div class="kv">₹2,435 Cr</div><div class="kc neg">▼ 8% YoY</div></div>
+    <div class="kpi k-a"><div class="kl">KPR Mill Q4 Revenue ✅</div><div class="kv">₹1,784 Cr</div><div class="kc pos">▲ 0.9% YoY</div></div>
+    <div class="kpi t-a"><div class="kl">Trident Q4 Revenue ✅</div><div class="kv">₹1,650 Cr</div><div class="kc neg">▼ 12% YoY</div></div>
+    <div class="kpi g-a"><div class="kl">Gokaldas Q4 Revenue ✅</div><div class="kv">₹1,087 Cr</div><div class="kc pos">▲ 5% YoY</div></div>
+  </div>
+  <div class="kpi-row2">
+    <div class="kpi i-a"><div class="kl">Indo Count Q4 Revenue (Est.)</div><div class="kv">~₹1,115 Cr</div><div class="kc warn">⏳ Results Pending</div></div>
+    <div class="kpi sp-a"><div class="kl">SP Apparel FY26 Rev ✅</div><div class="kv">₹1,578 Cr</div><div class="kc pos">▲ 13.2% YoY</div></div>
+    <div class="kpi h-a"><div class="kl">Himatsingka FY26 Rev (Est.)</div><div class="kv">~₹2,500 Cr</div><div class="kc warn">⏳ Results 27 May</div></div>
+    <div class="kpi" style="border-left:4px solid var(--gold)"><div class="kl">Sector Winner — Margins</div><div class="kv" style="color:var(--kpr)">KPR Mill</div><div class="kc pos">20.65% EBITDA FY26</div></div>
+  </div>
+  <div class="g9" style="margin-bottom:22px;">
+    <div class="co-card vardhman">
+      <div class="co-name" style="color:var(--vardhman)">Vardhman Textiles</div>
+      <div class="co-seg">Yarn · Fabric · Garments · Acrylic Fiber · Q4 FY26 ✅</div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT ✅</span><span class="m-val">₹189 Cr (▼22% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin</span><span class="m-val">11.8%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹9,869 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val">₹753 Cr (▼15%)</span></div>
+      <div class="m-row"><span class="m-lbl">Spindles</span><span class="m-val">1.25M+ · 75+ countries</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-watch">Margin Pressure</span><span class="badge b-pos">Baddi Expansion</span></div>
+    </div>
+    <div class="co-card welspunliv">
+      <div class="co-name" style="color:var(--welspunliv)">Welspun Living</div>
+      <div class="co-seg">Home Textiles · Flooring · Advanced Textiles · Q4 FY26 ✅</div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT ✅</span><span class="m-val">₹104 Cr (▼20% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin ✅</span><span class="m-val">10.8%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹9,399 Cr (▼11%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val">₹213 Cr (▼67%)</span></div>
+      <div class="m-row"><span class="m-lbl">Net Debt Reduced</span><span class="m-val" style="color:var(--pos)">▼52% to ₹775 Cr</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-pos">Debt Slashed</span><span class="badge b-neg">Export Pressure</span></div>
+    </div>
+    <div class="co-card kpr">
+      <div class="co-name" style="color:var(--kpr)">KPR Mill</div>
+      <div class="co-seg">Yarn · Knit Fabric · Garments · Sugar · Q4 FY26 ✅</div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT ✅</span><span class="m-val">₹227 Cr (+11.1% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin</span><span class="m-val">20.3%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹6,650 Cr (+4.1%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val">₹867 Cr (+6.3%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 EBITDA</span><span class="m-val" style="color:var(--pos)">20.65% — Best-in-class</span></div>
+      <div class="badge-row"><span class="badge b-buy">STRONG BUY</span><span class="badge b-pos">Debt-Free</span><span class="badge b-pos">Best Margins</span></div>
+    </div>
+    <div class="co-card indocount">
+      <div class="co-name" style="color:var(--indocount)">Indo Count Industries</div>
+      <div class="co-seg">Bed Linen · Home Textiles · USA Exports · Q4 FY26 ⏳</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue (Est.)</span><span class="m-val">~₹1,115 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT (Est.)</span><span class="m-val">~₹80 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Q3 FY26 PAT (Actual)</span><span class="m-val">₹75 Cr (+30% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">US Market Share</span><span class="m-val">Top 3 Global Bed Sheet</span></div>
+      <div class="m-row"><span class="m-lbl">USA Revenue Mix</span><span class="m-val warn">~70% of revenue</span></div>
+      <div class="badge-row"><span class="badge b-pend">Q4 Pending</span><span class="badge b-watch">US Tariff Risk</span><span class="badge b-pos">Cheapest PE 14x</span></div>
+    </div>
+    <div class="co-card himat">
+      <div class="co-name" style="color:var(--himat)">Himatsingka Seide</div>
+      <div class="co-seg">Bedding · Bath · Drapery · Fine Cotton · Q4 FY26 ⏳</div>
+      <div class="m-row"><span class="m-lbl">Q4 Results Due</span><span class="m-val warn">27 May 2026</span></div>
+      <div class="m-row"><span class="m-lbl">Q3 FY26 Revenue</span><span class="m-val">₹611 Cr (declining)</span></div>
+      <div class="m-row"><span class="m-lbl">FY25 PAT</span><span class="m-val">₹76 Cr (▼33% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Mkt Cap</span><span class="m-val">~₹975 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">52W Change</span><span class="m-val" style="color:var(--neg)">▼52.7%</span></div>
+      <div class="badge-row"><span class="badge b-pend">Q4 Pending</span><span class="badge b-neg">Margin Stress</span><span class="badge b-spec">AVOID</span></div>
+    </div>
+    <div class="co-card trident">
+      <div class="co-name" style="color:var(--trident)">Trident Limited</div>
+      <div class="co-seg">Yarn · Home Textiles · Paper · Chemicals · Q4 FY26 ✅</div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT ✅</span><span class="m-val">₹102 Cr (▼24% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA ✅</span><span class="m-val">₹248 Cr (+56% QoQ)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹6,775 Cr (▼4%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val">₹377 Cr (+2%)</span></div>
+      <div class="m-row"><span class="m-lbl">Net Debt</span><span class="m-val warn">₹975 Cr</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-pos">QoQ Recovery</span><span class="badge b-neg">Rev Decline YoY</span></div>
+    </div>
+    <div class="co-card spapparel">
+      <div class="co-name" style="color:var(--spapparel)">SP Apparels</div>
+      <div class="co-seg">Infant &amp; Kids Garments · UK Retail · Sri Lanka · Q4 FY26 ✅</div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue ✅</span><span class="m-val">₹1,578 Cr (+13.2%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT ✅</span><span class="m-val">₹88 Cr (+5.2%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 EBITDA</span><span class="m-val">₹218 Cr (+16%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin</span><span class="m-val warn">12.2% (▼140bps)</span></div>
+      <div class="m-row"><span class="m-lbl">FY27 Rev Target</span><span class="m-val" style="color:var(--pos)">₹2,000 Cr</span></div>
+      <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-pos">Revenue Growth</span><span class="badge b-pos">UK Expansion</span></div>
+    </div>
+    <div class="co-card gokaldas">
+      <div class="co-name" style="color:var(--gokaldas)">Gokaldas Exports</div>
+      <div class="co-seg">Apparel Export · 50+ Countries · Africa AGOA · Q4 FY26 ✅</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue ✅</span><span class="m-val">₹1,087 Cr (+5% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin ✅</span><span class="m-val">12.4%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹4,065 Cr (+4%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val">₹100 Cr (▼37% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Africa Growth</span><span class="m-val" style="color:var(--pos)">+17% YoY (AGOA)</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-pos">Africa AGOA</span><span class="badge b-neg">PAT Pressure</span></div>
+    </div>
+    <div class="co-card" style="border-color:var(--gold);">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);"></div>
+      <div class="co-name" style="color:var(--gold)">Sector Summary</div>
+      <div class="co-seg">Q4 FY26 · Indian Textile Industry</div>
+      <div class="m-row"><span class="m-lbl">Industry Challenge</span><span class="m-val warn">US Tariff + West Asia</span></div>
+      <div class="m-row"><span class="m-lbl">Best Margin Player</span><span class="m-val" style="color:var(--kpr)">KPR Mill 20.65%</span></div>
+      <div class="m-row"><span class="m-lbl">Highest Revenue</span><span class="m-val" style="color:var(--vardhman)">Vardhman ₹9,869 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Debt-Free</span><span class="m-val" style="color:var(--kpr)">KPR Mill</span></div>
+      <div class="m-row"><span class="m-lbl">Most Export Exposed</span><span class="m-val" style="color:var(--gokaldas)">Gokaldas ~95%</span></div>
+      <div class="badge-row"><span class="badge b-pos">PLI Scheme FY27</span><span class="badge b-watch">US Tariff Risk</span></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-lbl">Result Status — Q4 FY26</div>
+      <div style="overflow-x:auto;"><table>
+        <thead><tr><th>Company</th><th>Q4 FY26 Status</th><th style="text-align:right">Revenue (₹Cr)</th><th style="text-align:right">PAT (₹Cr)</th></tr></thead>
+        <tbody>
+          <tr><td class="tb" style="color:var(--vardhman)">Vardhman Textiles</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (7 May)</span></td><td class="num">2,498</td><td class="num tneg">189 (▼22%)</td></tr>
+          <tr><td class="tb" style="color:var(--welspunliv)">Welspun Living</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (15 May)</span></td><td class="num">2,435</td><td class="num tneg">104 (▼20%)</td></tr>
+          <tr><td class="tb" style="color:var(--kpr)">KPR Mill</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (12 May)</span></td><td class="num">1,784</td><td class="num tpos">227 (+11%)</td></tr>
+          <tr><td class="tb" style="color:var(--indocount)">Indo Count</td><td><span class="badge b-pend">Q4 FY26 ⏳ Pending</span></td><td class="num warn">~1,115 (est.)</td><td class="num warn">~80 (est.)</td></tr>
+          <tr><td class="tb" style="color:var(--himat)">Himatsingka Seide</td><td><span class="badge b-watch">Q4 FY26 ⏳ Due 27 May</span></td><td class="num warn">~600 (est.)</td><td class="num warn">~12 (est.)</td></tr>
+          <tr><td class="tb" style="color:var(--trident)">Trident</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (19 May)</span></td><td class="num">1,650</td><td class="num tneg">102 (▼24%)</td></tr>
+          <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (20 May)</span></td><td class="num">~446 (Q4 est.)</td><td class="num tpos">FY26 ₹88 Cr (+5%)</td></tr>
+          <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas Exports</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (22 May)</span></td><td class="num">1,087</td><td class="num tneg">FY26 ₹100 Cr (▼37%)</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Sector Quick Snapshot — Indian Textiles FY26</div>
+      <table><thead><tr><th>Metric</th><th>Value</th><th>Context</th></tr></thead>
+      <tbody>
+        <tr><td class="tb">Best EBITDA Margin</td><td class="num tpos">KPR Mill 20.65%</td><td>Integrated advantage</td></tr>
+        <tr><td class="tb">Highest Revenue</td><td class="num">Vardhman ₹9,869 Cr</td><td>Yarn + Fabric leader</td></tr>
+        <tr><td class="tb">Only PAT Growth FY26</td><td class="num tpos">KPR +6.3%</td><td>Beat sector decline</td></tr>
+        <tr><td class="tb">Biggest PAT Decline</td><td class="num tneg">Welspun Liv ▼67%</td><td>US tariff + West Asia</td></tr>
+        <tr><td class="tb">US Tariff Impact</td><td class="num warn">26% Reciprocal</td><td>April 2026</td></tr>
+        <tr><td class="tb">PLI Textile Scheme</td><td class="num tpos">Active FY27</td><td>MMF + Technical textiles</td></tr>
+        <tr><td class="tb">Africa AGOA Beneficiary</td><td class="num">Gokaldas Exports</td><td>Duty-free US access</td></tr>
+        <tr><td class="tb">India-UK FTA Beneficiary</td><td class="num tpos">SP Apparels (max)</td><td>Direct UK exposure</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+<!-- ==================== FINANCIALS TAB ==================== -->
+<div id="tab-financials" class="tab-content">
+  <div class="tab-title">Financials — Q4 FY26 & Annual</div>
+  <div class="note-box">📌 Indo Count Q4 results pending; Himatsingka Q4 due 27 May 2026. Figures marked (est.) are Cauvery Business estimates based on H1/Q3 run-rates.</div>
+  <div style="overflow-x:auto;"><table>
+    <thead><tr>
+      <th>Company</th><th style="text-align:right">Q4 Rev (₹Cr)</th><th style="text-align:right">Q4 YoY</th>
+      <th style="text-align:right">Q4 PAT (₹Cr)</th><th style="text-align:right">PAT YoY</th>
+      <th style="text-align:right">Q4 EBITDA%</th><th style="text-align:right">FY26 Rev</th>
+      <th style="text-align:right">FY26 PAT</th><th style="text-align:right">FY26 EBITDA%</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="tb" style="color:var(--vardhman)">Vardhman Textiles</td><td class="num">2,498</td><td class="num tneg">▼5%</td><td class="num tneg">189</td><td class="num tneg">▼22%</td><td class="num warn">11.8%</td><td class="num">9,869</td><td class="num tneg">753</td><td class="num">12.1%</td></tr>
+      <tr><td class="tb" style="color:var(--welspunliv)">Welspun Living</td><td class="num">2,435</td><td class="num tpos">+8%</td><td class="num tneg">104</td><td class="num tneg">▼20%</td><td class="num warn">10.8%</td><td class="num">9,399</td><td class="num tneg">213</td><td class="num">11.2%</td></tr>
+      <tr><td class="tb" style="color:var(--kpr)">KPR Mill</td><td class="num tpos">1,784</td><td class="num tpos">+14%</td><td class="num tpos">227</td><td class="num tpos">+11%</td><td class="num tpos">20.3%</td><td class="num tpos">6,650</td><td class="num tpos">867</td><td class="num tpos">20.65%</td></tr>
+      <tr><td class="tb" style="color:var(--indocount)">Indo Count <span style="font-size:10px;color:var(--warn)">(est.)</span></td><td class="num warn">~1,115</td><td class="num warn">~+5%</td><td class="num warn">~80</td><td class="num warn">~+3%</td><td class="num warn">~13.5%</td><td class="num warn">~4,200</td><td class="num warn">~310</td><td class="num warn">~13.0%</td></tr>
+      <tr><td class="tb" style="color:var(--himat)">Himatsingka <span style="font-size:10px;color:var(--warn)">(est.)</span></td><td class="num warn">~600</td><td class="num warn">~−2%</td><td class="num warn">~12</td><td class="num warn">~−40%</td><td class="num warn">~15.8%</td><td class="num warn">~2,500</td><td class="num warn">~50</td><td class="num warn">~15.5%</td></tr>
+      <tr><td class="tb" style="color:var(--trident)">Trident</td><td class="num">1,650</td><td class="num tpos">+10%</td><td class="num tneg">102</td><td class="num tneg">▼24%</td><td class="num">15.0%</td><td class="num">6,775</td><td class="num">377</td><td class="num">14.8%</td></tr>
+      <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td class="num">~446</td><td class="num tpos">+18%</td><td class="num tpos">~22</td><td class="num tpos">~+8%</td><td class="num">12.2%</td><td class="num">1,578</td><td class="num tpos">88</td><td class="num">12.0%</td></tr>
+      <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas Exports</td><td class="num">1,087</td><td class="num tpos">+22%</td><td class="num tneg">~25</td><td class="num tneg">▼30%</td><td class="num">12.4%</td><td class="num">4,065</td><td class="num tneg">100</td><td class="num">12.6%</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="g3" style="margin-top:20px;">
+    <div class="card">
+      <div class="card-lbl">Vardhman Textiles — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val">₹2,498 Cr (▼5% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT</span><span class="m-val tneg">₹189 Cr (▼22% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA%</span><span class="m-val warn">11.8%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹9,869 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val tneg">₹753 Cr (▼15%)</span></div>
+      <div class="m-row"><span class="m-lbl">Gross Debt</span><span class="m-val">~₹2,400 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">D/E Ratio</span><span class="m-val warn">~0.5x</span></div>
+      <div class="m-row"><span class="m-lbl">ROCE</span><span class="m-val">~9%</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-neg">Cotton Price Risk</span></div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Welspun Living — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val tpos">₹2,435 Cr (+8% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT</span><span class="m-val tneg">₹104 Cr (▼20%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA%</span><span class="m-val warn">10.8%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹9,399 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val tneg">₹213 Cr (▼67%)</span></div>
+      <div class="m-row"><span class="m-lbl">Net Debt</span><span class="m-val tpos">₹775 Cr (cut 52%)</span></div>
+      <div class="m-row"><span class="m-lbl">FCF FY26</span><span class="m-val tpos">₹956 Cr (8.5x growth)</span></div>
+      <div class="m-row"><span class="m-lbl">Domestic Growth Q4</span><span class="m-val tpos">+29.2%</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-pos">FCF Turnaround</span></div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">KPR Mill — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val tpos">₹1,784 Cr (+14% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT</span><span class="m-val tpos">₹227 Cr (+11%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA%</span><span class="m-val tpos">20.3%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val tpos">₹6,650 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val tpos">₹867 Cr (+6.3%)</span></div>
+      <div class="m-row"><span class="m-lbl">Net Debt</span><span class="m-val tpos">ZERO (Debt-free)</span></div>
+      <div class="m-row"><span class="m-lbl">ROCE</span><span class="m-val tpos">~22%</span></div>
+      <div class="m-row"><span class="m-lbl">Dividend</span><span class="m-val tpos">₹6/share FY26</span></div>
+      <div class="badge-row"><span class="badge b-buy">STRONG BUY</span><span class="badge b-pos">Only PAT Growth</span></div>
+    </div>
+  </div>
+  <div class="g3" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-lbl">Indo Count — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue (est.)</span><span class="m-val warn">~₹1,115 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT (est.)</span><span class="m-val warn">~₹80 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA% (est.)</span><span class="m-val warn">~13.5%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val warn">~₹4,200 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val warn">~₹310 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">USA Revenue %</span><span class="m-val tneg">~70% (highest tariff risk)</span></div>
+      <div class="m-row"><span class="m-lbl">Market Position</span><span class="m-val">Top-3 bed sheet USA</span></div>
+      <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-neg">US Tariff Risk</span></div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Himatsingka Seide — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue (est.)</span><span class="m-val warn">~₹600 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT (est.)</span><span class="m-val warn">~₹12 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA% (est.)</span><span class="m-val warn">~15.8%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val warn">~₹2,500 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val warn">~₹50 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">Gross Debt</span><span class="m-val tneg">~₹2,100 Cr (HIGH)</span></div>
+      <div class="m-row"><span class="m-lbl">Stock 12M Return</span><span class="m-val tneg">▼52.7%</span></div>
+      <div class="badge-row"><span class="badge b-avoid">AVOID</span><span class="badge b-neg">Debt + PAT Pressure</span></div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Trident — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val tpos">₹1,650 Cr (+10%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT</span><span class="m-val tneg">₹102 Cr (▼24%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA%</span><span class="m-val">15.0%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹6,775 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val">₹377 Cr (+2%)</span></div>
+      <div class="m-row"><span class="m-lbl">Paper segment</span><span class="m-val">~15% of revenue</span></div>
+      <div class="m-row"><span class="m-lbl">Capacity Utilisation</span><span class="m-val">~78%</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-watch">US Tariff Watch</span></div>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-lbl">SP Apparels — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue (est.)</span><span class="m-val tpos">~₹446 Cr (+18%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT (est.)</span><span class="m-val tpos">~₹22 Cr (+8%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val tpos">₹1,578 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val tpos">₹88 Cr (+5.2%)</span></div>
+      <div class="m-row"><span class="m-lbl">UK Subsidiary</span><span class="m-val tpos">Profitable (FY26)</span></div>
+      <div class="m-row"><span class="m-lbl">FY27 Revenue Target</span><span class="m-val tpos">₹2,000 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">India-UK FTA Benefit</span><span class="m-val tpos">Maximum (direct UK)</span></div>
+      <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-pos">FTA Beneficiary</span></div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Gokaldas Exports — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val tpos">₹1,087 Cr (+22%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT (est.)</span><span class="m-val tneg">~₹25 Cr (▼30%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val tpos">₹4,065 Cr (+4%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val tneg">₹100 Cr (▼37%)</span></div>
+      <div class="m-row"><span class="m-lbl">Africa (AGOA) Growth</span><span class="m-val tpos">+17% YoY</span></div>
+      <div class="m-row"><span class="m-lbl">Export %</span><span class="m-val">~95%</span></div>
+      <div class="m-row"><span class="m-lbl">US Revenue %</span><span class="m-val warn">~55% (AGOA hedge)</span></div>
+      <div class="badge-row"><span class="badge b-hold">HOLD</span><span class="badge b-pos">AGOA Unique Edge</span></div>
+    </div>
+  </div>
+</div>
+<!-- ==================== CHARTS TAB ==================== -->
+<div id="tab-charts" class="tab-content">
+  <div class="tab-title">Charts — Visual Performance Analysis</div>
+
+  <div class="chart-section-hdr">📅 Full Year FY26</div>
+  <div class="g3" style="margin-top:10px;">
+    <div class="card"><div class="card-lbl">FY26 Revenue (₹ Cr)</div><div class="chart-wrap"><canvas id="ch-rev"></canvas></div></div>
+    <div class="card"><div class="card-lbl">FY26 EBITDA (₹ Cr)</div><div class="chart-wrap"><canvas id="ch-ebitda-amt"></canvas></div></div>
+    <div class="card"><div class="card-lbl">FY26 PAT (₹ Cr)</div><div class="chart-wrap"><canvas id="ch-pat"></canvas></div></div>
+  </div>
+  <div class="g2" style="margin-top:14px;">
+    <div class="card"><div class="card-lbl">FY26 EBITDA Margin %</div><div class="chart-wrap"><canvas id="ch-ebitda"></canvas></div></div>
+    <div class="card"><div class="card-lbl">FY26 PAT Growth YoY %</div><div class="chart-wrap"><canvas id="ch-patgrowth"></canvas></div></div>
+  </div>
+
+  <div class="chart-section-hdr" style="margin-top:24px;">📅 Q4 FY26</div>
+  <div class="g3" style="margin-top:10px;">
+    <div class="card"><div class="card-lbl">Q4 FY26 Revenue (₹ Cr)</div><div class="chart-wrap"><canvas id="ch-q4rev"></canvas></div></div>
+    <div class="card"><div class="card-lbl">Q4 FY26 EBITDA (₹ Cr)</div><div class="chart-wrap"><canvas id="ch-ebitda-q4"></canvas></div></div>
+    <div class="card"><div class="card-lbl">Q4 FY26 PAT (₹ Cr)</div><div class="chart-wrap"><canvas id="ch-q4pat"></canvas></div></div>
+  </div>
+  <div class="g3" style="margin-top:14px;">
+    <div class="card"><div class="card-lbl">Q4 FY26 vs Q4 FY25 Revenue (₹ Cr)</div><div class="chart-wrap"><canvas id="ch-q4"></canvas></div></div>
+    <div class="card"><div class="card-lbl">Q4 FY26 EBITDA Margin %</div><div class="chart-wrap"><canvas id="ch-ebitda-q4-margin"></canvas></div></div>
+    <div class="card"><div class="card-lbl">Export Revenue Mix % (Geographic)</div><div class="chart-wrap"><canvas id="ch-export"></canvas></div></div>
+  </div>
+
+  <div class="note-box" style="margin-top:16px;">📊 Charts based on Q4/FY26 declared results. Indo Count & Himatsingka Q4 are CB estimates. Export charts use geographic revenue % as volume data not standardised in home textiles.</div>
+</div>
+
+<!-- ==================== VALUATIONS TAB ==================== -->
+<div id="tab-valuation" class="tab-content">
+  <div class="tab-title">Valuations & Analyst Ratings</div>
+  <div class="g4">
+    <div class="val-card" style="border-top:4px solid var(--kpr)">
+      <div class="val-co" style="color:var(--kpr)">KPR Mill</div>
+      <div class="val-rating buy">STRONG BUY</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹918</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num tpos">₹1,150</span></div>
+      <div class="val-row"><span>Upside</span><span class="num tpos">+25.3%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">18.5x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">12.2x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">3.8x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num tpos">0.65%</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--spapparel)">
+      <div class="val-co" style="color:var(--spapparel)">SP Apparels</div>
+      <div class="val-rating buy">BUY</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹728</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num tpos">₹920</span></div>
+      <div class="val-row"><span>Upside</span><span class="num tpos">+26.4%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">22x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">14.5x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">3.2x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num">0.4%</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--indocount)">
+      <div class="val-co" style="color:var(--indocount)">Indo Count</div>
+      <div class="val-rating buy">BUY</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹372</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num tpos">₹480</span></div>
+      <div class="val-row"><span>Upside</span><span class="num tpos">+29%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">16.5x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">10.8x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">2.5x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num">0.8%</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--vardhman)">
+      <div class="val-co" style="color:var(--vardhman)">Vardhman Textiles</div>
+      <div class="val-rating hold">HOLD</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹450</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num">₹500</span></div>
+      <div class="val-row"><span>Upside</span><span class="num">+11.1%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">8.5x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">6.2x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">1.2x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num">1.2%</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--trident)">
+      <div class="val-co" style="color:var(--trident)">Trident</div>
+      <div class="val-rating hold">HOLD</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹24</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num">₹28</span></div>
+      <div class="val-row"><span>Upside</span><span class="num">+16.7%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">12.4x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">8.8x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">1.8x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num">1.0%</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--welspunliv)">
+      <div class="val-co" style="color:var(--welspunliv)">Welspun Living</div>
+      <div class="val-rating hold">HOLD</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹141</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num">₹165</span></div>
+      <div class="val-row"><span>Upside</span><span class="num">+17%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">25x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">11x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">2.2x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num">0.5%</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--gokaldas)">
+      <div class="val-co" style="color:var(--gokaldas)">Gokaldas Exports</div>
+      <div class="val-rating hold">HOLD</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹900</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num">₹950</span></div>
+      <div class="val-row"><span>Upside</span><span class="num">+5.6%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">32x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">15x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">3.5x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num">0.3%</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--himat)">
+      <div class="val-co" style="color:var(--himat)">Himatsingka Seide</div>
+      <div class="val-rating avoid">AVOID</div>
+      <div class="val-row"><span>CMP</span><span class="num">₹78</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num tneg">Uncertain</span></div>
+      <div class="val-row"><span>12M Return</span><span class="num tneg">▼52.7%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num tneg">High (low PAT)</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num warn">~14x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num warn">1.1x</span></div>
+      <div class="val-row"><span>Gross Debt</span><span class="num tneg">~₹2,100 Cr</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px;">
+    <div class="card-lbl">Comparative Valuation Summary</div>
+    <div style="overflow-x:auto;"><table>
+      <thead><tr><th>Company</th><th>Rating</th><th style="text-align:right">CMP</th><th style="text-align:right">Target</th><th style="text-align:right">Upside</th><th style="text-align:right">P/E</th><th style="text-align:right">EV/EBITDA</th><th style="text-align:right">FY26 PAT</th><th>Key Risk</th></tr></thead>
+      <tbody>
+        <tr><td class="tb" style="color:var(--kpr)">KPR Mill</td><td><span class="badge b-buy">STRONG BUY</span></td><td class="num">₹918</td><td class="num tpos">₹1,150</td><td class="num tpos">+25.3%</td><td class="num">18.5x</td><td class="num">12.2x</td><td class="num tpos">₹867 Cr</td><td>US tariff (manageable)</td></tr>
+        <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td><span class="badge b-buy">BUY</span></td><td class="num">₹728</td><td class="num tpos">₹920</td><td class="num tpos">+26.4%</td><td class="num">22x</td><td class="num">14.5x</td><td class="num tpos">₹88 Cr</td><td>Scale concentration</td></tr>
+        <tr><td class="tb" style="color:var(--indocount)">Indo Count</td><td><span class="badge b-buy">BUY</span></td><td class="num">₹372</td><td class="num tpos">₹480</td><td class="num tpos">+29%</td><td class="num">16.5x</td><td class="num">10.8x</td><td class="num warn">~₹310 Cr</td><td>70% US revenue</td></tr>
+        <tr><td class="tb" style="color:var(--vardhman)">Vardhman</td><td><span class="badge b-hold">HOLD</span></td><td class="num">₹450</td><td class="num">₹500</td><td class="num">+11.1%</td><td class="num">8.5x</td><td class="num">6.2x</td><td class="num tneg">₹753 Cr</td><td>Cotton price volatility</td></tr>
+        <tr><td class="tb" style="color:var(--trident)">Trident</td><td><span class="badge b-hold">HOLD</span></td><td class="num">₹24</td><td class="num">₹28</td><td class="num">+16.7%</td><td class="num">12.4x</td><td class="num">8.8x</td><td class="num">₹377 Cr</td><td>US tariff + capex</td></tr>
+        <tr><td class="tb" style="color:var(--welspunliv)">Welspun Living</td><td><span class="badge b-hold">HOLD</span></td><td class="num">₹141</td><td class="num">₹165</td><td class="num">+17%</td><td class="num">25x</td><td class="num">11x</td><td class="num tneg">₹213 Cr</td><td>US tariff + West Asia</td></tr>
+        <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas</td><td><span class="badge b-hold">HOLD</span></td><td class="num">₹900</td><td class="num">₹950</td><td class="num">+5.6%</td><td class="num">32x</td><td class="num">15x</td><td class="num tneg">₹100 Cr</td><td>PAT decline risk</td></tr>
+        <tr><td class="tb" style="color:var(--himat)">Himatsingka</td><td><span class="badge b-avoid">AVOID</span></td><td class="num">₹78</td><td class="num tneg">—</td><td class="num tneg">—</td><td class="num tneg">High</td><td class="num warn">~14x</td><td class="num tneg">~₹50 Cr</td><td>High debt + low PAT</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+<!-- ==================== BUSINESS SEGMENTS TAB ==================== -->
+<div id="tab-segments" class="tab-content">
+  <div class="tab-title">Business Segments — What Each Company Does</div>
+
+  <div class="seg-grid">
+    <!-- VARDHMAN -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--vardhman)">Vardhman Textiles — Yarn & Fabric Giant</div>
+      <div class="seg-body">
+        <div class="seg-desc">India's largest listed cotton yarn manufacturer. Vertically integrated across spinning, weaving, and processing. Serves domestic fabric mills and exports across 60+ countries.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Yarn</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:55%;background:var(--vardhman)"></div></div><span class="seg-bar-pct">55%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Fabric</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:30%;background:var(--vardhman);opacity:.75"></div></div><span class="seg-bar-pct">30%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Acrylic Fibre</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:10%;background:var(--vardhman);opacity:.5"></div></div><span class="seg-bar-pct">10%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Other</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:5%;background:#aaa"></div></div><span class="seg-bar-pct">5%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Spindles</td><td>~13 lakh (largest in India)</td></tr>
+          <tr><td>Looms</td><td>~2,500+</td></tr>
+          <tr><td>Key Markets</td><td>India 55%, US/EU 30%, Others 15%</td></tr>
+          <tr><td>Raw Material</td><td>Cotton (price sensitive)</td></tr>
+          <tr><td>No. of Plants</td><td>8 (Punjab, Himachal, MP, Rajasthan)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- WELSPUN LIVING -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--welspunliv)">Welspun Living — Home Textiles Behemoth</div>
+      <div class="seg-body">
+        <div class="seg-desc">India's largest home textile exporter. World's largest terry towel manufacturer. Strong brand portfolio: Christy (UK), Spaces (India), hygrocotton tech. Direct-to-retail with Walmart, Target, M&S.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Bedding</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:42%;background:var(--welspunliv)"></div></div><span class="seg-bar-pct">42%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Towels</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:35%;background:var(--welspunliv);opacity:.8"></div></div><span class="seg-bar-pct">35%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Flooring</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:12%;background:var(--welspunliv);opacity:.6"></div></div><span class="seg-bar-pct">12%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">India Domestic</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:11%;background:#4ade80"></div></div><span class="seg-bar-pct">11%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Key Brands</td><td>Christy, Spaces, Welspun, hygrocotton</td></tr>
+          <tr><td>Export Customers</td><td>Walmart, Target, M&S, Tesco</td></tr>
+          <tr><td>Domestic Growth Q4</td><td>+29.2% YoY</td></tr>
+          <tr><td>Net Debt FY26</td><td>₹775 Cr (▼52%)</td></tr>
+          <tr><td>US Revenue %</td><td>~45%</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- KPR MILL -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--kpr)">KPR Mill — Integrated Apparel Leader</div>
+      <div class="seg-body">
+        <div class="seg-desc">Highly integrated: cotton to garment. Largest branded garment exporter to EU. Sugar ethanol diversification adds stability. Only textile company with PAT growth in FY26. Debt-free.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Garments</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:52%;background:var(--kpr)"></div></div><span class="seg-bar-pct">52%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Yarn</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:30%;background:var(--kpr);opacity:.7"></div></div><span class="seg-bar-pct">30%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Fabric</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:10%;background:var(--kpr);opacity:.5"></div></div><span class="seg-bar-pct">10%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Sugar/Ethanol</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:8%;background:#f59e0b"></div></div><span class="seg-bar-pct">8%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Garment Capacity</td><td>11.5 Cr pcs/year</td></tr>
+          <tr><td>Export Focus</td><td>EU (Germany, UK, France) ~70%</td></tr>
+          <tr><td>EBITDA Margin</td><td>20.65% — BEST in sector</td></tr>
+          <tr><td>Net Debt</td><td>ZERO</td></tr>
+          <tr><td>Renewable Energy</td><td>70%+ of power from wind/solar</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- INDO COUNT -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--indocount)">Indo Count — Bed Sheet Specialist</div>
+      <div class="seg-body">
+        <div class="seg-desc">Top-3 global bed sheet manufacturer. Highly specialised in utility and fashion bedding. Brands: Wamsutta, Cozee Home. 70% revenue from USA — highest tariff risk in sector.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Utility Bedding</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:55%;background:var(--indocount)"></div></div><span class="seg-bar-pct">55%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Fashion Bedding</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:25%;background:var(--indocount);opacity:.75"></div></div><span class="seg-bar-pct">25%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Institutional</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:12%;background:var(--indocount);opacity:.5"></div></div><span class="seg-bar-pct">12%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Domestic</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:8%;background:#4ade80"></div></div><span class="seg-bar-pct">8%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Brands</td><td>Wamsutta, Cozee Home, Boutique Living</td></tr>
+          <tr><td>USA Revenue</td><td>~70% (TOP tariff risk)</td></tr>
+          <tr><td>Spindle Capacity</td><td>~3.7 lakh</td></tr>
+          <tr><td>Q4 FY26 Results</td><td>PENDING</td></tr>
+          <tr><td>Key Clients</td><td>Walmart, Target, Kohls (USA)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- HIMATSINGKA -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--himat)">Himatsingka Seide — Premium Home Textiles</div>
+      <div class="seg-body">
+        <div class="seg-desc">Premium end of home textiles. Owns renowned brands: Pradhan-Wilson & Hammond, WestPoint. Primarily USA/EU focus. High debt burden post-acquisition is the key overhang. Q4 due 27 May.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Bedding</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:55%;background:var(--himat)"></div></div><span class="seg-bar-pct">55%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Bath</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:25%;background:var(--himat);opacity:.75"></div></div><span class="seg-bar-pct">25%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Upholstery/Drapery</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:15%;background:var(--himat);opacity:.5"></div></div><span class="seg-bar-pct">15%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Others</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:5%;background:#aaa"></div></div><span class="seg-bar-pct">5%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Premium Brands</td><td>WestPoint, Pradhan-Wilson, Hammond</td></tr>
+          <tr><td>Gross Debt</td><td>~₹2,100 Cr (HIGH)</td></tr>
+          <tr><td>Stock 12M</td><td>▼52.7%</td></tr>
+          <tr><td>Q4 Results</td><td>Due 27 May 2026</td></tr>
+          <tr><td>US Revenue %</td><td>~55%</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- TRIDENT -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--trident)">Trident — Towel + Paper Diversified</div>
+      <div class="seg-body">
+        <div class="seg-desc">World's largest terry towel exporter. Unique combination of home textiles + paper (wheat straw). Strong sustainability angle. Revenue grew but PAT hit by US tariff and input costs.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Terry Towels</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:50%;background:var(--trident)"></div></div><span class="seg-bar-pct">50%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Bed Linen</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:28%;background:var(--trident);opacity:.75"></div></div><span class="seg-bar-pct">28%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Paper (Wheat Straw)</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:15%;background:#b45309"></div></div><span class="seg-bar-pct">15%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Yarn</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:7%;background:#d97706;opacity:.5"></div></div><span class="seg-bar-pct">7%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Key USP</td><td>World's largest terry towel exporter</td></tr>
+          <tr><td>Paper USP</td><td>Wheat straw based (eco-friendly)</td></tr>
+          <tr><td>US Revenue %</td><td>~40%</td></tr>
+          <tr><td>Capacity (Towels)</td><td>72,000 MT/year</td></tr>
+          <tr><td>Plant Locations</td><td>Barnala (Punjab) — integrated</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- SP APPARELS -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--spapparel)">SP Apparels — Knit Garment Specialist</div>
+      <div class="seg-body">
+        <div class="seg-desc">South India's leading knit garment exporter. Owns UK subsidiary (Zenith Clothing) — directly benefited by India-UK FTA. FY27 target: ₹2,000 Cr. Growing kidswear and private label for UK retailers.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Garments (Export)</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:70%;background:var(--spapparel)"></div></div><span class="seg-bar-pct">70%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Yarn</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:18%;background:var(--spapparel);opacity:.6"></div></div><span class="seg-bar-pct">18%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">UK Subsidiary</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:8%;background:#f472b6"></div></div><span class="seg-bar-pct">8%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Domestic</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:4%;background:#4ade80"></div></div><span class="seg-bar-pct">4%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>UK Subsidiary</td><td>Zenith Clothing (profitable FY26)</td></tr>
+          <tr><td>Key Markets</td><td>UK ~50%, EU 30%, Others 20%</td></tr>
+          <tr><td>India-UK FTA</td><td>Maximum beneficiary in sector</td></tr>
+          <tr><td>FY27 Target</td><td>₹2,000 Cr revenue</td></tr>
+          <tr><td>Kidswear Focus</td><td>Growing premium segment</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- GOKALDAS -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--gokaldas)">Gokaldas Exports — Apparel with AGOA Edge</div>
+      <div class="seg-body">
+        <div class="seg-desc">India's leading woven garment exporter. Unique AGOA (Africa Growth Opportunity Act) manufacturing in Ethiopia gives duty-free US access — a structural edge vs India-only exporters facing 26% tariff.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">India Operations</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:70%;background:var(--gokaldas)"></div></div><span class="seg-bar-pct">70%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Africa (AGOA)</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:22%;background:#92400e;opacity:.7"></div></div><span class="seg-bar-pct">22%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Other Export</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:8%;background:#aaa"></div></div><span class="seg-bar-pct">8%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>AGOA USP</td><td>Ethiopia ops → Duty-free USA</td></tr>
+          <tr><td>Africa Growth FY26</td><td>+17% YoY</td></tr>
+          <tr><td>Key Clients</td><td>Gap, H&M, PVH, VF Corp</td></tr>
+          <tr><td>US Revenue %</td><td>~55% (partial AGOA hedge)</td></tr>
+          <tr><td>Export %</td><td>~95%</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ==================== BUSINESS ANALYSIS TAB ==================== -->
+<div id="tab-bizanalysis" class="tab-content">
+  <div class="tab-title">Business & Investment Analysis — Q4 FY26</div>
+  <div class="note-box">🔍 Investment analysis based on Q4 FY26 declared results, sector tailwinds/headwinds, and management commentary. SWOT framework applied to each company.</div>
+
+  <div class="biz-grid">
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--vardhman)">Vardhman Textiles — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>India's largest yarn maker. 60+ country exports. Diversified yarn-fabric integration. Stable domestic client base.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>High cotton price dependence. PAT ▼22% Q4. Low EBITDA (11.8%) vs peers. Limited brand presence.</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>MMF (Man-Made Fibre) PLI scheme. China+1 sourcing trend. Bangladesh market share gain. Domestic consumption surge.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>US 26% tariff on fabric. Cotton price spikes. Competition from Bangladesh. Currency risk.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: HOLD. Solid scale but margin pressure continues. Re-rate possible if EBITDA crosses 14%+. Wait for cotton stabilisation.</div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--welspunliv)">Welspun Living — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>World's largest terry towel maker. Christy brand (UK). FCF ₹956 Cr FY26 (8.5x). Net debt ▼52%. Strong domestic growth +29%.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>PAT ▼67% FY26. EBITDA compressed at 10.8%. West Asia (Middle East) weakness. High working capital.</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>Domestic branded play (Spaces brand). Flooring segment expansion. Debt-light FY27 = earnings leverage. EU diversification.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>US tariff (45% revenue). West Asia conflict. Input cost pressures. Competitor pricing.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: HOLD. FCF turnaround is impressive. But PAT at ₹213 Cr is too compressed for ₹9,399 Cr revenue. Upgrade if EBITDA recovers to 13%+.</div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--kpr)">KPR Mill — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>ONLY sector company with PAT growth FY26. Debt-free. 20.65% EBITDA = sector best. Renewable 70%+ energy. EU export diversification.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>High EU concentration (~70%). Sugar ethanol cyclicality. Limited product diversity vs peers. Small domestic garment brand.</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>India-EU FTA (under negotiation). Capacity expansion FY27. MSME garment PLI. Growing ethical sourcing demand (ESG).</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>EU demand slowdown. Cotton/energy price rise. Bangladesh competition in garments. Wage inflation in TN.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: STRONG BUY. Best-in-class execution. Debt-free with growth = rare combination. TP ₹1,150 on 20x FY27E EPS. Top pick in sector.</div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--indocount)">Indo Count — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>Top-3 global bed sheet maker. Premium US brands (Wamsutta). Niche fashion bedding expertise. Consistent execution.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>70% US revenue concentration = maximum tariff risk. Q4 results pending (uncertainty). Limited diversification.</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>EU/UK market shift. India-UK FTA. Premium bedding growth globally. US tariff negotiation outcomes. Domestic branded push.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>US 26% tariff = structural headwind. US consumer slowdown. Pakistan competition. Currency risk.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: BUY on dips. Premium market position warrants re-rating if US tariff is resolved. TP ₹480 (16x FY27E). Risk-reward favourable at CMP ₹372.</div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--himat)">Himatsingka Seide — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>Premium brand portfolio (WestPoint). EBITDA ~15.8% — above average. US premium market relationships. Integrated operations.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>Gross Debt ~₹2,100 Cr — unsustainably high. PAT ~₹50 Cr on ₹2,500 Cr revenue = 2% margin. Stock ▼52.7% in 12M.</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>Debt reduction via asset sale. New management turnaround. Premium market recovery. US tariff exemption for premium.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>Interest burden eating profits. US tariff hit on top of debt. Possible equity dilution for debt. Rating downgrade risk.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: AVOID. Debt-to-PAT ratio is dangerously high. Q4 results (27 May) are a key catalyst — only consider if major debt reduction is announced. Avoid till debt below ₹1,000 Cr.</div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--trident)">Trident — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>World's largest terry towel exporter. Paper diversification (income stability). Integrated Barnala plant. Revenue +10% Q4.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>PAT ▼24% Q4. High capex cycle. US exposure ~40%. Paper margins thin. Management bandwidth split.</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>Eco-friendly paper (wheat straw) demand growing. EU towel demand recovery. India-EU FTA. Capacity expansion payoff.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>US tariff on textiles. Cotton/input cost spikes. Paper oversupply risk. Debt from recent capex.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: HOLD. Global towel leader but PAT pressure is real. Paper diversification underappreciated. TP ₹28 on 13x FY27E. Accumulate at ₹22-24 levels.</div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--spapparel)">SP Apparels — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>UK FTA — maximum direct beneficiary. Profitable UK subsidiary (Zenith). Revenue +18% Q4. Growing kidswear. FY27 target ₹2,000 Cr.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>Smaller scale vs listed peers. High UK concentration risk. Margin at 12.2% — room for improvement. Limited brand equity.</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>India-UK FTA — zero tariff vs Bangladesh's 12%. EU expansion via Zenith. Premium kids segment growth. Domestic brand potential.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>UK economic slowdown. Competition from Bangladesh for UK. Wage inflation. INR appreciation risk.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: BUY. India-UK FTA is a 3-year structural tailwind few are pricing in. TP ₹920. Best FTA play in sector. Accumulate.</div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--gokaldas)">Gokaldas Exports — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>AGOA (Africa Ethiopia ops) = duty-free US access. Africa growth +17% YoY. Strong global client base (Gap, H&M, PVH). Revenue +22% Q4.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>PAT ▼37% FY26 — significant. Complex multi-geography operations. Ethiopia operational risks. High premium in valuation (32x P/E).</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>AGOA expansion to more US brands. China+1 for global brands. Bangladesh labour unrest = Gokaldas gain. India-EU FTA.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>Ethiopia political risk (AGOA operations). PAT compression continues. Competition from Vietnam/Cambodia. US recession risk.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: HOLD. AGOA advantage is real but PAT quality needs to improve. 32x P/E leaves little room for error. TP ₹950. Neutral at current levels.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ==================== ANALYST RATINGS TAB ==================== -->
+<div id="tab-analyst" class="tab-content">
+  <div class="tab-title">Analyst Ratings — Q4 FY26</div>
+  <div class="note-box">📌 Ratings based on Cauvery Business / EIL Research Q4 FY26 analysis. Street consensus provided where available. All CMP and TP as of May 2026.</div>
+  <div class="analyst-grid">
+
+    <div class="analyst-card">
+      <div class="analyst-co" style="color:var(--kpr)">KPR Mill</div>
+      <div class="analyst-rating buy">STRONG BUY</div>
+      <div class="analyst-meta">CMP: ₹918 · Target: ₹1,150 · Upside: +25.3%</div>
+      <div class="analyst-thesis">Only textile company with PAT growth FY26 (+6.3%). Debt-free balance sheet. Sector-best EBITDA at 20.65%. EU exposure provides natural tariff buffer. Sugar/ethanol diversification adds earnings stability. Top sector pick.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 18.5x</span><span>EV/EBITDA: 12.2x</span><span>ROCE: ~22%</span><span>D/E: 0</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> India-EU FTA progress · FY27 capacity ramp · Garment export volumes · Sugar season margins</div>
+    </div>
+
+    <div class="analyst-card">
+      <div class="analyst-co" style="color:var(--spapparel)">SP Apparels</div>
+      <div class="analyst-rating buy">BUY</div>
+      <div class="analyst-meta">CMP: ₹728 · Target: ₹920 · Upside: +26.4%</div>
+      <div class="analyst-thesis">India-UK FTA is a structural 3-year tailwind — SP is the most direct beneficiary with UK subsidiary. Revenue +18% Q4. UK unit profitable. FY27 target ₹2,000 Cr (vs FY26 ₹1,578 Cr) is credible. FTA dividend not yet priced by market.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 22x</span><span>EV/EBITDA: 14.5x</span><span>EBITDA%: 12.2%</span><span>UK: Profitable</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> India-UK FTA tariff cuts · UK subsidiary scale-up · Kidswear segment launch · FY27 margin improvement</div>
+    </div>
+
+    <div class="analyst-card">
+      <div class="analyst-co" style="color:var(--indocount)">Indo Count</div>
+      <div class="analyst-rating buy">BUY</div>
+      <div class="analyst-meta">CMP: ₹372 · Target: ₹480 · Upside: +29%</div>
+      <div class="analyst-thesis">Top-3 global bed sheet maker with premium US brand relationships. 70% US revenue is a risk but also a re-rating lever if tariffs are resolved. Trades at trough multiples. Strong Q4 results (pending) could be a catalyst. EU/UK diversification underway.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 16.5x</span><span>EV/EBITDA: 10.8x</span><span>US Rev: 70%</span><span>P/B: 2.5x</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> Q4 results declaration · US tariff negotiations · EU revenue share increase · New brand launches</div>
+    </div>
+
+    <div class="analyst-card">
+      <div class="analyst-co" style="color:var(--vardhman)">Vardhman Textiles</div>
+      <div class="analyst-rating hold">HOLD</div>
+      <div class="analyst-meta">CMP: ₹450 · Target: ₹500 · Upside: +11.1%</div>
+      <div class="analyst-thesis">India's largest yarn maker — scale is undeniable but margins are under pressure at 11.8% EBITDA. PAT ▼22% Q4. Cotton price volatility remains key risk. Low P/E of 8.5x provides downside buffer. Upgrade to BUY if EBITDA crosses 14%+.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 8.5x</span><span>EV/EBITDA: 6.2x</span><span>EBITDA%: 11.8%</span><span>D/E: 0.5x</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> Cotton price normalisation · MMF capacity announcement · Export order wins · EBITDA margin recovery</div>
+    </div>
+
+    <div class="analyst-card">
+      <div class="analyst-co" style="color:var(--trident)">Trident</div>
+      <div class="analyst-rating hold">HOLD</div>
+      <div class="analyst-meta">CMP: ₹24 · Target: ₹28 · Upside: +16.7%</div>
+      <div class="analyst-thesis">Global towel leader with paper diversification — but PAT ▼24% Q4 is concerning. US tariff impact on textile + paper segment uncertainty. Revenue trajectory is positive (+10%). Accumulate at lower levels (₹22-24). Wait for margin clarity.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 12.4x</span><span>EV/EBITDA: 8.8x</span><span>Rev Growth: +10%</span><span>Paper: 15%</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> US tariff clarity · Paper demand recovery · Capacity utilisation improvement · Debt reduction</div>
+    </div>
+
+    <div class="analyst-card">
+      <div class="analyst-co" style="color:var(--welspunliv)">Welspun Living</div>
+      <div class="analyst-rating hold">HOLD</div>
+      <div class="analyst-meta">CMP: ₹141 · Target: ₹165 · Upside: +17%</div>
+      <div class="analyst-thesis">FCF turnaround is impressive (₹956 Cr, 8.5x growth) but PAT ▼67% to ₹213 Cr on ₹9,399 Cr revenue is unsatisfactory. Net debt ▼52% is a positive. Domestic segment growing well (+29%). Valuations stretched at 25x P/E for current profitability.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 25x</span><span>FCF: ₹956 Cr</span><span>Net Debt: ₹775 Cr</span><span>DOM +29%</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> EBITDA margin recovery · West Asia normalisation · US tariff resolution · Domestic brand scale-up</div>
+    </div>
+
+    <div class="analyst-card">
+      <div class="analyst-co" style="color:var(--gokaldas)">Gokaldas Exports</div>
+      <div class="analyst-rating hold">HOLD</div>
+      <div class="analyst-meta">CMP: ₹900 · Target: ₹950 · Upside: +5.6%</div>
+      <div class="analyst-thesis">AGOA (Africa) ops are a genuine competitive moat for US market access. Revenue +22% Q4 shows operational momentum. But PAT ▼37% FY26 and 32x P/E leaves little margin of safety. Risk-reward is balanced. Neutral.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 32x</span><span>EV/EBITDA: 15x</span><span>AGOA +17%</span><span>Rev +22%</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> AGOA volume scale-up · PAT recovery FY27 · Global brand order wins · US tariff impact on AGOA share</div>
+    </div>
+
+    <div class="analyst-card" style="border-color:#dc2626">
+      <div class="analyst-co" style="color:var(--himat)">Himatsingka Seide</div>
+      <div class="analyst-rating avoid">AVOID</div>
+      <div class="analyst-meta">CMP: ₹78 · Target: Uncertain · 12M: ▼52.7%</div>
+      <div class="analyst-thesis">High debt (~₹2,100 Cr) is eating all profits. PAT ~₹50 Cr on ₹2,500 Cr revenue = 2% PAT margin. Stock ▼52.7% in 12 months. Q4 results due 27 May. Any re-rating requires significant debt reduction announcement. Avoid until debt below ₹1,000 Cr.</div>
+      <div class="analyst-metrics">
+        <span>Debt: ₹2,100 Cr</span><span>PAT: ~₹50 Cr</span><span>12M: ▼52.7%</span><span>P/B: 1.1x</span>
+      </div>
+      <div class="analyst-catalysts"><b>Watch for:</b> Q4 results 27 May · Debt restructuring · Asset sale announcement · New management actions</div>
+    </div>
+
+  </div>
+</div>
+<!-- ==================== EXPORTS & GEOGRAPHY TAB ==================== -->
+<div id="tab-exports" class="tab-content">
+  <div class="tab-title">Exports & Geographic Revenue Mix</div>
+  <div class="note-box" style="background:#fef3c7;border-color:#f59e0b;">
+    📊 <strong>Note on Volume Data:</strong> Unlike 2-Wheeler companies that report unit volumes, textile companies do not report standardised volume metrics (kg/metres/pieces vary by product category). This tab uses <strong>Geographic Revenue %</strong> as the primary market-mix indicator — a more meaningful metric for textile sector investment analysis. Volume-related data is shown where available (spindle capacity, garment pieces/year).
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-lbl">Geographic Revenue Mix — Q4 FY26</div>
+    <div style="overflow-x:auto;"><table>
+      <thead><tr>
+        <th>Company</th><th style="text-align:right">USA %</th><th style="text-align:right">Europe/UK %</th>
+        <th style="text-align:right">Middle East %</th><th style="text-align:right">Africa %</th>
+        <th style="text-align:right">India Domestic %</th><th style="text-align:right">Others %</th>
+        <th>Key Export Note</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="tb" style="color:var(--vardhman)">Vardhman Textiles</td><td class="num warn">~30%</td><td class="num">~25%</td><td class="num">~5%</td><td class="num">—</td><td class="num tpos">~30%</td><td class="num">~10%</td><td>Yarn export + fabric (60+ countries)</td></tr>
+        <tr><td class="tb" style="color:var(--welspunliv)">Welspun Living</td><td class="num warn">~45%</td><td class="num">~30%</td><td class="num tneg">~8%</td><td class="num">—</td><td class="num tpos">~12%</td><td class="num">~5%</td><td>Domestic +29.2% Q4; ME weak</td></tr>
+        <tr><td class="tb" style="color:var(--kpr)">KPR Mill</td><td class="num">~15%</td><td class="num tpos">~70%</td><td class="num">~2%</td><td class="num">—</td><td class="num">~10%</td><td class="num">~3%</td><td>EU largest — tariff buffer vs peers</td></tr>
+        <tr><td class="tb" style="color:var(--indocount)">Indo Count</td><td class="num tneg">~70%</td><td class="num">~15%</td><td class="num">~3%</td><td class="num">—</td><td class="num">~8%</td><td class="num">~4%</td><td>HIGHEST US concentration — max tariff risk</td></tr>
+        <tr><td class="tb" style="color:var(--himat)">Himatsingka</td><td class="num warn">~55%</td><td class="num">~25%</td><td class="num">~5%</td><td class="num">—</td><td class="num">~10%</td><td class="num">~5%</td><td>Premium US brands; Q4 results pending</td></tr>
+        <tr><td class="tb" style="color:var(--trident)">Trident</td><td class="num warn">~40%</td><td class="num">~30%</td><td class="num">~8%</td><td class="num">—</td><td class="num">~15%</td><td class="num">~7%</td><td>Towel + paper export diversification</td></tr>
+        <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td class="num">~5%</td><td class="num tpos">~80%</td><td class="num">~2%</td><td class="num">—</td><td class="num">~10%</td><td class="num">~3%</td><td>UK FTA max beneficiary; Zenith (UK arm)</td></tr>
+        <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas Exports</td><td class="num warn">~55%</td><td class="num">~20%</td><td class="num">~2%</td><td class="num tpos">~22%</td><td class="num">~1%</td><td class="num">—</td><td>AGOA (Africa ops) = duty-free US access</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-lbl">US Tariff Impact Analysis — 26% Reciprocal Tariff (April 2026)</div>
+    <div style="overflow-x:auto;"><table>
+      <thead><tr><th>Company</th><th style="text-align:right">US Revenue %</th><th>Tariff Exposure</th><th>Mitigation</th><th>Net Impact</th></tr></thead>
+      <tbody>
+        <tr><td class="tb" style="color:var(--indocount)">Indo Count</td><td class="num tneg">~70%</td><td><span class="badge b-avoid">CRITICAL</span></td><td>EU/UK shift; premium pricing</td><td class="tneg">Highest negative impact</td></tr>
+        <tr><td class="tb" style="color:var(--welspunliv)">Welspun Living</td><td class="num tneg">~45%</td><td><span class="badge b-neg">HIGH</span></td><td>Domestic growth +29%; brand premium</td><td class="tneg">Significant; FCF buffer helps</td></tr>
+        <tr><td class="tb" style="color:var(--himat)">Himatsingka</td><td class="num warn">~55%</td><td><span class="badge b-neg">HIGH</span></td><td>Premium segment; debt is key risk</td><td class="tneg">High — debt amplifies risk</td></tr>
+        <tr><td class="tb" style="color:var(--trident)">Trident</td><td class="num warn">~40%</td><td><span class="badge b-watch">MEDIUM</span></td><td>Paper diversification; EU shift</td><td class="warn">Moderate; paper cushions</td></tr>
+        <tr><td class="tb" style="color:var(--vardhman)">Vardhman</td><td class="num warn">~30%</td><td><span class="badge b-watch">MEDIUM</span></td><td>Domestic + EU shift; yarn flexibility</td><td class="warn">Moderate; can redirect yarn</td></tr>
+        <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas Exports</td><td class="num">~55%</td><td><span class="badge b-watch">MEDIUM</span></td><td><span style="color:var(--pos)">AGOA (duty-free via Africa)</span></td><td class="tpos">AGOA partially neutralises</td></tr>
+        <tr><td class="tb" style="color:var(--kpr)">KPR Mill</td><td class="num tpos">~15%</td><td><span class="badge b-pos">LOW</span></td><td>EU ~70% = natural buffer</td><td class="tpos">Minimal impact</td></tr>
+        <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td class="num tpos">~5%</td><td><span class="badge b-pos">MINIMAL</span></td><td>UK FTA = direct benefit instead</td><td class="tpos">Net POSITIVE from FTA</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="g2" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-lbl">Production Capacity Snapshot (Volume Indicators)</div>
+      <table>
+        <thead><tr><th>Company</th><th>Volume Metric</th><th>Capacity</th></tr></thead>
+        <tbody>
+          <tr><td class="tb" style="color:var(--vardhman)">Vardhman</td><td>Spindles</td><td>~13 lakh (largest India)</td></tr>
+          <tr><td class="tb" style="color:var(--welspunliv)">Welspun Living</td><td>Terry Towel</td><td>~80,000 MT/year</td></tr>
+          <tr><td class="tb" style="color:var(--kpr)">KPR Mill</td><td>Garments</td><td>11.5 Cr pcs/year</td></tr>
+          <tr><td class="tb" style="color:var(--indocount)">Indo Count</td><td>Spindles</td><td>~3.7 lakh</td></tr>
+          <tr><td class="tb" style="color:var(--trident)">Trident</td><td>Terry Towel</td><td>72,000 MT/year</td></tr>
+          <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td>Knit Garments</td><td>~3.5 Cr pcs/year (est.)</td></tr>
+          <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas</td><td>Woven Garments</td><td>~4 Cr pcs/year (est.)</td></tr>
+          <tr><td class="tb" style="color:var(--himat)">Himatsingka</td><td>Spindles + Looms</td><td>~1.5 lakh spindles</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Key Trade Policy Events — FY26</div>
+      <table>
+        <thead><tr><th>Event</th><th>Date</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td class="tb">US 26% Reciprocal Tariff</td><td>Apr 2026</td><td class="tneg">Major headwind (5 of 8 companies)</td></tr>
+          <tr><td class="tb">India-UK FTA Signed</td><td>Early 2025</td><td class="tpos">SP Apparels biggest gainer</td></tr>
+          <tr><td class="tb">AGOA Renewal (Ethiopia)</td><td>Ongoing</td><td class="tpos">Gokaldas duty-free US access</td></tr>
+          <tr><td class="tb">PLI Textile Scheme</td><td>FY27 Disbursals</td><td class="tpos">MMF/Technical textiles focus</td></tr>
+          <tr><td class="tb">India-EU FTA Talks</td><td>Active Negotiation</td><td class="tpos">KPR Mill, Gokaldas potential</td></tr>
+          <tr><td class="tb">West Asia Conflict</td><td>Ongoing FY26</td><td class="tneg">Welspun Living ME revenue weak</td></tr>
+          <tr><td class="tb">Bangladesh Labour Issues</td><td>FY26</td><td class="tpos">India garment order gains</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- ==================== MOATS & USPs TAB ==================== -->
+<div id="tab-moats" class="tab-content">
+  <div class="tab-title">Moats & Competitive Advantages — USP Analysis</div>
+  <div class="moat-grid">
+
+    <div class="moat-card">
+      <div class="moat-icon">🧵</div>
+      <div class="moat-co" style="color:var(--vardhman)">Vardhman Textiles</div>
+      <div class="moat-type">Scale Moat + Integration</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>India's largest listed yarn maker (13L+ spindles)</span></div>
+        <div class="moat-row"><span class="moat-lbl">Integration</span><span>Fibre → Yarn → Fabric → Processing</span></div>
+        <div class="moat-row"><span class="moat-lbl">Geography</span><span>60+ export countries = diversification</span></div>
+        <div class="moat-row"><span class="moat-lbl">R&D</span><span>Specialty yarns — technical textiles</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-hold">MEDIUM</span></div>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">🏠</div>
+      <div class="moat-co" style="color:var(--welspunliv)">Welspun Living</div>
+      <div class="moat-type">Brand Moat + Technology</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>World's largest terry towel maker</span></div>
+        <div class="moat-row"><span class="moat-lbl">Technology</span><span>Hygrocotton® — proprietary fibre tech</span></div>
+        <div class="moat-row"><span class="moat-lbl">Brands</span><span>Christy (UK heritage), Spaces (India)</span></div>
+        <div class="moat-row"><span class="moat-lbl">Retail Access</span><span>Direct shelf space at Walmart/Target/M&S</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-buy">STRONG</span></div>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">⭐</div>
+      <div class="moat-co" style="color:var(--kpr)">KPR Mill</div>
+      <div class="moat-type">Cost Moat + Integration + ESG</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>20.65% EBITDA — unmatched in sector</span></div>
+        <div class="moat-row"><span class="moat-lbl">Energy</span><span>70%+ renewable power (wind+solar)</span></div>
+        <div class="moat-row"><span class="moat-lbl">Integration</span><span>Cotton seed → fibre → yarn → fabric → garment</span></div>
+        <div class="moat-row"><span class="moat-lbl">Financial</span><span>DEBT-FREE — unique in sector</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-buy">VERY STRONG</span></div>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">🛏️</div>
+      <div class="moat-co" style="color:var(--indocount)">Indo Count</div>
+      <div class="moat-type">Niche Specialist Moat</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>Top-3 global bed sheet manufacturer</span></div>
+        <div class="moat-row"><span class="moat-lbl">Brands</span><span>Wamsutta, Cozee Home (US market)</span></div>
+        <div class="moat-row"><span class="moat-lbl">Specialisation</span><span>Fashion bedding design capability</span></div>
+        <div class="moat-row"><span class="moat-lbl">Risk</span><span>70% US revenue concentration</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-hold">MEDIUM (US-dependent)</span></div>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">✨</div>
+      <div class="moat-co" style="color:var(--himat)">Himatsingka Seide</div>
+      <div class="moat-type">Brand Moat (Debt-Constrained)</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>Premium US brands (WestPoint, Pradhan)</span></div>
+        <div class="moat-row"><span class="moat-lbl">Positioning</span><span>Ultra-premium home textiles — limited competition</span></div>
+        <div class="moat-row"><span class="moat-lbl">Constraint</span><span>₹2,100 Cr debt NEUTRALISES brand moat</span></div>
+        <div class="moat-row"><span class="moat-lbl">Risk</span><span>Moat unusable if debt crushes operations</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-avoid">WEAK (debt constrained)</span></div>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">🌾</div>
+      <div class="moat-co" style="color:var(--trident)">Trident</div>
+      <div class="moat-type">Scale + Eco-Diversification</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>World's largest terry towel exporter</span></div>
+        <div class="moat-row"><span class="moat-lbl">Unique Moat</span><span>Wheat straw paper — circular economy USP</span></div>
+        <div class="moat-row"><span class="moat-lbl">Location</span><span>Barnala (Punjab) — wheat straw proximity</span></div>
+        <div class="moat-row"><span class="moat-lbl">Integration</span><span>Cotton → yarn → towel → paper in one campus</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-hold">MEDIUM-STRONG</span></div>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">🇬🇧</div>
+      <div class="moat-co" style="color:var(--spapparel)">SP Apparels</div>
+      <div class="moat-type">FTA Policy Moat + UK Presence</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>India-UK FTA = zero-duty while Bangladesh pays 12%</span></div>
+        <div class="moat-row"><span class="moat-lbl">UK Presence</span><span>Zenith Clothing (UK) — local market intelligence</span></div>
+        <div class="moat-row"><span class="moat-lbl">Specialisation</span><span>Kidswear + private label for UK retailers</span></div>
+        <div class="moat-row"><span class="moat-lbl">Duration</span><span>FTA benefit: 3-5 year structural advantage</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-buy">STRONG (FTA window)</span></div>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">🌍</div>
+      <div class="moat-co" style="color:var(--gokaldas)">Gokaldas Exports</div>
+      <div class="moat-type">Geopolitical Moat (AGOA)</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>AGOA Ethiopia ops = duty-free access to USA</span></div>
+        <div class="moat-row"><span class="moat-lbl">Uniqueness</span><span>ONLY listed Indian textile company with AGOA</span></div>
+        <div class="moat-row"><span class="moat-lbl">FY26 Growth</span><span>Africa operations +17% YoY</span></div>
+        <div class="moat-row"><span class="moat-lbl">Clients</span><span>Gap, H&M, PVH — premium global brands</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-buy">UNIQUE — Hard to Replicate</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ==================== VERDICT TAB ==================== -->
+<div id="tab-verdict" class="tab-content">
+  <div class="tab-title">🏆 Cauvery Business Verdict — Q4 FY26</div>
+  <div class="note-box" style="background:#dcfce7;border-color:#16a34a;">
+    🏆 Final verdict based on Q4 FY26 results, sector tailwinds, valuation, and moat quality. Rankings as of May 2026.
+  </div>
+
+  <div class="g2" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-lbl">Final Rankings — Q4 FY26 Verdict</div>
+      <div style="overflow-x:auto;"><table>
+        <thead><tr><th>#</th><th>Company</th><th>Rating</th><th style="text-align:right">CMP</th><th style="text-align:right">Target</th><th>Key Thesis</th></tr></thead>
+        <tbody>
+          <tr style="background:#dcfce7;">
+            <td class="num tpos">🥇1</td>
+            <td class="tb" style="color:var(--kpr)">KPR Mill</td>
+            <td><span class="badge b-buy">STRONG BUY</span></td>
+            <td class="num">₹918</td><td class="num tpos">₹1,150</td>
+            <td>Only PAT grower · Debt-free · 20.65% EBITDA</td>
+          </tr>
+          <tr style="background:#dcfce7;">
+            <td class="num tpos">🥈2</td>
+            <td class="tb" style="color:var(--spapparel)">SP Apparels</td>
+            <td><span class="badge b-buy">BUY</span></td>
+            <td class="num">₹728</td><td class="num tpos">₹920</td>
+            <td>India-UK FTA max beneficiary · UK arm profitable</td>
+          </tr>
+          <tr style="background:#dcfce7;">
+            <td class="num tpos">🥉3</td>
+            <td class="tb" style="color:var(--indocount)">Indo Count</td>
+            <td><span class="badge b-buy">BUY</span></td>
+            <td class="num">₹372</td><td class="num tpos">₹480</td>
+            <td>Top-3 global bed sheet · Trough valuation · EU shift</td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td class="tb" style="color:var(--vardhman)">Vardhman</td>
+            <td><span class="badge b-hold">HOLD</span></td>
+            <td class="num">₹450</td><td class="num">₹500</td>
+            <td>Scale leader · Margin recovery needed · Low P/E buffer</td>
+          </tr>
+          <tr>
+            <td class="num">5</td>
+            <td class="tb" style="color:var(--trident)">Trident</td>
+            <td><span class="badge b-hold">HOLD</span></td>
+            <td class="num">₹24</td><td class="num">₹28</td>
+            <td>Global towel leader · Paper USP · Accumulate lower</td>
+          </tr>
+          <tr>
+            <td class="num">6</td>
+            <td class="tb" style="color:var(--welspunliv)">Welspun Living</td>
+            <td><span class="badge b-hold">HOLD</span></td>
+            <td class="num">₹141</td><td class="num">₹165</td>
+            <td>FCF recovery impressive · PAT needs improvement</td>
+          </tr>
+          <tr>
+            <td class="num">7</td>
+            <td class="tb" style="color:var(--gokaldas)">Gokaldas</td>
+            <td><span class="badge b-hold">HOLD</span></td>
+            <td class="num">₹900</td><td class="num">₹950</td>
+            <td>AGOA unique moat · PAT decline · 32x P/E stretched</td>
+          </tr>
+          <tr style="background:#fee2e2;">
+            <td class="num tneg">8</td>
+            <td class="tb" style="color:var(--himat)">Himatsingka</td>
+            <td><span class="badge b-avoid">AVOID</span></td>
+            <td class="num">₹78</td><td class="num tneg">—</td>
+            <td>Debt ~₹2,100 Cr · Stock ▼52.7% · Q4 due 27 May</td>
+          </tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <div class="card-lbl">Sector Catalysts & Timeline — FY27</div>
+      <table>
+        <thead><tr><th>Catalyst</th><th>Expected</th><th>Beneficiary</th></tr></thead>
+        <tbody>
+          <tr><td class="tb tpos">India-UK FTA tariff implementation</td><td>FY27 Q1</td><td style="color:var(--spapparel)">SP Apparels (max)</td></tr>
+          <tr><td class="tb tpos">US tariff negotiations / reduction</td><td>H1 FY27</td><td style="color:var(--indocount)">Indo Count (max)</td></tr>
+          <tr><td class="tb tpos">PLI Textile disbursals (MMF focus)</td><td>FY27</td><td style="color:var(--kpr)">KPR Mill, Trident</td></tr>
+          <tr><td class="tb tpos">India-EU FTA progress</td><td>FY27-28</td><td style="color:var(--kpr)">KPR, Gokaldas</td></tr>
+          <tr><td class="tb tpos">Bangladesh capacity loss (labour)</td><td>Ongoing</td><td style="color:var(--gokaldas)">Gokaldas, SP Apparels</td></tr>
+          <tr><td class="tb warn">Himatsingka Q4 results</td><td>27 May 2026</td><td style="color:var(--himat)">Himatsingka (watch)</td></tr>
+          <tr><td class="tb warn">Indo Count Q4 results</td><td>Imminent</td><td style="color:var(--indocount)">Indo Count (catalyst)</td></tr>
+          <tr><td class="tb warn">Cotton price direction</td><td>Q1 FY27</td><td style="color:var(--vardhman)">Vardhman (key risk)</td></tr>
+          <tr><td class="tb tneg">West Asia conflict escalation</td><td>Ongoing risk</td><td style="color:var(--welspunliv)">Welspun (negative)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 100%);border:2px solid #0284c7;">
+    <div class="card-lbl" style="color:#0284c7;">📋 CB Research — Final Summary Note</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:12px;">
+      <div>
+        <div style="font-weight:700;color:#16a34a;margin-bottom:6px;">✅ BUY Basket</div>
+        <div style="font-size:12px;line-height:1.8;">
+          <b style="color:var(--kpr)">KPR Mill</b> — Core holding. Best in sector. TP ₹1,150<br>
+          <b style="color:var(--spapparel)">SP Apparels</b> — FTA play. Accumulate. TP ₹920<br>
+          <b style="color:var(--indocount)">Indo Count</b> — Trough buy. TP ₹480
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:#b45309;margin-bottom:6px;">⏸️ HOLD / Watch</div>
+        <div style="font-size:12px;line-height:1.8;">
+          <b style="color:var(--vardhman)">Vardhman</b> — Hold. Upgrade if margins recover<br>
+          <b style="color:var(--trident)">Trident</b> — Hold. Accumulate ₹22-24<br>
+          <b style="color:var(--welspunliv)">Welspun Liv</b> — Hold. FCF good, PAT needed<br>
+          <b style="color:var(--gokaldas)">Gokaldas</b> — Hold. AGOA real but priced in
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;color:#dc2626;margin-bottom:6px;">🚫 AVOID</div>
+        <div style="font-size:12px;line-height:1.8;">
+          <b style="color:var(--himat)">Himatsingka</b> — Avoid until debt &lt; ₹1,000 Cr. Q4 results 27 May are key. High debt eats all profits. ▼52.7% in 12M. No clear recovery signal yet.
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:8px;background:#fff3;border-radius:6px;font-size:11px;color:#555;">
+      ⚠️ <b>Disclaimer:</b> This report is for educational and informational purposes only. Not investment advice. Consult a SEBI-registered advisor before investing. All estimates marked (est.) are Cauvery Business projections.
+    </div>
+  </div>
+</div>
+<!-- ==================== CB ASSIST TAB ==================== -->
+<div id="tab-cbassist" class="tab-content">
+  <div class="tab-title">🤖 CB Assist — Textile Intelligence Chat</div>
+
+  <!-- ENGLISH SECTION -->
+  <div class="cba-section" id="lang-en">
+    <div class="cba-lang-header" style="background:var(--kpr);color:#fff;">
+      🇬🇧 English Questions — Click a question to get an instant answer
+    </div>
+    <div class="preset-tabs">
+      <button class="pt active" onclick="switchTextilePreset('en','basics',this)">Basics</button>
+      <button class="pt" onclick="switchTextilePreset('en','performance',this)">Performance</button>
+      <button class="pt" onclick="switchTextilePreset('en','investment',this)">Investment</button>
+      <button class="pt" onclick="switchTextilePreset('en','risks',this)">Risks</button>
+    </div>
+    <div id="tpq-en-basics" class="tpq-panel active">
+      <div class="pq-btn" onclick="askTextilePreset('What does Vardhman Textiles do and what is their main business?')"><span class="pq-en">What does Vardhman Textiles do?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What is KPR Mill known for and why is it considered the best textile company in India?')"><span class="pq-en">Why is KPR Mill the best in sector?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Explain what Welspun Living does and what are their key brands?')"><span class="pq-en">What does Welspun Living make?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What is Indo Count Industries and what makes them a global leader?')"><span class="pq-en">What is Indo Count's global position?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What does Gokaldas Exports do and what is AGOA?')"><span class="pq-en">What is AGOA and why does Gokaldas benefit?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What is the India-UK FTA and how does SP Apparels benefit from it?')"><span class="pq-en">How does SP Apparels benefit from India-UK FTA?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What does Trident make besides textiles?')"><span class="pq-en">What else does Trident make besides textiles?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Why is Himatsingka Seide under pressure and what is their debt situation?')"><span class="pq-en">Why is Himatsingka struggling?</span></div>
+    </div>
+    <div id="tpq-en-performance" class="tpq-panel">
+      <div class="pq-btn" onclick="askTextilePreset('Which textile company had the best Q4 FY26 performance and why?')"><span class="pq-en">Which company had the best Q4 FY26?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Compare KPR Mill and Vardhman Textiles revenue and profit for FY26?')"><span class="pq-en">Compare KPR Mill vs Vardhman FY26</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Which textile company has the best EBITDA margin in Q4 FY26?')"><span class="pq-en">Who has the best EBITDA margin?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Why did Welspun Living PAT fall 67% in FY26 despite revenue growth?')"><span class="pq-en">Why did Welspun PAT fall 67%?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('How did Gokaldas Exports revenue grow 22% in Q4 FY26?')"><span class="pq-en">How did Gokaldas grow revenue 22%?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What is SP Apparels FY27 revenue target and is it achievable?')"><span class="pq-en">Is SP Apparels ₹2,000 Cr FY27 target achievable?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Which textile companies have results still pending for Q4 FY26?')"><span class="pq-en">Which Q4 results are still pending?</span></div>
+    </div>
+    <div id="tpq-en-investment" class="tpq-panel">
+      <div class="pq-btn" onclick="askTextilePreset('Which textile stock should I buy today and why?')"><span class="pq-en">Which textile stock to buy today?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Is KPR Mill at ₹918 a good buy with target price ₹1150?')"><span class="pq-en">Is KPR Mill a good buy at ₹918?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Why should I avoid Himatsingka Seide at current prices?')"><span class="pq-en">Why avoid Himatsingka Seide?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Between SP Apparels and Indo Count, which is the better BUY right now?')"><span class="pq-en">SP Apparels vs Indo Count — which to buy?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Is Trident a good long term investment in the textile sector?')"><span class="pq-en">Is Trident a good long-term investment?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What is the best textile stock for a 2-year holding period?')"><span class="pq-en">Best textile stock for 2-year hold?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Rank all 8 textile companies from best to worst investment right now')"><span class="pq-en">Rank all 8 companies from best to worst</span></div>
+    </div>
+    <div id="tpq-en-risks" class="tpq-panel">
+      <div class="pq-btn" onclick="askTextilePreset('How does the US 26% reciprocal tariff impact Indian textile companies?')"><span class="pq-en">How does US 26% tariff impact textiles?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('Which Indian textile company is most at risk from US tariffs?')"><span class="pq-en">Who faces maximum US tariff risk?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('How does Gokaldas use AGOA to avoid US tariffs?')"><span class="pq-en">How does Gokaldas avoid tariffs via AGOA?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What are the main risks in the Indian textile sector for FY27?')"><span class="pq-en">What are main FY27 sector risks?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('How does cotton price affect textile companies like Vardhman?')"><span class="pq-en">How does cotton price affect Vardhman?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('What is the West Asia conflict impact on Welspun Living?')"><span class="pq-en">West Asia conflict impact on Welspun?</span></div>
+    </div>
+  </div>
+
+  <!-- TAMIL SECTION -->
+  <div class="cba-section" id="lang-ta" style="margin-top:20px;">
+    <div class="cba-lang-header" style="background:#7c3aed;color:#fff;">
+      🇮🇳 தமிழ் கேள்விகள் — ஒரு கேள்வியை கிளிக் செய்யுங்கள்
+    </div>
+    <div class="preset-tabs">
+      <button class="pt active" onclick="switchTextilePreset('ta','basics',this)">அடிப்படை</button>
+      <button class="pt" onclick="switchTextilePreset('ta','performance',this)">செயல்திறன்</button>
+      <button class="pt" onclick="switchTextilePreset('ta','investment',this)">முதலீடு</button>
+      <button class="pt" onclick="switchTextilePreset('ta','risks',this)">அபாயங்கள்</button>
+    </div>
+    <div id="tpq-ta-basics" class="tpq-panel active">
+      <div class="pq-btn" onclick="askTextilePreset('வர்த்தமான் டெக்ஸ்டைல்ஸ் என்ன செய்கிறது? அவர்களின் முக்கிய வணிகம் என்ன?','ta')"><span class="pq-ta">வர்த்தமான் டெக்ஸ்டைல்ஸ் என்ன செய்கிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('KPR மில் ஏன் இந்தியாவின் சிறந்த ஜவுளி நிறுவனமாக கருதப்படுகிறது?','ta')"><span class="pq-ta">KPR மில் ஏன் சிறந்தது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('வெல்ஸ்பன் லிவிங் என்ன தயாரிக்கிறது? அவர்களின் முக்கிய பிராண்டுகள் என்னென்ன?','ta')"><span class="pq-ta">வெல்ஸ்பன் லிவிங் என்ன தயாரிக்கிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('இந்தோ கவுண்ட் இண்டஸ்ட்ரீஸ் உலகளவில் எந்த நிலையில் உள்ளது?','ta')"><span class="pq-ta">இந்தோ கவுண்ட் உலக நிலை என்ன?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('கோகல்தாஸ் எக்ஸ்போர்ட்ஸ் என்ன செய்கிறது? AGOA என்றால் என்ன?','ta')"><span class="pq-ta">AGOA என்றால் என்ன? கோகல்தாஸுக்கு எப்படி பயன்படுகிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('SP அப்பாரல்ஸ் இந்திய-UK FTA ஒப்பந்தத்தால் எப்படி பயன் அடைகிறது?','ta')"><span class="pq-ta">SP அப்பாரல்ஸ் UK FTA-யால் எப்படி பயன் அடைகிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('ட்ரைடன்ட் ஜவுளி தவிர வேறு என்ன தயாரிக்கிறது?','ta')"><span class="pq-ta">ட்ரைடன்ட் வேறு என்ன தயாரிக்கிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('ஹிமத்சிங்கா ஏன் இப்போது கஷ்டத்தில் உள்ளது? அவர்களின் கடன் நிலை என்ன?','ta')"><span class="pq-ta">ஹிமத்சிங்கா ஏன் கஷ்டத்தில் உள்ளது?</span></div>
+    </div>
+    <div id="tpq-ta-performance" class="tpq-panel">
+      <div class="pq-btn" onclick="askTextilePreset('Q4 FY26-ல் எந்த ஜவுளி நிறுவனம் சிறப்பான செயல்திறன் காட்டியது?','ta')"><span class="pq-ta">Q4 FY26-ல் சிறந்த நிறுவனம் எது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('KPR மில் மற்றும் வர்த்தமான் டெக்ஸ்டைல்ஸ் FY26 வருமானம் ஒப்பிடுங்கள்','ta')"><span class="pq-ta">KPR மில் vs வர்த்தமான் FY26 ஒப்பீடு</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('எந்த ஜவுளி நிறுவனத்திற்கு சிறந்த EBITDA மார்ஜின் உள்ளது?','ta')"><span class="pq-ta">சிறந்த EBITDA மார்ஜின் உள்ள நிறுவனம் எது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('வெல்ஸ்பன் லிவிங் PAT FY26-ல் 67% ஏன் குறைந்தது?','ta')"><span class="pq-ta">வெல்ஸ்பன் PAT 67% ஏன் குறைந்தது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('SP அப்பாரல்ஸ் FY27 இலக்கு ₹2000 கோடி சாத்தியமா?','ta')"><span class="pq-ta">SP அப்பாரல்ஸ் ₹2000 கோடி இலக்கு சாத்தியமா?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('இன்னும் Q4 FY26 முடிவுகள் அறிவிக்காத நிறுவனங்கள் எவை?','ta')"><span class="pq-ta">இன்னும் Q4 முடிவுகள் அறிவிக்காதவை எவை?</span></div>
+    </div>
+    <div id="tpq-ta-investment" class="tpq-panel">
+      <div class="pq-btn" onclick="askTextilePreset('இப்போது எந்த ஜவுளி பங்கை வாங்கலாம்? ஏன்?','ta')"><span class="pq-ta">இப்போது எந்த பங்கை வாங்கலாம்?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('KPR மில் ₹918-ல் வாங்குவது நல்லதா? இலக்கு விலை என்ன?','ta')"><span class="pq-ta">KPR மில் ₹918-ல் வாங்கலாமா?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('ஏன் ஹிமத்சிங்கா பங்கை தவிர்க்க வேண்டும்?','ta')"><span class="pq-ta">ஏன் ஹிமத்சிங்கா தவிர்க்க வேண்டும்?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('SP அப்பாரல்ஸ் மற்றும் இந்தோ கவுண்ட் - இரண்டில் எது சிறந்த வாங்குதல்?','ta')"><span class="pq-ta">SP அப்பாரல்ஸ் vs இந்தோ கவுண்ட் - எது சிறந்தது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('2 வருட முதலீட்டிற்கு சிறந்த ஜவுளி பங்கு எது?','ta')"><span class="pq-ta">2 வருட முதலீட்டிற்கு சிறந்த பங்கு எது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('8 ஜவுளி நிறுவனங்களை சிறந்தது முதல் மோசமானது வரை வரிசைப்படுத்துங்கள்','ta')"><span class="pq-ta">8 நிறுவனங்களை சிறந்தது முதல் மோசம் வரை வரிசை</span></div>
+    </div>
+    <div id="tpq-ta-risks" class="tpq-panel">
+      <div class="pq-btn" onclick="askTextilePreset('அமெரிக்காவின் 26% வரி இந்திய ஜவுளி நிறுவனங்களை எப்படி பாதிக்கிறது?','ta')"><span class="pq-ta">US 26% வரி ஜவுளி நிறுவனங்களை எப்படி பாதிக்கிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('US வரியால் அதிகமாக பாதிக்கப்படும் இந்திய ஜவுளி நிறுவனம் எது?','ta')"><span class="pq-ta">US வரியால் அதிகம் பாதிக்கப்படும் நிறுவனம் எது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('கோகல்தாஸ் AGOA மூலம் US வரியை எப்படி தவிர்க்கிறது?','ta')"><span class="pq-ta">கோகல்தாஸ் AGOA மூலம் வரியை எப்படி தவிர்க்கிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('FY27-ல் இந்திய ஜவுளி துறையின் முக்கிய அபாயங்கள் என்னென்ன?','ta')"><span class="pq-ta">FY27 ஜவுளி துறை முக்கிய அபாயங்கள் என்னென்ன?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('பருத்தி விலை உயர்வு வர்த்தமான் போன்ற நிறுவனங்களை எப்படி பாதிக்கிறது?','ta')"><span class="pq-ta">பருத்தி விலை ஏற்றம் நிறுவனங்களை எப்படி பாதிக்கிறது?</span></div>
+      <div class="pq-btn" onclick="askTextilePreset('மேற்கு ஆசியா போர் வெல்ஸ்பன் லிவிங்கை எப்படி பாதித்தது?','ta')"><span class="pq-ta">மேற்கு ஆசியா நெருக்கடி வெல்ஸ்பன்னை பாதித்ததா?</span></div>
+    </div>
+  </div>
+
+  <!-- SHARED CHAT WINDOW -->
+  <div class="cba-chat-wrap" style="margin-top:20px;">
+    <div class="cba-chat-header">💬 CB Assist Response</div>
+    <div id="textile-chat-output" class="cba-chat-output">
+      <div class="cba-welcome">
+        <div style="font-size:24px;margin-bottom:8px;">🧵</div>
+        <div style="font-weight:700;margin-bottom:4px;">Welcome to CB Assist — Textile Intelligence</div>
+        <div style="color:#888;font-size:13px;">Click any English or Tamil preset question above, or type your own question below.</div>
+      </div>
+    </div>
+    <div class="cba-input-row">
+      <input type="text" id="textile-user-input" class="cba-input" placeholder="Ask in English or Tamil about any textile company..." onkeydown="if(event.key==='Enter')sendTextileChat()">
+      <button class="cba-send-btn" onclick="sendTextileChat()">Send ➤</button>
+    </div>
+  </div>
+</div>
+</div><!-- end .content-wrap -->
+
+<!-- WATERMARK -->
+<div class="watermark">Cauvery Business · EIL Research · Q4 FY26 · Indian Textile Sector</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>Cauvery Business Intelligence · EIL Research Division · Q4 FY26 Textile Sector Report</div>
+  <div style="margin-top:4px;font-size:10px;color:#aaa;">⚠️ For educational purposes only. Not SEBI-registered investment advice. Always consult a qualified financial advisor before investing.</div>
+</div>
+
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const tc = document.getElementById('tab-' + id);
+  if (tc) tc.classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (id === 'charts') setTimeout(initTextileCharts, 100);
+}
+
+// ===== CHARTS =====
+let chartsInit = false;
+function initTextileCharts() {
+  if (chartsInit) return;
+  chartsInit = true;
+
+  const companies = ['Vardhman','Welspun\nLiving','KPR Mill','Indo Count','Himatsingka','Trident','SP Apparels','Gokaldas'];
+  const colors = ['#1d4ed8','#0e7490','#166534','#7c3aed','#4338ca','#d97706','#be185d','#92400e'];
+  const alphaColors = colors.map(c => c + 'cc');
+
+  // FY26 Revenue
+  new Chart(document.getElementById('ch-rev'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'FY26 Revenue (₹Cr)', data:[9869,9399,6650,4200,2500,6775,1578,4065], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{ color:'#666', font:{size:10} }, grid:{color:'#eee'} }, x:{ ticks:{ color:'#555', font:{size:9} } } } }
+  });
+
+  // FY26 PAT
+  new Chart(document.getElementById('ch-pat'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'FY26 PAT (₹Cr)', data:[753,213,867,310,50,377,88,100], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // FY26 EBITDA Amount (₹ Cr) — Revenue × EBITDA%
+  // Vardhman:9869×12.1%=1194, Welspun:9399×11.2%=1053, KPR:6650×20.65%=1373, IndoCount:4200×13%=546, Himat:2500×15.5%=388, Trident:6775×14.8%=1003, SP:1578×12%=189, Gokaldas:4065×12.6%=512
+  new Chart(document.getElementById('ch-ebitda-amt'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'FY26 EBITDA (₹Cr)', data:[1194,1053,1373,546,388,1003,189,512], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // Q4 FY26 EBITDA Amount (₹ Cr) — Q4 Rev × Q4 EBITDA%
+  // Vardhman:2498×11.8%=295, Welspun:2435×10.8%=263, KPR:1784×20.3%=362, IndoCount:1115×13.5%=151, Himat:600×15.8%=95, Trident:1650×15%=248, SP:446×12.2%=54, Gokaldas:1087×12.4%=135
+  new Chart(document.getElementById('ch-ebitda-q4'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'Q4 FY26 EBITDA (₹Cr)', data:[295,263,362,151,95,248,54,135], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // EBITDA Margin
+  new Chart(document.getElementById('ch-ebitda'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'EBITDA Margin %', data:[12.1,11.2,20.65,13.0,15.5,14.8,12.0,12.6], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ min:0, max:25, ticks:{color:'#666',font:{size:10},callback:v=>v+'%'}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // Q4 comparison
+  new Chart(document.getElementById('ch-q4'), {
+    type:'bar',
+    data:{
+      labels:companies,
+      datasets:[
+        { label:'Q4 FY26', data:[2498,2435,1784,1115,600,1650,446,1087], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 },
+        { label:'Q4 FY25 (est.)', data:[2630,2255,1565,1060,612,1500,378,891], backgroundColor:'rgba(200,200,200,0.4)', borderColor:'#aaa', borderWidth:1 }
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{labels:{color:'#555',font:{size:10}}} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // Q4 FY26 Revenue standalone
+  new Chart(document.getElementById('ch-q4rev'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'Q4 FY26 Revenue (₹Cr)', data:[2498,2435,1784,1115,600,1650,446,1087], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // Q4 FY26 PAT standalone
+  new Chart(document.getElementById('ch-q4pat'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'Q4 FY26 PAT (₹Cr)', data:[189,104,227,80,12,102,22,25], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // Q4 FY26 EBITDA Margin %
+  new Chart(document.getElementById('ch-ebitda-q4-margin'), {
+    type:'bar',
+    data:{ labels:companies, datasets:[{ label:'Q4 EBITDA Margin %', data:[11.8,10.8,20.3,13.5,15.8,15.0,12.2,12.4], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ min:0, max:25, ticks:{color:'#666',font:{size:10},callback:v=>v+'%'}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+
+  // Export mix (radar)
+  new Chart(document.getElementById('ch-export'), {
+    type:'radar',
+    data:{
+      labels:['USA','Europe/UK','Middle East','Africa','India DOM'],
+      datasets:[
+        { label:'KPR Mill', data:[15,70,2,0,10], borderColor:'#166534', backgroundColor:'rgba(22,101,52,0.1)', pointBackgroundColor:'#166534' },
+        { label:'SP Apparels', data:[5,80,2,0,10], borderColor:'#be185d', backgroundColor:'rgba(190,24,93,0.1)', pointBackgroundColor:'#be185d' },
+        { label:'Indo Count', data:[70,15,3,0,8], borderColor:'#7c3aed', backgroundColor:'rgba(124,58,237,0.1)', pointBackgroundColor:'#7c3aed' },
+        { label:'Gokaldas', data:[55,20,2,22,1], borderColor:'#92400e', backgroundColor:'rgba(146,64,14,0.1)', pointBackgroundColor:'#92400e' }
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, scales:{ r:{ min:0, max:80, ticks:{stepSize:20,font:{size:9}}, pointLabels:{font:{size:10},color:'#555'} } }, plugins:{ legend:{ labels:{color:'#555',font:{size:10}} } } }
+  });
+
+  // PAT Growth
+  new Chart(document.getElementById('ch-patgrowth'), {
+    type:'bar',
+    data:{
+      labels:companies,
+      datasets:[{ label:'PAT Growth YoY %', data:[-15,-67,6.3,3,-40,2,5.2,-37], backgroundColor:[-15,-67,6.3,3,-40,2,5.2,-37].map(v=>v>0?'rgba(22,163,74,0.7)':'rgba(220,38,38,0.7)'), borderColor:[-15,-67,6.3,3,-40,2,5.2,-37].map(v=>v>0?'#16a34a':'#dc2626'), borderWidth:2 }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10},callback:v=>v+'%'}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
+  });
+}
+
+// ===== CB ASSIST PRESET SWITCHER =====
+function switchTextilePreset(lang, cat, btn) {
+  const section = document.getElementById('lang-' + lang);
+  section.querySelectorAll('.tpq-panel').forEach(p => p.classList.remove('active'));
+  section.querySelectorAll('.pt').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('tpq-' + lang + '-' + cat);
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ===== CB ASSIST PRESET QUESTION =====
+function askTextilePreset(question, lang) {
+  const input = document.getElementById('textile-user-input');
+  if (input) input.value = question;
+  sendTextileChat(lang);
+}
+
+// ===== CB ASSIST SEND =====
+async function sendTextileChat(forceLang) {
+  const input = document.getElementById('textile-user-input');
+  const output = document.getElementById('textile-chat-output');
+  const userText = (input.value || '').trim();
+  if (!userText) return;
+
+  // Detect Tamil
+  const tamilPattern = /[\u0B80-\u0BFF]/;
+  const isTamil = forceLang === 'ta' || tamilPattern.test(userText);
+
+  // Show user bubble
+  output.innerHTML = '';
+  const userBubble = document.createElement('div');
+  userBubble.className = 'chat-user';
+  userBubble.textContent = userText;
+  output.appendChild(userBubble);
+
+  const loadBubble = document.createElement('div');
+  loadBubble.className = 'chat-bot loading';
+  loadBubble.textContent = isTamil ? '🧵 யோசிக்கிறேன்...' : '🧵 Analysing…';
+  output.appendChild(loadBubble);
+  output.scrollTop = output.scrollHeight;
+  input.value = '';
+
+  const systemPrompt = `You are CB Assist, an expert Indian stock market analyst for Cauvery Business / EIL Research, specialising in the Indian Textile Sector for Q4 FY26.
+
+DATA — Q4 FY26 ACTUALS & ESTIMATES:
+• Vardhman Textiles: Q4 Rev ₹2,498 Cr (▼5%), Q4 PAT ₹189 Cr (▼22%), FY26 Rev ₹9,869 Cr, FY26 PAT ₹753 Cr (▼15%), EBITDA 11.8%, Rating: HOLD, TP ₹500, CMP ₹450. Largest Indian yarn maker (13L spindles). Cotton price sensitive. 60+ export countries.
+• Welspun Living: Q4 Rev ₹2,435 Cr (+8%), Q4 PAT ₹104 Cr (▼20%), FY26 Rev ₹9,399 Cr, FY26 PAT ₹213 Cr (▼67%), EBITDA 10.8%, FCF ₹956 Cr (8.5x growth), Net Debt ₹775 Cr (▼52%), Domestic +29.2% Q4. Rating: HOLD, TP ₹165, CMP ₹141. World's largest terry towel maker. Brands: Christy, Spaces, Hygrocotton. US 45% revenue. West Asia weak.
+• KPR Mill: Q4 Rev ₹1,784 Cr (+14%), Q4 PAT ₹227 Cr (+11%), FY26 Rev ₹6,650 Cr, FY26 PAT ₹867 Cr (+6.3%), EBITDA 20.65% (BEST IN SECTOR), DEBT FREE, ROCE ~22%. Rating: STRONG BUY, TP ₹1,150, CMP ₹918. Only company with PAT growth FY26. EU ~70% export. Garment capacity 11.5 Cr pcs/yr. Sugar/ethanol diversification. 70% renewable energy.
+• Indo Count (Q4 PENDING): Q4 Rev est ~₹1,115 Cr, FY26 PAT est ~₹310 Cr. 70% USA revenue = MAXIMUM tariff risk. Top-3 global bed sheet maker. Brands: Wamsutta, Cozee Home. Rating: BUY, TP ₹480, CMP ₹372.
+• Himatsingka Seide (Q4 DUE 27 MAY): FY26 Rev est ~₹2,500 Cr, PAT ~₹50 Cr. Gross Debt ~₹2,100 Cr (HIGH). Stock ▼52.7% in 12M. Premium brands WestPoint, Pradhan. Rating: AVOID, CMP ₹78.
+• Trident: Q4 Rev ₹1,650 Cr (+10%), Q4 PAT ₹102 Cr (▼24%), FY26 Rev ₹6,775 Cr, FY26 PAT ₹377 Cr (+2%), EBITDA 15%. World's largest terry towel exporter. Wheat straw paper = unique eco-segment. US 40% revenue. Rating: HOLD, TP ₹28, CMP ₹24.
+• SP Apparels: Q4 Rev est ~₹446 Cr (+18%), FY26 Rev ₹1,578 Cr, FY26 PAT ₹88 Cr (+5.2%). UK subsidiary Zenith Clothing (profitable). India-UK FTA MAX beneficiary. FY27 target ₹2,000 Cr. UK ~80% revenue. Rating: BUY, TP ₹920, CMP ₹728.
+• Gokaldas Exports: Q4 Rev ₹1,087 Cr (+22%), FY26 Rev ₹4,065 Cr (+4%), FY26 PAT ₹100 Cr (▼37%). Africa AGOA +17% YoY = duty-free US access. ONLY listed Indian textile co with AGOA. US ~55%. Rating: HOLD, TP ₹950, CMP ₹900.
+
+KEY SECTOR EVENTS:
+• US 26% Reciprocal Tariff (April 2026) — major headwind for Indo Count (70% US), Himatsingka (55%), Welspun (45%)
+• India-UK FTA — SP Apparels MAX beneficiary (UK 80% revenue, zero tariff vs Bangladesh 12%)
+• AGOA (Africa) — Gokaldas only Indian textile company with Ethiopia ops = duty-free US access
+• PLI Textile Scheme — FY27 disbursals, MMF + technical textiles focus
+• West Asia conflict — weakens Welspun ME revenue
+• Bangladesh labour issues — order gains for India (Gokaldas, SP Apparels)
+
+RANKINGS: 1.KPR Mill (STRONG BUY), 2.SP Apparels (BUY), 3.Indo Count (BUY), 4.Vardhman (HOLD), 5.Trident (HOLD), 6.Welspun Living (HOLD), 7.Gokaldas (HOLD), 8.Himatsingka (AVOID)
+
+LANGUAGE RULES:
+${isTamil ? 
+  'RESPOND IN TAMIL ONLY. Use clear, simple Tamil. Financial terms (P/E, EBITDA, PAT, revenue) can stay in English. Keep answers concise and investment-focused.' : 
+  'RESPOND IN ENGLISH ONLY. Keep answers clear, specific, and investment-focused. Be concise but thorough.'}
+
+Format your response clearly. For investment questions, always give a recommendation with reasoning. Be direct and actionable.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userText }]
+      })
+    });
+    const data = await response.json();
+    const reply = data.content?.map(c => c.text || '').join('') || 'Error fetching response.';
+    loadBubble.className = 'chat-bot';
+    loadBubble.innerHTML = reply.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\*(.*?)\*/g, '<i>$1</i>');
+  } catch (err) {
+    loadBubble.className = 'chat-bot';
+    loadBubble.textContent = 'Connection error. Please try again.';
+  }
+  output.scrollTop = output.scrollHeight;
+}
+
+// Init first tab
+showTab('dashboard', document.querySelector('.tab-btn'));
+</script>
+</body>
+</html>
