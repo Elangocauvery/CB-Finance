@@ -264,6 +264,7 @@ td.tb{font-weight:700;}
   <button class="tab-btn" onclick="showTab('bizanalysis',this)">SWOT Analysis</button>
   <button class="tab-btn" onclick="showTab('analyst',this)">Analyst Ratings</button>
   <button class="tab-btn" onclick="showTab('moats',this)">Moats &amp; USPs</button>
+  <button class="tab-btn" onclick="showTab('school',this)" style="color:#0e7490;font-weight:800;">🎓 Cement School</button>
   <button class="tab-btn" onclick="showTab('verdict',this)" style="color:#b8911e;font-weight:800;">🏆 Verdict</button>
   <button class="tab-btn" onclick="showTab('cbassist',this)" style="color:var(--utc);font-weight:800;">🤖 CB Assist</button>
 </nav>
@@ -1307,6 +1308,362 @@ td.tb{font-weight:700;}
     </div>
   </div>
 </div>
+
+<!-- ══ CEMENT SCHOOL ══ -->
+<div class="panel" id="tab-school">
+  <div class="sec-hdr">🎓 Cement School <span class="sec-note">· Everything you need to know about the cement industry · EIL Research</span></div>
+
+  <!-- INTRO BANNER -->
+  <div style="background:linear-gradient(135deg,#0e7490 0%,#1d4ed8 100%);border-radius:var(--radius);padding:22px 28px;margin-bottom:24px;color:#fff;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;margin-bottom:8px;">Why Cement Matters More Than You Think</div>
+    <div style="font-size:13px;line-height:1.8;opacity:.92;">Cement is not a commodity — it is the backbone of every road, bridge, dam, home, and factory in India. Every ₹1 lakh crore spent on infrastructure requires roughly 0.8–1 MT of cement. India consumes ~420 MT per year, second only to China (~2,000 MT). With urbanisation at 36% (target: 50% by 2047) and a ₹11 lakh crore annual infrastructure budget, demand will only grow. Understanding how cement is made, priced, and competed for is understanding India's growth story itself.</div>
+  </div>
+
+  <!-- CHAPTER 1: CLINKER -->
+  <div style="border-left:5px solid #0e7490;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#0e7490;margin-bottom:4px;">Chapter 1 — Clinker: The Heart of Cement</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">The Most Critical Asset in the Entire Value Chain</div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">What Is Clinker?</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:12px;">Clinker is the intermediate product formed when limestone, clay, iron ore, and silica are blended and burned at <strong>1,450°C in a rotary kiln</strong>. It emerges as dark grey pellets — the actual "binding agent" that gives cement its strength.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);">Think of clinker as the <strong>baked dough</strong> and cement as the <strong>finished bread</strong>. You can bake at one location, transport the dough, and finish the bread at a bakery near the customer. That logic is exactly how integrated plants + grinding units work.</p>
+      <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;margin-top:12px;font-size:12px;line-height:1.7;">
+        <strong>Raw materials needed per tonne of clinker:</strong><br>
+        🪨 Limestone — ~1.5 tonnes (80% of mix)<br>
+        🟫 Clay / Shale — ~0.25 tonnes<br>
+        🔩 Iron ore / Laterite — ~0.05 tonnes<br>
+        🧂 Gypsum — added at grinding stage (regulates setting time)
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Why Clinker Capacity = Strategic Power</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:12px;">Whoever controls <strong>clinker capacity controls cement supply</strong>. You cannot make cement without clinker. A grinding unit without its own clinker supply is permanently dependent — either buying clinker from a competitor or paying freight from a distant integrated plant.</p>
+      <table style="margin-top:8px;">
+        <thead><tr><th>Company</th><th style="text-align:right">Clinker Capacity</th><th style="text-align:right">Clinker Factor</th></tr></thead>
+        <tbody>
+          <tr><td>UltraTech</td><td class="num">~140 MTPA</td><td class="num">~65%</td></tr>
+          <tr><td>Ambuja+ACC</td><td class="num">~60 MTPA</td><td class="num">~65%</td></tr>
+          <tr><td>Shree Cement</td><td class="num">~50 MTPA</td><td class="num">~62%</td></tr>
+          <tr><td>JSW Cement</td><td class="num">~15 MTPA</td><td class="num"><strong style="color:#0e7490">51%</strong> ← Best</td></tr>
+          <tr><td>Ramco</td><td class="num">~12 MTPA</td><td class="num">~63%</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;"><strong>Clinker factor</strong> = clinker used per tonne of cement produced. Lower = more fly ash/slag blending = cheaper cement = better margins. JSW's 51% is the best in class.</p>
+    </div>
+  </div>
+
+  <!-- CHAPTER 2: GRINDING UNITS -->
+  <div style="border-left:5px solid #7c3aed;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#7c3aed;margin-bottom:4px;">Chapter 2 — Grinding Units: The Market Access Network</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">Getting Cement to the Customer Cheaply is Half the Battle</div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">Integrated Plant vs Grinding Unit</div>
+      <table>
+        <thead><tr><th>Factor</th><th>Integrated Plant</th><th>Grinding Unit</th></tr></thead>
+        <tbody>
+          <tr><td>What it does</td><td>Makes clinker + grinds cement</td><td>Only grinds (buys clinker)</td></tr>
+          <tr><td>Location logic</td><td>Near limestone mines</td><td>Near cement markets</td></tr>
+          <tr><td>Capex/MTPA</td><td>₹600–800 Cr</td><td>₹150–200 Cr</td></tr>
+          <tr><td>Lead time</td><td>3–4 years</td><td>12–18 months</td></tr>
+          <tr><td>Power use</td><td>Very high (kiln firing)</td><td>Low (only ball mills)</td></tr>
+          <tr><td>Flexibility</td><td>Low — heavy fixed costs</td><td>High — can be shut easily</td></tr>
+          <tr><td>Strategic value</td><td>Very high</td><td>Medium</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Why Companies Race to Build Grinding Units</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">The golden rule in cement: <strong>freight cost = 15–22% of total cost</strong>. Cement is heavy, low value-to-weight. Transporting cement 500 km by road costs ₹250–350/tonne — nearly 6–8% of the selling price wiped out just in logistics.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);margin-bottom:10px;">A grinding unit placed 100 km from the target market converts a distant cement company into a <strong>local supplier</strong>. This is why UltraTech has <strong>27 grinding units</strong> — they can serve almost any city in India with a local price advantage.</p>
+      <div style="background:#f5f3ff;border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.7;border-left:3px solid #7c3aed;">
+        <strong>Key Insight:</strong> Ambuja's 10 new grinding units in H1 FY27 (Dahej, Bhatinda, Salai Banwa, Jodhpur etc.) are not expansion for the sake of size — they are a deliberate <strong>freight cost reduction strategy</strong> targeting markets where UltraTech currently has a logistics advantage.
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 3: RAW MATERIALS -->
+  <div style="border-left:5px solid #c84b2f;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#c84b2f;margin-bottom:4px;">Chapter 3 — Raw Materials: The Hidden Margin Drivers</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">What Goes In Determines What Comes Out — in Cost and Quality</div>
+  </div>
+  <div class="g3" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">🪨 Limestone — The Crown Jewel</div>
+      <p style="font-size:12px;line-height:1.75;margin-bottom:10px;">Limestone is the <strong>single most important raw material</strong> — and it is non-movable. You cannot import limestone economically. This is why cement plants are always built <strong>near limestone deposits</strong>.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);">Companies with long-term mining leases have a <strong>permanent structural cost advantage</strong>. Shree Cement's Rajasthan mines, Ramco's Ariyalur mines in Tamil Nadu, and UltraTech's mines in Rajasthan/AP are strategic moats that a new entrant simply cannot replicate overnight.</p>
+      <div style="background:#fef3f0;padding:10px 12px;border-radius:6px;margin-top:10px;font-size:11px;color:#c84b2f;font-weight:600;">India has ~100 billion tonnes of limestone reserves. But only high-grade deposits near markets are truly valuable.</div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">🌫️ Fly Ash & Slag — The Margin Enhancers</div>
+      <p style="font-size:12px;line-height:1.75;margin-bottom:10px;"><strong>Fly ash</strong> is a by-product of coal-fired power plants. <strong>GGBS (Ground Granulated Blast-furnace Slag)</strong> is a steel industry by-product. Both can partially replace clinker in cement — reducing cost by ₹200–400/tonne.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);">JSW Cement's unique advantage: being part of JSW Steel, it has <strong>captive GGBS supply</strong> at near-zero cost. This is why JSW achieves a clinker factor of 51% — industry average is 65–68%. That 14% difference = ₹250–350/T lower cost.</p>
+      <div style="background:#ecfeff;padding:10px 12px;border-radius:6px;margin-top:10px;font-size:11px;color:#0e7490;font-weight:600;">Fly ash availability is tied to thermal power plant locations. Eastern India (near NTPC plants) = natural fly ash advantage for ACC, UltraTech.</div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">📦 Packaging Bags — The Overlooked Cost</div>
+      <p style="font-size:12px;line-height:1.75;margin-bottom:10px;">Every tonne of cement sold in bags needs <strong>20 HDPE/PP bags</strong> (50 kg each). Bag cost = ₹4–5 per bag = ₹80–100/tonne, or roughly 2% of cost.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);">In FY26, <strong>West Asia conflict disrupted polypropylene supply chains</strong> — PP prices spiked 18–22%. This was a direct hit on margins across the sector. Ambuja's production cost peaked at ₹4,500/T partly due to this.</p>
+      <div style="background:#fdf5e0;padding:10px 12px;border-radius:6px;margin-top:10px;font-size:11px;color:#b8911e;font-weight:600;">Bulk cement (supplied via tankers to large infra projects) avoids bag cost entirely — and is growing as NHAI, metro, and port projects scale up.</div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 4: POWER & FUEL -->
+  <div style="border-left:5px solid #b8911e;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#b8911e;margin-bottom:4px;">Chapter 4 — Power & Fuel: The Biggest Cost Lever</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">35–40% of Total Production Cost. The Battlefield for Margins.</div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">Where Energy is Consumed</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:12px;">Cement is one of India's most energy-intensive industries. The kiln must run at <strong>1,450°C continuously</strong> — stopping and restarting a kiln costs crores and damages the lining. Power and fuel together consume 35–40% of total production cost.</p>
+      <table>
+        <thead><tr><th>Stage</th><th>Energy Used</th><th>Fuel Type</th></tr></thead>
+        <tbody>
+          <tr><td>Raw material crushing</td><td class="num">~15–20 kWh/T</td><td>Electricity</td></tr>
+          <tr><td>Kiln (clinker burning)</td><td class="num">700–800 kcal/kg</td><td>Coal / Pet Coke</td></tr>
+          <tr><td>Clinker cooling</td><td class="num">~8–10 kWh/T</td><td>Electricity</td></tr>
+          <tr><td>Cement grinding</td><td class="num">~25–35 kWh/T</td><td>Electricity</td></tr>
+          <tr><td>Total electrical energy</td><td class="num">~80–110 kWh/T</td><td>Captive preferred</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-lbl">The Green Power Race & WHRS Advantage</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;"><strong>Waste Heat Recovery Systems (WHRS)</strong> capture the hot gases exiting the kiln and pre-heater and convert them into electricity — at near-zero marginal cost. A modern 4 MTPA plant can generate 15–20 MW of free power through WHRS.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);margin-bottom:10px;">Shree Cement pioneered WHRS adoption in India — it now generates <strong>61% of its power from green sources</strong> (WHRS + solar + wind). This saves approximately ₹80–120/tonne vs buying grid power.</p>
+      <div style="background:#f0fdf4;padding:10px 12px;border-radius:6px;margin-top:10px;font-size:12px;line-height:1.65;border-left:3px solid #166534;">
+        <strong>Ramco's Wind Power Moat:</strong> ~600 MW of wind power capacity in Tamil Nadu and AP gives Ramco a <strong>structural ₹100–150/T cost advantage</strong> in South India — a key reason why it survives against UltraTech's scale despite being 10× smaller.
+      </div>
+      <div style="background:#fdf5e0;padding:10px 12px;border-radius:6px;margin-top:10px;font-size:11.5px;line-height:1.65;border-left:3px solid #b8911e;">
+        <strong>Pet Coke vs Coal:</strong> Pet coke is cheaper but more polluting. Plants in states with stricter emission norms (Maharashtra, Gujarat) use more coal. A $10/T rise in coal = ₹60–70/T EBITDA hit — as seen in Q4 FY26.
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 5: LOGISTICS -->
+  <div style="border-left:5px solid #166534;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#166534;margin-bottom:4px;">Chapter 5 — Logistics: The Silent Margin Killer</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">In Cement, Where You Sell Matters as Much as What You Make</div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">The Freight Math</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:12px;">Cement sells at roughly ₹4,500–5,200/tonne (retail). Road freight costs <strong>₹0.8–1.2 per tonne per km</strong>. So moving cement 300 km eats ₹240–360/T — that is 5–8% of revenue, gone just in transport.</p>
+      <table>
+        <thead><tr><th>Distance</th><th style="text-align:right">Freight Cost</th><th style="text-align:right">% of Revenue</th></tr></thead>
+        <tbody>
+          <tr><td>100 km (local)</td><td class="num">₹80–120/T</td><td class="tpos">~2%</td></tr>
+          <tr><td>300 km (regional)</td><td class="num">₹240–360/T</td><td class="warn">~6%</td></tr>
+          <tr><td>500 km (long haul)</td><td class="num">₹400–600/T</td><td class="tneg">~10%</td></tr>
+          <tr><td>Rail (bulk)</td><td class="num">₹180–250/T</td><td class="tpos">~4–5%</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;">This is why cement is almost always sold within 250–350 km of the plant. Pan-India sales require grinding units in every major region — UltraTech's 27 GUs give it a freight advantage no other player currently matches.</p>
+    </div>
+    <div class="card">
+      <div class="card-lbl">Rail, Road & Ports — The Three Arteries</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;"><strong>Road:</strong> Fastest, flexible, but costliest. Used for distances under 300 km and for retail market delivery (bagged cement to dealers).</p>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;"><strong>Rail:</strong> Preferred for bulk/clinker movement over long distances. Shree Cement's Rajasthan plants use rail heavily to reach Delhi NCR, Mumbai, and even South India. Cost is 30–40% lower than road for distances above 500 km.</p>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;"><strong>Sea/Coastal:</strong> Used by coastal manufacturers. <strong>Ambuja's Adani port advantage</strong> is unique — Adani owns major ports at Mundra, Hazira, Mormugao. Importing coal and exporting clinker via captive ports saves ₹80–120/T vs competitors using third-party terminals.</p>
+      <div style="background:#f0fdf4;padding:10px 12px;border-radius:6px;margin-top:10px;font-size:11.5px;color:#166534;font-weight:600;border-left:3px solid #166534;">
+        Ramco's Chennai port access enables clinker movement from Ariyalur to coastal grinding units in Kerala and Andhra Pradesh — a key cost advantage for South India dominance.
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 6: RACE FOR DOMINANCE -->
+  <div style="border-left:5px solid #1d4ed8;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#1d4ed8;margin-bottom:4px;">Chapter 6 — The Race for Dominance: Why Size Matters Enormously</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">Cement is a Fixed-Cost Business — Bigger is Always Better</div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">Why Cement Rewards Scale</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">A cement plant's biggest costs — kiln depreciation, power plant, mine, WHRS, management — are largely <strong>fixed</strong>. Whether you run a kiln at 70% or 90% utilisation, the fixed costs are the same. The more you produce, the lower the cost per tonne.</p>
+      <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.75;margin-bottom:10px;">
+        <strong>Example:</strong> UltraTech's fixed overheads per tonne at 200 MTPA are roughly <strong>40% lower</strong> than what they were at 100 MTPA — on the same asset base. This is operating leverage.
+      </div>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);">Scale also brings <strong>brand pricing power</strong>. UltraTech commands ₹200–300/T premium over regional brands in many markets. That premium is pure margin — no extra cost to produce.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);margin-top:8px;">Finally, scale enables <strong>cross-subsidisation</strong> — a large player can price aggressively in one region to kill competition, absorbing losses with profits from other regions. A small regional player has no such buffer.</p>
+    </div>
+    <div class="card">
+      <div class="card-lbl">The Capacity Land Grab — Why Everyone is Expanding Now</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">India's cement demand is expected to hit <strong>600–700 MT by 2030</strong> from ~420 MT today. That is 180–280 MT of new demand. Whoever builds capacity now — at current costs — will be the lowest-cost producer when that demand arrives.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);margin-bottom:10px;">Building a new integrated plant today costs <strong>₹600–800 Cr per MTPA</strong>. In 5 years, with inflation, it may cost ₹900–1,100 Cr. So the incentive is to build now, carry excess capacity for 2–3 years, and reap the benefits for 20+ years.</p>
+      <table>
+        <thead><tr><th>Company</th><th style="text-align:right">FY26 Capacity</th><th style="text-align:right">Target FY27–28</th><th style="text-align:right">Addition</th></tr></thead>
+        <tbody>
+          <tr><td>UltraTech</td><td class="num">200 MTPA</td><td class="num">~220 MTPA</td><td class="tpos">+20 MT</td></tr>
+          <tr><td>Ambuja+ACC</td><td class="num">103 MTPA</td><td class="num">119 MTPA</td><td class="tpos">+16 MT</td></tr>
+          <tr><td>Shree</td><td class="num">69.3 MTPA</td><td class="num">~75 MTPA</td><td class="tpos">+6 MT</td></tr>
+          <tr><td>JSW Cement</td><td class="num">~25 MTPA</td><td class="num">~35 MTPA</td><td class="tpos">+10 MT</td></tr>
+          <tr><td>Ramco</td><td class="num">19.4 MTPA</td><td class="num">~26 MTPA</td><td class="tpos">+6 MT</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CHAPTER 7: ADANI ENTRY -->
+  <div style="border-left:5px solid #c84b2f;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#c84b2f;margin-bottom:4px;">Chapter 7 — The Adani Entry: How One Acquisition Changed the Industry</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">From a Two-Horse Race to a Full Battle — 2022 Onwards</div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">Before Adani: A Comfortable Duopoly</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">Until 2022, the Indian cement industry was effectively a <strong>comfortable duopoly</strong> at the top: <strong>UltraTech</strong> (Aditya Birla) was the undisputed #1 with ~120 MTPA, and <strong>Shree Cement</strong> was the most profitable player. Ambuja and ACC were under Swiss major Holcim, operating independently without aggressive expansion.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);">The market was orderly — prices were relatively stable, players respected regional boundaries informally, and profitability was good. The top 5 companies controlled ~55% of capacity. A $10.5 billion Holcim exit changed everything.</p>
+    </div>
+    <div class="card">
+      <div class="card-lbl">The Adani Takeover — May 2022</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">In May 2022, <strong>Gautam Adani acquired Holcim's entire India portfolio</strong> — Ambuja Cements (63.1% stake) + ACC (via Ambuja's holdings) — for <strong>$10.5 billion</strong>, the largest M&A deal in Indian cement history.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);margin-bottom:10px;">Overnight, Adani became the #2 cement group in India with ~67 MTPA combined capacity. But more importantly, Adani brought something Holcim never had: <strong>an integrated infrastructure ecosystem</strong>.</p>
+      <div style="background:#fef3f0;border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.75;border-left:3px solid #c84b2f;">
+        <strong>What Adani Brought That Others Cannot Match:</strong><br>
+        🚢 Captive ports (Mundra, Hazira, Mormugao) → cheaper coal imports<br>
+        ⚡ Adani Green Energy → potential green power supply to plants<br>
+        🛤️ Adani Logistics → road and rail network for distribution<br>
+        💰 Adani Capital → ability to fund expansion at lower cost<br>
+        🏗️ Adani Infra Projects → captive cement consumer for its own mega-projects
+      </div>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">How Adani Changed the Competitive Dynamics</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">The entry sparked a <strong>capacity arms race</strong> that the industry had not seen in a decade. UltraTech, which was growing at 8–10 MTPA/year, immediately accelerated to 20+ MTPA/year additions. Shree Cement broke its "no debt" tradition to fund new capacity. JSW Steel decided to spin off and list JSW Cement.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);margin-bottom:10px;">Adani announced a <strong>target of 140 MTPA by FY28</strong> under the One Cement Platform (Ambuja + ACC + Orient + Sanghi + Penna). This ambition forced competitors to respond or risk being marginalised.</p>
+      <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.75;">
+        <strong>The Price War Fear:</strong> In FY26, cement realisation per tonne actually declined or stayed flat even as input costs rose — because nobody dared raise prices with so much new capacity being added. The consumer benefited; the industry's margins compressed 200–400 bps from peak FY24 levels.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">One Cement Platform Strategy — Consolidate & Dominate</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">Adani's masterstroke was the <strong>"One Cement Platform"</strong> strategy — merging all acquisitions under a single operational umbrella while retaining individual brands for customer trust. Ambuja and ACC brands are over 50 years old and command deep dealer loyalty.</p>
+      <p style="font-size:12px;line-height:1.75;color:var(--muted);">Synergies extracted FY23–26: shared procurement of coal/fuel (saving ~₹80–100/T), cross-plant clinker optimisation, unified logistics contracts, and a single captive power procurement strategy. Normalised EBITDA/T has improved from ₹650 to ₹887 under Adani management.</p>
+      <div style="background:#f5f3ff;padding:10px 12px;border-radius:6px;margin-top:10px;font-size:11.5px;color:#7c3aed;font-weight:600;border-left:3px solid #7c3aed;">
+        Still work to do: Ambuja's Q4 FY26 EBITDA margin of 13.4% vs UltraTech's 22.3% shows the gap. Adani has the assets; execution is now the test.
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 8: SHREE CEMENT — VALUE OVER VOLUME -->
+  <div style="border-left:5px solid #166534;padding-left:18px;margin-bottom:28px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#166534;margin-bottom:4px;">Chapter 8 — Shree Cement: India's Most Efficient Cement Company</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">How a Rajasthan Company Beats Everyone on Margins, Not Just Volume</div>
+  </div>
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-lbl">The Shree Cement Paradox</div>
+      <p style="font-size:12.5px;line-height:1.8;margin-bottom:10px;">Shree Cement produces <strong>36.4 MT per year</strong> — roughly 1/4th of UltraTech's 145 MT. Yet its market cap is <strong>~₹95,000 Cr</strong> — roughly 30% of UltraTech's ₹3,23,000 Cr. The ratio of value to volume is significantly higher than its peers. Why?</p>
+      <table>
+        <thead><tr><th>Metric</th><th style="text-align:right">Shree</th><th style="text-align:right">UltraTech</th><th style="text-align:right">Ambuja</th></tr></thead>
+        <tbody>
+          <tr><td>EBITDA/Tonne Q4</td><td class="num" style="color:#166534;font-weight:700;">₹1,161</td><td class="num">₹1,253</td><td class="num">₹735</td></tr>
+          <tr><td>EBITDA Margin Q4</td><td class="num" style="color:#166534;font-weight:700;">19.9%</td><td class="num">22.3%</td><td class="num">13.4%</td></tr>
+          <tr><td>FY26 PAT growth</td><td class="num" style="color:#166534;font-weight:700;">+43%</td><td class="num">+36%</td><td class="num">+17%</td></tr>
+          <tr><td>Green power %</td><td class="num" style="color:#166534;font-weight:700;">61%</td><td class="num">~35%</td><td class="num">~30%</td></tr>
+          <tr><td>Debt</td><td class="num" style="color:#166534;font-weight:700;">Near zero</td><td class="num">₹16,000 Cr</td><td class="num">Zero</td></tr>
+          <tr><td>Dividend FY26</td><td class="num" style="color:#166534;font-weight:700;">₹150/share</td><td class="num">₹70/share</td><td class="num">₹2/share</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-lbl">What Makes Shree Different</div>
+      <div style="margin-bottom:10px;">
+        <div style="font-weight:700;font-size:12px;margin-bottom:4px;color:#166534;">1. Obsessive Cost Culture</div>
+        <p style="font-size:12px;line-height:1.7;color:var(--muted);">Shree's promoters (Bangur family) are known for running one of the leanest management structures in Indian industry. Employee cost per tonne is among the lowest. Every rupee of capex is justified by a clear IRR before approval. This is not just strategy — it is family culture.</p>
+      </div>
+      <div style="margin-bottom:10px;">
+        <div style="font-weight:700;font-size:12px;margin-bottom:4px;color:#166534;">2. WHRS Pioneer — 20 Years Ahead</div>
+        <p style="font-size:12px;line-height:1.7;color:var(--muted);">Shree installed its first WHRS plant in the early 2000s when no one else in India was doing it. Today, with 61% green power and 666.5 MW capacity, it saves ₹100–150/T in power cost vs grid-dependent competitors.</p>
+      </div>
+      <div style="margin-bottom:10px;">
+        <div style="font-weight:700;font-size:12px;margin-bottom:4px;color:#166534;">3. Premium Pricing Without Premium Advertising</div>
+        <p style="font-size:12px;line-height:1.7;color:var(--muted);">Shree commands premium pricing through <strong>contractor and dealer loyalty</strong> rather than mass-market advertising. 22% of trade volume is premium products — up from 16% in Q4 FY25. This shift = ₹150–200/T higher realisation per tonne.</p>
+      </div>
+      <div style="background:#f0fdf4;padding:10px 12px;border-radius:6px;font-size:12px;line-height:1.7;border-left:3px solid #166534;">
+        <strong>The Bangur Philosophy:</strong> "Never chase volume. Build where you have cost advantage. Never borrow to grow faster than your cash generation." This discipline is why Shree has near-zero debt while peers carry thousands of crores.
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-lbl">Shree vs UltraTech — Size vs Quality: The Full Picture</div>
+    <div class="g3" style="gap:14px;margin-top:4px;">
+      <div style="background:#f0fdf4;border-radius:8px;padding:14px;border:1px solid #bbf7d0;">
+        <div style="font-weight:800;font-size:11px;color:#166534;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Shree Cement Edge</div>
+        <ul style="list-style:none;font-size:12px;line-height:1.8;color:var(--text);">
+          <li>✅ Highest EBITDA/T after UltraTech</li>
+          <li>✅ 61% green power — lowest energy cost</li>
+          <li>✅ Near-zero debt — pure equity growth</li>
+          <li>✅ ₹150/share dividend — highest in sector</li>
+          <li>✅ PAT grew +43% FY26 — fastest large cap</li>
+          <li>✅ New Kodla (Karnataka) plant opens South India</li>
+        </ul>
+      </div>
+      <div style="background:#eff6ff;border-radius:8px;padding:14px;border:1px solid #bfdbfe;">
+        <div style="font-weight:800;font-size:11px;color:#1d4ed8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">UltraTech Edge</div>
+        <ul style="list-style:none;font-size:12px;line-height:1.8;color:var(--text);">
+          <li>✅ 200 MTPA — 3× Shree's size</li>
+          <li>✅ Pan-India presence — 27 grinding units</li>
+          <li>✅ Highest absolute EBITDA/T ₹1,253</li>
+          <li>✅ Highest volume market share ~34%</li>
+          <li>✅ India Cements acquisition — South India entry</li>
+          <li>✅ Scale allows cross-region pricing power</li>
+        </ul>
+      </div>
+      <div style="background:#fdf5e0;border-radius:8px;padding:14px;border:1px solid #fde68a;">
+        <div style="font-weight:800;font-size:11px;color:#b8911e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">The Verdict on Shree</div>
+        <ul style="list-style:none;font-size:12px;line-height:1.8;color:var(--text);">
+          <li>🏆 Most profitable per tonne (non-UltraTech)</li>
+          <li>🏆 Best capital allocation discipline</li>
+          <li>🏆 Highest return to shareholders FY26</li>
+          <li>⚠️ North-heavy — limited South India reach</li>
+          <li>⚠️ Petcoke dependent — cost volatile</li>
+          <li>⚠️ High P/E (~55×) — priced for perfection</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 9: KEY METRICS GLOSSARY -->
+  <div style="border-left:5px solid #6b7280;padding-left:18px;margin-bottom:20px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:#374151;margin-bottom:4px;">Chapter 9 — The Cement Investor's Glossary</div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:14px;">Numbers That Matter and What They Actually Mean</div>
+  </div>
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="card">
+      <table>
+        <thead><tr><th>Term</th><th>What It Means</th><th style="text-align:right">Good Number</th></tr></thead>
+        <tbody>
+          <tr><td><strong>EBITDA/Tonne</strong></td><td>Profit earned per tonne of cement sold (before interest, tax, depreciation)</td><td class="tpos">₹1,000+</td></tr>
+          <tr><td><strong>Realisation/Tonne</strong></td><td>Average selling price per tonne of cement</td><td class="num">₹4,800–5,200</td></tr>
+          <tr><td><strong>Clinker Factor</strong></td><td>Clinker used per tonne of cement — lower = better blending efficiency</td><td class="tpos">&lt;60%</td></tr>
+          <tr><td><strong>Capacity Utilisation</strong></td><td>Actual production ÷ installed capacity. High = good fixed cost absorption</td><td class="tpos">&gt;85%</td></tr>
+          <tr><td><strong>P&F Cost/Tonne</strong></td><td>Power and Fuel cost per tonne — biggest variable cost lever</td><td class="tpos">&lt;₹1,200/T</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr><th>Term</th><th>What It Means</th><th style="text-align:right">Good Number</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Net D/EBITDA</strong></td><td>Net debt divided by annual EBITDA — leverage health check</td><td class="tpos">&lt;1.5×</td></tr>
+          <tr><td><strong>WHRS MW</strong></td><td>Waste Heat Recovery capacity — more = lower power cost</td><td class="tpos">Higher better</td></tr>
+          <tr><td><strong>EBITDA Margin</strong></td><td>EBITDA as % of revenue — overall operational efficiency</td><td class="tpos">&gt;18%</td></tr>
+          <tr><td><strong>EV/EBITDA</strong></td><td>Enterprise value relative to earnings — valuation metric for cement</td><td class="num">12–16× fair</td></tr>
+          <tr><td><strong>Volume Growth %</strong></td><td>YoY growth in cement despatches — demand indicator</td><td class="tpos">&gt;8%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<!-- ══ END CEMENT SCHOOL ══ -->
 
 </div><!-- /main -->
 
