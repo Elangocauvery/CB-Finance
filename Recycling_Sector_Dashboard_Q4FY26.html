@@ -1154,7 +1154,7 @@ td.tb{font-weight:700;}
 <footer class="footer">
   Recycling & Circular Economy Intelligence Dashboard · Q4 FY26 · EIL Research / Cauvery Business<br>
   Data sourced from BSE/NSE filings, company press releases, and public analyst reports · Not SEBI investment advice<br>
-  Build: 20260525-1400 IST · Elango Industries Limited Research
+  Build: 20260525-1430 IST · Elango Industries Limited Research
 </footer>
 
 <script>
@@ -1246,7 +1246,9 @@ KEY SECTOR THEMES:
 
 RANKINGS: 1. Gravita India (STRONG BUY), 2. Ganesha Ecosphere (WATCH/BUY on dips)
 
-LANGUAGE: ${isTamil ? 'RESPOND IN TAMIL ONLY. Use clear, simple Tamil. Technical terms (PAT, EBITDA, EPR, rPET, ROE) can stay in English. Be concise and investment-focused.' : 'RESPOND IN ENGLISH ONLY. Be clear, specific, and investment-focused. Format with bold for key points.'}
+RESPONSE STYLE — CRITICAL: Keep answers SHORT and PUNCHY. Max 4–5 sentences. No long paragraphs. Lead with the direct answer in the first line. Use 2–3 bullet points if listing facts — each bullet max 8 words. No preamble, no "Great question", no lengthy conclusions.
+
+LANGUAGE: ${isTamil ? 'RESPOND IN TAMIL ONLY. Simple Tamil. Technical terms (PAT, EBITDA, EPR, rPET) stay in English. Max 4–5 sentences total.' : 'RESPOND IN ENGLISH ONLY. Short, direct, punchy. No verbose paragraphs.'}
 
 Always give direct recommendations with reasoning. Be honest about risks.`;
 
@@ -1256,7 +1258,7 @@ Always give direct recommendations with reasoning. Be honest about risks.`;
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
+        max_tokens: 400,
         system: systemPrompt,
         messages: [{ role: 'user', content: userText }]
       })
