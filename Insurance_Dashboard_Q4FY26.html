@@ -198,6 +198,7 @@ td.tb{font-weight:700;}
   <button class="tab-btn" onclick="showTab('analyst',this)">🎯 Analyst Ratings</button>
   <button class="tab-btn" onclick="showTab('moats',this)">🛡️ Moats</button>
   <button class="tab-btn" onclick="showTab('verdict',this)" style="color:#b8911e;font-weight:800;">🏆 Verdict</button>
+  <button class="tab-btn" onclick="showTab('school',this)" style="color:#15803d;font-weight:800;">🎓 School</button>
   <button class="tab-btn" onclick="showTab('cbassist',this)" style="color:var(--star);font-weight:800;">🤖 CB Assist</button>
 </nav>
 <div class="main">
@@ -390,22 +391,10 @@ td.tb{font-weight:700;}
     </div>
   </div>
 
-  <div class="fnote gap-top">
-    <strong>&#128218; Metric Glossary &mdash; Insurance vs Manufacturing:</strong>
-    <strong>GWP / GDPI (Gross Written / Direct Premium)</strong>: total premium collected &mdash; equivalent to revenue in manufacturing.
-    <strong>APE (Annualised Premium Equivalent)</strong>: regular premium + 10% of single premium &mdash; normalises new business comparison.
-    <strong>VNB (Value of New Business)</strong>: present value of profits from new policies &mdash; the primary profitability metric for life insurers.
-    <strong>VNB Margin</strong>: VNB &divide; APE &mdash; like gross margin in manufacturing. Higher = better quality business.
-    <strong>Embedded Value (EV / IEV)</strong>: adjusted net worth + present value of in-force policies &mdash; captures future locked-in profits.
-    <strong>Combined Ratio</strong> (health/general): (Claims + Expenses) &divide; Net Premium &mdash; below 100% = underwriting profit; above 100% = underwriting loss.
-    <strong>Loss Ratio</strong>: Claims incurred &divide; Net premium earned.
-    <strong>CISR</strong>: IFRS-equivalent of Combined Ratio (used by Niva Bupa).
-    <strong>Solvency Ratio</strong>: Available capital &divide; Required capital &mdash; IRDAI minimum 150%.
-    <strong>Persistency Ratio</strong>: % of policies renewed at 13th / 61st month.
-    <strong>RoEV</strong>: Return on Embedded Value &mdash; capital efficiency metric for life insurers.
-    <strong>TPA</strong>: Third-Party Administrator &mdash; earns service fees for processing claims; NOT an insurer.
-  </div>
+  
 </div>
+
+
 
 <div class="panel" id="tab-financials">
   <div class="sec-hdr">Financial Results &mdash; Category-wise <span class="sec-note">All FY26 actuals ✅</span></div>
@@ -1132,6 +1121,247 @@ td.tb{font-weight:700;}
   </div>
 </div>
 <!-- ══ CB ASSIST ══ -->
+<div class="panel" id="tab-school">
+  <div style="background:linear-gradient(135deg,#f0fdf4 0%,#eff6ff 100%);border:2px solid #86efac;border-radius:12px;padding:20px 26px;margin-bottom:24px;display:flex;align-items:center;gap:18px;">
+    <div style="font-size:2.5rem;line-height:1;">&#127891;</div>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:#166534;line-height:1.2;">Insurance School</div>
+      <div style="font-size:12px;color:#15803d;margin-top:4px;">Every metric you need to understand insurance companies &mdash; explained simply, with real-world examples and a Manufacturing comparison</div>
+    </div>
+  </div>
+  <!-- ═══ METRICS EXPLAINED ═══ -->
+  <div class="sec-hdr">&#127891; Insurance Metrics &mdash; Explained Simply <span class="sec-note">&middot; With real-world examples &middot; Manufacturing comparison</span></div>
+
+  <!-- ANALOGY TABLE -->
+  <div class="g2" style="margin-bottom:22px;">
+    <div class="card">
+      <div class="card-lbl">&#127981; Manufacturing vs Insurance — The Analogy</div>
+      <table>
+        <thead><tr><th>Manufacturing Term</th><th>Insurance Equivalent</th><th>Why Same?</th></tr></thead>
+        <tbody>
+          <tr><td class="tb">Revenue / Sales</td><td><span class="badge b-info">GWP / GDPI</span></td><td>Premium = money coming in</td></tr>
+          <tr><td class="tb">Future Order Profitability</td><td><span class="badge b-info">VNB</span></td><td>Value of business written today, paid over years</td></tr>
+          <tr><td class="tb">Gross Margin %</td><td><span class="badge b-info">VNB Margin</span></td><td>Profit per ₹100 of premium written</td></tr>
+          <tr><td class="tb">Net Worth / Book Value</td><td><span class="badge b-info">Embedded Value (EV)</span></td><td>Worth today + locked future profits</td></tr>
+          <tr><td class="tb">ROE</td><td><span class="badge b-info">RoEV</span></td><td>Return on capital deployed</td></tr>
+          <tr><td class="tb">Raw Material Cost</td><td><span class="badge b-info">Claims</span></td><td>The "cost" the insurer cannot avoid</td></tr>
+          <tr><td class="tb">Operating Ratio</td><td><span class="badge b-info">Combined Ratio</span></td><td>Below 100% = profitable; above 100% = loss</td></tr>
+          <tr><td class="tb">Customer Repeat Business</td><td><span class="badge b-info">Persistency</span></td><td>% customers renewing — stickiness</td></tr>
+          <tr><td class="tb">Capital Adequacy (CRAR)</td><td><span class="badge b-info">Solvency Ratio</span></td><td>Safety buffer for unexpected claims</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;padding:10px 12px;background:#f0fdf4;border-left:3px solid #15803d;border-radius:6px;font-size:11.5px;color:#166534;line-height:1.65;">
+        <strong>Key difference:</strong> Manufacturing companies are judged mainly on <em>current profits</em>. Insurance companies are judged on <em>future profitability</em> (VNB), <em>capital strength</em> (Solvency), <em>customer retention</em> (Persistency), and <em>underwriting quality</em> (Combined Ratio). This is why a life insurer with modest PAT but strong VNB growth gets a premium valuation.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-lbl">&#128270; Quick Reference — What to Watch by Category</div>
+      <table>
+        <thead><tr><th>Category</th><th>Most Important Metric</th><th>Why It Matters</th></tr></thead>
+        <tbody>
+          <tr><td><span class="cat-tag cat-life">Life</span></td><td class="tb">VNB &amp; VNB Margin</td><td>Measures quality, not just volume</td></tr>
+          <tr><td><span class="cat-tag cat-life">Life</span></td><td class="tb">Embedded Value</td><td>True economic worth of the company</td></tr>
+          <tr><td><span class="cat-tag cat-life">Life</span></td><td class="tb">Persistency (13th/61st month)</td><td>Low = revenue leak, weak agent quality</td></tr>
+          <tr><td><span class="cat-tag cat-life">Life</span></td><td class="tb">RoEV</td><td>Capital efficiency — the insurance ROE</td></tr>
+          <tr><td><span class="cat-tag cat-health">Health</span></td><td class="tb">Combined / CISR Ratio</td><td>Below 100% = underwriting profit</td></tr>
+          <tr><td><span class="cat-tag cat-health">Health</span></td><td class="tb">Loss Ratio</td><td>Claims as % of premium — lower = better</td></tr>
+          <tr><td><span class="cat-tag cat-general">General</span></td><td class="tb">Combined Ratio</td><td>Same logic — profit comes from investment too</td></tr>
+          <tr><td><span class="cat-tag cat-tpa">TPA</span></td><td class="tb">Revenue &amp; EBITDA Margin</td><td>Standard services co metrics apply here</td></tr>
+          <tr><td style="font-weight:700">All</td><td class="tb">Solvency Ratio</td><td>IRDAI min 150% — safety of policyholder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- METRIC CARDS: LIFE INSURANCE -->
+  <div class="cat-section-title cat-life-bg" style="margin-bottom:16px;">&#127891; Life Insurance Metrics — Explained with Examples</div>
+
+  <div class="g3" style="margin-bottom:16px;">
+
+    <div style="background:var(--surface);border:1.5px solid #bfdbfe;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--lic-soft);color:var(--lic);font-weight:900;font-size:1.1rem;padding:6px 12px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">GWP</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Gross Written Premium</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Revenue in Manufacturing</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>What it is:</strong> Total premium collected from all customers in a period — the "top line" of an insurer.</div>
+      <div style="background:#f0f9ff;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #0ea5e9;">
+        <strong>&#128161; Example:</strong> HDFC Life sells 50 lakh policies with average premium ₹15,000/year.<br>GWP = 50L × ₹15,000 = <strong>₹7,500 Cr</strong>.<br><span style="color:var(--neg);">Important:</span> This is NOT profit — claims, salaries, commissions and reinsurance costs are all deducted from this.
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1.5px solid #bfdbfe;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--lic-soft);color:var(--lic);font-weight:900;font-size:1.1rem;padding:6px 12px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">APE</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Annualised Premium Equivalent</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">Standardised New Business Measure</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>Formula:</strong> Regular Annual Premium + 10% of Single Premium.<br><strong>Why 10%?</strong> A single ₹10 Cr premium is economically equivalent to ~₹1 Cr/year regular premium — so both are compared on the same basis.</div>
+      <div style="background:#f0f9ff;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #0ea5e9;">
+        <strong>&#128161; Example:</strong><br>Regular premium collected = ₹800 Cr<br>Single premium collected = ₹1,000 Cr<br>APE = ₹800 Cr + (10% × ₹1,000 Cr) = <strong>₹900 Cr</strong><br><span style="color:var(--muted);">Use APE to compare SBI Life vs HDFC Life fairly — both may collect single premiums differently.</span>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1.5px solid #bfdbfe;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--lic-soft);color:var(--lic);font-weight:900;font-size:1.1rem;padding:6px 12px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">VNB</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Value of New Business</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Future Order Profitability</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>What it is:</strong> Present value of all future profits from policies written during the year. This is the single most important life insurance profitability metric.</div>
+      <div style="background:#f0f9ff;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #0ea5e9;">
+        <strong>&#128161; Example:</strong> SBI Life sells 30 lakh policies today. These policies will earn premium for 20–30 years and pay claims along the way. The present value of net profits from all these = <strong>VNB ₹6,670 Cr</strong>.<br><span style="color:var(--muted);">Unlike PAT which shows THIS year's profit, VNB shows the profit baked into business ALREADY SOLD.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="g3" style="margin-bottom:16px;">
+
+    <div style="background:var(--surface);border:1.5px solid #bfdbfe;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--lic-soft);color:var(--lic);font-weight:900;font-size:1rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">VNB%</div>
+        <div><div style="font-weight:800;font-size:12.5px;">VNB Margin</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Gross Margin % in Manufacturing</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>Formula:</strong> VNB ÷ APE.<br>For every ₹100 of new business written, what is the future profit created?</div>
+      <div style="background:#f0f9ff;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #0ea5e9;">
+        <strong>&#128161; Example:</strong> SBI Life — VNB ₹6,670 Cr ÷ APE ₹27,270 Cr = <strong>27.5%</strong> margin.<br>This means for every ₹100 of premium business written, ₹27.50 of future profit is locked in.<br><span style="color:var(--muted);">SBI Life (27.5%) beats HDFC Life (24.2%) and ICICI Pru (24.7%) — highest quality new business.</span>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1.5px solid #bfdbfe;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--lic-soft);color:var(--lic);font-weight:900;font-size:1rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">EV</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Embedded Value</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Net Worth + Future Profits</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>What it is:</strong> Adjusted net worth <em>plus</em> present value of future profits from all in-force (existing) policies. It is the true economic value of a life insurer — richer than book value.</div>
+      <div style="background:#f0f9ff;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #0ea5e9;">
+        <strong>&#128161; Example:</strong><br>SBI Life Net Worth = ₹19,080 Cr<br>Present value of future profits from all existing policies = ₹61,710 Cr<br>Embedded Value = <strong>₹80,790 Cr</strong><br><span style="color:var(--muted);">Analysts use P/EV (Price-to-EV) to value life insurers — similar to P/B in banks.</span>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1.5px solid #bfdbfe;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--lic-soft);color:var(--lic);font-weight:900;font-size:1rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">RoEV</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Return on Embedded Value</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= ROE for Life Insurers</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>What it is:</strong> How efficiently is the insurer growing its embedded value? Operating RoEV excludes market movements, isolating the genuine business performance.</div>
+      <div style="background:#f0f9ff;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #0ea5e9;">
+        <strong>&#128161; Example:</strong><br>SBI Life EV (start of year) = ₹70,000 Cr<br>EV grew by ₹13,790 Cr in FY26<br>RoEV = 13,790 ÷ 70,000 = <strong>19.7%</strong><br><span style="color:var(--muted);">SBI Life's 19.7% RoEV is best-in-class among large private life insurers.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="max-width:480px;margin-bottom:22px;">
+    <div style="background:var(--surface);border:1.5px solid #bfdbfe;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--lic-soft);color:var(--lic);font-weight:900;font-size:1rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">PERSIST</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Persistency Ratio</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Customer Retention Rate</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>What it is:</strong> % of policyholders who continue paying premium at the 13th or 61st month. Low persistency = revenue leakage + agent mis-selling signal.</div>
+      <div style="background:#f0f9ff;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #0ea5e9;">
+        <strong>&#128161; Example:</strong> LIC sells 100 policies in April 2025. By May 2026 (13th month), 74 customers are still paying. <strong>13th month persistency = 74.6%</strong>.<br><br>By the 61st month (5 years later), only 59 are still paying. <strong>61st month persistency = 59.3%</strong> — this is the leakage point investors watch.
+      </div>
+    </div>
+  </div>
+
+  <!-- METRIC CARDS: HEALTH & GENERAL INSURANCE -->
+  <div class="cat-section-title cat-health-bg" style="margin-bottom:16px;">&#127973; Health &amp; General Insurance Metrics — Explained with Examples</div>
+
+  <div class="g3" style="margin-bottom:16px;">
+
+    <div style="background:var(--surface);border:1.5px solid #bbf7d0;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:#f0fdf4;color:#15803d;font-weight:900;font-size:.9rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">COMB</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Combined Ratio</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Operating Ratio in Manufacturing</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>Formula:</strong> (Claims + All Expenses) ÷ Net Premium Earned.<br>This is the single most watched metric for health and general insurers.</div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #15803d;">
+        <strong>&#128161; Example:</strong> Star Health FY26:<br>Premium = ₹20,369 Cr<br>Claims = ₹14,000 Cr (68.7% loss ratio)<br>Expenses = ₹6,136 Cr (30.1% expense ratio)<br>Combined Ratio = <strong>98.8%</strong> ✅<br><br><span style="color:var(--pos);font-weight:700;">Below 100%</span> = underwriting profit (₹1 saved per ₹100 premium).<br><span style="color:var(--neg);font-weight:700;">Above 100%</span> = underwriting loss (must rely on investment income).
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1.5px solid #bbf7d0;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:#f0fdf4;color:#15803d;font-weight:900;font-size:.9rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">LOSS</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Loss Ratio / Claims Ratio</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Raw Material Cost %</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>Formula:</strong> Claims Incurred ÷ Net Premium Earned.<br>The "input cost" of insurance — like raw material as % of revenue in manufacturing. Lower is better, but too low may mean claim denials.</div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #15803d;">
+        <strong>&#128161; Example:</strong><br>Niva Bupa premium = ₹9,433 Cr<br>Claims paid = ₹6,120 Cr<br>Loss Ratio = <strong>64.9%</strong><br><br><span style="color:var(--muted);">During COVID-19 (2021), loss ratios of health insurers shot to 90%+ — like a steel plant's coal cost doubling overnight.</span>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1.5px solid #bbf7d0;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:#f0fdf4;color:#15803d;font-weight:900;font-size:.9rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">CISR</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Combined Insurance Service Ratio</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">IFRS Version of Combined Ratio</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>What it is:</strong> The IFRS 17-based equivalent of Combined Ratio. Used by Niva Bupa. Interpretation is identical — below 100% means underwriting profit.</div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #15803d;">
+        <strong>&#128161; Example:</strong> Niva Bupa FY26 CISR = <strong>101.4%</strong> — underwriting loss for the full year. But Q4 FY26 CISR = <strong>97.4%</strong> — first quarter where underwriting was profitable. Think of it as: for every ₹100 premium collected, ₹97.40 was spent on claims+expenses — ₹2.60 underwriting profit.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SOLVENCY & TPA -->
+  <div class="g2" style="margin-bottom:22px;max-width:960px;">
+    <div style="background:var(--surface);border:1.5px solid #e9c46a;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:var(--gold-soft);color:var(--gold);font-weight:900;font-size:.9rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">SOLV</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Solvency Ratio</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">= Capital Adequacy (like CRAR for banks)</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>Formula:</strong> Available Capital ÷ Required Capital.<br><strong>IRDAI mandates minimum 150%.</strong> Below this = regulatory action. Above = safety cushion.</div>
+      <div style="background:var(--gold-soft);border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid var(--gold);">
+        <strong>&#128161; Example:</strong><br>IRDAI says: for LIC's risk profile, minimum capital required = ₹5,000 Cr.<br>LIC actually holds = ₹11,750 Cr.<br>Solvency Ratio = <strong>235%</strong> — very safe.<br><br>Think of it like a dam. IRDAI requires a dam 10 metres high (150%). LIC's dam is 23.5 metres high. Even an unprecedented flood (mass claims) won't breach it.
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1.5px solid #fce7f3;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="background:#fdf2f8;color:#9d174d;font-weight:900;font-size:1rem;padding:6px 10px;border-radius:8px;font-family:'IBM Plex Mono',monospace;">TPA</div>
+        <div><div style="font-weight:800;font-size:12.5px;">Third Party Administrator</div><div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;">The Middleman of Health Insurance</div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:var(--text);margin-bottom:10px;"><strong>What it is:</strong> A specialised company that processes health insurance claims on behalf of insurers. NOT an insurer. Earns service fees — like a claims processing factory.</div>
+      <div style="background:#fdf2f8;border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.65;border-left:3px solid #9d174d;">
+        <strong>&#128161; Example (Real Life):</strong><br>You are hospitalised at Apollo. The hospital sends your claim to Medi Assist (TPA).<br>Medi Assist: ✅ Verifies your policy &rarr; ✅ Checks treatment against guidelines &rarr; ✅ Approves cashless amount &rarr; ✅ Pays Apollo on behalf of Star Health.<br><br>Medi Assist charges Star Health a processing fee. That fee is Medi Assist's revenue. It earns <em>zero</em> premium income — that's why its metrics (Revenue, EBITDA) are analysed like a software services company, not an insurer.
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL INSIGHT BOX -->
+  <div style="background:linear-gradient(135deg,#f0fdf4,#eff6ff);border:1.5px solid #86efac;border-radius:12px;padding:20px 24px;margin-top:8px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#166534;margin-bottom:10px;">&#129504; How to Read an Insurance Company in 60 Seconds</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;font-size:11.5px;line-height:1.7;">
+      <div style="background:#fff;border-radius:8px;padding:12px 14px;border:1px solid #bbf7d0;">
+        <div style="font-weight:800;color:var(--lic);margin-bottom:6px;">For a Life Insurer — ask:</div>
+        <div>1. Is APE growing? (&gt;10% = healthy)</div>
+        <div>2. Is VNB Margin expanding or contracting?</div>
+        <div>3. Is EV growing at &gt;15% a year?</div>
+        <div>4. Is RoEV above 17%?</div>
+        <div>5. Is 13th month persistency above 80%?</div>
+      </div>
+      <div style="background:#fff;border-radius:8px;padding:12px 14px;border:1px solid #bbf7d0;">
+        <div style="font-weight:800;color:#15803d;margin-bottom:6px;">For a Health Insurer — ask:</div>
+        <div>1. Is GWP growing above 15%?</div>
+        <div>2. Is Combined/CISR Ratio below 100%?</div>
+        <div>3. Is the Loss Ratio improving YoY?</div>
+        <div>4. Is Solvency above 200%?</div>
+        <div>5. Is market share growing?</div>
+      </div>
+      <div style="background:#fff;border-radius:8px;padding:12px 14px;border:1px solid #bbf7d0;">
+        <div style="font-weight:800;color:#7f1d1d;margin-bottom:6px;">For a General Insurer — ask:</div>
+        <div>1. Is GDPI growing above industry?</div>
+        <div>2. Is Combined Ratio below 103%?</div>
+        <div>3. Is investment yield above 8%?</div>
+        <div>4. Is ROE trending up toward 20%?</div>
+        <div>5. Is underwriting improving quarter-on-quarter?</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 <div class="panel" id="tab-cbassist">
   <div class="sec-hdr">&#129302; CB Assist &mdash; Insurance Sector <span class="sec-note">AI Research Assistant &middot; English &amp; Tamil Q&amp;A Separate &middot; Cauvery Business</span></div>
 
