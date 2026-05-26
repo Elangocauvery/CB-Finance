@@ -61,7 +61,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--
 .ticker-row{display:flex;align-items:center;width:100%;height:34px;overflow:hidden}
 .ticker-label{background:var(--ticker-dark);padding:0 16px;height:100%;display:flex;align-items:center;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;color:var(--ticker-text);border-right:1px solid var(--ticker-bg)}
 .ticker-track{overflow:hidden;flex:1;position:relative;height:34px}
-.ticker-scroll{display:flex;gap:0;white-space:nowrap;animation:scrolltick 90s linear infinite;font-size:12px;font-weight:500;line-height:34px;padding:0;color:var(--ticker-text)}
+.ticker-scroll{display:flex;gap:0;white-space:nowrap;animation:scrolltick 35s linear infinite;font-size:12px;font-weight:500;line-height:34px;padding:0;color:var(--ticker-text)}
 .ticker-scroll:hover{animation-play-state:paused}
 @keyframes scrolltick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-item{padding:0 18px;cursor:pointer;border-right:1px solid rgba(255,200,150,.2);transition:background .15s;display:inline-flex;align-items:center;height:34px}
@@ -259,6 +259,16 @@ footer span{color:#ffe0c0}
   transition:box-shadow .3s;
 }
 
+
+.view-toggle{display:flex;gap:0;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.vtbtn{padding:4px 12px;font-size:11px;font-weight:500;border:none;background:transparent;color:#9a8878;cursor:pointer;font-family:'IBM Plex Mono',monospace;letter-spacing:.3px;transition:all .15s}
+.vtbtn:hover{background:var(--cream);color:var(--ink)}
+.vtbtn.active{background:var(--ink);color:var(--cream)}
+.date-divider{display:flex;align-items:center;gap:12px;margin:8px 0 14px}
+.date-divider-pill{font-size:10px;font-weight:600;letter-spacing:1.5px;padding:4px 14px;border-radius:3px;white-space:nowrap;font-family:'IBM Plex Mono',monospace;background:#2a1a10;color:#f8ede8}
+.date-divider-rule{flex:1;height:1px;background:var(--rule)}
+.date-divider-sub{font-size:11px;color:#9a8878;white-space:nowrap;font-style:italic}
+
 </style>
 </head>
 <body>
@@ -392,7 +402,13 @@ footer span{color:#ffe0c0}
   <main>
     <div class="feed-header">
       <div class="feed-title" id="feed-title">All Breaking News</div>
-      <div class="feed-count" id="feed-count"></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <div class="feed-count" id="feed-count"></div>
+        <div class="view-toggle">
+          <button class="vtbtn active" id="vt-cat" onclick="setView('category')">By Category</button>
+          <button class="vtbtn" id="vt-date" onclick="setView('date')">By Date</button>
+        </div>
+      </div>
     </div>
     <div id="news-feed"></div>
   </main>
@@ -406,7 +422,7 @@ const MACRO_SECTORS = ['rbi','nps','ecomm'];
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
   {
-    id:6, sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'22 May 2026',
+    id:6, date:'2026-05-22', sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'22 May 2026',
     impact:'positive', badges:['₹2.87L Cr FY26 Record','+6.99% vs FY25','Fiscal Deficit Cushion'],
     en:{
       headline:'RBI Pays Record ₹2.87 Lakh Crore Dividend to Govt — How It Earns & Why It Matters',
@@ -447,7 +463,7 @@ const NEWS = [
     companies:[]
   },
   {
-    id:5, sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
+    id:5, date:'2026-05-27', sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
     impact:'negative', badges:['CVD 126% + ADD 123%','230%+ Combined','Retroactive 90 Days'],
     en:{
       headline:'US Slaps 230%+ Tariff on Indian Solar — Exports Dead',
@@ -470,7 +486,7 @@ const NEWS = [
     ]
   },
   {
-    id:4, sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
+    id:4, date:'2026-05-27', sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
     impact:'mixed', badges:['Cells Only — Not Wafers','No Blanket Extension','Net Metering Must Comply'],
     en:{
       headline:'ALMM List-2 (Cells) Mandatory from 1 June 2026 — No Blanket Extension',
@@ -487,7 +503,7 @@ const NEWS = [
     companies:[]
   },
   {
-    id:3, sector:'ecomm', cat:'macro', sectorLabel:'FDI / E-Commerce', pillCls:'pill-ecomm', time:'27 May 2026',
+    id:3, date:'2026-05-27', sector:'ecomm', cat:'macro', sectorLabel:'FDI / E-Commerce', pillCls:'pill-ecomm', time:'27 May 2026',
     impact:'mixed', badges:['FEMA Press Note 2','No Inventory / No Price Control','Swiggy Vote Failed'],
     en:{
       headline:'Why Swiggy Wants Indian Status — FDI Rules Ban Foreign Cos from Inventory & Pricing',
@@ -508,7 +524,7 @@ const NEWS = [
     ]
   },
   {
-    id:2, sector:'nps', cat:'macro', sectorLabel:'NPS / Pension', pillCls:'pill-nps', time:'27 May 2026',
+    id:2, date:'2026-05-27', sector:'nps', cat:'macro', sectorLabel:'NPS / Pension', pillCls:'pill-nps', time:'27 May 2026',
     impact:'positive', badges:['From Age 60 Only','60% Tax-Free','Annuity Now Just 20%'],
     en:{
       headline:'NPS Gets SLW & SUR — Phased Drawdown from Age 60, 60% Tax-Free',
@@ -525,7 +541,7 @@ const NEWS = [
     companies:[]
   },
   {
-    id:1, sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'27 May 2026',
+    id:1, date:'2026-05-27', sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'27 May 2026',
     impact:'mixed', badges:['Neutral Stance','Rate Hike Risk Live','Inflation 4.6% FY27'],
     en:{
       headline:'RBI Governor: Inflation First, Growth Second — Rate Hike Back on Table',
@@ -548,6 +564,7 @@ let activeCat = 'all';
 let activeSector = 'all';
 let activeFilter = 'all';
 let openId = null;
+let viewMode = 'category';
 
 function setLang(lang) {
   activeLang = lang;
@@ -700,7 +717,22 @@ function renderFeed() {
   }
   const showDividers=activeCat==='all'&&activeSector==='all';
   let html='';
-  if(showDividers){
+
+  if(viewMode==='date'){
+    // Group by date, newest date first
+    const dateMap={};
+    items.forEach(n=>{
+      const d=n.date||'2026-05-27';
+      if(!dateMap[d]) dateMap[d]=[];
+      dateMap[d].push(n);
+    });
+    const sortedDates=Object.keys(dateMap).sort((a,b)=>b.localeCompare(a));
+    sortedDates.forEach(d=>{
+      const grp=dateMap[d];
+      html+=`<div class="date-divider"><span class="date-divider-pill">${formatDate(d)}</span><div class="date-divider-rule"></div><span class="date-divider-sub">${grp.length} ${isTA?'செய்திகள்':'stories'}</span></div>`;
+      html+=`<div class="news-feed-group">${grp.map(n=>cardHTML(n)).join('')}</div>`;
+    });
+  } else if(showDividers){
     const macroItems=items.filter(n=>n.cat==='macro');
     const sectorItems=items.filter(n=>n.cat==='sector');
     if(sectorItems.length){
@@ -746,7 +778,7 @@ function showTickerPreview(id){
   setTimeout(()=>{
     const card=document.getElementById('c'+id);
     if(card){
-      card.scrollIntoView({behavior:'smooth', block:'center'});
+      card.scrollIntoView({behavior:'instant', block:'center'});
       // flash highlight
       card.style.transition='box-shadow .2s';
       card.style.boxShadow='0 0 0 3px #e05a00, 0 4px 20px rgba(224,90,0,.3)';
@@ -765,6 +797,18 @@ function updateTime(){
   const d=now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   const fe=document.getElementById('footer-time');if(fe)fe.textContent=`${d} at ${t} IST`;
   const de=document.getElementById('live-date');if(de)de.textContent=d;
+}
+
+function setView(v){
+  viewMode=v;
+  document.getElementById('vt-cat').classList.toggle('active',v==='category');
+  document.getElementById('vt-date').classList.toggle('active',v==='date');
+  render();
+}
+
+function formatDate(d){
+  const dt=new Date(d+'T00:00:00');
+  return dt.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'long',year:'numeric'});
 }
 
 function render(){renderStats();renderFeed();}
