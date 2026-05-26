@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SectorWire — May–June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Tamil:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1c1410;--paper:#f5f2ec;--cream:#ede9df;--rule:#c8bfa8;
+  --accent:#c0392b;--positive:#1e6b3e;--negative:#a93226;--mixed:#7d6608;
+  --pos-bg:#eaf5ee;--neg-bg:#fdf0ef;--mix-bg:#fdf8e6;
+  --sidebar-bg:#f0ece3;
+  --masthead-bg:#b94a00;--masthead-border:#e05a00;
+  --masthead-text:#fff8f0;--masthead-sub:#ffe4cc;--masthead-dim:#ffd0a8;
+  --ticker-bg:#8a3200;--ticker-dark:#6a2400;--ticker-text:#ffe8d4;
+  --footer-bg:#6a2800;
+  --cat-macro-bg:#1a2a3a;--cat-macro-text:#e8f0f8;
+  --cat-sector-bg:#2a1a10;--cat-sector-text:#f8ede8;
+  --tag-solar-bg:#fff3e0;--tag-solar:#6d3a00;
+  --tag-nps-bg:#e8f5e9;--tag-nps:#1b5e20;
+  --tag-rbi-bg:#e8eaf6;--tag-rbi:#1a237e;
+  --tag-ecomm-bg:#fce4ec;--tag-ecomm:#880e4f;
+  --tag-gold-bg:#fff8e1;--tag-gold:#5d4037;
+  --tag-power-bg:#e3f2fd;--tag-power:#0d3c6e;
+  --tag-2w-bg:#f3e5f5;--tag-2w:#4a148c;
+  --tag-pv-bg:#e0f7fa;--tag-pv:#006064;
+  --tag-cement-bg:#efebe9;--tag-cement:#3e2723;
+  --tag-ems-bg:#fce4ec;--tag-ems:#880e4f;
+  --tag-spare-bg:#f1f8e9;--tag-spare:#33691e;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+.tamil-mode body,.tamil-mode .card-headline,.tamil-mode .card-context,.tamil-mode .ipoint,
+.tamil-mode .icol-title,.tamil-mode .feed-title,.tamil-mode .expand-hint{font-family:'Noto Sans Tamil',sans-serif}
+
+/* ── MASTHEAD ── */
+.masthead{background:var(--masthead-bg);color:var(--masthead-text);border-bottom:4px solid var(--masthead-border)}
+.masthead-inner{max-width:1200px;margin:0 auto;padding:18px 28px 14px}
+.masthead-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.pub-name{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1;letter-spacing:-1.5px;color:#7dd4fc}
+.pub-name span{color:#fde68a;text-shadow:0 1px 4px rgba(0,0,0,.25)}
+.pub-sub{font-size:11px;color:#bae6fd;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;font-family:'IBM Plex Mono',monospace}
+.masthead-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.masthead-meta{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--masthead-dim);line-height:1.9}
+.masthead-meta strong{color:var(--masthead-text);font-weight:600}
+
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle{display:flex;align-items:center;gap:0;border:2px solid rgba(255,255,255,.35);border-radius:6px;overflow:hidden;flex-shrink:0}
+.lang-btn{padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,.65);letter-spacing:.5px;transition:all .2s}
+.lang-btn.active{background:rgba(255,255,255,.92);color:#8a3200;border-radius:4px}
+.lang-btn:hover:not(.active){color:#fff;background:rgba(255,255,255,.15)}
+
+.edition-bar{display:flex;align-items:center;gap:10px;border-top:1px solid rgba(255,200,150,.25);padding-top:10px;font-size:11px;color:var(--masthead-dim);letter-spacing:.3px;flex-wrap:wrap}
+.edition-bar .ebl{color:var(--masthead-text);font-weight:600;letter-spacing:.8px;font-family:'IBM Plex Mono',monospace;font-size:10px}
+.edition-bar .ebs{color:var(--masthead-sub)}
+
+/* ── TICKER ── */
+.ticker-bar{background:var(--ticker-bg);display:flex;align-items:center;overflow:hidden;height:34px;border-bottom:2px solid var(--ticker-dark)}
+.ticker-label{background:var(--ticker-dark);padding:0 16px;height:100%;display:flex;align-items:center;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;color:var(--ticker-text);border-right:1px solid var(--ticker-bg)}
+.ticker-track{overflow:hidden;flex:1}
+.ticker-scroll{display:flex;gap:2.5rem;white-space:nowrap;animation:scrolltick 90s linear infinite;font-size:12px;font-weight:500;line-height:34px;padding:0 1rem;color:var(--ticker-text)}
+.ticker-scroll:hover{animation-play-state:paused;cursor:default}
+@keyframes scrolltick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-sep{color:rgba(255,200,150,.4);margin:0 4px}
+
+/* ── LAYOUT ── */
+.layout{max-width:1200px;margin:0 auto;padding:24px 28px;display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:start}
+
+/* ── SIDEBAR ── */
+.sidebar{position:sticky;top:16px;background:var(--sidebar-bg);border:1px solid var(--rule);border-radius:8px;padding:16px;overflow:hidden}
+.sidebar-section{margin-bottom:18px}
+.sidebar-section:last-child{margin-bottom:0}
+.sidebar-title{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#9a8070;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:10px}
+.cat-nav{margin-bottom:3px}
+.cat-header{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:5px;cursor:pointer;transition:all .15s;border:1px solid transparent}
+.cat-header:hover{background:rgba(0,0,0,.04)}
+.cat-header.active{border-color:var(--rule);background:rgba(0,0,0,.03)}
+.cat-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.cat-dot-macro{background:#1a2a3a}.cat-dot-sector{background:#8b3a14}.cat-dot-all{background:var(--ink)}
+.cat-label{font-size:13px;font-weight:500;color:var(--ink);flex:1}
+.cat-count{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a8878;background:rgba(0,0,0,.06);padding:1px 6px;border-radius:10px}
+.cat-header.active .cat-count{background:var(--ink);color:var(--cream)}
+.sector-sub{padding-left:18px;margin-bottom:4px;display:none}
+.sector-sub.open{display:block}
+.sector-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;padding:5px 8px;border-radius:4px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#5a4a38;text-align:left;transition:background .12s;margin-bottom:1px}
+.sector-btn:hover{background:rgba(0,0,0,.05);color:var(--ink)}
+.sector-btn.active{background:var(--ink);color:var(--cream);font-weight:500}
+.sector-btn .scount{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9a8878}
+.sector-btn.active .scount{color:#b09080}
+.ifgroup{display:flex;flex-direction:column;gap:3px}
+.ifbtn{display:flex;align-items:center;gap:8px;background:none;border:1px solid transparent;padding:6px 8px;border-radius:4px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#5a4a38;text-align:left;transition:all .12s;width:100%}
+.ifbtn:hover{background:rgba(0,0,0,.04);color:var(--ink)}
+.ifbtn.active{border-color:var(--rule);background:rgba(0,0,0,.04);color:var(--ink);font-weight:500}
+.idot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.d-all{background:var(--ink)}.d-pos{background:var(--positive)}.d-neg{background:var(--negative)}.d-mix{background:var(--mixed)}
+.statsbox{background:var(--cream);border:1px solid var(--rule);border-radius:5px;padding:10px}
+.stat-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--rule)}
+.stat-row:last-child{border-bottom:none}
+.stat-val{font-family:'IBM Plex Mono',monospace;font-weight:500}
+.sv-pos{color:var(--positive)}.sv-neg{color:var(--negative)}.sv-mix{color:var(--mixed)}
+
+/* ── FEED ── */
+.feed-header{display:flex;align-items:baseline;justify-content:space-between;border-bottom:3px double var(--rule);padding-bottom:8px;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+.feed-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink)}
+.feed-count{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9a8878}
+.cat-divider{display:flex;align-items:center;gap:12px;margin:8px 0 14px}
+.cat-divider-pill{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:3px;white-space:nowrap;font-family:'IBM Plex Mono',monospace}
+.cat-macro-pill{background:var(--cat-macro-bg);color:var(--cat-macro-text)}
+.cat-sector-pill{background:var(--cat-sector-bg);color:var(--cat-sector-text)}
+.cat-divider-rule{flex:1;height:1px;background:var(--rule)}
+.cat-divider-sub{font-size:11px;color:#9a8878;white-space:nowrap;font-style:italic}
+
+/* ── CARDS ── */
+.news-feed-group{display:flex;flex-direction:column;gap:0}
+.news-card{border-bottom:1px solid var(--rule);padding:16px 0;cursor:pointer;transition:all .15s;position:relative}
+.news-card:first-child{border-top:1px solid var(--rule)}
+.news-card:hover{background:var(--cream);padding-left:10px;padding-right:10px;margin:0 -10px;border-radius:4px}
+.card-meta{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
+.spill{font-size:10px;font-weight:600;letter-spacing:.5px;padding:2px 8px;border-radius:3px;text-transform:uppercase}
+.pill-solar{background:var(--tag-solar-bg);color:var(--tag-solar)}
+.pill-nps{background:var(--tag-nps-bg);color:var(--tag-nps)}
+.pill-rbi{background:var(--tag-rbi-bg);color:var(--tag-rbi)}
+.pill-ecomm{background:var(--tag-ecomm-bg);color:var(--tag-ecomm)}
+.pill-gold{background:var(--tag-gold-bg);color:var(--tag-gold)}
+.pill-power{background:var(--tag-power-bg);color:var(--tag-power)}
+.pill-2w{background:var(--tag-2w-bg);color:var(--tag-2w)}
+.pill-pv{background:var(--tag-pv-bg);color:var(--tag-pv)}
+.pill-cement{background:var(--tag-cement-bg);color:var(--tag-cement)}
+.pill-ems{background:var(--tag-ems-bg);color:var(--tag-ems)}
+.pill-spare{background:var(--tag-spare-bg);color:var(--tag-spare)}
+.ipill{font-size:10px;font-weight:600;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.4px}
+.ip-positive{background:var(--pos-bg);color:var(--positive)}
+.ip-negative{background:var(--neg-bg);color:var(--negative)}
+.ip-mixed{background:var(--mix-bg);color:var(--mixed)}
+.card-time{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a09080;margin-left:auto}
+.card-headline{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;line-height:1.3;margin-bottom:6px;color:var(--ink)}
+.lang-ta .card-headline{font-family:'Noto Sans Tamil',sans-serif;font-size:15px;line-height:1.5}
+.card-context{font-size:13px;line-height:1.6;color:#4a3a2a;margin-bottom:8px}
+.lang-ta .card-context{font-family:'Noto Sans Tamil',sans-serif;font-size:13px;line-height:1.7}
+.card-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.cbadge{font-size:10px;padding:2px 7px;border-radius:2px;border:1px solid;letter-spacing:.3px}
+.cb-pos{border-color:#a8d5b5;color:var(--positive);background:var(--pos-bg)}
+.cb-neg{border-color:#f0b8b3;color:var(--negative);background:var(--neg-bg)}
+.cb-mix{border-color:#e8d990;color:var(--mixed);background:var(--mix-bg)}
+.expand-hint{font-size:11px;color:#a09080;display:flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace}
+.chevron{transition:transform .25s;display:inline-block;font-size:12px}
+.news-card.open .chevron{transform:rotate(180deg)}
+.impact-panel{display:none;margin-top:12px;border-top:1px dashed var(--rule);padding-top:12px}
+.news-card.open .impact-panel{display:block}
+.impact-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.icol{padding:10px 12px;border-radius:4px;border-left:3px solid}
+.icol-pos{background:var(--pos-bg);border-color:var(--positive)}
+.icol-neg{background:var(--neg-bg);border-color:var(--negative)}
+.icol-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+.icol-pos .icol-title{color:var(--positive)}.icol-neg .icol-title{color:var(--negative)}
+.ipoint{font-size:12px;line-height:1.6;color:#3a2a1a;padding-bottom:5px;margin-bottom:5px;border-bottom:1px solid rgba(0,0,0,.06)}
+.ipoint:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.lang-ta .ipoint{font-family:'Noto Sans Tamil',sans-serif;font-size:12px;line-height:1.7}
+.co-wrap{border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-top:6px}
+.co-head{background:var(--ink);color:#f0e8e0;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;display:grid;grid-template-columns:1fr auto;gap:8px}
+.co-row-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:6px 12px;font-size:12px;border-bottom:1px solid var(--rule);background:var(--paper)}
+.co-row-item:last-child{border-bottom:none}
+.co-row-item:nth-child(even){background:var(--cream)}
+.co-name{color:var(--ink);font-weight:500}
+.co-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.cobadge-hit{background:var(--neg-bg);color:var(--negative);border:1px solid #f0b8b3}
+.cobadge-partial{background:var(--mix-bg);color:var(--mixed);border:1px solid #e8d990}
+.cobadge-ok{background:var(--pos-bg);color:var(--positive);border:1px solid #a8d5b5}
+.empty-state{text-align:center;padding:48px 24px;color:#9a8878;font-size:14px}
+footer{background:var(--footer-bg);color:#ffcfa0;text-align:center;padding:14px;font-size:11px;font-family:'IBM Plex Mono',monospace;margin-top:40px;letter-spacing:.5px;border-top:3px solid var(--accent)}
+footer span{color:#ffe0c0}
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr;padding:16px}
+  .sidebar{position:static}
+  .impact-cols{grid-template-columns:1fr}
+  .pub-name{font-size:28px}
+  .card-headline{font-size:15px}
+  .masthead-right{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+.data-table-wrap{margin-top:12px;border:1px solid var(--rule);border-radius:5px;overflow:hidden}
+.data-table-title{background:var(--ink);color:#f0e8e0;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;font-family:'IBM Plex Mono',monospace}
+.data-table{width:100%;border-collapse:collapse;font-size:12px}
+.data-table thead tr{background:#2e2218;color:#d0c0a8}
+.data-table th{padding:6px 10px;text-align:left;font-weight:500;font-size:11px;letter-spacing:.3px;border-right:1px solid #3a2a1a}
+.data-table th:last-child{border-right:none}
+.data-table tbody tr{border-bottom:1px solid var(--rule);background:var(--paper)}
+.data-table tbody tr:nth-child(even){background:var(--cream)}
+.data-table tbody tr.row-highlight{background:#fff8e8;font-weight:500}
+.data-table td{padding:6px 10px;color:var(--ink);border-right:1px solid var(--rule)}
+.data-table td:last-child{border-right:none}
+.td-pos{color:var(--positive);font-weight:600}
+.earn-wrap{margin-top:10px;border:1px solid var(--rule);border-radius:5px;overflow:hidden}
+.earn-row{display:grid;grid-template-columns:140px 1fr;gap:10px;padding:8px 12px;border-bottom:1px solid var(--rule);font-size:12px;align-items:start;background:var(--paper)}
+.earn-row:nth-child(even){background:var(--cream)}
+.earn-row:last-child{border-bottom:none}
+.earn-src{font-weight:600;color:var(--ink);font-size:11px;padding-top:1px}
+.earn-detail{color:#4a3a2a;line-height:1.5}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-top">
+        <div>
+          <div class="pub-name">Sector<span>Wire</span></div>
+          <div class="pub-sub">Sector Intelligence Digest</div>
+        </div>
+        <div class="masthead-right">
+          <div class="lang-toggle">
+            <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" id="btn-ta" onclick="setLang('ta')">தமிழ்</button>
+          </div>
+          <div class="masthead-meta">
+            <div id="live-date">Tuesday, 27 May 2026</div>
+            <div>May – June 2026</div>
+            <div><strong>BREAKING NEWS PORTAL</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="edition-bar">
+        <span class="ebl">Macro:</span><span class="ebs">RBI &nbsp;·&nbsp; NPS &nbsp;·&nbsp; FDI / Regulations</span>
+        &nbsp;&nbsp;
+        <span class="ebl">Sectors:</span><span class="ebs">Solar &nbsp;·&nbsp; Gold &nbsp;·&nbsp; Power &nbsp;·&nbsp; 2-Wheelers &nbsp;·&nbsp; PV &nbsp;·&nbsp; Spare Parts &nbsp;·&nbsp; Cement &nbsp;·&nbsp; EMS</span>
+      </div>
+    </div>
+  </div>
+  <div class="ticker-bar">
+    <div class="ticker-label">&#9679; Live</div>
+    <div class="ticker-track"><div class="ticker-scroll" id="ticker-scroll"></div></div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Browse by Category</div>
+      <div class="cat-nav">
+        <div class="cat-header active" id="cat-all" onclick="setCat('all')">
+          <span class="cat-dot cat-dot-all"></span><span class="cat-label">All Stories</span><span class="cat-count" id="cnt-all">5</span>
+        </div>
+      </div>
+      <div class="cat-nav">
+        <div class="cat-header" id="cat-macro" onclick="setCat('macro')">
+          <span class="cat-dot cat-dot-macro"></span><span class="cat-label">Macro &amp; Policy</span><span class="cat-count" id="cnt-macro">0</span>
+        </div>
+        <div class="sector-sub" id="sub-macro">
+          <button class="sector-btn" data-s="rbi" onclick="setSector('rbi');event.stopPropagation()">RBI / Rates <span class="scount" id="sc-rbi">0</span></button>
+          <button class="sector-btn" data-s="nps" onclick="setSector('nps');event.stopPropagation()">NPS / Pension <span class="scount" id="sc-nps">0</span></button>
+          <button class="sector-btn" data-s="ecomm" onclick="setSector('ecomm');event.stopPropagation()">FDI / E-Commerce <span class="scount" id="sc-ecomm">0</span></button>
+        </div>
+      </div>
+      <div class="cat-nav">
+        <div class="cat-header" id="cat-sector" onclick="setCat('sector')">
+          <span class="cat-dot cat-dot-sector"></span><span class="cat-label">Industry Sectors</span><span class="cat-count" id="cnt-sector">0</span>
+        </div>
+        <div class="sector-sub" id="sub-sector">
+          <button class="sector-btn" data-s="solar" onclick="setSector('solar');event.stopPropagation()">Solar <span class="scount" id="sc-solar">0</span></button>
+          <button class="sector-btn" data-s="gold" onclick="setSector('gold');event.stopPropagation()">Gold <span class="scount" id="sc-gold">0</span></button>
+          <button class="sector-btn" data-s="power" onclick="setSector('power');event.stopPropagation()">Power <span class="scount" id="sc-power">0</span></button>
+          <button class="sector-btn" data-s="2w" onclick="setSector('2w');event.stopPropagation()">2-Wheelers <span class="scount" id="sc-2w">0</span></button>
+          <button class="sector-btn" data-s="pv" onclick="setSector('pv');event.stopPropagation()">PV (Cars) <span class="scount" id="sc-pv">0</span></button>
+          <button class="sector-btn" data-s="spare" onclick="setSector('spare');event.stopPropagation()">Spare Parts <span class="scount" id="sc-spare">0</span></button>
+          <button class="sector-btn" data-s="cement" onclick="setSector('cement');event.stopPropagation()">Cement <span class="scount" id="sc-cement">0</span></button>
+          <button class="sector-btn" data-s="ems" onclick="setSector('ems');event.stopPropagation()">EMS <span class="scount" id="sc-ems">0</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Filter by Impact</div>
+      <div class="ifgroup">
+        <button class="ifbtn active" data-f="all" onclick="setFilter('all')"><span class="idot d-all"></span>All Impacts</button>
+        <button class="ifbtn" data-f="positive" onclick="setFilter('positive')"><span class="idot d-pos"></span>Positive</button>
+        <button class="ifbtn" data-f="negative" onclick="setFilter('negative')"><span class="idot d-neg"></span>Negative</button>
+        <button class="ifbtn" data-f="mixed" onclick="setFilter('mixed')"><span class="idot d-mix"></span>Mixed</button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Summary</div>
+      <div class="statsbox" id="stats-box"></div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="feed-header">
+      <div class="feed-title" id="feed-title">All Breaking News</div>
+      <div class="feed-count" id="feed-count"></div>
+    </div>
+    <div id="news-feed"></div>
+  </main>
+</div>
+
+<footer>SectorWire &nbsp;·&nbsp; May–June 2026 Sector Intelligence Digest &nbsp;·&nbsp; <span id="footer-time"></span></footer>
+
+<script>
+const MACRO_SECTORS = ['rbi','nps','ecomm'];
+
+// ── NEWS DATA ── each story has en{} and ta{} blocks
+const NEWS = [
+  {
+    id:6, sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'22 May 2026',
+    impact:'positive', badges:['₹2.87L Cr FY26 Record','+6.99% vs FY25','Fiscal Deficit Cushion'],
+    en:{
+      headline:'RBI Pays Record ₹2.87 Lakh Crore Dividend to Govt — How It Earns & Why It Matters',
+      context:'RBI Central Board (22 May 2026) approved a record surplus of ₹2,86,588 cr to Centre for FY26 — up 6.99% over FY25’s ₹2.68L cr. Gross income surged 26.42% to ₹3.95L cr; balance sheet grew 20.61% to ₹91.97L cr. Fell short of market’s ₹2.9–3.2L cr expectation but still a massive fiscal windfall. Govt had budgeted ₹3.16L cr combined from RBI + PSU banks.',
+      pos:['Every ₹1L cr in RBI dividend cuts fiscal deficit by ~15 bps of GDP — this ₹2.87L cr provides direct cushion against crude-linked subsidy costs and reduces government borrowing need for FY27.','Gold share in forex reserves rose to 16.7% (from 5.9% in FY21) — adds a revaluation income layer beyond USD assets, making RBI earnings more diversified each year.'],
+      neg:['Payout missed market expectation of ₹2.9–3.2L cr — 10-year bond yield rose 3 bps post-announcement; full fiscal comfort not achieved, borrowing programme intact.','RBI doubled its Contingent Risk Buffer to ₹1.09L cr (₹44,862 cr in FY25) — higher self-insurance limits future dividend headroom if income growth slows.'],
+      table:[
+        {yr:'FY26',div:'₹2,86,588 cr',chg:'+6.99%',income:'₹3,95,972 cr',bs:'₹91.97L cr'},
+        {yr:'FY25',div:'₹2,68,000 cr',chg:'+27.4%',income:'₹3,13,456 cr',bs:'₹76.25L cr'},
+        {yr:'FY24',div:'₹2,10,874 cr',chg:'+141%',income:'—',bs:'—'},
+        {yr:'FY23',div:'₹87,416 cr',chg:'—',income:'—',bs:'—'}
+      ],
+      earn:[
+        {src:'Forex Revaluation',detail:'RBI holds ~$688bn in forex reserves in USD. Rupee fell ~10% in FY26 — same dollar value converts to more rupees, booked as a direct valuation gain.'},
+        {src:'Foreign Bond Interest',detail:'Interest earned on US Treasuries & sovereign bonds held as forex reserves. Elevated global rates in FY25–26 made this very lucrative.'},
+        {src:'OMO Bond Coupons',detail:'RBI bought record quantum of G-Secs via Open Market Operations in FY26 to inject liquidity — earns coupon interest on every bond it holds.'},
+        {src:'Forex Market Operations',detail:'RBI sells USD in market to stabilise the rupee, earning a spread between its acquisition cost and sale price. Sold $371bn in FY25 alone.'}
+      ]
+    },
+    ta:{
+      headline:'RBI ₹2.87 லட்சம் கோடி இலாபம் அரசுக்கு — எப்படி சம்பாதிக்கிறது, ஏன் முக்கியம்',
+      context:'RBI மத்திய மண்டளம் (22 மே 2026) FY26க்காக ₹2,86,588 கோடி இட்டுள்ளது — FY25 ₹2.68L கோடியை விட 6.99% அதிகம். மொத்த வருமானம் 26.42% உயர்ந்து ₹3.95L கோடியானது; இருப்பு தாள் 20.61% விரிவு பெற்று ₹91.97L கோடி ஆனது.',
+      pos:['ஒவ்வோரு ₹1L கோடி இலாபம் GDPயில் ~15 bps நிதிப் பட்டையை குறைக்கிறது — இது கடன் தேவையை குறைப்பதுடன் மேற்கு ஆசிய எரிபொருள் கிரிமி அழுத்தத்திலிருந்து ரக்ஷிக்கிறது.'],
+      neg:['சந்தை எதிர்பார்ப்பு ₹2.9–3.2L கோடியை விட குறைவ் — அறிவிப்பு பிறகு 10 ஆண்டு பத்திர விகிதம் 3 bps உயர்ந்தது; கடன் தேவை தொடர்கிறது.'],
+      table:[
+        {yr:'FY26',div:'₹2,86,588 கோடி',chg:'+6.99%',income:'₹3,95,972 கோடி',bs:'₹91.97L கோடி'},
+        {yr:'FY25',div:'₹2,68,000 கோடி',chg:'+27.4%',income:'₹3,13,456 கோடி',bs:'₹76.25L கோடி'},
+        {yr:'FY24',div:'₹2,10,874 கோடி',chg:'+141%',income:'—',bs:'—'},
+        {yr:'FY23',div:'₹87,416 கோடி',chg:'—',income:'—',bs:'—'}
+      ],
+      earn:[
+        {src:'சரகு மறுமதிப்பீடு',detail:'இணைய இருப்பு ~10% சரிகை ஒரே USD கையிருப்பு இலாபம் அதிகமாகிறது — நேரடி ஆதாய ஆதாயம்.'},
+        {src:'அன்னிய வட்டி',detail:'அமெரிக்க கருவூலம் & உரிம் பத்திரங்களில் வட்டி — உயர் உலக வட்டி விகிதம் FY25-26இல் மிகவும் உழ்ம்கையானது.'},
+        {src:'OMO குப்பன் வட்டி',detail:'RBI FY26இல் இதுவரையில் அதிகமான G-Sec கொண்டது — ஒவ்வோரு பத்திரத்திலும் குப்பன் வட்டி கிடைக்கிறது.'},
+        {src:'சரகு சந்தை',detail:'USD விற்பது இலாபம் தருகிறது — FY25இல் மட்டும் $371bn விற்பதற்கு இடையிலிருந்து விற்பநை ஆதாயம்.'}
+      ]
+    },
+    companies:[]
+  },
+  {
+    id:5, sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
+    impact:'negative', badges:['CVD 126% + ADD 123%','230%+ Combined','Retroactive 90 Days'],
+    en:{
+      headline:'US Slaps 230%+ Tariff on Indian Solar — Exports Dead',
+      context:'US hit Indian solar modules with 126% subsidy duty (Feb) + 123% anti-dumping duty (Apr) — combined 230%+, making exports commercially unviable. Retroactive duties cover 90 days of past shipments. Final ruling due Jul 2026.',
+      pos:['Waaree insulated — 1.6 GW US factory bypasses duties; domestic market absorbs diverted supply at better pricing.'],
+      neg:['Adani Solar & Premier Energies named primary respondents — maximum duty + retroactive risk. Vikram Solar, Insolation, Solex, Borosil all hit.']
+    },
+    ta:{
+      headline:'அமெரிக்கா 230%+ வரி விதிப்பு — இந்திய சோலார் ஏற்றுமதி நிறுத்தம்',
+      context:'அமெரிக்கா இந்திய சோலார் தொகுதிகளுக்கு 126% மானிய வரி (பிப்) + 123% டம்பிங் எதிர்ப்பு வரி (ஏப்) — மொத்தம் 230%+, ஏற்றுமதி வணிக ரீதியாக சாத்தியமற்றது. கடந்த 90 நாள் சரக்குகளுக்கும் பூர்வாங்க வரி. இறுதி தீர்ப்பு ஜூலை 2026.',
+      pos:['வாரி இன்சுலேட்டட் — 1.6 GW அமெரிக்க ஆலை வரியைத் தவிர்க்கிறது; திருப்பிவிடப்பட்ட சரக்கு உள்நாட்டு சந்தையில் சிறந்த விலையில் விற்கப்படும்.'],
+      neg:['அதானி சோலார் & பிரீமியர் எனர்ஜீஸ் நேரடி குற்றவாளிகள் — அதிகபட்ச வரி + பூர்வாங்க ஆபத்து. விக்ரம், இன்சோலேஷன், சோலெக்ஸ், போரோசில் பாதிக்கப்பட்டன.']
+    },
+    companies:[
+      {name:'Adani Solar (Mundra Solar PV & Energy)',status:'Primary Respondent',cls:'cobadge-hit'},
+      {name:'Premier Energies',status:'Primary Respondent',cls:'cobadge-hit'},
+      {name:'Vikram Solar',status:'High Exposure',cls:'cobadge-hit'},
+      {name:'Waaree Energies',status:'Insulated — US plant',cls:'cobadge-ok'},
+      {name:'Insolation / Solex / Borosil',status:'Stock hit',cls:'cobadge-partial'}
+    ]
+  },
+  {
+    id:4, sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
+    impact:'mixed', badges:['Cells Only — Not Wafers','No Blanket Extension','Net Metering Must Comply'],
+    en:{
+      headline:'ALMM List-2 (Cells) Mandatory from 1 June 2026 — No Blanket Extension',
+      context:'MNRE enforces ALMM List-2 for solar PV cells from 1 June 2026 — no across-the-board deferral. Only project-specific 2/4-month extensions considered on merit. Net metering and open access projects must comply. Wafers (List-3) are a separate mandate from June 2028.',
+      pos:['Domestic cell makers (Websol, Premier, Vikram) get hard procurement preference — ~30 GW ALMM-listed capacity now enforceable.'],
+      neg:['Developers using imported cells face rejection of net-metering and subsidy claims from 1 June — act now or lose revenue.']
+    },
+    ta:{
+      headline:'ALMM பட்டியல்-2 (செல்கள்) ஜூன் 1, 2026 முதல் கட்டாயம் — ஒட்டுமொத்த நீட்டிப்பு இல்லை',
+      context:'MNRE சோலார் PV செல்களுக்கு ALMM பட்டியல்-2ஐ ஜூன் 1, 2026 முதல் அமல்படுத்துகிறது — பொது ஒத்திவைப்பு இல்லை. திட்டம்-சார்ந்த 2/4 மாத நீட்டிப்பு மட்டுமே. நெட் மீட்டரிங் & திறந்த அணுகல் திட்டங்கள் இணங்க வேண்டும்.',
+      pos:['உள்நாட்டு செல் உற்பத்தியாளர்கள் (Websol, Premier, Vikram) கட்டாய கொள்முதல் முன்னுரிமை பெறுவர் — ~30 GW பட்டியலிடப்பட்ட திறன் இப்போது செயல்படுத்தத்தக்கது.'],
+      neg:['இறக்குமதி செல்களைப் பயன்படுத்திய டெவலப்பர்கள் ஜூன் 1 முதல் நெட் மீட்டரிங் & மானிய கோரிக்கைகளில் நிராகரிப்பை எதிர்கொள்வர் — இப்போதே நடவடிக்கை எடுக்கவும்.']
+    },
+    companies:[]
+  },
+  {
+    id:3, sector:'ecomm', cat:'macro', sectorLabel:'FDI / E-Commerce', pillCls:'pill-ecomm', time:'27 May 2026',
+    impact:'mixed', badges:['FEMA Press Note 2','No Inventory / No Price Control','Swiggy Vote Failed'],
+    en:{
+      headline:'Why Swiggy Wants Indian Status — FDI Rules Ban Foreign Cos from Inventory & Pricing',
+      context:'Under FEMA/DPIIT rules, foreign-controlled e-commerce, q-commerce & food delivery firms cannot hold inventory, influence prices, or act as brokers — only a neutral marketplace. IOCC status (>50% Indian ownership + board control) unlocks inventory-led models. Swiggy’s shareholder vote to restructure failed; IOCC status remains elusive.',
+      pos:['IOCC status would let Swiggy run inventory-led Instamart — competing head-on with Blinkit & Zepto with pricing control and product depth.'],
+      neg:['Failed vote keeps Swiggy locked in marketplace-only mode; Prosus, SoftBank retain influence. Same ceiling applies to Zomato, Amazon, Flipkart.']
+    },
+    ta:{
+      headline:'Swiggy இந்திய நிறுவனமாக ஏன் மாற விரும்புகிறது — FDI விதிகள் கடையளவு, விலை நிர்ணயம் தடை',
+      context:'FEMA/DPIIT விதிகளின்படி, வெளிநாட்டு-கட்டுப்படுத்தப்பட்ட ஈ-காமர்ஸ், க்யூ-காமர்ஸ் & உணவு டெலிவரி நிறுவனங்கள் சரக்கு வைத்திருக்க, விலை நிர்ணயிக்க அல்லது தரகர்களாக செயல்பட முடியாது. IOCC நிலை (>50% இந்திய உரிமை) சரக்கு மாதிரிகளை திறக்கும். Swiggy-யின் பங்குதாரர் வாக்கெடுப்பு தோல்வியுற்றது.',
+      pos:['IOCC நிலை Swiggy-க்கு சரக்கு-அடிப்படையிலான Instamart நடத்த உதவும் — Blinkit & Zepto-உடன் விலை கட்டுப்பாட்டுடன் நேரடி போட்டி.'],
+      neg:['தோல்வியுற்ற வாக்கெடுப்பு Swiggy-ஐ சந்தை மட்டத்தில் மட்டும் பூட்டி வைக்கிறது; Prosus, SoftBank தாக்கம் தொடர்கிறது. Zomato, Amazon, Flipkart-க்கும் இதே கட்டுப்பாடு.']
+    },
+    companies:[
+      {name:'Swiggy (Prosus, SoftBank, Accel)',status:'Vote Failed — Constrained',cls:'cobadge-hit'},
+      {name:'Zomato (founder-led)',status:'Less impacted',cls:'cobadge-partial'},
+      {name:'Blinkit / Zepto / Amazon / Flipkart',status:'Same FEMA ceiling',cls:'cobadge-partial'}
+    ]
+  },
+  {
+    id:2, sector:'nps', cat:'macro', sectorLabel:'NPS / Pension', pillCls:'pill-nps', time:'27 May 2026',
+    impact:'positive', badges:['From Age 60 Only','60% Tax-Free','Annuity Now Just 20%'],
+    en:{
+      headline:'NPS Gets SLW & SUR — Phased Drawdown from Age 60, 60% Tax-Free',
+      context:'PFRDA (Dec 2025) lets subscribers draw the lump sum corpus in instalments from age 60 — monthly/quarterly/half-yearly/annually up to age 75, automated with one instruction. Annuity slashed from 40% to 20%. First 60% of corpus is fully tax-free (Sec 10(12A)); the extra 20% PFRDA now permits carries slab-rate tax — Income Tax Act not yet aligned.',
+      pos:['No forced lump-sum at 60 — corpus stays invested in NPS earning returns; new tax regime subscribers can absorb taxable 20% at near-zero cost.'],
+      neg:['Extra 20% withdrawal is taxable at slab rate — law-policy mismatch unresolved. Market risk persists on uninvested corpus during drawdown phase.']
+    },
+    ta:{
+      headline:'NPS-க்கு SLW & SUR — 60 வயதிலிருந்து கட்டமைக்கப்பட்ட திரும்பப்பெறுதல், 60% வரி இல்லை',
+      context:'PFRDA (டிச. 2025) 60 வயதில் இருந்து மாதாந்திர/காலாண்டு/அரை-வருடாந்திர/ஆண்டுதோறும் ஒரு வழிமுறையில் தொகையை எடுக்க அனுமதிக்கிறது — 75 வயது வரை தானியங்கி. ஆண்டுவருமானம் 40% இலிருந்து 20% ஆக குறைக்கப்பட்டது. 60% தொகை முழுமையாக வரி இல்லாதது (பிரிவு 10(12A)); கூடுதல் 20% சம்பளத்தின் தட்டில் வரி விதிக்கப்படும்.',
+      pos:['60 வயதில் கட்டாய ஒரே தொகை இல்லை — NPS-ல் முதலீடு தொடரும்; புதிய வரி முறை பயனர்கள் 20% வரியை குறைந்த விலையில் ஈடுசெய்யலாம்.'],
+      neg:['கூடுதல் 20% திரும்பப்பெறுதல் சம்பளத் தட்டு வரிக்கு உட்பட்டது — சட்ட-கொள்கை பொருத்தமின்மை தீர்க்கப்படவில்லை. திரும்பப்பெறும் காலத்தில் சந்தை ஆபத்து நீடிக்கிறது.']
+    },
+    companies:[]
+  },
+  {
+    id:1, sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'27 May 2026',
+    impact:'mixed', badges:['Neutral Stance','Rate Hike Risk Live','Inflation 4.6% FY27'],
+    en:{
+      headline:'RBI Governor: Inflation First, Growth Second — Rate Hike Back on Table',
+      context:'Governor Malhotra signals a clear shift: price stability over growth support. After 125 bps of cuts to 5.25%, MPC held in Apr 2026 citing West Asia crude risks. Stance is neutral — up or down both live — but tone warns: sustained inflation will mean rate hikes, reversing the dovish cycle.',
+      pos:['Rupee and bond markets stabilise; banks & NBFCs with floating-rate books see NIM support if rates hold or rise.'],
+      neg:['Real estate, auto loans, MSME credit face headwinds if hikes come; equity markets may de-rate as rate-cut cycle narrative breaks.']
+    },
+    ta:{
+      headline:'RBI கவர்னர்: பணவீக்கம் முதல், வளர்ச்சி இரண்டாம் — வட்டி உயர்வு மீண்டும் சாத்தியம்',
+      context:'கவர்னர் மல்ஹோத்ரா தெளிவான மாற்றம் சமிக்ஞை செய்கிறார்: வளர்ச்சி ஆதரவை விட விலை நிலைத்தன்மை. 125 bps குறைப்புக்குப் பிறகு 5.25%-க்கு, MPC ஏப்ரல் 2026-ல் மேற்கு ஆசிய கச்சா ஆபத்தை மேற்கோள் காட்டி நடுநிலையில் நின்றது. கட்டமைப்பு நடுநிலை — மேலோ கீழோ இரண்டும் சாத்தியம் — ஆனால் தொடர்ந்த பணவீக்கம் வட்டி உயர்வை தூண்டும்.',
+      pos:['ரூபாய் மற்றும் பத்திர சந்தைகள் நிலைப்படும்; மிதக்கும்-வட்டி புத்தகங்கள் உள்ள வங்கிகள் & NBFC-கள் NIM ஆதரவு பெறும்.'],
+      neg:['ரியல் எஸ்டேட், வாகன கடன்கள், MSME கடன்கள் தலைவலி எதிர்கொள்ளும்; வட்டி குறைப்பு கதை முறிந்தால் பங்குச் சந்தை மதிப்பிழக்கும்.']
+    },
+    companies:[]
+  }
+];
+
+let activeLang = 'en';
+let activeCat = 'all';
+let activeSector = 'all';
+let activeFilter = 'all';
+let openId = null;
+
+function setLang(lang) {
+  activeLang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-ta').classList.toggle('active', lang === 'ta');
+  // update ticker language
+  buildTicker();
+  render();
+}
+
+function filtered() {
+  return NEWS.slice().sort((a,b)=>b.id-a.id).filter(n => {
+    if (activeSector !== 'all' && n.sector !== activeSector) return false;
+    if (activeCat === 'macro' && n.cat !== 'macro') return false;
+    if (activeCat === 'sector' && n.cat !== 'sector') return false;
+    if (activeFilter !== 'all' && n.impact !== activeFilter) return false;
+    return true;
+  });
+}
+
+function updateCounts() {
+  document.getElementById('cnt-all').textContent = NEWS.length;
+  document.getElementById('cnt-macro').textContent = NEWS.filter(n=>n.cat==='macro').length;
+  document.getElementById('cnt-sector').textContent = NEWS.filter(n=>n.cat==='sector').length;
+  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems'].forEach(s=>{
+    const el=document.getElementById('sc-'+s);
+    if(el) el.textContent=NEWS.filter(n=>n.sector===s).length;
+  });
+}
+
+function setCat(cat) {
+  activeCat=cat; activeSector='all'; openId=null;
+  ['all','macro','sector'].forEach(c=>{
+    const el=document.getElementById('cat-'+c);
+    if(el) el.classList.toggle('active',c===cat);
+  });
+  document.getElementById('sub-macro').classList.toggle('open',cat==='macro'||cat==='all');
+  document.getElementById('sub-sector').classList.toggle('open',cat==='sector'||cat==='all');
+  document.querySelectorAll('.sector-btn').forEach(b=>b.classList.remove('active'));
+  render();
+}
+
+function setSector(s) {
+  activeSector=s;
+  activeCat=MACRO_SECTORS.includes(s)?'macro':'sector';
+  openId=null;
+  ['all','macro','sector'].forEach(c=>{
+    const el=document.getElementById('cat-'+c);
+    if(el) el.classList.toggle('active',c===activeCat);
+  });
+  document.getElementById('sub-macro').classList.toggle('open',activeCat==='macro');
+  document.getElementById('sub-sector').classList.toggle('open',activeCat==='sector');
+  document.querySelectorAll('.sector-btn').forEach(b=>b.classList.toggle('active',b.dataset.s===s));
+  render();
+}
+
+function setFilter(f) {
+  activeFilter=f; openId=null;
+  document.querySelectorAll('.ifbtn').forEach(b=>b.classList.toggle('active',b.dataset.f===f));
+  render();
+}
+
+function toggleCard(id){openId=openId===id?null:id;render();}
+function ipCls(i){return i==='positive'?'ip-positive':i==='negative'?'ip-negative':'ip-mixed';}
+function bdgCls(i){return i==='positive'?'cb-pos':i==='negative'?'cb-neg':'cb-mix';}
+
+function renderStats() {
+  const items=filtered();
+  const labels = activeLang==='ta'
+    ? {total:'மொத்தம்',macro:'மேக்ரோ & கொள்கை',sector:'தொழில் துறைகள்',pos:'சாதகம்',neg:'எதிர்மறை',mix:'கலப்பு'}
+    : {total:'Total',macro:'Macro & Policy',sector:'Industry Sectors',pos:'Positive',neg:'Negative',mix:'Mixed'};
+  document.getElementById('stats-box').innerHTML=`
+    <div class="stat-row"><span>${labels.total}</span><span class="stat-val">${items.length}</span></div>
+    <div class="stat-row"><span>${labels.macro}</span><span class="stat-val">${items.filter(n=>n.cat==='macro').length}</span></div>
+    <div class="stat-row"><span>${labels.sector}</span><span class="stat-val">${items.filter(n=>n.cat==='sector').length}</span></div>
+    <div class="stat-row"><span>${labels.pos}</span><span class="stat-val sv-pos">${items.filter(n=>n.impact==='positive').length}</span></div>
+    <div class="stat-row"><span>${labels.neg}</span><span class="stat-val sv-neg">${items.filter(n=>n.impact==='negative').length}</span></div>
+    <div class="stat-row"><span>${labels.mix}</span><span class="stat-val sv-mix">${items.filter(n=>n.impact==='mixed').length}</span></div>`;
+}
+
+function cardHTML(n) {
+  const isOpen=openId===n.id;
+  const bc=bdgCls(n.impact);
+  const L=activeLang==='ta'?n.ta:n.en;
+  const isTA=activeLang==='ta';
+  const coTable=n.companies&&n.companies.length?`
+    <div class="co-wrap">
+      <div class="co-head"><span>${isTA?'நிறுவனம்':'Company / Entity'}</span><span>${isTA?'நிலை':'Status'}</span></div>
+      ${n.companies.map(c=>`<div class="co-row-item"><span class="co-name">${c.name}</span><span class="co-badge ${c.cls}">${c.status}</span></div>`).join('')}
+    </div>`:'';
+  const dataTable=L.table?`
+    <div class="data-table-wrap">
+      <div class="data-table-title">${isTA?'ஆண்டுவாரி ஒப்பீடு':'Year-on-Year Comparison'}</div>
+      <table class="data-table">
+        <thead><tr><th>${isTA?'ஆண்டு':'Year'}</th><th>${isTA?'இலாபம்':'Dividend'}</th><th>${isTA?'மாற்றம்':'Change'}</th><th>${isTA?'வருமானம்':'Gross Income'}</th><th>${isTA?'இருப்பு தாள்':'Balance Sheet'}</th></tr></thead>
+        <tbody>${L.table.map((r,i)=>`<tr class="${i===0?'row-highlight':''}"><td><strong>${r.yr}</strong></td><td>${r.div}</td><td class="${r.chg&&r.chg.startsWith('+')?'td-pos':''}">${r.chg}</td><td>${r.income}</td><td>${r.bs}</td></tr>`).join('')}</tbody>
+      </table>
+    </div>`:'';
+  const earnBox=L.earn?`
+    <div class="earn-wrap">
+      <div class="data-table-title">${isTA?'RBI எப்படி சம்பாதிக்கிறது?':'How Does RBI Earn This?'}</div>
+      ${L.earn.map(e=>`<div class="earn-row"><span class="earn-src">${e.src}</span><span class="earn-detail">${e.detail}</span></div>`).join('')}
+    </div>`:'';
+  const expandTxt=activeLang==='ta'
+    ?(isOpen?'மறை':'விரிவாக்கு — தாக்கப் பகுப்பாய்வு')
+    :(isOpen?'Hide':'Expand — Impact Analysis');
+  const posTxt=activeLang==='ta'?'▲ சாதக தாக்கம்':'▲ Positive Impact';
+  const negTxt=activeLang==='ta'?'▼ ஆபத்து / எதிர்மறை':'▼ Risk / Negative';
+  return `<article class="news-card${isOpen?' open':''} lang-${activeLang}" onclick="toggleCard(${n.id})">
+    <div class="card-meta">
+      <span class="spill ${n.pillCls}">${n.sectorLabel}</span>
+      <span class="ipill ${ipCls(n.impact)}">${n.impact}</span>
+      <span class="card-time">${n.time}</span>
+    </div>
+    <h2 class="card-headline">${L.headline}</h2>
+    <p class="card-context">${L.context}</p>
+    <div class="card-badges">${n.badges.map(b=>`<span class="cbadge ${bc}">${b}</span>`).join('')}</div>
+    <div class="expand-hint"><span class="chevron">▾</span>&nbsp;${expandTxt}</div>
+    <div class="impact-panel">
+      <div class="impact-cols">
+        <div class="icol icol-pos"><div class="icol-title">${posTxt}</div>${L.pos.map(p=>`<div class="ipoint">${p}</div>`).join('')}</div>
+        <div class="icol icol-neg"><div class="icol-title">${negTxt}</div>${L.neg.map(p=>`<div class="ipoint">${p}</div>`).join('')}</div>
+      </div>
+      ${dataTable}
+      ${earnBox}
+      ${coTable}
+    </div>
+  </article>`;
+}
+
+function renderFeed() {
+  const items=filtered();
+  const isTA=activeLang==='ta';
+  const titleMap={
+    all:isTA?'அனைத்து செய்திகளும்':'All Breaking News',
+    macro:isTA?'மேக்ரோ & கொள்கை':'Macro & Policy',
+    sector:isTA?'தொழில் துறைகள்':'Industry Sectors'
+  };
+  let titleStr=titleMap[activeCat]||'All Breaking News';
+  if(activeSector!=='all'){
+    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS'};
+    titleStr=(lm[activeSector]||activeSector)+(isTA?' — செய்திகள்':' — Breaking News');
+  }
+  document.getElementById('feed-title').textContent=titleStr;
+  document.getElementById('feed-count').textContent=`${items.length} ${isTA?'கதைகள்':'stor'}${(!isTA&&items.length===1)?'y':(!isTA?'ies':'')}`;
+
+  if(!items.length){
+    document.getElementById('news-feed').innerHTML=`<div class="empty-state">${isTA?'தேர்ந்தெடுத்த வடிப்பானுக்கு செய்திகள் இல்லை.':'No stories match the current filter.'}</div>`;
+    return;
+  }
+  const showDividers=activeCat==='all'&&activeSector==='all';
+  let html='';
+  if(showDividers){
+    const macroItems=items.filter(n=>n.cat==='macro');
+    const sectorItems=items.filter(n=>n.cat==='sector');
+    if(sectorItems.length){
+      html+=`<div class="cat-divider"><span class="cat-divider-pill cat-sector-pill">${isTA?'தொழில் துறைகள்':'Industry Sectors'}</span><div class="cat-divider-rule"></div><span class="cat-divider-sub">${sectorItems.length} ${isTA?'செய்திகள்':'stories'}</span></div>`;
+      html+=`<div class="news-feed-group">${sectorItems.map(n=>cardHTML(n)).join('')}</div>`;
+    }
+    if(macroItems.length){
+      html+=`<div class="cat-divider" style="margin-top:22px"><span class="cat-divider-pill cat-macro-pill">${isTA?'மேக்ரோ & கொள்கை':'Macro & Policy'}</span><div class="cat-divider-rule"></div><span class="cat-divider-sub">${macroItems.length} ${isTA?'செய்திகள்':'stories'}</span></div>`;
+      html+=`<div class="news-feed-group">${macroItems.map(n=>cardHTML(n)).join('')}</div>`;
+    }
+  } else {
+    html=`<div class="news-feed-group">${items.map(n=>cardHTML(n)).join('')}</div>`;
+  }
+  document.getElementById('news-feed').innerHTML=html;
+}
+
+function buildTicker() {
+  const items=NEWS.slice().sort((a,b)=>b.id-a.id);
+  const tickerItems=items.map(n=>{
+    const L=activeLang==='ta'?n.ta:n.en;
+    return `<span><strong>${n.sectorLabel}:</strong> ${L.headline}</span><span class="ticker-sep">◆</span>`;
+  });
+  document.getElementById('ticker-scroll').innerHTML=[...tickerItems,...tickerItems].join(' ');
+}
+
+function updateTime(){
+  const now=new Date();
+  const t=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
+  const d=now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const fe=document.getElementById('footer-time');if(fe)fe.textContent=`${d} at ${t} IST`;
+  const de=document.getElementById('live-date');if(de)de.textContent=d;
+}
+
+function render(){renderStats();renderFeed();}
+
+updateCounts();
+document.getElementById('sub-macro').classList.add('open');
+document.getElementById('sub-sector').classList.add('open');
+buildTicker();
+render();
+updateTime();
+setInterval(updateTime,60000);
+</script>
+</body>
+</html>
