@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hospital Sector — Intelligence Dashboard | Q4 FY26 v2</title>
+<meta name="description" content="Hospital Sector Intelligence Dashboard Q4 FY26 — Cauvery Business Research. 9 companies: Apollo, Max, Fortis, NH, Medanta, KIMS, Rainbow, Jupiter, Yatharth.">
+<meta property="og:title" content="Hospital Sector Dashboard · Q4 FY26 · CB Research">
+<meta property="og:description" content="Cauvery Business Research — FY26 verified data on 9 Indian hospital stocks. Segments, debt, payor mix, PE exits, valuations.">
+<title>Hospital Sector Intelligence Dashboard · Q4 FY26 | Cauvery Business Research</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -138,13 +141,19 @@ td.tb{font-weight:700;}
 .verdict-body{font-size:13px;line-height:1.7;color:var(--text);}
 .debt-bar-wrap{background:var(--surface2);border-radius:20px;height:10px;overflow:hidden;margin-bottom:4px;}
 .debt-bar{height:10px;border-radius:20px;}
+
+/* ── CB WATERMARK BADGE (every tab, fixed bottom-right) ── */
+.cb-wm{position:fixed;bottom:38px;right:20px;z-index:9999;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);border:1.5px solid var(--border);border-radius:30px;padding:7px 15px 7px 8px;box-shadow:0 4px 22px rgba(24,21,17,.13);backdrop-filter:blur(10px);pointer-events:none;}
+.cb-wm-logo{width:30px;height:30px;background:linear-gradient(135deg,#0f766e 0%,#1d4ed8 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.9rem;font-weight:900;color:#fff;flex-shrink:0;}
+.cb-wm-name{font-size:11.5px;font-weight:800;color:var(--text);letter-spacing:-.01em;}
+.cb-wm-sub{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:1px;}
 </style>
 </head>
 <body>
 <div class="hdr">
   <div class="hdr-left">
     <div>
-      <div class="sub">Cauvery Business · CB Research · Data: Official Exchange Filings FY26</div>
+      <div class="sub">Cauvery Business Research · Data: Official Exchange Filings FY26</div>
       <h1>Hospital Sector Intelligence Dashboard</h1>
       <div class="sub" style="margin-top:2px;">Q4 FY26 · 9 Companies · Verified Actuals · v2.0 | Build: 20260527-1130 IST</div>
     </div>
@@ -1343,7 +1352,7 @@ td.tb{font-weight:700;}
 
 <!-- FLOATING FOOTER -->
 <div style="position:fixed;bottom:0;left:0;right:0;background:#181511;color:rgba(255,255,255,.5);font-size:10px;padding:6px 40px;display:flex;justify-content:space-between;align-items:center;z-index:200;border-top:1px solid rgba(255,255,255,.08);">
-  <span>CB Research · Cauvery Business · Hospital Sector Intelligence Dashboard · Q4 FY26</span>
+  <span>Cauvery Business Research · Hospital Sector Intelligence Dashboard · Q4 FY26</span>
   <span>Data: Official Exchange Filings May 2026 · Not Investment Advice · v2.0 | Build: 20260527-1130 IST</span>
 </div>
 
@@ -1713,5 +1722,15 @@ function addMsg(t, text) {
 }
 function scrollChat() { const m = document.getElementById('chatMsgs'); m.scrollTop = m.scrollHeight; }
 </script>
+
+<!-- ── CB WATERMARK BADGE ── -->
+<div class="cb-wm">
+  <div class="cb-wm-logo">CB</div>
+  <div>
+    <div class="cb-wm-name">Cauvery Business</div>
+    <div class="cb-wm-sub">Hospital Sector · Q4 FY26</div>
+  </div>
+</div>
+
 </body>
 </html>
