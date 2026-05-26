@@ -57,13 +57,17 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--
 .edition-bar .ebs{color:var(--masthead-sub)}
 
 /* ── TICKER ── */
-.ticker-bar{background:var(--ticker-bg);display:flex;align-items:center;overflow:hidden;height:34px;border-bottom:2px solid var(--ticker-dark)}
+.ticker-bar{background:var(--ticker-bg);display:flex;align-items:center;overflow:hidden;border-bottom:2px solid var(--ticker-dark);flex-direction:column}
+.ticker-row{display:flex;align-items:center;width:100%;height:34px;overflow:hidden}
 .ticker-label{background:var(--ticker-dark);padding:0 16px;height:100%;display:flex;align-items:center;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;color:var(--ticker-text);border-right:1px solid var(--ticker-bg)}
-.ticker-track{overflow:hidden;flex:1}
-.ticker-scroll{display:flex;gap:2.5rem;white-space:nowrap;animation:scrolltick 90s linear infinite;font-size:12px;font-weight:500;line-height:34px;padding:0 1rem;color:var(--ticker-text)}
-.ticker-scroll:hover{animation-play-state:paused;cursor:default}
+.ticker-track{overflow:hidden;flex:1;position:relative;height:34px}
+.ticker-scroll{display:flex;gap:0;white-space:nowrap;animation:scrolltick 90s linear infinite;font-size:12px;font-weight:500;line-height:34px;padding:0;color:var(--ticker-text)}
+.ticker-scroll:hover{animation-play-state:paused}
 @keyframes scrolltick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-sep{color:rgba(255,200,150,.4);margin:0 4px}
+.ticker-item{padding:0 18px;cursor:pointer;border-right:1px solid rgba(255,200,150,.2);transition:background .15s;display:inline-flex;align-items:center;height:34px}
+.ticker-item:hover{background:rgba(255,255,255,.12)}
+.ticker-item strong{margin-right:5px;color:#fde68a}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── LAYOUT ── */
 .layout{max-width:1200px;margin:0 auto;padding:24px 28px;display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:start}
@@ -198,6 +202,63 @@ footer span{color:#ffe0c0}
 .earn-row:last-child{border-bottom:none}
 .earn-src{font-weight:600;color:var(--ink);font-size:11px;padding-top:1px}
 .earn-detail{color:#4a3a2a;line-height:1.5}
+
+/* ── CB INSTANT ASSIST ── */
+.assist-bar{background:linear-gradient(135deg,#1a2a3a 0%,#0d3c6e 100%);border-bottom:3px solid #e05a00;padding:0}
+.assist-inner{max-width:1200px;margin:0 auto;padding:10px 28px}
+.assist-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.assist-icon{width:28px;height:28px;background:#e05a00;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.assist-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
+.assist-sub{font-size:11px;color:#7db8e8;font-family:'IBM Plex Mono',monospace;margin-left:2px}
+.assist-row{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.assist-topic-wrap{display:flex;flex-direction:column;gap:4px;min-width:170px}
+.assist-label{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7db8e8;font-family:'IBM Plex Mono',monospace;margin-bottom:2px}
+.assist-select{padding:7px 10px;border-radius:5px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:12px;cursor:pointer;min-width:170px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237db8e8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.assist-select option{background:#1a2a3a;color:#fff}
+.assist-q-wrap{flex:1;display:flex;flex-direction:column;gap:4px;min-width:220px}
+.assist-q-select{padding:7px 10px;border-radius:5px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:12px;cursor:pointer;width:100%;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237db8e8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.assist-q-select option{background:#1a2a3a;color:#fff}
+.assist-btn{padding:7px 18px;background:#e05a00;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'IBM Plex Sans',sans-serif;transition:background .15s;align-self:flex-end;margin-top:18px}
+.assist-btn:hover{background:#c04800}
+.assist-clear-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff}
+.assist-clear-btn:hover{background:rgba(255,255,255,.22)}
+.assist-answer-box{margin-top:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:12px 14px;display:none}
+.assist-answer-box.show{display:block}
+.assist-q-text{font-size:12px;color:#7db8e8;margin-bottom:6px;font-style:italic;font-family:'IBM Plex Mono',monospace}
+.assist-a-text{font-size:13px;color:#e8f0f8;line-height:1.65}
+.assist-a-source{font-size:10px;color:#5a8ab0;margin-top:6px;font-family:'IBM Plex Mono',monospace;letter-spacing:.3px}
+
+
+/* ── CB INSTANT ASSIST ── */
+.assist-bar{background:linear-gradient(135deg,#1a2a3a 0%,#0d3c6e 100%);border-bottom:3px solid #e05a00;padding:0}
+.assist-inner{max-width:1200px;margin:0 auto;padding:10px 28px 12px}
+.assist-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.assist-icon{width:28px;height:28px;background:#e05a00;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.assist-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
+.assist-sub{font-size:11px;color:#7db8e8;font-family:'IBM Plex Mono',monospace}
+.assist-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.assist-col{display:flex;flex-direction:column;gap:4px}
+.assist-label{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#7db8e8;font-family:'IBM Plex Mono',monospace}
+.assist-sel{padding:7px 30px 7px 10px;border-radius:5px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:12px;cursor:pointer;min-width:180px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237db8e8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.assist-sel option{background:#1a2a3a;color:#fff}
+.assist-q-sel{min-width:280px}
+.assist-btn{padding:7px 20px;background:#e05a00;color:#fff;border:none;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:background .15s;white-space:nowrap;height:34px}
+.assist-btn:hover{background:#c04800}
+.assist-clear-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff}
+.assist-clear-btn:hover{background:rgba(255,255,255,.22)}
+.assist-ans{margin-top:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:12px 14px;display:none}
+.assist-ans.show{display:block;animation:fadeIn .25s ease}
+.assist-q-disp{font-size:11px;color:#7db8e8;margin-bottom:7px;font-style:italic;font-family:'IBM Plex Mono',monospace}
+.assist-a-disp{font-size:13px;color:#e8f0f8;line-height:1.65}
+.assist-src{font-size:10px;color:#4a7a9a;margin-top:7px;font-family:'IBM Plex Mono',monospace;letter-spacing:.3px;border-top:1px solid rgba(255,255,255,.08);padding-top:6px}
+
+
+.news-card.scrolled-highlight{
+  box-shadow:0 0 0 3px #e05a00, 0 4px 20px rgba(224,90,0,.25);
+  border-radius:6px;
+  transition:box-shadow .3s;
+}
+
 </style>
 </head>
 <body>
@@ -230,10 +291,53 @@ footer span{color:#ffe0c0}
     </div>
   </div>
   <div class="ticker-bar">
-    <div class="ticker-label">&#9679; Live</div>
-    <div class="ticker-track"><div class="ticker-scroll" id="ticker-scroll"></div></div>
+    <div class="ticker-row">
+      <div class="ticker-label">&#9679; Today</div>
+      <div class="ticker-track"><div class="ticker-scroll" id="ticker-scroll"></div></div>
+    </div>
   </div>
 </header>
+
+
+<div class="assist-bar">
+  <div class="assist-inner">
+    <div class="assist-header">
+      <div class="assist-icon">&#128161;</div>
+      <div>
+        <div class="assist-title">CB Instant Assist</div>
+        <div class="assist-sub">Pick a topic &amp; question — answers drawn from this edition</div>
+      </div>
+    </div>
+    <div class="assist-row">
+      <div class="assist-topic-wrap">
+        <div class="assist-label">Topic</div>
+        <select class="assist-select" id="assist-topic" onchange="assistTopicChange()">
+          <option value="">— Select Topic —</option>
+          <option value="rbi_rate">RBI &amp; Interest Rates</option>
+          <option value="rbi_div">RBI Dividend to Govt</option>
+          <option value="solar_almm">Solar — ALMM List-2</option>
+          <option value="solar_us">Solar — US Tariff</option>
+          <option value="nps">NPS — SLW &amp; SUR</option>
+          <option value="swiggy">Swiggy &amp; FEMA Rules</option>
+        </select>
+      </div>
+      <div class="assist-q-wrap">
+        <div class="assist-label">Question</div>
+        <select class="assist-select assist-q-select" id="assist-q">
+          <option value="">— Select topic first —</option>
+        </select>
+      </div>
+      <button class="assist-btn" onclick="assistAsk()">Ask &#8594;</button>
+      <button class="assist-btn assist-clear-btn" onclick="assistClear()" id="assist-clear" style="display:none">&#10005; Clear</button>
+    </div>
+    <div class="assist-answer-box" id="assist-ans">
+      <div class="assist-q-text" id="assist-q-disp"></div>
+      <div class="assist-a-text" id="assist-a-disp"></div>
+      <div class="assist-a-source" id="assist-src"></div>
+    </div>
+  </div>
+</div>
+
 
 <div class="layout">
   <aside class="sidebar">
@@ -387,9 +491,9 @@ const NEWS = [
     impact:'mixed', badges:['FEMA Press Note 2','No Inventory / No Price Control','Swiggy Vote Failed'],
     en:{
       headline:'Why Swiggy Wants Indian Status — FDI Rules Ban Foreign Cos from Inventory & Pricing',
-      context:'Under FEMA/DPIIT rules, foreign-controlled e-commerce, q-commerce & food delivery firms cannot hold inventory, influence prices, or act as brokers — only a neutral marketplace. IOCC status (>50% Indian ownership + board control) unlocks inventory-led models. Swiggy’s shareholder vote to restructure failed; IOCC status remains elusive.',
-      pos:['IOCC status would let Swiggy run inventory-led Instamart — competing head-on with Blinkit & Zepto with pricing control and product depth.'],
-      neg:['Failed vote keeps Swiggy locked in marketplace-only mode; Prosus, SoftBank retain influence. Same ceiling applies to Zomato, Amazon, Flipkart.']
+      context:'Under FEMA (Press Note 2/2018), foreign-funded platforms are allowed ONLY as a facilitator/intermediary between buyer and seller — the pure broker role. They CANNOT own inventory, influence prices, hold equity in sellers, or force exclusivity. Swiggy, being foreign-controlled (Prosus, SoftBank), is therefore locked to this marketplace-only model. IOCC status (>50% Indian ownership + board control) would unlock inventory-led q-commerce. Swiggy’s shareholder vote to restructure for IOCC failed; it remains a pure broker under FEMA today.',
+      pos:['IOCC status (>50% Indian ownership + board control) would let Swiggy legally exit the broker-only role and run inventory-led Instamart — competing head-on with Blinkit & Zepto on pricing, depth and exclusives.'],
+      neg:['Failed vote keeps Swiggy in pure broker/facilitator mode under FEMA — cannot own a single unit of inventory, cannot offer Instamart-owned stock. Zomato, Amazon (US-listed) and Flipkart (Walmart) face the exact same structural ceiling.']
     },
     ta:{
       headline:'Swiggy இந்திய நிறுவனமாக ஏன் மாற விரும்புகிறது — FDI விதிகள் கடையளவு, விலை நிர்ணயம் தடை',
@@ -552,7 +656,7 @@ function cardHTML(n) {
     :(isOpen?'Hide':'Expand — Impact Analysis');
   const posTxt=activeLang==='ta'?'▲ சாதக தாக்கம்':'▲ Positive Impact';
   const negTxt=activeLang==='ta'?'▼ ஆபத்து / எதிர்மறை':'▼ Risk / Negative';
-  return `<article class="news-card${isOpen?' open':''} lang-${activeLang}" onclick="toggleCard(${n.id})">
+  return `<article class="news-card${isOpen?' open':''} lang-${activeLang}" id="c${n.id}" onclick="toggleCard(${n.id})">
     <div class="card-meta">
       <span class="spill ${n.pillCls}">${n.sectorLabel}</span>
       <span class="ipill ${ipCls(n.impact)}">${n.impact}</span>
@@ -617,9 +721,42 @@ function buildTicker() {
   const items=NEWS.slice().sort((a,b)=>b.id-a.id);
   const tickerItems=items.map(n=>{
     const L=activeLang==='ta'?n.ta:n.en;
-    return `<span><strong>${n.sectorLabel}:</strong> ${L.headline}</span><span class="ticker-sep">◆</span>`;
+    const preview=encodeURIComponent(L.context||L.headline);
+    return `<span class="ticker-item" onclick="showTickerPreview('${n.id}')"><strong>${n.sectorLabel}:</strong> ${L.headline}</span>`;
   });
-  document.getElementById('ticker-scroll').innerHTML=[...tickerItems,...tickerItems].join(' ');
+  document.getElementById('ticker-scroll').innerHTML=[...tickerItems,...tickerItems].join('');
+}
+
+function showTickerPreview(id){
+  // First ensure we're on 'all' view so the card is visible
+  if(activeSector!=='all'||activeCat!=='all'){
+    activeSector='all'; activeCat='all';
+    document.querySelectorAll('.sector-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.cat-header').forEach(b=>b.classList.remove('active'));
+    const el=document.getElementById('cat-all');
+    if(el) el.classList.add('active');
+    document.getElementById('sub-macro').classList.add('open');
+    document.getElementById('sub-sector').classList.add('open');
+    render();
+  }
+  // Open the card
+  openId=parseInt(id);
+  render();
+  // Scroll to it after render
+  setTimeout(()=>{
+    const card=document.getElementById('c'+id);
+    if(card){
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+      // flash highlight
+      card.style.transition='box-shadow .2s';
+      card.style.boxShadow='0 0 0 3px #e05a00, 0 4px 20px rgba(224,90,0,.3)';
+      card.style.borderRadius='6px';
+      setTimeout(()=>{
+        card.style.boxShadow='';
+        card.style.borderRadius='';
+      }, 2500);
+    }
+  }, 80);
 }
 
 function updateTime(){
@@ -631,6 +768,131 @@ function updateTime(){
 }
 
 function render(){renderStats();renderFeed();}
+
+// ── CB INSTANT ASSIST ──
+const ASSIST_QA = {
+  rbi_rate:[
+    {q:"What is India's current repo rate?",
+     a:"The repo rate stands at 5.25% after 125 bps of cumulative cuts since February 2025. The MPC held rates unchanged in April 2026 citing West Asia-driven crude and inflation risks.",
+     src:"Source: RBI MPC April 2026 statement"},
+    {q:"What does the RBI Governor's latest stance mean for interest rates?",
+     a:"Governor Malhotra has clearly shifted priority to price stability over growth support. The stance is neutral — meaning a hike or cut is equally possible. But the tone signals that any sustained inflation overshoot will be met with rate hikes, reversing the current dovish cycle.",
+     src:"Source: Governor Malhotra interview, May 2026"},
+    {q:"Which sectors face headwinds if RBI raises rates?",
+     a:"Real estate, auto loans and MSME credit face the biggest headwinds. EMI costs rise and credit growth momentum slows. Equity markets, especially mid and small-caps, may also de-rate as the rate-cut narrative breaks.",
+     src:"Source: SectorWire analysis, May 2026"},
+    {q:"Who benefits if RBI holds or raises interest rates?",
+     a:"Banks and NBFCs with floating-rate loan books see net interest margin (NIM) stabilisation or improvement. The rupee strengthens and bond market expectations anchor better, improving conditions for foreign portfolio investors in Indian debt.",
+     src:"Source: SectorWire analysis, May 2026"}
+  ],
+  rbi_div:[
+    {q:"How much dividend did RBI pay the government in FY26?",
+     a:"RBI transferred a record Rs 2,86,588 crore (approximately Rs 2.87 lakh crore) to the Central Government for FY26 — the highest ever surplus transfer by the central bank, approved at its 623rd Central Board meeting on 22 May 2026.",
+     src:"Source: RBI Central Board 623rd meeting, 22 May 2026"},
+    {q:"How does FY26 RBI dividend compare to previous years?",
+     a:"FY26: Rs 2,86,588 cr (+6.99% over FY25) | FY25: Rs 2,68,000 cr (+27.4% over FY24) | FY24: Rs 2,10,874 cr (+141% over FY23) | FY23: Rs 87,416 cr. The four-year rise is more than 3x.",
+     src:"Source: RBI Annual Reports FY23-FY26"},
+    {q:"How does RBI earn the money it pays as dividend?",
+     a:"RBI earns through four streams: (1) Forex revaluation — rupee depreciation of ~10% in FY26 inflated the rupee value of its $688bn USD reserves. (2) Foreign bond interest — on US Treasuries held as forex reserves. (3) OMO coupon income — record G-Sec purchases in FY26 earn coupon interest. (4) Forex operations — profit from USD buy-sell operations; $371bn sold in FY25 alone.",
+     src:"Source: Bank of Baroda report; RBI FY26 accounts"},
+    {q:"How does the RBI dividend help reduce fiscal deficit?",
+     a:"RBI dividend is non-tax income for the government. Every Rs 1 lakh crore received cuts the fiscal deficit by approximately 15 basis points of GDP. The Rs 2.87L cr payout cushions crude-linked subsidy costs and reduces the government's market borrowing requirement for FY27.",
+     src:"Source: EY India, Kotak Mahindra Bank economists, May 2026"},
+    {q:"Did the RBI dividend meet market expectations?",
+     a:"No. Economists had projected Rs 2.9 to Rs 3.2 lakh crore. The actual Rs 2.87L cr fell short. India's 10-year bond yield rose 3 basis points immediately after the announcement, signalling the shortfall was noticed by markets.",
+     src:"Source: Reuters economist survey; Bond market data, 22 May 2026"}
+  ],
+  solar_almm:[
+    {q:"What is ALMM List-2 and from when is it mandatory?",
+     a:"ALMM List-2 covers domestically manufactured solar PV cells and is mandatory from 1 June 2026 with no across-the-board extension. Only project-specific extensions of 2 or 4 months are considered on merit by MNRE.",
+     src:"Source: MNRE notification, May 2026"},
+    {q:"Does ALMM List-2 cover solar wafers?",
+     a:"No. ALMM List-2 covers solar PV cells only. Wafers fall under List-3, which is due only from June 2028 — and only after at least 3 Indian manufacturers with 15 GW combined capacity are operational.",
+     src:"Source: MNRE ALMM policy framework"},
+    {q:"Which solar projects must comply with ALMM List-2?",
+     a:"Compliance is mandatory for all net metering projects (rooftop solar) and open access projects without exception. Other utility-scale projects may apply for time-bound extensions of 2 or 4 months on a case-by-case basis.",
+     src:"Source: MNRE ALMM List-2 circular, 2026"},
+    {q:"Which companies benefit from ALMM List-2 enforcement?",
+     a:"Domestic cell manufacturers with ~30 GW of ALMM-listed capacity gain hard procurement preference. Key beneficiaries are Websol Energy, Premier Energies, and Vikram Solar — only cells from MNRE-enlisted manufacturers qualify for covered projects from 1 June.",
+     src:"Source: MNRE ALMM List-2; SectorWire analysis"}
+  ],
+  solar_us:[
+    {q:"What is the total US tariff on Indian solar modules?",
+     a:"The US imposed a 126% countervailing duty (CVD, Feb 2026) for alleged government subsidies plus a 123% anti-dumping duty (ADD, Apr 2026) for below-fair-value pricing. Combined burden exceeds 230%, making Indian solar exports to the US commercially unviable.",
+     src:"Source: US Commerce Department; AASMT probe"},
+    {q:"Which Indian solar companies are most affected by the US tariff?",
+     a:"Adani Solar (Mundra Solar PV and Mundra Solar Energy) and Premier Energies are named primary respondents — highest duty exposure including retroactive liability for 90 days of past shipments. Vikram Solar (~16% revenue from exports), Insolation Energy, Solex Energy, Borosil Renewables and KPI Green also saw sharp stock declines of 2-6.5%.",
+     src:"Source: US DOC preliminary determination; company disclosures"},
+    {q:"Is any Indian solar company insulated from the US tariff?",
+     a:"Waaree Energies is partially insulated. It operates a 1.6 GW manufacturing plant in the US expanding to 4.2 GW by end-2026, allowing it to fulfil US orders locally and fully bypass import duties. This US manufacturing footprint is a structural competitive advantage.",
+     src:"Source: Waaree Energies investor disclosures, 2026"},
+    {q:"What is retroactive duty and why is it a risk?",
+     a:"The US invoked the 'critical circumstances' clause, applying duties retroactively for 90 days before the preliminary ruling. Indian companies that shipped modules to the US in those 90 days face duty liability on already-delivered goods — a direct cash hit on past shipments.",
+     src:"Source: US Tariff Act; DOC critical circumstances clause"}
+  ],
+  nps:[
+    {q:"What are SLW and SUR introduced in NPS?",
+     a:"SLW is Systematic Lump Sum Withdrawal and SUR is Systematic Unit Redemption. Introduced by PFRDA in December 2025, both allow NPS subscribers to receive their retirement corpus in structured instalments — monthly, quarterly, half-yearly, or annually — instead of a single lump-sum withdrawal.",
+     src:"Source: PFRDA circular, December 2025"},
+    {q:"From what age can a subscriber use SLW or SUR?",
+     a:"SLW and SUR are applicable only from age 60 — the normal retirement or superannuation age under NPS. Withdrawals continue in structured instalments up to age 75. Early exit before 60 does not qualify.",
+     src:"Source: PFRDA NPS exit guidelines"},
+    {q:"How much of the NPS corpus is tax-free?",
+     a:"60% of the NPS corpus is fully tax-free under Section 10(12A) of the Income Tax Act. PFRDA now allows up to 80% as lump sum (annuity reduced from 40% to 20%). However, the additional 20% between 60-80% is taxable at slab rate as the Income Tax Act has not yet aligned with PFRDA's new rules.",
+     src:"Source: Section 10(12A) Income Tax Act; PFRDA Dec 2025 amendment"},
+    {q:"What is the minimum annuity requirement after the 2025 PFRDA amendment?",
+     a:"The mandatory annuity purchase has been reduced from 40% to just 20% of the NPS corpus at exit. Subscribers can now withdraw up to 80% as lump sum via SLW, SUR, or one-time withdrawal and must purchase annuity with only the remaining 20%.",
+     src:"Source: PFRDA circular, December 2025"}
+  ],
+  swiggy:[
+    {q:"What does FEMA allow foreign-funded food delivery platforms to do in India?",
+     a:"Under FEMA (Press Note 2/2018, effective Feb 2019), foreign-funded platforms are permitted ONLY to operate as a facilitator or intermediary — essentially a broker between buyers and sellers. They provide the IT platform only. They cannot own inventory, cannot influence or fix prices, cannot hold equity stakes in sellers, and cannot impose exclusivity on sellers.",
+     src:"Source: Press Note 2/2018; FEMA Non-Debt Instruments Rules 2019"},
+    {q:"Why does Swiggy want IOCC status?",
+     a:"IOCC (Indian Owned and Controlled Company) status — where resident Indians hold more than 50% beneficial ownership and control the board — would let Swiggy legally exit the broker-only model. It could then own inventory, fix prices, and run Instamart as a full inventory-based q-commerce operation, directly competing with Blinkit and Zepto.",
+     src:"Source: FEMA IOCC definition; DPIIT FDI policy"},
+    {q:"What happened at Swiggy's shareholder vote on IOCC restructuring?",
+     a:"Swiggy filed AoA amendments in May 2026 to restructure board nomination rights and qualify as IOCC. The proposal was put to a shareholder vote but failed to get the required majority. Swiggy remains classified as foreign-controlled under FEMA and is restricted to the marketplace broker-only model.",
+     src:"Source: Swiggy regulatory filing, May 2026"},
+    {q:"Does the FEMA marketplace restriction apply only to Swiggy?",
+     a:"No. The same Press Note 2/2018 marketplace-only restriction applies to all foreign-controlled e-commerce, q-commerce and food delivery platforms — including Amazon (US-listed) and Flipkart (Walmart-owned). None can legally own inventory or fix prices for goods sold on their platforms.",
+     src:"Source: Press Note 2/2018; FEMA NDI Rules 2019"}
+  ]
+};
+
+function assistTopicChange(){
+  const topic = document.getElementById('assist-topic').value;
+  const qSel = document.getElementById('assist-q');
+  document.getElementById('assist-ans').classList.remove('show');
+  if(!topic){ qSel.innerHTML='<option value="">— Select topic first —</option>'; return; }
+  const qs = ASSIST_QA[topic] || [];
+  qSel.innerHTML = '<option value="">— Select a question —</option>' +
+    qs.map((q,i) => '<option value="'+i+'">'+q.q+'</option>').join('');
+}
+
+function assistAsk(){
+  const topic = document.getElementById('assist-topic').value;
+  const qIdx = document.getElementById('assist-q').value;
+  const box = document.getElementById('assist-ans');
+  if(!topic || qIdx === ''){ box.classList.remove('show'); return; }
+  const qa = ASSIST_QA[topic][parseInt(qIdx)];
+  document.getElementById('assist-q-disp').textContent = 'Q: ' + qa.q;
+  document.getElementById('assist-a-disp').textContent = qa.a;
+  document.getElementById('assist-src').textContent = qa.src;
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
+  document.getElementById('assist-clear').style.display='inline-flex';
+}
+
+function assistClear(){
+  document.getElementById('assist-ans').classList.remove('show');
+  document.getElementById('assist-topic').value='';
+  document.getElementById('assist-q').innerHTML='<option value="">— Select topic first —</option>';
+  document.getElementById('assist-clear').style.display='none';
+  document.getElementById('assist-q-disp').textContent='';
+  document.getElementById('assist-a-disp').textContent='';
+  document.getElementById('assist-src').textContent='';
+}
 
 updateCounts();
 document.getElementById('sub-macro').classList.add('open');
