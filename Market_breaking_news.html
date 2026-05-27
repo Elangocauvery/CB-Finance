@@ -147,6 +147,10 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--
 .card-headline{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;line-height:1.3;margin-bottom:6px;color:var(--ink)}
 .lang-ta .card-headline{font-family:'Noto Sans Tamil',sans-serif;font-size:15px;line-height:1.5}
 .card-context{font-size:13px;line-height:1.6;color:#4a3a2a;margin-bottom:8px}
+.card-bullets{font-size:13px;line-height:1.6;color:#4a3a2a;margin-bottom:8px;padding-left:16px;list-style:none}
+.card-bullets li{position:relative;padding-left:14px;margin-bottom:4px}
+.card-bullets li::before{content:'▸';position:absolute;left:0;color:#c0002a;font-size:10px;top:2px}
+.lang-ta .card-bullets li{font-family:'Noto Sans Tamil',sans-serif;font-size:13px;line-height:1.7}
 .lang-ta .card-context{font-family:'Noto Sans Tamil',sans-serif;font-size:13px;line-height:1.7}
 .card-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
 .cbadge{font-size:10px;padding:2px 7px;border-radius:2px;border:1px solid;letter-spacing:.3px}
@@ -457,16 +461,16 @@ const MACRO_SECTORS = ['rbi','nps','ecomm'];
 const NEWS = [
   {
     id:10, date:'2026-05-27', sector:'coal', cat:'sector', sectorLabel:'Coal / PSU', pillCls:'pill-coal', time:'27 May 2026',
-    impact:'mixed', breaking:true, badges:['OFS — Govt Dilution','Price Discount Likely','Large Block Supply'],
+    impact:'mixed', breaking:true, badges:['Floor ₹412 — 10.1% Discount','Non-Retail: 27 May | Retail: 29 May','Size ~₹5,078 Cr + Greenshoe'],
     en:{
-      headline:'Coal India OFS — Government to Sell Stake; What It Means for Investors',
-      context:'The Government of India has launched an Offer for Sale (OFS) in Coal India Ltd, one of the largest PSU divestment exercises this year. The OFS allows the promoter (GoI) to reduce its holding and raise funds while giving retail and institutional investors a chance to buy shares at a discount to market price. Coal India holds a near-monopoly on domestic coal production and is a key dividend payer — but the OFS creates short-term supply overhang on the stock.',
+      headline:'Coal India OFS — Floor ₹412, Retail Window 29 May; What Investors Must Know',
+      context:['GoI sells up to 2% stake (base 1% + 1% greenshoe) — floor price ₹412/share, a 10.1% discount to CIL\'s 26 May close of ₹458.15. Total raise ~₹5,078 cr at full subscription.','Non-retail (institutional) bidding opens 27 May; retail investors & employees bid on 29 May. Market closed 28 May (Bakri Eid). Retail investors get an additional 5% cut on the OFS-discovered price as per SEBI OFS norms.','CIL stock fell ~7% intraday on 27 May as supply overhang hit; stock quoted ~₹436 by 9:23 am — still a ~6% premium to floor, making the floor price the key entry watch for retail on 29 May.'],
       pos:['OFS typically priced at a 5–10% discount to market — direct entry opportunity for long-term investors at a lower cost basis.','Coal India remains a cash-generating monopoly with consistent high dividends; government dilution does not change the underlying business fundamentals.','Post-OFS, any reduction in govt stake below a threshold may improve index free-float, attracting more passive institutional buying over time.'],
       neg:['Large block supply from OFS creates near-term price pressure — stock typically underperforms during the OFS window as arbitrage selling kicks in.','Market sentiment around PSU divestments is mixed; retail participation uncertainty can lead to incomplete subscription and pricing weakness.','Coal India faces a structural long-term headwind from energy transition; OFS at this juncture raises questions about the government\'s own conviction on the stock.'],
     },
     ta:{
-      headline:'Coal India OFS — அரசு பங்கு விற்பனை; முதலீட்டாளர்களுக்கு என்ன அர்த்தம்?',
-      context:'இந்திய அரசு Coal India-ல் OFS மூலம் பங்கு விற்பனை நடத்துகிறது — இந்த ஆண்டின் முக்கிய PSU திட்டங்களில் ஒன்று. சந்தை விலையில் தள்ளுபடியில் பங்குகள் கிடைக்கும்.',
+      headline:'Coal India OFS — ஃப்ளோர் ₹412, சில்லறை சாளரம் 29 மே; முதலீட்டாளர்கள் அறிய வேண்டியது',
+      context:['அரசு 2% பங்கு விற்பனை (1% அடிப்படை + 1% கிரீன்ஷூ) — ஃப்ளோர் விலை ₹412/பங்கு, 26 மே முடிவு விலை ₹458.15-க்கு 10.1% தள்ளுபடி. முழு சந்தா இருந்தால் ~₹5,078 கோடி திரட்டல்.','நிறுவன முதலீட்டாளர்கள் 27 மே ஏலம் துவக்குவர்; சில்லறை முதலீட்டாளர்கள் & ஊழியர்கள் 29 மேயில் ஏலம் இடலாம். 28 மே சந்தை விடுமுறை (பக்ரீத்). SEBI விதிகளின்படி சில்லறை முதலீட்டாளர்களுக்கு OFS கண்டுபிடிக்கப்பட்ட விலையில் கூடுதல் 5% தள்ளுபடி.','CIL பங்கு 27 மேயில் ~7% கீழ் விழுந்தது — ஃப்ளோர் விலைக்கு இன்னும் ~6% பிரீமியம் உள்ளது; 29 மே சில்லறை சாளரத்தில் ஃப்ளோர் விலையே முக்கிய கவனிப்பு புள்ளி.'],
       pos:['OFS பொதுவாக 5-10% தள்ளுபடியில் — நீண்ட கால முதலீட்டாளர்களுக்கு நேரடி வாய்ப்பு.','Coal India ஒரு பணம் ஈட்டும் ஏகபோக நிறுவனம்; அரசு பங்கு குறைப்பு அடிப்படை வியாபாரத்தை மாற்றாது.'],
       neg:['OFS பெரிய பங்கு வழங்கல் — OFS சாளரத்தில் குறுகிய கால விலை அழுத்தம்.','PSU திட்டங்களில் சந்தை உணர்வு கலந்தது; சரியான விலை நிர்ணயம் கேள்விக்குறி.']
     },
@@ -480,13 +484,13 @@ const NEWS = [
     impact:'mixed', breaking:true, badges:['Central Bank OFS','Govt Stake Sale','Banking Sector Watch'],
     en:{
       headline:'Central Bank of India OFS — Recent PSU Bank Stake Sale by Government',
-      context:'The Government recently conducted an Offer for Sale (OFS) in Central Bank of India, continuing its strategy of reducing PSU bank stakes to meet SEBI minimum public shareholding norms and raise fiscal resources. Central Bank of India has undergone significant turnaround in recent years — moving out of PCA (Prompt Corrective Action) framework — making this OFS a strategic window for investors looking at mid-tier PSU banking plays. The OFS price discount provides an entry point but with execution risks.',
+      context:['GoI conducted an OFS in Central Bank of India to meet SEBI minimum public shareholding (MPS) norms and raise fiscal receipts — part of FY27 disinvestment programme.','Central Bank exited RBI\'s Prompt Corrective Action (PCA) framework — balance sheet cleaned up, credit costs normalising, NIM recovering — making this OFS a post-turnaround entry window.','OFS floor price offered a discount to market; institutional appetite for mid-tier PSU banks remains selective — retail window provides direct access at below-market cost.'],
       pos:['Central Bank has exited RBI\'s Prompt Corrective Action framework — balance sheet cleaned up, credit costs normalising, earnings recovery underway.','OFS discount to market price offers an attractive entry for investors wanting PSU banking exposure at below-market cost.','Government dilution improves free-float; potential for re-rating if bank sustains NIM and asset quality improvements post-OFS.'],
       neg:['Mid-tier PSU banks trade at a discount to peers for structural reasons — capital efficiency, digital gap, and legacy loan book concerns persist.','Short-term supply overhang from OFS weighs on price; institutional appetite for smaller PSU banks remains selective.','Any macro deterioration in credit quality (MSME / agri NPAs) could re-pressure the bank\'s asset quality gains.'],
     },
     ta:{
       headline:'Central Bank of India OFS — அரசு PSU வங்கி பங்கு விற்பனை',
-      context:'அரசு SEBI குறைந்தபட்ச பொது பங்குதாரி விதிகளுக்கு இணங்க மற்றும் நிதி திரட்ட Central Bank of India-ல் OFS நடத்தியது. வங்கி PCA கட்டமைப்பிலிருந்து வெளியேறியுள்ளது — முதலீட்டாளர்களுக்கு கவனிக்க வேண்டிய நுழைவு புள்ளி.',
+      context:['அரசு SEBI குறைந்தபட்ச பொது பங்குதாரி விதிகளுக்கு இணங்க மற்றும் FY27 திட்ட வருவாய்க்காக Central Bank of India-ல் OFS நடத்தியது.','வங்கி PCA கட்டமைப்பிலிருந்து வெளியேறியது — இருப்பு தாள் சுத்தம், கடன் செலவுகள் இயல்பாதல், NIM மீட்சி — கட்டமைப்பு மாற்றத்திற்கு பிறகான நுழைவு சாளரம்.','OFS ஃப்ளோர் விலை சந்தையை விட தள்ளுபடியில் — நடுத்தர PSU வங்கிகளில் நிறுவன ஆர்வம் தேர்ந்தெடுக்கப்பட்டது; சில்லறை சாளரம் நேரடி அணுகலை வழங்குகிறது.'],
       pos:['Central Bank PCA-விலிருந்து வெளியேறியது — இருப்புநிலை சரிப்படுத்தல், கடன் செலவுகள் இயல்பாகி வருகின்றன.','OFS தள்ளுபடி PSU வங்கி வெளிப்பாட்டுக்கான கவர்ச்சிகரமான நுழைவை வழங்குகிறது.'],
       neg:['நடுத்தர PSU வங்கிகள் கட்டமைப்பு காரணங்களுக்காக தள்ளுபடியில் வர்த்தகம் செய்கின்றன.','OFS வழங்கல் அழுத்தம் குறுகிய காலத்தில் விலையை பாதிக்கும்.']
     },
@@ -500,13 +504,13 @@ const NEWS = [
     impact:'positive', breaking:true, badges:['NTPC Green Hypergrowth','Bidding Route','Parent NTPC Capped'],
     en:{
       headline:'NTPC Green Energy: Why Its Growth Story Dwarfs Parent NTPC — The Bidding Advantage',
-      context:'NTPC (the parent) is a regulated utility — its revenues and returns are determined by CERC (Central Electricity Regulatory Commission) through fixed tariffs. Growth in NTPC\'s earnings depends almost entirely on three levers: capacity additions (new thermal or hydro plants), Plant Load Factor (PLF) improvement (running existing plants harder), or incentives for exceeding PLF norms. All three levers are slow, capital-heavy, and capped by regulation. NTPC Green Energy, its renewable arm, operates on an entirely different model — it bids competitively for solar, wind, and hybrid projects through SECI/NTMN auctions and power purchase agreements. There is no regulatory ceiling on the tariff it can win or the capacity it can build. With India\'s RE targets requiring 500 GW by 2030, NTPC Green is aggressively ramping capacity through the bidding route — and the growth trajectory over the next 3–5 years is expected to be multiples of the parent.',
+      context:['NTPC (parent) is a regulated utility — revenue capped by CERC tariffs. Growth depends on just three slow levers: capacity additions, PLF improvement, or above-norm PLF incentives. All three are capital-heavy and regulatorily bounded.','NTPC Green operates on a completely different model — it bids competitively via SECI/NTMN auctions for solar, wind, and hybrid PPAs. No CERC ceiling. Every project won directly adds revenue with no tariff review delay.','With India\'s 500 GW RE target by 2030 and NTPC Green\'s AAA-rated parent giving it the lowest cost of capital among RE developers, its capacity ramp over the next 3–5 years is expected to be multiples of the parent\'s growth rate.'],
       pos:['No regulatory ceiling — NTPC Green wins projects through competitive bids; every new PPA directly adds to revenue without CERC tariff review delays.','India needs 500 GW renewable capacity by 2030 — NTPC Green is among the largest public-sector RE developers with a massive project pipeline and government backing.','NTPC Green benefits from NTPC\'s AAA-rated balance sheet for cheap debt funding — lower cost of capital than private peers, enabling aggressive capacity bids.','Unlike thermal NTPC (which faces PLF ceilings and fuel cost risk), renewable assets have near-zero marginal fuel cost — EBITDA margins structurally higher once capacity is built.'],
       neg:['Aggressive bidding in auctions compresses tariffs — race to the bottom on solar bids risks thin margins if module costs rise or interest rates stay high.','Large capex requirement for rapid capacity ramp-up pressures near-term cash flows and may require frequent equity raises or borrowings.','Execution risk — land acquisition, grid connectivity delays, and inter-state transmission constraints have historically delayed renewable project commissioning in India.','NTPC Green\'s listed entity valuation is still being discovered; parent NTPC\'s regulated earnings provide stability but the green arm must prove standalone earnings quality.'],
     },
     ta:{
       headline:'NTPC Green Energy: தாய் NTPC-ஐ விட வளர்ச்சி கதை ஏன் பெரியது — ஏலம் வழி நன்மை',
-      context:'NTPC (தாய் நிறுவனம்) ஒரு ஒழுங்குமுறை பயன்பாடு — வருவாய் மற்றும் வருமானம் CERC-ஆல் நிர்ணயிக்கப்படுகிறது. வளர்ச்சி திறன் சேர்க்கை, PLF மேம்பாடு அல்லது PLF ஊக்கத்தொகையை மட்டுமே சார்ந்துள்ளது. NTPC Green ஆனது SECI/NTMN ஏலங்கள் மூலம் போட்டியிட்டு திட்டங்களை வென்றெடுக்கிறது — ஒழுங்குமுறை உச்சவரம்பு இல்லை.',
+      context:['NTPC (தாய்) ஒழுங்குமுறை பயன்பாடு — CERC வரி மூலம் வருவாய் நிர்ணயம். மூன்று மெதுவான அலைவுகள் மட்டுமே: திறன் சேர்க்கை, PLF மேம்பாடு, PLF ஊக்கத்தொகை.','NTPC Green SECI/NTMN ஏலங்கள் மூலம் போட்டியிடுகிறது — ஒழுங்குமுறை உச்சவரம்பு இல்லை. ஒவ்வொரு திட்டமும் நேரடியாக வருவாயை சேர்க்கிறது.','2030-ல் 500 GW RE இலக்கு + NTPC-ன் AAA மதிப்பீடு குறைந்த மூலதன செலவை தருகிறது — NTPC Green-ன் 3–5 ஆண்டு வளர்ச்சி தாய் நிறுவனத்தை விட பல மடங்கு அதிகமாக இருக்கும்.'],
       pos:['ஒழுங்குமுறை உச்சவரம்பு இல்லை — ஒவ்வொரு புதிய PPA நேரடியாக வருவாயை சேர்க்கிறது.','இந்தியாவுக்கு 2030-ல் 500 GW தேவை — NTPC Green மிகப்பெரிய அரசுத்துறை RE டெவலப்பர்.','NTPC AAA-மதிப்பீட்டு இருப்பு தாளால் மலிவான கடன் நிதி — தனியார் சக நிறுவனங்களை விட குறைந்த மூலதன செலவு.'],
       neg:['ஏல போட்டி விலைகளை குறைக்கிறது — மாடியூல் செலவுகள் உயர்ந்தால் இலாப வரம்பு ஆபத்தில்.','விரைவான திறன் உருவாக்கத்திற்கு பெரிய மூலதன செலவு — அடிக்கடி பங்கு திரட்டல் தேவை.']
     },
@@ -521,13 +525,13 @@ const NEWS = [
     impact:'positive', breaking:true, badges:['Strong Q4 Demand','Physical > Investment','Capacity Expansion B2B'],
     en:{
       headline:'Shanthi Gears Gold (40 Shanthi) — Q4 Outperformance on Physical Gold Demand Surge Despite Price Rise',
-      context:'Shanthi Gold (40 Shanthi) has reported strong Q4 FY26 performance, defying the conventional assumption that gold demand falls when prices rise. The key insight: physical gold demand — driven by weddings, gifting, and cultural buying — has proven far more inelastic than investment gold demand. Even as gold prices scaled record highs, physical jewellery buying remained robust, indicating that the demand for physical gold is driven by occasion and sentiment, not price rationale. As a B2B gold company primarily supplying to jewellers and manufacturers rather than direct retail, Shanthi operates upstream in the value chain — benefiting from the volume uplift without the retail margin compression. The company is now expanding capacity to meet the sustained demand pipeline from its B2B customer base.',
+      context:['Physical gold demand — weddings, gifting, cultural buying — proved far more inelastic than investment gold demand. Even at record prices, ceremonial buying continued strongly; investment buyers defer, physical buyers don\'t.','Shanthi operates as a B2B gold company — supplying refined gold and products to jewellers and manufacturers, not directly to end consumers. It captures volume; its clients absorb price risk.','Strong Q4 performance prompted a capacity expansion decision — B2B clients typically give advance order commitments, providing revenue visibility to justify capex.'],
       pos:['Physical gold demand inelasticity proves the business model resilience — ceremonial/gifting demand does not switch off at high prices, unlike investment gold buyers who wait for corrections.','B2B model insulates from retail competition; Shanthi supplies to jewellers and manufacturers who pass price to end consumers — Shanthi captures volume, not price risk.','Capacity expansion in progress — signals management confidence in sustained demand pipeline; B2B clients often provide advance commitments, providing revenue visibility.','Gold at record highs improves the value of Shanthi\'s own inventory and work-in-progress — balance sheet benefit alongside earnings growth.'],
       neg:['Physical demand is highly seasonal — post-wedding season, Q1 FY27 may see normalisation; sustained high prices could eventually suppress discretionary purchases.','Expansion capex requires funding — higher gold prices inflate working capital needs significantly; debt levels need monitoring.','B2B model concentrates risk on a few large jeweller clients — any slowdown in tier-2/3 jewellery market or a large client\'s inventory buildup can dent volumes quickly.','Gold price correction risk: if global gold corrects sharply, inventory held at peak prices can create write-down pressure.'],
     },
     ta:{
       headline:'Shanthi Gold (40 Shanthi) — விலை உயர்வு இருந்தும் உடல் தங்கம் தேவையில் Q4 வலிமையான செயல்திறன்',
-      context:'Shanthi Gold Q4 FY26-ல் வலிமையான செயல்திறன் வெளிப்படுத்தியது — தங்க விலை உயரும்போது தேவை குறையும் என்ற வழக்கமான அனுமானத்தை மறுக்கிறது. திருமணம், பரிசு, கலாச்சார வாங்கல் ஆகியவற்றால் இயக்கப்படும் உடல் தங்க தேவை மிகவும் நெகிழாத தன்மை கொண்டது. B2B நிறுவனமாக, நேரடி சில்லறை விற்பனை நிறுவனங்கள் மற்றும் உற்பத்தியாளர்களுக்கு விநியோகிக்கும் Shanthi மதிப்பு சங்கிலியில் மேல்நிலையில் செயல்படுகிறது.',
+      context:['உடல் தங்க தேவை — திருமணம், பரிசு, கலாச்சார வாங்கல் — முதலீட்டு தங்கத்தை விட மிகவும் நெகிழாதது. சடங்கு வாங்கல் உயர் விலையிலும் தொடர்ந்தது.','Shanthi ஒரு B2B தங்க நிறுவனம் — நேரடி சில்லறை விற்பனை அல்ல. நகை நிறுவனங்களுக்கும் உற்பத்தியாளர்களுக்கும் விநியோகிக்கிறது. அளவை பெறுகிறது; விலை ஆபத்தை வாடிக்கையாளர்கள் ஏற்கிறார்கள்.','வலிமையான Q4 செயல்திறன் திறன் விரிவாக்க முடிவை தூண்டியது — B2B வாடிக்கையாளர்கள் முன்கூட்டிய ஆர்டர் உறுதிமொழிகள் தருகிறார்கள், மூலதன செலவுக்கு வருவாய் தெரிவுநிலை வழங்குகிறது.'],
       pos:['உடல் தங்க தேவை நெகிழாத தன்மை — சடங்கு/பரிசு தேவை உயர் விலையிலும் குறையவில்லை.','B2B மாதிரி சில்லறை போட்டியிலிருந்து பாதுகாக்கிறது; Shanthi அளவை கைப்பற்றுகிறது, விலை ஆபத்தை அல்ல.','திறன் விரிவாக்கம் நடந்துவருகிறது — நிர்வாக நம்பிக்கையை சமிக்ஞை செய்கிறது; B2B வாடிக்கையாளர்கள் முன்கூட்டிய உறுதிமொழிகளை வழங்குகிறார்கள்.'],
       neg:['உடல் தேவை அதிக பருவகாலத்தன்மை கொண்டது — திருமண பருவத்திற்கு பிறகு Q1 FY27 இயல்பாக்கம் ஏற்படலாம்.','விரிவாக்க மூலதன செலவுக்கு நிதியுதவி தேவை — உயர் தங்க விலைகள் செயல்பாட்டு மூலதன தேவைகளை பெரிதும் அதிகரிக்கின்றன.']
     },
@@ -541,7 +545,7 @@ const NEWS = [
     impact:'positive', badges:['₹2.87L Cr FY26 Record','+6.99% vs FY25','Fiscal Deficit Cushion'],
     en:{
       headline:'RBI Pays Record ₹2.87 Lakh Crore Dividend to Govt — How It Earns & Why It Matters',
-      context:'RBI Central Board (22 May 2026) approved a record surplus of ₹2,86,588 cr to Centre for FY26 — up 6.99% over FY25’s ₹2.68L cr. Gross income surged 26.42% to ₹3.95L cr; balance sheet grew 20.61% to ₹91.97L cr. Fell short of market’s ₹2.9–3.2L cr expectation but still a massive fiscal windfall. Govt had budgeted ₹3.16L cr combined from RBI + PSU banks.',
+      context:['RBI Central Board (22 May 2026) approved ₹2,86,588 cr surplus to Centre for FY26 — up 6.99% over FY25. Gross income surged 26.42% to ₹3.95L cr; balance sheet grew 20.61% to ₹91.97L cr.','Payout missed market expectation of ₹2.9–3.2L cr — 10Y bond yield rose 3 bps post-announcement; borrowing programme stays intact. RBI doubled Contingent Risk Buffer to ₹1.09L cr, capping future headroom.','Every ₹1L cr RBI dividend cuts fiscal deficit by ~15 bps of GDP. Gold now 16.7% of forex reserves (vs 5.9% in FY21) — adds annual revaluation income diversifying RBI earnings.'],
       pos:['Every ₹1L cr in RBI dividend cuts fiscal deficit by ~15 bps of GDP — this ₹2.87L cr provides direct cushion against crude-linked subsidy costs and reduces government borrowing need for FY27.','Gold share in forex reserves rose to 16.7% (from 5.9% in FY21) — adds a revaluation income layer beyond USD assets, making RBI earnings more diversified each year.'],
       neg:['Payout missed market expectation of ₹2.9–3.2L cr — 10-year bond yield rose 3 bps post-announcement; full fiscal comfort not achieved, borrowing programme intact.','RBI doubled its Contingent Risk Buffer to ₹1.09L cr (₹44,862 cr in FY25) — higher self-insurance limits future dividend headroom if income growth slows.'],
       table:[
@@ -559,7 +563,7 @@ const NEWS = [
     },
     ta:{
       headline:'RBI ₹2.87 லட்சம் கோடி இலாபம் அரசுக்கு — எப்படி சம்பாதிக்கிறது, ஏன் முக்கியம்',
-      context:'RBI மத்திய மண்டளம் (22 மே 2026) FY26க்காக ₹2,86,588 கோடி இட்டுள்ளது — FY25 ₹2.68L கோடியை விட 6.99% அதிகம். மொத்த வருமானம் 26.42% உயர்ந்து ₹3.95L கோடியானது; இருப்பு தாள் 20.61% விரிவு பெற்று ₹91.97L கோடி ஆனது.',
+      context:['RBI மத்திய மண்டளம் (22 மே 2026) FY26க்காக ₹2,86,588 கோடி இட்டுள்ளது — FY25-ஐ விட 6.99% அதிகம். மொத்த வருமானம் 26.42% உயர்ந்து ₹3.95L கோடி; இருப்பு தாள் ₹91.97L கோடி.','சந்தை எதிர்பார்ப்பை ₹2.9–3.2L கோடி தவறவிட்டது — 10 ஆண்டு பத்திர விகிதம் 3 bps உயர்ந்தது. Contingent Risk Buffer ₹1.09L கோடியாக இரட்டிப்பு — எதிர்கால இலாப இடைவெளியை கட்டுப்படுத்துகிறது.','ஒவ்வொரு ₹1L கோடி இலாபமும் GDP-யில் ~15 bps நிதிப்பட்டை குறைக்கும். தங்க பங்கு இப்போது 16.7% (FY21-ல் 5.9%) — ஆண்டுதோறும் மறுமதிப்பீடு வருமானம் சேர்க்கிறது.'],
       pos:['ஒவ்வோரு ₹1L கோடி இலாபம் GDPயில் ~15 bps நிதிப் பட்டையை குறைக்கிறது — இது கடன் தேவையை குறைப்பதுடன் மேற்கு ஆசிய எரிபொருள் கிரிமி அழுத்தத்திலிருந்து ரக்ஷிக்கிறது.'],
       neg:['சந்தை எதிர்பார்ப்பு ₹2.9–3.2L கோடியை விட குறைவ் — அறிவிப்பு பிறகு 10 ஆண்டு பத்திர விகிதம் 3 bps உயர்ந்தது; கடன் தேவை தொடர்கிறது.'],
       table:[
@@ -582,13 +586,13 @@ const NEWS = [
     impact:'negative', badges:['CVD 126% + ADD 123%','230%+ Combined','Retroactive 90 Days'],
     en:{
       headline:'US Slaps 230%+ Tariff on Indian Solar — Exports Dead',
-      context:'US hit Indian solar modules with 126% subsidy duty (Feb) + 123% anti-dumping duty (Apr) — combined 230%+, making exports commercially unviable. Retroactive duties cover 90 days of past shipments. Final ruling due Jul 2026.',
+      context:['US imposed 126% CVD (Feb 2026) + 123% ADD (Apr 2026) on Indian solar modules — combined burden 230%+, making Indian exports to the US commercially unviable.','Critical-circumstances clause invoked: duties apply retroactively for 90 days of past shipments — Adani Solar and Premier Energies face maximum duty + retroactive cash liability. Final ruling due Jul 2026.','Waaree Energies is insulated — its 1.6 GW US factory (expanding to 4.2 GW by end-2026) fulfils US orders locally, fully bypassing import duties.'],
       pos:['Waaree insulated — 1.6 GW US factory bypasses duties; domestic market absorbs diverted supply at better pricing.'],
       neg:['Adani Solar & Premier Energies named primary respondents — maximum duty + retroactive risk. Vikram Solar, Insolation, Solex, Borosil all hit.']
     },
     ta:{
       headline:'அமெரிக்கா 230%+ வரி விதிப்பு — இந்திய சோலார் ஏற்றுமதி நிறுத்தம்',
-      context:'அமெரிக்கா இந்திய சோலார் தொகுதிகளுக்கு 126% மானிய வரி (பிப்) + 123% டம்பிங் எதிர்ப்பு வரி (ஏப்) — மொத்தம் 230%+, ஏற்றுமதி வணிக ரீதியாக சாத்தியமற்றது. கடந்த 90 நாள் சரக்குகளுக்கும் பூர்வாங்க வரி. இறுதி தீர்ப்பு ஜூலை 2026.',
+      context:['அமெரிக்கா 126% CVD (பிப் 2026) + 123% ADD (ஏப் 2026) விதித்தது — மொத்தம் 230%+, இந்திய ஏற்றுமதி வணிக ரீதியாக சாத்தியமற்றது.','90 நாள் பூர்வாங்க வரி: Adani Solar, Premier Energies அதிகபட்ச பொறுப்பு + கடந்த கால கப்பல் பொருட்களுக்கும் வரி. இறுதி தீர்ப்பு ஜூலை 2026.','வாரி 1.6 GW அமெரிக்க ஆலை (2026 இறுதியில் 4.2 GW) மூலம் இறக்குமதி வரியை முழுமையாக தவிர்க்கிறது — கட்டமைப்பு போட்டி நன்மை.'],
       pos:['வாரி இன்சுலேட்டட் — 1.6 GW அமெரிக்க ஆலை வரியைத் தவிர்க்கிறது; திருப்பிவிடப்பட்ட சரக்கு உள்நாட்டு சந்தையில் சிறந்த விலையில் விற்கப்படும்.'],
       neg:['அதானி சோலார் & பிரீமியர் எனர்ஜீஸ் நேரடி குற்றவாளிகள் — அதிகபட்ச வரி + பூர்வாங்க ஆபத்து. விக்ரம், இன்சோலேஷன், சோலெக்ஸ், போரோசில் பாதிக்கப்பட்டன.']
     },
@@ -605,13 +609,13 @@ const NEWS = [
     impact:'mixed', badges:['Cells Only — Not Wafers','No Blanket Extension','Net Metering Must Comply'],
     en:{
       headline:'ALMM List-2 (Cells) Mandatory from 1 June 2026 — No Blanket Extension',
-      context:'MNRE enforces ALMM List-2 for solar PV cells from 1 June 2026 — no across-the-board deferral. Only project-specific 2/4-month extensions considered on merit. Net metering and open access projects must comply. Wafers (List-3) are a separate mandate from June 2028.',
+      context:['MNRE enforces ALMM List-2 (solar PV cells) from 1 June 2026 — no blanket extension. Only project-specific 2 or 4-month deferrals considered on merit by MNRE.','Net metering and open access projects must comply without exception. Developers using imported cells risk rejection of net-metering and subsidy claims from 1 June.','Wafers fall under ALMM List-3 — separate mandate from June 2028, and only after 3 Indian manufacturers with 15 GW combined capacity are operational. Today only cells are impacted.'],
       pos:['Domestic cell makers (Websol, Premier, Vikram) get hard procurement preference — ~30 GW ALMM-listed capacity now enforceable.'],
       neg:['Developers using imported cells face rejection of net-metering and subsidy claims from 1 June — act now or lose revenue.']
     },
     ta:{
       headline:'ALMM பட்டியல்-2 (செல்கள்) ஜூன் 1, 2026 முதல் கட்டாயம் — ஒட்டுமொத்த நீட்டிப்பு இல்லை',
-      context:'MNRE சோலார் PV செல்களுக்கு ALMM பட்டியல்-2ஐ ஜூன் 1, 2026 முதல் அமல்படுத்துகிறது — பொது ஒத்திவைப்பு இல்லை. திட்டம்-சார்ந்த 2/4 மாத நீட்டிப்பு மட்டுமே. நெட் மீட்டரிங் & திறந்த அணுகல் திட்டங்கள் இணங்க வேண்டும்.',
+      context:['MNRE ALMM பட்டியல்-2 (சோலார் PV செல்கள்) ஜூன் 1, 2026 முதல் கட்டாயம் — ஒட்டுமொத்த நீட்டிப்பு இல்லை. திட்டம்-சார்ந்த 2/4 மாத ஒத்திவைப்பு மட்டுமே MNRE பரிசீலிக்கும்.','நெட் மீட்டரிங் & திறந்த அணுகல் திட்டங்கள் விதிவிலக்கின்றி இணங்க வேண்டும். இறக்குமதி செல்களைப் பயன்படுத்திய டெவலப்பர்கள் ஜூன் 1 முதல் நெட் மீட்டரிங் & மானிய கோரிக்கை நிராகரிப்பை எதிர்கொள்வர்.','வேஃபர்கள் ALMM பட்டியல்-3 — ஜூன் 2028 முதல் மட்டுமே, குறைந்தது 3 இந்திய உற்பத்தியாளர்கள் 15 GW திறனுடன் இயங்கிய பிறகு. இன்று செல்கள் மட்டுமே பாதிக்கப்படுகின்றன.'],
       pos:['உள்நாட்டு செல் உற்பத்தியாளர்கள் (Websol, Premier, Vikram) கட்டாய கொள்முதல் முன்னுரிமை பெறுவர் — ~30 GW பட்டியலிடப்பட்ட திறன் இப்போது செயல்படுத்தத்தக்கது.'],
       neg:['இறக்குமதி செல்களைப் பயன்படுத்திய டெவலப்பர்கள் ஜூன் 1 முதல் நெட் மீட்டரிங் & மானிய கோரிக்கைகளில் நிராகரிப்பை எதிர்கொள்வர் — இப்போதே நடவடிக்கை எடுக்கவும்.']
     },
@@ -622,13 +626,13 @@ const NEWS = [
     impact:'mixed', badges:['FEMA Press Note 2','No Inventory / No Price Control','Swiggy Vote Failed'],
     en:{
       headline:'Why Swiggy Wants Indian Status — FDI Rules Ban Foreign Cos from Inventory & Pricing',
-      context:'Under FEMA (Press Note 2/2018), foreign-funded platforms are allowed ONLY as a facilitator/intermediary between buyer and seller — the pure broker role. They CANNOT own inventory, influence prices, hold equity in sellers, or force exclusivity. Swiggy, being foreign-controlled (Prosus, SoftBank), is therefore locked to this marketplace-only model. IOCC status (>50% Indian ownership + board control) would unlock inventory-led q-commerce. Swiggy’s shareholder vote to restructure for IOCC failed; it remains a pure broker under FEMA today.',
+      context:['Under FEMA Press Note 2/2018, foreign-controlled platforms (Swiggy, Amazon, Flipkart) can ONLY act as a pure broker/facilitator — they cannot own inventory, fix prices, hold equity in sellers, or impose exclusivity.','IOCC status (>50% Indian ownership + board control) would unlock inventory-led q-commerce for Swiggy — letting it own stock, fix prices, and compete head-on with Blinkit and Zepto on Instamart.','Swiggy filed AoA amendments in May 2026 to qualify as IOCC — shareholder vote failed to pass. Swiggy remains foreign-controlled, locked in broker-only mode under FEMA.'],
       pos:['IOCC status (>50% Indian ownership + board control) would let Swiggy legally exit the broker-only role and run inventory-led Instamart — competing head-on with Blinkit & Zepto on pricing, depth and exclusives.'],
       neg:['Failed vote keeps Swiggy in pure broker/facilitator mode under FEMA — cannot own a single unit of inventory, cannot offer Instamart-owned stock. Zomato, Amazon (US-listed) and Flipkart (Walmart) face the exact same structural ceiling.']
     },
     ta:{
       headline:'Swiggy இந்திய நிறுவனமாக ஏன் மாற விரும்புகிறது — FDI விதிகள் கடையளவு, விலை நிர்ணயம் தடை',
-      context:'FEMA/DPIIT விதிகளின்படி, வெளிநாட்டு-கட்டுப்படுத்தப்பட்ட ஈ-காமர்ஸ், க்யூ-காமர்ஸ் & உணவு டெலிவரி நிறுவனங்கள் சரக்கு வைத்திருக்க, விலை நிர்ணயிக்க அல்லது தரகர்களாக செயல்பட முடியாது. IOCC நிலை (>50% இந்திய உரிமை) சரக்கு மாதிரிகளை திறக்கும். Swiggy-யின் பங்குதாரர் வாக்கெடுப்பு தோல்வியுற்றது.',
+      context:['FEMA Press Note 2/2018 படி, வெளிநாட்டு-கட்டுப்படுத்தப்பட்ட நிறுவனங்கள் (Swiggy, Amazon, Flipkart) சுத்தமான தரகராக மட்டுமே செயல்படலாம் — சரக்கு, விலை நிர்ணயம், விற்பனையாளர் பங்கு, விலக்கு அனைத்தும் தடை.','IOCC நிலை (>50% இந்திய உரிமை + மண்டல கட்டுப்பாடு) சரக்கு-அடிப்படையிலான q-commerce திறக்கும் — Blinkit & Zepto-உடன் நேரடி போட்டி.','Swiggy மே 2026-ல் AoA திருத்தங்கள் தாக்கல் செய்தது — பங்குதாரர் வாக்கெடுப்பு தோல்வியுற்றது. வெளிநாட்டு-கட்டுப்படுத்தப்பட்ட நிலை தொடர்கிறது; FEMA கட்டுப்பாடுகள் நீடிக்கின்றன.'],
       pos:['IOCC நிலை Swiggy-க்கு சரக்கு-அடிப்படையிலான Instamart நடத்த உதவும் — Blinkit & Zepto-உடன் விலை கட்டுப்பாட்டுடன் நேரடி போட்டி.'],
       neg:['தோல்வியுற்ற வாக்கெடுப்பு Swiggy-ஐ சந்தை மட்டத்தில் மட்டும் பூட்டி வைக்கிறது; Prosus, SoftBank தாக்கம் தொடர்கிறது. Zomato, Amazon, Flipkart-க்கும் இதே கட்டுப்பாடு.']
     },
@@ -643,13 +647,13 @@ const NEWS = [
     impact:'positive', badges:['From Age 60 Only','60% Tax-Free','Annuity Now Just 20%'],
     en:{
       headline:'NPS Gets SLW & SUR — Phased Drawdown from Age 60, 60% Tax-Free',
-      context:'PFRDA (Dec 2025) lets subscribers draw the lump sum corpus in instalments from age 60 — monthly/quarterly/half-yearly/annually up to age 75, automated with one instruction. Annuity slashed from 40% to 20%. First 60% of corpus is fully tax-free (Sec 10(12A)); the extra 20% PFRDA now permits carries slab-rate tax — Income Tax Act not yet aligned.',
+      context:['PFRDA (Dec 2025) introduced SLW and SUR — subscribers can draw their corpus in structured instalments (monthly/quarterly/half-yearly/annually) from age 60, automated with one instruction, up to age 75.','Mandatory annuity purchase slashed from 40% to just 20% — subscribers can now withdraw up to 80% as lump sum or instalments.','First 60% of corpus is fully tax-free under Sec 10(12A). The extra 20% PFRDA now permits is taxable at slab rate — Income Tax Act not yet aligned with PFRDA rules; law-policy mismatch unresolved.'],
       pos:['No forced lump-sum at 60 — corpus stays invested in NPS earning returns; new tax regime subscribers can absorb taxable 20% at near-zero cost.'],
       neg:['Extra 20% withdrawal is taxable at slab rate — law-policy mismatch unresolved. Market risk persists on uninvested corpus during drawdown phase.']
     },
     ta:{
       headline:'NPS-க்கு SLW & SUR — 60 வயதிலிருந்து கட்டமைக்கப்பட்ட திரும்பப்பெறுதல், 60% வரி இல்லை',
-      context:'PFRDA (டிச. 2025) 60 வயதில் இருந்து மாதாந்திர/காலாண்டு/அரை-வருடாந்திர/ஆண்டுதோறும் ஒரு வழிமுறையில் தொகையை எடுக்க அனுமதிக்கிறது — 75 வயது வரை தானியங்கி. ஆண்டுவருமானம் 40% இலிருந்து 20% ஆக குறைக்கப்பட்டது. 60% தொகை முழுமையாக வரி இல்லாதது (பிரிவு 10(12A)); கூடுதல் 20% சம்பளத்தின் தட்டில் வரி விதிக்கப்படும்.',
+      context:['PFRDA (டிச. 2025) SLW & SUR அறிமுகம் — 60 வயதிலிருந்து 75 வரை மாதாந்திர/காலாண்டு/அரை-வருடாந்திர/ஆண்டுதோறும் தவணை திரும்பப்பெறல், ஒரே வழிமுறையில் தானியங்கி.','கட்டாய வாடகை வருமானம் 40% இலிருந்து 20% ஆக குறைக்கப்பட்டது — சந்தாதாரர்கள் இப்போது 80% வரை மொத்தமாக அல்லது தவணையில் எடுக்கலாம்.','60% தொகை பிரிவு 10(12A) படி முழுமையாக வரி இல்லாதது. PFRDA அனுமதிக்கும் கூடுதல் 20% சம்பளத்தின் தட்டில் வரி — சட்ட-கொள்கை பொருத்தமின்மை தீர்க்கப்படவில்லை.'],
       pos:['60 வயதில் கட்டாய ஒரே தொகை இல்லை — NPS-ல் முதலீடு தொடரும்; புதிய வரி முறை பயனர்கள் 20% வரியை குறைந்த விலையில் ஈடுசெய்யலாம்.'],
       neg:['கூடுதல் 20% திரும்பப்பெறுதல் சம்பளத் தட்டு வரிக்கு உட்பட்டது — சட்ட-கொள்கை பொருத்தமின்மை தீர்க்கப்படவில்லை. திரும்பப்பெறும் காலத்தில் சந்தை ஆபத்து நீடிக்கிறது.']
     },
@@ -660,13 +664,13 @@ const NEWS = [
     impact:'mixed', badges:['Neutral Stance','Rate Hike Risk Live','Inflation 4.6% FY27'],
     en:{
       headline:'RBI Governor: Inflation First, Growth Second — Rate Hike Back on Table',
-      context:'Governor Malhotra signals a clear shift: price stability over growth support. After 125 bps of cuts to 5.25%, MPC held in Apr 2026 citing West Asia crude risks. Stance is neutral — up or down both live — but tone warns: sustained inflation will mean rate hikes, reversing the dovish cycle.',
+      context:['RBI Governor Malhotra signals a clear priority shift: price stability over growth support. After 125 bps of cumulative cuts to repo rate of 5.25%, MPC held in April 2026 citing West Asia crude-driven inflation risks.','Stance is neutral — a hike or cut is equally possible. But tone is hawkish: any sustained inflation overshoot will mean rate hikes, reversing the current dovish cycle. FY27 inflation projected at 4.6%.','Banks and NBFCs with floating-rate books benefit if rates hold or rise (NIM support). Real estate, auto loans, and MSME credit face headwinds; equity markets may de-rate if the rate-cut narrative breaks.'],
       pos:['Rupee and bond markets stabilise; banks & NBFCs with floating-rate books see NIM support if rates hold or rise.'],
       neg:['Real estate, auto loans, MSME credit face headwinds if hikes come; equity markets may de-rate as rate-cut cycle narrative breaks.']
     },
     ta:{
       headline:'RBI கவர்னர்: பணவீக்கம் முதல், வளர்ச்சி இரண்டாம் — வட்டி உயர்வு மீண்டும் சாத்தியம்',
-      context:'கவர்னர் மல்ஹோத்ரா தெளிவான மாற்றம் சமிக்ஞை செய்கிறார்: வளர்ச்சி ஆதரவை விட விலை நிலைத்தன்மை. 125 bps குறைப்புக்குப் பிறகு 5.25%-க்கு, MPC ஏப்ரல் 2026-ல் மேற்கு ஆசிய கச்சா ஆபத்தை மேற்கோள் காட்டி நடுநிலையில் நின்றது. கட்டமைப்பு நடுநிலை — மேலோ கீழோ இரண்டும் சாத்தியம் — ஆனால் தொடர்ந்த பணவீக்கம் வட்டி உயர்வை தூண்டும்.',
+      context:['RBI கவர்னர் மல்ஹோத்ரா தெளிவான முன்னுரிமை மாற்றம்: வளர்ச்சி ஆதரவை விட விலை நிலைத்தன்மை. 125 bps குறைப்புக்குப் பிறகு ரெப்போ 5.25%, MPC ஏப்ரல் 2026-ல் மேற்கு ஆசிய எரிப்பொருள் அபாயத்தால் நடுநிலையில் நின்றது.','நடுநிலை நிலை — வட்டி உயர்வு அல்லது குறைப்பு இரண்டும் சாத்தியம். ஆனால் தொனி கடுமையானது: தொடர்ந்த பணவீக்கம் வட்டி உயர்வை தூண்டும். FY27 பணவீக்கம் 4.6% கணிப்பு.','மிதக்கும்-வட்டி புத்தகங்கள் உள்ள வங்கிகள் & NBFC-கள் NIM ஆதரவு பெறும். ரியல் எஸ்டேட், வாகன கடன்கள், MSME கடன்கள் தலைவலி எதிர்கொள்ளும்; வட்டி குறைப்பு கதை முறிந்தால் பங்குச் சந்தை மதிப்பிழக்கும்.'],
       pos:['ரூபாய் மற்றும் பத்திர சந்தைகள் நிலைப்படும்; மிதக்கும்-வட்டி புத்தகங்கள் உள்ள வங்கிகள் & NBFC-கள் NIM ஆதரவு பெறும்.'],
       neg:['ரியல் எஸ்டேட், வாகன கடன்கள், MSME கடன்கள் தலைவலி எதிர்கொள்ளும்; வட்டி குறைப்பு கதை முறிந்தால் பங்குச் சந்தை மதிப்பிழக்கும்.']
     },
@@ -795,7 +799,10 @@ function cardHTML(n) {
       <span class="card-time">${n.time}</span>
     </div>
     <h2 class="card-headline">${L.headline}</h2>
-    <p class="card-context">${L.context}</p>
+    ${Array.isArray(L.context)
+      ? `<ul class="card-bullets">${L.context.map(b=>`<li>${b}</li>`).join('')}</ul>`
+      : `<p class="card-context">${L.context}</p>`
+    }
     <div class="card-badges">${n.badges.map(b=>`<span class="cbadge ${bc}">${b}</span>`).join('')}</div>
     <div class="expand-hint"><span class="chevron">▾</span>&nbsp;${expandTxt}</div>
     <div class="impact-panel">
