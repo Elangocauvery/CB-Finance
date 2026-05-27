@@ -61,7 +61,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--
 .ticker-row{display:flex;align-items:center;width:100%;height:34px;overflow:hidden}
 .ticker-label{background:var(--ticker-dark);padding:0 16px;height:100%;display:flex;align-items:center;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;color:var(--ticker-text);border-right:1px solid var(--ticker-bg)}
 .ticker-track{overflow:hidden;flex:1;position:relative;height:34px}
-.ticker-scroll{display:flex;gap:0;white-space:nowrap;animation:scrolltick 35s linear infinite;font-size:12px;font-weight:500;line-height:34px;padding:0;color:var(--ticker-text)}
+.ticker-scroll{display:flex;gap:0;white-space:nowrap;animation:scrolltick 18s linear infinite;font-size:12px;font-weight:500;line-height:34px;padding:0;color:var(--ticker-text)}
 .ticker-scroll:hover{animation-play-state:paused}
 @keyframes scrolltick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ticker-item{padding:0 18px;cursor:pointer;border-right:1px solid rgba(255,200,150,.2);transition:background .15s;display:inline-flex;align-items:center;height:34px}
@@ -208,10 +208,24 @@ footer span{color:#ffe0c0}
 .earn-src{font-weight:600;color:var(--ink);font-size:11px;padding-top:1px}
 .earn-detail{color:#4a3a2a;line-height:1.5}
 
+/* ── BREAKING NEWS PIN ── */
+.breaking-pin-bar{background:linear-gradient(90deg,#b00020 0%,#8a0018 100%);color:#fff;display:flex;align-items:center;gap:10px;padding:7px 18px;margin-bottom:0;border-radius:5px 5px 0 0;border:2px solid #c0002a;border-bottom:none}
+.breaking-pin-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:#fff;color:#b00020;padding:2px 8px;border-radius:2px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;animation:blink-red 1.4s step-start infinite}
+@keyframes blink-red{0%,100%{opacity:1}50%{opacity:.45}}
+.breaking-pin-title{font-size:11px;font-weight:600;color:#ffe8ee;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.breaking-section{margin-bottom:24px}
+.breaking-section .news-feed-group{border:2px solid #c0002a;border-top:none;border-radius:0 0 6px 6px;background:rgba(176,0,32,.018);padding:0 12px}
+.breaking-section .news-card{border-bottom:1px solid rgba(192,0,42,.18);border-left:none}
+.breaking-section .news-card:first-child{border-top:none}
+.breaking-section .news-card:last-child{border-bottom:none}
+.breaking-section .news-card:hover{margin:0;padding-left:0;padding-right:0;border-radius:0}
+.pill-ofs{background:#fff0f3;color:#8a001a}
+.pill-coal{background:#f0ece4;color:#3a2800}
+.pill-shanthi{background:#fff8e1;color:#5d4037}
+.tag-ofs-bg{background:#fff0f3}.tag-ofs{color:#8a001a}
+.tag-coal-bg{background:#f0ece4}.tag-coal{color:#3a2800}
+
 /* ── CB INSTANT ASSIST ── */
-.assist-bar{background:linear-gradient(135deg,#1a2a3a 0%,#0d3c6e 100%);border-bottom:3px solid #e05a00;padding:0}
-.assist-inner{max-width:1200px;margin:0 auto;padding:10px 28px}
-.assist-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .assist-icon{width:28px;height:28px;background:#e05a00;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .assist-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.3px}
 .assist-sub{font-size:11px;color:#7db8e8;font-family:'IBM Plex Mono',monospace;margin-left:2px}
@@ -310,9 +324,9 @@ footer span{color:#ffe0c0}
         </div>
       </div>
       <div class="edition-bar">
-        <span class="ebl">Macro:</span><span class="ebs">RBI &nbsp;·&nbsp; NPS &nbsp;·&nbsp; FDI / Regulations</span>
+        <span class="ebl">Macro:</span><span class="ebs">RBI &nbsp;·&nbsp; NPS &nbsp;·&nbsp; FDI / Regulations &nbsp;·&nbsp; PSU OFS</span>
         &nbsp;&nbsp;
-        <span class="ebl">Sectors:</span><span class="ebs">Solar &nbsp;·&nbsp; Gold &nbsp;·&nbsp; Power &nbsp;·&nbsp; 2-Wheelers &nbsp;·&nbsp; PV &nbsp;·&nbsp; Spare Parts &nbsp;·&nbsp; Cement &nbsp;·&nbsp; EMS</span>
+        <span class="ebl">Sectors:</span><span class="ebs">Solar &nbsp;·&nbsp; Gold &nbsp;·&nbsp; Power / NTPC Green &nbsp;·&nbsp; Coal &nbsp;·&nbsp; 2-Wheelers &nbsp;·&nbsp; PV &nbsp;·&nbsp; Spare Parts &nbsp;·&nbsp; Cement &nbsp;·&nbsp; EMS</span>
       </div>
     </div>
   </div>
@@ -345,6 +359,9 @@ footer span{color:#ffe0c0}
           <option value="solar_us">Solar — US Tariff</option>
           <option value="nps">NPS — SLW &amp; SUR</option>
           <option value="swiggy">Swiggy &amp; FEMA Rules</option>
+          <option value="coal_ofs">Coal India OFS</option>
+          <option value="ntpc_green">NTPC Green Energy</option>
+          <option value="shanthi_gold">Shanthi Gold Q4</option>
         </select>
       </div>
       <div class="assist-q-wrap">
@@ -397,6 +414,7 @@ footer span{color:#ffe0c0}
           <button class="sector-btn" data-s="spare" onclick="setSector('spare');event.stopPropagation()">Spare Parts <span class="scount" id="sc-spare">0</span></button>
           <button class="sector-btn" data-s="cement" onclick="setSector('cement');event.stopPropagation()">Cement <span class="scount" id="sc-cement">0</span></button>
           <button class="sector-btn" data-s="ems" onclick="setSector('ems');event.stopPropagation()">EMS <span class="scount" id="sc-ems">0</span></button>
+          <button class="sector-btn" data-s="coal" onclick="setSector('coal');event.stopPropagation()">Coal / PSU <span class="scount" id="sc-coal">0</span></button>
         </div>
       </div>
     </div>
@@ -437,6 +455,87 @@ const MACRO_SECTORS = ['rbi','nps','ecomm'];
 
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
+  {
+    id:10, date:'2026-05-27', sector:'coal', cat:'sector', sectorLabel:'Coal / PSU', pillCls:'pill-coal', time:'27 May 2026',
+    impact:'mixed', breaking:true, badges:['OFS — Govt Dilution','Price Discount Likely','Large Block Supply'],
+    en:{
+      headline:'Coal India OFS — Government to Sell Stake; What It Means for Investors',
+      context:'The Government of India has launched an Offer for Sale (OFS) in Coal India Ltd, one of the largest PSU divestment exercises this year. The OFS allows the promoter (GoI) to reduce its holding and raise funds while giving retail and institutional investors a chance to buy shares at a discount to market price. Coal India holds a near-monopoly on domestic coal production and is a key dividend payer — but the OFS creates short-term supply overhang on the stock.',
+      pos:['OFS typically priced at a 5–10% discount to market — direct entry opportunity for long-term investors at a lower cost basis.','Coal India remains a cash-generating monopoly with consistent high dividends; government dilution does not change the underlying business fundamentals.','Post-OFS, any reduction in govt stake below a threshold may improve index free-float, attracting more passive institutional buying over time.'],
+      neg:['Large block supply from OFS creates near-term price pressure — stock typically underperforms during the OFS window as arbitrage selling kicks in.','Market sentiment around PSU divestments is mixed; retail participation uncertainty can lead to incomplete subscription and pricing weakness.','Coal India faces a structural long-term headwind from energy transition; OFS at this juncture raises questions about the government\'s own conviction on the stock.'],
+    },
+    ta:{
+      headline:'Coal India OFS — அரசு பங்கு விற்பனை; முதலீட்டாளர்களுக்கு என்ன அர்த்தம்?',
+      context:'இந்திய அரசு Coal India-ல் OFS மூலம் பங்கு விற்பனை நடத்துகிறது — இந்த ஆண்டின் முக்கிய PSU திட்டங்களில் ஒன்று. சந்தை விலையில் தள்ளுபடியில் பங்குகள் கிடைக்கும்.',
+      pos:['OFS பொதுவாக 5-10% தள்ளுபடியில் — நீண்ட கால முதலீட்டாளர்களுக்கு நேரடி வாய்ப்பு.','Coal India ஒரு பணம் ஈட்டும் ஏகபோக நிறுவனம்; அரசு பங்கு குறைப்பு அடிப்படை வியாபாரத்தை மாற்றாது.'],
+      neg:['OFS பெரிய பங்கு வழங்கல் — OFS சாளரத்தில் குறுகிய கால விலை அழுத்தம்.','PSU திட்டங்களில் சந்தை உணர்வு கலந்தது; சரியான விலை நிர்ணயம் கேள்விக்குறி.']
+    },
+    companies:[
+      {name:'Coal India Ltd',status:'OFS Issuer',cls:'cobadge-partial'},
+      {name:'Government of India (Promoter)',status:'Seller',cls:'cobadge-partial'}
+    ]
+  },
+  {
+    id:9, date:'2026-05-27', sector:'rbi', cat:'macro', sectorLabel:'Banking / PSU', pillCls:'pill-rbi', time:'27 May 2026',
+    impact:'mixed', breaking:true, badges:['Central Bank OFS','Govt Stake Sale','Banking Sector Watch'],
+    en:{
+      headline:'Central Bank of India OFS — Recent PSU Bank Stake Sale by Government',
+      context:'The Government recently conducted an Offer for Sale (OFS) in Central Bank of India, continuing its strategy of reducing PSU bank stakes to meet SEBI minimum public shareholding norms and raise fiscal resources. Central Bank of India has undergone significant turnaround in recent years — moving out of PCA (Prompt Corrective Action) framework — making this OFS a strategic window for investors looking at mid-tier PSU banking plays. The OFS price discount provides an entry point but with execution risks.',
+      pos:['Central Bank has exited RBI\'s Prompt Corrective Action framework — balance sheet cleaned up, credit costs normalising, earnings recovery underway.','OFS discount to market price offers an attractive entry for investors wanting PSU banking exposure at below-market cost.','Government dilution improves free-float; potential for re-rating if bank sustains NIM and asset quality improvements post-OFS.'],
+      neg:['Mid-tier PSU banks trade at a discount to peers for structural reasons — capital efficiency, digital gap, and legacy loan book concerns persist.','Short-term supply overhang from OFS weighs on price; institutional appetite for smaller PSU banks remains selective.','Any macro deterioration in credit quality (MSME / agri NPAs) could re-pressure the bank\'s asset quality gains.'],
+    },
+    ta:{
+      headline:'Central Bank of India OFS — அரசு PSU வங்கி பங்கு விற்பனை',
+      context:'அரசு SEBI குறைந்தபட்ச பொது பங்குதாரி விதிகளுக்கு இணங்க மற்றும் நிதி திரட்ட Central Bank of India-ல் OFS நடத்தியது. வங்கி PCA கட்டமைப்பிலிருந்து வெளியேறியுள்ளது — முதலீட்டாளர்களுக்கு கவனிக்க வேண்டிய நுழைவு புள்ளி.',
+      pos:['Central Bank PCA-விலிருந்து வெளியேறியது — இருப்புநிலை சரிப்படுத்தல், கடன் செலவுகள் இயல்பாகி வருகின்றன.','OFS தள்ளுபடி PSU வங்கி வெளிப்பாட்டுக்கான கவர்ச்சிகரமான நுழைவை வழங்குகிறது.'],
+      neg:['நடுத்தர PSU வங்கிகள் கட்டமைப்பு காரணங்களுக்காக தள்ளுபடியில் வர்த்தகம் செய்கின்றன.','OFS வழங்கல் அழுத்தம் குறுகிய காலத்தில் விலையை பாதிக்கும்.']
+    },
+    companies:[
+      {name:'Central Bank of India',status:'OFS Issuer',cls:'cobadge-partial'},
+      {name:'Government of India (Promoter)',status:'Seller / Diluting',cls:'cobadge-partial'}
+    ]
+  },
+  {
+    id:8, date:'2026-05-27', sector:'power', cat:'sector', sectorLabel:'Power / Renewables', pillCls:'pill-power', time:'27 May 2026',
+    impact:'positive', breaking:true, badges:['NTPC Green Hypergrowth','Bidding Route','Parent NTPC Capped'],
+    en:{
+      headline:'NTPC Green Energy: Why Its Growth Story Dwarfs Parent NTPC — The Bidding Advantage',
+      context:'NTPC (the parent) is a regulated utility — its revenues and returns are determined by CERC (Central Electricity Regulatory Commission) through fixed tariffs. Growth in NTPC\'s earnings depends almost entirely on three levers: capacity additions (new thermal or hydro plants), Plant Load Factor (PLF) improvement (running existing plants harder), or incentives for exceeding PLF norms. All three levers are slow, capital-heavy, and capped by regulation. NTPC Green Energy, its renewable arm, operates on an entirely different model — it bids competitively for solar, wind, and hybrid projects through SECI/NTMN auctions and power purchase agreements. There is no regulatory ceiling on the tariff it can win or the capacity it can build. With India\'s RE targets requiring 500 GW by 2030, NTPC Green is aggressively ramping capacity through the bidding route — and the growth trajectory over the next 3–5 years is expected to be multiples of the parent.',
+      pos:['No regulatory ceiling — NTPC Green wins projects through competitive bids; every new PPA directly adds to revenue without CERC tariff review delays.','India needs 500 GW renewable capacity by 2030 — NTPC Green is among the largest public-sector RE developers with a massive project pipeline and government backing.','NTPC Green benefits from NTPC\'s AAA-rated balance sheet for cheap debt funding — lower cost of capital than private peers, enabling aggressive capacity bids.','Unlike thermal NTPC (which faces PLF ceilings and fuel cost risk), renewable assets have near-zero marginal fuel cost — EBITDA margins structurally higher once capacity is built.'],
+      neg:['Aggressive bidding in auctions compresses tariffs — race to the bottom on solar bids risks thin margins if module costs rise or interest rates stay high.','Large capex requirement for rapid capacity ramp-up pressures near-term cash flows and may require frequent equity raises or borrowings.','Execution risk — land acquisition, grid connectivity delays, and inter-state transmission constraints have historically delayed renewable project commissioning in India.','NTPC Green\'s listed entity valuation is still being discovered; parent NTPC\'s regulated earnings provide stability but the green arm must prove standalone earnings quality.'],
+    },
+    ta:{
+      headline:'NTPC Green Energy: தாய் NTPC-ஐ விட வளர்ச்சி கதை ஏன் பெரியது — ஏலம் வழி நன்மை',
+      context:'NTPC (தாய் நிறுவனம்) ஒரு ஒழுங்குமுறை பயன்பாடு — வருவாய் மற்றும் வருமானம் CERC-ஆல் நிர்ணயிக்கப்படுகிறது. வளர்ச்சி திறன் சேர்க்கை, PLF மேம்பாடு அல்லது PLF ஊக்கத்தொகையை மட்டுமே சார்ந்துள்ளது. NTPC Green ஆனது SECI/NTMN ஏலங்கள் மூலம் போட்டியிட்டு திட்டங்களை வென்றெடுக்கிறது — ஒழுங்குமுறை உச்சவரம்பு இல்லை.',
+      pos:['ஒழுங்குமுறை உச்சவரம்பு இல்லை — ஒவ்வொரு புதிய PPA நேரடியாக வருவாயை சேர்க்கிறது.','இந்தியாவுக்கு 2030-ல் 500 GW தேவை — NTPC Green மிகப்பெரிய அரசுத்துறை RE டெவலப்பர்.','NTPC AAA-மதிப்பீட்டு இருப்பு தாளால் மலிவான கடன் நிதி — தனியார் சக நிறுவனங்களை விட குறைந்த மூலதன செலவு.'],
+      neg:['ஏல போட்டி விலைகளை குறைக்கிறது — மாடியூல் செலவுகள் உயர்ந்தால் இலாப வரம்பு ஆபத்தில்.','விரைவான திறன் உருவாக்கத்திற்கு பெரிய மூலதன செலவு — அடிக்கடி பங்கு திரட்டல் தேவை.']
+    },
+    companies:[
+      {name:'NTPC Green Energy Ltd',status:'High Growth — Bidding Model',cls:'cobadge-ok'},
+      {name:'NTPC Ltd (Parent)',status:'Regulated — Slower Growth',cls:'cobadge-partial'},
+      {name:'SECI / RE Auction Pipeline',status:'Key Growth Driver',cls:'cobadge-ok'}
+    ]
+  },
+  {
+    id:7, date:'2026-05-27', sector:'gold', cat:'sector', sectorLabel:'Gold / Jewellery', pillCls:'pill-gold', time:'27 May 2026',
+    impact:'positive', breaking:true, badges:['Strong Q4 Demand','Physical > Investment','Capacity Expansion B2B'],
+    en:{
+      headline:'Shanthi Gears Gold (40 Shanthi) — Q4 Outperformance on Physical Gold Demand Surge Despite Price Rise',
+      context:'Shanthi Gold (40 Shanthi) has reported strong Q4 FY26 performance, defying the conventional assumption that gold demand falls when prices rise. The key insight: physical gold demand — driven by weddings, gifting, and cultural buying — has proven far more inelastic than investment gold demand. Even as gold prices scaled record highs, physical jewellery buying remained robust, indicating that the demand for physical gold is driven by occasion and sentiment, not price rationale. As a B2B gold company primarily supplying to jewellers and manufacturers rather than direct retail, Shanthi operates upstream in the value chain — benefiting from the volume uplift without the retail margin compression. The company is now expanding capacity to meet the sustained demand pipeline from its B2B customer base.',
+      pos:['Physical gold demand inelasticity proves the business model resilience — ceremonial/gifting demand does not switch off at high prices, unlike investment gold buyers who wait for corrections.','B2B model insulates from retail competition; Shanthi supplies to jewellers and manufacturers who pass price to end consumers — Shanthi captures volume, not price risk.','Capacity expansion in progress — signals management confidence in sustained demand pipeline; B2B clients often provide advance commitments, providing revenue visibility.','Gold at record highs improves the value of Shanthi\'s own inventory and work-in-progress — balance sheet benefit alongside earnings growth.'],
+      neg:['Physical demand is highly seasonal — post-wedding season, Q1 FY27 may see normalisation; sustained high prices could eventually suppress discretionary purchases.','Expansion capex requires funding — higher gold prices inflate working capital needs significantly; debt levels need monitoring.','B2B model concentrates risk on a few large jeweller clients — any slowdown in tier-2/3 jewellery market or a large client\'s inventory buildup can dent volumes quickly.','Gold price correction risk: if global gold corrects sharply, inventory held at peak prices can create write-down pressure.'],
+    },
+    ta:{
+      headline:'Shanthi Gold (40 Shanthi) — விலை உயர்வு இருந்தும் உடல் தங்கம் தேவையில் Q4 வலிமையான செயல்திறன்',
+      context:'Shanthi Gold Q4 FY26-ல் வலிமையான செயல்திறன் வெளிப்படுத்தியது — தங்க விலை உயரும்போது தேவை குறையும் என்ற வழக்கமான அனுமானத்தை மறுக்கிறது. திருமணம், பரிசு, கலாச்சார வாங்கல் ஆகியவற்றால் இயக்கப்படும் உடல் தங்க தேவை மிகவும் நெகிழாத தன்மை கொண்டது. B2B நிறுவனமாக, நேரடி சில்லறை விற்பனை நிறுவனங்கள் மற்றும் உற்பத்தியாளர்களுக்கு விநியோகிக்கும் Shanthi மதிப்பு சங்கிலியில் மேல்நிலையில் செயல்படுகிறது.',
+      pos:['உடல் தங்க தேவை நெகிழாத தன்மை — சடங்கு/பரிசு தேவை உயர் விலையிலும் குறையவில்லை.','B2B மாதிரி சில்லறை போட்டியிலிருந்து பாதுகாக்கிறது; Shanthi அளவை கைப்பற்றுகிறது, விலை ஆபத்தை அல்ல.','திறன் விரிவாக்கம் நடந்துவருகிறது — நிர்வாக நம்பிக்கையை சமிக்ஞை செய்கிறது; B2B வாடிக்கையாளர்கள் முன்கூட்டிய உறுதிமொழிகளை வழங்குகிறார்கள்.'],
+      neg:['உடல் தேவை அதிக பருவகாலத்தன்மை கொண்டது — திருமண பருவத்திற்கு பிறகு Q1 FY27 இயல்பாக்கம் ஏற்படலாம்.','விரிவாக்க மூலதன செலவுக்கு நிதியுதவி தேவை — உயர் தங்க விலைகள் செயல்பாட்டு மூலதன தேவைகளை பெரிதும் அதிகரிக்கின்றன.']
+    },
+    companies:[
+      {name:'Shanthi Gold (40 Shanthi)',status:'Strong Q4 — Expanding',cls:'cobadge-ok'},
+      {name:'B2B Jeweller / Mfr. Clients',status:'Demand Source',cls:'cobadge-ok'}
+    ]
+  },
   {
     id:6, date:'2026-05-22', sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'22 May 2026',
     impact:'positive', badges:['₹2.87L Cr FY26 Record','+6.99% vs FY25','Fiscal Deficit Cushion'],
@@ -605,7 +704,7 @@ function updateCounts() {
   document.getElementById('cnt-all').textContent = NEWS.length;
   document.getElementById('cnt-macro').textContent = NEWS.filter(n=>n.cat==='macro').length;
   document.getElementById('cnt-sector').textContent = NEWS.filter(n=>n.cat==='sector').length;
-  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems'].forEach(s=>{
+  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal'].forEach(s=>{
     const el=document.getElementById('sc-'+s);
     if(el) el.textContent=NEWS.filter(n=>n.sector===s).length;
   });
@@ -689,7 +788,7 @@ function cardHTML(n) {
     :(isOpen?'Hide':'Expand — Impact Analysis');
   const posTxt=activeLang==='ta'?'▲ சாதக தாக்கம்':'▲ Positive Impact';
   const negTxt=activeLang==='ta'?'▼ ஆபத்து / எதிர்மறை':'▼ Risk / Negative';
-  return `<article class="news-card${isOpen?' open':''} lang-${activeLang}" id="c${n.id}" onclick="toggleCard(${n.id})">
+  return `<article class="news-card${isOpen?' open':''}${n.breaking?' breaking-card':''} lang-${activeLang}" id="c${n.id}" onclick="toggleCard(${n.id})">
     <div class="card-meta">
       <span class="spill ${n.pillCls}">${n.sectorLabel}</span>
       <span class="ipill ${ipCls(n.impact)}">${n.impact}</span>
@@ -721,7 +820,7 @@ function renderFeed() {
   };
   let titleStr=titleMap[activeCat]||'All Breaking News';
   if(activeSector!=='all'){
-    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS'};
+    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS',coal:'Coal / PSU'};
     titleStr=(lm[activeSector]||activeSector)+(isTA?' — செய்திகள்':' — Breaking News');
   }
   document.getElementById('feed-title').textContent=titleStr;
@@ -749,8 +848,16 @@ function renderFeed() {
       html+=`<div class="news-feed-group">${grp.map(n=>cardHTML(n)).join('')}</div>`;
     });
   } else if(showDividers){
-    const macroItems=items.filter(n=>n.cat==='macro');
-    const sectorItems=items.filter(n=>n.cat==='sector');
+    const breakingItems=items.filter(n=>n.breaking);
+    const macroItems=items.filter(n=>n.cat==='macro'&&!n.breaking);
+    const sectorItems=items.filter(n=>n.cat==='sector'&&!n.breaking);
+    if(breakingItems.length){
+      const breakingLabel=isTA?'🔴 உடனடி செய்திகள்':'🔴 Breaking News';
+      html+=`<div class="breaking-section">`;
+      html+=`<div class="breaking-pin-bar"><span class="breaking-pin-label">BREAKING</span><span class="breaking-pin-title">${breakingItems.length} ${isTA?'புதிய செய்திகள் — இப்போதே படிக்கவும்':'new stories — pinned to top'}</span></div>`;
+      html+=`<div class="news-feed-group">${breakingItems.map(n=>cardHTML(n)).join('')}</div>`;
+      html+=`</div>`;
+    }
     if(sectorItems.length){
       html+=`<div class="cat-divider"><span class="cat-divider-pill cat-sector-pill">${isTA?'தொழில் துறைகள்':'Industry Sectors'}</span><div class="cat-divider-rule"></div><span class="cat-divider-sub">${sectorItems.length} ${isTA?'செய்திகள்':'stories'}</span></div>`;
       html+=`<div class="news-feed-group">${sectorItems.map(n=>cardHTML(n)).join('')}</div>`;
@@ -760,7 +867,17 @@ function renderFeed() {
       html+=`<div class="news-feed-group">${macroItems.map(n=>cardHTML(n)).join('')}</div>`;
     }
   } else {
-    html=`<div class="news-feed-group">${items.map(n=>cardHTML(n)).join('')}</div>`;
+    const breakingItems=items.filter(n=>n.breaking);
+    const restItems=items.filter(n=>!n.breaking);
+    if(breakingItems.length){
+      html+=`<div class="breaking-section">`;
+      html+=`<div class="breaking-pin-bar"><span class="breaking-pin-label">BREAKING</span><span class="breaking-pin-title">${breakingItems.length} ${isTA?'புதிய செய்திகள் — இப்போதே படிக்கவும்':'new stories — pinned to top'}</span></div>`;
+      html+=`<div class="news-feed-group">${breakingItems.map(n=>cardHTML(n)).join('')}</div>`;
+      html+=`</div>`;
+    }
+    if(restItems.length){
+      html+=`<div class="news-feed-group">${restItems.map(n=>cardHTML(n)).join('')}</div>`;
+    }
   }
   document.getElementById('news-feed').innerHTML=html;
 }
@@ -917,6 +1034,39 @@ const ASSIST_QA = {
     {q:"Does the FEMA marketplace restriction apply only to Swiggy?",
      a:"No. The same Press Note 2/2018 marketplace-only restriction applies to all foreign-controlled e-commerce, q-commerce and food delivery platforms — including Amazon (US-listed) and Flipkart (Walmart-owned). None can legally own inventory or fix prices for goods sold on their platforms.",
      src:"Source: Press Note 2/2018; FEMA NDI Rules 2019"}
+  ],
+  coal_ofs:[
+    {q:"What is the Coal India OFS and how does it work?",
+     a:"The Government of India is conducting an Offer for Sale (OFS) in Coal India Ltd, allowing the promoter (GoI) to reduce its stake and raise fiscal resources. In an OFS, existing shares are sold on the stock exchange at a floor price (typically 5-10% discount to market). Retail investors get an additional discount of 5%. The OFS does not raise money for Coal India itself — it is purely a promoter sell-down.",
+     src:"Source: SEBI OFS framework; Coal India OFS announcement"},
+    {q:"What are the risks of buying Coal India in the OFS?",
+     a:"Key risks: (1) Short-term price pressure — large supply overhang during OFS window; (2) Long-term structural headwind from energy transition away from coal; (3) Government dividend policy — Coal India has historically paid high dividends partly due to government pressure, which can reduce retained earnings for growth.",
+     src:"Source: SectorWire analysis, May 2026"},
+    {q:"Why is Coal India still important despite the energy transition?",
+     a:"Coal remains India's dominant power source — thermal coal accounts for ~70% of India's electricity generation. India's coal demand is expected to stay elevated through 2035 at least due to industrial needs and base-load power requirements. Coal India as a near-monopoly domestic producer benefits from captive demand. The OFS does not change this fundamental position.",
+     src:"Source: IEA India Energy Outlook; Coal India investor materials"}
+  ],
+  ntpc_green:[
+    {q:"Why is NTPC Green's growth faster than NTPC's?",
+     a:"NTPC (parent) is a regulated utility — revenue and returns are fixed by CERC tariffs. Growth depends on slow levers: capacity additions, PLF improvements, or incentive tariffs. NTPC Green operates as a competitive renewable energy developer — it bids for solar, wind, and hybrid projects through SECI auctions. There is no regulatory ceiling on capacity it can build or tariffs it can win. With India's 500 GW RE target by 2030, NTPC Green's growth runway is multiple times larger than the parent.",
+     src:"Source: CERC tariff framework; NTPC Green investor documents; SectorWire analysis"},
+    {q:"What is the bidding route for renewable energy in India?",
+     a:"SECI (Solar Energy Corporation of India) and NTPC conduct competitive auctions for solar, wind, and hybrid projects. Developers bid the lowest tariff at which they are willing to supply power under a Power Purchase Agreement (PPA). The lowest bidder wins and enters a long-term PPA (25 years typically) with the offtaker. NTPC Green uses this route aggressively — there is no CERC review delay or tariff cap as in regulated thermal generation.",
+     src:"Source: SECI auction guidelines; CERC vs merchant power framework"},
+    {q:"What financial advantage does NTPC Green have over private RE peers?",
+     a:"NTPC carries a AAA credit rating — the highest in India — which means it can raise debt at the lowest possible interest rate. NTPC Green inherits this advantage: lower cost of capital allows it to bid more aggressively in RE auctions while maintaining project viability. Private peers (Adani Green, Torrent Power) face higher borrowing costs, creating a structural bidding advantage for NTPC Green.",
+     src:"Source: NTPC annual report; CRISIL rating reports; SectorWire analysis"}
+  ],
+  shanthi_gold:[
+    {q:"Why did Shanthi Gold report strong Q4 despite high gold prices?",
+     a:"Physical gold demand — driven by weddings, festivals, and gifting — proved far more inelastic than investment gold demand. Even at record gold prices, ceremonial and cultural buying continued strongly. This is structurally different from investment buyers who defer purchases during price spikes. Shanthi's B2B model (supplying to jewellers/manufacturers) meant it captured volume uplift without direct retail margin pressure.",
+     src:"Source: Shanthi Gold Q4 FY26 earnings; SectorWire analysis"},
+    {q:"What is Shanthi Gold's B2B business model?",
+     a:"Shanthi Gold operates upstream in the gold value chain — it supplies refined gold, gold products, and related materials to jewellers, manufacturers, and institutional buyers rather than selling directly to end consumers. This B2B model means: (1) Shanthi captures volume, not retail margin; (2) end-consumer price risk passes to its clients; (3) it builds sticky long-term relationships with jeweller clients who provide advance order visibility.",
+     src:"Source: Shanthi Gold company disclosures; SectorWire analysis"},
+    {q:"Why is Shanthi expanding capacity now?",
+     a:"Management is responding to a sustained demand pipeline from its B2B clients. B2B customers in the jewellery sector often give advance order commitments — this provides Shanthi with revenue visibility to justify capex. The expansion also positions Shanthi to capture a larger share of the physically-driven gold demand cycle, which continues to show resilience even at elevated price levels.",
+     src:"Source: Shanthi Gold management commentary; SectorWire analysis"}
   ]
 };
 
