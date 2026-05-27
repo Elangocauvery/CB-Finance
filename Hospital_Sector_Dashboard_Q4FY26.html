@@ -37,13 +37,13 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 .chip{padding:4px 11px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
 .chip-apollo{background:var(--apollo);color:#fff;}.chip-nh{background:var(--nh);color:#fff;}.chip-max{background:var(--max);color:#fff;}
 .chip-rainbow{background:var(--rainbow);color:#fff;}.chip-medanta{background:var(--medanta);color:#fff;}.chip-fortis{background:var(--fortis);color:#fff;}
-.chip-date{background:rgba(255,255,255,.08);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.12);}
+.chip-jupiter{background:var(--jupiter);color:#fff;}.chip-yatharth{background:var(--yatharth);color:#fff;}.chip-kims{background:var(--krishna);color:#fff;}.chip-date{background:rgba(255,255,255,.08);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.12);}
 .tab-nav{background:var(--surface);border-bottom:2px solid var(--border);display:flex;align-items:center;padding:0 40px;overflow-x:auto;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(24,21,17,.06);}
 .tab-nav::-webkit-scrollbar{height:0;}
 .tab-btn{padding:14px 15px 12px;font-size:12px;font-weight:600;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;letter-spacing:.02em;transition:color .18s,border-color .18s;margin-bottom:-2px;}
 .tab-btn:hover{color:var(--text);}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--apollo);font-weight:700;}
-.main{padding:26px 40px 72px;max-width:1460px;margin:0 auto;isolation:isolate;}
+.main{padding:26px 40px 60px;max-width:1460px;margin:0 auto;isolation:isolate;}
 .panel{display:none;animation:fadeIn .2s ease;position:relative;z-index:1;}
 .panel.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
@@ -143,10 +143,45 @@ td.tb{font-weight:700;}
 .debt-bar{height:10px;border-radius:20px;}
 
 /* ── CB WATERMARK BADGE (every tab, fixed bottom-right) ── */
-.cb-wm{position:fixed;bottom:38px;right:20px;z-index:9999;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);border:1.5px solid var(--border);border-radius:30px;padding:7px 15px 7px 8px;box-shadow:0 4px 22px rgba(24,21,17,.13);backdrop-filter:blur(10px);pointer-events:none;}
+.cb-wm{position:fixed;bottom:16px;right:16px;z-index:9999;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);border:1.5px solid var(--border);border-radius:30px;padding:7px 15px 7px 8px;box-shadow:0 4px 22px rgba(24,21,17,.13);backdrop-filter:blur(10px);pointer-events:none;}
 .cb-wm-logo{width:30px;height:30px;background:linear-gradient(135deg,#0f766e 0%,#1d4ed8 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.9rem;font-weight:900;color:#fff;flex-shrink:0;}
 .cb-wm-name{font-size:11.5px;font-weight:800;color:var(--text);letter-spacing:-.01em;}
 .cb-wm-sub{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:1px;}
+
+/* ── MOBILE RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hdr{padding:0 16px;flex-direction:column;align-items:flex-start;min-height:auto;padding-bottom:12px;}
+  .hdr-left h1{font-size:1.15rem;}
+  .hdr-right{padding:0 0 10px 0;gap:5px;}
+  .chip{font-size:9px;padding:3px 8px;}
+  .tab-nav{padding:0 8px;}
+  .tab-btn{padding:12px 10px 10px;font-size:11px;}
+  .main{padding:16px 12px 80px;}
+  .g2,.g3,.g4{grid-template-columns:1fr;}
+  .kpi-row{grid-template-columns:1fr 1fr;}
+  table{font-size:11px;}
+  th{font-size:9.5px;padding:8px 8px;}
+  td{padding:8px 8px;font-size:11px;}
+  .sec-hdr{font-size:1.05rem;}
+  .verdict-card{padding:16px 14px;}
+  .verdict-title{font-size:1rem;}
+  .cb-wm{bottom:12px;right:10px;padding:5px 10px 5px 6px;}
+  .cb-wm-logo{width:24px;height:24px;font-size:.75rem;}
+  .cb-wm-name{font-size:10px;}
+  .cb-wm-sub{font-size:8px;}
+  .chat-input-row{flex-direction:column;}
+  .chat-send{width:100%;padding:10px;}
+  .seg-row{grid-template-columns:1fr 1fr;}
+  .swot-grid{grid-template-columns:1fr;}
+  .hdr-right{flex-wrap:wrap;}
+}
+@media (max-width: 480px) {
+  .kpi-row{grid-template-columns:1fr;}
+  .seg-row{grid-template-columns:1fr;}
+  .hdr-left h1{font-size:1rem;}
+  .tab-btn{font-size:10px;padding:10px 8px 8px;}
+  .main{padding:12px 10px 80px;}
+}
 </style>
 </head>
 <body>
@@ -165,6 +200,9 @@ td.tb{font-weight:700;}
     <span class="chip chip-rainbow">Rainbow</span>
     <span class="chip chip-medanta">Medanta</span>
     <span class="chip chip-fortis">Fortis</span>
+    <span class="chip chip-kims">KIMS</span>
+    <span class="chip chip-jupiter">Jupiter</span>
+    <span class="chip chip-yatharth">Yatharth</span>
     <span class="chip chip-date">May 2026 · Verified</span>
   </div>
 </div>
@@ -1351,10 +1389,7 @@ td.tb{font-weight:700;}
 </div><!-- /main -->
 
 <!-- FLOATING FOOTER -->
-<div style="position:fixed;bottom:0;left:0;right:0;background:#181511;color:rgba(255,255,255,.5);font-size:10px;padding:6px 40px;display:flex;justify-content:space-between;align-items:center;z-index:200;border-top:1px solid rgba(255,255,255,.08);">
-  <span>Cauvery Business Research · Hospital Sector Intelligence Dashboard · Q4 FY26</span>
-  <span>Data: Official Exchange Filings May 2026 · Not Investment Advice · v2.0 | Build: 20260527-1130 IST</span>
-</div>
+
 
 <script>
 // Tab switching
