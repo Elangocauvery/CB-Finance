@@ -171,13 +171,19 @@ td.tb{font-weight:700;}
   .cb-wm-sub{font-size:8px;}
   .chat-input-row{flex-direction:column;}
   .chat-send{width:100%;padding:10px;}
-  .seg-row{grid-template-columns:1fr 1fr;}
+  .seg-row{grid-template-columns:1fr;border-bottom:1px solid var(--border);}
+  .seg-row.hdr-row{display:none;}
+  .seg-cell{padding:6px 12px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid rgba(0,0,0,.05);font-size:11px;}
+  .seg-cell:last-child{border-bottom:none;}
+  .seg-cell::before{content:attr(data-label);font-size:9.5px;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.07em;margin-right:8px;flex-shrink:0;width:90px;}
+  .seg-cell.lbl{font-size:11.5px;font-weight:700;background:var(--surface2);padding:8px 12px;display:block;}
+  .seg-cell.lbl::before{display:none;}
   .swot-grid{grid-template-columns:1fr;}
   .hdr-right{flex-wrap:wrap;}
 }
 @media (max-width: 480px) {
   .kpi-row{grid-template-columns:1fr;}
-  .seg-row{grid-template-columns:1fr;}
+  /* seg-row already 1-col */
   .hdr-left h1{font-size:1rem;}
   .tab-btn{font-size:10px;padding:10px 8px 8px;}
   .main{padding:12px 10px 80px;}
@@ -426,10 +432,10 @@ td.tb{font-weight:700;}
     <div class="seg-block">
       <div class="seg-block-hdr" style="background:var(--apollo);">🔵 Apollo Hospitals — 3-Segment Integrated Model (FY26 Consolidated)</div>
       <div class="seg-row hdr-row"><div class="seg-cell lbl">Segment</div><div class="seg-cell num">Revenue (₹ Cr)</div><div class="seg-cell num">% of Total</div><div class="seg-cell num">EBITDA Margin</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">1. Healthcare Services (Hospitals)</div><div class="seg-cell num">12,550</div><div class="seg-cell num">50%</div><div class="seg-cell pos">24.4%</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">2. Digital Health &amp; Pharmacy (HealthCo)</div><div class="seg-cell num">10,808</div><div class="seg-cell num">43%</div><div class="seg-cell num">8.8% (improving)</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">3. Diagnostics &amp; Retail Health (AHLL)</div><div class="seg-cell num">1,865</div><div class="seg-cell num">7%</div><div class="seg-cell num">11.4% (tripling)</div></div>
-      <div class="seg-row" style="background:var(--apollo-soft);"><div class="seg-cell lbl" style="color:var(--apollo);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--apollo);font-weight:700;">25,229</div><div class="seg-cell num">100%</div><div class="seg-cell num">~15% blended (hosp 24.4%)</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">1. Healthcare Services (Hospitals)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">12,550</div><div class="seg-cell num" data-label="% Share">50%</div><div class="seg-cell pos" data-label="EBITDA / Margin">24.4%</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">2. Digital Health &amp; Pharmacy (HealthCo)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">10,808</div><div class="seg-cell num" data-label="% Share">43%</div><div class="seg-cell num" data-label="EBITDA / Margin">8.8% (improving)</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">3. Diagnostics &amp; Retail Health (AHLL)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">1,865</div><div class="seg-cell num" data-label="% Share">7%</div><div class="seg-cell num" data-label="EBITDA / Margin">11.4% (tripling)</div></div>
+      <div class="seg-row" style="background:var(--apollo-soft);"><div class="seg-cell lbl" style="color:var(--apollo);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--apollo);font-weight:700;" data-label="Revenue (₹ Cr)">25,229</div><div class="seg-cell num" data-label="% Share">100%</div><div class="seg-cell num" data-label="EBITDA / Margin">~15% blended (hosp 24.4%)</div></div>
     </div>
     <div class="card" style="margin-top:10px;background:var(--apollo-soft);border-color:var(--apollo);">
       <div style="font-size:12px;line-height:1.75;">
@@ -443,10 +449,10 @@ td.tb{font-weight:700;}
     <div class="seg-block">
       <div class="seg-block-hdr" style="background:var(--nh);">🟦 Narayana Hrudayalaya — 3-Geography Multi-Currency Model (FY26 Consolidated)</div>
       <div class="seg-row hdr-row"><div class="seg-cell lbl">Geography</div><div class="seg-cell num">Revenue (₹ Cr)</div><div class="seg-cell num">% of Total</div><div class="seg-cell num">EBITDA Margin</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">1. India Business (INR) — 5,800+ beds</div><div class="seg-cell num">4,797</div><div class="seg-cell num">61%</div><div class="seg-cell num">16–18% improving</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">2. Cayman Islands (USD) — 2,000 beds 🏝️</div><div class="seg-cell num">1,889</div><div class="seg-cell num">24%</div><div class="seg-cell pos">~25–35% (USD revenue)</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">3. UK / Practice Plus Group (GBP) — NEW Nov 2025 🇬🇧</div><div class="seg-cell num">1,299</div><div class="seg-cell num">16%</div><div class="seg-cell num">10.4% (early ramp-up)</div></div>
-      <div class="seg-row" style="background:var(--nh-soft);"><div class="seg-cell lbl" style="color:var(--nh);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--nh);font-weight:700;">7,896 (+44%)</div><div class="seg-cell num">100%</div><div class="seg-cell num">22.7% blended EBITDA</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">1. India Business (INR) — 5,800+ beds</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">4,797</div><div class="seg-cell num" data-label="% Share">61%</div><div class="seg-cell num" data-label="EBITDA / Margin">16–18% improving</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">2. Cayman Islands (USD) — 2,000 beds 🏝️</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">1,889</div><div class="seg-cell num" data-label="% Share">24%</div><div class="seg-cell pos" data-label="EBITDA / Margin">~25–35% (USD revenue)</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">3. UK / Practice Plus Group (GBP) — NEW Nov 2025 🇬🇧</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">1,299</div><div class="seg-cell num" data-label="% Share">16%</div><div class="seg-cell num" data-label="EBITDA / Margin">10.4% (early ramp-up)</div></div>
+      <div class="seg-row" style="background:var(--nh-soft);"><div class="seg-cell lbl" style="color:var(--nh);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--nh);font-weight:700;" data-label="Revenue (₹ Cr)">7,896 (+44%)</div><div class="seg-cell num" data-label="% Share">100%</div><div class="seg-cell num" data-label="EBITDA / Margin">22.7% blended EBITDA</div></div>
     </div>
     <div class="card" style="margin-top:10px;background:var(--nh-soft);border-color:var(--nh);">
       <div style="font-size:12px;line-height:1.75;">
@@ -460,9 +466,9 @@ td.tb{font-weight:700;}
     <div class="seg-block">
       <div class="seg-block-hdr" style="background:var(--fortis);">🟢 Fortis Healthcare — Hospital + Diagnostics (FY26 Consolidated)</div>
       <div class="seg-row hdr-row"><div class="seg-cell lbl">Segment</div><div class="seg-cell num">Revenue (₹ Cr)</div><div class="seg-cell num">% of Total</div><div class="seg-cell num">EBITDA Margin</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">1. Hospital Business (Core)</div><div class="seg-cell num">7,773</div><div class="seg-cell num">85%</div><div class="seg-cell pos">22.2% (↑ from 20.5%)</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">2. Agilus Diagnostics (formerly SRL)</div><div class="seg-cell num">1,527</div><div class="seg-cell num">17%</div><div class="seg-cell pos">23.6% (↑ from 17.7%)</div></div>
-      <div class="seg-row" style="background:var(--fortis-soft);"><div class="seg-cell lbl" style="color:var(--fortis);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--fortis);font-weight:700;">9,128 (+17.3%)</div><div class="seg-cell num">100%</div><div class="seg-cell pos">22.8% (↑ 240bps)</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">1. Hospital Business (Core)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">7,773</div><div class="seg-cell num" data-label="% Share">85%</div><div class="seg-cell pos" data-label="EBITDA / Margin">22.2% (↑ from 20.5%)</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">2. Agilus Diagnostics (formerly SRL)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">1,527</div><div class="seg-cell num" data-label="% Share">17%</div><div class="seg-cell pos" data-label="EBITDA / Margin">23.6% (↑ from 17.7%)</div></div>
+      <div class="seg-row" style="background:var(--fortis-soft);"><div class="seg-cell lbl" style="color:var(--fortis);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--fortis);font-weight:700;" data-label="Revenue (₹ Cr)">9,128 (+17.3%)</div><div class="seg-cell num" data-label="% Share">100%</div><div class="seg-cell pos" data-label="EBITDA / Margin">22.8% (↑ 240bps)</div></div>
     </div>
     <div class="card" style="margin-top:10px;background:var(--fortis-soft);border-color:var(--fortis);">
       <div style="font-size:12px;line-height:1.75;">
@@ -476,10 +482,10 @@ td.tb{font-weight:700;}
     <div class="seg-block">
       <div class="seg-block-hdr" style="background:var(--max);">🟣 Max Healthcare — Hospital + Diagnostics + Home Care (FY26 Network)</div>
       <div class="seg-row hdr-row"><div class="seg-cell lbl">Business Line</div><div class="seg-cell num">Revenue (₹ Cr)</div><div class="seg-cell num">Growth</div><div class="seg-cell num">EBITDA Margin</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Core Hospital Network (4,966 beds)</div><div class="seg-cell num">~9,800</div><div class="seg-cell pos">+16%</div><div class="seg-cell pos">25.5–26.8%</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Max Lab (non-captive pathology, 60+ cities)</div><div class="seg-cell num">~210</div><div class="seg-cell pos">+14%</div><div class="seg-cell num">~20%</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Max@Home (home healthcare services)</div><div class="seg-cell num">~280</div><div class="seg-cell pos">+30%</div><div class="seg-cell num">~18%</div></div>
-      <div class="seg-row" style="background:var(--max-soft);"><div class="seg-cell lbl" style="color:var(--max);">TOTAL NETWORK</div><div class="seg-cell num" style="color:var(--max);font-weight:700;">10,538 (+16%)</div><div class="seg-cell pos">+16%</div><div class="seg-cell pos">25% network EBITDA</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Core Hospital Network (4,966 beds)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">~9,800</div><div class="seg-cell pos" data-label="% Share">+16%</div><div class="seg-cell pos" data-label="EBITDA / Margin">25.5–26.8%</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Max Lab (non-captive pathology, 60+ cities)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">~210</div><div class="seg-cell pos" data-label="% Share">+14%</div><div class="seg-cell num" data-label="EBITDA / Margin">~20%</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Max@Home (home healthcare services)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">~280</div><div class="seg-cell pos" data-label="% Share">+30%</div><div class="seg-cell num" data-label="EBITDA / Margin">~18%</div></div>
+      <div class="seg-row" style="background:var(--max-soft);"><div class="seg-cell lbl" style="color:var(--max);">TOTAL NETWORK</div><div class="seg-cell num" style="color:var(--max);font-weight:700;" data-label="Revenue (₹ Cr)">10,538 (+16%)</div><div class="seg-cell pos" data-label="% Share">+16%</div><div class="seg-cell pos" data-label="EBITDA / Margin">25% network EBITDA</div></div>
     </div>
     <div class="card" style="margin-top:10px;background:var(--max-soft);border-color:var(--max);">
       <div style="font-size:12px;line-height:1.75;">
@@ -493,10 +499,10 @@ td.tb{font-weight:700;}
     <div class="seg-block">
       <div class="seg-block-hdr" style="background:var(--medanta);">🟡 Medanta (Global Health) — Hospital Network by Maturity (FY26)</div>
       <div class="seg-row hdr-row"><div class="seg-cell lbl">Unit / Cluster</div><div class="seg-cell num">Revenue (₹ Cr)</div><div class="seg-cell num">Beds</div><div class="seg-cell num">EBITDA Margin</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Mature Hospitals (Gurugram, Indore, Ranchi)</div><div class="seg-cell num">~3,000</div><div class="seg-cell num">~1,800</div><div class="seg-cell pos">~32% (high maturity)</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Developing Hospitals (Lucknow, Patna)</div><div class="seg-cell num">~600</div><div class="seg-cell num">~1,000</div><div class="seg-cell pos">32.4% (ex-Noida)</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Noida (Opened Nov 2025) — J-curve phase</div><div class="seg-cell num">91</div><div class="seg-cell num">382</div><div class="seg-cell neg">EBITDA loss ₹78 Cr</div></div>
-      <div class="seg-row" style="background:var(--medanta-soft);"><div class="seg-cell lbl" style="color:var(--medanta);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--medanta);font-weight:700;">4,509 (+19.6%)</div><div class="seg-cell num">3,665 beds</div><div class="seg-cell num">24.2% incl Noida losses</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Mature Hospitals (Gurugram, Indore, Ranchi)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">~3,000</div><div class="seg-cell num" data-label="% Share">~1,800</div><div class="seg-cell pos" data-label="EBITDA / Margin">~32% (high maturity)</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Developing Hospitals (Lucknow, Patna)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">~600</div><div class="seg-cell num" data-label="% Share">~1,000</div><div class="seg-cell pos" data-label="EBITDA / Margin">32.4% (ex-Noida)</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Noida (Opened Nov 2025) — J-curve phase</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">91</div><div class="seg-cell num" data-label="% Share">382</div><div class="seg-cell neg" data-label="EBITDA / Margin">EBITDA loss ₹78 Cr</div></div>
+      <div class="seg-row" style="background:var(--medanta-soft);"><div class="seg-cell lbl" style="color:var(--medanta);">TOTAL CONSOLIDATED</div><div class="seg-cell num" style="color:var(--medanta);font-weight:700;" data-label="Revenue (₹ Cr)">4,509 (+19.6%)</div><div class="seg-cell num" data-label="% Share">3,665 beds</div><div class="seg-cell num" data-label="EBITDA / Margin">24.2% incl Noida losses</div></div>
     </div>
   </div>
 
@@ -505,11 +511,11 @@ td.tb{font-weight:700;}
     <div class="seg-block">
       <div class="seg-block-hdr" style="background:var(--krishna);">🟠 KIMS — Hospital by Geography/Maturity Cluster (FY26)</div>
       <div class="seg-row hdr-row"><div class="seg-cell lbl">Cluster / Region</div><div class="seg-cell num">Status</div><div class="seg-cell num">Revenue Contribution</div><div class="seg-cell num">EBITDA Trend</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Telangana (Hyderabad anchor — MATURE)</div><div class="seg-cell num">Profit centre</div><div class="seg-cell pos">~50% of total</div><div class="seg-cell pos">Strong margins ~28%+</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Andhra Pradesh cluster</div><div class="seg-cell num">Established</div><div class="seg-cell num">~25% of total</div><div class="seg-cell num">Good margins</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Bangalore (2 new units FY26)</div><div class="seg-cell num">J-curve ramp</div><div class="seg-cell num">~10% of total</div><div class="seg-cell neg">EBITDA losses</div></div>
-      <div class="seg-row"><div class="seg-cell lbl">Kerala, Thane, Nashik, Maharashtra (new)</div><div class="seg-cell num">J-curve ramp</div><div class="seg-cell num">~10% of total</div><div class="seg-cell neg">EBITDA losses</div></div>
-      <div class="seg-row" style="background:var(--krishna-soft);"><div class="seg-cell lbl" style="color:var(--krishna);">TOTAL GROUP</div><div class="seg-cell neg" style="color:var(--krishna);">7,300+ beds / 26 hospitals</div><div class="seg-cell neg">Rev ₹3,931 Cr +28.2%</div><div class="seg-cell neg">EBITDA 21.1% ↓ from 26.6%</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Telangana (Hyderabad anchor — MATURE)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">Profit centre</div><div class="seg-cell pos" data-label="% Share">~50% of total</div><div class="seg-cell pos" data-label="EBITDA / Margin">Strong margins ~28%+</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Andhra Pradesh cluster</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">Established</div><div class="seg-cell num" data-label="% Share">~25% of total</div><div class="seg-cell num" data-label="EBITDA / Margin">Good margins</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Bangalore (2 new units FY26)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">J-curve ramp</div><div class="seg-cell num" data-label="% Share">~10% of total</div><div class="seg-cell neg" data-label="EBITDA / Margin">EBITDA losses</div></div>
+      <div class="seg-row"><div class="seg-cell lbl">Kerala, Thane, Nashik, Maharashtra (new)</div><div class="seg-cell num" data-label="Revenue (₹ Cr)">J-curve ramp</div><div class="seg-cell num" data-label="% Share">~10% of total</div><div class="seg-cell neg" data-label="EBITDA / Margin">EBITDA losses</div></div>
+      <div class="seg-row" style="background:var(--krishna-soft);"><div class="seg-cell lbl" style="color:var(--krishna);">TOTAL GROUP</div><div class="seg-cell neg" style="color:var(--krishna);" data-label="Revenue (₹ Cr)">7,300+ beds / 26 hospitals</div><div class="seg-cell neg" data-label="% Share">Rev ₹3,931 Cr +28.2%</div><div class="seg-cell neg" data-label="EBITDA / Margin">EBITDA 21.1% ↓ from 26.6%</div></div>
     </div>
     <div class="card" style="margin-top:10px;background:var(--krishna-soft);border-color:var(--krishna);">
       <div style="font-size:12px;line-height:1.75;"><strong>Key insight:</strong> KIMS's PAT declined 42% from ₹415 Cr to ₹242 Cr in FY26 — not because the business is failing, but because 4 new hospitals (Bangalore, Thane, Kerala, Maharashtra) are in heavy J-curve ramp-up. Interest costs more than doubled as KIMS funded expansion via debt (net debt ~₹2,850 Cr). Mature Telangana cluster continues to deliver 28%+ EBITDA. FY27 is expected to be the inflection year as new units break even. QIP planned to reduce debt. Do NOT confuse J-curve pain with business failure.</div>
