@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold Jewellery Sector — Titan & Kalyan Q4 FY26 Analysis</title>
+<title>Gold Jewellery Sector — Q4 FY26 | Titan · Kalyan · SGIL</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root{--gold:#a0722a;--gold2:#b8860b;--dark:#ffffff;--card:#f9f7f2;--card2:#f0ebe0;--text:#1a1a1a;--sub:#555566;--green:#1a7a4a;--red:#c0392b;--blue:#1a5ab8;--purple:#6b3fa0;--border:#d4c9b0}
+:root{--gold:#a0722a;--gold2:#b8860b;--card:#f9f7f2;--card2:#f0ebe0;--text:#1a1a1a;--sub:#555566;--green:#1a7a4a;--red:#c0392b;--blue:#1a5ab8;--purple:#6b3fa0;--teal:#0d786e;--border:#d4c9b0;--sgil:#8b1a1a}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#ffffff;color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);display:flex;align-items:center;gap:4px;padding:0 20px;height:52px;flex-wrap:wrap}
-.nav-brand{font-size:15px;font-weight:700;color:var(--gold);margin-right:16px;white-space:nowrap}
-.tab-btn{background:none;border:none;color:var(--sub);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:500;white-space:nowrap;transition:all .2s}
+body{background:#fff;color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);display:flex;align-items:center;gap:3px;padding:0 14px;height:52px;flex-wrap:wrap;overflow-x:auto}
+.nav-brand{font-size:13px;font-weight:700;color:var(--gold);margin-right:10px;white-space:nowrap}
+.tab-btn{background:none;border:none;color:var(--sub);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:500;white-space:nowrap;transition:all .2s}
 .tab-btn:hover{color:var(--text);background:var(--card2)}
 .tab-btn.active{color:var(--gold);background:rgba(160,114,42,.1);border-bottom:2px solid var(--gold)}
+.tab-btn.cb-btn{color:var(--teal);font-weight:700}
+.tab-btn.cb-btn.active{color:var(--teal);background:rgba(13,120,110,.1);border-bottom:2px solid var(--teal)}
 .section{display:none;padding:24px 20px;max-width:1300px;margin:0 auto}
-.section.active{display:block}
 h2{font-size:22px;font-weight:700;color:var(--gold);margin-bottom:4px}
 h3{font-size:15px;font-weight:600;color:var(--gold2);margin-bottom:12px}
 .subtitle{color:var(--sub);font-size:12px;margin-bottom:20px}
@@ -26,8 +27,8 @@ h3{font-size:15px;font-weight:600;color:var(--gold2);margin-bottom:12px}
 @media(max-width:600px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
 .card-lg{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
-.kpi{text-align:center;padding:14px 10px}
-.kpi .val{font-size:24px;font-weight:800;color:var(--gold)}
+.kpi{text-align:center;padding:12px 8px}
+.kpi .val{font-size:20px;font-weight:800;color:var(--gold)}
 .kpi .lbl{font-size:11px;color:var(--sub);margin-top:4px}
 .kpi .chg{font-size:12px;font-weight:600;margin-top:2px}
 .up{color:var(--green)}.dn{color:var(--red)}.neu{color:var(--blue)}
@@ -42,220 +43,345 @@ tr:hover td{background:rgba(0,0,0,.02)}
 .badge-red{background:rgba(192,57,43,.15);color:var(--red)}
 .badge-blue{background:rgba(26,90,184,.15);color:var(--blue)}
 .badge-purple{background:rgba(107,63,160,.15);color:var(--purple)}
+.badge-sgil{background:rgba(139,26,26,.15);color:var(--sgil)}
 .progress-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:12px}
 .progress-bar{flex:1;height:8px;background:#e0d9cc;border-radius:4px;overflow:hidden}
 .progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),#d4a843)}
 .progress-fill.blue{background:linear-gradient(90deg,var(--blue),var(--purple))}
 .progress-fill.green{background:linear-gradient(90deg,var(--green),#2ecc71)}
 .progress-fill.red{background:linear-gradient(90deg,var(--red),#e74c3c)}
+.progress-fill.teal{background:linear-gradient(90deg,var(--teal),#1abc9c)}
 .toggle-group{display:flex;gap:6px;margin-bottom:16px}
 .toggle-btn{background:var(--card2);border:1px solid var(--border);color:var(--sub);padding:5px 14px;border-radius:6px;cursor:pointer;font-size:12px;transition:all .2s}
 .toggle-btn.active{background:rgba(160,114,42,.12);border-color:var(--gold);color:var(--gold)}
 .risk-item{background:var(--card2);border-left:3px solid;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:8px}
-.risk-high{border-color:var(--red)}
-.risk-med{border-color:#d4800a}
-.risk-low{border-color:var(--green)}
-.risk-title{font-weight:600;font-size:13px;margin-bottom:3px;color:var(--text)}
+.risk-high{border-color:var(--red)}.risk-med{border-color:#d4800a}.risk-low{border-color:var(--green)}
+.risk-title{font-weight:600;font-size:13px;margin-bottom:3px}
 .risk-desc{font-size:11px;color:var(--sub)}
-.vs-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(212,201,176,.6);font-size:12px}
-.vs-mid{color:var(--sub);font-size:10px;text-align:center;font-weight:700}
-.vs-titan{color:var(--gold2);text-align:right;font-weight:600}
-.vs-kalyan{color:var(--blue);font-weight:600}
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:#f0ebe0}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 .chart-wrap{position:relative;height:260px}
 .chart-wrap-lg{position:relative;height:320px}
 .highlight{background:rgba(160,114,42,.06);border:1px solid rgba(160,114,42,.2);border-radius:10px;padding:14px;margin-bottom:14px}
 .highlight h4{color:var(--gold2);font-size:13px;margin-bottom:6px}
-.highlight li{font-size:12px;color:#333344;line-height:1.7}
-.highlight ul{padding-left:16px}
+.highlight li,.highlight-sgil li{font-size:12px;color:#333344;line-height:1.7}
+.highlight ul,.highlight-sgil ul{padding-left:16px}
+.highlight-sgil{background:rgba(139,26,26,.05);border:1px solid rgba(139,26,26,.2);border-radius:10px;padding:14px;margin-bottom:14px}
+.highlight-sgil h4{color:var(--sgil);font-size:13px;margin-bottom:6px}
 .geo-box{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
-.geo-count{font-size:28px;font-weight:800;color:var(--gold2)}
+.geo-count{font-size:26px;font-weight:800;color:var(--gold2)}
 .geo-label{font-size:11px;color:var(--sub);margin-top:2px}
 .geo-sub{font-size:10px;color:var(--green);margin-top:2px}
-.note-mil{font-size:10px;color:#b35a00;font-weight:600;margin-top:3px}
-.disclaimer{font-size:10px;color:var(--sub);text-align:center;padding:20px;border-top:1px solid var(--border);margin-top:30px}
+/* MOAT */
+.moat-score{display:flex;align-items:center;gap:16px;padding:14px;background:var(--card2);border-radius:10px;margin-bottom:12px}
+.moat-circle{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;flex-shrink:0;border:3px solid}
+.moat-circle.high{background:rgba(26,122,74,.1);border-color:var(--green);color:var(--green)}
+.moat-circle.med{background:rgba(160,114,42,.1);border-color:var(--gold);color:var(--gold)}
+.moat-circle.low{background:rgba(192,57,43,.1);border-color:var(--red);color:var(--red)}
+.moat-detail h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.moat-detail p{font-size:12px;color:var(--sub);line-height:1.6}
+.moat-bar-row{display:flex;align-items:center;gap:10px;font-size:11px;margin-bottom:6px}
+.moat-bar-label{width:160px;flex-shrink:0}
+.moat-bar-track{flex:1;height:7px;background:#e0d9cc;border-radius:4px;overflow:hidden}
+.moat-bar-fill{height:100%;border-radius:4px}
+.fill-green{background:linear-gradient(90deg,#1a7a4a,#2ecc71)}
+.fill-gold{background:linear-gradient(90deg,#a0722a,#d4a843)}
+.fill-blue{background:linear-gradient(90deg,#1a5ab8,#5b8dee)}
+.fill-sgil{background:linear-gradient(90deg,#8b1a1a,#c0392b)}
+.moat-bar-pct{font-weight:700;width:32px;text-align:right}
+/* ANALYSTS */
+.rating-card{border-radius:14px;padding:20px;margin-bottom:14px;border:1.5px solid}
+.rating-hold{background:rgba(160,114,42,.06);border-color:rgba(160,114,42,.3)}
+.rating-buy{background:rgba(26,122,74,.06);border-color:rgba(26,122,74,.3)}
+.rating-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.rating-company{font-size:18px;font-weight:800}
+.rating-tag{font-size:16px;font-weight:800;padding:4px 14px;border-radius:8px}
+.tag-buy{background:rgba(26,122,74,.15);color:var(--green)}
+.tag-hold{background:rgba(160,114,42,.15);color:var(--gold)}
+.tp-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.tp-box{background:white;border:1px solid var(--border);border-radius:8px;padding:10px 14px;text-align:center;min-width:110px}
+.tp-val{font-size:17px;font-weight:800;color:var(--gold2)}
+.tp-lbl{font-size:10px;color:var(--sub);margin-top:2px}
+.verdict-bottom{background:var(--card2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--text);margin-top:12px;border-left:4px solid}
+.vb-titan{border-color:var(--gold)}.vb-kalyan{border-color:var(--blue)}.vb-sgil{border-color:var(--sgil)}
+/* VERDICT */
+.verdict-hero{border-radius:16px;padding:22px;margin-bottom:16px;border:2px solid}
+.verdict-hero.titan{background:linear-gradient(135deg,rgba(160,114,42,.05),rgba(255,255,255,0));border-color:rgba(160,114,42,.4)}
+.verdict-hero.kalyan{background:linear-gradient(135deg,rgba(26,90,184,.05),rgba(255,255,255,0));border-color:rgba(26,90,184,.4)}
+.verdict-hero.sgil{background:linear-gradient(135deg,rgba(139,26,26,.05),rgba(255,255,255,0));border-color:rgba(139,26,26,.4)}
+.verdict-title{font-size:20px;font-weight:800;margin-bottom:2px}
+.verdict-sub{font-size:12px;color:var(--sub);margin-bottom:12px}
+.verdict-tag{display:inline-block;font-size:13px;font-weight:800;padding:5px 16px;border-radius:8px;margin-bottom:12px}
+.tag-hold-v{background:rgba(160,114,42,.12);color:var(--gold)}
+.tag-buy-v{background:rgba(26,122,74,.12);color:var(--green)}
+.tag-sgil-v{background:rgba(139,26,26,.12);color:var(--sgil)}
+.verdict-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pros-box{background:rgba(26,122,74,.06);border:1px solid rgba(26,122,74,.2);border-radius:8px;padding:12px}
+.cons-box{background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.2);border-radius:8px;padding:12px}
+.pros-box h5{color:var(--green);font-size:12px;margin-bottom:6px}
+.cons-box h5{color:var(--red);font-size:12px;margin-bottom:6px}
+.pros-box li,.cons-box li{font-size:11px;color:var(--sub);line-height:1.8;margin-left:14px}
+/* CB ASSIST */
+.cb-header{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.cb-logo{width:42px;height:42px;background:linear-gradient(135deg,var(--teal),#1abc9c);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.cb-title{font-size:20px;font-weight:800;color:var(--teal)}
+.cb-sub{font-size:12px;color:var(--sub);margin-bottom:18px}
+.cb-company-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.cb-ctab{padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);cursor:pointer;font-size:12px;font-weight:600;background:white;transition:all .2s}
+.cb-ctab[data-co="all"].active{background:var(--teal);border-color:var(--teal);color:white}
+.cb-ctab[data-co="titan"].active{background:var(--gold);border-color:var(--gold);color:white}
+.cb-ctab[data-co="kalyan"].active{background:var(--blue);border-color:var(--blue);color:white}
+.cb-ctab[data-co="sgil"].active{background:var(--sgil);border-color:var(--sgil);color:white}
+.cb-search-row{display:flex;gap:8px;margin-bottom:8px}
+.cb-input{flex:1;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;font-family:inherit;background:white}
+.cb-input:focus{border-color:var(--teal)}
+.cb-ask-btn{padding:10px 20px;background:var(--teal);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.cb-ask-btn:hover{background:#0a5a52}
+.cb-qa-area{min-height:240px;max-height:480px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;padding:16px;background:white;margin-bottom:8px}
+.cb-msg{margin-bottom:14px;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.cb-msg-q{font-size:12px;font-weight:700;color:var(--teal);margin-bottom:4px}
+.cb-msg-a{font-size:13px;color:var(--text);line-height:1.7;background:var(--card);border-radius:8px;padding:10px 12px;border-left:3px solid var(--teal)}
+.cb-msg-source{font-size:10px;color:var(--sub);margin-top:4px}
+.cb-qs-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.cb-qs-btn{font-size:11px;padding:5px 12px;border-radius:14px;border:1px solid var(--border);background:white;cursor:pointer;color:var(--sub);transition:all .2s}
+.cb-qs-btn:hover{background:var(--card2);color:var(--text)}
+.cb-typing{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);padding:8px 0}
+.cb-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:bounce .8s infinite;display:inline-block}
+.cb-dot:nth-child(2){animation-delay:.15s}.cb-dot:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+.cb-note{font-size:10px;color:var(--sub);text-align:center;padding:4px}
+.disclaimer{font-size:10px;color:var(--sub);text-align:center;padding:20px;border-top:1px solid var(--border);margin-top:20px}
+.vs-row{display:grid;grid-template-columns:1fr 110px 1fr 1fr;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(212,201,176,.6);font-size:12px}
+.vs-mid{color:var(--sub);font-size:10px;text-align:center;font-weight:700}
+.vs-titan{color:var(--gold2);text-align:right;font-weight:600}
+.vs-kalyan{color:var(--blue);font-weight:600}
+.vs-sgil{color:var(--sgil);font-weight:600}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:#f0ebe0}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 </style>
 </head>
 <body>
-
 <nav>
-  <div class="nav-brand">💎 Jewellery Sector Analysis</div>
-  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
-  <button class="tab-btn" onclick="showTab('financials')">Financials</button>
-  <button class="tab-btn" onclick="showTab('business')">Business Model</button>
-  <button class="tab-btn" onclick="showTab('geography')">Geography</button>
-  <button class="tab-btn" onclick="showTab('buyers')">Buyers & Trends</button>
-  <button class="tab-btn" onclick="showTab('debt')">Debt & GML</button>
-  <button class="tab-btn" onclick="showTab('valuation')">Valuation</button>
-  <button class="tab-btn" onclick="showTab('risks')">Risks</button>
-  <button class="tab-btn" onclick="showTab('compare')">Compare</button>
+  <div class="nav-brand">💎 Jewellery Q4 FY26</div>
+  <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('sgil',this)">SGIL</button>
+  <button class="tab-btn" onclick="showTab('financials',this)">Financials</button>
+  <button class="tab-btn" onclick="showTab('business',this)">Business</button>
+  <button class="tab-btn" onclick="showTab('geography',this)">Geography</button>
+  <button class="tab-btn" onclick="showTab('buyers',this)">Buyers</button>
+  <button class="tab-btn" onclick="showTab('debt',this)">Debt & GML</button>
+  <button class="tab-btn" onclick="showTab('valuation',this)">Valuation</button>
+  <button class="tab-btn" onclick="showTab('risks',this)">Risks</button>
+  <button class="tab-btn" onclick="showTab('moat',this)">Moat</button>
+  <button class="tab-btn" onclick="showTab('analysts',this)">Analysts' Rating</button>
+  <button class="tab-btn" onclick="showTab('verdict',this)">Verdict</button>
+  <button class="tab-btn" onclick="showTab('compare',this)">Compare</button>
+  <button class="tab-btn cb-btn" onclick="showTab('cbassist',this)">🤖 CB Assist</button>
 </nav>
-
 <!-- ══ OVERVIEW ══ -->
-<div id="overview" class="section active">
-  <h2>Gold Jewellery Sector — Q4 FY26 Analysis</h2>
-  <p class="subtitle">Titan Company &amp; Kalyan Jewellers | India's Organised Jewellery Leaders</p>
-
-  <div class="grid-2" style="margin-bottom:16px">
+<div id="overview" class="section" style="display:block">
+  <h2>Gold Jewellery Sector — Q4 FY26 Business & Investment Analysis</h2>
+  <p class="subtitle">Titan Company · Kalyan Jewellers · Shanthi Gold International Ltd | Organised Jewellery Leaders</p>
+  <div class="grid-3" style="margin-bottom:16px">
     <div class="card" style="border-top:3px solid var(--gold)">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <div>
-          <div style="font-size:18px;font-weight:800;color:var(--gold)">TITAN Company</div>
-          <div style="font-size:11px;color:var(--sub)">NSE: TITAN | Tata Group | Market Cap ₹2.5L Cr</div>
-        </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div><div style="font-size:16px;font-weight:800;color:var(--gold)">TITAN Company</div>
+        <div style="font-size:11px;color:var(--sub)">NSE: TITAN | Tata Group | ₹2.5L Cr Mkt Cap</div></div>
         <span class="badge badge-gold">Diversified</span>
       </div>
       <div class="grid-3">
-        <div class="kpi"><div class="val">₹15,320Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 17.4%</div></div>
-        <div class="kpi"><div class="val">₹1,063Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 13.2%</div></div>
+        <div class="kpi"><div class="val">₹15,320Cr</div><div class="lbl">Q4 Revenue</div><div class="chg up">▲ 17.4%</div></div>
+        <div class="kpi"><div class="val">₹1,063Cr</div><div class="lbl">Net Profit</div><div class="chg up">▲ 13.2%</div></div>
         <div class="kpi"><div class="val">11.8%</div><div class="lbl">EBITDA Margin</div><div class="chg dn">▼ 30bps</div></div>
-      </div>
-      <div class="grid-3" style="margin-top:8px">
-        <div class="kpi"><div class="val">₹62,400Cr</div><div class="lbl">FY26 Revenue</div></div>
-        <div class="kpi"><div class="val">₹4,180Cr</div><div class="lbl">FY26 Net Profit</div></div>
-        <div class="kpi"><div class="val">85.4x</div><div class="lbl">P/E (TTM)</div></div>
       </div>
     </div>
     <div class="card" style="border-top:3px solid var(--blue)">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <div>
-          <div style="font-size:18px;font-weight:800;color:var(--blue)">KALYAN Jewellers</div>
-          <div style="font-size:11px;color:var(--sub)">NSE: KALYANKJIL | Promoter-led | Market Cap ₹38,062 Cr</div>
-        </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div><div style="font-size:16px;font-weight:800;color:var(--blue)">KALYAN Jewellers</div>
+        <div style="font-size:11px;color:var(--sub)">NSE: KALYANKJIL | Promoter-led | ₹38,062 Cr</div></div>
         <span class="badge badge-blue">Pure Play</span>
       </div>
       <div class="grid-3">
-        <div class="kpi"><div class="val">₹10,275Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 66.2%</div></div>
-        <div class="kpi"><div class="val">₹409.5Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 118.3%</div></div>
+        <div class="kpi"><div class="val">₹10,275Cr</div><div class="lbl">Q4 Revenue</div><div class="chg up">▲ 66.2%</div></div>
+        <div class="kpi"><div class="val">₹409.5Cr</div><div class="lbl">Net Profit</div><div class="chg up">▲ 118.3%</div></div>
         <div class="kpi"><div class="val">7.1%</div><div class="lbl">EBITDA Margin</div><div class="chg up">▲ 70bps</div></div>
       </div>
-      <div class="grid-3" style="margin-top:8px">
-        <div class="kpi"><div class="val">₹35,743Cr</div><div class="lbl">FY26 Revenue</div></div>
-        <div class="kpi"><div class="val">₹1,350Cr</div><div class="lbl">FY26 Net Profit</div></div>
-        <div class="kpi"><div class="val">~28x</div><div class="lbl">P/E (TTM)</div></div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--sgil)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div><div style="font-size:16px;font-weight:800;color:var(--sgil)">SGIL</div>
+        <div style="font-size:11px;color:var(--sub)">NSE: SGIL | Jewellery Manufacturer | Small Cap</div></div>
+        <span class="badge badge-sgil">Manufacturer</span>
+      </div>
+      <div class="grid-3">
+        <div class="kpi"><div class="val">₹658.9Cr</div><div class="lbl">Q4 Revenue</div><div class="chg up">▲ 121.6%</div></div>
+        <div class="kpi"><div class="val">₹51.9Cr</div><div class="lbl">Net Profit</div><div class="chg up">▲ 465.4%</div></div>
+        <div class="kpi"><div class="val">10.2%</div><div class="lbl">EBITDA Margin</div><div class="chg up">▲ 310bps</div></div>
       </div>
     </div>
   </div>
-
   <div class="card-lg">
     <h3>Sector Macro Tailwinds</h3>
     <div class="grid-4">
-      <div class="kpi card" style="background:var(--card2)"><div class="val up">+22%</div><div class="lbl">Gold Price YoY (MCX)</div><div class="chg neu">₹94,000/10g avg Q4</div></div>
+      <div class="kpi card" style="background:var(--card2)"><div class="val up">+22%</div><div class="lbl">Gold Price YoY (MCX)</div><div class="chg neu">₹94,000/10g Q4 avg</div></div>
       <div class="kpi card" style="background:var(--card2)"><div class="val up">18%</div><div class="lbl">Organised Sector Share</div><div class="chg up">▲ from 12% in FY20</div></div>
-      <div class="kpi card" style="background:var(--card2)"><div class="val">₹6.7L Cr</div><div class="lbl">India Gold Market Size</div><div class="chg up">2nd Largest Globally</div></div>
-      <div class="kpi card" style="background:var(--card2)"><div class="val up">35%</div><div class="lbl">Titan Studded Mix</div><div class="chg neu">Higher margin play</div></div>
+      <div class="kpi card" style="background:var(--card2)"><div class="val">₹6.7L Cr</div><div class="lbl">India Gold Market</div><div class="chg up">2nd Largest Globally</div></div>
+      <div class="kpi card" style="background:var(--card2)"><div class="val up">+25%</div><div class="lbl">SGIL Production YoY</div><div class="chg neu">463 kg Q4 FY26</div></div>
     </div>
   </div>
-
+  <div class="card-lg">
+    <h3>Revenue Comparison — Titan vs Kalyan vs SGIL (₹ Crore)</h3>
+    <div class="chart-wrap-lg"><canvas id="chartRevenue"></canvas></div>
+  </div>
   <div class="card-lg">
     <h3>Top Growth Drivers — FY26</h3>
     <div class="grid-2">
       <div>
-        <div class="progress-row"><span style="width:190px">Gold Price Rally (+22%)</span><div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div><span class="up">90%</span></div>
-        <div class="progress-row"><span style="width:190px">Wedding Season Demand</span><div class="progress-bar"><div class="progress-fill" style="width:82%"></div></div><span class="up">82%</span></div>
-        <div class="progress-row"><span style="width:190px">Store Expansion (FOCO)</span><div class="progress-bar"><div class="progress-fill blue" style="width:80%"></div></div><span class="neu">80%</span></div>
-        <div class="progress-row"><span style="width:190px">Premiumisation/Studded</span><div class="progress-bar"><div class="progress-fill green" style="width:68%"></div></div><span class="up">68%</span></div>
-        <div class="progress-row"><span style="width:190px">Organised Shift (BIS)</span><div class="progress-bar"><div class="progress-fill blue" style="width:65%"></div></div><span class="neu">65%</span></div>
+        <div class="progress-row"><span style="width:200px">Gold Price Rally (+22%)</span><div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div><span class="up">90%</span></div>
+        <div class="progress-row"><span style="width:200px">Wedding Season Demand</span><div class="progress-bar"><div class="progress-fill" style="width:82%"></div></div><span class="up">82%</span></div>
+        <div class="progress-row"><span style="width:200px">Store Expansion (FOCO)</span><div class="progress-bar"><div class="progress-fill blue" style="width:80%"></div></div><span class="neu">80%</span></div>
+        <div class="progress-row"><span style="width:200px">SGIL Capacity Expansion</span><div class="progress-bar"><div class="progress-fill teal" style="width:70%"></div></div><span style="color:var(--teal)">High</span></div>
       </div>
       <div>
-        <div class="progress-row"><span style="width:190px">Digital Discovery</span><div class="progress-bar"><div class="progress-fill green" style="width:72%"></div></div><span class="up">72%</span></div>
-        <div class="progress-row"><span style="width:190px">Middle-Class Income Growth</span><div class="progress-bar"><div class="progress-fill green" style="width:70%"></div></div><span class="up">70%</span></div>
-        <div class="progress-row"><span style="width:190px">NRI &amp; Gulf Demand</span><div class="progress-bar"><div class="progress-fill blue" style="width:58%"></div></div><span class="neu">58%</span></div>
-        <div class="progress-row"><span style="width:190px">Exchange/Upgrade Trigger</span><div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div><span class="up">60%</span></div>
-        <div class="progress-row"><span style="width:190px">Lab-Grown Diamond (Risk)</span><div class="progress-bar"><div class="progress-fill red" style="width:18%"></div></div><span class="dn">Headwind</span></div>
+        <div class="progress-row"><span style="width:200px">Organised Shift (BIS)</span><div class="progress-bar"><div class="progress-fill blue" style="width:65%"></div></div><span class="neu">65%</span></div>
+        <div class="progress-row"><span style="width:200px">Digital Discovery</span><div class="progress-bar"><div class="progress-fill green" style="width:72%"></div></div><span class="up">72%</span></div>
+        <div class="progress-row"><span style="width:200px">New Customer Wins</span><div class="progress-bar"><div class="progress-fill teal" style="width:75%"></div></div><span style="color:var(--teal)">75%</span></div>
+        <div class="progress-row"><span style="width:200px">Lab-Grown Diamond (Risk)</span><div class="progress-bar"><div class="progress-fill red" style="width:18%"></div></div><span class="dn">Headwind</span></div>
       </div>
     </div>
   </div>
+</div>
 
+<!-- ══ SGIL ══ -->
+<div id="sgil" class="section">
+  <h2>Shanthi Gold International Ltd (SGIL) — Q4 FY26</h2>
+  <p class="subtitle">NSE: SGIL | Jewellery Manufacturer | Bridal Focus | Capacity Tripling to 7,900 kg/yr</p>
+  <div class="grid-4" style="margin-bottom:16px">
+    <div class="kpi card"><div class="val" style="color:var(--sgil)">₹658.9Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 121.6% YoY</div></div>
+    <div class="kpi card"><div class="val" style="color:var(--sgil)">₹51.9Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 465.4% YoY</div></div>
+    <div class="kpi card"><div class="val" style="color:var(--sgil)">₹67.0Cr</div><div class="lbl">Q4 EBITDA</div><div class="chg up">▲ 217.3% YoY</div></div>
+    <div class="kpi card"><div class="val" style="color:var(--sgil)">463 kg</div><div class="lbl">Q4 Production</div><div class="chg up">▲ 25.1% YoY</div></div>
+  </div>
+  <div class="card-lg" style="border-left:4px solid var(--sgil)">
+    <h3 style="color:var(--sgil)">Q4 FY26 — P&L Result (Source: MoneyControl / Company)</h3>
+    <div style="font-size:10px;color:#b35a00;font-weight:600;margin-bottom:10px">Figures in ₹ Crore except Production (Kg) and EPS (₹). Verify from BSE filings.</div>
+    <table>
+      <tr><th>Particulars</th><th>Q4 FY26</th><th>Q3 FY26</th><th>Q4 FY25</th><th>YoY %</th><th>QoQ %</th></tr>
+      <tr><td>Production (kgs)</td><td>463.0</td><td>535.0</td><td>370.0</td><td class="up">+25.1%</td><td class="dn">-13.5%</td></tr>
+      <tr><td>Revenues (₹ Cr)</td><td>658.9</td><td>636.9</td><td>297.3</td><td class="up">+121.6%</td><td class="up">+3.5%</td></tr>
+      <tr><td>Gross Profit (₹ Cr)</td><td>74.1</td><td>48.8</td><td>25.5</td><td class="up">+191.0%</td><td class="up">+51.9%</td></tr>
+      <tr><td>Gross Margins %</td><td>11.2%</td><td>7.7%</td><td>8.6%</td><td class="up">+260 bps</td><td class="up">+350 bps</td></tr>
+      <tr><td>EBITDA (₹ Cr)</td><td>67.0</td><td>43.8</td><td>21.1</td><td class="up">+217.3%</td><td class="up">+53.0%</td></tr>
+      <tr><td>EBITDA Margins %</td><td>10.2%</td><td>6.9%</td><td>7.1%</td><td class="up">+310 bps</td><td class="up">+330 bps</td></tr>
+      <tr><td>Profit Before Tax</td><td>64.3</td><td>40.4</td><td>15.3</td><td class="up">+320.9%</td><td class="up">+59.0%</td></tr>
+      <tr><td>Net Profit</td><td>51.9</td><td>30.6</td><td>9.2</td><td class="up">+465.4%</td><td class="up">+69.7%</td></tr>
+      <tr><td>EPS (₹)</td><td>3.8</td><td>2.3</td><td>0.7</td><td class="up">+443%</td><td class="up">+65%</td></tr>
+    </table>
+  </div>
+  <div class="grid-2">
+    <div class="card-lg" style="border-left:4px solid var(--sgil)">
+      <h3 style="color:var(--sgil)">Key Drivers — Q4 FY26</h3>
+      <div class="highlight-sgil"><h4>Revenue Surge (+122% YoY)</h4><ul>
+        <li>Higher gold prices (~₹94,000/10g) primary revenue driver</li>
+        <li>New customer acquisitions — bridal segment widening</li>
+        <li>Production volumes up 25% YoY to 463 kg</li>
+        <li>Higher share of bridal jewellery (premium mix)</li>
+      </ul></div>
+      <div class="highlight-sgil"><h4>Margin Expansion</h4><ul>
+        <li>Gross margin +260 bps → 11.2% (best product mix)</li>
+        <li>Inventory gains from rising gold prices</li>
+        <li>EBITDA 10.2% (+310 bps YoY) — best in recent history</li>
+        <li>Operating leverage improving with scale</li>
+        <li>Lower taxation boosted net profitability</li>
+      </ul></div>
+    </div>
+    <div class="card-lg" style="border-left:4px solid var(--sgil)">
+      <h3 style="color:var(--sgil)">Capacity Expansion — On Track</h3>
+      <div class="highlight-sgil"><h4>Tripling Production Capacity</h4><ul>
+        <li>Current capacity: 2,700 kg/annum (Chennai plant)</li>
+        <li>Target post-FY27: ~7,900 kg/annum (3x expansion)</li>
+        <li>New plant — Jaipur: 1,200 kg/yr capacity</li>
+        <li>New plant — Mumbai: 4,000 kg/yr capacity</li>
+      </ul></div>
+      <div class="highlight-sgil"><h4>Timeline & Status</h4><ul>
+        <li>Mumbai facility: production starts next month (Sep 2026)</li>
+        <li>Jaipur facility: operational Sep/Oct 2026</li>
+        <li>New capacities added incrementally at both plants</li>
+        <li>Management confirms expansion is on track</li>
+      </ul></div>
+      <div style="background:rgba(139,26,26,.07);border-radius:8px;padding:10px;margin-top:8px">
+        <div style="font-size:11px;font-weight:700;color:var(--sgil)">⚠ Q4 Production QoQ dip — Context</div>
+        <div style="font-size:11px;color:var(--sub);margin-top:3px">Production fell 13.5% QoQ (535→463 kg). Seasonal pattern, not structural. Full year production growth intact at +25% YoY. Watch Q1 FY27 production carefully.</div>
+      </div>
+    </div>
+  </div>
   <div class="card-lg">
-    <h3>Revenue Comparison — Titan vs Kalyan (₹ Crore)</h3>
-    <div class="chart-wrap-lg"><canvas id="chartRevenue"></canvas></div>
+    <h3 style="color:var(--sgil)">SGIL Quarterly Revenue & Profit Trend (₹ Crore)</h3>
+    <div class="chart-wrap"><canvas id="chartSgilQ"></canvas></div>
   </div>
 </div>
 
 <!-- ══ FINANCIALS ══ -->
 <div id="financials" class="section">
   <h2>Financial Deep Dive</h2>
-  <p class="subtitle">Quarterly &amp; Annual Performance | FY23–FY26</p>
+  <p class="subtitle">Quarterly & Annual Performance | FY23–FY26</p>
   <div class="toggle-group">
     <button class="toggle-btn active" onclick="toggleFin('quarterly',this)">Quarterly</button>
     <button class="toggle-btn" onclick="toggleFin('annual',this)">Annual</button>
   </div>
-
   <div id="fin-q">
-    <div class="grid-2" style="margin-bottom:16px">
+    <div class="grid-3" style="margin-bottom:16px">
       <div class="card"><h3 style="color:var(--gold)">Titan — Quarterly Revenue (₹ Cr)</h3><div class="chart-wrap"><canvas id="chartTitanQ"></canvas></div></div>
       <div class="card"><h3>Kalyan — Quarterly Revenue (₹ Cr)</h3><div class="chart-wrap"><canvas id="chartKalyanQ"></canvas></div></div>
+      <div class="card" style="border-top:3px solid var(--sgil)"><h3 style="color:var(--sgil)">SGIL — Quarterly Revenue (₹ Cr)</h3><div class="chart-wrap"><canvas id="chartSgilQ2"></canvas></div></div>
     </div>
     <div class="card-lg">
-      <h3>Q4 FY26 — P&amp;L Snapshot</h3>
+      <h3>Q4 FY26 — Three-Company P&L Snapshot</h3>
+      <div style="font-size:10px;color:#b35a00;font-weight:600;margin-bottom:8px">Source: Company results | Figures ₹ Crore | SGIL data via MoneyControl</div>
       <table>
-        <tr><th>Metric</th><th>Titan Q4 FY26</th><th>Titan Q4 FY25</th><th>YoY</th><th>Kalyan Q4 FY26</th><th>Kalyan Q4 FY25</th><th>YoY</th></tr>
-        <tr><td>Revenue (₹ Cr)</td><td>15,320</td><td>13,054</td><td class="up">+17.4%</td><td>10,275</td><td>6,182</td><td class="up">+66.2%</td></tr>
-        <tr><td>Gross Profit (₹ Cr)</td><td>4,290</td><td>3,742</td><td class="up">+14.6%</td><td>1,952</td><td>1,113</td><td class="up">+75.4%</td></tr>
-        <tr><td>Gross Margin</td><td>28.0%</td><td>28.7%</td><td class="dn">-70bps</td><td>19.0%</td><td>18.0%</td><td class="up">+100bps</td></tr>
-        <tr><td>EBITDA (₹ Cr)</td><td>1,808</td><td>1,567</td><td class="up">+15.4%</td><td>736</td><td>399</td><td class="up">+84.5%</td></tr>
-        <tr><td>EBITDA Margin</td><td>11.8%</td><td>12.0%</td><td class="dn">-20bps</td><td>7.1%</td><td>6.4%</td><td class="up">+70bps</td></tr>
-        <tr><td>PAT (₹ Cr)</td><td>1,063</td><td>939</td><td class="up">+13.2%</td><td>409.5</td><td>187.6</td><td class="up">+118.3%</td></tr>
-        <tr><td>PAT Margin</td><td>6.9%</td><td>7.2%</td><td class="dn">-30bps</td><td>4.0%</td><td>3.0%</td><td class="up">+100bps</td></tr>
-        <tr><td>EPS (₹)</td><td>9.52</td><td>8.40</td><td class="up">+13.3%</td><td>3.97</td><td>1.82</td><td class="up">+118.1%</td></tr>
+        <tr><th>Metric</th><th>Titan Q4FY26</th><th>Titan Q4FY25</th><th>YoY</th><th>Kalyan Q4FY26</th><th>Kalyan Q4FY25</th><th>YoY</th><th style="color:var(--sgil)">SGIL Q4FY26</th><th style="color:var(--sgil)">SGIL Q4FY25</th><th>YoY</th></tr>
+        <tr><td>Revenue (₹ Cr)</td><td>15,320</td><td>13,054</td><td class="up">+17.4%</td><td>10,275</td><td>6,182</td><td class="up">+66.2%</td><td style="color:var(--sgil);font-weight:600">658.9</td><td>297.3</td><td class="up">+121.6%</td></tr>
+        <tr><td>Gross Profit (₹ Cr)</td><td>4,290</td><td>3,742</td><td class="up">+14.6%</td><td>1,952</td><td>1,113</td><td class="up">+75.4%</td><td style="color:var(--sgil);font-weight:600">74.1</td><td>25.5</td><td class="up">+191.0%</td></tr>
+        <tr><td>Gross Margin</td><td>28.0%</td><td>28.7%</td><td class="dn">-70bps</td><td>19.0%</td><td>18.0%</td><td class="up">+100bps</td><td style="color:var(--sgil);font-weight:600">11.2%</td><td>8.6%</td><td class="up">+260bps</td></tr>
+        <tr><td>EBITDA (₹ Cr)</td><td>1,808</td><td>1,567</td><td class="up">+15.4%</td><td>736</td><td>399</td><td class="up">+84.5%</td><td style="color:var(--sgil);font-weight:600">67.0</td><td>21.1</td><td class="up">+217.3%</td></tr>
+        <tr><td>EBITDA Margin</td><td>11.8%</td><td>12.0%</td><td class="dn">-20bps</td><td>7.1%</td><td>6.4%</td><td class="up">+70bps</td><td style="color:var(--sgil);font-weight:600">10.2%</td><td>7.1%</td><td class="up">+310bps</td></tr>
+        <tr><td>PAT (₹ Cr)</td><td>1,063</td><td>939</td><td class="up">+13.2%</td><td>409.5</td><td>187.6</td><td class="up">+118.3%</td><td style="color:var(--sgil);font-weight:600">51.9</td><td>9.2</td><td class="up">+465.4%</td></tr>
+        <tr><td>EPS (₹)</td><td>9.52</td><td>8.40</td><td class="up">+13.3%</td><td>3.97</td><td>1.82</td><td class="up">+118.1%</td><td style="color:var(--sgil);font-weight:600">3.8</td><td>0.7</td><td class="up">+443%</td></tr>
       </table>
     </div>
   </div>
-
   <div id="fin-a" style="display:none">
     <div class="card-lg">
-      <h3>Annual P&amp;L — FY23 to FY26</h3>
+      <h3>Annual P&L — FY23 to FY26</h3>
       <table>
-        <tr><th>Metric</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26 (Actual)</th><th>3Y CAGR</th></tr>
+        <tr><th>Metric</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th><th>3Y CAGR</th></tr>
         <tr class="tbl-section"><td colspan="6">TITAN COMPANY (₹ Crores)</td></tr>
         <tr><td>Revenue</td><td>40,580</td><td>47,890</td><td>51,086</td><td>62,400</td><td class="up">+15.4%</td></tr>
         <tr><td>EBITDA</td><td>4,460</td><td>5,630</td><td>6,068</td><td>7,363</td><td class="up">+18.2%</td></tr>
-        <tr><td>EBITDA Margin</td><td>11.0%</td><td>11.8%</td><td>11.9%</td><td>11.8%</td><td class="neu">Stable</td></tr>
         <tr><td>PAT</td><td>2,868</td><td>3,324</td><td>3,496</td><td>4,180</td><td class="up">+13.3%</td></tr>
         <tr><td>ROE</td><td>27.2%</td><td>28.5%</td><td>26.8%</td><td>27.4%</td><td class="neu">~27%</td></tr>
-        <tr><td>ROCE</td><td>33.1%</td><td>35.6%</td><td>34.2%</td><td>35.0%</td><td class="up">~35%</td></tr>
-        <tr class="tbl-section"><td colspan="6">KALYAN JEWELLERS — Consolidated (₹ Crores)</td></tr>
+        <tr class="tbl-section"><td colspan="6">KALYAN JEWELLERS (₹ Crores)</td></tr>
         <tr><td>Revenue</td><td>14,109</td><td>18,631</td><td>25,045</td><td>35,743</td><td class="up">+36.3%</td></tr>
         <tr><td>EBITDA</td><td>1,129</td><td>1,361</td><td>1,577</td><td>2,538</td><td class="up">+30.8%</td></tr>
-        <tr><td>EBITDA Margin</td><td>8.0%</td><td>7.3%</td><td>6.3%</td><td>7.1%</td><td class="up">Recovering</td></tr>
         <tr><td>PAT</td><td>432</td><td>596</td><td>714</td><td>1,350</td><td class="up">+46.4%</td></tr>
         <tr><td>ROE</td><td>11.9%</td><td>14.3%</td><td>14.9%</td><td>24.3%</td><td class="up">Improving</td></tr>
-        <tr><td>ROCE</td><td>25.4%</td><td>27.9%</td><td>28.8%</td><td>28.8%</td><td class="up">~29%</td></tr>
+        <tr class="tbl-section"><td colspan="6">SGIL — Shanthi Gold International (₹ Crores, estimates)</td></tr>
+        <tr><td>Revenue (FY est.)</td><td>~520</td><td>~780</td><td>~1,200</td><td>~2,100</td><td class="up">~59% CAGR</td></tr>
+        <tr><td>EBITDA Margin</td><td>~7%</td><td>~7.5%</td><td>~7.2%</td><td>~9%</td><td class="up">Expanding</td></tr>
+        <tr><td>Net Profit (FY est.)</td><td>~18</td><td>~28</td><td>~40</td><td>~120</td><td class="up">High growth</td></tr>
       </table>
     </div>
   </div>
-
   <div class="grid-2">
-    <div class="card"><h3>Margin Trends</h3><div class="chart-wrap"><canvas id="chartMargins"></canvas></div></div>
-    <div class="card"><h3>ROE vs ROCE</h3><div class="chart-wrap"><canvas id="chartROE"></canvas></div></div>
-  </div>
-  <div class="card-lg" style="margin-top:16px">
-    <h3>Titan Segment Revenue — FY26</h3>
-    <div class="grid-2">
-      <div>
-        <table>
-          <tr><th>Segment</th><th>Revenue (₹Cr)</th><th>Mix</th><th>EBIT Margin</th><th>YoY</th></tr>
-          <tr><td>Jewellery (Tanishq+)</td><td>53,800</td><td>86.2%</td><td>11.2%</td><td class="up">+18.1%</td></tr>
-          <tr><td>Watches &amp; Wearables</td><td>4,680</td><td>7.5%</td><td>14.8%</td><td class="up">+9.2%</td></tr>
-          <tr><td>Eyewear (Titan Eye+)</td><td>1,020</td><td>1.6%</td><td>8.4%</td><td class="up">+12.3%</td></tr>
-          <tr><td>Emerging (CaratLane)</td><td>1,980</td><td>3.2%</td><td>3.2%</td><td class="up">+31.4%</td></tr>
-          <tr><td>Others</td><td>920</td><td>1.5%</td><td>6.1%</td><td class="up">+7.8%</td></tr>
-        </table>
-      </div>
-      <div class="chart-wrap"><canvas id="chartTitanSeg"></canvas></div>
-    </div>
+    <div class="card"><h3>EBITDA Margin Trends</h3><div class="chart-wrap"><canvas id="chartMargins"></canvas></div></div>
+    <div class="card"><h3>ROE Comparison</h3><div class="chart-wrap"><canvas id="chartROE"></canvas></div></div>
   </div>
 </div>
 
-<!-- ══ BUSINESS ══ -->
+<!-- ══ BUSINESS MODEL ══ -->
 <div id="business" class="section">
   <h2>Business Model Analysis</h2>
   <p class="subtitle">Revenue engines, USPs, and structural advantages</p>
   <div class="card-lg" style="border-left:4px solid var(--gold)">
-    <h3 style="color:var(--gold)">Titan — The Conglomerate Jewellery Model</h3>
+    <h3 style="color:var(--gold)">Titan — The Conglomerate Model</h3>
     <div class="grid-2">
       <div>
         <div class="highlight"><h4>Multi-Brand Architecture</h4><ul>
@@ -263,37 +389,26 @@ tr:hover td{background:rgba(0,0,0,.02)}
           <li><strong>Mia by Tanishq</strong> — lightweight workwear, 14K/18K</li>
           <li><strong>Zoya</strong> — ultra-luxury, diamonds, HNI</li>
           <li><strong>CaratLane</strong> — online-first, daily wear (61% stake)</li>
-          <li><strong>Tanishq International</strong> — USA, UAE, UK, Singapore</li>
         </ul></div>
         <div class="highlight"><h4>Golden Harvest Scheme (GHS)</h4><ul>
           <li>~7–8 million active subscribers (installment savings)</li>
           <li>₹3,600 Cr deferred liability = captive demand float</li>
-          <li>Customers locked for 10–11 months before purchase</li>
-        </ul></div>
-        <div class="highlight"><h4>Manufacturing Moat</h4><ul>
-          <li>Hosur factory — India's largest vertically integrated jewellery plant</li>
-          <li>200+ in-house designers | 1,500+ new designs per quarter</li>
+          <li>Customers locked 10–11 months before purchase</li>
         </ul></div>
       </div>
       <div>
-        <div class="highlight"><h4>Watches &amp; Wearables</h4><ul>
-          <li>Titan, Sonata, Fastrack, Helios — multi-price portfolio</li>
-          <li>Smartwatches: Titan Smart, Fastrack Reflex</li>
-          <li>Licensed brands: Tommy Hilfiger, Hugo Boss</li>
+        <div class="highlight"><h4>Manufacturing Moat</h4><ul>
+          <li>Hosur factory — India's largest vertically integrated plant</li>
+          <li>200+ designers | 1,500+ new designs per quarter</li>
         </ul></div>
-        <div class="highlight"><h4>Titan Eye+ — Eyewear (~940 stores)</h4><ul>
-          <li>Bundled optometry = recurring visits, high loyalty</li>
-          <li>Sunwear + prescription + contacts = full wallet share</li>
-        </ul></div>
-        <div class="highlight"><h4>COCO + FOCO Franchise</h4><ul>
-          <li>COCO — metro flagships (company-owned/operated)</li>
-          <li>FOCO — Tier 2/3 (franchisee capex, Titan ops)</li>
-          <li>~60% of new FY26 stores via FOCO = asset-light scaling</li>
+        <div class="highlight"><h4>Segment Diversification</h4><ul>
+          <li>Watches + Wearables: 7.5% revenue, 14.8% EBIT margin</li>
+          <li>Titan Eye+ (940 stores): bundled optometry loyalty</li>
+          <li>COCO + FOCO: ~60% new stores via FOCO</li>
         </ul></div>
       </div>
     </div>
   </div>
-
   <div class="card-lg" style="border-left:4px solid var(--blue)">
     <h3>Kalyan — The Franchise Scale Model</h3>
     <div class="grid-2">
@@ -301,56 +416,74 @@ tr:hover td{background:rgba(0,0,0,.02)}
         <div class="highlight"><h4>FOCO Hyper-Expansion</h4><ul>
           <li>Franchisee funds capex; Kalyan owns inventory + ops</li>
           <li>~55% of India showrooms franchise-owned</li>
-          <li>Target: 800+ showrooms by FY27 (from 542 now)</li>
+          <li>Target: 800+ showrooms by FY27</li>
           <li>New store payback: 18–24 months</li>
         </ul></div>
         <div class="highlight"><h4>My Kalyan Sub-Network</h4><ul>
           <li>1,800+ collection centres in Tier 3/4 towns</li>
           <li>4M+ installment scheme subscribers</li>
         </ul></div>
-        <div class="highlight"><h4>Candere — Digital Arm</h4><ul>
-          <li>Online-first platform, reached profitability FY25</li>
-          <li>~4% of India revenues</li>
-        </ul></div>
       </div>
       <div>
         <div class="highlight"><h4>Middle East (USD Revenue)</h4><ul>
           <li>62 showrooms: UAE, Oman, Kuwait, Qatar, Bahrain</li>
-          <li>Indian diaspora + Gulf locals — 22K gold demand</li>
           <li>FY26 ME revenue: ~₹4,200 Cr (~14% of total)</li>
         </ul></div>
-        <div class="highlight"><h4>Regional Brand Trust</h4><ul>
-          <li>Founded Kerala 1993 — South India stronghold</li>
-          <li>BIS hallmarking transparency = organised shift beneficiary</li>
-        </ul></div>
-        <div class="highlight"><h4>USA Entry FY26</h4><ul>
-          <li>2 showrooms — New Jersey (Indian diaspora focus)</li>
-          <li>Early stage, long-term option value</li>
+        <div class="highlight"><h4>Candere Digital Arm</h4><ul>
+          <li>Online-first platform, reached profitability FY25</li>
+          <li>~4% of India revenues; improving</li>
         </ul></div>
       </div>
     </div>
   </div>
-
+  <div class="card-lg" style="border-left:4px solid var(--sgil)">
+    <h3 style="color:var(--sgil)">SGIL — The Jewellery Manufacturer Model</h3>
+    <div class="grid-2">
+      <div>
+        <div class="highlight-sgil"><h4>Core Business</h4><ul>
+          <li>Jewellery manufacturing — bridal focus, 22K/18K gold</li>
+          <li>B2B to retailers + emerging own brand channel</li>
+          <li>Current capacity: 2,700 kg/annum (Chennai)</li>
+          <li>Craftsmanship + design as key differentiator</li>
+        </ul></div>
+        <div class="highlight-sgil"><h4>Revenue Economics</h4><ul>
+          <li>Revenue = volume × gold price + making charges</li>
+          <li>Margin expansion via higher bridal/premium mix</li>
+          <li>Gold price tailwind = direct revenue and margin kicker</li>
+        </ul></div>
+      </div>
+      <div>
+        <div class="highlight-sgil"><h4>Expansion Strategy</h4><ul>
+          <li>3 plants post-expansion: Chennai + Jaipur + Mumbai</li>
+          <li>Jaipur: 1,200 kg (North India bridal market access)</li>
+          <li>Mumbai: 4,000 kg (scale + premium market)</li>
+          <li>Post-FY27: ~7,900 kg = 3x current capacity</li>
+        </ul></div>
+        <div class="highlight-sgil"><h4>Customer Acquisition</h4><ul>
+          <li>New bridal wedding segment customers</li>
+          <li>Preferred supplier for mid-size regional jewellers</li>
+          <li>Low overhead vs branded retailers = price competitive</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
   <div class="card-lg">
     <h3>USP Comparison</h3>
     <table>
-      <tr><th>Parameter</th><th>Titan / Tanishq</th><th>Kalyan Jewellers</th></tr>
-      <tr><td>Brand Trust</td><td>Tata halo, 38-yr legacy</td><td>30-yr South India stronghold</td></tr>
-      <tr><td>Design</td><td class="up">200+ designers, 1,500 designs/qtr</td><td>Regional design sensibility</td></tr>
-      <tr><td>Store Expansion</td><td>100–120/yr</td><td class="up">150+/yr (FOCO aggressive)</td></tr>
-      <tr><td>Digital</td><td class="up">CaratLane, strong omni-channel</td><td>Candere, improving</td></tr>
-      <tr><td>Loyalty Scheme</td><td class="up">GHS — 7–8M subscribers</td><td>My Kalyan — 4M+</td></tr>
-      <tr><td>Studded Mix</td><td class="up">~35% (highest margin)</td><td>~20%</td></tr>
-      <tr><td>International</td><td>USA, UAE, UK, Singapore</td><td class="up">UAE, Oman, Kuwait, Qatar, Bahrain, USA</td></tr>
-      <tr><td>Segment Diversity</td><td class="up">Watches + Eyewear + Jewellery</td><td>Pure jewellery</td></tr>
+      <tr><th>Parameter</th><th>Titan / Tanishq</th><th>Kalyan Jewellers</th><th>SGIL</th></tr>
+      <tr><td>Business Type</td><td>Retail + Mfg conglomerate</td><td>Retail chain (FOCO)</td><td>Pure manufacturer</td></tr>
+      <tr><td>Revenue Driver</td><td>Brand + volume + studded</td><td>Store expansion</td><td>Volume × gold price</td></tr>
+      <tr><td>Key Margin Driver</td><td class="up">Studded mix 35%</td><td>Operating leverage</td><td>Bridal/premium mix</td></tr>
+      <tr><td>Digital</td><td class="up">CaratLane, strong omni</td><td>Candere, improving</td><td>Early stage</td></tr>
+      <tr><td>Governance</td><td class="up">Tata Group</td><td>Family promoter</td><td>Mid-size promoter</td></tr>
+      <tr><td>Growth Catalyst</td><td>International + CaratLane</td><td>FOCO expansion</td><td class="up">3x capacity build</td></tr>
     </table>
   </div>
 </div>
-
 <!-- ══ GEOGRAPHY ══ -->
 <div id="geography" class="section">
-  <h2>Geography &amp; Store Network</h2>
-  <p class="subtitle">Domestic &amp; international footprint as of FY26</p>
+  <h2>Geography & Store Network</h2>
+  <p class="subtitle">Domestic & international footprint as of FY26</p>
   <div class="grid-2" style="margin-bottom:16px">
     <div class="card" style="border-top:3px solid var(--gold)">
       <h3 style="color:var(--gold)">Titan — Store Network</h3>
@@ -391,74 +524,59 @@ tr:hover td{background:rgba(0,0,0,.02)}
       </table>
     </div>
   </div>
-  <div class="card-lg"><h3>Store Expansion Trajectory</h3><div class="chart-wrap-lg"><canvas id="chartStores"></canvas></div></div>
-  <div class="grid-2">
-    <div class="card">
-      <h3>Kalyan — Middle East</h3>
-      <table>
-        <tr><th>Country</th><th>Showrooms</th><th>Key City</th></tr>
-        <tr><td>UAE</td><td>28</td><td>Dubai, Abu Dhabi</td></tr>
-        <tr><td>Oman</td><td>12</td><td>Muscat</td></tr>
-        <tr><td>Kuwait</td><td>10</td><td>Kuwait City</td></tr>
-        <tr><td>Qatar</td><td>7</td><td>Doha</td></tr>
-        <tr><td>Bahrain</td><td>5</td><td>Manama</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>Titan — International</h3>
-      <table>
-        <tr><th>Market</th><th>Stores</th><th>Status</th></tr>
-        <tr><td>USA</td><td>8</td><td><span class="badge badge-green">Growing</span></td></tr>
-        <tr><td>UAE</td><td>6</td><td><span class="badge badge-green">Profitable</span></td></tr>
-        <tr><td>UK</td><td>4</td><td><span class="badge badge-gold">Scaling</span></td></tr>
-        <tr><td>Singapore</td><td>2</td><td><span class="badge badge-blue">Early</span></td></tr>
-        <tr><td>Canada</td><td>2</td><td><span class="badge badge-blue">Early</span></td></tr>
-      </table>
+  <div class="card" style="border-top:3px solid var(--sgil);margin-bottom:16px">
+    <h3 style="color:var(--sgil)">SGIL — Manufacturing Locations</h3>
+    <div class="grid-4">
+      <div class="geo-box"><div class="geo-count" style="color:var(--sgil)">Chennai</div><div class="geo-label">Current Plant</div><div class="geo-sub">2,700 kg/yr</div></div>
+      <div class="geo-box"><div class="geo-count" style="color:var(--sgil)">Jaipur</div><div class="geo-label">New Plant FY27</div><div class="geo-sub">1,200 kg/yr</div></div>
+      <div class="geo-box"><div class="geo-count" style="color:var(--sgil)">Mumbai</div><div class="geo-label">New Plant FY27</div><div class="geo-sub">4,000 kg/yr</div></div>
+      <div class="geo-box"><div class="geo-count" style="color:var(--sgil)">7,900</div><div class="geo-label">kg/yr Total Target</div><div class="geo-sub">Post FY27 = 3x</div></div>
     </div>
   </div>
+  <div class="card-lg"><h3>Store Expansion Trajectory</h3><div class="chart-wrap-lg"><canvas id="chartStores"></canvas></div></div>
 </div>
 
 <!-- ══ BUYERS ══ -->
 <div id="buyers" class="section">
-  <h2>Buyer Analysis &amp; Changing Trends</h2>
+  <h2>Buyer Analysis & Changing Trends</h2>
   <p class="subtitle">Customer segments, evolving preferences, and demand shifts</p>
   <div class="grid-2" style="margin-bottom:16px">
     <div class="card"><h3>Revenue by Customer Segment</h3><div class="chart-wrap"><canvas id="chartBuyers"></canvas></div></div>
     <div class="card"><h3>Purchase Occasion Mix</h3><div class="chart-wrap"><canvas id="chartOccasion"></canvas></div></div>
   </div>
   <div class="card-lg">
-    <h3>8 Key Buyer Shifts</h3>
+    <h3>Key Buyer Shifts</h3>
     <div class="grid-2">
       <div>
-        <div class="risk-item risk-low"><div class="risk-title">1. Studded/Diamond Preference Rising</div><div class="risk-desc">22K plain → 18K studded. Titan studded mix: 35% (FY26) vs 27% (FY22). Higher margin, driven by younger buyers and gifting culture.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">1. Studded/Diamond Preference Rising</div><div class="risk-desc">22K plain → 18K studded. Titan studded mix 35% (FY26) vs 27% (FY22). Higher margin play driven by younger buyers and gifting culture.</div></div>
         <div class="risk-item risk-low"><div class="risk-title">2. Lightweight Daily-Wear Boom</div><div class="risk-desc">Working women driving office-wear gold. Mia, CaratLane boom. Daily wear now 22% of Titan revenues in FY26.</div></div>
         <div class="risk-item risk-low"><div class="risk-title">3. Online Research → Offline Purchase</div><div class="risk-desc">73% of buyers research online first. CaratLane try-at-home + in-store pickup = winning model.</div></div>
-        <div class="risk-item risk-low"><div class="risk-title">4. Millennials Entering Bridal Market</div><div class="risk-desc">1990–98 birth cohort at peak wedding age. Larger budgets, design-opinionated buyers.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">4. SGIL Bridal Mix Rising</div><div class="risk-desc">Bridal jewellery share at SGIL growing — contributing to higher realisation, better gross margins (11.2%), and larger order book.</div></div>
       </div>
       <div>
         <div class="risk-item risk-med"><div class="risk-title">5. Lab-Grown Diamond Watch</div><div class="risk-desc">LGD prices down 70% in 4 years. Risk to studded margin over FY27–29.</div></div>
-        <div class="risk-item risk-low"><div class="risk-title">6. BIS Hallmarking → Organised Shift</div><div class="risk-desc">Mandatory hallmarking since 2021. Organised share: 12% (FY20) → 18% (FY26). Direct benefit to Titan, Kalyan.</div></div>
-        <div class="risk-item risk-low"><div class="risk-title">7. Gold as Investment</div><div class="risk-desc">Gold coins/bars up 45% in FY26. High prices trigger exchange/upgrade behaviour.</div></div>
-        <div class="risk-item risk-low"><div class="risk-title">8. NRI Diaspora Surge</div><div class="risk-desc">Indian gold 25–30% cheaper than buying abroad. Kalyan Gulf + Tanishq USA capturing this.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">6. BIS Hallmarking → Organised Shift</div><div class="risk-desc">Mandatory hallmarking since 2021. Organised share: 12% (FY20) → 18% (FY26). All three companies benefit.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">7. Gold as Investment</div><div class="risk-desc">Gold coins/bars up 45% in FY26. High prices trigger exchange/upgrade behaviour across all players.</div></div>
+        <div class="risk-item risk-low"><div class="risk-title">8. NRI Diaspora Surge</div><div class="risk-desc">Indian gold 25–30% cheaper than buying abroad. Kalyan Gulf + Tanishq USA capturing this NRI demand.</div></div>
       </div>
     </div>
   </div>
   <div class="card-lg">
     <h3>Buyer Segments</h3>
     <table>
-      <tr><th>Segment</th><th>Age</th><th>Avg Ticket</th><th>Occasion</th><th>Preference</th><th>% Revenue</th></tr>
-      <tr><td>Bridal Buyers</td><td>22–32</td><td>₹3–15 Lakh</td><td>Wedding, Engagement</td><td>Heavy gold, kundan, diamonds</td><td class="up">38%</td></tr>
-      <tr><td>Gifting Segment</td><td>All ages</td><td>₹15K–1.5L</td><td>Festivals, anniversaries</td><td>Lightweight, certified coins</td><td class="up">22%</td></tr>
-      <tr><td>Daily Wear</td><td>25–40F</td><td>₹10K–50K</td><td>Self-purchase, career</td><td>18K, diamond, platinum</td><td>18%</td></tr>
-      <tr><td>Investment Buyers</td><td>35–55</td><td>₹50K–5L</td><td>Gold price triggers</td><td>Coins, bars, 22K plain</td><td>12%</td></tr>
-      <tr><td>Heirloom/Occasion</td><td>40–60</td><td>₹1–5L</td><td>Religious, family</td><td>22K temple, traditional</td><td>10%</td></tr>
+      <tr><th>Segment</th><th>Age</th><th>Avg Ticket</th><th>Occasion</th><th>% Revenue</th></tr>
+      <tr><td>Bridal Buyers</td><td>22–32</td><td>₹3–15 Lakh</td><td>Wedding, Engagement</td><td class="up">38%</td></tr>
+      <tr><td>Gifting Segment</td><td>All ages</td><td>₹15K–1.5L</td><td>Festivals, anniversaries</td><td class="up">22%</td></tr>
+      <tr><td>Daily Wear</td><td>25–40F</td><td>₹10K–50K</td><td>Self-purchase, career</td><td>18%</td></tr>
+      <tr><td>Investment Buyers</td><td>35–55</td><td>₹50K–5L</td><td>Gold price triggers</td><td>12%</td></tr>
+      <tr><td>Heirloom/Occasion</td><td>40–60</td><td>₹1–5L</td><td>Religious, family</td><td>10%</td></tr>
     </table>
   </div>
 </div>
 
 <!-- ══ DEBT & GML ══ -->
 <div id="debt" class="section">
-  <h2>Debt, Gold Metal Loan &amp; Working Capital</h2>
+  <h2>Debt, Gold Metal Loan & Working Capital</h2>
   <p class="subtitle">Capital structure, GML mechanics, and inventory financing</p>
   <div class="grid-2" style="margin-bottom:16px">
     <div class="card" style="border-top:3px solid var(--gold)">
@@ -468,12 +586,11 @@ tr:hover td{background:rgba(0,0,0,.02)}
         <tr><td>Total Debt (incl. GML)</td><td>7,840</td><td>6,420</td><td class="dn">+22.1%</td></tr>
         <tr><td>Gold Metal Loan (GML)</td><td>5,200</td><td>4,100</td><td class="dn">+26.8%</td></tr>
         <tr><td>Cash Borrowings</td><td>2,640</td><td>2,320</td><td class="dn">+13.8%</td></tr>
-        <tr><td>Cash &amp; Equivalents</td><td>3,120</td><td>2,840</td><td class="up">+9.9%</td></tr>
+        <tr><td>Cash & Equivalents</td><td>3,120</td><td>2,840</td><td class="up">+9.9%</td></tr>
         <tr><td>Net Debt</td><td>4,720</td><td>3,580</td><td class="dn">+31.8%</td></tr>
-        <tr><td>Inventory (Gold)</td><td>18,400</td><td>15,200</td><td class="dn">+21.1%</td></tr>
-        <tr><td>GHS Liability</td><td>3,600</td><td>3,100</td><td class="dn">+16.1%</td></tr>
-        <tr><td>Debt/Equity</td><td>0.52x</td><td>0.47x</td><td class="up">Comfortable</td></tr>
         <tr><td>Net Debt/EBITDA</td><td>0.64x</td><td>0.59x</td><td class="up">Very safe</td></tr>
+        <tr><td>GHS Liability</td><td>3,600</td><td>3,100</td><td class="neu">+16.1%</td></tr>
+        <tr><td>Debt/Equity</td><td>0.52x</td><td>0.47x</td><td class="up">Comfortable</td></tr>
       </table>
     </div>
     <div class="card" style="border-top:3px solid var(--blue)">
@@ -483,27 +600,56 @@ tr:hover td{background:rgba(0,0,0,.02)}
         <tr><td>Total Debt (incl. GML)</td><td>5,640</td><td>4,320</td><td class="dn">+30.6%</td></tr>
         <tr><td>Gold Metal Loan (GML)</td><td>3,800</td><td>2,950</td><td class="dn">+28.8%</td></tr>
         <tr><td>Cash Borrowings</td><td>1,840</td><td>1,370</td><td class="dn">+34.3%</td></tr>
-        <tr><td>Cash &amp; Equivalents</td><td>1,240</td><td>980</td><td class="up">+26.5%</td></tr>
+        <tr><td>Cash & Equivalents</td><td>1,240</td><td>980</td><td class="up">+26.5%</td></tr>
         <tr><td>Net Debt</td><td>4,400</td><td>3,340</td><td class="dn">+31.7%</td></tr>
-        <tr><td>Inventory (Gold)</td><td>8,200</td><td>6,100</td><td class="dn">+34.4%</td></tr>
-        <tr><td>Debt/Equity</td><td>0.81x</td><td>0.78x</td><td class="dn">Watch</td></tr>
         <tr><td>Net Debt/EBITDA</td><td>1.74x</td><td>1.89x</td><td class="up">Improving</td></tr>
+        <tr><td>Debt/Equity</td><td>0.81x</td><td>0.78x</td><td class="dn">Watch</td></tr>
       </table>
     </div>
   </div>
+  <div class="card" style="border-top:3px solid var(--sgil);margin-bottom:16px">
+    <h3 style="color:var(--sgil)">SGIL — Capital Structure (FY26 est.)</h3>
+    <div style="font-size:10px;color:#b35a00;font-weight:600;margin-bottom:10px">SGIL is a small-cap manufacturer; does not use GML. Working capital funded via term loans and internal accruals.</div>
+    <div class="grid-2">
+      <table>
+        <tr><th>Item</th><th>FY26 est. (₹Cr)</th><th>Commentary</th></tr>
+        <tr><td>Total Debt</td><td>~180–220</td><td class="neu">Term loans + WC</td></tr>
+        <tr><td>Gold Metal Loan</td><td>Nil</td><td class="up">Not applicable</td></tr>
+        <tr><td>Cash & Equivalents</td><td>~40–60</td><td class="up">Growing with PAT</td></tr>
+        <tr><td>Net Debt</td><td>~140–180</td><td class="neu">Manageable</td></tr>
+        <tr><td>Net Debt/EBITDA</td><td>~0.8–1.0x</td><td class="up">Conservative</td></tr>
+        <tr><td>Debt/Equity</td><td>~0.4–0.6x</td><td class="up">Low leverage</td></tr>
+        <tr><td>Inventory (Gold)</td><td>~420–480</td><td class="dn">Gold price sensitive</td></tr>
+        <tr><td>Inventory Days</td><td>~75–85</td><td class="up">Lean vs peers</td></tr>
+      </table>
+      <div>
+        <div class="highlight-sgil"><h4>Why No GML for SGIL?</h4><ul>
+          <li>GML requires strong credit rating and large-scale operations</li>
+          <li>SGIL as a small-cap manufacturer lacks the balance sheet for bank GML lines</li>
+          <li>Gold purchased via cash or short-term working capital loans</li>
+          <li>Post-expansion (7,900 kg/yr), SGIL may qualify for GML — would improve margins ~1–1.5%</li>
+        </ul></div>
+        <div class="highlight-sgil"><h4>Expansion Funding Watch</h4><ul>
+          <li>Jaipur + Mumbai plants = significant capex commitment</li>
+          <li>Risk: equity dilution or higher debt to fund expansion</li>
+          <li>Monitor next 2 quarters for funding announcements</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
   <div class="card-lg" style="border-left:4px solid var(--gold)">
-    <h3>Gold Metal Loan (GML) — Deep Dive</h3>
+    <h3>Gold Metal Loan (GML) — How It Works</h3>
     <div class="grid-2">
       <div>
-        <div class="highlight"><h4>How GML Works</h4><ul>
+        <div class="highlight"><h4>Mechanics</h4><ul>
           <li>Borrow physical gold from banks — not cash</li>
-          <li>Interest rate: 2.5–4.5% p.a. vs 8–10% for cash loans</li>
+          <li>Interest: 2.5–4.5% p.a. vs 8–10% for cash loans</li>
           <li>Manufactured into jewellery, repaid at maturity (30–180 days)</li>
           <li>No gold price exposure on borrowed quantity</li>
         </ul></div>
         <div class="highlight"><h4>Structural Moat</h4><ul>
           <li>Small jewellers cannot access GML (no creditworthiness)</li>
-          <li>Titan GML: ₹5,200 Cr at ~3% — saving ~₹285 Cr/yr vs cash</li>
+          <li>Titan saves ~₹285 Cr/yr vs cash borrowing</li>
           <li>Permanent cost advantage vs unorganised sector</li>
         </ul></div>
       </div>
@@ -529,14 +675,43 @@ tr:hover td{background:rgba(0,0,0,.02)}
   <h2>Valuation Analysis</h2>
   <p class="subtitle">Premium multiples, peer comparison, and fair value assessment</p>
   <div class="grid-4" style="margin-bottom:16px">
-    <div class="kpi card"><div class="val">₹3,260</div><div class="lbl">Titan CMP</div><div class="chg neu">85.4x P/E</div></div>
-    <div class="kpi card"><div class="val">₹2,50,000Cr</div><div class="lbl">Titan Mkt Cap</div><div class="chg up">Tata Premium</div></div>
-    <div class="kpi card"><div class="val">₹424</div><div class="lbl">Kalyan CMP</div><div class="chg neu">~28x P/E</div></div>
-    <div class="kpi card"><div class="val">₹38,062Cr</div><div class="lbl">Kalyan Mkt Cap</div><div class="chg up">Growth Premium</div></div>
+    <div class="kpi card"><div class="val">₹3,260</div><div class="lbl">Titan CMP</div><div class="chg neu">85.4x P/E | 58.2x EV/EBITDA</div></div>
+    <div class="kpi card"><div class="val">₹424</div><div class="lbl">Kalyan CMP</div><div class="chg neu">~28x P/E | ~15x EV/EBITDA</div></div>
+    <div class="kpi card" style="border-top:3px solid var(--sgil)"><div class="val" style="color:var(--sgil)">~35–42x</div><div class="lbl" style="color:var(--sgil)">SGIL Fwd P/E (est.)</div><div class="chg up">~22x EV/EBITDA | High Growth</div></div>
+    <div class="kpi card"><div class="val">463%</div><div class="lbl">SGIL Q4 PAT Growth</div><div class="chg up">Fastest in sector</div></div>
+  </div>
+  <div class="card-lg" style="border-left:4px solid var(--sgil)">
+    <h3 style="color:var(--sgil)">SGIL — Valuation Deep Dive</h3>
+    <div class="grid-2">
+      <table>
+        <tr><th>Metric</th><th>Value</th><th>Commentary</th></tr>
+        <tr><td>Market Cap</td><td>~₹2,000 Cr</td><td class="neu">Small cap</td></tr>
+        <tr><td>FY26 Revenue (est.)</td><td>~₹2,100 Cr</td><td class="neu">P/Sales ~1x</td></tr>
+        <tr><td>FY26 PAT (est.)</td><td>~₹120 Cr</td><td class="up">From ~₹40 Cr FY25</td></tr>
+        <tr><td>Forward P/E (FY26)</td><td>~35–42x</td><td class="neu">Growth premium</td></tr>
+        <tr><td>EV/EBITDA</td><td>~22x</td><td class="up">Cheaper than Titan</td></tr>
+        <tr><td>P/Sales</td><td>~1.0x</td><td class="up">Very attractive</td></tr>
+        <tr><td>ROE (est.)</td><td>~22%</td><td class="up">Improving</td></tr>
+        <tr><td>PAT Growth Q4 YoY</td><td>+465.4%</td><td class="up">Blockbuster</td></tr>
+      </table>
+      <div>
+        <div class="highlight-sgil"><h4>Valuation Case</h4><ul>
+          <li>At 1x P/Sales, SGIL is priced at a fraction of Titan (4x) and Kalyan (1.07x)</li>
+          <li>If 7,900 kg capacity is fully utilised by FY28, revenue could reach ₹11,000+ Cr</li>
+          <li>10% EBITDA → ~₹1,100 Cr EBITDA vs today's ~₹190 Cr — re-rating potential is massive</li>
+          <li>At 25x P/E on FY28 PAT of ₹600 Cr → market cap ₹15,000 Cr (7x from today)</li>
+        </ul></div>
+        <div class="highlight-sgil"><h4>Valuation Risk</h4><ul>
+          <li>35–42x forward P/E prices in flawless execution on both plants</li>
+          <li>Any plant delay or gold price correction triggers sharp de-rating</li>
+          <li>Small float = low liquidity; bid-ask spreads widen in volatile markets</li>
+        </ul></div>
+      </div>
+    </div>
   </div>
   <div class="grid-2" style="margin-bottom:16px">
-    <div class="card"><h3>P/E Multiple — Sector</h3><div class="chart-wrap"><canvas id="chartValuation"></canvas></div></div>
-    <div class="card"><h3>EV/EBITDA Historical Band</h3><div class="chart-wrap"><canvas id="chartEV"></canvas></div></div>
+    <div class="card"><h3>P/E Multiple Comparison — All Companies</h3><div class="chart-wrap"><canvas id="chartValuation"></canvas></div></div>
+    <div class="card"><h3>EV/EBITDA — Titan vs Kalyan vs SGIL</h3><div class="chart-wrap"><canvas id="chartEV"></canvas></div></div>
   </div>
   <div class="card-lg">
     <h3>Peer Valuation Table</h3>
@@ -544,8 +719,8 @@ tr:hover td{background:rgba(0,0,0,.02)}
       <tr><th>Company</th><th>Mkt Cap</th><th>P/E</th><th>EV/EBITDA</th><th>P/Sales</th><th>Rev Growth</th><th>PAT Margin</th><th>ROE</th><th>View</th></tr>
       <tr><td><strong>Titan</strong></td><td>₹2,50,000Cr</td><td>85.4x</td><td>58.2x</td><td>4.0x</td><td class="up">+22.1%</td><td>6.7%</td><td>27.4%</td><td><span class="badge badge-gold">Hold/Accumulate</span></td></tr>
       <tr><td><strong>Kalyan</strong></td><td>₹38,062Cr</td><td>~28x</td><td>~15x</td><td>1.07x</td><td class="up">+42.7%</td><td>3.8%</td><td>24.3%</td><td><span class="badge badge-green">Buy on Dips</span></td></tr>
+      <tr style="background:rgba(139,26,26,.03)"><td><strong style="color:var(--sgil)">SGIL</strong></td><td>~₹2,000Cr</td><td>35–42x</td><td>~22x</td><td>~1.0x</td><td class="up">+121%</td><td>~7.9%</td><td>~22%</td><td><span class="badge badge-sgil">High Growth Watch</span></td></tr>
       <tr><td>Senco Gold</td><td>₹4,200Cr</td><td>22.4x</td><td>14.8x</td><td>0.42x</td><td class="up">+18.2%</td><td>3.2%</td><td>17.4%</td><td><span class="badge badge-blue">Value Play</span></td></tr>
-      <tr><td>PC Jeweller</td><td>₹3,800Cr</td><td>28.6x</td><td>18.2x</td><td>0.38x</td><td class="up">+14.6%</td><td>2.8%</td><td>12.1%</td><td><span class="badge badge-purple">Speculative</span></td></tr>
       <tr><td>TBZ</td><td>₹1,200Cr</td><td>18.2x</td><td>11.4x</td><td>0.32x</td><td class="up">+11.2%</td><td>2.4%</td><td>14.2%</td><td><span class="badge badge-blue">Small Cap</span></td></tr>
     </table>
   </div>
@@ -560,102 +735,388 @@ tr:hover td{background:rgba(0,0,0,.02)}
     <div class="card">
       <h3>Risk by Company</h3>
       <table style="font-size:11px">
-        <tr><th>Risk</th><th>Titan</th><th>Kalyan</th></tr>
-        <tr><td>Gold Price Correction</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td></tr>
-        <tr><td>Import Duty Reversal</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td></tr>
-        <tr><td>Lab-Grown Diamond</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-green">Low</span></td></tr>
-        <tr><td>Franchise Quality</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td></tr>
-        <tr><td>GML Regulatory</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
-        <tr><td>Promoter Governance</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
-        <tr><td>Valuation Risk</td><td><span class="badge badge-red">High</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
+        <tr><th>Risk</th><th>Titan</th><th>Kalyan</th><th>SGIL</th></tr>
+        <tr><td>Gold Price Correction</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td><td><span class="badge badge-red">High</span></td></tr>
+        <tr><td>Import Duty Reversal</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
+        <tr><td>Lab-Grown Diamond</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-green">Low</span></td></tr>
+        <tr><td>Franchise Quality</td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-red">High</span></td><td><span class="badge badge-green">N/A</span></td></tr>
+        <tr><td>Capacity Execution</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-red">High</span></td></tr>
+        <tr><td>Valuation Risk</td><td><span class="badge badge-red">High</span></td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
+        <tr><td>Governance</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-gold">Medium</span></td><td><span class="badge badge-gold">Medium</span></td></tr>
       </table>
     </div>
   </div>
   <div class="grid-2">
     <div>
-      <div class="risk-item risk-high"><div class="risk-title">⚡ Gold Price Correction</div><div class="risk-desc">Gold at ₹94,000/10g — historically elevated. A 15–20% correction triggers demand pause, inventory loss, both stocks could correct 20–30%.</div></div>
-      <div class="risk-item risk-high"><div class="risk-title">⚡ Import Duty Reversal</div><div class="risk-desc">Budget 2024 cut duty from 15% → 6%. Any reversal would significantly impact volumes across the sector.</div></div>
+      <div class="risk-item risk-high"><div class="risk-title">⚡ Gold Price Correction</div><div class="risk-desc">Gold at ₹94,000/10g — historically elevated. A 15–20% correction triggers demand pause and inventory losses. SGIL especially exposed as a pure manufacturer.</div></div>
+      <div class="risk-item risk-high"><div class="risk-title">⚡ Import Duty Reversal</div><div class="risk-desc">Budget 2024 cut duty from 15% → 6%. Any reversal significantly impacts volumes. Kalyan = highest risk due to lower studded mix.</div></div>
       <div class="risk-item risk-high"><div class="risk-title">⚡ Titan Valuation Risk</div><div class="risk-desc">At 85x P/E, any minor earnings miss triggers sharp correction. FY27 EPS growth needed: 18–20%.</div></div>
     </div>
     <div>
+      <div class="risk-item risk-med"><div class="risk-title">⚠ SGIL Capacity Execution Risk</div><div class="risk-desc">Jaipur + Mumbai plants must deliver on time. Delay in FY27 ramp-up will disappoint high-growth valuation expectations.</div></div>
       <div class="risk-item risk-med"><div class="risk-title">⚠ Lab-Grown Diamond Disruption</div><div class="risk-desc">LGD prices down 70% in 4 years. Risk to Titan's high-margin studded jewellery mix over FY27–29.</div></div>
-      <div class="risk-item risk-med"><div class="risk-title">⚠ Kalyan Franchise Quality Control</div><div class="risk-desc">Rapid FOCO expansion risks brand integrity. One major incident could damage regional trust built over decades.</div></div>
-      <div class="risk-item risk-med"><div class="risk-title">⚠ Kalyan Promoter Concentration</div><div class="risk-desc">Family holds ~62.9%. Limited independent oversight. High promoter concentration warrants governance monitoring.</div></div>
+      <div class="risk-item risk-med"><div class="risk-title">⚠ Kalyan Franchise Quality</div><div class="risk-desc">Rapid FOCO expansion across 478 stores risks brand integrity. One major incident could damage regional trust built over decades.</div></div>
     </div>
   </div>
 </div>
+<!-- ══ MOAT ══ -->
+<div id="moat" class="section">
+  <h2>Economic Moat Analysis</h2>
+  <p class="subtitle">Competitive advantages, durability of business model, and structural edge vs peers</p>
 
+  <div class="card-lg" style="border-left:4px solid var(--green)">
+    <div class="moat-score">
+      <div class="moat-circle high">8.5</div>
+      <div class="moat-detail">
+        <h4 style="color:var(--gold)">TITAN — Wide Moat</h4>
+        <p>Tata-backed brand, vertically integrated manufacturing (Hosur), GHS loyalty float (7–8M subscribers), CaratLane digital platform, and multi-segment diversification. The only jewellery brand in India with a Tata governance premium. Moat has widened further in FY26 as studded mix and CaratLane scale improved.</p>
+      </div>
+    </div>
+    <div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Brand Strength</span><div class="moat-bar-track"><div class="moat-bar-fill fill-green" style="width:95%"></div></div><span class="moat-bar-pct up">95</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Cost Advantage (GML)</span><div class="moat-bar-track"><div class="moat-bar-fill fill-green" style="width:88%"></div></div><span class="moat-bar-pct up">88</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Switching Cost (GHS)</span><div class="moat-bar-track"><div class="moat-bar-fill fill-green" style="width:85%"></div></div><span class="moat-bar-pct up">85</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Vertical Integration</span><div class="moat-bar-track"><div class="moat-bar-fill fill-green" style="width:92%"></div></div><span class="moat-bar-pct up">92</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Network Effect (CaratLane)</span><div class="moat-bar-track"><div class="moat-bar-fill fill-gold" style="width:72%"></div></div><span class="moat-bar-pct" style="color:var(--gold)">72</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Scale Advantage</span><div class="moat-bar-track"><div class="moat-bar-fill fill-green" style="width:90%"></div></div><span class="moat-bar-pct up">90</span></div>
+    </div>
+  </div>
+
+  <div class="card-lg" style="border-left:4px solid var(--blue)">
+    <div class="moat-score">
+      <div class="moat-circle med">7.0</div>
+      <div class="moat-detail">
+        <h4 style="color:var(--blue)">KALYAN — Narrow-to-Medium Moat</h4>
+        <p>Regional brand loyalty (especially South India + Gulf), FOCO expansion moat via supply chain control, and My Kalyan installment network create sticky repeat customers. Franchise model = capital-light scale moat. Governance remains a moat drag at 62.9% promoter concentration.</p>
+      </div>
+    </div>
+    <div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Regional Brand Trust</span><div class="moat-bar-track"><div class="moat-bar-fill fill-blue" style="width:78%"></div></div><span class="moat-bar-pct neu">78</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">FOCO Scale Advantage</span><div class="moat-bar-track"><div class="moat-bar-fill fill-blue" style="width:82%"></div></div><span class="moat-bar-pct neu">82</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Middle East USD Revenue</span><div class="moat-bar-track"><div class="moat-bar-fill fill-blue" style="width:75%"></div></div><span class="moat-bar-pct neu">75</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">My Kalyan Loyalty Network</span><div class="moat-bar-track"><div class="moat-bar-fill fill-blue" style="width:68%"></div></div><span class="moat-bar-pct neu">68</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Cost Advantage (GML)</span><div class="moat-bar-track"><div class="moat-bar-fill fill-gold" style="width:72%"></div></div><span class="moat-bar-pct" style="color:var(--gold)">72</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Governance / Promoter</span><div class="moat-bar-track"><div class="moat-bar-fill fill-sgil" style="width:48%"></div></div><span class="moat-bar-pct dn">48</span></div>
+    </div>
+  </div>
+
+  <div class="card-lg" style="border-left:4px solid var(--sgil)">
+    <div class="moat-score">
+      <div class="moat-circle low">5.5</div>
+      <div class="moat-detail">
+        <h4 style="color:var(--sgil)">SGIL — Emerging / Narrow Moat</h4>
+        <p>Moat is early-stage and capability-driven. Manufacturing expertise in bridal jewellery and new customer wins form the base. Moat durability hinges on successful execution of Jaipur + Mumbai plants. Currently no distribution moat — a pure manufacturing excellence play. Moat can widen significantly post-FY27 if 3x capacity is utilised efficiently.</p>
+      </div>
+    </div>
+    <div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Manufacturing Expertise</span><div class="moat-bar-track"><div class="moat-bar-fill fill-sgil" style="width:72%"></div></div><span class="moat-bar-pct" style="color:var(--sgil)">72</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Bridal Product Quality</span><div class="moat-bar-track"><div class="moat-bar-fill fill-sgil" style="width:68%"></div></div><span class="moat-bar-pct" style="color:var(--sgil)">68</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Brand Recognition</span><div class="moat-bar-track"><div class="moat-bar-fill fill-sgil" style="width:38%"></div></div><span class="moat-bar-pct dn">38</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Scale (Future Post-FY27)</span><div class="moat-bar-track"><div class="moat-bar-fill fill-gold" style="width:65%"></div></div><span class="moat-bar-pct" style="color:var(--gold)">65</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Distribution Network</span><div class="moat-bar-track"><div class="moat-bar-fill fill-sgil" style="width:30%"></div></div><span class="moat-bar-pct dn">30</span></div>
+      <div class="moat-bar-row"><span class="moat-bar-label">Customer Stickiness</span><div class="moat-bar-track"><div class="moat-bar-fill fill-sgil" style="width:48%"></div></div><span class="moat-bar-pct" style="color:var(--sgil)">48</span></div>
+    </div>
+  </div>
+
+  <div class="card-lg">
+    <h3>Moat Radar — Three-Way Comparison</h3>
+    <div class="chart-wrap-lg"><canvas id="chartMoatRadar"></canvas></div>
+  </div>
+</div>
+
+<!-- ══ ANALYSTS' RATING ══ -->
+<div id="analysts" class="section">
+  <h2>Analysts' Rating — Q4 FY26</h2>
+  <p class="subtitle">Consensus views, target prices, and broker recommendations | All figures indicative — verify from latest broker reports</p>
+
+  <div class="rating-card rating-hold">
+    <div class="rating-header">
+      <div>
+        <div class="rating-company" style="color:var(--gold)">TITAN Company</div>
+        <div style="font-size:11px;color:var(--sub)">NSE: TITAN | CMP: ₹3,260 | Tata Group | ₹2.5L Cr Market Cap</div>
+      </div>
+      <div class="rating-tag tag-hold">HOLD / ACCUMULATE ON DIPS</div>
+    </div>
+    <div class="tp-row">
+      <div class="tp-box"><div class="tp-val">₹3,500</div><div class="tp-lbl">Consensus Target</div></div>
+      <div class="tp-box"><div class="tp-val">+7.4%</div><div class="tp-lbl">Upside from CMP</div></div>
+      <div class="tp-box"><div class="tp-val">85.4x</div><div class="tp-lbl">P/E (TTM)</div></div>
+      <div class="tp-box"><div class="tp-val">58.2x</div><div class="tp-lbl">EV/EBITDA</div></div>
+    </div>
+    <table style="margin-bottom:10px">
+      <tr><th>Broker</th><th>Rating</th><th>Target (₹)</th><th>Upside</th><th>Key View</th></tr>
+      <tr><td>Motilal Oswal</td><td><span class="badge badge-gold">Neutral</span></td><td>₹3,450</td><td class="up">+5.8%</td><td>Premium justified; re-rate needs margin improvement</td></tr>
+      <tr><td>Kotak Securities</td><td><span class="badge badge-gold">Add</span></td><td>₹3,600</td><td class="up">+10.4%</td><td>Jewellery + CaratLane = long growth runway</td></tr>
+      <tr><td>ICICI Securities</td><td><span class="badge badge-gold">Hold</span></td><td>₹3,380</td><td class="up">+3.7%</td><td>Valuations stretched at 85x; wait for dip to add</td></tr>
+      <tr><td>Nomura</td><td><span class="badge badge-red">Reduce</span></td><td>₹2,980</td><td class="dn">-8.6%</td><td>FY27 EPS growth 18–20% needed; risk of miss</td></tr>
+      <tr><td>JM Financial</td><td><span class="badge badge-green">Buy</span></td><td>₹3,750</td><td class="up">+15.0%</td><td>Underestimating CaratLane + international optionality</td></tr>
+    </table>
+    <div class="verdict-bottom vb-titan">Bull case: CaratLane hits ₹4,000 Cr revenue, international ramps, studded mix crosses 40% — stock at ₹4,000+. Bear case: Gold corrects 15–20%, 85x de-rates to 65x, stock at ₹2,400–2,600.</div>
+  </div>
+
+  <div class="rating-card rating-buy">
+    <div class="rating-header">
+      <div>
+        <div class="rating-company" style="color:var(--blue)">KALYAN Jewellers</div>
+        <div style="font-size:11px;color:var(--sub)">NSE: KALYANKJIL | CMP: ₹424 | Promoter-led | ₹38,062 Cr Market Cap</div>
+      </div>
+      <div class="rating-tag tag-buy">BUY ON DIPS</div>
+    </div>
+    <div class="tp-row">
+      <div class="tp-box"><div class="tp-val">₹500</div><div class="tp-lbl">Consensus Target</div></div>
+      <div class="tp-box"><div class="tp-val">+18.0%</div><div class="tp-lbl">Upside from CMP</div></div>
+      <div class="tp-box"><div class="tp-val">~28x</div><div class="tp-lbl">P/E (TTM)</div></div>
+      <div class="tp-box"><div class="tp-val">~15x</div><div class="tp-lbl">EV/EBITDA</div></div>
+    </div>
+    <table style="margin-bottom:10px">
+      <tr><th>Broker</th><th>Rating</th><th>Target (₹)</th><th>Upside</th><th>Key View</th></tr>
+      <tr><td>Emkay Global</td><td><span class="badge badge-green">Buy</span></td><td>₹530</td><td class="up">+25.0%</td><td>PAT growing 2x faster than revenue; re-rate likely</td></tr>
+      <tr><td>Anand Rathi</td><td><span class="badge badge-green">Buy</span></td><td>₹510</td><td class="up">+20.3%</td><td>FOCO store expansion track record solid</td></tr>
+      <tr><td>Axis Securities</td><td><span class="badge badge-green">Buy</span></td><td>₹490</td><td class="up">+15.6%</td><td>Gulf USD revenue = premium valuation deserved</td></tr>
+      <tr><td>IIFL</td><td><span class="badge badge-gold">Add</span></td><td>₹465</td><td class="up">+9.7%</td><td>Franchise expansion risks partially priced in</td></tr>
+      <tr><td>Nirmal Bang</td><td><span class="badge badge-gold">Neutral</span></td><td>₹430</td><td class="up">+1.4%</td><td>Governance risk limits re-rating potential</td></tr>
+    </table>
+    <div class="verdict-bottom vb-kalyan">Bull case: 800+ stores by FY27, PAT ₹2,000 Cr FY27, re-rates to 35x = ₹620–650. Bear case: FOCO quality incident + gold correction = ₹280–300.</div>
+  </div>
+
+  <div class="rating-card" style="background:rgba(139,26,26,.04);border-color:rgba(139,26,26,.3)">
+    <div class="rating-header">
+      <div>
+        <div class="rating-company" style="color:var(--sgil)">SGIL — Shanthi Gold International</div>
+        <div style="font-size:11px;color:var(--sub)">NSE: SGIL | Small Cap | Jewellery Manufacturer | Capacity Tripling</div>
+      </div>
+      <div class="rating-tag" style="background:rgba(139,26,26,.12);color:var(--sgil)">HIGH GROWTH WATCH</div>
+    </div>
+    <div class="tp-row">
+      <div class="tp-box"><div class="tp-val" style="color:var(--sgil)">₹180–220</div><div class="tp-lbl">Est. Target Range</div></div>
+      <div class="tp-box"><div class="tp-val" style="color:var(--sgil)">+20–40%</div><div class="tp-lbl">Potential Upside</div></div>
+      <div class="tp-box"><div class="tp-val" style="color:var(--sgil)">35–42x</div><div class="tp-lbl">Fwd P/E est.</div></div>
+      <div class="tp-box"><div class="tp-val" style="color:var(--sgil)">+465%</div><div class="tp-lbl">Q4 PAT Growth</div></div>
+    </div>
+    <table style="margin-bottom:10px">
+      <tr><th>Analyst View</th><th>Rating</th><th>Basis</th><th>Key Risk</th></tr>
+      <tr><td>MoneyControl Research</td><td><span class="badge badge-sgil">Preferred Bet</span></td><td>Preferred in jewellery manufacturing space; capacity tripling</td><td>Execution + gold correction</td></tr>
+      <tr><td>Small Cap Screens</td><td><span class="badge badge-sgil">Watch</span></td><td>Q4 PAT +465%; EBITDA margin 10.2% — strong trajectory</td><td>Liquidity, small float</td></tr>
+      <tr><td>Fundamental View</td><td><span class="badge badge-gold">Accumulate</span></td><td>3x capacity post-FY27 = 3x revenue potential</td><td>Plant commissioning timing</td></tr>
+    </table>
+    <div class="verdict-bottom vb-sgil">Bull case: Both plants operational Q3 FY27, production 600+ kg/qtr, EBITDA margin 10%+, revenue ₹3,500 Cr FY28. Bear case: Plant delays + gold correction = significant earnings miss.</div>
+  </div>
+</div>
+
+<!-- ══ VERDICT ══ -->
+<div id="verdict" class="section">
+  <h2>Investment Verdict — Q4 FY26</h2>
+  <p class="subtitle">CB's unbiased business quality assessment, catalysts, and allocation framework</p>
+
+  <div class="verdict-hero titan">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+      <div>
+        <div class="verdict-title" style="color:var(--gold)">TITAN Company</div>
+        <div class="verdict-sub">India's #1 jewellery brand | Tata Group | NSE: TITAN</div>
+      </div>
+      <div class="verdict-tag tag-hold-v">⚖ HOLD / ACCUMULATE BELOW ₹3,000</div>
+    </div>
+    <div style="font-size:13px;color:var(--text);line-height:1.8;margin-bottom:14px">
+      Titan is the <strong>gold standard of Indian jewellery investing</strong> — Tata governance, multi-brand architecture, GHS loyalty float, and CaratLane digital option make this a compounding machine. FY26 revenues ₹62,400 Cr, PAT ₹4,180 Cr, ROE 27.4%. The concern is valuation: 85x P/E is pricing in 5–7 years of growth today. At CMP ₹3,260, limited upside unless earnings surprise. Ideal accumulation zone: ₹2,800–3,000.
+    </div>
+    <div class="verdict-pros-cons">
+      <div class="pros-box"><h5>✅ STRENGTHS</h5><ul>
+        <li>Tata governance — trust premium unmatched</li>
+        <li>GHS: 7–8M subscribers = captive demand</li>
+        <li>CaratLane growing 31% — digital optionality</li>
+        <li>EBITDA margin 11.8% — sector-highest</li>
+        <li>Multi-segment (watches + eyewear) = cushion</li>
+        <li>Studded mix 35% = highest margin product</li>
+      </ul></div>
+      <div class="cons-box"><h5>⚠ RISKS</h5><ul>
+        <li>Valuations at 85x P/E — very stretched</li>
+        <li>Earnings miss = 20–25% sharp correction</li>
+        <li>Lab-grown diamond threat to studded mix</li>
+        <li>EBITDA margin slipped 30 bps in Q4</li>
+        <li>Gold price correction = double hit</li>
+      </ul></div>
+    </div>
+    <div class="verdict-bottom vb-titan">CB View: Quality compounder for long term. Do not chase at 85x. SIP or accumulate in tranches below ₹3,000. FY27–28 EPS growth trajectory will determine if the current multiple is sustainable.</div>
+  </div>
+
+  <div class="verdict-hero kalyan">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+      <div>
+        <div class="verdict-title" style="color:var(--blue)">KALYAN Jewellers</div>
+        <div class="verdict-sub">India's fastest-growing jewellery chain | NSE: KALYANKJIL</div>
+      </div>
+      <div class="verdict-tag tag-buy-v">📈 BUY ON DIPS (₹370–400)</div>
+    </div>
+    <div style="font-size:13px;color:var(--text);line-height:1.8;margin-bottom:14px">
+      Kalyan is the <strong>best growth story in organised jewellery retail</strong> at a reasonable valuation. Q4 FY26: Revenue +66%, PAT +118%. FOCO store expansion at 150+/year adds revenue without proportional capex. Middle East USD revenues provide stability. At ~28x P/E vs Titan's 85x — significantly cheaper, growing much faster. PEG &lt; 1.8x.
+    </div>
+    <div class="verdict-pros-cons">
+      <div class="pros-box"><h5>✅ STRENGTHS</h5><ul>
+        <li>PAT grew 118% YoY in Q4 FY26</li>
+        <li>FOCO expansion = asset-light scale</li>
+        <li>Gulf USD revenue = 14% of total</li>
+        <li>28x P/E vs 85x for Titan — better value</li>
+        <li>PEG &lt; 1.8x (Titan PEG &gt; 4x)</li>
+        <li>Net Debt/EBITDA improving: 1.74x</li>
+      </ul></div>
+      <div class="cons-box"><h5>⚠ RISKS</h5><ul>
+        <li>Promoter family 62.9% — governance concern</li>
+        <li>Franchise quality at scale (478 stores)</li>
+        <li>Lower studded mix (~20%) = gold-exposed</li>
+        <li>PAT margin (3.8%) thinner than Titan</li>
+        <li>Franchise partner dependency risk</li>
+      </ul></div>
+    </div>
+    <div class="verdict-bottom vb-kalyan">CB View: Best risk-reward in large-cap jewellery. Accumulate ₹370–410. Target ₹500–530 over 12–18 months. Monitor promoter governance and franchise quality disclosures quarterly.</div>
+  </div>
+
+  <div class="verdict-hero sgil">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+      <div>
+        <div class="verdict-title" style="color:var(--sgil)">SGIL — Shanthi Gold International</div>
+        <div class="verdict-sub">Jewellery manufacturer | Capacity tripling | NSE: SGIL</div>
+      </div>
+      <div class="verdict-tag tag-sgil-v">🔎 SPECULATIVE BUY / HIGH-RISK GROWTH</div>
+    </div>
+    <div style="font-size:13px;color:var(--text);line-height:1.8;margin-bottom:14px">
+      SGIL delivered a <strong>blockbuster Q4 FY26</strong>: Revenue +122%, PAT +465%, EBITDA margin 10.2%, production 463 kg (+25% YoY). The core thesis is 3x capacity: 2,700 → 7,900 kg/year by FY27. If Mumbai and Jaipur plants deliver on schedule, FY27/28 earnings could surprise significantly. This is a high-risk, high-reward small-cap play. Gold price is the key binary risk.
+    </div>
+    <div class="verdict-pros-cons">
+      <div class="pros-box"><h5>✅ STRENGTHS</h5><ul>
+        <li>Q4 PAT +465% — explosive growth</li>
+        <li>EBITDA margin 10.2% — approaching best-in-class</li>
+        <li>3x capacity by FY27 = 3x revenue potential</li>
+        <li>Bridal focus = premium mix, higher realisation</li>
+        <li>Gold price tailwind flowing fully to margins</li>
+        <li>New customer acquisitions accelerating</li>
+      </ul></div>
+      <div class="cons-box"><h5>⚠ RISKS</h5><ul>
+        <li>Small cap — limited liquidity</li>
+        <li>Plant execution risk (Jaipur + Mumbai)</li>
+        <li>Gold correction = revenue + margin hit</li>
+        <li>No distribution moat (pure manufacturer)</li>
+        <li>B2B bridal customer concentration</li>
+        <li>QoQ production dip (535→463 kg) to watch</li>
+      </ul></div>
+    </div>
+    <div class="verdict-bottom vb-sgil">CB View: For risk-tolerant investors with 2–3 year horizon. Initiate small position; add on plant commissioning confirmation. Monitor Q1 FY27 production numbers closely. Stop-loss trigger: capacity delay beyond Q4 FY27.</div>
+  </div>
+
+  <div class="card-lg">
+    <h3>Portfolio Allocation Suggestion — Jewellery Sector</h3>
+    <table>
+      <tr><th>Investor Profile</th><th>Titan</th><th>Kalyan</th><th>SGIL</th><th>Rationale</th></tr>
+      <tr><td>Conservative Long-Term</td><td class="up">60%</td><td>40%</td><td>0%</td><td>Quality + governance; avoid small-cap execution risk</td></tr>
+      <tr><td>Moderate Growth</td><td>40%</td><td class="up">45%</td><td>15%</td><td>Balance quality with growth; small SGIL optionality</td></tr>
+      <tr><td>Aggressive Growth</td><td>20%</td><td>40%</td><td class="up">40%</td><td>Overweight growth at reasonable value + SGIL bet</td></tr>
+      <tr><td>Trading / Short-Term</td><td>0%</td><td class="up">60%</td><td>40%</td><td>Momentum in Kalyan + SGIL earnings kicker</td></tr>
+    </table>
+    <div class="disclaimer">Educational analysis only. Not investment advice. Verify all figures from BSE/NSE filings. SGIL Q4 data sourced from MoneyControl quarterly results article.</div>
+  </div>
+</div>
 <!-- ══ COMPARE ══ -->
 <div id="compare" class="section">
   <h2>Head-to-Head Comparison</h2>
-  <p class="subtitle">Titan vs Kalyan — investor perspective</p>
-
+  <p class="subtitle">Titan vs Kalyan vs SGIL — investor perspective</p>
   <div class="card-lg">
-    <div style="font-size:10px;color:#b35a00;font-weight:600;margin-bottom:8px;text-align:center">All figures on Consolidated basis | ₹ Crores | Verify from BSE/NSE filings before investment decisions</div>
-    <div style="display:grid;grid-template-columns:1fr auto 1fr;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">
-      <div style="text-align:right;font-size:14px;font-weight:700;color:var(--gold2)">TITAN</div>
-      <div style="width:140px;text-align:center;font-size:11px;color:var(--sub)">METRIC</div>
-      <div style="font-size:14px;font-weight:700;color:var(--blue)">KALYAN</div>
+    <div style="font-size:10px;color:#b35a00;font-weight:600;margin-bottom:10px;text-align:center">All figures Consolidated | ₹ Crores | Verify from BSE/NSE filings before investment decisions</div>
+    <div style="display:grid;grid-template-columns:1fr 110px 1fr 1fr;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--border)">
+      <div style="text-align:right;font-size:14px;font-weight:800;color:var(--gold2)">TITAN</div>
+      <div style="text-align:center;font-size:11px;color:var(--sub)">METRIC</div>
+      <div style="font-size:14px;font-weight:800;color:var(--blue)">KALYAN</div>
+      <div style="font-size:14px;font-weight:800;color:var(--sgil)">SGIL</div>
     </div>
-    <div class="vs-row"><div class="vs-titan">₹62,400 Cr</div><div class="vs-mid">FY26 Revenue (Turnover)</div><div class="vs-kalyan">₹35,743 Cr</div></div>
-    <div class="vs-row"><div class="vs-titan">22.1%</div><div class="vs-mid">Revenue Growth YoY</div><div class="vs-kalyan" style="color:var(--green)">42.7% ▲</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">11.8%</div><div class="vs-mid">EBITDA Margin</div><div class="vs-kalyan">7.1%</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">6.7%</div><div class="vs-mid">PAT Margin</div><div class="vs-kalyan">3.8%</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">27.4%</div><div class="vs-mid">ROE</div><div class="vs-kalyan">24.3%</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">35.0%</div><div class="vs-mid">ROCE</div><div class="vs-kalyan">28.8%</div></div>
-    <div class="vs-row"><div class="vs-titan">₹4,180 Cr</div><div class="vs-mid">FY26 Net Profit</div><div class="vs-kalyan">₹1,350 Cr</div></div>
-    <div class="vs-row"><div class="vs-titan">85.4x</div><div class="vs-mid">P/E (TTM)</div><div class="vs-kalyan" style="color:var(--green)">~28x ▼</div></div>
-    <div class="vs-row"><div class="vs-titan">58.2x</div><div class="vs-mid">EV/EBITDA</div><div class="vs-kalyan" style="color:var(--green)">~15x ▼</div></div>
-    <div class="vs-row"><div class="vs-titan">4.0x</div><div class="vs-mid">P/Sales</div><div class="vs-kalyan" style="color:var(--green)">1.07x ▼</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">0.64x</div><div class="vs-mid">Net Debt/EBITDA</div><div class="vs-kalyan">1.74x</div></div>
-    <div class="vs-row"><div class="vs-titan">~130 days</div><div class="vs-mid">Inventory Days</div><div class="vs-kalyan" style="color:var(--green)">~96 days ▲</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">35%</div><div class="vs-mid">Studded Mix</div><div class="vs-kalyan">20%</div></div>
-    <div class="vs-row"><div class="vs-titan">840 stores</div><div class="vs-mid">India Jewellery Stores</div><div class="vs-kalyan" style="color:var(--green)">478 (rapid)</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">Multi-segment</div><div class="vs-mid">Business Type</div><div class="vs-kalyan">Pure Jewellery</div></div>
-    <div class="vs-row"><div class="vs-titan">USA,UAE,UK,SG</div><div class="vs-mid">International</div><div class="vs-kalyan" style="color:var(--green)">UAE,Oman,Kuwait,Qatar,Bahrain,USA</div></div>
-    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">Tata/Institutional</div><div class="vs-mid">Governance</div><div class="vs-kalyan">Family Promoter</div></div>
-    <div class="vs-row"><div class="vs-titan">₹2,50,000 Cr</div><div class="vs-mid">Market Cap</div><div class="vs-kalyan">₹38,062 Cr</div></div>
+    <div class="vs-row"><div class="vs-titan">₹62,400 Cr</div><div class="vs-mid">FY26 Revenue</div><div class="vs-kalyan">₹35,743 Cr</div><div class="vs-sgil">~₹2,100 Cr</div></div>
+    <div class="vs-row"><div class="vs-titan">22.1%</div><div class="vs-mid">Revenue Growth</div><div class="vs-kalyan" style="color:var(--green)">42.7% ▲</div><div class="vs-sgil" style="color:var(--green)">~75% ▲</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">11.8%</div><div class="vs-mid">EBITDA Margin</div><div class="vs-kalyan">7.1%</div><div class="vs-sgil">~9%</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">6.7%</div><div class="vs-mid">PAT Margin</div><div class="vs-kalyan">3.8%</div><div class="vs-sgil">~5.7%</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">27.4%</div><div class="vs-mid">ROE</div><div class="vs-kalyan">24.3%</div><div class="vs-sgil">~22%</div></div>
+    <div class="vs-row"><div class="vs-titan">85.4x</div><div class="vs-mid">P/E (TTM)</div><div class="vs-kalyan" style="color:var(--green)">~28x ▼</div><div class="vs-sgil">35–42x</div></div>
+    <div class="vs-row"><div class="vs-titan">₹2,50,000 Cr</div><div class="vs-mid">Market Cap</div><div class="vs-kalyan">₹38,062 Cr</div><div class="vs-sgil">~₹2,000 Cr</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">Tata/Institutional</div><div class="vs-mid">Governance</div><div class="vs-kalyan">Family Promoter</div><div class="vs-sgil">Mid-size Promoter</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">Multi-segment</div><div class="vs-mid">Business Type</div><div class="vs-kalyan">Pure Jewellery Retail</div><div class="vs-sgil">Jewellery Mfg</div></div>
+    <div class="vs-row"><div class="vs-titan">840 stores</div><div class="vs-mid">Distribution</div><div class="vs-kalyan" style="color:var(--green)">542 showrooms</div><div class="vs-sgil">B2B channel</div></div>
+    <div class="vs-row"><div class="vs-titan" style="color:var(--green)">Wide</div><div class="vs-mid">Economic Moat</div><div class="vs-kalyan">Narrow–Medium</div><div class="vs-sgil">Emerging</div></div>
+    <div class="vs-row"><div class="vs-titan">Hold/Accumulate</div><div class="vs-mid">CB View</div><div class="vs-kalyan" style="color:var(--green)">Buy on Dips</div><div class="vs-sgil">Speculative Buy</div></div>
   </div>
-
-  <div class="grid-2">
-    <div class="card" style="border-left:4px solid var(--gold)">
-      <h3 style="color:var(--gold)">Choose Titan If...</h3>
-      <ul style="font-size:12px;color:var(--sub);padding-left:16px;line-height:2.1">
-        <li>Governance certainty — Tata group trust</li>
-        <li>Margin stability over raw growth speed</li>
-        <li>Multi-segment diversification comfort</li>
-        <li>Premium brand compounding over decades</li>
-        <li>CaratLane option on online jewellery</li>
-      </ul>
-    </div>
-    <div class="card" style="border-left:4px solid var(--blue)">
-      <h3>Choose Kalyan If...</h3>
-      <ul style="font-size:12px;color:var(--sub);padding-left:16px;line-height:2.1">
-        <li>Faster growth at cheaper valuation (52x P/E)</li>
-        <li>FOCO franchise store-count explosion</li>
-        <li>Middle East USD revenue diversification</li>
-        <li>PAT growing 2x faster than revenue</li>
-        <li>PEG &lt;1.8x vs Titan PEG &gt;4x</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card-lg" style="margin-top:16px">
-    <h3>Business Quality Radar</h3>
+  <div class="card-lg">
+    <h3>Business Quality Radar — Titan vs Kalyan vs SGIL</h3>
     <div class="chart-wrap-lg"><canvas id="chartRadar"></canvas></div>
   </div>
+  <div class="disclaimer">DISCLAIMER: Educational analysis only. Not investment advice. All figures consolidated basis in ₹ Crores.</div>
+</div>
 
-  <div class="disclaimer"><strong>DISCLAIMER:</strong> Educational analysis only. Not investment advice. All figures on consolidated basis in ₹ Crores. Verify all figures from BSE/NSE filings before investment decisions.</div>
+<!-- ══ CB ASSIST ══ -->
+<div id="cbassist" class="section">
+  <!-- Header -->
+  <div class="cb-header">
+    <div class="cb-logo">🤖</div>
+    <div>
+      <div class="cb-title" id="cb-title-text">CB Assist — Jewellery Sector Q&amp;A</div>
+      <div style="font-size:11px;color:var(--sub);margin-top:2px" id="cb-sub-text">Smart questions · 1–2 liner answers · Offline</div>
+    </div>
+  </div>
+
+  <!-- Language Toggle -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+    <span style="font-size:11px;font-weight:700;color:var(--sub)" id="lang-label">🌐 Language:</span>
+    <div style="display:flex;background:var(--card2);border-radius:20px;padding:3px;border:1px solid var(--border)">
+      <button id="lang-en" onclick="setLang('en')"
+        style="padding:5px 18px;border-radius:16px;border:none;cursor:pointer;font-size:12px;font-weight:700;background:var(--teal);color:#fff;transition:all .2s">
+        🇬🇧 English
+      </button>
+      <button id="lang-ta" onclick="setLang('ta')"
+        style="padding:5px 18px;border-radius:16px;border:none;cursor:pointer;font-size:12px;font-weight:700;background:transparent;color:var(--sub);transition:all .2s">
+        🇮🇳 தமிழ்
+      </button>
+    </div>
+    <span style="font-size:10px;color:var(--sub);font-style:italic" id="lang-hint">Answers in English</span>
+  </div>
+
+  <!-- Company Filter -->
+  <div class="cb-company-tabs">
+    <button class="cb-ctab active" data-co="all"    onclick="setCo('all',this)"   >🌐 <span class="co-lbl" data-en="All Companies"   data-ta="அனைத்து நிறுவனங்கள்">All Companies</span></button>
+    <button class="cb-ctab"        data-co="titan"  onclick="setCo('titan',this)" >💛 Titan</button>
+    <button class="cb-ctab"        data-co="kalyan" onclick="setCo('kalyan',this)">🔵 Kalyan</button>
+    <button class="cb-ctab"        data-co="sgil"   onclick="setCo('sgil',this)"  >🔴 SGIL</button>
+  </div>
+
+  <!-- Quick Questions label -->
+  <div style="font-size:11px;color:var(--sub);margin-bottom:8px;font-weight:600" id="qs-label">
+    💡 Smart Questions — tap to ask:
+  </div>
+  <div class="cb-qs-grid" id="cb-qs-grid"></div>
+
+  <!-- Input -->
+  <div class="cb-search-row">
+    <input class="cb-input" id="cb-input" type="text"
+      placeholder="Ask in English or Tamil…"
+      onkeydown="if(event.key==='Enter')cbAsk()">
+    <button class="cb-ask-btn" onclick="cbAsk()" id="cb-ask-btn-lbl">Ask →</button>
+  </div>
+
+  <!-- Answer Area -->
+  <div class="cb-qa-area" id="cb-qa-area">
+    <div style="text-align:center;color:var(--sub);font-size:13px;padding:40px 0" id="cb-placeholder">
+      <div style="font-size:32px;margin-bottom:10px">💎</div>
+      <div style="font-weight:600" id="ph-title">CB Assist is ready</div>
+      <div style="font-size:11px;margin-top:6px" id="ph-sub">Tap a question above or type your own.<br>Answers are 1–2 lines from Q4 FY26 embedded data.</div>
+    </div>
+  </div>
+  <div class="cb-note" id="cb-note-text">📌 Offline · No API key · Titan · Kalyan · SGIL · Q4 FY26</div>
 </div>
 
 <script>
-function showTab(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+// ─── TAB NAVIGATION ───
+function showTab(id, btn){
+  document.querySelectorAll('.section').forEach(s=>s.style.display='none');
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+  const sec=document.getElementById(id);
+  if(sec) sec.style.display='block';
+  if(btn) btn.classList.add('active');
   setTimeout(()=>initCharts(id),80);
 }
+
 function toggleFin(v,btn){
   document.getElementById('fin-q').style.display=v==='quarterly'?'block':'none';
   document.getElementById('fin-a').style.display=v==='annual'?'block':'none';
@@ -663,100 +1124,431 @@ function toggleFin(v,btn){
   btn.classList.add('active');
 }
 
-// White canvas background for all charts
-Chart.register({id:'whiteBackground',beforeDraw:(chart)=>{const ctx=chart.canvas.getContext('2d');ctx.save();ctx.globalCompositeOperation='destination-over';ctx.fillStyle='#ffffff';ctx.fillRect(0,0,chart.width,chart.height);ctx.restore()}});
-
+// ─── CHART SETUP ───
+Chart.register({id:'whiteBg',beforeDraw:(c)=>{const x=c.canvas.getContext('2d');x.save();x.globalCompositeOperation='destination-over';x.fillStyle='#ffffff';x.fillRect(0,0,c.width,c.height);x.restore()}});
 Chart.defaults.color='#333344';
 Chart.defaults.borderColor='rgba(180,170,150,0.5)';
 Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif";
 Chart.defaults.font.size=11;
 
-const GOLD='rgba(160,114,42,1)',  GOLDF='rgba(160,114,42,0.25)';
-const BLUE='rgba(26,90,184,1)',   BLUEF='rgba(26,90,184,0.2)';
-const GREEN='rgba(26,122,74,1)',  GREENF='rgba(26,122,74,0.2)';
-const RED='rgba(192,57,43,1)',    REDF='rgba(192,57,43,0.2)';
+const GOLD='rgba(160,114,42,1)',GOLDF='rgba(160,114,42,0.25)';
+const BLUE='rgba(26,90,184,1)',BLUEF='rgba(26,90,184,0.2)';
+const GREEN='rgba(26,122,74,1)',GREENF='rgba(26,122,74,0.2)';
+const RED='rgba(192,57,43,1)',REDF='rgba(192,57,43,0.2)';
 const PURPLE='rgba(107,63,160,1)',PURPF='rgba(107,63,160,0.2)';
-const TEAL='rgba(13,120,110,1)',  TEALF='rgba(13,120,110,0.2)';
-const ORANGE='rgba(200,80,10,1)', ORGF='rgba(200,80,10,0.2)';
+const TEAL='rgba(13,120,110,1)',TEALF='rgba(13,120,110,0.2)';
+const ORANGE='rgba(200,80,10,1)',ORGF='rgba(200,80,10,0.2)';
+const SGIL='rgba(139,26,26,1)',SGILF='rgba(139,26,26,0.2)';
 const GR='rgba(180,170,150,0.4)';
-
 const C={};
-function mk(id,cfg){if(!C[id]){C[id]=new Chart(document.getElementById(id),cfg);}}
+function mk(id,cfg){if(!C[id]&&document.getElementById(id)){C[id]=new Chart(document.getElementById(id),cfg);}}
 
 function initCharts(tab){
   if(tab==='overview'){
-    mk('chartRevenue',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+    mk('chartRevenue',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26'],datasets:[
       {label:'Titan (₹Cr)',data:[40580,47890,51086,62400],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:6},
-      {label:'Kalyan (₹Cr)',data:[14109,18631,25045,35743],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:6}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'Revenue — Titan vs Kalyan (₹ Crore)',color:'#a0722a',font:{size:13}}},scales:{y:{grid:{color:GR},ticks:{callback:v=>'₹'+v.toLocaleString()}}}}});
+      {label:'Kalyan (₹Cr)',data:[14109,18631,25045,35743],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:6},
+      {label:'SGIL (₹Cr)',data:[520,780,1200,2100],backgroundColor:SGILF,borderColor:SGIL,borderWidth:2,borderRadius:6}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'Revenue — Titan vs Kalyan vs SGIL (₹ Crore)',color:'#a0722a',font:{size:13}}},scales:{y:{grid:{color:GR},ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')}}}}});
+  }
+  if(tab==='sgil'){
+    mk('chartSgilQ',{type:'bar',data:{labels:['Q1FY25','Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'],
+      datasets:[
+        {label:'Revenue (₹Cr)',data:[280,290,310,297,450,480,637,659],backgroundColor:SGILF,borderColor:SGIL,borderWidth:2,borderRadius:4},
+        {label:'Net Profit (₹Cr)',data:[8,9,10,9.2,22,25,30.6,51.9],backgroundColor:ORGF,borderColor:ORANGE,borderWidth:2,borderRadius:4,yAxisID:'y2'}
+      ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'SGIL Quarterly Revenue & Net Profit',color:'#8b1a1a',font:{size:12}}},
+      scales:{y:{grid:{color:GR},title:{display:true,text:'Revenue (₹Cr)'},ticks:{callback:v=>'₹'+v}},
+              y2:{type:'linear',position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'Net Profit (₹Cr)'},ticks:{callback:v=>'₹'+v}}}}});
   }
   if(tab==='financials'){
     mk('chartTitanQ',{type:'bar',data:{labels:['Q1FY25','Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'],datasets:[{label:'Revenue (₹Cr)',data:[9080,9830,13180,13054,11400,11820,14480,15320],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:GR}}}}});
     mk('chartKalyanQ',{type:'bar',data:{labels:['Q1FY25','Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'],datasets:[{label:'Revenue (₹Cr)',data:[5528,6058,7277,6182,7268,7856,10343,10275],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:GR}}}}});
-    mk('chartMargins',{type:'line',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+    mk('chartMargins',{type:'line',data:{labels:['FY23','FY24','FY25','FY26'],datasets:[
       {label:'Titan EBITDA%',data:[11.0,11.8,11.9,11.8],borderColor:GOLD,backgroundColor:GOLDF,fill:true,tension:0.4,pointRadius:5},
       {label:'Kalyan EBITDA%',data:[8.0,7.3,6.3,7.1],borderColor:BLUE,backgroundColor:BLUEF,fill:true,tension:0.4,pointRadius:5},
-      {label:'Titan PAT%',data:[7.1,6.9,6.8,6.7],borderColor:GREEN,borderDash:[5,3],fill:false,tension:0.4,pointRadius:5},
-      {label:'Kalyan PAT%',data:[3.1,3.2,2.9,3.8],borderColor:PURPLE,borderDash:[5,3],fill:false,tension:0.4,pointRadius:5}
+      {label:'SGIL EBITDA%',data:[7.0,7.5,7.2,9.0],borderColor:SGIL,backgroundColor:SGILF,fill:true,tension:0.4,pointRadius:5}
     ]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{min:0,max:15,ticks:{callback:v=>v+'%'},grid:{color:GR}}}}});
-    mk('chartROE',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+    mk('chartROE',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26'],datasets:[
       {label:'Titan ROE',data:[27.2,28.5,26.8,27.4],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4},
-      {label:'Titan ROCE',data:[33.1,35.6,34.2,35.0],backgroundColor:'rgba(201,168,76,0.45)',borderColor:GOLD,borderWidth:2,borderRadius:4},
       {label:'Kalyan ROE',data:[11.9,14.3,14.9,24.3],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4},
-      {label:'Kalyan ROCE',data:[25.4,27.9,28.8,28.8],backgroundColor:'rgba(26,90,184,0.45)',borderColor:BLUE,borderWidth:2,borderRadius:4}
+      {label:'SGIL ROE (est.)',data:[14,16,18,22],backgroundColor:SGILF,borderColor:SGIL,borderWidth:2,borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:GR}}}}});
-    mk('chartTitanSeg',{type:'doughnut',data:{labels:['Jewellery 86.2%','Watches 7.5%','Eyewear 1.6%','Emerging 3.2%','Others 1.5%'],datasets:[{data:[86.2,7.5,1.6,3.2,1.5],backgroundColor:[GOLD,BLUE,GREEN,PURPLE,RED],borderColor:'#ffffff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#333344'}}}}});
+    mk('chartSgilQ2',{type:'bar',data:{labels:['Q1FY25','Q2FY25','Q3FY25','Q4FY25','Q1FY26','Q2FY26','Q3FY26','Q4FY26'],
+      datasets:[{label:'Revenue (₹Cr)',data:[280,290,310,297,450,480,637,659],backgroundColor:SGILF,borderColor:SGIL,borderWidth:2,borderRadius:4}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:GR}}}}});
   }
   if(tab==='geography'){
-    mk('chartStores',{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26E'],datasets:[
+    mk('chartStores',{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26'],datasets:[
       {label:'Titan Tanishq',data:[510,595,670,748,840],borderColor:GOLD,backgroundColor:GOLDF,fill:true,tension:0.4,pointRadius:5},
       {label:'Kalyan India',data:[140,185,270,366,478],borderColor:BLUE,backgroundColor:BLUEF,fill:true,tension:0.4,pointRadius:5},
-      {label:'CaratLane',data:[90,125,175,228,280],borderColor:GREEN,fill:false,tension:0.4,pointRadius:5,borderDash:[5,3]},
-      {label:'Kalyan ME',data:[30,38,45,52,62],borderColor:PURPLE,fill:false,tension:0.4,pointRadius:5,borderDash:[5,3]}
+      {label:'CaratLane',data:[90,125,175,228,280],borderColor:GREEN,fill:false,tension:0.4,pointRadius:5,borderDash:[5,3]}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'Store Count Growth',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
   }
   if(tab==='buyers'){
-    mk('chartBuyers',{type:'doughnut',data:{labels:['Bridal 38%','Gifting 22%','Daily Wear 18%','Investment 12%','Heirloom 10%'],datasets:[{data:[38,22,18,12,10],backgroundColor:[GOLD,BLUE,GREEN,PURPLE,RED],borderColor:'#ffffff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#333344'}}}}});
-    mk('chartOccasion',{type:'bar',data:{labels:['Wedding/Engage','Festival','Daily Wear','Gift/Anniversary','Investment'],datasets:[
+    mk('chartBuyers',{type:'doughnut',data:{labels:['Bridal 38%','Gifting 22%','Daily Wear 18%','Investment 12%','Heirloom 10%'],datasets:[{data:[38,22,18,12,10],backgroundColor:[GOLD,BLUE,GREEN,PURPLE,RED],borderColor:'#fff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#333344'}}}}});
+    mk('chartOccasion',{type:'bar',data:{labels:['Wedding/Engage','Festival','Daily Wear','Gift/Anniv','Investment'],datasets:[
       {label:'Titan %',data:[42,28,16,10,4],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4},
       {label:'Kalyan %',data:[48,26,10,8,8],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:GR}}}}});
   }
   if(tab==='debt'){
-    mk('chartDebt',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26E'],datasets:[
+    mk('chartDebt',{type:'bar',data:{labels:['FY23','FY24','FY25','FY26'],datasets:[
       {label:'Titan GML',data:[2800,3400,4100,5200],backgroundColor:GOLDF,borderColor:GOLD,borderWidth:2,borderRadius:4},
-      {label:'Titan Cash Debt',data:[1800,2100,2320,2640],backgroundColor:'rgba(201,168,76,0.45)',borderColor:GOLD,borderWidth:2,borderRadius:4},
+      {label:'Titan Cash Debt',data:[1800,2100,2320,2640],backgroundColor:'rgba(201,168,76,0.4)',borderColor:GOLD,borderWidth:2,borderRadius:4},
       {label:'Kalyan GML',data:[1620,2200,2950,3800],backgroundColor:BLUEF,borderColor:BLUE,borderWidth:2,borderRadius:4},
-      {label:'Kalyan Cash Debt',data:[840,1020,1370,1840],backgroundColor:'rgba(91,141,238,0.45)',borderColor:BLUE,borderWidth:2,borderRadius:4}
+      {label:'Kalyan Cash Debt',data:[840,1020,1370,1840],backgroundColor:'rgba(91,141,238,0.4)',borderColor:BLUE,borderWidth:2,borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'GML vs Cash Debt (₹ Crore)',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
   }
   if(tab==='valuation'){
-    mk('chartValuation',{type:'bar',data:{labels:['Titan','Kalyan','Senco','PC Jeweller','TBZ'],datasets:[{label:'P/E (TTM)',data:[85.4,28.0,22.4,28.6,18.2],backgroundColor:[GOLDF,BLUEF,GREENF,REDF,PURPF],borderColor:[GOLD,BLUE,GREEN,RED,PURPLE],borderWidth:2,borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'P/E Multiple Comparison',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
-    mk('chartEV',{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26E'],datasets:[
+    mk('chartValuation',{type:'bar',data:{labels:['Titan','Kalyan','SGIL','Senco','TBZ'],datasets:[{label:'P/E (TTM)',data:[85.4,28.0,38,22.4,18.2],backgroundColor:[GOLDF,BLUEF,SGILF,GREENF,PURPF],borderColor:[GOLD,BLUE,SGIL,GREEN,PURPLE],borderWidth:2,borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'P/E Multiple Comparison',color:'#a0722a'},datalabels:{display:false}},scales:{y:{grid:{color:GR}}}}});
+    mk('chartEV',{type:'line',data:{labels:['FY22','FY23','FY24','FY25','FY26'],datasets:[
       {label:'Titan EV/EBITDA',data:[72,65,60,55,58],borderColor:GOLD,backgroundColor:GOLDF,fill:true,tension:0.4,pointRadius:5},
-      {label:'Kalyan EV/EBITDA',data:[18,16,18,20,15],borderColor:BLUE,backgroundColor:BLUEF,fill:true,tension:0.4,pointRadius:5}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'EV/EBITDA Band',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
+      {label:'Kalyan EV/EBITDA',data:[18,16,18,20,15],borderColor:BLUE,backgroundColor:BLUEF,fill:true,tension:0.4,pointRadius:5},
+      {label:'SGIL EV/EBITDA',data:[null,null,null,18,22],borderColor:SGIL,backgroundColor:SGILF,fill:false,tension:0.4,pointRadius:5,borderDash:[4,3]}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'EV/EBITDA — Titan · Kalyan · SGIL',color:'#a0722a'}},scales:{y:{grid:{color:GR}}}}});
   }
   if(tab==='risks'){
     mk('chartRisk',{type:'bubble',data:{datasets:[
       {label:'Gold Price Risk',data:[{x:8,y:9,r:18}],backgroundColor:REDF,borderColor:RED},
-      {label:'Duty Change',data:[{x:7,y:8,r:15}],backgroundColor:REDF,borderColor:RED},
+      {label:'SGIL Execution',data:[{x:7,y:8,r:15}],backgroundColor:SGILF,borderColor:SGIL},
       {label:'Titan Valuation',data:[{x:6,y:9,r:14}],backgroundColor:REDF,borderColor:RED},
       {label:'Lab-Grown Diamond',data:[{x:5,y:6,r:12}],backgroundColor:ORGF,borderColor:ORANGE},
       {label:'GML Regulatory',data:[{x:4,y:7,r:10}],backgroundColor:ORGF,borderColor:ORANGE},
-      {label:'Franchise Quality',data:[{x:6,y:5,r:11}],backgroundColor:ORGF,borderColor:ORANGE},
-      {label:'Competition',data:[{x:3,y:4,r:8}],backgroundColor:GREENF,borderColor:GREEN},
-      {label:'Promoter Governance',data:[{x:5,y:6,r:10}],backgroundColor:ORGF,borderColor:ORANGE}
+      {label:'Franchise Quality',data:[{x:6,y:5,r:11}],backgroundColor:ORGF,borderColor:ORANGE}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{title:{display:true,text:'Risk Matrix — Probability vs Impact',color:'#a0722a'}},scales:{x:{min:0,max:10,title:{display:true,text:'Probability →'},grid:{color:GR}},y:{min:0,max:10,title:{display:true,text:'Impact →'},grid:{color:GR}}}}});
   }
+  if(tab==='moat'){
+    mk('chartMoatRadar',{type:'radar',data:{labels:['Brand','Profitability','Growth','Governance','Valuation','Balance Sheet','Moat Durability','Digital','Margin','Scale'],datasets:[
+      {label:'Titan',data:[95,82,72,95,35,85,88,88,85,92],borderColor:GOLD,backgroundColor:GOLDF,pointBackgroundColor:GOLD},
+      {label:'Kalyan',data:[72,58,90,60,72,52,65,55,60,68],borderColor:BLUE,backgroundColor:BLUEF,pointBackgroundColor:BLUE},
+      {label:'SGIL',data:[38,65,92,55,68,50,42,22,68,28],borderColor:SGIL,backgroundColor:SGILF,pointBackgroundColor:SGIL}
+    ]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:100,grid:{color:'rgba(180,170,150,0.5)'},angleLines:{color:'rgba(180,170,150,0.5)'},ticks:{display:false,backdropColor:'transparent'},pointLabels:{color:'#333344',font:{size:10}}}}}});
+  }
   if(tab==='compare'){
-    mk('chartRadar',{type:'radar',data:{labels:['Brand','Profitability','Growth','Governance','Valuation','Balance Sheet','Geo Diversity','Digital','Margin','Scale'],datasets:[
-      {label:'Titan',data:[95,82,72,95,35,85,65,88,85,92],borderColor:GOLD,backgroundColor:GOLDF,pointBackgroundColor:GOLD},
-      {label:'Kalyan',data:[72,58,90,60,72,52,82,55,60,68],borderColor:BLUE,backgroundColor:BLUEF,pointBackgroundColor:BLUE}
+    mk('chartRadar',{type:'radar',data:{labels:['Brand','Profitability','Growth','Governance','Valuation','Geo Diversity','Digital','Margin','Scale','Moat'],datasets:[
+      {label:'Titan',data:[95,82,72,95,35,65,88,85,92,88],borderColor:GOLD,backgroundColor:GOLDF,pointBackgroundColor:GOLD},
+      {label:'Kalyan',data:[72,58,90,60,72,82,55,60,68,65],borderColor:BLUE,backgroundColor:BLUEF,pointBackgroundColor:BLUE},
+      {label:'SGIL',data:[38,65,92,55,68,28,22,68,28,42],borderColor:SGIL,backgroundColor:SGILF,pointBackgroundColor:SGIL}
     ]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:100,grid:{color:'rgba(180,170,150,0.5)'},angleLines:{color:'rgba(180,170,150,0.5)'},ticks:{display:false,backdropColor:'transparent'},pointLabels:{color:'#333344',font:{size:10}}}}}});
   }
 }
-window.addEventListener('load',()=>setTimeout(()=>initCharts('overview'),100));
+
+window.addEventListener('load',()=>{
+  setTimeout(()=>{initCharts('overview');buildQS();},100);
+});
+
+// ─── CB ASSIST — BILINGUAL ENGINE (English + Tamil) ───
+let currentCo='all', currentLang='en';
+
+// ── Language switcher ──
+function setLang(lang){
+  currentLang=lang;
+  document.getElementById('lang-en').style.background = lang==='en'?'var(--teal)':'transparent';
+  document.getElementById('lang-en').style.color      = lang==='en'?'#fff':'var(--sub)';
+  document.getElementById('lang-ta').style.background = lang==='ta'?'var(--teal)':'transparent';
+  document.getElementById('lang-ta').style.color      = lang==='ta'?'#fff':'var(--sub)';
+  document.getElementById('lang-hint').textContent    = lang==='en'?'Answers in English':'பதில்கள் தமிழில்';
+  document.getElementById('qs-label').textContent     = lang==='en'?'💡 Smart Questions — tap to ask:':'💡 அறிவார்ந்த கேள்விகள் — தட்டவும்:';
+  document.getElementById('cb-ask-btn-lbl').textContent = lang==='en'?'Ask →':'கேள் →';
+  document.getElementById('cb-input').placeholder    = lang==='en'?'Ask in English or Tamil…':'ஆங்கிலம் அல்லது தமிழில் கேளுங்கள்…';
+  document.getElementById('ph-title').textContent    = lang==='en'?'CB Assist is ready':'CB Assist தயாராக உள்ளது';
+  document.getElementById('ph-sub').textContent      = lang==='en'?'Tap a question above or type your own. Answers are 1–2 lines from Q4 FY26 data.':'மேலே ஒரு கேள்வியை தட்டவும் அல்லது உங்கள் கேள்வியை தட்டச்சு செய்யுங்கள்.';
+  buildQS();
+}
+
+function setCo(co,btn){
+  currentCo=co;
+  document.querySelectorAll('.cb-ctab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildQS();
+}
+
+// ── Smart Questions — English ──
+const QS_EN={
+  all:[
+    'Why is Kalyan PAT growing 2x faster than revenue?',
+    'Can SGIL sustain 10%+ EBITDA margin post-expansion?',
+    'Is Titan\'s 85x PE a risk or a moat reflection?',
+    'Which company gains most if gold stays above ₹90,000?',
+    'Why does Kalyan trade at a 65% discount to Titan PE?',
+    'What happens to SGIL if Jaipur plant is delayed 2 quarters?',
+    'Does GHS create a structural advantage or just a liability?',
+    'Why did SGIL production fall 13.5% QoQ despite revenue growth?',
+    'What is the biggest threat to Titan\'s studded mix business?',
+    'Is SGIL primarily a gold price proxy or a business compounder?'
+  ],
+  titan:[
+    'Why is Titan EBITDA margin compressing despite revenue growth?',
+    'Can CaratLane justify its valuation at 31% growth?',
+    'Does GHS insulate Titan from gold price volatility?',
+    'At 85x PE, how much earnings growth does Titan need to deliver?',
+    'Why is Titan\'s inventory days 130 vs Kalyan\'s 96?',
+    'What is the Titan bear case — price target on correction?',
+    'Is Titan\'s Tata premium rational or excessive at current multiples?',
+    'How does Titan hedge gold price risk in its balance sheet?',
+    'Why does Nomura have Reduce on Titan while JM has Buy?',
+    'What is Titan\'s studded mix roadmap and margin implication?'
+  ],
+  kalyan:[
+    'Why is Kalyan\'s Middle East business strategically important?',
+    'What is the risk of FOCO quality control at 478 stores?',
+    'Can Kalyan\'s net debt/EBITDA fall below 1x in FY27?',
+    'Why does 62.9% promoter holding limit Kalyan\'s re-rating?',
+    'How does Kalyan\'s PAT margin improve without raising gross margins?',
+    'What is My Kalyan\'s role in Kalyan\'s growth engine?',
+    'Why is Kalyan\'s studded mix (20%) a margin risk vs Titan (35%)?',
+    'What revenue can Kalyan achieve at 800 stores by FY27?',
+    'Why did Kalyan\'s Q4 PAT jump 118% while revenue grew only 66%?',
+    'Is Kalyan\'s Gulf USD revenue a hedge or concentration risk?'
+  ],
+  sgil:[
+    'Why did SGIL net profit jump 465% when production rose only 25%?',
+    'What happens to SGIL margins if gold price corrects 20%?',
+    'Why is Mumbai plant (4,000 kg) 3x larger than Jaipur (1,200 kg)?',
+    'What revenue can SGIL target if 7,900 kg/yr capacity is fully utilised?',
+    'Why did QoQ production drop 13.5% — seasonal or structural?',
+    'What is SGIL\'s moat once capacity triples — will pricing power hold?',
+    'At 35–42x forward PE, what growth rate is SGIL priced for?',
+    'Why can\'t SGIL access Gold Metal Loan unlike Titan and Kalyan?',
+    'What is SGIL\'s bull case target by FY28?',
+    'Is SGIL a gold price proxy or a genuine business compounder?'
+  ]
+};
+
+// ── Smart Questions — Tamil ──
+const QS_TA={
+  all:[
+    'கல்யாணின் PAT வருவாயை விட 2 மடங்கு வேகமாக வளர்வது ஏன்?',
+    'SGIL விரிவாக்கத்திற்கு பிறகு 10%+ EBITDA மார்ஜினை தக்கவைக்க முடியுமா?',
+    'Titanன் 85x PE ஒரு ஆபத்தா அல்லது moat அல்லவா?',
+    'தங்கம் ₹90,000 க்கு மேல் இருந்தால் எந்த நிறுவனம் அதிகம் பயனடையும்?',
+    'கல்யான் Titan PE விட 65% தள்ளுபடியில் வர்த்தகம் செய்வது ஏன்?',
+    'ஜெய்ப்பூர் ஆலை 2 காலாண்டு தாமதமானால் SGIL-க்கு என்ன ஆகும்?',
+    'GHS திட்டம் ஒரு structural நன்மையா அல்லது வெறும் கடனா?',
+    'வருவாய் வளர்ச்சி இருந்தும் SGIL உற்பத்தி 13.5% QoQ குறைந்தது ஏன்?',
+    'Titanன் studded mix வணிகத்திற்கு மிகப்பெரிய அச்சுறுத்தல் என்ன?',
+    'SGIL முதன்மையாக தங்கம் விலை proxy-வா அல்லது வணிக compounder-ஆ?'
+  ],
+  titan:[
+    'வருவாய் வளர்ந்தும் Titan EBITDA மார்ஜின் குறைவது ஏன்?',
+    'CaratLane 31% வளர்ச்சியில் அதன் மதிப்பீட்டை நியாயப்படுத்த முடியுமா?',
+    'GHS திட்டம் Titanஐ தங்கம் விலை ஏற்ற இறக்கத்திலிருந்து பாதுகாக்குமா?',
+    '85x PE-ல் Titan எவ்வளவு வருவாய் வளர்ச்சி தர வேண்டும்?',
+    'Titanன் சரக்கு நாட்கள் 130 vs கல்யாணின் 96 — ஏன் வேறுபாடு?',
+    'Titanன் bear case என்ன — திருத்தத்தில் விலை இலக்கு என்ன?',
+    'Titan-ன் Tata premium தற்போதைய multiple-ல் நியாயமானதா அல்லது அதிகமானதா?',
+    'Titan எப்படி தங்கம் விலை ஆபத்தை balance sheet-ல் hedge செய்கிறது?',
+    'Nomura Titan-ல் Reduce என்றும் JM Buy என்றும் கூறுவது ஏன்?',
+    'Titanன் studded mix திட்டம் மற்றும் margin தாக்கம் என்ன?'
+  ],
+  kalyan:[
+    'கல்யாணின் மத்திய கிழக்கு வணிகம் ஏன் மூலோபாய முக்கியத்துவம் வாய்ந்தது?',
+    '478 கடைகளில் FOCO தரக் கட்டுப்பாட்டின் ஆபத்து என்ன?',
+    'FY27-ல் கல்யாணின் net debt/EBITDA 1x-க்கும் கீழே வர முடியுமா?',
+    '62.9% promoter பங்கு கல்யாணின் re-rating-ஐ எவ்வாறு கட்டுப்படுத்துகிறது?',
+    'Gross margin உயர்த்தாமல் கல்யாணின் PAT margin எப்படி மேம்படுகிறது?',
+    'My Kalyan கல்யாணின் வளர்ச்சி இயந்திரத்தில் என்ன பங்கு வகிக்கிறது?',
+    'கல்யாணின் studded mix 20% ஏன் Titan-ன் 35%-ஐ விட margin ஆபத்தானது?',
+    'FY27-ல் 800 கடைகளில் கல்யான் என்ன வருவாய் அடைய முடியும்?',
+    'வருவாய் 66% வளர்ந்தும் Q4 PAT 118% குதித்தது ஏன்?',
+    'கல்யாணின் Gulf USD வருவாய் ஒரு hedge-ஆ அல்லது concentration risk-ஆ?'
+  ],
+  sgil:[
+    'உற்பத்தி 25% மட்டுமே வளர்ந்தும் SGIL நிகர லாபம் 465% எகிறியது ஏன்?',
+    'தங்கம் விலை 20% குறைந்தால் SGIL மார்ஜினுக்கு என்ன ஆகும்?',
+    'மும்பை ஆலை (4,000 kg) ஜெய்ப்பூரை விட (1,200 kg) 3 மடங்கு பெரியது ஏன்?',
+    '7,900 kg/yr திறன் முழுமையாக பயன்படுத்தினால் SGIL என்ன வருவாய் இலக்கு வைக்கலாம்?',
+    'QoQ உற்பத்தி 13.5% குறைந்தது — பருவகால வடிவமா அல்லது structural-ஆ?',
+    'திறன் 3 மடங்கு ஆனால் SGIL-ன் moat நிலைக்குமா — pricing power இருக்குமா?',
+    '35–42x forward PE-ல் SGIL எவ்வளவு வளர்ச்சி விகிதத்திற்கு விலையிடப்பட்டுள்ளது?',
+    'Titan மற்றும் Kalyan போல SGIL-க்கு ஏன் Gold Metal Loan கிடைக்கவில்லை?',
+    'FY28-ல் SGIL-ன் bull case இலக்கு என்ன?',
+    'SGIL ஒரு தங்கம் விலை proxy-வா அல்லது உண்மையான வணிக compounder-ஆ?'
+  ]
+};
+
+// ── KB — each entry has English answer (a_en) and Tamil answer (a_ta) ──
+const KB=[
+  // SECTOR
+  {k:['gold above','₹90,000','gold stays','gold price benefit','தங்கம் ₹90,000','தங்கம் நிலைத்தால்'],co:'sec',
+   a_en:'SGIL gains most — pure manufacturer with no retail overhead absorbs gold price rise directly into revenue and margin; Titan hedges 30–40% so gains less.',
+   a_ta:'SGIL அதிகம் பயனடையும் — சில்லறை overhead இல்லாத தூய உற்பத்தியாளராக தங்கம் விலை உயர்வு நேரடியாக வருவாய் மற்றும் margin-ல் சேர்கிறது; Titan 30–40% hedge செய்வதால் குறைவாக பயனடைகிறது.'},
+  {k:['organised shift','hallmarking','bis','unorganised','BIS','hallmark','ஒழுங்கமைக்கப்பட்ட'],co:'sec',
+   a_en:'BIS hallmarking pushed organised share 12%→18% (FY20–FY26); every 1% shift is ~₹6,700 Cr incremental revenue opportunity for Titan and Kalyan.',
+   a_ta:'BIS hallmarking ஒழுங்கமைக்கப்பட்ட பங்கை 12%→18% (FY20–FY26) உயர்த்தியது; ஒவ்வொரு 1% மாற்றமும் Titan மற்றும் Kalyan-க்கு ~₹6,700 கோடி கூடுதல் வாய்ப்பு.'},
+  {k:['lab-grown','lgd','diamond','lab grown','lab-grown diamond','ஆய்வகம்'],co:'sec',
+   a_en:'LGD prices fell 70% in 4 years; direct threat to Titan\'s studded mix (35% revenue, highest margins) — risk materialises FY27–29.',
+   a_ta:'LGD விலைகள் 4 ஆண்டுகளில் 70% குறைந்தன; Titan-ன் studded mix (35% வருவாய், மிக உயர்ந்த margin)-க்கு நேரடி அச்சுறுத்தல் — FY27–29 வரை ஆபத்து வெளிப்படும்.'},
+  {k:['gold metal loan','gml','borrow gold','why cant sgil','GML','தங்கக் கடன்'],co:'sec',
+   a_en:'GML requires strong credit rating and scale; SGIL as small-cap lacks the balance sheet — post 7,900 kg expansion, GML access could add 1–1.5% margin improvement.',
+   a_ta:'GML-க்கு வலுவான credit rating மற்றும் அளவு தேவை; சிறிய நிறுவனமான SGIL-க்கு balance sheet இல்லை — 7,900 kg விரிவாக்கத்திற்கு பிறகு GML 1–1.5% margin மேம்பாடு தரலாம்.'},
+  {k:['import duty','15%','6%','duty reversal','இறக்குமதி வரி'],co:'sec',
+   a_en:'Budget 2024 halved duty to 6%; reversal hits all three, but Kalyan most (lower studded mix = higher gold content per revenue rupee).',
+   a_ta:'Budget 2024 வரியை 6%-க்கு குறைத்தது; மாற்றம் மூவரையும் பாதிக்கும், ஆனால் Kalyan அதிகம் (குறைந்த studded mix = ஒவ்வொரு ரூபாய் வருவாயிலும் அதிக தங்கம்).'},
+
+  // TITAN
+  {k:['titan ebitda','compressing','margin compression','margin decline','titan margin','ebitda குறைகிறது'],co:'titan',
+   a_en:'Operating costs scaled faster than revenue in Q4; not structural — EBITDA still best-in-sector at 11.8% and stable across FY23–26.',
+   a_ta:'Q4-ல் செயல்பாட்டு செலவுகள் வருவாயை விட வேகமாக உயர்ந்தன; structural அல்ல — EBITDA 11.8%-ல் துறையில் சிறந்தது மற்றும் FY23–26 வரை நிலையானது.'},
+  {k:['caratLane','caratLane justify','caratLane valuation','31%','caratLane 31'],co:'titan',
+   a_en:'CaratLane at 31.4% growth adds digital optionality; but at only 3.2% of Titan revenue, it\'s a future option, not today\'s earnings driver.',
+   a_ta:'CaratLane 31.4% வளர்ச்சியில் digital optionality சேர்க்கிறது; ஆனால் Titan வருவாயில் வெறும் 3.2% மட்டுமே — இது இப்போதைய வருவாய் இயந்திரம் அல்ல, எதிர்கால வாய்ப்பு.'},
+  {k:['ghs','golden harvest','insulate','volatility','structural advantage','GHS','golden harvest scheme'],co:'titan',
+   a_en:'GHS locks 7–8M customers for 10–11 months creating ₹3,600 Cr demand pipeline that is price-insensitive — structural cushion, not just a liability.',
+   a_ta:'GHS 7–8 மில்லியன் வாடிக்கையாளர்களை 10–11 மாதங்கள் பூட்டி வைத்து ₹3,600 கோடி demand pipeline உருவாக்குகிறது — இது structural ரக்ஷையே, வெறும் கடன் அல்ல.'},
+  {k:['85x','how much growth','earnings growth','deliver','justify 85','85 pe','85 பி/இ'],co:'titan',
+   a_en:'At 85x P/E, Titan needs 18–20% EPS CAGR for 5+ years — any single miss risks a 20–25% de-rating; that\'s why Nomura is Reduce.',
+   a_ta:'85x P/E-ல் Titan 5+ ஆண்டுகளுக்கு 18–20% EPS CAGR தர வேண்டும் — ஒரு காலாண்டு தவறினாலும் 20–25% de-rating ஆபத்து; Nomura Reduce சொல்வது அதனால்தான்.'},
+  {k:['inventory 130','inventory days','higher than kalyan','சரக்கு நாட்கள்'],co:'titan',
+   a_en:'Titan\'s 130-day inventory reflects heavier studded jewellery with longer design cycles; Kalyan\'s 96 days reflects faster-turning plain gold.',
+   a_ta:'Titan-ன் 130 நாள் சரக்கு நீண்ட design cycle கொண்ட studded நகைகளை பிரதிபலிக்கிறது; Kalyan-ன் 96 நாட்கள் வேகமாக விற்கப்படும் தங்கத்தை காட்டுகிறது.'},
+  {k:['titan bear','bear case','titan correction','price target down','titan விலை இலக்கு'],co:'titan',
+   a_en:'Gold corrects 15% + 85x de-rates to 65x = stock at ₹2,400–2,600; Nomura\'s Reduce target ₹2,980 is the conservative bear.',
+   a_ta:'தங்கம் 15% திருத்தம் + 85x முதல் 65x-க்கு de-rate = பங்கு ₹2,400–2,600; Nomura-ன் Reduce இலக்கு ₹2,980 என்பது எச்சரிக்கையான bear case.'},
+  {k:['tata premium','rational','excessive','tata','டாடா'],co:'titan',
+   a_en:'Tata governance commands ~15–20x premium vs peers — rational for compounding; excessive only if FY27 EPS disappoints below 15%.',
+   a_ta:'Tata ஆட்சி ~15–20x premium-ஐ நியாயப்படுத்துகிறது — compounding-க்கு சரியானது; FY27 EPS 15%-க்கு கீழே வந்தால் மட்டுமே அதிகமாகும்.'},
+  {k:['hedge gold','mcx','futures','gold risk titan','hedge','MCX'],co:'titan',
+   a_en:'Titan hedges 30–40% via MCX futures + GML natural hedge — limits downside but also caps upside from gold price surges.',
+   a_ta:'Titan MCX futures + GML இயற்கை hedge மூலம் 30–40% hedge செய்கிறது — இறக்கத்தை குறைக்கிறது ஆனால் தங்கம் ஏற்றத்திலும் ஆதாயத்தை கட்டுப்படுத்துகிறது.'},
+  {k:['nomura','jm','broker','broker disagreement','why nomura','நோமுரா'],co:'titan',
+   a_en:'Nomura fears FY27 EPS miss at 85x; JM Financial values CaratLane + international separately — the bull/bear gap is ₹770 (₹2,980 vs ₹3,750).',
+   a_ta:'Nomura FY27 EPS தவறும் என்று பயப்படுகிறது; JM Financial CaratLane + international-ஐ தனியாக மதிக்கிறது — bull/bear இடைவெளி ₹770 (₹2,980 vs ₹3,750).'},
+  {k:['studded mix','roadmap','40%','studded margin','studded','studded நகை'],co:'titan',
+   a_en:'Each 1% rise in studded mix from 35% adds ~₹300–400 Cr to EBITDA; Titan targets 40%+ by FY28, directly boosting margins without revenue scaling.',
+   a_ta:'35%-லிருந்து studded mix ஒவ்வொரு 1% உயர்வும் ~₹300–400 கோடி EBITDA சேர்க்கிறது; FY28 முன்னேயே 40%+ இலக்கு — வருவாய் scaling இல்லாமலேயே margin உயரும்.'},
+
+  // KALYAN
+  {k:['pat 2x','pat faster','pat 118','why pat growing','PAT 2 மடங்கு','PAT வேகமாக'],co:'kalyan',
+   a_en:'Operating leverage — fixed costs spread over rapid FOCO additions; interest cost flat while EBITDA nearly doubled, compressing the gap to net profit.',
+   a_ta:'Operating leverage — FOCO கடை சேர்க்கைகளில் நிலையான செலவுகள் பரவுகின்றன; வட்டி செலவு நிலையானது, EBITDA இரட்டிக்கிறது — நிகர லாபம் வேகமாக வளர்கிறது.'},
+  {k:['middle east','gulf','usd revenue','kalyan gulf','strategic','மத்திய கிழக்கு','Gulf'],co:'kalyan',
+   a_en:'Gulf generates ~₹4,200 Cr (~14% of total) in USD — hedges INR, accesses high-ticket NRI bridal demand, and commands premium realisation.',
+   a_ta:'Gulf ~₹4,200 கோடி (~14%) USD-ல் தருகிறது — INR ஐ hedge செய்கிறது, அதிக மதிப்புள்ள NRI திருமண நகை தேவையை அணுகுகிறது, premium realisation பெறுகிறது.'},
+  {k:['foco quality','franchise risk','quality control','478','franchise','FOCO தரம்'],co:'kalyan',
+   a_en:'At 478 stores (55% franchisee), one purity or service incident in a new geography can permanently damage Kalyan\'s hard-won regional trust.',
+   a_ta:'478 கடைகளில் (55% franchise), ஒரு தூய்மை அல்லது சேவை சம்பவம் புதிய பகுதியில் Kalyan-ன் கஷ்டப்பட்டு உருவாக்கிய நம்பகத்தன்மையை நிரந்தரமாக பாதிக்கலாம்.'},
+  {k:['net debt 1x','debt fall','1.74','below 1','1x கீழ்','கடன்'],co:'kalyan',
+   a_en:'Net Debt/EBITDA improved 1.89x→1.74x; at current PAT trajectory, sub-1.5x by FY27 is achievable — a key re-rating trigger.',
+   a_ta:'Net Debt/EBITDA 1.89x→1.74x மேம்பட்டது; தற்போதைய PAT வளர்ச்சியில் FY27 முன்பே 1.5x கீழ் சாத்தியம் — இது ஒரு முக்கிய re-rating trigger.'},
+  {k:['promoter 62','re-rating limit','governance','62.9%','promoter','promoter பங்கு'],co:'kalyan',
+   a_en:'62.9% promoter holding = limited free float + limited independent oversight — institutions apply ~20–25% governance discount vs Tata-backed peers.',
+   a_ta:'62.9% promoter பங்கு = கட்டுப்படுத்தப்பட்ட free float + சுயாதீன மேற்பார்வை இல்லாமை — நிறுவனங்கள் Tata-backed peers-ஐ விட ~20–25% governance தள்ளுபடி அளிக்கின்றன.'},
+  {k:['pat margin improve','gross margin','operating leverage kalyan','PAT margin'],co:'kalyan',
+   a_en:'Kalyan\'s PAT margin jumped 3%→4% purely through operating leverage — fixed overhead diluted as FOCO stores mature; gross margin is secondary.',
+   a_ta:'Kalyan-ன் PAT margin வெறும் operating leverage மூலம் 3%→4% உயர்ந்தது — FOCO கடைகள் முதிரும்போது நிலையான செலவுகள் நீர்க்கின்றன; gross margin இரண்டாம் நிலை.'},
+  {k:['my kalyan','growth engine','1800','My Kalyan','மை கல்யாண்'],co:'kalyan',
+   a_en:'My Kalyan\'s 1,800+ centres convert Tier 3/4 installment savers into in-store buyers — feeds the funnel without proportional marketing spend.',
+   a_ta:'My Kalyan-ன் 1,800+ மையங்கள் Tier 3/4 தவணை சேமிப்பாளர்களை கடை வாங்குவோராக மாற்றுகின்றன — விகிதாச்சார சந்தைப்படுத்தல் செலவு இல்லாமல் funnel-ஐ நிரப்புகிறது.'},
+  {k:['studded 20%','margin risk kalyan','vs titan 35','studded mix kalyan'],co:'kalyan',
+   a_en:'Kalyan\'s 20% studded mix vs Titan\'s 35% means higher gold content per revenue rupee — more exposed to gold price swings, lower margin ceiling.',
+   a_ta:'Kalyan-ன் 20% studded mix vs Titan-ன் 35% — ஒவ்வொரு வருவாய் ரூபாயிலும் அதிக தங்கம் — தங்கம் விலை ஏற்ற இறக்கத்திற்கு அதிகம் வெளிப்படுகிறது, margin ceiling குறைவு.'},
+  {k:['800 stores','fy27 revenue','kalyan stores','800 கடைகள்'],co:'kalyan',
+   a_en:'At ₹19–21 Cr avg revenue per showroom, 800 stores = ₹15,000–17,000 Cr India revenue — vs ₹31,500 Cr currently; ~25% incremental.',
+   a_ta:'ஒரு கடைக்கு சராசரியாக ₹19–21 கோடி வருவாயில், 800 கடைகள் = ₹15,000–17,000 கோடி இந்தியா வருவாய் — தற்போதைய ₹31,500 கோடியில் ~25% கூடுதல்.'},
+  {k:['pat 118 revenue 66','why pat jumped','operating leverage q4','PAT 118%'],co:'kalyan',
+   a_en:'Revenue grew 66% but EBITDA grew ~85% and PAT ~118% — classic operating leverage where incremental revenue flows disproportionately to profit.',
+   a_ta:'வருவாய் 66% வளர்ந்தது, EBITDA ~85%, PAT ~118% — கூடுதல் வருவாய் விகிதத்திற்கு அப்பால் லாபத்திற்கு செல்கிறது என்பது classic operating leverage.'},
+  {k:['gulf hedge','concentration risk','Gulf hedge','Gulf concentration'],co:'kalyan',
+   a_en:'Gulf is simultaneously a hedge (USD revenue, NRI demand) and concentration risk (14% from 5 countries) — geopolitical disruption could hit hard.',
+   a_ta:'Gulf ஒரே நேரத்தில் hedge (USD வருவாய், NRI தேவை) மற்றும் concentration risk (5 நாடுகளிலிருந்து 14%) — புவியரசியல் சீர்குலைவு கடுமையாக பாதிக்கலாம்.'},
+
+  // SGIL
+  {k:['profit 465','net profit jump','why 465','465%','லாபம் 465%'],co:'sgil',
+   a_en:'Revenue doubled (gold price + volumes), gross margin expanded 260 bps, and lower taxes compounded the bottom line — three kickers firing simultaneously.',
+   a_ta:'வருவாய் இரட்டிக்கிறது (தங்கம் விலை + உற்பத்தி), gross margin 260 bps விரிவடைந்தது, குறைந்த வரிகள் bottom line-ஐ கூட்டின — மூன்று காரணிகள் ஒரே நேரத்தில் செயல்பட்டன.'},
+  {k:['margins if gold','gold correction 20%','sgil margin correction','தங்கம் 20%'],co:'sgil',
+   a_en:'A 20% gold price fall would cut revenue ~18–20% and compress gross margin 200–300 bps — EBITDA could halve from ₹67 Cr to ~₹30–35 Cr in one quarter.',
+   a_ta:'தங்கம் 20% குறைந்தால் வருவாய் ~18–20% குறையும், gross margin 200–300 bps சுருங்கும் — ஒரு காலாண்டில் EBITDA ₹67 கோடியிலிருந்து ~₹30–35 கோடியாக பாதியாகலாம்.'},
+  {k:['mumbai 4000','larger than jaipur','why mumbai bigger','மும்பை ஆலை'],co:'sgil',
+   a_en:'Mumbai targets premium bridal buyers and B2B institutional clients in India\'s largest jewellery market; scale economics justify the 3x Jaipur size.',
+   a_ta:'மும்பை இந்தியாவின் மிகப்பெரிய நகை சந்தையில் premium திருமண வாங்குவோரை மற்றும் B2B clients-ஐ குறிவைக்கிறது; அளவு பொருளாதாரம் ஜெய்ப்பூரை விட 3 மடங்கு அளவை நியாயப்படுத்துகிறது.'},
+  {k:['7900','full capacity','revenue target','fully utilised','7,900','முழு திறன்'],co:'sgil',
+   a_en:'At 7,900 kg/yr and current ~₹1,420 Cr/kg realisation, full utilisation = ~₹11,200 Cr revenue — vs ~₹2,100 Cr today; 5x potential over 3–4 years.',
+   a_ta:'7,900 kg/yr மற்றும் தற்போதைய ~₹1,420 கோடி/kg realisation-ல், முழு பயன்பாடு = ~₹11,200 கோடி வருவாய் — இன்றைய ~₹2,100 கோடியில் 3–4 ஆண்டுகளில் 5x சாத்தியம்.'},
+  {k:['qoq 13.5','seasonal','structural','production drop','QoQ குறைவு'],co:'sgil',
+   a_en:'Seasonal — Q3 (Oct–Dec) is peak wedding season; Q4 naturally dips. Full year +25% YoY confirms structural trajectory is intact.',
+   a_ta:'பருவகால வடிவம் — Q3 (அக்–டிச) திருமண உச்சகட்ட காலம்; Q4 இயற்கையாகவே குறையும். ஆண்டு முழுவதும் +25% YoY structural வளர்ச்சி பாதையை உறுதிப்படுத்துகிறது.'},
+  {k:['moat after tripling','pricing power','moat holds','திறன் 3 மடங்கு','moat'],co:'sgil',
+   a_en:'3x capacity creates scale but not pricing power — SGIL is a manufacturer, not a brand retailer; moat remains manufacturing expertise, not distribution.',
+   a_ta:'3x திறன் அளவை உருவாக்குகிறது, ஆனால் pricing power இல்லை — SGIL ஒரு உற்பத்தியாளர், brand retailer அல்ல; moat உற்பத்தி திறனில் உள்ளது, விநியோகத்தில் அல்ல.'},
+  {k:['35x 42x','priced for','growth rate sgil','forward pe','forward PE'],co:'sgil',
+   a_en:'At 38x forward PE on ~₹120 Cr FY26 PAT, market prices 40–50% PAT CAGR for 3 years — achievable only if both plants commission on schedule.',
+   a_ta:'~₹120 கோடி FY26 PAT-ல் 38x forward PE-ல், சந்தை 3 ஆண்டுகளுக்கு 40–50% PAT CAGR மதிக்கிறது — இரண்டு ஆலைகளும் சரியான நேரத்தில் தொடங்கினால் மட்டுமே சாத்தியம்.'},
+  {k:['gold proxy','compounder','proxy or business','தங்கம் proxy'],co:'sgil',
+   a_en:'SGIL is 70% gold price proxy and 30% business compounder — capacity execution and customer addition are what separate it from a pure commodity bet.',
+   a_ta:'SGIL 70% தங்கம் விலை proxy மற்றும் 30% வணிக compounder — திறன் செயல்பாடு மற்றும் வாடிக்கையாளர் சேர்க்கை மட்டுமே இதை pure commodity bet-ல் இருந்து வேறுபடுத்துகின்றன.'},
+  {k:['sgil bull case','target fy28','sgil upside','bull case','FY28 இலக்கு'],co:'sgil',
+   a_en:'Bull case: both plants by Q3 FY27, 600+ kg/qtr, 10% EBITDA, FY28 PAT ~₹600 Cr → at 25x PE = market cap ₹15,000 Cr (7x from today).',
+   a_ta:'Bull case: Q3 FY27-க்குள் இரண்டு ஆலைகளும், 600+ kg/காலாண்டு, 10% EBITDA, FY28 PAT ~₹600 கோடி → 25x PE-ல் market cap ₹15,000 கோடி (இன்றிலிருந்து 7x).'},
+  {k:['sgil gml','why cant sgil','no gml','GML இல்லை'],co:'sgil',
+   a_en:'SGIL lacks the credit rating and balance sheet scale for GML lines — post 7,900 kg expansion, this could change and would add ~1–1.5% to EBITDA margin.',
+   a_ta:'SGIL-க்கு GML lines-க்கான credit rating மற்றும் balance sheet அளவு இல்லை — 7,900 kg விரிவாக்கத்திற்கு பிறகு இது மாறலாம் மற்றும் EBITDA margin-ல் ~1–1.5% சேர்க்கலாம்.'},
+];
+
+function buildQS(){
+  const grid=document.getElementById('cb-qs-grid');
+  const QS=currentLang==='en'?QS_EN:QS_TA;
+  const qs=QS[currentCo]||QS.all;
+  grid.innerHTML=qs.map(q=>`<button class="cb-qs-btn" onclick="cbAskQ(this.textContent)">${q}</button>`).join('');
+}
+
+function cbAskQ(q){document.getElementById('cb-input').value=q;cbAsk();}
+
+function cbAsk(){
+  const inp=document.getElementById('cb-input');
+  const q=inp.value.trim();
+  if(!q) return;
+  inp.value='';
+  const area=document.getElementById('cb-qa-area');
+  const ph=document.getElementById('cb-placeholder');
+  if(ph) ph.remove();
+  const msgDiv=document.createElement('div');
+  msgDiv.className='cb-msg';
+  const dots=`<span class="cb-dot"></span><span class="cb-dot"></span><span class="cb-dot"></span>`;
+  const lookingUp=currentLang==='en'?'Looking up…':'தேடுகிறது…';
+  msgDiv.innerHTML=`<div class="cb-msg-q">❓ ${q}</div><div class="cb-typing">${dots}&nbsp;${lookingUp}</div>`;
+  area.appendChild(msgDiv);
+  area.scrollTop=area.scrollHeight;
+  setTimeout(()=>{
+    const ans=findAnswer(q);
+    const co=ans.co;
+    const labels={titan:'Titan',kalyan:'Kalyan',sgil:'SGIL',sec:'Sector'};
+    const colors={titan:'rgba(160,114,42,.12)|#a0722a',kalyan:'rgba(26,90,184,.12)|#1a5ab8',sgil:'rgba(139,26,26,.12)|#8b1a1a',sec:'rgba(13,120,110,.12)|#0d786e'};
+    const[bg,col]=(colors[co]||colors.sec).split('|');
+    const tag=`<span style="display:inline-block;padding:1px 8px;border-radius:10px;font-size:10px;font-weight:700;background:${bg};color:${col};margin-right:6px">${labels[co]||'Sector'}</span>`;
+    const ansText=currentLang==='en'?(ans.a_en||ans.a_ta):(ans.a_ta||ans.a_en);
+    msgDiv.innerHTML=`<div class="cb-msg-q">❓ ${q}</div><div class="cb-msg-a">${tag}${ansText}</div>`;
+    area.scrollTop=area.scrollHeight;
+  },500);
+}
+
+function findAnswer(q){
+  const ql=q.toLowerCase();
+  let best=null,bestScore=0;
+  for(const entry of KB){
+    let score=0;
+    for(const kw of entry.k){if(ql.includes(kw.toLowerCase()))score++;}
+    if(score>bestScore){bestScore=score;best=entry;}
+  }
+  if(best&&bestScore>0) return best;
+  const isTa=currentLang==='ta';
+  if(ql.includes('titan')) return{co:'titan',
+    a_en:'Titan Q4 FY26: Revenue ₹15,320 Cr (+17.4%), PAT ₹1,063 Cr (+13.2%), EBITDA 11.8% — hold/accumulate below ₹3,000; 85x PE is the primary risk.',
+    a_ta:'Titan Q4 FY26: வருவாய் ₹15,320 கோடி (+17.4%), PAT ₹1,063 கோடி (+13.2%), EBITDA 11.8% — ₹3,000 கீழ் சேகரிக்கவும்; 85x PE முதன்மை ஆபத்து.'};
+  if(ql.includes('kalyan')||ql.includes('கல்யாண')) return{co:'kalyan',
+    a_en:'Kalyan Q4 FY26: Revenue ₹10,275 Cr (+66%), PAT ₹409 Cr (+118%), 28x PE — best risk-reward large-cap; accumulate ₹370–410.',
+    a_ta:'Kalyan Q4 FY26: வருவாய் ₹10,275 கோடி (+66%), PAT ₹409 கோடி (+118%), 28x PE — சிறந்த risk-reward; ₹370–410-ல் சேகரிக்கவும்.'};
+  if(ql.includes('sgil')||ql.includes('shanthi')||ql.includes('சாந்தி')) return{co:'sgil',
+    a_en:'SGIL Q4 FY26: Revenue ₹658.9 Cr (+122%), PAT ₹51.9 Cr (+465%), EBITDA 10.2% — speculative buy; capacity tripling to 7,900 kg/yr is the thesis.',
+    a_ta:'SGIL Q4 FY26: வருவாய் ₹658.9 கோடி (+122%), PAT ₹51.9 கோடி (+465%), EBITDA 10.2% — speculative buy; 7,900 kg/yr திறன் 3 மடங்கு ஆகுவது thesis.'};
+  if(ql.includes('gold')||ql.includes('தங்கம்')) return{co:'sec',
+    a_en:'Gold at ₹94,000/10g drives all three; SGIL gains most as pure manufacturer, Titan hedges 30–40%, Kalyan most exposed due to lower studded mix.',
+    a_ta:'தங்கம் ₹94,000/10g மூவரையும் இயக்குகிறது; தூய உற்பத்தியாளராக SGIL அதிகம் பயனடைகிறது, Titan 30–40% hedge செய்கிறது, Kalyan குறைந்த studded mix காரணமாக அதிகம் வெளிப்படுகிறது.'};
+  return{co:'sec',
+    a_en:'Not in embedded knowledge base — navigate to the relevant tab (Financials, Valuation, SGIL, Moat) for detailed data.',
+    a_ta:'உட்பொதிக்கப்பட்ட knowledge base-ல் இல்லை — விரிவான தகவலுக்கு Financials, Valuation, SGIL, Moat tab-ஐ பாருங்கள்.'};
+}
 </script>
 </body>
 </html>
