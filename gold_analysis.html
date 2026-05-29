@@ -12,22 +12,22 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#fff;color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
-    border-bottom:2px solid var(--border);display:flex;align-items:center;gap:2px;
-    padding:0 10px;height:52px;flex-wrap:wrap;overflow-x:auto}
+    border-bottom:2px solid var(--border);display:flex;align-items:center;gap:4px;
+    padding:0 14px;height:58px;flex-wrap:wrap;overflow-x:auto;overflow-y:visible}
 .nav-logo{height:36px;width:auto;border-radius:6px;margin-right:4px;flex-shrink:0}
 .nav-fb{width:36px;height:36px;background:linear-gradient(135deg,#a0722a,#0d6440);border-radius:8px;
         display:none;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;margin-right:4px;flex-shrink:0}
 .nav-div{width:1px;height:28px;background:rgba(212,201,176,.8);margin:0 4px;flex-shrink:0}
-.tab-btn{background:none;border:none;color:var(--sub);padding:5px 7px;border-radius:6px;
-         cursor:pointer;font-size:11px;font-weight:500;white-space:nowrap;transition:all .2s}
+.tab-btn{background:none;border:none;color:var(--sub);padding:6px 11px;border-radius:6px;
+         cursor:pointer;font-size:14px;font-weight:600;white-space:nowrap;transition:all .2s}
 .tab-btn:hover{color:var(--text);background:var(--card2)}
 .tab-btn.active{color:var(--gold);background:rgba(160,114,42,.1);border-bottom:2px solid var(--gold)}
 .tab-btn.cb-btn{color:var(--teal);font-weight:700}
 .tab-btn.cb-btn.active{color:var(--teal);background:rgba(13,120,110,.1);border-bottom:2px solid var(--teal)}
 .sec{display:none;padding:20px 16px;max-width:1300px;margin:0 auto;position:relative}.sec-wm{position:absolute;top:14px;right:18px;opacity:0.10;pointer-events:none;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.sec-wm img{height:24px;width:auto}.sec-wm span{font-size:8px;color:#a0722a;font-weight:700;letter-spacing:.4px}
-h2{font-size:21px;font-weight:700;color:var(--gold);margin-bottom:4px}
-h3{font-size:15px;font-weight:600;color:var(--gold2);margin-bottom:10px}
-h4{font-size:13px;font-weight:700;margin-bottom:6px}
+h2{font-size:32px;font-weight:800;color:var(--gold);margin-bottom:8px;letter-spacing:-.5px;line-height:1.15}
+h3{font-size:20px;font-weight:700;color:var(--gold2);margin-bottom:10px}
+h4{font-size:15px;font-weight:700;margin-bottom:6px}
 .sub{color:var(--sub);font-size:12px;margin-bottom:16px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -124,37 +124,32 @@ tr:hover td{background:rgba(0,0,0,.02)}
 .geo-count{font-size:22px;font-weight:800;color:var(--gold2)}
 .geo-label{font-size:11px;color:var(--sub);margin-top:2px}
 .geo-sub{font-size:10px;color:var(--green);margin-top:2px}
-.wm{position:fixed;bottom:12px;right:16px;pointer-events:none;z-index:50;opacity:0.13;display:flex;flex-direction:column;align-items:flex-end;gap:3px}.wm img{height:28px;width:auto}.wm span{font-size:9px;color:#a0722a;font-weight:700;letter-spacing:.5px;text-align:right}
+
+.co-sub-btn{padding:5px 14px;border-radius:16px;border:1.5px solid var(--border);background:white;cursor:pointer;font-size:11px;font-weight:700;transition:all .18s;white-space:nowrap}
+.co-sub-btn:hover{opacity:.8}
+.co-sub-btn.active{background:rgba(160,114,42,.12);border-color:var(--gold)}
+.co-sub-section{padding-top:4px}
+.co-menu-item{display:block;width:100%;background:none;border:none;padding:8px 16px;text-align:left;font-size:12px;font-weight:600;color:var(--text);cursor:pointer;transition:background .15s}
+.co-menu-item:hover{background:var(--card2);color:var(--gold)}
 ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:#f0ebe0}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 </style>
 </head>
 <body>
 <nav>
-  <img src="data:image/png;base64,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" class="nav-logo" alt="Logo" onerror="this.style.display='none';document.getElementById('navFb').style.display='flex'">
-  <div class="nav-fb" id="navFb">EIL</div>
-  <div class="nav-div"></div>
   <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
-  <button class="tab-btn" onclick="showTab('titan',this)">💛 Titan</button>
-  <button class="tab-btn" onclick="showTab('kalyan',this)">🔵 Kalyan</button>
-  <button class="tab-btn" onclick="showTab('senco',this)">🟠 Senco</button>
-  <button class="tab-btn" onclick="showTab('thangamayil',this)">🟡 Thangamayil</button>
-  <button class="tab-btn" onclick="showTab('pngadgil',this)">🟤 PN Gadgil</button>
-  <button class="tab-btn" onclick="showTab('sgil',this)">🔴 SGIL</button>
-  <button class="tab-btn" onclick="showTab('skygold',this)">⚫ Sky Gold</button>
-  <button class="tab-btn" onclick="showTab('shringar',this)">🟣 Shringar</button>
-  <button class="tab-btn" onclick="showTab('goldiam',this)">💎 Goldiam</button>
-  <button class="tab-btn" onclick="showTab('financials',this)">Financials</button>
+  <div class="nav-div"></div>
+  <button class="tab-btn" onclick="showTab('companies',this)">Companies</button>
+  <button class="tab-btn" onclick="showTab('financials',this)">Co. Charts</button>
   <button class="tab-btn" onclick="showTab('compare',this)">Compare</button>
   <button class="tab-btn" onclick="showTab('valuation',this)">Valuation</button>
   <button class="tab-btn" onclick="showTab('moat',this)">Moat</button>
   <button class="tab-btn" onclick="showTab('risks',this)">Risks</button>
-  <button class="tab-btn" onclick="showTab('analysts',this)">Analysts</button>
+  <button class="tab-btn" onclick="showTab('analysts',this)">Analysts Rating</button>
   <button class="tab-btn" onclick="showTab('verdict',this)">Verdict</button>
   <button class="tab-btn cb-btn" onclick="showTab('cbassist',this)">🤖 CB Assist</button>
 </nav>
 
 <div id="overview" class="sec" style="display:block">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Gold Jewellery Sector — Q4 FY26 Analysis</h2>
 <p class="sub">9 Companies · Retailers · B2B Manufacturers · LGD Exporter · Verified BSE/NSE Data</p>
@@ -265,8 +260,501 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 </div>
 
+<div id="companies" class="sec">
+<h2>Companies — Q4 FY26</h2>
+<p class="sub">9 Companies · Select a sub-heading to jump to that company's full analysis</p>
+
+<!-- Company selector strip -->
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:10px">
+  <button class="co-sub-btn active" onclick="showCoSub('co-titan',this)" style="border-color:var(--gold);color:var(--gold)">💛 Titan</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-kalyan',this)" style="border-color:var(--blue);color:var(--blue)">🔵 Kalyan</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-senco',this)" style="border-color:var(--senco);color:var(--senco)">🟠 Senco</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-thangamayil',this)" style="border-color:var(--tmayil);color:var(--tmayil)">🟡 Thangamayil</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-pngadgil',this)" style="border-color:var(--png);color:var(--png)">🟤 PN Gadgil</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-sgil',this)" style="border-color:var(--sgil);color:var(--sgil)">🔴 SGIL</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-skygold',this)" style="border-color:var(--sky);color:var(--sky)">⚫ Sky Gold</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-shringar',this)" style="border-color:var(--purple);color:var(--purple)">🟣 Shringar</button>
+  <button class="co-sub-btn" onclick="showCoSub('co-goldiam',this)" style="border-color:#0d6440;color:#0d6440">💎 Goldiam</button>
+</div>
+
+<!-- ── TITAN ── -->
+<div id="co-titan" class="co-sub-section">
+<div style="border-left:4px solid var(--gold);padding-left:12px;margin-bottom:16px">
+  <h2 style="color:var(--gold)">Titan Company Ltd — Q4 FY26</h2>
+  <p class="sub">NSE: TITAN | Tata Group | Mixed Retail + Manufacturing | Jewellery 90%+ of Revenue | Mkt Cap ~₹2,50,000 Cr</p>
+</div>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card"><div class="val" style="color:var(--gold)">₹26,920Cr</div><div class="lbl">Q4 Consol. Revenue</div><div class="chg up">▲ 80% YoY</div></div>
+  <div class="kpi card"><div class="val" style="color:var(--gold)">₹1,179Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 35.4% YoY</div></div>
+  <div class="kpi card"><div class="val" style="color:var(--gold)">9.2%</div><div class="lbl">Q4 EBITDA Margin</div><div class="chg dn">▼ 135 bps YoY</div></div>
+  <div class="kpi card"><div class="val" style="color:var(--gold)">₹88,136Cr</div><div class="lbl">FY26 Full Year Revenue</div><div class="chg up">▲ 34.4% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--gold)">
+  <h3>Q4 FY26 P&amp;L (Consolidated, ₹ Crore)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q4 FY26</th><th>Q3 FY26</th><th>Q4 FY25</th><th>YoY%</th></tr>
+    <tr><td>Total Revenue (Consol.)</td><td>26,920</td><td>14,480</td><td>14,962</td><td class="up">+80%</td></tr>
+    <tr><td>Jewellery Segment Revenue</td><td>~23,900</td><td>~12,700</td><td>~13,200</td><td class="up">+81%</td></tr>
+    <tr><td>EBITDA Margin</td><td>9.2%</td><td>11.8%</td><td>10.6%</td><td class="dn">-140bps</td></tr>
+    <tr><td>Net Profit (₹Cr)</td><td>1,179</td><td>1,063</td><td>871</td><td class="up">+35.4%</td></tr>
+    <tr><td>FY26 Full Year Revenue</td><td colspan="2">₹88,136 Cr</td><td>₹65,643 Cr</td><td class="up">+34.4%</td></tr>
+    <tr><td>FY26 Full Year PAT</td><td colspan="2">₹5,073 Cr</td><td>₹3,337 Cr</td><td class="up">+52%</td></tr>
+  </table>
+</div>
+<div class="g2">
+  <div class="card-lg">
+    <h3>Business Segments — Q4 FY26</h3>
+    <table>
+      <tr><th>Segment</th><th>Q4 FY26 Rev</th><th>YoY%</th><th>EBIT%</th></tr>
+      <tr><td>Jewellery (Tanishq+)</td><td>~₹23,900 Cr</td><td class="up">+81%</td><td>12.1%</td></tr>
+      <tr><td>Watches &amp; Wearables</td><td>~₹1,171 Cr</td><td class="up">+8%</td><td>16.2%</td></tr>
+      <tr><td>CaratLane</td><td>Growing</td><td class="up">+31%</td><td>Breakeven</td></tr>
+      <tr><td>Damas (Intl.)</td><td>Integrated</td><td>—</td><td>—</td></tr>
+    </table>
+    <div style="background:rgba(160,114,42,.06);border-radius:8px;padding:10px;margin-top:10px;font-size:12px">
+      <strong>FY26 Jewellery segment:</strong> ₹79,660 Cr (90%+ of consol.) | Quarterly growth: Q1+19%, Q2+21%, Q3+42%, Q4+50%. Coins nearly tripled in value YoY in Q4.
+    </div>
+  </div>
+  <div class="card-lg" style="border-left:4px solid var(--gold);background:rgba(160,114,42,.03)">
+    <h3>🔄 Old Gold Exchange — Tanishq</h3>
+    <div class="hl">
+      <h4>Enhanced from Q3 FY26 onwards</h4>
+      <ul>
+        <li><strong>CFO Ashok Sonthalia:</strong> "Our gold exchange programme is very, very successfully being run from Q3 FY26 onwards — at another level than before"</li>
+        <li>Customer brings old gold → on-spot XRF Karatmeter purity test → value credited toward new jewellery</li>
+        <li>Estimated <strong>~30–40% of Tanishq sales volume</strong> linked to exchange in Q4 FY26</li>
+        <li>Coins nearly tripled in value YoY; exchange sourcing reduces import &amp; GML dependency</li>
+        <li>Buyer growth returned to <strong>+8% YoY</strong> in Q4 — turnaround from flat — partly exchange-driven</li>
+        <li>High gold prices (₹94,000/10g) made exchange-led upgrades more attractive than fresh purchase</li>
+        <li>Aligned with PM Modi May 2026 appeal; Plan B contingency sourcing also ready</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end co-titan -->
+
+
+<!-- ── KALYAN ── -->
+<div id="co-kalyan" class="co-sub-section" style="display:none">
+<h2>Kalyan Jewellers India Ltd — Q4 FY26</h2>
+<p class="sub">NSE: KALYANKJIL | 600+ Stores (India + ME + UK) | FOCO Model | Middle East 11% Revenue | Mkt Cap ₹38,062 Cr</p>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card"><div class="val" style="color:var(--blue)">₹10,275Cr</div><div class="lbl">Q4 Revenue (Consol.)</div><div class="chg up">▲ 66.2% YoY</div></div>
+  <div class="kpi card"><div class="val" style="color:var(--blue)">₹409.5Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 118.3% YoY</div></div>
+  <div class="kpi card"><div class="val" style="color:var(--blue)">7.1%</div><div class="lbl">Q4 EBITDA Margin</div><div class="chg up">▲ 70 bps YoY</div></div>
+  <div class="kpi card"><div class="val" style="color:var(--blue)">₹35,743Cr</div><div class="lbl">FY26 Revenue</div><div class="chg up">▲ 43% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--blue)">
+  <h3>Q4 &amp; FY26 P&amp;L (Consolidated, ₹ Crore)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q4 FY26</th><th>Q3 FY26</th><th>Q4 FY25</th><th>YoY%</th><th>QoQ%</th></tr>
+    <tr><td>Revenue (Consol.)</td><td>10,275</td><td>10,343</td><td>6,182</td><td class="up">+66.2%</td><td class="dn">-0.7%</td></tr>
+    <tr><td>India Revenue (Standalone)</td><td>8,990</td><td>9,010</td><td>5,350</td><td class="up">+68%</td><td class="neu">Flat</td></tr>
+    <tr><td>International Revenue</td><td>1,157</td><td>1,060</td><td>807</td><td class="up">+43%</td><td class="up">+9%</td></tr>
+    <tr><td>Candere Revenue</td><td>131</td><td>—</td><td>28</td><td class="up">+368%</td><td>—</td></tr>
+    <tr><td>EBITDA (₹Cr)</td><td>736</td><td>736</td><td>399</td><td class="up">+84%</td><td class="neu">Flat</td></tr>
+    <tr><td>EBITDA Margin</td><td>7.1%</td><td>7.1%</td><td>6.4%</td><td class="up">+70bps</td><td class="neu">Stable</td></tr>
+    <tr><td>Net Profit (₹Cr)</td><td>409.5</td><td>320</td><td>188</td><td class="up">+118.3%</td><td class="up">+28%</td></tr>
+    <tr><td>India PAT (₹Cr)</td><td>~365</td><td>—</td><td>139</td><td class="up">+163%</td><td>—</td></tr>
+    <tr><td>FY26 Full Year</td><td colspan="5">Revenue ₹35,743 Cr (+43%) | PAT ₹1,350 Cr (+89%) | Dividend ₹2.50/share</td></tr>
+  </table>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--blue);background:rgba(26,90,184,.03)">
+  <h3>🔄 Old Gold Exchange — Gold4India</h3>
+  <div class="g2">
+    <div class="hl-c" style="background:rgba(26,90,184,.04);border-color:rgba(26,90,184,.2)">
+      <h4 style="color:var(--blue)">Gold4India Initiative (May 2026)</h4>
+      <ul style="padding-left:16px">
+        <li class="hl li" style="font-size:12px;line-height:1.75"><strong>Launched May 2026</strong> aligned with PM Modi's appeal to reduce gold imports</li>
+        <li style="font-size:12px;line-height:1.75">Exchange at 342 India showrooms; target: reduce imports by ~5 tonnes/year</li>
+        <li style="font-size:12px;line-height:1.75">Promotes 18K over 22K — affordability at high gold prices</li>
+        <li style="font-size:12px;line-height:1.75">Tied to My Kalyan loyalty (10 Cr+ registered customers)</li>
+        <li style="font-size:12px;line-height:1.75">Candere online also offers exchange — growing contribution</li>
+      </ul>
+    </div>
+    <div class="hl-c" style="background:rgba(26,90,184,.04);border-color:rgba(26,90,184,.2)">
+      <h4 style="color:var(--blue)">Business Impact</h4>
+      <ul style="padding-left:16px">
+        <li style="font-size:12px;line-height:1.75">Significant % of Q4 sales via exchange in high-gold-price environment</li>
+        <li style="font-size:12px;line-height:1.75">Exchange reduces GML need — internally sourced gold lowers cost</li>
+        <li style="font-size:12px;line-height:1.75">India PAT +163% YoY partly aided by exchange-driven same-store growth</li>
+        <li style="font-size:12px;line-height:1.75">Post Gold4India: stock fell ~22% on PM appeal concerns despite strong results</li>
+        <li style="font-size:12px;line-height:1.75">ME diaspora customers: old gold exchange widely practised — supports intl. growth</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div><!-- end co-kalyan -->
+
+
+<!-- ── SENCO ── -->
+<div id="co-senco" class="co-sub-section" style="display:none">
+<h2>Senco Gold &amp; Diamonds — Q4 FY26</h2>
+<p class="sub">NSE: SENCO | 201 Stores (India + Dubai) | Eastern India Market Leader | 88+ Year Legacy | CARE A+ Credit Rating</p>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card" style="border-top:3px solid var(--senco)"><div class="val" style="color:var(--senco)">₹1,997Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 44.9% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--senco)"><div class="val" style="color:var(--senco)">₹156.9Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 151% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--senco)"><div class="val" style="color:var(--senco)">13.7%</div><div class="lbl">Q4 EBITDA Margin</div><div class="chg up">▲ 450 bps YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--senco)"><div class="val" style="color:var(--senco)">₹8,430Cr</div><div class="lbl">FY26 Full Year Rev</div><div class="chg up">▲ 33% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--senco)">
+  <h3 style="color:var(--senco)">Q4 &amp; FY26 P&amp;L (Consolidated, ₹ Crore)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q4 FY26</th><th>Q3 FY26</th><th>Q4 FY25</th><th>YoY%</th><th>QoQ%</th></tr>
+    <tr><td>Revenue</td><td>1,997</td><td>3,071</td><td>1,378</td><td class="up">+44.9%</td><td class="dn">-35% (seasonal)</td></tr>
+    <tr><td>Retail Revenue (highest-ever Q4)</td><td>1,731</td><td>~2,650</td><td>1,282</td><td class="up">+35%</td><td class="dn">Seasonal</td></tr>
+    <tr><td>EBITDA</td><td>274.4</td><td>405</td><td>127</td><td class="up">+116%</td><td class="dn">-32.3%</td></tr>
+    <tr><td>EBITDA Margin</td><td>13.7%</td><td>13.2%</td><td>9.2%</td><td class="up">+450bps</td><td class="up">+50bps</td></tr>
+    <tr><td>Net Profit</td><td>156.9</td><td>~310</td><td>62.4</td><td class="up">+151%</td><td class="dn">Seasonal</td></tr>
+    <tr><td>EPS (₹)</td><td>9.58</td><td>~18.9</td><td>3.81</td><td class="up">+151%</td><td class="dn">Seasonal</td></tr>
+    <tr><td>FY26 Full Year</td><td colspan="5">Revenue ₹8,430 Cr | EBITDA ₹969 Cr (11.5%) | PAT ₹574 Cr (+261%) | Dividend ₹1/share</td></tr>
+  </table>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--senco);background:rgba(212,128,10,.03)">
+  <h3>🔄 Old Gold Exchange — ~50% of Q4 Revenue (Highest Among Listed Retailers)</h3>
+  <div class="hl" style="border-color:rgba(212,128,10,.3);background:rgba(212,128,10,.05)">
+    <h4 style="color:var(--senco)">Key Points</h4>
+    <ul>
+      <li><strong>~50% of Q4 FY26 revenue driven by Old Gold Exchange</strong> — highest disclosed among all listed jewellers</li>
+      <li>Eastern India (Bengal, Odisha, Bihar) has deep gold-recycling culture — Senco's home market advantage</li>
+      <li>EBITDA margin 13.7% in Q4 includes inventory gains from rising gold, silver, platinum prices</li>
+      <li>FY27 guidance: sustainable EBITDA 7.5–7.8% (normalises as bullion price gains moderate)</li>
+      <li>Old gold + rising silver &amp; diamond sales drove higher average transaction values</li>
+      <li>SSSG: record Q4 retail turnover ₹1,731 Cr (+35% YoY) — reflects exchange + new store ramp-up</li>
+      <li>201 showrooms as of March 2026; 39 new stores added in FY26; FY27 target: 20–25 new stores</li>
+    </ul>
+  </div>
+</div>
+</div>
+</div><!-- end co-senco -->
+
+
+<!-- ── THANGAMAYIL ── -->
+<div id="co-thangamayil" class="co-sub-section" style="display:none">
+<h2>Thangamayil Jewellery Ltd — Q4 FY26</h2>
+<p class="sub">NSE: THANGAMAYL | BSE: 533158 | 66 Stores | Tamil Nadu Retailer | Dividend ₹18/share (180%) | Digi Gold &amp; Silver Schemes</p>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card" style="border-top:3px solid var(--tmayil)"><div class="val" style="color:var(--tmayil)">₹2,839Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 106% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--tmayil)"><div class="val" style="color:var(--tmayil)">₹142.7Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 354% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--tmayil)"><div class="val" style="color:var(--tmayil)">7.52%</div><div class="lbl">Q4 EBITDA Margin</div><div class="chg up">▲ 338 bps YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--tmayil)"><div class="val" style="color:var(--tmayil)">₹8,514Cr</div><div class="lbl">FY26 Revenue</div><div class="chg up">▲ 73% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--tmayil)">
+  <h3 style="color:var(--tmayil)">Q4 &amp; FY26 P&amp;L (₹ Crore)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q4 FY26</th><th>Q4 FY25</th><th>YoY%</th></tr>
+    <tr><td>Revenue</td><td>2,839</td><td>1,381</td><td class="up">+105.6%</td></tr>
+    <tr><td>Gold Jewellery Sales</td><td>2,503</td><td>1,220</td><td class="up">+105%</td></tr>
+    <tr><td>Non-Gold Items</td><td>227</td><td>94</td><td class="up">+141%</td></tr>
+    <tr><td>EBITDA</td><td>213.5</td><td>57.1</td><td class="up">+274%</td></tr>
+    <tr><td>EBITDA Margin</td><td>7.52%</td><td>4.14%</td><td class="up">+338 bps</td></tr>
+    <tr><td>Net Profit</td><td>142.7</td><td>31.4</td><td class="up">+354%</td></tr>
+    <tr><td>EPS (₹)</td><td>~45.9</td><td>~10.1</td><td class="up">+354%</td></tr>
+    <tr><td>FY26 Full Year</td><td colspan="3">Revenue ₹8,514 Cr (+73%) | PAT ₹351.65 Cr (+196%) | EPS ₹113.14</td></tr>
+  </table>
+</div>
+<div class="g2">
+  <div class="card-lg">
+    <h3 style="color:var(--tmayil)">FY26 Highlights</h3>
+    <div class="hl" style="border-color:rgba(139,105,20,.25);background:rgba(139,105,20,.04)">
+      <h4 style="color:var(--tmayil)">Tamil Nadu Hyper-Local</h4>
+      <ul>
+        <li>66 stores as of March 2026 (added 6 in FY26)</li>
+        <li>Urban revenue rose 28.8% → 40.9% — successful metro push</li>
+        <li>Digi Gold and Digi Silver advance collection schemes active</li>
+        <li>95% gold inventory hedged; 34% silver hedged</li>
+        <li>Old gold exchange integral to TN market; not separately quantified</li>
+        <li>₹18/share final dividend (180%) — strong shareholder returns</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-lg">
+    <h3>Key Risks — FY27</h3>
+    <div class="hl-c" style="background:rgba(192,57,43,.04);border-color:rgba(192,57,43,.2)">
+      <h4 style="color:var(--red)">Headwinds</h4>
+      <ul style="padding-left:16px">
+        <li style="font-size:12px;line-height:1.75">Gold import duty 6% → 15% (May 2026) — demand risk near-term</li>
+        <li style="font-size:12px;line-height:1.75">Borrowings rose to ₹774 Cr from ₹679 Cr — leverage up</li>
+        <li style="font-size:12px;line-height:1.75">Inventory ₹2,954 Cr — significant working capital tied up</li>
+        <li style="font-size:12px;line-height:1.75">95% TN concentration — limited geographic diversification</li>
+        <li style="font-size:12px;line-height:1.75">FY26 margin includes one-off bullion price gains; FY27 will normalise</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div><!-- end co-thangamayil -->
+
+
+<!-- ── PNGADGIL ── -->
+<div id="co-pngadgil" class="co-sub-section" style="display:none">
+<h2>P N Gadgil Jewellers Ltd — Q4 FY26</h2>
+<p class="sub">BSE: 544256 | 78 Stores across 36 Cities | 193-Year Legacy (est. 1832) | First Time Crossed ₹10,000 Cr Revenue | FY27 Guidance ₹13,500 Cr</p>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card" style="border-top:3px solid var(--png)"><div class="val" style="color:var(--png)">₹3,544Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 123% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--png)"><div class="val" style="color:var(--png)">₹90.3Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 45.6% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--png)"><div class="val" style="color:var(--png)">9.7%</div><div class="lbl">Q4 Gross Margin</div><div class="chg dn">▼ 230 bps YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--png)"><div class="val" style="color:var(--png)">₹10,739Cr</div><div class="lbl">FY26 Revenue</div><div class="chg up">▲ 40% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--png)">
+  <h3 style="color:var(--png)">Q4 &amp; FY26 P&amp;L (₹ Crore)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q4 FY26</th><th>Q4 FY25</th><th>YoY%</th></tr>
+    <tr><td>Revenue</td><td>3,544</td><td>1,588</td><td class="up">+123.2%</td></tr>
+    <tr><td>SSSG</td><td class="up">+86% YoY</td><td>—</td><td>—</td></tr>
+    <tr><td>Gold bars &amp; coins (₹Cr / % of rev)</td><td>₹1,400 / 40%</td><td>₹450 / 28%</td><td class="dn">Margin dilutive</td></tr>
+    <tr><td>Gold jewellery value growth</td><td class="up">+120% YoY</td><td>—</td><td>Volume +27%</td></tr>
+    <tr><td>Silver category</td><td class="up">+246% value, +37% vol</td><td>—</td><td>—</td></tr>
+    <tr><td>Gross Margin</td><td>9.7%</td><td>12.0%</td><td class="dn">-230bps (bars/coins dilution)</td></tr>
+    <tr><td>Net Profit</td><td>90.3</td><td>62.0</td><td class="up">+45.6%</td></tr>
+    <tr><td>Average Transaction Value (ATV)</td><td class="up">&gt;₹1 lakh</td><td>—</td><td>—</td></tr>
+    <tr><td>FY26 Full Year</td><td colspan="3">Revenue ₹10,739 Cr (+40%) | PAT ₹410 Cr (+88%) | ROCE 30.5% | ROE 21%</td></tr>
+  </table>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--png);background:rgba(91,58,0,.03)">
+  <h3>🔄 Old Gold Exchange — Suvarna Swarajya (~40% → Target 50%)</h3>
+  <div class="hl" style="border-color:rgba(91,58,0,.25);background:rgba(91,58,0,.04)">
+    <h4 style="color:var(--png)">Key Points</h4>
+    <ul>
+      <li><strong>~40% of FY26 revenue</strong> from old gold exchange; target 50% via "Suvarna Swarajya"</li>
+      <li>Gold import duty hike (6%→15%) expected to accelerate shift to old gold exchange</li>
+      <li>Hedging ratio to increase 60%→75–80% to reduce margin volatility from bullion</li>
+      <li>Refinery business fully discontinued Sep 2024; all bar/coin sales are B2C only</li>
+      <li>Foundation Day sales ₹365 Cr | Gudi Padwa ₹171 Cr (+38% YoY) — event-led exchange drives</li>
+      <li>FY27 guidance: EBITDA 7–7.5%, PAT margin 4%, Revenue ₹13,500 Cr</li>
+      <li>78 stores as of FY26; 36 cities; avg revenue/store ₹137.7 Cr; avg PAT/store ₹5.3 Cr</li>
+    </ul>
+  </div>
+</div>
+</div>
+</div><!-- end co-pngadgil -->
+
+
+<!-- ── SGIL ── -->
+<div id="co-sgil" class="co-sub-section" style="display:none">
+<h2>Shanthi Gold International Ltd (SGIL) — Q4 FY26</h2>
+<p class="sub">NSE: SGIL | B2B Gold Jewellery Manufacturer | Bridal Focus | Capacity Tripling to 7,900 kg/yr | Chennai + Jaipur + Mumbai Plants</p>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card" style="border-top:3px solid var(--sgil)"><div class="val" style="color:var(--sgil)">₹658.9Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 121.6% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--sgil)"><div class="val" style="color:var(--sgil)">₹51.9Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 465.4% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--sgil)"><div class="val" style="color:var(--sgil)">10.2%</div><div class="lbl">Q4 EBITDA Margin</div><div class="chg up">▲ 310 bps YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--sgil)"><div class="val" style="color:var(--sgil)">463 kg</div><div class="lbl">Q4 Production</div><div class="chg up">▲ 25.1% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--sgil)">
+  <h3 style="color:var(--sgil)">Q4 FY26 P&amp;L (₹ Crore)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q4 FY26</th><th>Q3 FY26</th><th>Q4 FY25</th><th>YoY%</th><th>QoQ%</th></tr>
+    <tr><td>Production (kg)</td><td>463</td><td>535</td><td>370</td><td class="up">+25.1%</td><td class="dn">-13.5%</td></tr>
+    <tr><td>Revenue (₹Cr)</td><td>658.9</td><td>636.9</td><td>297.3</td><td class="up">+121.6%</td><td class="up">+3.5%</td></tr>
+    <tr><td>Gross Profit (₹Cr)</td><td>74.1</td><td>48.8</td><td>25.5</td><td class="up">+191%</td><td class="up">+51.9%</td></tr>
+    <tr><td>Gross Margin %</td><td>11.2%</td><td>7.7%</td><td>8.6%</td><td class="up">+260bps</td><td class="up">+350bps</td></tr>
+    <tr><td>EBITDA (₹Cr)</td><td>67.0</td><td>43.8</td><td>21.1</td><td class="up">+217.3%</td><td class="up">+53%</td></tr>
+    <tr><td>EBITDA Margin</td><td>10.2%</td><td>6.9%</td><td>7.1%</td><td class="up">+310bps</td><td class="up">+330bps</td></tr>
+    <tr><td>PBT (₹Cr)</td><td>64.3</td><td>40.4</td><td>15.3</td><td class="up">+320%</td><td class="up">+59%</td></tr>
+    <tr><td>Net Profit (₹Cr)</td><td>51.9</td><td>30.6</td><td>9.2</td><td class="up">+465.4%</td><td class="up">+69.7%</td></tr>
+    <tr><td>EPS (₹)</td><td>3.8</td><td>2.3</td><td>0.7</td><td class="up">+443%</td><td class="up">+65%</td></tr>
+  </table>
+</div>
+<div class="g2">
+  <div class="card-lg" style="border-left:4px solid var(--sgil)">
+    <h3 style="color:var(--sgil)">Capacity Expansion — On Track</h3>
+    <div class="hl" style="border-color:rgba(139,26,26,.2);background:rgba(139,26,26,.04)">
+      <h4 style="color:var(--sgil)">Tripling to 7,900 kg/yr</h4>
+      <ul>
+        <li>Current: 2,700 kg/yr (Chennai plant)</li>
+        <li>Jaipur: 1,200 kg/yr — North India bridal market</li>
+        <li>Mumbai: 4,000 kg/yr — scale + premium segment</li>
+        <li>Target post-FY27: ~7,900 kg/yr (3x current)</li>
+        <li>Mumbai &amp; Jaipur: production starts Sep/Oct 2026</li>
+        <li>QoQ production dip -13.5% seasonal, not structural</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-lg">
+    <h3>Old Gold Exchange</h3>
+    <div class="hl">
+      <h4>Not Applicable — Pure B2B Manufacturer</h4>
+      <ul>
+        <li>SGIL is a gold jewellery manufacturer supplying to retailers</li>
+        <li>No direct customer interface — no exchange programme</li>
+        <li>Benefits indirectly: higher exchange at retail → more manufacturing orders</li>
+        <li>Revenue = production volume × gold price + making charges</li>
+        <li>Gold price tailwind: direct revenue and margin kicker for SGIL</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div><!-- end co-sgil -->
+
+
+<!-- ── SKYGOLD ── -->
+<div id="co-skygold" class="co-sub-section" style="display:none">
+<h2>Sky Gold and Diamonds Ltd — Q4 FY26</h2>
+<p class="sub">NSE: SKYGOLD | BSE: 541967 | B2B Gold Jewellery Manufacturer | Lightweight Specialist | Key Clients: Kalyan, Malabar, Senco, Reliance, Titan</p>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card" style="border-top:3px solid var(--sky)"><div class="val" style="color:var(--sky)">₹1,911Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 80.6% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--sky)"><div class="val" style="color:var(--sky)">₹90.7Cr</div><div class="lbl">Q4 Net Profit</div><div class="chg up">▲ 137.4% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--sky)"><div class="val" style="color:var(--sky)">7.4%</div><div class="lbl">Q4 EBITDA Margin</div><div class="chg up">▲ 140 bps YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--sky)"><div class="val" style="color:var(--sky)">₹6,295Cr</div><div class="lbl">FY26 Revenue</div><div class="chg up">▲ 77% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--sky)">
+  <h3 style="color:var(--sky)">Q4 &amp; FY26 P&amp;L (₹ Crore)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q4 FY26</th><th>Q3 FY26</th><th>Q4 FY25</th><th>YoY%</th><th>QoQ%</th></tr>
+    <tr><td>Revenue</td><td>1,911.5</td><td>1,767.7</td><td>1,058.2</td><td class="up">+80.6%</td><td class="up">+8.1%</td></tr>
+    <tr><td>EBITDA</td><td>140.7</td><td>122.1</td><td>63.0</td><td class="up">+123.3%</td><td class="up">+15.2%</td></tr>
+    <tr><td>EBITDA Margin</td><td>7.4%</td><td>6.9%</td><td>6.0%</td><td class="up">+140bps</td><td class="up">+50bps</td></tr>
+    <tr><td>PBT</td><td>126.2</td><td>106.1</td><td>50.2</td><td class="up">+151%</td><td class="up">+19%</td></tr>
+    <tr><td>PAT</td><td>90.7</td><td>74.0</td><td>38.2</td><td class="up">+137.4%</td><td class="up">+22.6%</td></tr>
+    <tr><td>PAT Margin</td><td>4.8%</td><td>4.2%</td><td>3.6%</td><td class="up">+120bps</td><td class="up">+60bps</td></tr>
+    <tr><td>FY26 Full Year</td><td colspan="5">Revenue ₹6,295 Cr (+77%) | EBITDA ₹434 Cr (6.9%) | PAT ₹282 Cr (+112%)</td></tr>
+  </table>
+</div>
+<div class="g2">
+  <div class="card-lg">
+    <h3 style="color:var(--sky)">Business Model — Pure B2B Design Moat</h3>
+    <div class="hl">
+      <h4>Key Facts</h4>
+      <ul>
+        <li>Designs, manufactures and markets gold jewellery to organised retail chains only</li>
+        <li>Key clients: Kalyan, Malabar, Senco, Reliance Retail, Titan — India's top retailers</li>
+        <li>Lightweight jewellery specialist — rising demand as consumers seek value at high gold prices</li>
+        <li>Mkt Cap ~₹7,350 Cr | P/E ~26x (FY26) — reasonable for growth</li>
+        <li>FY26 operational PAT ₹278 Cr (excl. non-recurring items)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-lg">
+    <h3>Old Gold Exchange — Indirect Role</h3>
+    <div class="hl">
+      <h4>B2B Manufacturer — No Direct Exchange</h4>
+      <ul>
+        <li>Sky Gold does NOT handle old gold exchange — pure manufacturer</li>
+        <li>Benefits indirectly: retail exchange → old gold recycled → new manufacturing orders</li>
+        <li>Higher exchange volumes at retail partners = higher order volumes for Sky Gold</li>
+        <li>Design moat and lightweight focus are primary competitive differentiators</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div><!-- end co-skygold -->
+
+
+<!-- ── SHRINGAR ── -->
+<div id="co-shringar" class="co-sub-section" style="display:none">
+<h2>Shringar House of Mangalsutra Ltd — Q4 FY26</h2>
+<p class="sub">NSE: SHRINGARMS | B2B Mangalsutra Manufacturer | Listed Sep 2025 (IPO ₹400 Cr) | 4,000 kg/yr Capacity | Clients: Titan, Malabar, GRT, Reliance, PNG</p>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card" style="border-top:3px solid var(--purple)"><div class="val" style="color:var(--purple)">₹725.6Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 106.5% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--purple)"><div class="val" style="color:var(--purple)">₹34Cr</div><div class="lbl">FY26 PAT</div><div class="chg up">▲ 123.5% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--purple)"><div class="val" style="color:var(--purple)">4,000 kg/yr</div><div class="lbl">New Capacity (Kandivali)</div><div class="chg up">▲ from 2,500 kg</div></div>
+  <div class="kpi card" style="border-top:3px solid var(--purple)"><div class="val" style="color:var(--purple)">₹351.4Cr</div><div class="lbl">Q4 FY25 Revenue (Base)</div><div class="chg neu">Base quarter</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid var(--purple)">
+  <h3 style="color:var(--purple)">Business Profile — Niche B2B Mangalsutra Specialist</h3>
+  <div class="g2">
+    <div class="hl" style="border-color:rgba(107,63,160,.25);background:rgba(107,63,160,.04)">
+      <h4 style="color:var(--purple)">What Shringar Does</h4>
+      <ul>
+        <li>Designs, manufactures &amp; markets Mangalsutras in 18K and 22K gold</li>
+        <li>B2B only — sells exclusively to large jewellery brands &amp; retailers</li>
+        <li>Marquee clients: Malabar Gold, Titan, GRT, Reliance Retail, PNG, Joyalukkas, Lalithaa</li>
+        <li>International B2B: UK (Goldbox), NZ (Sona Sansaar), UAE (Damas)</li>
+        <li>Stones: American diamond, cubic zirconia, pearl, mother of pearl, semi-precious</li>
+      </ul>
+    </div>
+    <div class="hl" style="border-color:rgba(107,63,160,.25);background:rgba(107,63,160,.04)">
+      <h4 style="color:var(--purple)">Q4 FY26 &amp; Expansion</h4>
+      <ul>
+        <li>Q4 revenue ₹725.6 Cr (+106.5% YoY) — gold price + volume growth</li>
+        <li>PAT doubled in Q4; FY26 PAT ₹34 Cr (+123.5% YoY)</li>
+        <li>New Kandivali, Mumbai facility: 2,500 → 4,000 kg/yr</li>
+        <li>New Pune branch — Marathwada &amp; Vidarbha market entry</li>
+        <li>Launched "24K Shudh Mangalsutra" — first HUID hallmarked 24K pure gold mangalsutra</li>
+        <li>Listed Sep 2025 (IPO ₹400 Cr); proceeds monitored by CRISIL</li>
+      </ul>
+    </div>
+  </div>
+  <div style="background:#f5f0ea;border-radius:8px;padding:10px;font-size:12px;color:var(--sub)">
+    <strong style="color:var(--purple)">Old Gold Exchange:</strong> Pure B2B manufacturer — old gold exchange is handled by retail clients. Shringar benefits indirectly when old gold is recycled into new mangalsutra orders.
+  </div>
+</div>
+</div>
+</div><!-- end co-shringar -->
+
+
+<!-- ── GOLDIAM ── -->
+<div id="co-goldiam" class="co-sub-section" style="display:none">
+<h2>Goldiam International Ltd — FY26 Analysis</h2>
+<p class="sub">NSE: GOLDIAM | Lab-Grown Diamond Jewellery Exporter | ORIGEM India Retail | 1:3 Bonus Shares Approved May 27, 2026 | Mkt Cap ~₹4,600 Cr</p>
+<div style="background:rgba(13,100,60,.07);border:1.5px solid rgba(13,100,60,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px">
+  <strong style="color:#0d6440">📅 May 27, 2026:</strong> Board met to approve Q4 FY26 results AND 1:3 bonus share issuance. Q4 FY26 revenue ₹243.3 Cr (+21% YoY). FY26 PAT ₹170.59 Cr — highest ever.
+</div>
+<div class="g4" style="margin-bottom:14px">
+  <div class="kpi card" style="border-top:3px solid #0d6440"><div class="val" style="color:#0d6440">₹243.3Cr</div><div class="lbl">Q4 FY26 Revenue</div><div class="chg up">▲ 21% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid #0d6440"><div class="val" style="color:#0d6440">₹37.2Cr</div><div class="lbl">Q4 FY26 PAT</div><div class="chg up">▲ 61% YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid #0d6440"><div class="val" style="color:#0d6440">23.9%</div><div class="lbl">Q4 EBITDA Margin</div><div class="chg up">+271 bps YoY</div></div>
+  <div class="kpi card" style="border-top:3px solid #0d6440"><div class="val" style="color:#0d6440">₹170.59Cr</div><div class="lbl">FY26 Full Year PAT</div><div class="chg up">▲ 45.7% YoY</div></div>
+</div>
+<div class="card-lg" style="border-left:4px solid #0d6440">
+  <h3 style="color:#0d6440">Quarterly Results (₹ Crore, Consolidated)</h3>
+  <table>
+    <tr><th>Metric</th><th>Q1 FY26</th><th>Q2 FY26</th><th>Q3 FY26</th><th>Q4 FY26</th><th>Q4 FY25</th><th>YoY%</th></tr>
+    <tr><td>Revenue (₹Cr)</td><td>230</td><td>193</td><td>355</td><td>243.3</td><td>201</td><td class="up">+21%</td></tr>
+    <tr><td>EBITDA Margin %</td><td>17.8%</td><td>19.7%</td><td>26.7%</td><td>23.9%</td><td>21.2%</td><td class="up">+270bps</td></tr>
+    <tr><td>Net Profit (₹Cr)</td><td>34</td><td>31</td><td>68.4</td><td>37.2</td><td>23.1</td><td class="up">+61%</td></tr>
+    <tr><td>FY26 Full Year Revenue</td><td colspan="6">₹1,021 Cr (+27.5% YoY) | FY25: ₹801 Cr</td></tr>
+    <tr><td>FY26 Full Year PAT</td><td colspan="6">₹170.59 Cr (+45.7% YoY) | FY25: ₹117.1 Cr | EBITDA Margin 24.35%</td></tr>
+  </table>
+</div>
+<div class="g2">
+  <div class="card-lg" style="border-left:4px solid #0d6440">
+    <h3 style="color:#0d6440">Business Profile</h3>
+    <div class="hl" style="border-color:rgba(13,100,60,.2);background:rgba(13,100,60,.04)">
+      <h4 style="color:#0d6440">LGD Export Engine</h4>
+      <ul>
+        <li>90% revenue from Lab-Grown Diamond (LGD) jewellery — India's highest mix</li>
+        <li>Primary exporter to US retailers, department stores, wholesalers</li>
+        <li>SEEPZ duty exemption — 15% gold customs duty hike does NOT impact</li>
+        <li>US subsidiary casts raw gold in USA (since Sep 2025) — US tariff mitigation</li>
+        <li>USD revenue = natural INR hedge</li>
+      </ul>
+    </div>
+    <div class="hl" style="border-color:rgba(13,100,60,.2);background:rgba(13,100,60,.04)">
+      <h4 style="color:#0d6440">ORIGEM — India Retail (24 stores)</h4>
+      <ul>
+        <li>India's first dedicated LGD retail brand</li>
+        <li>24 stores operational (May 2026) across 12 cities</li>
+        <li>LOIs for 8 more by Sep 2026; target 76 stores</li>
+        <li>India's first Digital 3D Ring Builder launched</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-lg" style="border-left:4px solid #0d6440">
+    <h3 style="color:#0d6440">1:3 Bonus Shares — May 27, 2026</h3>
+    <table>
+      <tr><th>Item</th><th>Detail</th></tr>
+      <tr><td>Bonus Ratio</td><td><strong>1:3 Confirmed</strong> — 1 free share per 3 held</td></tr>
+      <tr><td>Cash Outflow</td><td>Zero — capitalises reserves</td></tr>
+      <tr><td>Market Cap (pre-bonus)</td><td>~₹4,600 Cr</td></tr>
+      <tr><td>FY26 Cash &amp; Equivalents</td><td>₹493 Cr — nearly debt-free</td></tr>
+      <tr><td>EBITDA Margin FY26</td><td>24.35% — sector highest</td></tr>
+      <tr><td>ROCE</td><td>~26% | ROE ~18%</td></tr>
+    </table>
+    <div style="background:rgba(13,100,60,.06);border-radius:8px;padding:10px;margin-top:10px;font-size:12px">
+      <strong>Old Gold Exchange:</strong> Not applicable — Goldiam is an LGD exporter. No gold exchange programme. Unaffected by gold import duty changes due to SEEPZ exemption.
+    </div>
+  </div>
+</div>
+</div>
+</div><!-- end co-goldiam -->
+
+</div><!-- end companies section -->
+
 <div id="titan" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Titan Company Ltd — Q4 FY26</h2>
 <p class="sub">NSE: TITAN | Tata Group | Mixed Retail + Manufacturing | Jewellery 90%+ of Revenue | Mkt Cap ~₹2,50,000 Cr</p>
@@ -321,7 +809,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="kalyan" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Kalyan Jewellers India Ltd — Q4 FY26</h2>
 <p class="sub">NSE: KALYANKJIL | 600+ Stores (India + ME + UK) | FOCO Model | Middle East 11% Revenue | Mkt Cap ₹38,062 Cr</p>
@@ -374,7 +861,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="senco" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Senco Gold &amp; Diamonds — Q4 FY26</h2>
 <p class="sub">NSE: SENCO | 201 Stores (India + Dubai) | Eastern India Market Leader | 88+ Year Legacy | CARE A+ Credit Rating</p>
@@ -415,7 +901,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="thangamayil" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Thangamayil Jewellery Ltd — Q4 FY26</h2>
 <p class="sub">NSE: THANGAMAYL | BSE: 533158 | 66 Stores | Tamil Nadu Retailer | Dividend ₹18/share (180%) | Digi Gold &amp; Silver Schemes</p>
@@ -471,7 +956,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="pngadgil" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>P N Gadgil Jewellers Ltd — Q4 FY26</h2>
 <p class="sub">BSE: 544256 | 78 Stores across 36 Cities | 193-Year Legacy (est. 1832) | First Time Crossed ₹10,000 Cr Revenue | FY27 Guidance ₹13,500 Cr</p>
@@ -514,7 +998,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="sgil" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Shanthi Gold International Ltd (SGIL) — Q4 FY26</h2>
 <p class="sub">NSE: SGIL | B2B Gold Jewellery Manufacturer | Bridal Focus | Capacity Tripling to 7,900 kg/yr | Chennai + Jaipur + Mumbai Plants</p>
@@ -571,7 +1054,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="skygold" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA0AJUDASIAAhEBAxEB/8QAHAAAAgEFAQAAAAAAAAAAAAAAAAUGAQMEBwgC/8QAOBAAAQMDAgMHAwAKAgMAAAAAAQIDBAAFEQYSITFRBxMUIkFh0TKBkggVFiNCUnFykaElYqLh8P/EABsBAQEAAgMBAAAAAAAAAAAAAAABAgMEBQYH/8QAKREAAgICAQIFAwUAAAAAAAAAAAECEQMEEgVhBhMxUXEUIUIyQYGhsf/aAAwDAQACEQMRAD8A6/Zj7iHZAClcwjmlPyfei43GBbme+uE6NDaP8b7qW0/5JFRTtf1sjRWmfFMpQ7cZSi1DbXyzjis+yRj+pIHrXKN8vFzvlwXPu056ZJXzW6rOPYDkB7DhXXbfUI674JWz1fQfC2XqsPOnLhD4tv47dztK136x3RZbtl5t05Y5pjyUOH/xJplXCDLrrDqXmXFtuIOUrQogpPUEcq6I7AO0mZfXlaav8jv5yEFcSSr6nkj6kq6qA459QDniOOvV6nHNLhNU2crrXg7JoYXsYJ84r1VU0vfv3NzZozWLdXn49rlvxWu+kNsrW03/ADqCSQPua0R2azo0i2aP1TJ7V7w5qG9LX422OylSWJLhQouR0xgcR+7I4LAG3b5s5rtTxR0DmqE1y92EX6/J1PoR656hvjzd8jTUPiTfVz0S3UZKAWFqzH2hJO4ZB4A4zXnVt71KjtP1AmBc9VsSE6thW+3y/wBbFNpjJW00pTLzBWQdwK8eTBKh5s1LLR1Hn3qua0hbe1jV83WEllqxW42RF0m21KXVBh1CmEKIcU8t3CsqTkoDQ2pUDuOKUR+23VbGn3xPhWo351yCmPGRBdbQwmQso70q75TchrIwlaHUbjgEJzmlko6FzRn3rRc3tX1m3p5prwlnjagEmahTSobj6X2Y6QouBtD4DP1JCu8e8vHAVXmD2u6unpk3aNbLKm1W/SUbUEuMW3VSHVuodJabWFBIGUDiUnAzwOchZaN75qtc+aq1hruVB0w3+0elfHzL1a3Wk2h99tSW30uEtyWd6iprIGCFALwRtTjNbP7IdT3bVGn7g5fGYSLjbbtKtry4aVJZdLK8BaUqKinII4En+tWyE1oNUFBoChAIweIrAmQwgF2OMY4qQOX2+KYUVGrAnQsKSCDwNFExAYlLSOCVeYffn/uisDI0X+lAtb2vbLDfcLcUQkncTwSVOrCj/hKayu2xx3SL2l7JplJiQA0XFMM+VMlW5I/efz59c551K/0i9GydQ2Bi8WxlT0627t7SBlTjJ4nHUpIzjoTWiHdbaift8OFLlMzEwSDEckR0OOMf2qIz6DnnkK6Lcl5OTIpflVM+pdBx/X6etLE01i5KUX7v0f7/AD/Lr7m89GzUo7NWbhcyYSv1+UuDG/uwZOO64fw5O3pioHe4sy0fpG20ptke2+IuEdTbcZWUKaWoIUvgBzG7IwPX+phrPaDq1q3fq9NyaMXxHiS2uEwoF3fv3nKDx3ca2N2HWe+6w1odealeektRAUsOupADruCAEgYASnJPAYzj3pHMthwxwTtV/XqZZdCfSY7G3nceMlNUm/yril9l3v1/06CIpNC0rpiDen73C05aI10kAh+azCbQ+7nnuWBuOfXJ40znLUiE+tJIUltRBHocVr6NKv6NPRQ0bkF3RmO2ylUhDr5WUlbzqCVeUbBwBVz9B6+gbPlRKbFozR9hnKn2PSlhtctSSlT8O3NMuFJ5gqSkHFZMnTun5LUxqRY7Y83NeS/LS5EQoSHE42rWCPMobU4JyRtHSoa/eb1cEMojTHIUwiE24hXJD/fOocCh0JRg+1XzOk3eBLluP3CG61eGIxabkrb7oK7hLiPKRkZKsH3yOdLFEnRpbTSL85f06etKbu6kocnCG2JCkkYILmNxBHDnyqxD0ToyFAm2+HpKwx4c/HjI7VuaS3Ixy7xIThX3zVnWT/gYMFsXJEVrvNqg/MVH74BB4d/glKvXj9WMZ50ghXov3sf8iVOGFHciR5lzLDrqyhRH7lA2uFRAz6dKWCSOaI0Y5bodtc0lYVwoKy5EjqtzRbYWeJUhO3CSTzIrOt1hsduWV2+zW6Gox0RSWIqGz3KM7G+AHkTk4TyGTikmmnoNxShhvUcua+7F3TGUvHc25lOSSnHcqByNnDPHhwNLbdJQzarKq7XyXDhSoq3npLs1Sd7w27Ud4o+UY3K2gjOPY0sEitujNIW1oNW7StjhtiSmWEsW9pAD6fpdwE/WMnCuYprbrfAtyHkW+DGiJfeU+6GGkoDjqjlS1YHFR9SeJrXse63h2S1IdlTQpJhpS+XdjKULdcG9xvkd6Qn+HgVDinmNjhT/AIkpLbfcbAQved5Vk5G3GMYxxz9qJgvCg1BLGLv+xxvSn30yW2UykLXPceS+E5KkqQoYQFDhwzjIPpVL1cTBt9rE/UfhbncMutJVJS00hSiklR3c0IT5Qk/Vnlk5CxRO6KhWnbtLkatdjyZBU6p6ShUdEvd3TaFDu1La2+QEYwoHJ3DOc8JrVTIJtR5CmCnnhWf9UUXNaXpahzSgbfv6/wD3tRWtq2ZJ0Z0WUl392vyOjmnr7j2qIas7LNHaklLlyYC4kpZyt6Gvuys9SMFJPvjNSd5lK/qTnHEe1eUqlN8EvlQ6LTu/3zpkxxyKpq0b9bbz6s+eCbi+zog9l7E9D26Sl95mdcSk5CJb4KfuEJTn71seOyzHYQxHabZabSEoQhISlIHoAOQrC8RL6s/gfmjxMvqz+B+amPFjxfojRnt7+zuNPPkcq92MCapS/wATL6s/gfmjxEvqz+B+a2WcMYUZpf4mX1Z/A/NHiJfVn8D80sDDgeBopf4iX1Z/A/NHiZfVn8D80sDA1TNYHiJfVn8D80eIl9WfwPzSwMAa9ilniJfVn8D81USpfVn8D80sDMUGlvi5nVn8D80eKmH1Z/A/NLAyrBnzUtAtNKBdPA/9f/dKDcpclAJXsSock8K9MoqWWi4hPCir6U4FFYlGCgDVtSRRRWaMTwUiqbR0ooqgNo6UbR0oooA2jpRtHSiigDaOlG0dKKKANo6UbR0oooA2jpRtHSiigDaOlVCRRRQCWGkdyj+0VnNAYoorWZF8DhRRRVB//9k=" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Sky Gold and Diamonds Ltd — Q4 FY26</h2>
 <p class="sub">NSE: SKYGOLD | BSE: 541967 | B2B Gold Jewellery Manufacturer | Lightweight Specialist | Key Clients: Kalyan, Malabar, Senco, Reliance, Titan</p>
@@ -624,7 +1106,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="shringar" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Shringar House of Mangalsutra Ltd — Q4 FY26</h2>
 <p class="sub">NSE: SHRINGARMS | B2B Mangalsutra Manufacturer | Listed Sep 2025 (IPO ₹400 Cr) | 4,000 kg/yr Capacity | Clients: Titan, Malabar, GRT, Reliance, PNG</p>
@@ -666,7 +1147,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="goldiam" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Goldiam International Ltd — FY26 Analysis</h2>
 <p class="sub">NSE: GOLDIAM | Lab-Grown Diamond Jewellery Exporter | ORIGEM India Retail | 1:3 Bonus Shares Approved May 27, 2026 | Mkt Cap ~₹4,600 Cr</p>
@@ -732,7 +1212,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="financials" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Financials — All Companies</h2>
 <p class="sub">Q4 FY26 and Annual FY26 — verified BSE/NSE data. Charts use broken-axis scaling so small companies are visible alongside large ones.</p>
@@ -904,7 +1383,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 </div>
 <div id="compare" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Head-to-Head Comparison — Q4 FY26</h2>
 <p class="sub">Key metrics side-by-side across all 9 companies — verified data</p>
@@ -933,7 +1411,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="valuation" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Valuation — Q4 FY26</h2>
 <p class="sub">P/E, EV/EBITDA and key metrics across all companies — approximate TTM multiples</p>
@@ -1002,7 +1479,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="moat" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Economic Moat Analysis</h2>
 <p class="sub">Competitive advantage scores — qualitative assessment based on brand, scale, margins and switching costs</p>
@@ -1066,7 +1542,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="risks" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Risk Analysis — Q4 FY26</h2>
 <p class="sub">Sector-wide and company-specific risks — assessed as of May 2026</p>
@@ -1092,7 +1567,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="analysts" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Analysts Rating — Q4 FY26</h2>
 <p class="sub">Consensus ratings from publicly available brokerage research — Motilal Oswal, JM Financial, Kotak, Nomura, YES Securities. For information only.</p>
@@ -1147,7 +1621,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 
 <div id="verdict" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <h2>Verdict — Q4 FY26</h2>
 <p class="sub">Factual assessment of business quality, valuations and growth trajectory. For information and analysis only — not investment advice.</p>
@@ -1258,39 +1731,44 @@ tr:hover td{background:rgba(0,0,0,.02)}
 </div>
 </div>
 <div id="cbassist" class="sec">
-<div class="sec-wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 
 <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
   <div class="cb-logo">🤖</div>
   <div>
     <div style="font-size:19px;font-weight:800;color:var(--teal)">CB Assist — Company Q&amp;A</div>
-    <div style="font-size:12px;color:var(--sub);margin-top:2px">Select a company · Choose language · Ask smart questions</div>
+    <div style="font-size:12px;color:var(--sub);margin-top:2px">Smart answers · 2–3 lines max · Offline · Q4 FY26</div>
   </div>
 </div>
 
-<!-- Company selector -->
-<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px" id="coSelRow">
-  <button class="co-sel-btn active" onclick="setCo('all',this)">🌐 All</button>
-  <button class="co-sel-btn" onclick="setCo('titan',this)" style="--cc:var(--gold)">💛 Titan</button>
-  <button class="co-sel-btn" onclick="setCo('kalyan',this)" style="--cc:var(--blue)">🔵 Kalyan</button>
-  <button class="co-sel-btn" onclick="setCo('senco',this)" style="--cc:var(--senco)">🟠 Senco</button>
-  <button class="co-sel-btn" onclick="setCo('thangamayil',this)" style="--cc:var(--tmayil)">🟡 Thangamayil</button>
-  <button class="co-sel-btn" onclick="setCo('pngadgil',this)" style="--cc:var(--png)">🟤 PN Gadgil</button>
-  <button class="co-sel-btn" onclick="setCo('sgil',this)" style="--cc:var(--sgil)">🔴 SGIL</button>
-  <button class="co-sel-btn" onclick="setCo('skygold',this)" style="--cc:var(--sky)">⚫ Sky Gold</button>
-  <button class="co-sel-btn" onclick="setCo('shringar',this)" style="--cc:var(--purple)">🟣 Shringar</button>
-  <button class="co-sel-btn" onclick="setCo('goldiam',this)" style="--cc:#0d6440">💎 Goldiam</button>
-  <button class="co-sel-btn" onclick="setCo('sector',this)" style="--cc:var(--teal)">📊 Sector</button>
+<!-- Step 1: Language -->
+<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:8px;letter-spacing:.4px">STEP 1 — CHOOSE LANGUAGE</div>
+  <div style="display:flex;gap:8px">
+    <button id="langEn" class="toggle-btn active" onclick="setLang('en',this)" style="font-size:14px;padding:7px 20px">🇬🇧 English</button>
+    <button id="langTa" class="toggle-btn" onclick="setLang('ta',this)" style="font-size:14px;padding:7px 20px">🇮🇳 Tamil</button>
+  </div>
 </div>
 
-<!-- Language toggle -->
-<div style="display:flex;gap:6px;margin-bottom:10px">
-  <button id="langEn" class="toggle-btn active" onclick="setLang('en',this)">🇬🇧 English</button>
-  <button id="langTa" class="toggle-btn" onclick="setLang('ta',this)">🇮🇳 Tamil</button>
+<!-- Step 2: Company selector -->
+<div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:10px">
+  <div style="font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:8px;letter-spacing:.4px">STEP 2 — SELECT COMPANY (optional)</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px" id="coSelRow">
+    <button class="co-sel-btn active" onclick="setCo('all',this)">🌐 All</button>
+    <button class="co-sel-btn" onclick="setCo('titan',this)" style="--cc:var(--gold)">💛 Titan</button>
+    <button class="co-sel-btn" onclick="setCo('kalyan',this)" style="--cc:var(--blue)">🔵 Kalyan</button>
+    <button class="co-sel-btn" onclick="setCo('senco',this)" style="--cc:var(--senco)">🟠 Senco</button>
+    <button class="co-sel-btn" onclick="setCo('thangamayil',this)" style="--cc:var(--tmayil)">🟡 Thangamayil</button>
+    <button class="co-sel-btn" onclick="setCo('pngadgil',this)" style="--cc:var(--png)">🟤 PN Gadgil</button>
+    <button class="co-sel-btn" onclick="setCo('sgil',this)" style="--cc:var(--sgil)">🔴 SGIL</button>
+    <button class="co-sel-btn" onclick="setCo('skygold',this)" style="--cc:var(--sky)">⚫ Sky Gold</button>
+    <button class="co-sel-btn" onclick="setCo('shringar',this)" style="--cc:var(--purple)">🟣 Shringar</button>
+    <button class="co-sel-btn" onclick="setCo('goldiam',this)" style="--cc:#0d6440">💎 Goldiam</button>
+    <button class="co-sel-btn" onclick="setCo('sector',this)" style="--cc:var(--teal)">📊 Sector</button>
+  </div>
 </div>
 
-<div style="font-size:11px;color:var(--sub);margin-bottom:8px;padding:8px 12px;background:var(--card2);border-radius:8px" id="cbHint">Select a company above for focused questions.</div>
-
+<div style="font-size:11px;color:var(--sub);margin-bottom:8px;padding:8px 12px;background:var(--card2);border-radius:8px;border-left:3px solid var(--teal)" id="cbHint">Select a company above for focused questions.</div>
+<div style="font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:6px;letter-spacing:.4px">STEP 3 — ASK A QUESTION</div>
 <div id="qsGrid" style="display:flex;flex-wrap:wrap;margin-bottom:10px"></div>
 
 <div style="display:flex;gap:8px;margin-bottom:8px">
@@ -1305,7 +1783,6 @@ tr:hover td{background:rgba(0,0,0,.02)}
   </div>
 </div>
 <div style="font-size:10px;color:var(--sub);text-align:center;margin-top:4px">Offline · No API · Q4 FY26 data · 9 companies · English &amp; Tamil</div>
-<div class="wm"><img src="data:image/png;base64,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" alt="CB Research"><span>CB Research · Q4 FY26</span></div>
 <script>
 // ─── TAB NAVIGATION ───────────────────────────────────────────────────────
 function showTab(id, btn){
@@ -1317,6 +1794,26 @@ function showTab(id, btn){
   if(id==='overview') renderOV(OV);
   if(id==='cbassist') buildQS();
   setTimeout(function(){initCharts(id);},80);
+}
+
+function showCoSub(id, btn){
+  document.querySelectorAll('.co-sub-section').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.co-sub-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  var el = document.getElementById(id);
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+// ─── COMPANIES DROPDOWN ───────────────────────────────────────────────────
+function showCoTab(id){
+  document.querySelectorAll('.sec').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  // highlight Companies tab button
+  document.querySelectorAll('.tab-btn').forEach(function(b){
+    if(b.textContent.trim()==='Companies') b.classList.add('active');
+  });
+  var sec=document.getElementById(id);
+  if(sec) sec.style.display='block';
+  window.scrollTo(0,0);
 }
 
 function toggleFin(v,btn){
@@ -1954,5 +2451,14 @@ document.addEventListener('DOMContentLoaded',function(){
   renderOV(OV);
 });
 </script>
+
+<!-- ── FLOATING CB RESEARCH WATERMARK ── -->
+<div style="position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;align-items:center;gap:6px;background:white;border:2px solid #d4a843;border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(160,114,42,.35)">
+  <div style="background:linear-gradient(135deg,#a0722a,#d4a843);border-radius:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;letter-spacing:-.5px">CB</div>
+  <div style="text-align:center;line-height:1.4">
+    <div style="font-size:11px;font-weight:900;color:#a0722a;letter-spacing:.4px">CB Research</div>
+    <div style="font-size:10px;font-weight:600;color:#888;letter-spacing:.3px">Q4 FY26</div>
+  </div>
+</div>
 </body>
 </html>
