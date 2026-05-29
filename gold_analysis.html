@@ -1787,12 +1787,21 @@ tr:hover td{background:rgba(0,0,0,.02)}
 // ─── TAB NAVIGATION ───────────────────────────────────────────────────────
 function showTab(id, btn){
   document.querySelectorAll('.sec').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.co-sub-section').forEach(s=>s.style.display='none');
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   var sec=document.getElementById(id);
   if(sec) sec.style.display='block';
   if(btn) btn.classList.add('active');
   if(id==='overview') renderOV(OV);
   if(id==='cbassist') buildQS();
+  if(id==='companies'){
+    // restore first co-sub-section visible
+    var first=document.querySelector('.co-sub-section');
+    if(first) first.style.display='block';
+    var firstBtn=document.querySelector('.co-sub-btn');
+    if(firstBtn){ document.querySelectorAll('.co-sub-btn').forEach(b=>b.classList.remove('active')); firstBtn.classList.add('active'); }
+  }
+  window.scrollTo(0,0);
   setTimeout(function(){initCharts(id);},80);
 }
 
@@ -2453,12 +2462,14 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 
 <!-- ── FLOATING CB RESEARCH WATERMARK ── -->
-<div style="position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;align-items:center;gap:6px;background:white;border:2px solid #d4a843;border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(160,114,42,.35)">
-  <div style="background:linear-gradient(135deg,#a0722a,#d4a843);border-radius:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;letter-spacing:-.5px">CB</div>
-  <div style="text-align:center;line-height:1.4">
-    <div style="font-size:11px;font-weight:900;color:#a0722a;letter-spacing:.4px">CB Research</div>
-    <div style="font-size:10px;font-weight:600;color:#888;letter-spacing:.3px">Q4 FY26</div>
-  </div>
-</div>
+<script>
+(function(){
+  var el = document.createElement('div');
+  el.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;align-items:center;gap:6px;background:white;border:2px solid #d4a843;border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(160,114,42,.35)';
+  el.innerHTML = '<div style="background:linear-gradient(135deg,#a0722a,#d4a843);border-radius:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff">CB</div>'
+    + '<div style="text-align:center;line-height:1.5"><div style="font-size:11px;font-weight:900;color:#a0722a;letter-spacing:.4px">CB Research</div><div style="font-size:10px;font-weight:600;color:#888">Q4 FY26</div></div>';
+  document.body.appendChild(el);
+})();
+</script>
 </body>
 </html>
