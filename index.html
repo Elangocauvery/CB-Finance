@@ -162,6 +162,31 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 #wm{position:fixed;bottom:9px;right:13px;z-index:8000;font-size:10px;color:rgba(99,102,241,.35);font-family:monospace;pointer-events:none}
 .p-footer{background:#f0f4f8;border-top:1px solid #e2e8f0;padding:14px 22px;text-align:center;font-size:11px;color:#64748b;line-height:1.8}
 @media(max-width:640px){.p-body{padding:16px 14px}.p-header{padding:8px 14px}.grid-reports{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.login-card{padding:22px 16px 18px}.brand-name{font-size:22px}}
+
+/* ── ADDED: Search bar ── */
+.p-search-wrap{padding:0 22px 14px;max-width:1200px;margin:0 auto;width:100%}
+.p-search-box{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #e2e8f0;border-radius:11px;padding:8px 14px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.p-search-box svg{color:#94a3b8;flex-shrink:0;width:15px;height:15px}
+#reportSearch{flex:1;border:none;outline:none;font-family:inherit;font-size:13px;color:#0f172a;background:transparent}
+#reportSearch::placeholder{color:#94a3b8}
+.p-search-count{font-size:11px;color:#94a3b8;font-family:monospace;white-space:nowrap}
+#srCount{color:#6366f1;font-weight:700}
+
+/* ── ADDED: Sidebar layout ── */
+.p-body-wrap{display:flex;flex:1;max-width:1200px;margin:0 auto;width:100%;gap:0}
+.p-sidebar{width:220px;flex-shrink:0;background:#f8fafc;border-right:1px solid #e2e8f0;padding:18px 10px 24px;overflow-y:auto}
+.p-sidebar-head{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;padding:0 8px 8px;display:flex;align-items:center;gap:6px}
+.p-sidebar-head::after{content:'';flex:1;height:1px;background:#e2e8f0}
+.pcat-btn{display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;border-radius:7px;padding:7px 10px;cursor:pointer;font-family:inherit;font-size:12px;color:#475569;text-align:left;transition:all .14s;margin-bottom:1px}
+.pcat-btn:hover{background:#eef2ff;color:#4338ca}
+.pcat-btn.active{background:#eef2ff;color:#4338ca;font-weight:600}
+.pcat-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.pcat-count{margin-left:auto;font-size:10px;font-family:monospace;color:#94a3b8}
+.p-content{flex:1;min-width:0;padding:0 22px}
+.p-glossary-btn{background:linear-gradient(135deg,#0f766e,#14b8a6);border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;display:flex;align-items:center;gap:5px;text-decoration:none}
+.p-glossary-btn:hover{opacity:.9}
+@media(max-width:640px){.p-sidebar{display:none}.p-content{padding:0 14px}.p-search-wrap{padding:0 14px 12px}}
+
 </style>
 </head>
 <body>
@@ -283,10 +308,24 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
     </div>
     <div class="p-row2">
       <span class="p-chip" id="memberChip">✅ Member</span>
-      <button class="p-admin" id="adminBtn" onclick="openAdmin()">🔧 Admin Panel</button>
+      <a class="p-glossary-btn" href="glossary.html" target="_blank">📖 Glossary</a>
+<button class="p-admin" id="adminBtn" onclick="openAdmin()">🔧 Admin Panel</button>
     </div>
   </div>
-  <div class="p-body">
+  <div class="p-search-wrap" id="pSearchWrap" style="display:none">
+  <div class="p-search-box">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg>
+    <input id="reportSearch" type="text" placeholder="Search reports by sector, keyword…" autocomplete="off">
+    <span class="p-search-count"><span id="srCount">0</span> reports</span>
+  </div>
+</div>
+<div class="p-body-wrap" id="pBodyWrap" style="display:none">
+  <div class="p-sidebar" id="pSidebar">
+    <div class="p-sidebar-head">Sectors</div>
+    <div id="sidebarCats"></div>
+  </div>
+  <div class="p-content">
+<div class="p-body">
     <div class="welcome">
       <h2>Welcome, <span class="pw" id="welcomeName">Member</span> 👋</h2>
       <p>Your exclusive CB Research reports are below. Each opens in a new tab — press Back or close the tab to return here.</p>
@@ -306,7 +345,8 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
     <div class="sec-head">📊 All Reports — Newest First</div>
     <div class="grid-reports" id="reportsGrid"></div>
   </div>
-  <div class="p-footer"><strong style="color:#475569">© 2026 CB Research &amp; Analytics. All Rights Reserved.</strong><br>CB Research™ · CB Assist™ · Sector Analysis™ are trademarks of CB Research &amp; Analytics.<br>For authorised members only. Not investment advice.</div>
+  </div></div></div>
+<div class="p-footer"><strong style="color:#475569">© 2026 CB Research &amp; Analytics. All Rights Reserved.</strong><br>CB Research™ · CB Assist™ · Sector Analysis™ are trademarks of CB Research &amp; Analytics.<br>For authorised members only. Not investment advice.</div>
 </div>
 
 <script>
@@ -447,11 +487,22 @@ function buildCard(r){
 }
 
 function loadReports(){
+  // Show search + sidebar
+  document.getElementById('pSearchWrap').style.display='';
+  document.getElementById('pBodyWrap').style.display='';
+  // wire search
+  document.getElementById('reportSearch').addEventListener('input', function(){
+    filterReports(this.value.toLowerCase().trim());
+  });
+
   // Sort by date descending (newest first) then build cards
   const sorted = [...PORTAL_CONFIG.reports]
     .map(r => ({ ...r, ts: new Date(r.date).getTime() }))
     .sort((a,b) => b.ts - a.ts);
   document.getElementById('reportsGrid').innerHTML = sorted.map(buildCard).join('');
+  document.getElementById('srCount').textContent = sorted.length;
+  buildPortalSidebar(sorted);
+
   document.getElementById('stReports').textContent  = sorted.length;
   document.getElementById('stMembers').textContent  = MEMBERS.length;
   document.getElementById('stTime').textContent     = new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
@@ -689,6 +740,79 @@ function clearStored(){
 function showAdminMsg(msg,color){ const el=document.getElementById('adminMsg'); el.textContent=msg; el.style.color=color; el.style.display='flex'; clearTimeout(el._t); el._t=setTimeout(()=>el.style.display='none',3500); }
 
 document.addEventListener('keydown',e=>{ if(e.ctrlKey&&e.shiftKey&&e.key==='A'){ e.preventDefault(); openAdmin(); } });
+
+// ── Portal sidebar & search ────────────────────────────────────────
+const CAT_COLORS = {
+  'Banking':{'dot':'#3b82f6'},'Power':{'dot':'#f59e0b'},'Solar':{'dot':'#f97316'},
+  'Pharma':{'dot':'#10b981'},'FMCG':{'dot':'#8b5cf6'},'Auto':{'dot':'#ef4444'},
+  'Cement':{'dot':'#78716c'},'Steel':{'dot':'#64748b'},'Telecom':{'dot':'#06b6d4'},
+  'Insurance':{'dot':'#f43f5e'},'NBFC':{'dot':'#0ea5e9'},'Gold':{'dot':'#d97706'},
+  'EMS':{'dot':'#ec4899'},'Textile':{'dot':'#14b8a6'},'Hotels':{'dot':'#a855f7'},
+  'Alcobev':{'dot':'#dc2626'},'News':{'dot':'#b45309'},'Cables':{'dot':'#0891b2'},
+  'Paint':{'dot':'#7c3aed'},'REIT':{'dot':'#059669'},'Markets':{'dot':'#6366f1'},
+  'Multi':{'dot':'#64748b'},'Research':{'dot':'#6366f1'}
+};
+
+function getSectorTag(file){
+  const l=file.toLowerCase();
+  if(l.includes('bank')||l.includes('sbi')) return 'Banking';
+  if(l.includes('nbfc')) return 'NBFC';
+  if(l.includes('insurance')) return 'Insurance';
+  if(l.includes('reit')||l.includes('invit')) return 'REIT';
+  if(l.includes('power')||l.includes('energy')) return 'Power';
+  if(l.includes('solar')) return 'Solar';
+  if(l.includes('cable')) return 'Cables';
+  if(l.includes('steel')) return 'Steel';
+  if(l.includes('2w')||l.includes('pv_sector')||l.includes('spares')||l.includes('auto')) return 'Auto';
+  if(l.includes('ems')) return 'EMS';
+  if(l.includes('cement')) return 'Cement';
+  if(l.includes('recycl')) return 'Research';
+  if(l.includes('fmcg')) return 'FMCG';
+  if(l.includes('pharma')||l.includes('hospital')) return 'Pharma';
+  if(l.includes('alcobev')) return 'Alcobev';
+  if(l.includes('hotel')) return 'Hotels';
+  if(l.includes('textile')) return 'Textile';
+  if(l.includes('paint')) return 'Paint';
+  if(l.includes('bse')||l.includes('mcx')||l.includes('cdsl')) return 'Markets';
+  if(l.includes('telecom')) return 'Telecom';
+  if(l.includes('gold')) return 'Gold';
+  if(l.includes('news')) return 'News';
+  if(l.includes('multi')||l.includes('sector_analysis')) return 'Multi';
+  return 'Research';
+}
+
+let activeCatFilter = '';
+
+function buildPortalSidebar(reports){
+  const counts = {};
+  reports.forEach(r => { const s=getSectorTag(r.file); counts[s]=(counts[s]||0)+1; });
+  const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  let html = '<button class="pcat-btn active" data-cat="" onclick="setCatFilter(\'\',this)"><span class="pcat-dot" style="background:#6366f1"></span><span>All Reports</span><span class="pcat-count">'+reports.length+'</span></button>';
+  sorted.forEach(([cat,count])=>{
+    const dot=(CAT_COLORS[cat]||{dot:'#6366f1'}).dot;
+    html+=`<button class="pcat-btn" data-cat="${cat}" onclick="setCatFilter('${cat}',this)"><span class="pcat-dot" style="background:${dot}"></span><span>${cat}</span><span class="pcat-count">${count}</span></button>`;
+  });
+  document.getElementById('sidebarCats').innerHTML=html;
+}
+
+function setCatFilter(cat, btn){
+  activeCatFilter = cat;
+  document.querySelectorAll('.pcat-btn').forEach(b=>b.classList.toggle('active',b===btn));
+  filterReports(document.getElementById('reportSearch').value.toLowerCase().trim());
+}
+
+function filterReports(q){
+  const all = PORTAL_CONFIG.reports.map(r=>({...r,ts:new Date(r.date).getTime()})).sort((a,b)=>b.ts-a.ts);
+  const filtered = all.filter(r=>{
+    const sector = getSectorTag(r.file);
+    const catOk = !activeCatFilter || sector===activeCatFilter;
+    const qOk = !q || r.file.toLowerCase().includes(q) || sector.toLowerCase().includes(q) || (r.date||'').includes(q);
+    return catOk && qOk;
+  });
+  document.getElementById('reportsGrid').innerHTML = filtered.map(buildCard).join('');
+  document.getElementById('srCount').textContent = filtered.length;
+}
+
 </script>
 </body>
 </html>
