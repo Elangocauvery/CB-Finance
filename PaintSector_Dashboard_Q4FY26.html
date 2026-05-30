@@ -195,50 +195,50 @@ td.tb{font-weight:700;}
     <span class="chip chip-opus">Birla Opus</span>
     <span class="chip chip-jswd">JSW Dulux</span>
     <span class="chip chip-indigo">Indigo</span>
-    <span class="chip chip-date">26 May 2026 · CB Research</span>
+    <span class="chip chip-date">30 May 2026 · CB Research</span>
   </div>
 </div>
 <nav class="tab-nav">
-  <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
-  <button class="tab-btn" onclick="showTab('business',this)">Profiles</button>
-  <button class="tab-btn" onclick="showTab('financials',this)">Financials</button>
-  <button class="tab-btn" onclick="showTab('charts',this)">Charts</button>
+  <button class="tab-btn active" onclick="showTab('dashboard',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('business',this)">Companies</button>
+  <button class="tab-btn" onclick="showTab('charts',this)">Company Charts</button>
+  <button class="tab-btn" onclick="showTab('financials',this)">Compare All Companies</button>
   <button class="tab-btn" onclick="showTab('valuation',this)">Valuations</button>
-  <button class="tab-btn" onclick="showTab('rawmat',this)" style="color:#ea580c;font-weight:800;">🧪 Raw Materials</button>
-  <button class="tab-btn" onclick="showTab('competitive',this)" style="color:#7c3aed;font-weight:800;">⚔️ Competitive War</button>
-  <button class="tab-btn" onclick="showTab('marketing',this)">Marketing Shift</button>
-  <button class="tab-btn" onclick="showTab('swot',this)">SWOT</button>
-  <button class="tab-btn" onclick="showTab('analyst',this)">Analyst Ratings</button>
-  <button class="tab-btn" onclick="showTab('trojan',this)" style="color:#c2410c;font-weight:800;">🐴 Trojan Horse?</button>
-  <button class="tab-btn" onclick="showTab('verdict',this)" style="color:#b8911e;font-weight:800;">🏆 Verdict</button>
-  <button class="tab-btn" onclick="showTab('cbassist',this)" style="color:var(--ap);font-weight:800;">🤖 CB Assist</button>
+  <button class="tab-btn" onclick="showTab('rawmat',this)" style="color:#ea580c;font-weight:800;">Raw Materials</button>
+  <button class="tab-btn" onclick="showTab('competitive',this)" style="color:#7c3aed;font-weight:800;">Competitive War</button>
+  <button class="tab-btn" onclick="showTab('marketing',this)">Marketing War &amp; Shifts</button>
+  <button class="tab-btn" onclick="showTab('swot',this)">SWOT &amp; Moat</button>
+  <button class="tab-btn" onclick="showTab('verdict',this)">Risks</button>
+  <button class="tab-btn" onclick="showTab('analyst',this)">Analysts Rating</button>
+  <button class="tab-btn" onclick="showTab('trojan',this)" style="color:#c2410c;font-weight:800;">Trojan Horse</button>
+  <button class="tab-btn" onclick="showTab('cbassist',this)" style="color:var(--ap);font-weight:800;">CB Assists</button>
 </nav>
 <div class="main">
 
-<!-- TAB 1 DASHBOARD -->
+<!-- TAB 1 OVERVIEW -->
 <div class="panel active" id="tab-dashboard">
-  <div class="sec-hdr">Dashboard Overview <span class="sec-note">· Q4 FY26 Actuals · Asian Paints result due TODAY (May 29) · CB Research</span></div>
-  <div class="rm-box">
-    ⚠️ <strong>CRITICAL NOTE — Asian Paints Q4 FY26:</strong> Results board meeting scheduled <strong>today, May 29, 2026</strong> — not yet released at time of publishing. Dashboard uses 9M FY26 actuals (Apr-Dec 2025) + Q3 FY26 data. All other companies: Q4 FY26 actual results ✅. Asian Paints FY26 estimated from available 9M data.
+  <div class="sec-hdr">Overview <span class="sec-note">· Q4 FY26 Actuals · All Companies · CB Research</span></div>
+  <div class="rm-box" style="background:#e8f5ee;border-color:#166534;">
+    ✅ <strong>Asian Paints Q4 FY26 RESULTS RELEASED — 29 May 2026:</strong> Revenue ₹9,247 Cr (+10.6% YoY) · PAT ₹1,172 Cr (+69.3% YoY) · EBITDA ₹1,787 Cr · EBITDA Margin 19.3% (+210bps YoY) · Decorative India volume growth +12.4% · FY26 full year revenue ₹35,516 Cr · FY26 PAT ₹4,325 Cr (+17.9%). Strong beat vs estimates. Dividend ₹23/share final; total FY26 dividend ₹27.50/share.
   </div>
   <div class="kpi-row">
-    <div class="kpi ap-a"><div class="kl">Asian Paints Q3 Rev (Latest) ⏳</div><div class="kv">₹8,850 Cr</div><div class="kc pos">▲ 3.9% YoY (Q3)</div></div>
+    <div class="kpi ap-a"><div class="kl">Asian Paints Q4 Rev ✅</div><div class="kv">₹9,247 Cr</div><div class="kc pos">▲ 10.6% YoY</div></div>
     <div class="kpi berger-a"><div class="kl">Berger Q4 Revenue ✅</div><div class="kv">₹2,868 Cr</div><div class="kc pos">▲ 6.1% YoY</div></div>
     <div class="kpi opus-a"><div class="kl">Birla Opus Q4 Rev ✅</div><div class="kv">~₹3,000 Cr</div><div class="kc pos">▲ 52% YoY</div></div>
-    <div class="kpi jswd-a"><div class="kl">JSW Dulux Q4 Rev ✅</div><div class="kv">₹883 Cr</div><div class="kc neg">▼ 12.9% YoY*</div></div>
+    <div class="kpi jswd-a"><div class="kl">JSW Dulux Q4 Rev ✅</div><div class="kv">₹883 Cr</div><div class="kc pos">▲ 6.2% YoY (retained)</div></div>
     <div class="kpi indigo-a"><div class="kl">Indigo Paints Q4 Rev ✅</div><div class="kv">₹425 Cr</div><div class="kc pos">▲ 9.7% YoY</div></div>
   </div>
   <div class="g3" style="margin-bottom:22px;">
     <div class="co-card ap">
       <div class="co-name" style="color:var(--ap)">Asian Paints Limited</div>
-      <div class="co-seg">NSE: ASIANPAINT · #1 India · 50%+ Mkt Share · Q4 FY26 ⏳ TODAY May 29</div>
-      <div class="m-row"><span class="m-lbl">Q3 FY26 PAT ✅</span><span class="m-val">₹1,180 Cr (Q3 actual)</span></div>
-      <div class="m-row"><span class="m-lbl">Q3 Revenue</span><span class="m-val">₹8,850 Cr (+3.9%)</span></div>
-      <div class="m-row"><span class="m-lbl">Q3 Volume Growth</span><span class="m-val">7.9% (Decorative India)</span></div>
-      <div class="m-row"><span class="m-lbl">Gross Margin Q3</span><span class="m-val">44.3% (consol)</span></div>
-      <div class="m-row"><span class="m-lbl">9M FY26 Revenue</span><span class="m-val">₹26,288 Cr (+3.2%)</span></div>
-      <div class="m-row"><span class="m-lbl">CMP (May 26)</span><span class="m-val">~₹2,250</span></div>
-      <div class="badge-row"><span class="badge b-warn">Q4 Result TODAY</span><span class="badge b-neg">Mkt Share Erosion</span><span class="badge b-pos">Gross Margin Recovery</span></div>
+      <div class="co-seg">NSE: ASIANPAINT · #1 India · ~50% Mkt Share · Q4 FY26 ✅ May 29, 2026</div>
+      <div class="m-row"><span class="m-lbl">Q4 FY26 PAT ✅</span><span class="m-val">₹1,172 Cr (+69.3% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val">₹9,247 Cr (+10.6%)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 Volume Growth (Deco)</span><span class="m-val">+12.4% YoY</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin</span><span class="m-val">19.3% (+210bps YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹35,516 Cr (+5.1%)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val">₹4,325 Cr (+17.9%)</span></div>
+      <div class="badge-row"><span class="badge b-pos">Q4 PAT +69.3%</span><span class="badge b-pos">Vol +12.4%</span><span class="badge b-pos">Margin Expansion</span></div>
     </div>
     <div class="co-card berger">
       <div class="co-name" style="color:var(--berger)">Berger Paints India</div>
@@ -268,23 +268,23 @@ td.tb{font-weight:700;}
       <div class="co-name" style="color:var(--jswd)">JSW Dulux (formerly Akzo Nobel India)</div>
       <div class="co-seg">NSE: JSWDULUX · JSW Paints (61.2% stake Dec 2025) · Dulux Brand · Q4 FY26 ✅ May 13, 2026</div>
       <div class="m-row"><span class="m-lbl">Q4 PAT (consol) ✅</span><span class="m-val">₹125.7 Cr (+51.6% excl. carved-out)</span></div>
-      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val">₹883 Cr (−12.9% YoY†)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val">₹883 Cr (+6.2% retained†)</span></div>
       <div class="m-row"><span class="m-lbl">Q4 Volume Growth</span><span class="m-val">+23% YoY (retained biz)</span></div>
       <div class="m-row"><span class="m-lbl">Q4 EBITDA</span><span class="m-val">₹126.9 Cr (+2.1%)</span></div>
-      <div class="m-row"><span class="m-lbl">Dividend</span><span class="m-val">₹50/share recommended</span></div>
+      <div class="m-row"><span class="m-lbl">Dividend</span><span class="m-val">₹206/share total (₹50 final + ₹156 special)</span></div>
       <div class="m-row"><span class="m-lbl">Renamed</span><span class="m-val">JSW Dulux Ltd (Apr 1, 2026)</span></div>
-      <div class="badge-row"><span class="badge b-pos">Vol +23%</span><span class="badge b-warn">Rev −12.9%†</span><span class="badge b-spec">Post-Restructuring</span></div>
+      <div class="badge-row"><span class="badge b-pos">Vol +23%</span><span class="badge b-pos">Rev +6.2% (retained)†</span><span class="badge b-spec">Post-Restructuring</span></div>
     </div>
     <div class="co-card indigo">
       <div class="co-name" style="color:var(--indigo)">Indigo Paints Limited</div>
       <div class="co-seg">NSE: INDIGOPNTS · Pune-Based · Differentiated Premium · Q4 FY26 ✅ May 22, 2026</div>
       <div class="m-row"><span class="m-lbl">Q4 PAT ✅</span><span class="m-val">₹57.7 Cr (+1.4% YoY)</span></div>
       <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val">₹425 Cr (+9.7% YoY)</span></div>
-      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin</span><span class="m-val">22.5% (best in sector)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA Margin</span><span class="m-val">23.0% standalone (best in sector)</span></div>
       <div class="m-row"><span class="m-lbl">Q4 Gross Margin</span><span class="m-val">48.6% despite RM spike</span></div>
       <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹1,405 Cr (+4.8%)</span></div>
       <div class="m-row"><span class="m-lbl">Dividend</span><span class="m-val">₹5/share</span></div>
-      <div class="badge-row"><span class="badge b-pos">Margin 22.5%</span><span class="badge b-pos">Gross Margin 48.6%</span><span class="badge b-warn">PAT Growth Muted</span></div>
+      <div class="badge-row"><span class="badge b-pos">Margin 23.0% sttd</span><span class="badge b-pos">Gross Margin 48.6%</span><span class="badge b-warn">PAT Growth Muted</span></div>
     </div>
   </div>
   <div class="card gap-top">
@@ -292,159 +292,327 @@ td.tb{font-weight:700;}
     <table>
       <thead><tr><th>Company</th><th>Q4 Revenue</th><th>YoY%</th><th>Q4 EBITDA Mgn</th><th>Q4 PAT</th><th>PAT%</th><th>Vol Growth</th><th>FY26 Rev</th><th>Mkt Share</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td class="tb"><span class="dot" style="background:var(--ap)"></span>Asian Paints</td><td class="num">⏳ Today</td><td class="warn">Pending</td><td class="num">~18-20% (guided)</td><td class="num">⏳</td><td class="warn">Pending</td><td class="num">~8-10% est.</td><td class="num">~₹35,000 Cr est.</td><td class="tneg">~50% (↓ from 59%)</td><td><span class="badge b-warn">Result Today</span></td></tr>
-        <tr><td class="tb"><span class="dot" style="background:var(--berger)"></span>Berger Paints</td><td class="num">₹2,868 Cr</td><td class="tpos">+6.1%</td><td class="tpos">16.8%</td><td class="tpos">₹335 Cr</td><td class="tpos">+27.5%</td><td class="tpos">+11.8%</td><td class="num">₹11,880 Cr</td><td class="num">~19.5%</td><td><span class="badge b-pos">Solid Recovery</span></td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--ap)"></span>Asian Paints</td><td class="num">₹9,247 Cr</td><td class="tpos">+10.6%</td><td class="tpos">19.3%</td><td class="tpos">₹1,172 Cr</td><td class="tpos">+69.3%</td><td class="tpos">+12.4% (Deco)</td><td class="tpos">₹35,516 Cr</td><td class="num">~50%</td><td><span class="badge b-pos">Strong Beat</span></td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--berger)"></span>Berger Paints</td><td class="num">₹2,868 Cr</td><td class="tpos">+6.1%</td><td class="tpos">18.3%</td><td class="tpos">₹335 Cr</td><td class="tpos">+27.5%</td><td class="tpos">+11.8%</td><td class="num">₹11,880 Cr</td><td class="num">~19.5%</td><td><span class="badge b-pos">Solid Recovery</span></td></tr>
         <tr><td class="tb"><span class="dot" style="background:var(--opus)"></span>Birla Opus</td><td class="tpos">~₹3,000 Cr</td><td class="tpos">+52%</td><td class="num">4.6% (EBIT)</td><td class="tneg">−₹120 Cr</td><td class="tneg">Loss phase</td><td class="tpos">+17% QoQ</td><td class="tpos">~₹10,000 Cr</td><td class="tpos">&gt;10% (crossed)</td><td><span class="badge b-pos">Disrupting</span></td></tr>
-        <tr><td class="tb"><span class="dot" style="background:var(--jswd)"></span>JSW Dulux</td><td class="num">₹883 Cr</td><td class="tneg">−12.9%†</td><td class="num">14.4%</td><td class="tpos">₹125.7 Cr</td><td class="tpos">+16%</td><td class="tpos">+23%</td><td class="num">₹3,599 Cr</td><td class="num">~6%</td><td><span class="badge b-spec">Restructuring</span></td></tr>
-        <tr><td class="tb"><span class="dot" style="background:var(--indigo)"></span>Indigo Paints</td><td class="num">₹425 Cr</td><td class="tpos">+9.7%</td><td class="tpos">22.5%</td><td class="num">₹57.7 Cr</td><td class="num">+1.4%</td><td class="num">~10%</td><td class="num">₹1,405 Cr</td><td class="num">~3.5%</td><td><span class="badge b-pos">Best Margins</span></td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--jswd)"></span>JSW Dulux</td><td class="num">₹883 Cr</td><td class="num">+6.2%†(retained)</td><td class="num">14.4%</td><td class="tpos">₹125.7 Cr</td><td class="tpos">+16%</td><td class="tpos">+23%</td><td class="num">₹3,599 Cr</td><td class="num">~6%</td><td><span class="badge b-spec">Restructuring</span></td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--indigo)"></span>Indigo Paints</td><td class="num">₹425 Cr</td><td class="tpos">+9.7%</td><td class="tpos">23.0%</td><td class="num">₹57.7 Cr</td><td class="num">+1.4%</td><td class="num">~10%</td><td class="num">₹1,405 Cr</td><td class="num">~3.5%</td><td><span class="badge b-pos">Best Margins</span></td></tr>
       </tbody>
     </table>
     <p style="font-size:10px;color:var(--muted);margin-top:8px;">†JSW Dulux revenue decline due to divestiture of Powder Coatings and IRC business (sold in Q2 FY26 for ₹1,874 Cr). Underlying retained-business volumes grew 23%. *Birla Opus revenue from Grasim standalone filing — paints segment only. Asian Paints Q4 FY26 result scheduled today May 29, 2026 — not released at publishing. Sources: BSE/NSE filings.</p>
   </div>
 </div>
 
-<!-- TAB 2 BUSINESS PROFILES -->
+<!-- TAB 2 COMPANIES -->
 <div class="panel" id="tab-business">
-  <div class="sec-hdr">Business Profiles <span class="sec-note">· Products · Scale · Strategy · Market Position</span></div>
+  <div class="sec-hdr">Companies <span class="sec-note">· Select a Company · Q4 FY26 Results · Business Segments · Annual Comparisons</span></div>
 
-  <div class="grp-hdr" style="background:var(--ap-soft);border-color:var(--ap);color:var(--ap);margin-bottom:14px;">Asian Paints Limited — NSE: ASIANPAINT · Founded 1942 · MD &amp; CEO: Amit Syngle · #1 India since 1967</div>
-  <div class="g2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-lbl">Business Overview</div>
-      <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Asian Paints</strong> is India's largest paint company and one of the top 8 decorative paint companies globally. From a garage startup in 1942 to a ₹35,000+ Cr revenue empire — the Asian Paints story is one of India's greatest business compounding stories. It operates in 15 countries with 26 manufacturing facilities.</p>
-      <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Segments:</strong> Decorative Paints India (~75% of revenue), Industrial Coatings (via JVs — APPG with PPG USA, PPGAP), Home Improvement (Bathfittings, Kitchen, Waterproofing under Beautiful Homes brand), International (15 countries).<br><br><strong>FY26 Challenge:</strong> Market share fell from ~59% to ~50% as Birla Opus aggressively took 6-10% share in under 18 months. Asian Paints had to raise advertising spend 15-20%, increase dealer incentives, and cut some mid-tier prices — all compressing margins. CEO Amit Syngle called it a "double whammy" — demand slowdown + competitive intensity.<br><br><strong>Defense:</strong> 1,50,000+ dealer network, colour consultants, Beautiful Homes Service (home décor + painting service), premium brand equity, and loyalty program. Expanding waterproofing and construction chemicals as new moats.</p>
+  <!-- Company Selector -->
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);">
+    <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-right:4px;">Company</span>
+    <button class="co-sel-btn active" id="cobtn-ap" onclick="showCompany('ap',this)" style="background:var(--ap);color:#fff;border:none;border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.03em;">Asian Paints</button>
+    <button class="co-sel-btn" id="cobtn-berger" onclick="showCompany('berger',this)" style="background:var(--surface);color:var(--muted);border:1.5px solid var(--border);border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.03em;">Berger</button>
+    <button class="co-sel-btn" id="cobtn-opus" onclick="showCompany('opus',this)" style="background:var(--surface);color:var(--muted);border:1.5px solid var(--border);border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.03em;">Birla Opus</button>
+    <button class="co-sel-btn" id="cobtn-jswd" onclick="showCompany('jswd',this)" style="background:var(--surface);color:var(--muted);border:1.5px solid var(--border);border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.03em;">JSW Dulux</button>
+    <button class="co-sel-btn" id="cobtn-indigo" onclick="showCompany('indigo',this)" style="background:var(--surface);color:var(--muted);border:1.5px solid var(--border);border-radius:20px;padding:6px 16px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.03em;">Indigo Paints</button>
+    <span style="margin-left:10px;width:1px;height:24px;background:var(--border);display:inline-block;"></span>
+    <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-left:6px;">View</span>
+    <button class="per-sel-btn active" id="perbtn-qtr" onclick="showPeriod('qtr',this)" style="background:#181511;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:11px;font-weight:700;cursor:pointer;">Quarter</button>
+    <button class="per-sel-btn" id="perbtn-annual" onclick="showPeriod('annual',this)" style="background:var(--surface);color:var(--muted);border:1.5px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:700;cursor:pointer;">Annual</button>
+  </div>
+
+  <!-- ══════════ ASIAN PAINTS ══════════ -->
+  <div class="co-section" id="co-ap">
+    <div class="grp-hdr" style="background:var(--ap-soft);border-color:var(--ap);color:var(--ap);margin-bottom:14px;">Asian Paints Limited — NSE: ASIANPAINT · Founded 1942 · MD &amp; CEO: Amit Syngle · #1 India since 1967</div>
+    <!-- Quarter View -->
+    <div class="period-view qtr-view">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">Business Overview &amp; Q4 FY26 Results</div>
+          <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Asian Paints</strong> is India's largest paint company — one of the top 8 decorative paint companies globally. Operates in 15 countries with 26 manufacturing facilities. From a garage startup in 1942 to a ₹35,000+ Cr revenue empire.</p>
+          <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Segments:</strong> Decorative Paints India (~75%), Industrial Coatings (JVs — APPG/PPG, PPGAP), Home Improvement (Beautiful Homes — bath, kitchen, waterproofing), International (15 countries).<br><br><strong>Q4 FY26 — Strong Beat ✅:</strong> Revenue ₹9,247 Cr (+10.6%), PAT ₹1,172 Cr (+69.3% YoY), EBITDA margin 19.3% (+210bps). Decorative India volume +12.4%. CEO: "All-round performance — double-digit volume and value growth and margin expansion." Dividend ₹23/share final; total FY26 ₹27.50/share.<br><br><strong>Market Share Challenge:</strong> Share fell from ~59% to ~50% as Birla Opus took 6–10% in 18 months. Q4 volume recovery (+12.4%) signals demand rebound. Defense: 1,50,000+ dealers, Beautiful Homes Service, waterproofing, premium brand equity.</p>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Q4 FY26 vs Q4 FY25 — Quarter Results</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">Q4 FY26 ✅</th><th style="text-align:right">Q4 FY25</th><th style="text-align:right">YoY</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue (Consol)</td><td class="tpos">₹9,247 Cr</td><td class="num">₹8,359 Cr</td><td class="tpos">+10.6%</td></tr>
+              <tr><td>EBITDA (PBDIT)</td><td class="tpos">₹1,787 Cr</td><td class="num">₹1,436 Cr</td><td class="tpos">+24.4%</td></tr>
+              <tr><td>EBITDA Margin</td><td class="tpos">19.3%</td><td class="num">17.2%</td><td class="tpos">+210bps</td></tr>
+              <tr><td>PAT (consol)</td><td class="tpos">₹1,172 Cr</td><td class="num">₹692 Cr</td><td class="tpos">+69.3%</td></tr>
+              <tr><td>Decorative Volume</td><td class="tpos">+12.4%</td><td class="num">+5.1%</td><td class="tpos">Strong rebound</td></tr>
+              <tr><td>Gross Margin</td><td class="num">~44%+</td><td class="num">42.3%</td><td class="tpos">Recovering</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;color:var(--muted);margin-top:8px;">CMP ~₹2,695 (post-results). Mkt Cap ~₹2,57,000 Cr. Sources: BSE/NSE filings, May 29, 2026.</p>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-lbl">Financial Snapshot — 9M FY26 / Q3 FY26</div>
-      <table>
-        <thead><tr><th>Metric</th><th style="text-align:right">Q3 FY26 / 9M</th><th style="text-align:right">Prior</th><th style="text-align:right">Change</th></tr></thead>
-        <tbody>
-          <tr><td>Q3 Consol Revenue</td><td class="num">₹8,850 Cr</td><td class="num">₹8,513 Cr</td><td class="tpos">+3.9%</td></tr>
-          <tr><td>Q3 PAT</td><td class="num">₹1,180 Cr</td><td class="num">₹994 Cr</td><td class="tpos">+18.7%</td></tr>
-          <tr><td>9M FY26 Revenue</td><td class="num">₹26,288 Cr</td><td class="num">₹25,474 Cr</td><td class="tpos">+3.2%</td></tr>
-          <tr><td>Q3 Gross Margin (consol)</td><td class="tpos">44.3%</td><td class="num">42.3%</td><td class="tpos">+200bps</td></tr>
-          <tr><td>Q3 PBDIT Margin</td><td class="num">17.7%</td><td class="num">15.5%</td><td class="tpos">+220bps</td></tr>
-          <tr><td>Q3 Decorative Volume</td><td class="num">7.9% growth</td><td class="num">—</td><td class="tpos">Recovering</td></tr>
-          <tr><td>Q4 FY26 PAT (est.)</td><td class="num">₹900-1,000 Cr</td><td class="num">—</td><td class="warn">Pending today</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:10px;color:var(--muted);margin-top:8px;">FY26 annual results due today May 29. Promoters: Choksey family (52.6%). Mkt Cap ~₹2,54,835 Cr (May 2026). CMP ~₹2,250. 52-wk range ₹1,950–₹3,350.</p>
+    <!-- Annual View -->
+    <div class="period-view annual-view" style="display:none;">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">FY26 Full Year vs FY25 — Annual Performance</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">FY25</th><th style="text-align:right">YoY</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue (Consol)</td><td class="tpos">₹35,516 Cr</td><td class="num">₹33,800 Cr</td><td class="tpos">+5.1%</td></tr>
+              <tr><td>PBDIT (EBITDA)</td><td class="tpos">₹6,696 Cr</td><td class="num">₹6,004 Cr</td><td class="tpos">+11.5%</td></tr>
+              <tr><td>PBDIT Margin</td><td class="tpos">18.9%</td><td class="num">17.8%</td><td class="tpos">+110bps</td></tr>
+              <tr><td>PAT (consol)</td><td class="tpos">₹4,325 Cr</td><td class="num">₹3,668 Cr</td><td class="tpos">+17.9%</td></tr>
+              <tr><td>9M Revenue</td><td class="num">₹26,288 Cr</td><td class="num">₹25,474 Cr</td><td class="tpos">+3.2%</td></tr>
+              <tr><td>Market Share</td><td class="tneg">~50%</td><td class="num">~52%</td><td class="tneg">Losing share</td></tr>
+              <tr><td>Dividend</td><td class="tpos">₹27.50/share</td><td class="num">₹21.35/share</td><td class="tpos">Higher</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;color:var(--muted);margin-top:8px;">Promoters: Choksey family ~52.6%. Debt-Free. International: 15 countries. Capex: ~₹1,200 Cr FY26 (plants + Beautiful Homes). Sources: BSE/NSE filings.</p>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Business Segments &amp; Special Notes</div>
+          <div class="seg-row"><div class="seg-lbl"><span>Decorative Paints India</span><span style="font-weight:700">~75%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:75%;background:var(--ap)"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>International Business</span><span style="font-weight:700">~13%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:13%;background:#e6332988"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Industrial &amp; JVs (APPG, PPGAP)</span><span style="font-weight:700">~8%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:8%;background:#e6332955"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Home Improvement (Bath, Kitchen)</span><span style="font-weight:700">~4%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:4%;background:#e6332933"></div></div></div>
+          <p style="font-size:11.5px;line-height:1.65;margin-top:12px;color:var(--muted)"><strong>Special Notes:</strong> Home Improvement (Bath + Kitchen) segments saw slight revenue decline in H1 FY26 — not yet material to overall performance. Beautiful Homes Service expanding to 20 states. Waterproofing and construction chemicals showing strong growth — positioned as future moat vs Birla. FY26 volume growth recovered from near-flat to double digits by Q4, aided by pent-up demand and marketing investments.</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="grp-hdr" style="background:var(--berger-soft);border-color:var(--berger);color:var(--berger);margin-bottom:14px;">Berger Paints India — NSE: BERGEPAINT · MD &amp; CEO: Abhijit Roy · #2 India · ~19.5% Share</div>
-  <div class="g2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-lbl">Business Overview</div>
-      <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Berger Paints</strong> is India's second-largest paint company, known for steady execution, strong South India and Eastern India presence, and a product mix balanced between decorative and industrial. The Leyland family (UK) and Dhingra family (India) jointly control ~75% stake.</p>
-      <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Q4 FY26 Highlights:</strong> PAT +27.5% YoY to ₹335 Cr, volume growth 11.8% — best quarterly volume performance in FY26. Launched "Kolor Plus" premium emulsion — getting positive market response. Waterproofing, construction chemicals, and wood coatings all showed strong growth.<br><br><strong>Price Hikes:</strong> Took staggered 11%+ price hike from end-March 2026 to offset crude/TiO2 cost surge from Middle East conflict. Further hikes likely in Q1 FY27. FY27 guidance: volume growth 12-13%, value growth 7-8%, EBITDA margin 15-17%.<br><br><strong>Capex:</strong> ₹1,800-2,000 Cr planned for new factories in West Bengal and Odisha over FY27-29. MD Abhijit Roy reappointed for another 4-year term from July 2027.</p>
+  <!-- ══════════ BERGER PAINTS ══════════ -->
+  <div class="co-section" id="co-berger" style="display:none;">
+    <div class="grp-hdr" style="background:var(--berger-soft);border-color:var(--berger);color:var(--berger);margin-bottom:14px;">Berger Paints India — NSE: BERGEPAINT · MD &amp; CEO: Abhijit Roy · #2 India · ~19.5% Share</div>
+    <div class="period-view qtr-view">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">Business Overview &amp; Q4 FY26 Results</div>
+          <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Berger Paints</strong> is India's second-largest paint company, known for steady execution, strong South India and Eastern India presence. Balanced mix of decorative and industrial. Leyland family (UK) + Dhingra family (India) jointly control ~75% stake.</p>
+          <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Q4 FY26 Highlights:</strong> PAT +27.5% YoY to ₹335 Cr, volume growth 11.8% — best quarterly volume performance in FY26. Launched "Kolor Plus" premium emulsion. Waterproofing, construction chemicals, wood coatings all grew strongly.<br><br><strong>Price Hikes:</strong> Staggered 11%+ from end-March 2026 to offset TiO2/crude spike. Further hikes likely in Q1 FY27. FY27 guidance: volume 12–13%, value 7–8%, EBITDA margin 15–17%.<br><br><strong>Capex:</strong> ₹1,800–2,000 Cr for new factories in West Bengal and Odisha over FY27–29. MD Abhijit Roy reappointed 4 years through June 2031.</p>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Q4 FY26 vs Q4 FY25 — Quarter Results</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">Q4 FY26</th><th style="text-align:right">Q4 FY25</th><th style="text-align:right">YoY</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue</td><td class="num">₹2,868 Cr</td><td class="num">₹2,704 Cr</td><td class="tpos">+6.1%</td></tr>
+              <tr><td>EBITDA</td><td class="tpos">₹482 Cr</td><td class="num">₹428 Cr</td><td class="tpos">+13%</td></tr>
+              <tr><td>EBITDA Margin</td><td class="tpos">18.3%</td><td class="num">15.8%</td><td class="tpos">+250bps</td></tr>
+              <tr><td>PAT (consol)</td><td class="tpos">₹335 Cr</td><td class="num">₹263 Cr</td><td class="tpos">+27.5%</td></tr>
+              <tr><td>Gross Margin</td><td class="tpos">42.3%</td><td class="num">~38%</td><td class="tpos">10-qtr high</td></tr><tr><td>Volume Growth</td><td class="tpos">+11.8%</td><td class="num">+4%</td><td class="tpos">Best in FY26</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;color:var(--muted);margin-top:8px;">CMP ~₹487. Mkt Cap ~₹56,913 Cr. Stock up 6-9% post Q4 results. Sources: BSE/NSE filings.</p>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-lbl">Financial Snapshot — FY26</div>
-      <table>
-        <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">FY25</th><th style="text-align:right">YoY</th></tr></thead>
-        <tbody>
-          <tr><td>Consol Revenue</td><td class="num">₹11,880 Cr</td><td class="num">₹11,545 Cr</td><td class="tpos">+2.9%</td></tr>
-          <tr><td>Consol PAT</td><td class="tneg">₹1,128 Cr</td><td class="num">₹1,183 Cr</td><td class="tneg">−4.6%</td></tr>
-          <tr><td>Standalone Revenue</td><td class="num">₹10,420 Cr</td><td class="num">₹10,166 Cr</td><td class="tpos">+2.5%</td></tr>
-          <tr><td>Standalone PAT</td><td class="num">₹1,096 Cr</td><td class="num">₹1,077 Cr</td><td class="tpos">+1.7%</td></tr>
-          <tr><td>Q4 Revenue</td><td class="num">₹2,868 Cr</td><td class="num">₹2,704 Cr</td><td class="tpos">+6.1%</td></tr>
-          <tr><td>Q4 EBITDA</td><td class="num">₹482 Cr</td><td class="num">₹428 Cr</td><td class="tpos">+13%</td></tr>
-          <tr><td>Q4 PAT</td><td class="tpos">₹335 Cr</td><td class="num">₹263 Cr</td><td class="tpos">+27.5%</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:10px;color:var(--muted);margin-top:8px;">CMP ~₹487. 1-yr return −9.9%. Mkt Cap ~₹56,913 Cr. Dividend ₹4/share FY26. FII reducing (5.75%→4.68%), DII increasing (5.22%→6.80%).</p>
-    </div>
-  </div>
-
-  <div class="grp-hdr" style="background:var(--opus-soft);border-color:var(--opus);color:var(--opus);margin-bottom:14px;">Birla Opus — via Grasim Industries (NSE: GRASIM) · CEO: Rakshit Hargave · Launched Feb 2024 · ₹10,000 Cr invested</div>
-  <div class="g2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-lbl">Business Overview — The Great Disruptor</div>
-      <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Birla Opus</strong> is Grasim Industries' paint venture — launched February 2024 with total capex ₹10,000 Cr across 6 mega-plants (total capacity ~1,332 MLPA). The most aggressive entry in India's paint history: free tinting machines, 20-day credit terms (vs AP's 5 days), higher dealer margins, 300,000 contractors pre-onboarded.</p>
-      <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Milestones:</strong> Crossed 10% revenue market share by March 2026 in just 25 months. 50,000+ dealers billed. 11,500 towns covered. 450,000 active contractors. PaintCraft professional painting service in 6,000+ pincodes. Birla White Putty synergy gives combined entity approaching #2 position.<br><br><strong>SKU Strategy:</strong> 'The One' (premium/luxury), 'Calista' (mid-market), 'Style' (mass). Priced 5-12% below Asian Paints in comparable categories.<br><br><strong>Path to Profitability:</strong> Q4 FY26 EBIT margin 4.6% (improving from −EBIT earlier). FY28 target: ₹10,000 Cr profitable revenue franchise. Losses reducing — expected breakeven ~FY27-28.</p>
-    </div>
-    <div class="card">
-      <div class="card-lbl">Birla Opus — Grasim Paints Segment Data</div>
-      <table>
-        <thead><tr><th>Metric</th><th style="text-align:right">Q4 FY26</th><th style="text-align:right">Q4 FY25</th><th style="text-align:right">Change</th></tr></thead>
-        <tbody>
-          <tr><td>Revenue Growth</td><td class="tpos">+52% YoY</td><td class="num">—</td><td class="tpos">Hypergrowth</td></tr>
-          <tr><td>Volume Growth</td><td class="tpos">+17% QoQ</td><td class="num">—</td><td class="tpos">Accelerating</td></tr>
-          <tr><td>EBITDA</td><td class="tpos">₹540 Cr</td><td class="num">₹216 Cr</td><td class="tpos">+150%</td></tr>
-          <tr><td>EBIT Margin</td><td class="num">4.6%</td><td class="num">~−5%</td><td class="tpos">Improving</td></tr>
-          <tr><td>Market Share</td><td class="tpos">&gt;10%</td><td class="num">~6%</td><td class="tpos">+370bps</td></tr>
-          <tr><td>Dealer Network</td><td class="tpos">50,000+</td><td class="num">~30,000</td><td class="tpos">Fast expanding</td></tr>
-          <tr><td>Adjusted Loss</td><td class="num">−₹120 Cr</td><td class="num">−₹210 Cr</td><td class="tpos">Reducing</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:10px;color:var(--muted);margin-top:8px;">Grasim Q4 FY26 (paints segment). FY26 full-year Birla Opus revenue doubled YoY — industry grew single digits. Total capex as of Mar 2025: ₹9,352 Cr (94% of planned outlay).</p>
-    </div>
-  </div>
-
-  <div class="grp-hdr" style="background:var(--jswd-soft);border-color:var(--jswd);color:var(--jswd);margin-bottom:14px;">JSW Dulux (formerly Akzo Nobel India) — NSE: JSWDULUX · JSW Group (61.2% stake) · CEO: Rajiv Rajgopal</div>
-  <div class="g2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-lbl">Business Overview — The Acquired Play</div>
-      <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>JSW Dulux</strong> (renamed from Akzo Nobel India effective April 1, 2026) is the result of JSW Paints acquiring 61.2% of Akzo Nobel India in December 2025 for ₹12,915 Cr (~₹9,000 Cr for 60.76% from Akzo Nobel N.V. + open offer). The Dulux brand remains — one of India's most recognized paint brands in the premium decorative and industrial segments.</p>
-      <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Restructuring:</strong> Sold Powder Coatings + International Research Centre business in Q2 FY26 for ₹1,874 Cr exceptional gain (inflated FY26 reported PAT to ₹1,973.8 Cr). Rebranded and HQ moved to JSW Center, Mumbai. Focus: retained decorative + protective coatings + industrial coatings.<br><br><strong>Combined entity strategy:</strong> JSW Paints (~3%) + JSW Dulux/Akzo (~6%) = ~9% combined market share, targeting top-3 position. Revenue target ₹7,000 Cr by FY26 (combined) and 10% market share.<br><br><strong>Q4 FY26 highlight:</strong> 23% volume growth in retained business — post-transition momentum clear. Revenue decline reflects carved-out businesses, not underlying demand.</p>
-    </div>
-    <div class="card">
-      <div class="card-lbl">Financial Snapshot — FY26</div>
-      <table>
-        <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">Q4 FY26</th><th style="text-align:right">Note</th></tr></thead>
-        <tbody>
-          <tr><td>Revenue (consol)</td><td class="num">₹3,599 Cr</td><td class="num">₹883 Cr</td><td class="tneg">−12.9% YoY†</td></tr>
-          <tr><td>PAT (reported)</td><td class="tpos">₹1,973.8 Cr</td><td class="tpos">₹125.7 Cr</td><td class="warn">Incl. exceptional</td></tr>
-          <tr><td>Q4 EBITDA</td><td class="num">—</td><td class="num">₹126.9 Cr</td><td class="tpos">+2.1%</td></tr>
-          <tr><td>Q4 Volume Growth</td><td class="tpos">—</td><td class="tpos">+23%</td><td class="tpos">Strong recovery</td></tr>
-          <tr><td>Exceptional Items FY26</td><td class="tpos">₹1,874 Cr</td><td class="num">₹64.8 Cr</td><td class="warn">RE asset sale</td></tr>
-          <tr><td>Dividend</td><td class="num">₹50/share</td><td class="num">—</td><td class="tpos">Proposed</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:10px;color:var(--muted);margin-top:8px;">†Revenue decline: Powder Coatings + IRC business divested in H1 FY26. Underlying retained-business volumes grew 23%. CMP ~₹2,934. Mkt Cap ~₹13,294 Cr. Zero debt.</p>
+    <div class="period-view annual-view" style="display:none;">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">FY26 Full Year vs FY25</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">FY25</th><th style="text-align:right">YoY</th></tr></thead>
+            <tbody>
+              <tr><td>Consol Revenue</td><td class="num">₹11,880 Cr</td><td class="num">₹11,545 Cr</td><td class="tpos">+2.9%</td></tr>
+              <tr><td>Consol EBITDA</td><td class="num">₹1,833 Cr</td><td class="num">₹1,856 Cr</td><td class="tpos">−1.2%</td></tr>
+              <tr><td>EBITDA Margin</td><td class="num">15.4%</td><td class="num">16.1%</td><td class="tneg">Compressed</td></tr>
+              <tr><td>Consol PAT</td><td class="tneg">₹1,128 Cr</td><td class="num">₹1,183 Cr</td><td class="tneg">−4.6%</td></tr>
+              <tr><td>Standalone Revenue</td><td class="num">₹10,420 Cr</td><td class="num">₹10,166 Cr</td><td class="tpos">+2.5%</td></tr>
+              <tr><td>Dividend</td><td class="num">₹4/share</td><td class="num">₹3/share</td><td class="tpos">Higher</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Business Segments &amp; Special Notes</div>
+          <div class="seg-row"><div class="seg-lbl"><span>Decorative Paints India</span><span style="font-weight:700">~70%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:70%;background:var(--berger)"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Industrial &amp; Protective Coatings</span><span style="font-weight:700">~18%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:18%;background:#00308888"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>International (Nepal, Poland etc.)</span><span style="font-weight:700">~7%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:7%;background:#00308855"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Construction Chemicals + Wood</span><span style="font-weight:700">~5%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:5%;background:#00308833"></div></div></div>
+          <p style="font-size:11.5px;line-height:1.65;margin-top:12px;color:var(--muted)"><strong>Special Notes:</strong> FY26 full-year PAT down 4.6% despite Q4 recovery — H1 was weak due to RM pressure and competition. FII reducing (5.75%→4.68%); DII increasing (5.22%→6.80%). Bold 11% price hike carries demand elasticity risk in Q1 FY27. FY27 volume guidance 12–13% is ambitious but management track record is solid.</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="grp-hdr" style="background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo);margin-bottom:14px;">Indigo Paints — NSE: INDIGOPNTS · Founded 2000 · Hemant Jalan (CMD) · Premium Differentiated Niche</div>
-  <div class="g2" style="margin-bottom:20px;">
-    <div class="card">
-      <div class="card-lbl">Business Overview — The Margin Champion</div>
-      <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Indigo Paints</strong> is India's smallest listed paint company by revenue (~₹1,400 Cr) but arguably the most differentiated. Known for Cement Concrete Primer, Metallic Emulsion, Floor Coatings, and construction chemicals — products where it often has first-mover advantage and premium pricing.</p>
-      <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Q4 FY26 Performance:</strong> Gross margin held at 48.6% despite key raw material prices surging 50-100% in March 2026 due to Middle East supply disruptions. Management attributed this to "richer premium product mix." EBITDA margin 22.5% — highest in the peer group. Revenue +9.7% — solid despite intense competition.<br><br><strong>"Indigo 2.0" Strategy:</strong> New Jodhpur plant expansion, Apple Chemie subsidiary (construction chemicals) growing fast, and geographical deepening in South India and West India. New Chief Business Officer and GM Finance appointed May 2026.<br><br><strong>Challenge:</strong> FII reduced from 11.21% → 7.41% in Q4 FY26 — concerns about growth trajectory vs Birla/JSW competition. MFs accumulating (20.80%→22.69%).</p>
+  <!-- ══════════ BIRLA OPUS ══════════ -->
+  <div class="co-section" id="co-opus" style="display:none;">
+    <div class="grp-hdr" style="background:var(--opus-soft);border-color:var(--opus);color:var(--opus);margin-bottom:14px;">Birla Opus — via Grasim Industries (NSE: GRASIM) · CEO: Rakshit Hargave · Launched Feb 2024 · ₹10,000 Cr invested</div>
+    <div class="period-view qtr-view">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">Business Overview &amp; Q4 FY26 Results</div>
+          <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Birla Opus</strong> — Grasim's paint venture launched February 2024. Total capex ₹10,000 Cr across 6 mega-plants (~1,332 MLPA capacity). Most aggressive paint entry in India's history.</p>
+          <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Q4 FY26 Milestones:</strong> Crossed 10% revenue market share by March 2026 in just 25 months. 50,000+ dealers billed. 11,500 towns covered. 450,000 active contractors. EBIT margin 4.6% (improving from negative EBIT earlier). Q4 EBITDA ₹540 Cr (+150% YoY).<br><br><strong>Playbook:</strong> Free tinting machines, 20-day credit (vs AP's 5 days), higher dealer margins, 3,00,000 contractors pre-onboarded before launch. IPL advertising. SKUs: 'The One' (premium), 'Calista' (mid), 'Style' (mass) — priced 5-12% below AP.<br><br><strong>Path to Profitability:</strong> Adjusted loss −₹120 Cr Q4 (reducing from −₹210 Cr Q4 FY25). FY28 target: ₹10,000 Cr profitable revenue franchise.</p>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Q4 FY26 vs Q4 FY25 — Quarter Results</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">Q4 FY26</th><th style="text-align:right">Q4 FY25</th><th style="text-align:right">YoY</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue Growth</td><td class="tpos">+52% YoY</td><td class="num">—</td><td class="tpos">Hypergrowth</td></tr>
+              <tr><td>Revenue (est.)</td><td class="tpos">~₹3,000 Cr</td><td class="num">~₹1,974 Cr</td><td class="tpos">+52%</td></tr>
+              <tr><td>EBITDA</td><td class="tpos">₹540 Cr</td><td class="num">₹216 Cr</td><td class="tpos">+150%</td></tr>
+              <tr><td>EBIT Margin</td><td class="num">4.6%</td><td class="num">~−5%</td><td class="tpos">Turning positive</td></tr>
+              <tr><td>Volume Growth</td><td class="tpos">+17% QoQ</td><td class="num">—</td><td class="tpos">Accelerating</td></tr>
+              <tr><td>Adjusted PAT</td><td class="tneg">−₹120 Cr</td><td class="tneg">−₹210 Cr</td><td class="tpos">Loss reducing</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;color:var(--muted);margin-top:8px;">Grasim Paints Segment (standalone). Birla White Putty synergy brings combined share approaching #2 position. Sources: Grasim Q4 FY26 BSE/NSE filing.</p>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-lbl">Financial Snapshot — FY26</div>
-      <table>
-        <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">FY25</th><th style="text-align:right">YoY</th></tr></thead>
-        <tbody>
-          <tr><td>Consol Revenue</td><td class="num">₹1,405 Cr</td><td class="num">₹1,341 Cr</td><td class="tpos">+4.8%</td></tr>
-          <tr><td>Consol PAT</td><td class="num">₹152.2 Cr</td><td class="num">₹142.2 Cr</td><td class="tpos">+7.1%</td></tr>
-          <tr><td>Standalone EBITDA Margin</td><td class="tpos">18.5%</td><td class="num">~17%</td><td class="tpos">+150bps</td></tr>
-          <tr><td>Q4 Revenue</td><td class="num">₹425 Cr</td><td class="num">₹387 Cr</td><td class="tpos">+9.7%</td></tr>
-          <tr><td>Q4 EBITDA Margin</td><td class="tpos">22.5%</td><td class="num">23.4%</td><td class="tneg">−90bps</td></tr>
-          <tr><td>Q4 Gross Margin</td><td class="tpos">48.6%</td><td class="num">~47%</td><td class="tpos">Strong</td></tr>
-          <tr><td>Q4 PAT</td><td class="num">₹57.7 Cr</td><td class="num">₹57.4 Cr</td><td class="num">+0.5%</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:10px;color:var(--muted);margin-top:8px;">CMP ~₹1,003. Mkt Cap ~₹4,712 Cr. 52-wk high ₹1,345. FII selling (−380bps Q4). Promoter 53.88% stable. Dividend ₹5/share.</p>
+    <div class="period-view annual-view" style="display:none;">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">FY26 Full Year Performance</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">FY25</th><th style="text-align:right">Change</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue (est.)</td><td class="tpos">~₹10,000 Cr</td><td class="num">~₹5,000 Cr</td><td class="tpos">~2× YoY</td></tr>
+              <tr><td>EBIT Margin</td><td class="num">4.6%</td><td class="num">~−5%</td><td class="tpos">Rapid improvement</td></tr>
+              <tr><td>Annual Loss (est.)</td><td class="tneg">~−₹400 Cr</td><td class="tneg">~−₹600 Cr</td><td class="tpos">Reducing</td></tr>
+              <tr><td>Market Share</td><td class="tpos">&gt;10%</td><td class="num">~6%</td><td class="tpos">+400bps+ gain</td></tr>
+              <tr><td>Dealer Network</td><td class="tpos">50,000+</td><td class="num">~30,000</td><td class="tpos">Fast expanding</td></tr>
+              <tr><td>Capex invested</td><td class="num">₹9,352 Cr</td><td class="num">—</td><td class="num">94% of ₹10,000 Cr plan</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Business Segments &amp; Special Notes</div>
+          <div class="seg-row"><div class="seg-lbl"><span>Decorative Paints (Birla Opus brand)</span><span style="font-weight:700">~80%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:80%;background:var(--opus)"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Birla White Putty (synergy)</span><span style="font-weight:700">~15%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:15%;background:#7c3aed88"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>PaintCraft Professional Services</span><span style="font-weight:700">~5%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:5%;background:#7c3aed44"></div></div></div>
+          <p style="font-size:11.5px;line-height:1.65;margin-top:12px;color:var(--muted)"><strong>Special Notes:</strong> Revenue doubling YoY while industry grew single digits. FY28 breakeven target on track if losses continue reducing at current pace. Birla Pivot B2B platform (revenue +136% YoY Q4) integrates contractor procurement — digital B2B moat forming. Grasim Q4 total paints segment beat estimates with EBITDA 2.5× YoY. No international operations yet.</p>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- ══════════ JSW DULUX ══════════ -->
+  <div class="co-section" id="co-jswd" style="display:none;">
+    <div class="grp-hdr" style="background:var(--jswd-soft);border-color:var(--jswd);color:var(--jswd);margin-bottom:14px;">JSW Dulux (formerly Akzo Nobel India) — NSE: JSWDULUX · JSW Group (61.2% stake) · CEO: Rajiv Rajgopal</div>
+    <div class="period-view qtr-view">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">Business Overview &amp; Q4 FY26 Results</div>
+          <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>JSW Dulux</strong> — renamed from Akzo Nobel India (effective April 1, 2026). JSW Paints acquired 61.2% stake in Dec 2025 for ₹12,915 Cr. Dulux brand retained — one of India's most recognised premium paint brands.</p>
+          <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Q4 FY26 Highlight:</strong> Volume growth +23% in retained business — post-transition momentum strong. Revenue shows −12.9% YoY due to divestiture of Powder Coatings + IRC business (sold in Q2 FY26 for ₹1,874 Cr). Core retained business is recovering well.<br><br><strong>Restructuring:</strong> HQ moved to JSW Center Mumbai. Focus: retained decorative + protective + industrial coatings. Combined JSW Paints (~3%) + Dulux (~6%) = ~9% market share, targeting top-3.<br><br><strong>Dividend:</strong> ₹206/share total for FY26 — ₹50 final dividend + ₹156 special dividend (from business sale exceptional gains).</p>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Q4 FY26 — Quarter Results</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">Q4 FY26</th><th style="text-align:right">Note</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue (consol)</td><td class="num">₹883 Cr</td><td class="tpos">+6.2% YoY (retained)†</td></tr>
+              <tr><td>EBITDA</td><td class="num">₹126.9 Cr</td><td class="tpos">+2.1%</td></tr>
+              <tr><td>EBITDA Margin</td><td class="num">14.4%</td><td class="num">Stable</td></tr>
+              <tr><td>PAT (consol)</td><td class="tpos">₹125.7 Cr</td><td class="tpos">+51.6% (excl. carved-out)</td></tr>
+              <tr><td>Volume Growth</td><td class="tpos">+23% YoY</td><td class="tpos">Retained business</td></tr>
+              <tr><td>Exceptional item</td><td class="num">₹64.8 Cr</td><td class="warn">RE asset sale</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;color:var(--muted);margin-top:8px;">†Revenue decline: Powder Coatings + IRC divested in H1 FY26. Underlying volumes +23%. CMP ~₹2,934. Mkt Cap ~₹13,294 Cr. Zero debt. Sources: BSE/NSE filings.</p>
+        </div>
+      </div>
+    </div>
+    <div class="period-view annual-view" style="display:none;">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">FY26 Full Year Performance</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">Note</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue (consol)</td><td class="num">₹3,599 Cr</td><td class="tneg">Restructured base</td></tr>
+              <tr><td>PAT (reported)</td><td class="tpos">₹1,973.8 Cr</td><td class="warn">Incl. ₹1,874 Cr exceptional</td></tr>
+              <tr><td>Core PAT (excl. exceptional)</td><td class="num">~₹250–300 Cr</td><td class="num">Normalised</td></tr>
+              <tr><td>EBITDA Margin</td><td class="num">~14%</td><td class="num">Stable</td></tr>
+              <tr><td>Exceptional Items</td><td class="tpos">₹1,874 Cr</td><td class="warn">Powder Coatings + IRC sale</td></tr>
+              <tr><td>Dividend</td><td class="tpos">₹206/share total</td><td class="num">₹50 final + ₹156 special</td></tr>
+              <tr><td>Debt</td><td class="tpos">Zero</td><td class="tpos">Clean balance sheet</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Business Segments &amp; Special Notes</div>
+          <div class="seg-row"><div class="seg-lbl"><span>Decorative Paints (Dulux brand)</span><span style="font-weight:700">~55%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:55%;background:var(--jswd)"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Protective &amp; Industrial Coatings</span><span style="font-weight:700">~30%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:30%;background:#0e749088"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Construction Chemicals</span><span style="font-weight:700">~15%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:15%;background:#0e749044"></div></div></div>
+          <p style="font-size:11.5px;line-height:1.65;margin-top:12px;color:var(--muted)"><strong>Special Notes:</strong> Acquisition of 61.2% for ₹12,915 Cr completed Dec 2025. JSW Steel captive demand for protective coatings = unique synergy. 29,000+ dealers combined (JSW Paints + Dulux). Revenue comparison distorted by Powder Coatings + IRC divestiture — do not compare raw revenue YoY. FY27 will show real post-restructuring run rate. Zero debt makes this a clean base to scale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ INDIGO PAINTS ══════════ -->
+  <div class="co-section" id="co-indigo" style="display:none;">
+    <div class="grp-hdr" style="background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo);margin-bottom:14px;">Indigo Paints — NSE: INDIGOPNTS · Founded 2000 · Hemant Jalan (CMD) · Premium Differentiated Niche</div>
+    <div class="period-view qtr-view">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">Business Overview &amp; Q4 FY26 Results</div>
+          <p style="font-size:12.5px;line-height:1.7;margin-bottom:10px;"><strong>Indigo Paints</strong> — India's smallest listed paint company (~₹1,400 Cr revenue) but the most differentiated. Known for Cement Concrete Primer, Metallic Emulsion, Floor Coatings, and construction chemicals — often with first-mover advantage and premium pricing.</p>
+          <p style="font-size:12px;line-height:1.7;color:var(--muted)"><strong>Q4 FY26 Performance:</strong> Gross margin held at 48.6% despite key RM prices surging 50–100% in March 2026. EBITDA margin 23.0% (standalone) — highest in the peer group. Revenue +9.7% — sector-best growth among listed peers (excluding Birla). PAT ₹57.7 Cr — muted due to non-cash MTM treasury loss (bond yield spike) and Labour code implementation cost.<br><br><strong>"Indigo 2.0":</strong> New Jodhpur plant expansion, Apple Chemie (construction chemicals) growing fast. New Chief Business Officer and GM Finance appointed May 2026.<br><br><strong>Challenge:</strong> FII reduced 11.21%→7.41% in Q4. MFs accumulating (20.80%→22.69%).</p>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Q4 FY26 vs Q4 FY25 — Quarter Results</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">Q4 FY26</th><th style="text-align:right">Q4 FY25</th><th style="text-align:right">YoY</th></tr></thead>
+            <tbody>
+              <tr><td>Revenue</td><td class="num">₹425 Cr</td><td class="num">₹387 Cr</td><td class="tpos">+9.7%</td></tr>
+              <tr><td>EBITDA</td><td class="tpos">₹95.6 Cr</td><td class="num">₹87.4 Cr</td><td class="tpos">+9.3%</td></tr>
+              <tr><td>EBITDA Margin (sttd)</td><td class="tpos">23.0%</td><td class="num">23.4%</td><td class="tneg">−40bps</td></tr>
+              <tr><td>Gross Margin</td><td class="tpos">48.6%</td><td class="num">~47%</td><td class="tpos">Held in RM spike</td></tr>
+              <tr><td>PAT (consol)</td><td class="num">₹57.7 Cr</td><td class="num">₹56.9 Cr</td><td class="num">+1.4%</td></tr>
+              <tr><td>Volume Growth</td><td class="num">~10%</td><td class="num">—</td><td class="num">Sector-best growth</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;color:var(--muted);margin-top:8px;">CMP ~₹1,003. Mkt Cap ~₹4,712 Cr. 52-wk high ₹1,345. FII selling −380bps Q4. Promoter 53.88% stable. Dividend ₹5/share. Sources: BSE/NSE filings.</p>
+        </div>
+      </div>
+    </div>
+    <div class="period-view annual-view" style="display:none;">
+      <div class="g2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-lbl">FY26 Full Year vs FY25</div>
+          <table>
+            <thead><tr><th>Metric</th><th style="text-align:right">FY26</th><th style="text-align:right">FY25</th><th style="text-align:right">YoY</th></tr></thead>
+            <tbody>
+              <tr><td>Consol Revenue</td><td class="num">₹1,405 Cr</td><td class="num">₹1,341 Cr</td><td class="tpos">+4.8%</td></tr>
+              <tr><td>EBITDA (consol)</td><td class="num">₹254.8 Cr</td><td class="num">₹233.5 Cr</td><td class="tpos">+9.1%</td></tr>
+              <tr><td>EBITDA Margin (sttd / consol)</td><td class="tpos">18.5% / 18.1%</td><td class="num">18.1% / 17.4%</td><td class="tpos">+40bps</td></tr>
+              <tr><td>Consol PAT</td><td class="num">₹152.2 Cr</td><td class="num">₹142.2 Cr</td><td class="tpos">+7.1%</td></tr>
+              <tr><td>Gross Margin (sttd)</td><td class="tpos">48.6% (Q4)</td><td class="num">~47%</td><td class="tpos">Improving mix</td></tr>
+              <tr><td>Dividend</td><td class="num">₹5/share</td><td class="num">₹4/share</td><td class="tpos">Higher</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-lbl">Business Segments &amp; Special Notes</div>
+          <div class="seg-row"><div class="seg-lbl"><span>Differentiated Emulsions (Cement Primer, Metallic)</span><span style="font-weight:700">~45%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:45%;background:var(--indigo)"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Premium Exterior &amp; Interior Emulsions</span><span style="font-weight:700">~35%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:35%;background:#d9770688"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Apple Chemie (Construction Chemicals)</span><span style="font-weight:700">~12%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:12%;background:#d9770655"></div></div></div>
+          <div class="seg-row"><div class="seg-lbl"><span>Floor Coatings &amp; Others</span><span style="font-weight:700">~8%</span></div><div class="seg-bar-wrap"><div class="seg-bar" style="width:8%;background:#d9770633"></div></div></div>
+          <p style="font-size:11.5px;line-height:1.65;margin-top:12px;color:var(--muted)"><strong>Special Notes:</strong> 48.6% gross margin held in a quarter when RM spiked 50–100% — extraordinary product mix management. Apple Chemie (construction chemicals) subsidiary is a fast-growing moat — underpenetrated category. Jodhpur plant doubles capacity. FII exit of 380bps in one quarter is unusual — monitor closely. MF accumulation (DII +189bps) provides support. New leadership (CBO + GM Finance) suggests growth restructuring.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<!-- TAB 3 FINANCIALS -->
+<!-- TAB 3 COMPARE ALL COMPANIES -->
 <div class="panel" id="tab-financials">
-  <div class="sec-hdr">Financials Comparison <span class="sec-note">· Q4 FY26 · FY26 Full Year · All ₹ Crore</span></div>
+  <div class="sec-hdr">Compare All Companies <span class="sec-note">· Q4 FY26 · FY26 Full Year · All ₹ Crore</span></div>
   <div class="card" style="margin-bottom:18px;">
     <div class="card-lbl">Q4 FY26 — Quarter Performance (Jan–Mar 2026)</div>
     <table>
       <thead><tr><th>Company</th><th>Q4 Revenue</th><th>YoY%</th><th>EBITDA Margin</th><th>Q4 PAT</th><th>PAT%</th><th>Volume</th><th>Key Note</th></tr></thead>
       <tbody>
-        <tr><td class="tb"><span class="dot" style="background:var(--ap)"></span>Asian Paints</td><td class="warn">⏳ TODAY</td><td class="warn">Pending</td><td class="num">18-20% guided</td><td class="warn">⏳</td><td class="warn">Pending</td><td class="num">~8-10% est.</td><td>Board meets May 29, 2026</td></tr>
-        <tr><td class="tb"><span class="dot" style="background:var(--berger)"></span>Berger Paints</td><td class="num">₹2,868 Cr</td><td class="tpos">+6.1%</td><td class="tpos">16.8%</td><td class="tpos">₹335 Cr</td><td class="tpos">+27.5%</td><td class="tpos">+11.8%</td><td>RM softening aided margin</td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--ap)"></span>Asian Paints</td><td class="tpos">₹9,247 Cr</td><td class="tpos">+10.6%</td><td class="tpos">19.3%</td><td class="tpos">₹1,172 Cr</td><td class="tpos">+69.3%</td><td class="tpos">+12.4% (Deco)</td><td>Double-digit all-round beat ✅</td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--berger)"></span>Berger Paints</td><td class="num">₹2,868 Cr</td><td class="tpos">+6.1%</td><td class="tpos">18.3%</td><td class="tpos">₹335 Cr</td><td class="tpos">+27.5%</td><td class="tpos">+11.8%</td><td>RM softening aided margin</td></tr>
         <tr><td class="tb"><span class="dot" style="background:var(--opus)"></span>Birla Opus</td><td class="tpos">~₹3,000 Cr</td><td class="tpos">+52%</td><td class="num">4.6% EBIT</td><td class="tneg">−₹120 Cr</td><td class="tneg">Loss</td><td class="tpos">+17% QoQ</td><td>Crossed 10% market share</td></tr>
-        <tr><td class="tb"><span class="dot" style="background:var(--jswd)"></span>JSW Dulux</td><td class="num">₹883 Cr</td><td class="tneg">−12.9%†</td><td class="num">14.4%</td><td class="tpos">₹125.7 Cr</td><td class="tpos">+16%</td><td class="tpos">+23%</td><td>Revenue base: post-divestiture</td></tr>
-        <tr><td class="tb"><span class="dot" style="background:var(--indigo)"></span>Indigo Paints</td><td class="num">₹425 Cr</td><td class="tpos">+9.7%</td><td class="tpos">22.5%</td><td class="num">₹57.7 Cr</td><td class="num">+1.4%</td><td class="num">~10%</td><td>Best margin; 48.6% gross margin</td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--jswd)"></span>JSW Dulux</td><td class="num">₹883 Cr</td><td class="num">+6.2%†(retained)</td><td class="num">14.4%</td><td class="tpos">₹125.7 Cr</td><td class="tpos">+16%</td><td class="tpos">+23%</td><td>Revenue base: post-divestiture</td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--indigo)"></span>Indigo Paints</td><td class="num">₹425 Cr</td><td class="tpos">+9.7%</td><td class="tpos">23.0%</td><td class="num">₹57.7 Cr</td><td class="num">+1.4%</td><td class="num">~10%</td><td>Best margin; 48.6% gross margin</td></tr>
       </tbody>
     </table>
     <p style="font-size:10px;color:var(--muted);margin-top:8px;">†JSW Dulux revenue base comparison distorted by Powder Coatings + IRC business sale in Q2 FY26. Underlying volumes +23%. Sources: BSE/NSE exchange filings.</p>
@@ -454,7 +622,7 @@ td.tb{font-weight:700;}
     <table>
       <thead><tr><th>Company</th><th>FY26 Revenue</th><th>YoY%</th><th>EBITDA Margin</th><th>FY26 PAT</th><th>PAT Change</th><th>Balance Sheet</th></tr></thead>
       <tbody>
-        <tr><td class="tb"><span class="dot" style="background:var(--ap)"></span>Asian Paints</td><td class="warn">~₹35,000 Cr est.</td><td class="warn">~+3-4% est.</td><td class="num">~18-19%</td><td class="warn">⏳ Today</td><td class="warn">Pending</td><td><span class="badge b-pos">Debt-Free</span></td></tr>
+        <tr><td class="tb"><span class="dot" style="background:var(--ap)"></span>Asian Paints</td><td class="tpos">₹35,516 Cr</td><td class="tpos">+5.1%</td><td class="tpos">~18.9%</td><td class="tpos">₹4,325 Cr</td><td class="tpos">+17.9%</td><td><span class="badge b-pos">Debt-Free</span></td></tr>
         <tr><td class="tb"><span class="dot" style="background:var(--berger)"></span>Berger Paints</td><td class="num">₹11,880 Cr</td><td class="tpos">+2.9%</td><td class="num">~15-17%</td><td class="tneg">₹1,128 Cr</td><td class="tneg">−4.6%</td><td><span class="badge b-pos">Debt-Light</span></td></tr>
         <tr><td class="tb"><span class="dot" style="background:var(--opus)"></span>Birla Opus</td><td class="tpos">~₹10,000 Cr</td><td class="tpos">2× YoY</td><td class="num">4.6% EBIT</td><td class="tneg">Loss phase</td><td class="tneg">Investment</td><td><span class="badge b-warn">Capex ₹10,000 Cr</span></td></tr>
         <tr><td class="tb"><span class="dot" style="background:var(--jswd)"></span>JSW Dulux</td><td class="num">₹3,599 Cr</td><td class="tneg">Restructured</td><td class="num">~14%</td><td class="tpos">₹1,974 Cr</td><td class="warn">Exceptional</td><td><span class="badge b-pos">Zero Debt</span></td></tr>
@@ -480,37 +648,100 @@ td.tb{font-weight:700;}
   </div>
 </div>
 
-<!-- TAB 4 CHARTS -->
+<!-- TAB 4 COMPANY CHARTS -->
 <div class="panel" id="tab-charts">
-  <div class="sec-hdr">Visual Analytics <span class="sec-note">· Q4 FY26 · Revenue · Margins · Market Share</span></div>
-  <div class="g2" style="margin-bottom:18px;">
-    <div class="chart-card">
-      <h3>Q4 FY26 — Revenue (₹ Crore)</h3>
-      <p class="sub">Quarterly revenue comparison (Birla Opus = Grasim standalone paints)</p>
-      <canvas id="revenueChart" height="220"></canvas>
+  <div class="sec-hdr">Company Charts <span class="sec-note">· Revenue · EBITDA · EBITDA Margin · Net Profit · Net Profit Margin · Debt · Q4 FY26 &amp; Annual</span></div>
+
+  <!-- Chart Period Selector -->
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);">
+    <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">Chart View</span>
+    <button id="chbtn-q" onclick="showCharts('q',this)" style="background:#181511;color:#fff;border:none;border-radius:20px;padding:5px 16px;font-size:11px;font-weight:700;cursor:pointer;">Q4 FY26</button>
+    <button id="chbtn-a" onclick="showCharts('a',this)" style="background:var(--surface);color:var(--muted);border:1.5px solid var(--border);border-radius:20px;padding:5px 16px;font-size:11px;font-weight:700;cursor:pointer;">FY26 Annual</button>
+  </div>
+
+  <!-- QUARTERLY CHARTS -->
+  <div id="chart-q-view">
+    <div class="g2" style="margin-bottom:18px;">
+      <div class="chart-card">
+        <h3>Q4 FY26 — Revenue (₹ Crore)</h3>
+        <p class="sub">Jan–Mar 2026 · Birla Opus = Grasim standalone paints segment · Asian Paints ✅ actual</p>
+        <canvas id="revenueChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Q4 FY26 — EBITDA (₹ Crore)</h3>
+        <p class="sub">Operating profit · Birla Opus EBIT shown (full EBITDA not separately reported)</p>
+        <canvas id="ebitdaChart" height="220"></canvas>
+      </div>
     </div>
-    <div class="chart-card">
-      <h3>Q4 FY26 — EBITDA Margin %</h3>
-      <p class="sub">Operating margin — Q4 FY26 (Indigo leads; Birla Opus still investment phase)</p>
-      <canvas id="marginChart" height="220"></canvas>
+    <div class="g2" style="margin-bottom:18px;">
+      <div class="chart-card">
+        <h3>Q4 FY26 — EBITDA Margin %</h3>
+        <p class="sub">Indigo leads sector at 23.0% (standalone) · Birla Opus EBIT margin (investment phase)</p>
+        <canvas id="marginChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Q4 FY26 — Net Profit / PAT (₹ Crore)</h3>
+        <p class="sub">Birla Opus shown as loss (−₹120 Cr) · JSW Dulux includes exceptional items</p>
+        <canvas id="patQChart" height="220"></canvas>
+      </div>
+    </div>
+    <div class="g2" style="margin-bottom:18px;">
+      <div class="chart-card">
+        <h3>Q4 FY26 — Net Profit Margin %</h3>
+        <p class="sub">PAT as % of revenue · Birla Opus excluded (loss phase)</p>
+        <canvas id="patMgnQChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Decorative Paint Market Share — Mar 2026 %</h3>
+        <p class="sub">Organised decorative segment · Birla Opus: fastest gain in India paint history</p>
+        <canvas id="shareChart" height="220"></canvas>
+      </div>
+    </div>
+    <div class="chart-card" style="margin-bottom:18px;">
+      <h3>Market Share Evolution — Asian Paints vs Birla Opus (FY23 → Mar 2026)</h3>
+      <p class="sub">The fastest market share capture in Indian branded consumer history</p>
+      <canvas id="shareEvolChart" height="130"></canvas>
     </div>
   </div>
-  <div class="g2" style="margin-bottom:18px;">
-    <div class="chart-card">
-      <h3>FY26 Annual Revenue (₹ Crore)</h3>
-      <p class="sub">Full year revenue — FY26 vs FY25 (Asian Paints est.)</p>
-      <canvas id="annualRevChart" height="220"></canvas>
+
+  <!-- ANNUAL CHARTS -->
+  <div id="chart-a-view" style="display:none;">
+    <div class="g2" style="margin-bottom:18px;">
+      <div class="chart-card">
+        <h3>FY26 Annual Revenue (₹ Crore)</h3>
+        <p class="sub">FY26 vs FY25 · Asian Paints ✅ actual ₹35,516 Cr</p>
+        <canvas id="annualRevChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>FY26 Annual EBITDA (₹ Crore)</h3>
+        <p class="sub">Full year operating profit · Birla Opus EBIT-level shown</p>
+        <canvas id="annualEbitdaChart" height="220"></canvas>
+      </div>
     </div>
-    <div class="chart-card">
-      <h3>Decorative Paint Market Share — Mar 2026</h3>
-      <p class="sub">Organised decorative segment estimated share (Birla Opus: fastest ever gain)</p>
-      <canvas id="shareChart" height="220"></canvas>
+    <div class="g2" style="margin-bottom:18px;">
+      <div class="chart-card">
+        <h3>FY26 Annual EBITDA Margin %</h3>
+        <p class="sub">FY26 operating margin · AP 18.9% · Indigo 18.1% (consol) · Berger 15.4% · Birla 4.6% EBIT</p>
+        <canvas id="annualMgnChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>FY26 Annual Net Profit / PAT (₹ Crore)</h3>
+        <p class="sub">JSW Dulux includes ₹1,874 Cr exceptional gain from business sale — not comparable</p>
+        <canvas id="annualPatChart" height="220"></canvas>
+      </div>
     </div>
-  </div>
-  <div class="chart-card" style="margin-bottom:18px;">
-    <h3>Market Share Evolution — Asian Paints vs Birla Opus (FY24 → Mar 2026)</h3>
-    <p class="sub">The fastest market share capture in India paint history</p>
-    <canvas id="shareEvolChart" height="130"></canvas>
+    <div class="g2" style="margin-bottom:18px;">
+      <div class="chart-card">
+        <h3>FY26 Annual Net Profit Margin %</h3>
+        <p class="sub">Core PAT margin · JSW Dulux excl. exceptional for comparability</p>
+        <canvas id="annualPatMgnChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Debt Position (₹ Crore) — FY26</h3>
+        <p class="sub">Net debt / (cash) · AP, Indigo &amp; JSW Dulux are net debt-free · Birla = capex phase</p>
+        <canvas id="debtChart" height="220"></canvas>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -520,14 +751,14 @@ td.tb{font-weight:700;}
   <div class="g3" style="margin-bottom:18px;">
     <div class="val-card">
       <div class="val-co" style="color:var(--ap)">Asian Paints</div>
-      <div class="val-row"><span class="val-lbl">CMP (May 26)</span><span class="val-num">~₹2,250</span></div>
-      <div class="val-row"><span class="val-lbl">Market Cap</span><span class="val-num">~₹2,54,835 Cr</span></div>
-      <div class="val-row"><span class="val-lbl">FY26 PAT (est.)</span><span class="val-num">~₹3,900 Cr</span></div>
-      <div class="val-row"><span class="val-lbl">P/E (FY26 est.)</span><span class="val-num warn">~65×</span></div>
-      <div class="val-row"><span class="val-lbl">EV/EBITDA</span><span class="val-num warn">~45×</span></div>
+      <div class="val-row"><span class="val-lbl">CMP (post results)</span><span class="val-num">~₹2,695</span></div>
+      <div class="val-row"><span class="val-lbl">Market Cap</span><span class="val-num">~₹2,57,000 Cr</span></div>
+      <div class="val-row"><span class="val-lbl">FY26 PAT (actual)</span><span class="val-num tpos">₹4,325 Cr</span></div>
+      <div class="val-row"><span class="val-lbl">P/E (FY26 actual)</span><span class="val-num warn">~59×</span></div>
+      <div class="val-row"><span class="val-lbl">EV/EBITDA</span><span class="val-num warn">~42×</span></div>
       <div class="val-row"><span class="val-lbl">P/BV</span><span class="val-num">~13×</span></div>
-      <div class="val-row"><span class="val-lbl">52-wk Range</span><span class="val-num">₹1,950 – ₹3,350</span></div>
-      <div style="margin-top:10px"><span class="badge b-hold">Premium at risk — competitive moat eroding</span></div>
+      <div class="val-row"><span class="val-lbl">FY26 Dividend</span><span class="val-num">₹27.50/share</span></div>
+      <div style="margin-top:10px"><span class="badge b-hold">Improved, still premium — watch market share stabilisation</span></div>
     </div>
     <div class="val-card">
       <div class="val-co" style="color:var(--berger)">Berger Paints</div>
@@ -561,7 +792,7 @@ td.tb{font-weight:700;}
       <div class="val-row"><span class="val-lbl">P/E (core)</span><span class="val-num warn">~47×</span></div>
       <div class="val-row"><span class="val-lbl">EV/EBITDA</span><span class="val-num">~25×</span></div>
       <div class="val-row"><span class="val-lbl">Zero Debt</span><span class="val-num pos">Yes</span></div>
-      <div class="val-row"><span class="val-lbl">Dividend</span><span class="val-num">₹50/share</span></div>
+      <div class="val-row"><span class="val-lbl">FY26 Total Dividend</span><span class="val-num">₹206/share</span></div>
       <div style="margin-top:10px"><span class="badge b-hold">Transition year — wait for JSW integration thesis</span></div>
     </div>
     <div class="val-card">
@@ -579,7 +810,7 @@ td.tb{font-weight:700;}
 
 <!-- TAB 6 RAW MATERIALS -->
 <div class="panel" id="tab-rawmat">
-  <div class="sec-hdr">🧪 Raw Materials Deep Dive <span class="sec-note">· Cost Structure · TiO2 · Crude · Supply Chain Shocks · FY26-27</span></div>
+  <div class="sec-hdr">Raw Materials <span class="sec-note">· Cost Structure · TiO2 · Crude · Supply Chain Shocks · FY26-27</span></div>
   <div class="rm-box" style="margin-bottom:18px;">
     🚨 <strong>March 2026 RM Shock:</strong> Key raw material prices surged 50–100% during March 2026 due to Middle East conflict (Iran-related oil disruptions). TiO2 and crude derivatives spiked sharply. The full Q4 FY26 margins largely escaped (existing inventory), but <strong>Q1 FY27 will bear the full brunt</strong>. Paint companies took 2-11% price hikes in March-April 2026 — but double-digit hikes needed to fully offset. This is the sector's biggest near-term risk.
   </div>
@@ -670,7 +901,7 @@ td.tb{font-weight:700;}
 
 <!-- TAB 7 COMPETITIVE WAR -->
 <div class="panel" id="tab-competitive">
-  <div class="sec-hdr">⚔️ The Great Paint War <span class="sec-note">· Birla Opus vs Asian Paints · JSW Dulux · Dealer Economics · FY26</span></div>
+  <div class="sec-hdr">Competitive War <span class="sec-note">· Birla Opus vs Asian Paints · JSW Dulux · Dealer Economics · FY26</span></div>
   <div class="g2" style="margin-bottom:18px;">
     <div class="card">
       <div class="card-lbl">Birla Opus Entry Strategy — The Playbook</div>
@@ -734,9 +965,9 @@ td.tb{font-weight:700;}
   </div>
 </div>
 
-<!-- TAB 8 MARKETING SHIFT -->
+<!-- TAB 8 MARKETING WAR & SHIFTS -->
 <div class="panel" id="tab-marketing">
-  <div class="sec-hdr">📣 Changing Nature of Paint Marketing <span class="sec-note">· From Brand to Experience · Digital to Contractor · FY26 Shifts</span></div>
+  <div class="sec-hdr">Marketing War &amp; Shifts <span class="sec-note">· From Brand to Experience · Digital to Contractor · Battleground FY26</span></div>
   <div class="g2" style="margin-bottom:18px;">
     <div class="card">
       <div class="card-lbl">Marketing Model — Old vs New (FY26 Disruption)</div>
@@ -784,9 +1015,9 @@ td.tb{font-weight:700;}
   </div>
 </div>
 
-<!-- TAB 9 SWOT -->
+<!-- TAB 9 SWOT & MOAT -->
 <div class="panel" id="tab-swot">
-  <div class="sec-hdr">SWOT Analysis <span class="sec-note">· 5 Companies · Strengths · Weaknesses · Opportunities · Threats</span></div>
+  <div class="sec-hdr">SWOT &amp; Moat Analysis <span class="sec-note">· 5 Companies · Strengths · Weaknesses · Opportunities · Threats · Moat Assessment</span></div>
   <div style="margin-bottom:24px;">
     <div class="co-hdr-swot"><span style="width:12px;height:12px;border-radius:50%;background:var(--ap);display:inline-block;"></span> Asian Paints Limited</div>
     <div class="swot-grid">
@@ -817,7 +1048,7 @@ td.tb{font-weight:700;}
   <div style="margin-bottom:24px;">
     <div class="co-hdr-swot"><span style="width:12px;height:12px;border-radius:50%;background:var(--indigo);display:inline-block;"></span> Indigo Paints</div>
     <div class="swot-grid">
-      <div class="swot-cell swot-s"><div class="swot-lbl sl">Strengths</div><ul class="swot-ul"><li>22.5% EBITDA margin — best in listed paint sector</li><li>48.6% gross margin — held even in RM spike</li><li>Differentiated products (Cement Primer, Metallic, Floor)</li><li>Apple Chemie (construction chemicals) growing fast</li><li>Promoter 53.88% — stable foundation</li></ul></div>
+      <div class="swot-cell swot-s"><div class="swot-lbl sl">Strengths</div><ul class="swot-ul"><li>23.0% EBITDA margin (standalone) — best in listed paint sector</li><li>48.6% gross margin — held even in RM spike</li><li>Differentiated products (Cement Primer, Metallic, Floor)</li><li>Apple Chemie (construction chemicals) growing fast</li><li>Promoter 53.88% — stable foundation</li></ul></div>
       <div class="swot-cell swot-w"><div class="swot-lbl wl">Weaknesses</div><ul class="swot-ul"><li>Revenue ₹1,405 Cr — very small vs peers</li><li>PAT growth nearly flat (+1.4% Q4) — momentum missing</li><li>FII sold 380bps in Q4 — institutional confidence weak</li><li>Jodhpur expansion takes time to pay off</li><li>Limited dealer network vs Birla/Berger</li></ul></div>
       <div class="swot-cell swot-o"><div class="swot-lbl ol">Opportunities</div><ul class="swot-ul"><li>Construction chemicals — fast-growing underpenetrated category</li><li>South India + Maharashtra expansion — new geographies</li><li>Premium differentiated products — immune to Birla pricing war</li><li>Jodhpur plant — doubles capacity</li><li>Digital B2C + D2C — direct homeowner sales</li></ul></div>
       <div class="swot-cell swot-t"><div class="swot-lbl tl">Threats</div><ul class="swot-ul"><li>RM spike 50-100% March 2026 — Q1 FY27 margin risk</li><li>Birla Opus entering Indigo's differentiated categories</li><li>Small size = hard to get contractor attention vs Birla incentives</li><li>FII exodus may signal growth concern</li><li>Treasury MTM losses (bond yield spike) hurt Q4 PAT</li></ul></div>
@@ -825,14 +1056,14 @@ td.tb{font-weight:700;}
   </div>
 </div>
 
-<!-- TAB 10 ANALYST RATINGS -->
+<!-- TAB 10 ANALYSTS RATING -->
 <div class="panel" id="tab-analyst">
-  <div class="sec-hdr">Analyst Ratings &amp; Price Targets <span class="sec-note">· Post Q4 FY26 · Brokerage Consensus</span></div>
+  <div class="sec-hdr">Analysts Rating <span class="sec-note">· Post Q4 FY26 · Brokerage Consensus · Price Targets</span></div>
   <div class="analyst-card">
-    <div class="ac-head"><div class="ac-name" style="color:var(--ap)">Asian Paints (NSE: ASIANPAINT)</div><span class="rat-pill rp-hold">HOLD / NEUTRAL</span></div>
-    <div class="ac-tp">₹2,400 – ₹2,950 <span style="font-size:12px;font-weight:400;color:var(--muted)">/ analyst range · CMP ~₹2,250</span></div>
-    <div class="ac-cmp">16 SELL / 14 BUY / 8 HOLD (of 38 analysts) — unusually bearish for a mega-cap</div>
-    <div class="ac-text"><strong>Bear Case (SELL — 16 analysts):</strong> Market share erosion from 59% to 50% in 18 months is structural, not cyclical. Birla Opus will reach 15-20% by FY28 — each percentage point costs Asian Paints ₹500-700 Cr revenue. Gross margin guided 18-20% vs historical 22-25% — competitive spend permanently elevated. The premium valuation at 65× P/E is unsustainable as a "growth stock" when revenue growth is only 3-4%. HSBC cut targets citing "return of cost inflation." <strong>Bull Case (BUY — 14 analysts):</strong> Asian Paints has survived every disruption since 1942. International business (15 countries) untouched. Beautiful Homes Service creates premium lock-in. Waterproofing is the next moat — Birla is weak here. Gross margin recovery to 44%+ in Q3 FY26 shows pricing power intact. Q4 FY26 result today could be positive catalyst.</div>
+    <div class="ac-head"><div class="ac-name" style="color:var(--ap)">Asian Paints (NSE: ASIANPAINT)</div><span class="rat-pill rp-hold">HOLD / UPGRADE WATCH</span></div>
+    <div class="ac-tp">₹2,600 – ₹3,200 <span style="font-size:12px;font-weight:400;color:var(--muted)">/ updated range post Q4 · CMP ~₹2,695</span></div>
+    <div class="ac-cmp">Q4 FY26 strong beat — PAT ₹1,172 Cr (+69.3%), Revenue ₹9,247 Cr (+10.6%), EBITDA margin 19.3%. FY26 PAT ₹4,325 Cr (+17.9%). Analyst consensus shifting from sell to neutral.</div>
+    <div class="ac-text"><strong>Post-Q4 Bull Case (upgrades underway):</strong> Double-digit volume growth (12.4%) and value growth (10.2%) — demand is back. EBITDA margin 19.3% beats guidance of 18-20%. FY26 PAT ₹4,325 Cr significantly above estimates. International portfolio delivered resilient growth. Beautiful Homes Service gaining traction across 20 states. At ~59× P/E on actual FY26 PAT, valuation is more reasonable than feared. <strong>Lingering concerns (holds to cautious):</strong> Market share still ~50% (down from 59%); Birla Opus at 10% with a clear target of 15-20% by FY28. External environment "fluid" — West Asia conflict, near-term demand uncertainty. Competitive intensity not abating. Management acknowledged volume recovery but market share recovery needs monitoring over FY27-28.</div>
   </div>
   <div class="analyst-card">
     <div class="ac-head"><div class="ac-name" style="color:var(--berger)">Berger Paints (NSE: BERGEPAINT)</div><span class="rat-pill rp-buy">BUY (mild consensus)</span></div>
@@ -850,13 +1081,13 @@ td.tb{font-weight:700;}
     <div class="ac-head"><div class="ac-name" style="color:var(--indigo)">Indigo Paints (NSE: INDIGOPNTS)</div><span class="rat-pill rp-hold">HOLD / ACCUMULATE</span></div>
     <div class="ac-tp">₹1,050 – ₹1,250 <span style="font-size:12px;font-weight:400;color:var(--muted)">/ 12-month target · CMP ~₹1,003</span></div>
     <div class="ac-cmp">MFs accumulating (22.69%) vs FIIs selling (7.41%). Small cap — high reward, higher risk.</div>
-    <div class="ac-text"><strong>Contrarian View:</strong> 22.5% EBITDA margin and 48.6% gross margin in a 50-100% RM price spike quarter is phenomenal operational execution — premium product mix shield works. Revenue +9.7% is sector-best growth among listed peers (excluding Birla). At ~31× P/E vs sector average 50-65×, Indigo is cheapest on earnings. Jodhpur plant and Apple Chemie subsidiary are FY27-28 growth catalysts. <strong>Risk:</strong> FII exodus of 380bps in one quarter is a signal — sophisticated investors nervous about Birla Opus entering differentiated categories. Treasury MTM losses are a distraction — core business is sound. Accumulate in the ₹950-1,050 zone.</div>
+    <div class="ac-text"><strong>Contrarian View:</strong> 23.0% EBITDA margin and 48.6% gross margin in a 50-100% RM price spike quarter is phenomenal operational execution — premium product mix shield works. Revenue +9.7% is sector-best growth among listed peers (excluding Birla). At ~31× P/E vs sector average 50-65×, Indigo is cheapest on earnings. Jodhpur plant and Apple Chemie subsidiary are FY27-28 growth catalysts. <strong>Risk:</strong> FII exodus of 380bps in one quarter is a signal — sophisticated investors nervous about Birla Opus entering differentiated categories. Treasury MTM losses are a distraction — core business is sound. Accumulate in the ₹950-1,050 zone.</div>
   </div>
 </div>
 
 <!-- TAB 11 TROJAN HORSE -->
 <div class="panel" id="tab-trojan">
-  <div class="sec-hdr">🐴 Is Asian Paints the "Trojan Horse"? <span class="sec-note">· The Page Industries and HDFC Bank Analogy · Moat Erosion Test</span></div>
+  <div class="sec-hdr">Trojan Horse? <span class="sec-note">· Asian Paints · Page Industries &amp; HDFC Bank Analogy · Moat Erosion Test</span></div>
   <div class="trojan-card">
     <div class="trojan-title">🐴 The Question That Defines the Investment Thesis</div>
     <p style="font-size:13px;line-height:1.75;margin-bottom:12px;">The question Elango posed is profound: Is Asian Paints becoming a <strong>"Trojan Horse"</strong> — a stock that looks invincible from the outside but is being hollowed out from within? Like Page Industries in textiles (Jockey brand owner) was disrupted by fast fashion + Zara + D2C brands, or like HDFC Bank faced competitive pressure from new-age banks + digital — is Asian Paints facing a structural erosion of its moat?</p>
@@ -874,7 +1105,7 @@ td.tb{font-weight:700;}
           <tr><td>Price premium ability</td><td class="tpos">Could hike anytime</td><td class="tneg">Constrained by Birla's 5-12% gap</td></tr>
           <tr><td>Market share</td><td class="tpos">~59% (near monopoly)</td><td class="tneg">~50% — losing 3-4%/year</td></tr>
           <tr><td>Revenue growth</td><td class="tpos">10-15% CAGR historically</td><td class="tneg">3-4% FY26 — historic low</td></tr>
-          <tr><td>PAT growth</td><td class="tpos">15-20% CAGR</td><td class="warn">Depends on Q4 FY26 result today</td></tr>
+          <tr><td>PAT growth</td><td class="tpos">15-20% CAGR</td><td class="tpos">+69.3% Q4 FY26; FY26 +17.9%</td></tr>
           <tr><td>Valuation justification</td><td class="tpos">Growth premium earned</td><td class="warn">65× P/E on 3-4% growth?</td></tr>
         </tbody>
       </table>
@@ -921,55 +1152,82 @@ td.tb{font-weight:700;}
         <p style="font-size:13px;line-height:1.75;font-weight:600;color:var(--pos);margin-bottom:8px;">✅ But NOT a full Trojan Horse — Core Moat Remains</p>
         <p style="font-size:12px;line-height:1.7;margin-bottom:10px;">The Beautiful Homes ecosystem (interior design + painting service + colour consulting + smart home) is building a new moat that Birla Opus cannot easily replicate. This is moving Asian Paints from "paint seller" to "home beautification partner" — the way HDFC moved from "bank" to "financial services ecosystem."</p>
         <p style="font-size:12px;line-height:1.7;margin-bottom:8px;"><strong>The International moat is untouched:</strong> 15 countries, 26 plants globally — Birla has zero international. This $1-1.5B revenue stream grows quietly, immune to India's price war.</p>
-        <p style="font-size:12px;line-height:1.7;"><strong>CB Research Conclusion:</strong> Asian Paints is NOT the new Page Industries (structural irrelevance). It IS more like early HDFC Bank disruption — genuine competitive threat that forces management evolution, eventual stabilisation at a lower market share (~45-48%) with higher service revenue per customer. The stock is worth watching at ₹1,900-2,000 for long-term accumulation. <em>Today's Q4 FY26 result is a critical read-through.</em></p>
+        <p style="font-size:12px;line-height:1.7;"><strong>CB Research Conclusion:</strong> Asian Paints is NOT the new Page Industries (structural irrelevance). It IS more like early HDFC Bank disruption — genuine competitive threat that forces management evolution, eventual stabilisation at a lower market share (~45-48%) with higher service revenue per customer. Q4 FY26 delivered a strong beat (PAT +69.3%, volume +12.4%, margin 19.3%) — demand recovery is real. <em>The market share trend over the next 2-3 quarters will be the definitive test of whether the Trojan Horse thesis holds.</em></p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- TAB 12 VERDICT -->
+<!-- TAB 12 RISKS (INVESTMENT VERDICT) -->
 <div class="panel" id="tab-verdict">
-  <div class="sec-hdr">🏆 Investment Verdict <span class="sec-note">· CB Research · 26 May 2026</span></div>
+  <div class="sec-hdr">Risks <span class="sec-note">· Sector-Level · Company-Level · Raw Material · Regulatory · FY26–27</span></div>
   <div class="verdict-card">
-    <div class="verdict-title">🎨 India Paint Sector: The Most Interesting Battle in FMCG/Consumer in Decades</div>
-    <div class="verdict-body">The India paint sector in FY26 is experiencing a once-in-a-generation structural shift. Birla Opus has achieved what no competitor has managed in 50 years — a credible, funded, rapidly-scaling challenge to Asian Paints' near-monopoly. The raw material spike from the Middle East conflict adds a layer of near-term pain. Together, this creates a sector where old certainties no longer hold — but long-term opportunities are enormous for those who position correctly.</div>
+    <div class="verdict-title">⚠️ Key Risks — India Paint Sector FY26–27</div>
+    <div class="verdict-body">The India paint sector in FY26 is experiencing a once-in-a-generation structural shift. Birla Opus has achieved what no competitor has managed in 50 years — a credible, funded, rapidly-scaling challenge to Asian Paints' near-monopoly. The raw material spike from the Middle East conflict adds a layer of near-term pain. Understanding the risks below is critical before interpreting any financial data in this dashboard.</div>
+  </div>
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-lbl">Sector-Wide Risks — All Companies Affected</div>
+    <table>
+      <thead><tr><th>Risk</th><th>Details</th><th>Severity</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td class="tb">Raw Material Spike</td><td>TiO2 + crude derivatives surged 50–100% in March 2026 (Middle East conflict). Q1 FY27 will bear the full brunt as inventory buffer expires. 200–400bps gross margin compression expected.</td><td class="tneg">HIGH</td><td>Q1–Q2 FY27</td></tr>
+        <tr><td class="tb">Competitive Price Constraint</td><td>Companies cannot pass full RM cost via hikes — Birla Opus is 5–12% cheaper than AP. Large hikes accelerate dealer switching. Revenue growth may lag volume growth by 3–5%.</td><td class="tneg">HIGH</td><td>FY27–28</td></tr>
+        <tr><td class="tb">Demand Slowdown Risk</td><td>Urban real estate / renovation activity is lumpy. Any slowdown in construction or housing starts directly hits decorative paint volumes. Rural sentiment tied to monsoon + agri income.</td><td class="warn">MEDIUM</td><td>Ongoing</td></tr>
+        <tr><td class="tb">Crude Oil Volatility</td><td>Iran-related disruptions kept crude near $100. Any escalation could push crude to $110–120 — a repeat of FY22 RM shock but with no monopoly pricing power to recover.</td><td class="tneg">HIGH</td><td>Near-term</td></tr>
+        <tr><td class="tb">China Supply Chain</td><td>TiO2 pigment, organic pigments — significant China import dependence. Any China export curbs / geopolitical event could cause spot price spikes.</td><td class="warn">MEDIUM</td><td>Structural</td></tr>
+        <tr><td class="tb">Interest Rate / Cost of Capital</td><td>High rates affect housing / renovation demand cycle. Birla Opus's capex funding becomes costlier if rates stay elevated — could delay profitability.</td><td class="warn">MEDIUM</td><td>FY27</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="g2" style="margin-bottom:18px;">
     <div class="card">
-      <div class="card-lbl">CB Research Rankings — India Paint Sector FY26</div>
+      <div class="card-lbl">Company-Specific Risks</div>
       <table>
-        <thead><tr><th>Rank</th><th>Company</th><th>Q4 PAT Growth</th><th>EBITDA Mgn</th><th>Market Share Trend</th><th>P/E</th><th>CB View</th></tr></thead>
+        <thead><tr><th>Company</th><th>Key Risk</th></tr></thead>
         <tbody>
-          <tr><td class="tb">1</td><td class="tb" style="color:var(--opus)">Grasim/Birla Opus</td><td class="tpos">EBITDA +150%</td><td class="num">4.6% (rising)</td><td class="tpos">0→10% in 25M</td><td class="num pos">~32× (Grasim)</td><td><span class="badge b-buy">BUY Grasim</span></td></tr>
-          <tr><td class="tb">2</td><td class="tb" style="color:var(--indigo)">Indigo Paints</td><td class="num">+1.4%</td><td class="tpos">22.5%</td><td class="num">~3.5% stable</td><td class="num pos">~31×</td><td><span class="badge b-buy">Accumulate</span></td></tr>
-          <tr><td class="tb">3</td><td class="tb" style="color:var(--berger)">Berger Paints</td><td class="tpos">+27.5%</td><td class="num">16.8%</td><td class="num">~19.5% stable</td><td class="num">~50×</td><td><span class="badge b-hold">HOLD/Buy dips</span></td></tr>
-          <tr><td class="tb">4</td><td class="tb" style="color:var(--jswd)">JSW Dulux</td><td class="tpos">+16% (core)</td><td class="num">14.4%</td><td class="num">~6% stable</td><td class="num">~47×</td><td><span class="badge b-hold">Watch</span></td></tr>
-          <tr><td class="tb">5</td><td class="tb" style="color:var(--ap)">Asian Paints</td><td class="warn">⏳ Today</td><td class="num">18-20% guided</td><td class="tneg">50%↓ from 59%</td><td class="warn">~65×</td><td><span class="badge b-hold">HOLD (re-rate risk)</span></td></tr>
+          <tr><td class="tb" style="color:var(--ap)">Asian Paints</td><td>Market share erosion from 59%→50% — structural, not cyclical. Each 1% share loss = ~₹600 Cr revenue. Dealer network loyalty weakening vs Birla's 20-day credit. Premium valuation (~59× P/E) at risk if FY27 growth disappoints.</td></tr>
+          <tr><td class="tb" style="color:var(--berger)">Berger Paints</td><td>Bold 11% price hike in March 2026 — demand elasticity risk. FY26 full-year PAT down 4.6%. FII reducing stake. New WB/Odisha factories carry execution risk. Squeezed between Birla (aggressive) and AP (premium).</td></tr>
+          <tr><td class="tb" style="color:var(--opus)">Birla Opus (Grasim)</td><td>Still loss-making (−₹120 Cr Q4). Cash burn ongoing — dependent on Grasim's continued capital allocation. No international operations. Premium brand recall still weak. RM spike could delay breakeven beyond FY28.</td></tr>
+          <tr><td class="tb" style="color:var(--jswd)">JSW Dulux</td><td>Restructuring completing — business reset post divestiture of Powder Coatings + IRC. Revenue base distorted by carve-outs. JSW Group's high overall debt may limit paint investment vs Birla's ₹10,000 Cr committed.</td></tr>
+          <tr><td class="tb" style="color:var(--indigo)">Indigo Paints</td><td>FII sold 380bps in Q4 — institutional confidence signal. Small scale (₹1,405 Cr) limits procurement leverage. Birla Opus entering differentiated categories (Indigo's moat). Jodhpur plant ramp-up takes time. Treasury MTM losses.</td></tr>
         </tbody>
       </table>
-      <p style="font-size:10px;color:var(--muted);margin-top:8px;">CB Research view is informational — not investment advice. Consult SEBI-registered advisor. Asian Paints Q4 FY26 result today may change ranking.</p>
     </div>
     <div class="card">
-      <div class="card-lbl">Top Picks Summary</div>
-      <div style="padding:12px 0;border-bottom:1px solid var(--border);margin-bottom:10px;">
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--opus);margin-bottom:4px;">🥇 Grasim / Birla Opus — BUY</div>
-        <p style="font-size:12px;line-height:1.65;">Buy Grasim for the paint option (10% share → 15-20% target) + UltraTech dominance + ABFL financial services. Birla Opus revenue doubled YoY while industry barely grew 3%. At 32× P/E (Grasim), you get this growth at a fair price. Target: ₹2,600-3,000.</p>
-      </div>
-      <div style="padding:12px 0;border-bottom:1px solid var(--border);margin-bottom:10px;">
-        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--indigo);margin-bottom:4px;">🥈 Indigo Paints — Accumulate</div>
-        <p style="font-size:12px;line-height:1.65;">22.5% EBITDA margin in the most competitive quarter in sector history is exceptional. At 31× P/E — cheapest in the sector on earnings quality. Accumulate ₹950-1,050 for Jodhpur plant + Apple Chemie growth kicker.</p>
-      </div>
-      <div style="padding:12px 0;">
-        <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ap);margin-bottom:4px;">⚠️ Asian Paints — Wait for de-rating</div>
-        <p style="font-size:12px;line-height:1.65;">Not a Trojan Horse — but the premium needs to de-rate. Wait for ₹1,900-2,000 zone (50× P/E) before adding. Today's Q4 FY26 result is a key data point. If revenue growth accelerates to 10%+ and market share stabilises, upgrade to BUY.</p>
-      </div>
+      <div class="card-lbl">Regulatory &amp; Structural Risks</div>
+      <table>
+        <thead><tr><th>Risk Area</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td>TRAI / BIS quality standards</td><td>Tightening quality norms for paints (VOC limits, lead content) could raise compliance costs, especially for smaller players.</td></tr>
+          <tr><td>GST rate changes</td><td>Paints attract 18% GST. Any upward revision would dampen demand; downward revision (unlikely) would boost volumes.</td></tr>
+          <tr><td>Anti-dumping on TiO2</td><td>India has anti-dumping duty on Chinese TiO2 — any change alters import economics significantly for all paint companies.</td></tr>
+          <tr><td>Real estate regulatory risk</td><td>RERA delays / state-level policy shifts can slow project completions → lower project paint demand.</td></tr>
+          <tr><td>Environmental norms</td><td>Shift to water-based / low-VOC paints — long-term structural shift requiring reformulation capex. Organised players better placed.</td></tr>
+          <tr><td>Geopolitical supply chain</td><td>West Asia conflict + China-India tensions = dual raw material supply risk. Buffer inventory = working capital pressure.</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:10px;color:var(--muted);margin-top:8px;">⚠️ This dashboard is for information and research purposes only. It does not constitute investment advice. Consult a SEBI-registered investment advisor before making any investment decisions.</p>
     </div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Sector Snapshot — Key Metrics Comparison (No Recommendations)</div>
+    <table>
+      <thead><tr><th>Company</th><th>Q4 PAT Growth</th><th>EBITDA Margin</th><th>Market Share Trend</th><th>P/E (FY26)</th><th>Balance Sheet</th></tr></thead>
+      <tbody>
+        <tr><td class="tb" style="color:var(--ap)">Asian Paints</td><td class="tpos">+69.3%</td><td class="tpos">19.3%</td><td class="tneg">~50% (↓ from 59%)</td><td class="num">~59×</td><td><span class="badge b-pos">Debt-Free</span></td></tr>
+        <tr><td class="tb" style="color:var(--berger)">Berger Paints</td><td class="tpos">+27.5%</td><td class="num">18.3%</td><td class="num">~19.5% Stable</td><td class="num">~50×</td><td><span class="badge b-pos">Debt-Light</span></td></tr>
+        <tr><td class="tb" style="color:var(--opus)">Birla Opus (Grasim)</td><td class="tpos">EBITDA +150%</td><td class="num">4.6% (EBIT, rising)</td><td class="tpos">0→10% in 25M</td><td class="num">~32× (Grasim)</td><td><span class="badge b-warn">Capex ₹10,000 Cr</span></td></tr>
+        <tr><td class="tb" style="color:var(--jswd)">JSW Dulux</td><td class="tpos">+16% (core)</td><td class="num">14.4%</td><td class="num">~6% Stable</td><td class="num">~47×</td><td><span class="badge b-pos">Zero Debt</span></td></tr>
+        <tr><td class="tb" style="color:var(--indigo)">Indigo Paints</td><td class="num">+1.4%</td><td class="tpos">23.0%</td><td class="num">~3.5% Stable</td><td class="num">~31×</td><td><span class="badge b-pos">Debt-Free</span></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:10px;color:var(--muted);margin-top:8px;">Metrics shown for research context only. This is not investment advice or a stock recommendation. Please consult a SEBI-registered investment advisor.</p>
   </div>
 </div>
 
-<!-- TAB 13 CB ASSIST — NO API KEY — DATA-DRIVEN Q&A -->
+<!-- TAB 13 CB ASSISTS -->
 <div class="panel" id="tab-cbassist">
-  <div class="sec-hdr">🤖 CB Assist — Paint Sector Q&amp;A <span class="sec-note">· Answers from this dashboard · English &amp; Tamil · No API key needed</span></div>
+  <div class="sec-hdr">CB Assists — Paint Sector Q&amp;A <span class="sec-note">· Answers from this dashboard · English &amp; Tamil · No API key needed</span></div>
   <div class="cbassist-chat">
     <div class="cbassist-title"><span></span>CB Assist · India Paint Sector · CB Research · Data-Powered · No internet required</div>
     <div class="lang-section">
@@ -1015,7 +1273,7 @@ td.tb{font-weight:700;}
       </div>
       <div class="presets-panel" id="pn-en-indigo">
         <div class="preset-qs">
-          <div class="preset-q" onclick="cbAnswer(this.querySelector('.pq-en').textContent,'en')"><span>💎</span><div><div class="pq-en">How does Indigo Paints maintain 22.5% EBITDA margin — sector best?</div></div></div>
+          <div class="preset-q" onclick="cbAnswer(this.querySelector('.pq-en').textContent,'en')"><span>💎</span><div><div class="pq-en">How does Indigo Paints maintain 23.0% EBITDA margin — sector best?</div></div></div>
           <div class="preset-q" onclick="cbAnswer(this.querySelector('.pq-en').textContent,'en')"><span>📉</span><div><div class="pq-en">FIIs sold 380bps of Indigo in Q4 FY26 — what does this signal?</div></div></div>
           <div class="preset-q" onclick="cbAnswer(this.querySelector('.pq-en').textContent,'en')"><span>📊</span><div><div class="pq-en">Indigo Paints Q4 FY26 and FY26 full year financial summary</div></div></div>
         </div>
@@ -1078,9 +1336,9 @@ td.tb{font-weight:700;}
   <div><div class="cb-wm-name">CB Research</div><div class="cb-wm-sub">Paint Sector · FY26</div></div>
 </div>
 <div class="footer">
-  CB Research — India Paint Sector Intelligence Dashboard · Q4 FY26 · 26 May 2026<br>
+  CB Research — India Paint Sector Intelligence Dashboard · Q4 FY26 · 29 May 2026<br>
   Asian Paints (NSE: ASIANPAINT) · Berger Paints (NSE: BERGEPAINT) · Birla Opus via Grasim (NSE: GRASIM) · JSW Dulux (NSE: JSWDULUX) · Indigo Paints (NSE: INDIGOPNTS)<br>
-  Note: Asian Paints Q4 FY26 results due May 29, 2026 — not released at publishing. All other Q4 FY26 data from BSE/NSE filings. For information only — not investment advice.
+  All Q4 FY26 data from BSE/NSE filings. Asian Paints Q4 FY26 results released May 29, 2026. For information only — not investment advice.
 </div>
 
 <script>
@@ -1092,15 +1350,96 @@ function showTab(id,btn){
   btn.classList.add('active');
   if(id==='charts')setTimeout(initCharts,100);
 }
+
+/* ─── COMPANY SELECTOR (Companies Tab) ─── */
+const coColors = {ap:'#e63329',berger:'#003087',opus:'#7c3aed',jswd:'#0e7490',indigo:'#d97706'};
+function showCompany(co,btn){
+  document.querySelectorAll('.co-section').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.co-sel-btn').forEach(b=>{
+    b.style.background='var(--surface)';b.style.color='var(--muted)';b.style.border='1.5px solid var(--border)';
+  });
+  document.getElementById('co-'+co).style.display='block';
+  btn.style.background=coColors[co];btn.style.color='#fff';btn.style.border='none';
+}
+function showPeriod(period,btn){
+  const activeViews = period==='qtr' ? '.qtr-view' : '.annual-view';
+  const hideViews  = period==='qtr' ? '.annual-view' : '.qtr-view';
+  document.querySelectorAll(hideViews).forEach(v=>v.style.display='none');
+  document.querySelectorAll(activeViews).forEach(v=>v.style.display='block');
+  document.querySelectorAll('.per-sel-btn').forEach(b=>{
+    b.style.background='var(--surface)';b.style.color='var(--muted)';b.style.border='1.5px solid var(--border)';
+  });
+  btn.style.background='#181511';btn.style.color='#fff';btn.style.border='none';
+}
+
+/* ─── CHART PERIOD TOGGLE ─── */
+function showCharts(period,btn){
+  document.getElementById('chart-q-view').style.display = period==='q'?'block':'none';
+  document.getElementById('chart-a-view').style.display = period==='a'?'block':'none';
+  document.querySelectorAll('#chbtn-q,#chbtn-a').forEach(b=>{
+    b.style.background='var(--surface)';b.style.color='var(--muted)';b.style.border='1.5px solid var(--border)';
+  });
+  btn.style.background='#181511';btn.style.color='#fff';btn.style.border='none';
+  setTimeout(initCharts,80);
+}
+
+/* ─── CHARTS ─── */
 let chartsInit=false;
 function initCharts(){
   if(chartsInit)return;chartsInit=true;
-  const opts={responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₹'+c.parsed.y.toLocaleString('en-IN')+' Cr'}}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}};
-  new Chart(document.getElementById('revenueChart'),{type:'bar',data:{labels:['Asian Paints (Q3 FY26)','Berger Paints','Birla Opus (est)','JSW Dulux','Indigo Paints'],datasets:[{data:[8850,2868,3000,883,425],backgroundColor:['#e63329','#003087','#7c3aed','#0e7490','#d97706'],borderRadius:5}]},options:opts});
-  new Chart(document.getElementById('marginChart'),{type:'bar',data:{labels:['Asian Paints','Berger','Birla Opus','JSW Dulux','Indigo'],datasets:[{data:[17.7,16.8,4.6,14.4,22.5],backgroundColor:['#e63329','#003087','#7c3aed','#0e7490','#d97706'],borderRadius:5}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'%'}}},scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
-  new Chart(document.getElementById('annualRevChart'),{type:'bar',data:{labels:['Asian Paints (est)','Berger Paints','Birla Opus (est)','JSW Dulux','Indigo Paints'],datasets:[{label:'FY26',data:[35000,11880,10000,3599,1405],backgroundColor:['#e63329','#003087','#7c3aed','#0e7490','#d97706'],borderRadius:4},{label:'FY25',data:[33800,11545,5000,11500,1341],backgroundColor:['#e6332955','#00308755','#7c3aed55','#0e749055','#d9770655'],borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>'₹'+c.parsed.y.toLocaleString('en-IN')+' Cr'}}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
-  new Chart(document.getElementById('shareChart'),{type:'doughnut',data:{labels:['Asian Paints ~50%','Berger ~19.5%','Birla Opus >10%','Kansai Nerolac ~9%','JSW Dulux ~6%','Indigo ~3.5%','Others ~2%'],datasets:[{data:[50,19.5,10,9,6,3.5,2],backgroundColor:['#e63329','#003087','#7c3aed','#64748b','#0e7490','#d97706','#94a3b8'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11}}}}}});
-  new Chart(document.getElementById('shareEvolChart'),{type:'line',data:{labels:['FY23 (pre-Opus)','FY24 (launch)','Q2 FY25','Q4 FY25','Q2 FY26','Mar 26'],datasets:[{label:'Asian Paints',data:[59,57,54,51,50,50],borderColor:'#e63329',backgroundColor:'#e6332920',tension:0.3,fill:true},{label:'Birla Opus',data:[0,0,2,6.8,8.5,10],borderColor:'#7c3aed',backgroundColor:'#7c3aed20',tension:0.3,fill:true}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y+'%'}}},scales:{y:{min:0,max:65,ticks:{callback:v=>v+'%'},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
+
+  const companies = ['Asian Paints','Berger','Birla Opus','JSW Dulux','Indigo'];
+  const companiesShort = ['Asian Paints','Berger','Birla Opus','JSW Dulux','Indigo'];
+  const colors = ['#e63329','#003087','#7c3aed','#0e7490','#d97706'];
+  const colors50 = ['#e6332955','#00308755','#7c3aed55','#0e749055','#d9770655'];
+
+  const rupeeOpts = {responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₹'+c.parsed.y.toLocaleString('en-IN')+' Cr'}}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}};
+  const pctOpts   = {responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'%'}}},scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}};
+
+  function bar(id,data,opts,colors){
+    const ctx=document.getElementById(id); if(!ctx)return;
+    new Chart(ctx,{type:'bar',data:{labels:companies,datasets:[{data,backgroundColor:colors||colors,borderRadius:5}]},options:opts});
+  }
+
+  /* ─── QUARTERLY CHARTS ─── */
+  // Q4 Revenue
+  bar('revenueChart',[9247,2868,3000,883,425],rupeeOpts,colors);
+  // Q4 EBITDA
+  bar('ebitdaChart',[1787,482,540,126.9,95.6],rupeeOpts,colors);
+  // Q4 EBITDA Margin
+  bar('marginChart',[19.3,18.3,4.6,14.4,23.0],pctOpts,colors);
+  // Q4 Net Profit (Birla Opus shown as −120)
+  const patQCtx = document.getElementById('patQChart');
+  if(patQCtx) new Chart(patQCtx,{type:'bar',data:{labels:companies,datasets:[{data:[1172,335,-120,125.7,57.7],backgroundColor:[c=>c.parsed.y>=0?colors[c.dataIndex]:'#ef444466'],borderRadius:5,
+    backgroundColor:['#e63329','#003087','#ef4444','#0e7490','#d97706']}]},options:rupeeOpts});
+  // Q4 Net Profit Margin (exclude Birla Opus loss)
+  const patMgnQCtx = document.getElementById('patMgnQChart');
+  if(patMgnQCtx) new Chart(patMgnQCtx,{type:'bar',data:{labels:companies,datasets:[{data:[12.7,11.7,null,14.2,13.6],backgroundColor:colors,borderRadius:5}]},options:{...pctOpts,plugins:{...pctOpts.plugins,tooltip:{callbacks:{label:c=>c.parsed.y?c.parsed.y+'%':'Loss phase'}}}}});
+  // Market Share Doughnut
+  const shareCtx=document.getElementById('shareChart');
+  if(shareCtx) new Chart(shareCtx,{type:'doughnut',data:{labels:['Asian Paints ~50%','Berger ~19.5%','Birla Opus >10%','Kansai Nerolac ~9%','JSW Dulux ~6%','Indigo ~3.5%','Others ~2%'],datasets:[{data:[50,19.5,10,9,6,3.5,2],backgroundColor:['#e63329','#003087','#7c3aed','#64748b','#0e7490','#d97706','#94a3b8'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11}}}}}});
+  // Market Share Evolution
+  const evolCtx=document.getElementById('shareEvolChart');
+  if(evolCtx) new Chart(evolCtx,{type:'line',data:{labels:['FY23 (pre-Opus)','FY24 (launch)','Q2 FY25','Q4 FY25','Q2 FY26','Mar 26'],datasets:[{label:'Asian Paints',data:[59,57,54,51,50,50],borderColor:'#e63329',backgroundColor:'#e6332920',tension:0.3,fill:true},{label:'Birla Opus',data:[0,0,2,6.8,8.5,10],borderColor:'#7c3aed',backgroundColor:'#7c3aed20',tension:0.3,fill:true}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{min:0,max:65,ticks:{callback:v=>v+'%'},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
+
+  /* ─── ANNUAL CHARTS ─── */
+  // Annual Revenue FY26 vs FY25
+  const annRevCtx=document.getElementById('annualRevChart');
+  if(annRevCtx) new Chart(annRevCtx,{type:'bar',data:{labels:companies,datasets:[{label:'FY26',data:[35516,11880,10000,3599,1405],backgroundColor:colors,borderRadius:4},{label:'FY25',data:[33800,11545,5000,11500,1341],backgroundColor:colors50,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>'₹'+c.parsed.y.toLocaleString('en-IN')+' Cr'}}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
+  // Annual EBITDA
+  const annEbitdaCtx=document.getElementById('annualEbitdaChart');
+  if(annEbitdaCtx) new Chart(annEbitdaCtx,{type:'bar',data:{labels:companies,datasets:[{label:'FY26',data:[6696,1833,460,504,255],backgroundColor:colors,borderRadius:4},{label:'FY25',data:[6004,1856,null,null,228],backgroundColor:colors50,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>c.parsed.y?'₹'+c.parsed.y.toLocaleString('en-IN')+' Cr':'—'}}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
+  // Annual EBITDA Margin
+  bar('annualMgnChart',[18.9,15.4,4.6,14.0,18.1],pctOpts,colors);
+  // Annual PAT
+  const annPatCtx=document.getElementById('annualPatChart');
+  if(annPatCtx) new Chart(annPatCtx,{type:'bar',data:{labels:companies,datasets:[{label:'FY26 (reported)',data:[4325,1128,-400,1974,152.2],backgroundColor:['#e63329','#003087','#ef4444','#0e7490','#d97706'],borderRadius:4},{label:'FY25',data:[3668,1183,null,null,142.2],backgroundColor:colors50,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>c.parsed.y?'₹'+c.parsed.y.toLocaleString('en-IN')+' Cr':'—'}}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN')},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
+  // Annual Net Profit Margin (JSW Dulux excl. exceptional)
+  const annPatMgnCtx=document.getElementById('annualPatMgnChart');
+  if(annPatMgnCtx) new Chart(annPatMgnCtx,{type:'bar',data:{labels:companies,datasets:[{data:[12.2,9.5,null,7.5,10.8],backgroundColor:colors,borderRadius:5}]},options:{...pctOpts,plugins:{...pctOpts.plugins,tooltip:{callbacks:{label:c=>c.parsed.y?c.parsed.y+'%':'Loss phase'}}}}});
+  // Debt (positive = debt; negative = net cash)
+  const debtCtx=document.getElementById('debtChart');
+  if(debtCtx) new Chart(debtCtx,{type:'bar',data:{labels:companies,datasets:[{label:'Net Debt (₹ Cr) — negative = net cash',data:[-3500,800,8900,-500,-300],backgroundColor:['#166534','#003087','#ef4444','#166534','#166534'],borderRadius:5}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y<0?'Net Cash ₹'+Math.abs(c.parsed.y).toLocaleString('en-IN')+' Cr':'Net Debt ₹'+c.parsed.y.toLocaleString('en-IN')+' Cr'}}},scales:{y:{ticks:{callback:v=>v<0?'Cash ₹'+Math.abs(v).toLocaleString('en-IN'):'Debt ₹'+v.toLocaleString('en-IN')},grid:{color:'#f0ede8'}},x:{grid:{display:false}}}}});
 }
 function switchPreset(id,btn){
   document.querySelectorAll('[id^="pn-en-"]').forEach(p=>p.classList.remove('active'));
@@ -1119,20 +1458,20 @@ function askTamilPreset(q){document.getElementById('paintInput').value=q;cbAnswe
 const KB = {
 
   // ── ASIAN PAINTS ──
-  "asian paints q3 results": {en:`<strong>Asian Paints Q3 FY26 (Oct-Dec 2025) — Latest Available ✅</strong><br><br>Q4 FY26 board meeting is scheduled <strong>today, May 29, 2026</strong> — results not yet released.<br><br><strong>Q3 FY26 Consolidated:</strong> Revenue ₹8,850 Cr (+3.9% YoY) | PAT ₹1,180 Cr (+18.7% YoY) | Gross Margin 44.3% (+200bps YoY) | PBDIT Margin 17.7% (+220bps) | Decorative India volume growth +7.9%.<br><br><strong>9M FY26:</strong> Revenue ₹26,288 Cr (+3.2% YoY). International business revenue ₹846 Cr (+9.9% in Q2). Rural markets outperforming urban. B2B and industrial segments gaining momentum.<br><br><strong>Analyst estimates for Q4 FY26:</strong> Revenue ₹8,500–9,000 Cr | PAT ₹900–1,000 Cr. FY26 total revenue estimated ~₹35,000 Cr. Management guidance: EBITDA margin 18-20%, volume growth 8-10%. Stock CMP ~₹2,250. Mkt Cap ~₹2,54,835 Cr.`,
-   ta:`<strong>Asian Paints Q3 FY26 (Oct-Dec 2025) — சமீபத்திய தரவு ✅</strong><br><br>Q4 FY26 board meeting இன்று May 29, 2026 — results இன்னும் வரவில்லை.<br><br><strong>Q3 FY26 முக்கிய தரவு:</strong> Revenue ₹8,850 Cr (+3.9% YoY) | PAT ₹1,180 Cr (+18.7%) | Gross Margin 44.3% (+200bps) | Decorative volume growth +7.9%.<br><br><strong>9 மாத FY26:</strong> Revenue ₹26,288 Cr (+3.2%). Rural markets நகர்ப்புறங்களை விட சிறப்பாக செயல்படுகிறது. CMP ~₹2,250. Market Cap ~₹2,54,835 Cr.<br><br>Q4 FY26 estimate: Revenue ₹8,500–9,000 Cr, PAT ₹900–1,000 Cr. FY26 EBITDA margin guidance 18-20%.`},
+  "asian paints q3 results": {en:`<strong>Asian Paints Q4 FY26 Results ✅ (May 29, 2026)</strong><br><br><strong>Q4 FY26 Consolidated:</strong> Revenue ₹9,247 Cr (+10.6% YoY) | PAT ₹1,172 Cr (+69.3% YoY) | EBITDA ₹1,787 Cr (+24.4%) | EBITDA Margin 19.3% (+210bps YoY) | Decorative India volume growth +12.4% | Value growth +10.2%.<br><br><strong>FY26 Full Year:</strong> Revenue ₹35,516 Cr (+5.1%) | PAT ₹4,325 Cr (+17.9%) | PBDIT Margin 18.9% (vs 17.8% FY25). Dividend: ₹23/share final + ₹4.50 interim = ₹27.50/share total for FY26.<br><br>CEO Amit Syngle: "Q4 FY26 was a quarter of all-round performance — double-digit volume and value growth and margin expansion. Margins improved through cost discipline aided by material deflation and operational efficiencies."<br><br>Stock rallied ~1% post results. CMP ~₹2,695. Strong beat vs analyst estimates of ₹900–1,000 Cr PAT.`,
+   ta:`<strong>Asian Paints Q4 FY26 ✅ (May 29, 2026)</strong><br><br><strong>Q4 FY26:</strong> Revenue ₹9,247 Cr (+10.6%) | PAT ₹1,172 Cr (+69.3%) | EBITDA Margin 19.3% (+210bps) | Decorative volume +12.4%.<br><br><strong>FY26 Full Year:</strong> Revenue ₹35,516 Cr (+5.1%) | PAT ₹4,325 Cr (+17.9%) | Dividend ₹27.50/share.<br><br>CEO: "Double-digit volume, value growth and margin expansion." Estimates-ஐ கடந்தது — strong beat. CMP ~₹2,695.`},
 
   "asian paints trojan horse moat": {en:`<strong>Is Asian Paints a Trojan Horse? — CB Research Analysis</strong><br><br><strong>Partial YES — moat eroding, not collapsed.</strong> Market share fell from 59% (FY23) to ~50% (Mar 2026) in just 18 months — the fastest loss ever for a dominant Indian branded FMCG. Birla Opus disrupted the <em>dealer economics moat</em>: free tinting machines (vs AP's ₹1.5-2L dealer cost), 20-day credit terms (vs AP's 5 days), higher dealer margins, 450,000 contractors pre-onboarded. This is structural — not cyclical. Asian Paints is also constrained in price hikes because Birla is 5-12% cheaper; hiking widens that gap and accelerates dealer switching.<br><br><strong>But NOT a full Trojan Horse — the HDFC Bank parallel applies more than Page Industries.</strong> HDFC Bank lost UPI payment share to PhonePe/Paytm but retained loan books and deposits. Similarly, AP's <em>international moat</em> (15 countries — Birla has zero), <em>waterproofing stronghold</em>, <em>luxury premium segment</em>, and the <em>Beautiful Homes ecosystem</em> are all intact and growing. Management is adapting.<br><br><strong>CB Research Verdict:</strong> Asian Paints will transition from ~oligopolist (59% share) to a <em>duopolist</em> (~45-48% share). The 65× P/E prices the old reality — needs to de-rate 20-30% to reflect the new competitive structure. Watch today's Q4 FY26 result for direction.`,
    ta:`<strong>Asian Paints ஒரு Trojan Horse ஆகுமா? — CB Research பகுப்பாய்வு</strong><br><br><strong>பகுதியளவு ஆம் — moat சிதைகிறது, ஆனால் முழுவதும் அழியவில்லை.</strong><br><br>Market share 59% (FY23) → ~50% (Mar 2026) என 18 மாதங்களில் குறைந்தது — இது Indian branded FMCG வரலாற்றில் மிக வேகமான share இழப்பு. Birla Opus dealer economics-ஐ முற்றிலும் மாற்றியது: free tinting machines, 20-day credit (AP-ல் 5 நாட்கள் மட்டுமே), அதிக dealer margin, 4,50,000 contractors pre-onboarded.<br><br><strong>ஆனால் Page Industries போல் முழு அழிவு இல்லை.</strong> Asian Paints-ஐ HDFC Bank-உடன் ஒப்பிடுவதே சரியானது. 15 நாடுகளில் international presence (Birla-ஐ zero), waterproofing stronghold, luxury premium segment — இவை எல்லாம் intact. Beautiful Homes Service என்பது புதிய moat-ஆக வளர்கிறது.<br><br><strong>CB Research Verdict:</strong> Asian Paints 59% share company-யிலிருந்து 45-48% share company-ஆக மாறும். 65× P/E இந்த புதிய reality-ஐ reflect செய்யவில்லை — 20-30% de-rating தேவை.`},
 
-  "asian paints pe valuation": {en:`<strong>Asian Paints 65× P/E — Justified or Valuation Trap?</strong><br><br>At CMP ~₹2,250 and estimated FY26 PAT ~₹3,900 Cr, Asian Paints trades at ~65× P/E. Historically, AP commanded a 55-70× P/E because it delivered consistent 15-20% PAT CAGR. In FY26, revenue grew only ~3-4% and earnings growth is modest — the growth justification for the premium has weakened significantly.<br><br><strong>The valuation case for "justified":</strong> Beautiful Homes pivot (higher revenue per customer), international business growing 9-10%, waterproofing expanding, gross margins recovering to 44.3% in Q3 FY26. These point to a quality business adapting to disruption.<br><br><strong>The valuation case for "trap":</strong> Birla Opus will take another 5-8% share over FY27-28. CRISIL projects organised paint revenue growth of only 3-5% in FY27-28 despite 7-8% volume growth (price compression). Ad + trade spend permanently elevated. 16 of 38 analysts rate SELL — unusually bearish for a mega-cap. HSBC cut price targets.<br><br><strong>CB Research:</strong> The 65× P/E is a valuation trap at current growth rates. Fair value zone closer to 50× (₹1,900-2,000). Accumulate only below ₹2,000 for long-term investors. Today's Q4 result is a critical catalyst.`,
-   ta:`<strong>Asian Paints 65× P/E — Justified-ஆ அல்லது Valuation Trap-ஆ?</strong><br><br>CMP ~₹2,250, estimated FY26 PAT ~₹3,900 Cr — இதனால் ~65× P/E கிடைக்கிறது. Historical-ஆக AP 55-70× P/E கிடைத்தது, ஏனென்றால் 15-20% PAT CAGR இருந்தது. FY26-ல் revenue growth வெறும் 3-4% — premium-க்கான growth justification குறைந்துவிட்டது.<br><br>16/38 analysts SELL சொல்கிறார்கள் — mega-cap-க்கு இது unusual. CRISIL: FY27-28-ல் organised paint revenue 3-5% மட்டுமே வளரும் (volume 7-8% இருந்தாலும் — price compression காரணம்).<br><br><strong>CB Research:</strong> 65× P/E இப்போது valuation trap. Fair value ~50× = ₹1,900-2,000. ₹2,000-க்கு கீழே மட்டுமே long-term accumulate செய்யவும்.`},
+  "asian paints pe valuation": {en:`<strong>Asian Paints ~59× P/E Post Q4 FY26 — Justified or Still Stretched?</strong><br><br>Q4 FY26 beat strongly — PAT ₹1,172 Cr (+69.3%), FY26 full year PAT ₹4,325 Cr (+17.9%). At CMP ~₹2,695, Asian Paints trades at ~59× P/E on FY26 actual earnings — improved from the earlier ~65× estimate. The Q4 result was a strong signal of demand recovery and margin discipline.<br><br><strong>Bull case after Q4:</strong> Double-digit volume (+12.4%) and value (+10.2%) growth restores confidence that demand is reviving. EBITDA margin 19.3% shows cost discipline working. FY26 full year PBDIT margin 18.9% (vs 17.8% FY25) — expanding again. Management commentary on "double-digit" trajectory for FY27 is positive.<br><br><strong>Lingering concerns:</strong> Market share still ~50% (down from 59%); Birla Opus at 10% and targeting more. External environment "fluid" per CEO — West Asia conflict, near-term demand uncertainty. Competitive intensity not abating; trade spend still elevated.<br><br><strong>CB Research:</strong> Q4 beat narrows the valuation gap. Fair value zone closer to 55-60× = ₹2,400-2,600. Upgrade from "Wait" to "Hold / selective accumulate near ₹2,400-2,500." The worst may be behind for this cycle; but market share recovery will take 2-3 years.`,
+   ta:`<strong>Asian Paints ~59× P/E — Q4 FY26 के बाद</strong><br><br>Q4 FY26 strong beat: PAT ₹1,172 Cr (+69.3%). FY26 PAT ₹4,325 Cr (+17.9%). CMP ~₹2,695-ல் ~59× P/E — earlier estimate-ல் 65×-இல் இருந்து improved.<br><br>Volume +12.4%, margin 19.3% — இரண்டும் positive. ஆனால் market share ~50% இன்னும் இருக்கிறது. Birla 10% at — challenge continues.<br><br><strong>CB Research:</strong> Q4 beat-க்கு பிறகு fair value 55-60× = ₹2,400-2,600. ₹2,400-2,500-ல் selective accumulate — worst cycle may be over.`},
 
   "asian paints beautiful homes": {en:`<strong>Asian Paints' Beautiful Homes Service — The New Moat</strong><br><br>Beautiful Homes is Asian Paints' pivot from "paint seller" to "home beautification ecosystem." It encompasses: colour consultants (Home Decor Service), end-to-end painting service (hiring + supervising contractors), interior design tie-ups, kitchen and bath fittings integration, and smart home partnerships.<br><br><strong>Why this matters as a moat:</strong> A homeowner using Beautiful Homes service is locked into Asian Paints' supply chain — they won't switch to Birla Opus for a ₹500 saving when the entire project is managed by AP. Revenue per customer is significantly higher vs commodity paint sale. Service margins are also higher.<br><br><strong>Current scale:</strong> Expanding waterproofing and construction chemicals (high-growth, Birla is weaker here). Bath fittings and kitchen segments are still small (revenue declined slightly in H1 FY26) but are long-term strategic moats. The Beautiful Homes pivot is the right response — but it takes 3-5 years to become a material moat. In FY26, it's still more promise than performance.`,
    ta:`<strong>Asian Paints' Beautiful Homes Service — புதிய Moat</strong><br><br>Beautiful Homes என்பது AP-யின் "paint seller" → "home beautification ecosystem" மாற்றம். Colour consultants, end-to-end painting service, kitchen & bath fittings, interior design — இவை அனைத்தும் ஒரே umbrella-ல்.<br><br>ஒரு homeowner Beautiful Homes service பயன்படுத்தினால், அவர் Birla Opus-க்கு switch செய்வது கஷ்டம் — ₹500 savings-க்காக முழு project-ஐ மாற்றமாட்டார். Revenue per customer அதிகம், margin-ம் அதிகம்.<br><br>Waterproofing, construction chemicals-ல் expansion நடக்கிறது — Birla இங்கு comparatively weak. ஆனால் இது முழு moat-ஆக மாற 3-5 வருடம் ஆகும். FY26-ல் இது promise நிலையில்தான் இருக்கிறது.`},
 
   // ── BERGER PAINTS ──
-  "berger q4 results financials": {en:`<strong>Berger Paints Q4 FY26 Results ✅ (May 12, 2026)</strong><br><br><strong>Consolidated Q4 FY26:</strong> Revenue ₹2,868 Cr (+6.1% YoY, −3.9% QoQ seasonal) | PAT ₹335 Cr (+27.5% YoY) | EBITDA ₹482 Cr (+13% YoY) | EBITDA Margin ~16.8% | Volume Growth +11.8% YoY — <em>best in sector for Q4.</em><br><br><strong>Full Year FY26:</strong> Consol Revenue ₹11,880 Cr (+2.9%) | Consol PAT ₹1,128 Cr (−4.6% vs FY25) | Standalone Revenue ₹10,420 Cr (+2.5%) | Standalone PAT ₹1,096 Cr (+1.7%). Dividend ₹4/share recommended.<br><br><strong>Highlights:</strong> Strong growth in waterproofing, construction chemicals, wood coatings. Kolor Plus premium emulsion received positive market response. Calibrated 11% price hike from end-March 2026. MD Abhijit Roy reappointed for 4 years through June 2031. Stock surged 6-9% post results. CMP ~₹487. Mkt Cap ~₹56,913 Cr.`,
+  "berger q4 results financials": {en:`<strong>Berger Paints Q4 FY26 Results ✅ (May 12, 2026)</strong><br><br><strong>Consolidated Q4 FY26:</strong> Revenue ₹2,868 Cr (+6.1% YoY, −3.9% QoQ seasonal) | PAT ₹335 Cr (+27.5% YoY) | EBITDA ₹482 Cr (+13% YoY) | EBITDA Margin ~18.3% | Volume Growth +11.8% YoY — <em>best in sector for Q4.</em><br><br><strong>Full Year FY26:</strong> Consol Revenue ₹11,880 Cr (+2.9%) | Consol PAT ₹1,128 Cr (−4.6% vs FY25) | Standalone Revenue ₹10,420 Cr (+2.5%) | Standalone PAT ₹1,096 Cr (+1.7%). Dividend ₹4/share recommended.<br><br><strong>Highlights:</strong> Strong growth in waterproofing, construction chemicals, wood coatings. Kolor Plus premium emulsion received positive market response. Calibrated 11% price hike from end-March 2026. MD Abhijit Roy reappointed for 4 years through June 2031. Stock surged 6-9% post results. CMP ~₹487. Mkt Cap ~₹56,913 Cr.`,
    ta:`<strong>Berger Paints Q4 FY26 Results ✅ (May 12, 2026)</strong><br><br>Revenue ₹2,868 Cr (+6.1%) | PAT ₹335 Cr (+27.5%) | EBITDA ₹482 Cr (+13%) | Volume +11.8% — sector-ல் சிறந்தது.<br><br>FY26 Full Year: Revenue ₹11,880 Cr | PAT ₹1,128 Cr (−4.6%). Dividend ₹4/share. Waterproofing, construction chemicals வளர்ச்சி தொடர்கிறது. Kolor Plus premium emulsion நல்ல market response பெற்றது. MD Abhijit Roy 2031 வரை reappointed. CMP ~₹487.`},
 
   "berger price hike": {en:`<strong>Berger's 11% Price Hike — Bold Move Analysis</strong><br><br>Berger Paints took a staggered 11% price hike from end-March 2026 — the largest in the sector, significantly bolder than Asian Paints' 2-6% and Birla Opus' 2-6%. The rationale: raw material costs (TiO2, crude derivatives) surged 50-100% in March 2026 due to Middle East conflict. At current crude levels, paint companies need 10-15%+ hikes to fully protect gross margins.<br><br><strong>Why it's bold:</strong> Berger is pricing the RM shock fully through, accepting short-term volume risk for margin protection. MD Roy stated Q4 volume growth of 11.8% provides confidence that demand can absorb hikes. FY27 guidance maintained at 12-13% volume growth despite the hike.<br><br><strong>Risk:</strong> If Birla Opus doesn't match the full 11%, the price gap widens — accelerating switching in Berger's core markets. Management response: "The calibrated price increase of over 11% initiated from end March 2026 is expected to support gross margin amid rising raw material cost." The effectiveness will be visible in Q1 FY27 numbers.`,
@@ -1155,21 +1494,21 @@ const KB = {
   "jsw dulux acquisition deal": {en:`<strong>JSW Paints' ₹12,915 Cr Akzo Nobel Acquisition — Good Deal?</strong><br><br>JSW Paints (unlisted, part of Sajjan Jindal's JSW Group) acquired 61.2% of Akzo Nobel India in December 2025 for approximately ₹12,915 Cr — making it one of India's largest consumer brand M&A deals. The company is now renamed <strong>JSW Dulux Limited</strong> (effective April 1, 2026), HQ moved to JSW Center, Mumbai.<br><br><strong>The strategic rationale:</strong> JSW Paints had ~3% market share. Akzo Nobel (Dulux brand) had ~6%. Combined = ~9% → targeting top-3 position. The Dulux brand is particularly strong in premium decorative, architectural, and industrial coatings — complementing JSW's mid-market focus. Combined dealer network: 29,000+. Revenue target: ₹7,000 Cr platform by FY26.<br><br><strong>Post-acquisition restructuring:</strong> Sold Powder Coatings + International Research Centre (IRC) in Q2 FY26 for ₹1,874 Cr — focusing on retained decorative + industrial + protective coatings. This generated exceptional FY26 PAT of ₹1,973.8 Cr (including gains).<br><br><strong>CB Research view:</strong> The deal makes strategic sense — Dulux brand gives JSW instant premium credibility that would have taken 5-7 years to build organically. The ₹12,915 Cr price at ~3-4× revenue is steep but justified given brand equity and dealer network. The real test is Q1-Q2 FY27 operating performance as restructuring completes.`,
    ta:`<strong>JSW Paints' ₹12,915 Cr Akzo Nobel Acquisition — நல்ல deal-ஆ?</strong><br><br>JSW Paints December 2025-ல் Akzo Nobel India-ல் 61.2% stake வாங்கியது ₹12,915 Cr-க்கு. Company now JSW Dulux Limited (April 1, 2026 முதல்). HQ Mumbai-க்கு shift.<br><br>JSW Paints ~3% share + Akzo Nobel ~6% = ~9% combined — top-3 target. Dulux brand premium decorative-ல் strong. Combined dealers 29,000+.<br><br>Post-acquisition: Powder Coatings + IRC business ₹1,874 Cr-க்கு sell செய்தது — FY26 exceptional PAT inflate ஆனது.<br><br>CB Research: Strategic sense இருக்கிறது. ₹12,915 Cr price steep ஆனால் Dulux brand + dealer network worth it. Q1-Q2 FY27 results தான் real test.`},
 
-  "jsw dulux q4 results": {en:`<strong>JSW Dulux (Akzo Nobel India) Q4 FY26 Results ✅ (May 13, 2026)</strong><br><br><strong>Consolidated Q4 FY26:</strong> Revenue ₹883.3 Cr (−12.9% YoY† / +6.2% on comparable basis) | PAT ₹125.7 Cr (+51.6% excluding carved-out, +16% overall) | EBITDA ₹126.9 Cr (+2.1%) | Volume Growth +23% YoY (retained business) | Real estate asset sale ₹64.8 Cr boosted Q4 PAT.<br><br><strong>† Revenue decline context:</strong> Powder Coatings + IRC businesses were divested in Q2 FY26 for ₹1,874 Cr. Underlying retained-business revenue grew +6.2% and volumes grew +23%. The headline −12.9% is misleading.<br><br><strong>FY26 Full Year:</strong> Revenue ₹3,599 Cr | Reported PAT ₹1,973.8 Cr (includes exceptional gains from business sale) | Core operating PAT ~₹250-300 Cr | Dividend ₹50/share recommended.<br><br><strong>CEO Rajiv Rajgopal:</strong> "In Q4, overall demand conditions improved, and the market saw a demand uptick across verticals. In March 2026, given the geopolitical situation, raw material prices increased sharply. Calibrated price increases were taken." Zero debt company. CMP ~₹2,934.`,
-   ta:`<strong>JSW Dulux Q4 FY26 ✅ (May 13, 2026)</strong><br><br>Revenue ₹883 Cr (−12.9% YoY† ஆனால் retained biz +6.2%) | PAT ₹125.7 Cr (+16%) | EBITDA ₹126.9 Cr | Volume +23% YoY (retained business).<br><br>†Revenue decline: Powder Coatings + IRC business Q2 FY26-ல் divest ஆனது — headline decline misleading. Underlying business +23% volumes.<br><br>FY26: Revenue ₹3,599 Cr | Reported PAT ₹1,973.8 Cr (exceptional gains included) | Dividend ₹50/share. Zero debt. CMP ~₹2,934.`},
+  "jsw dulux q4 results": {en:`<strong>JSW Dulux (Akzo Nobel India) Q4 FY26 Results ✅ (May 13, 2026)</strong><br><br><strong>Consolidated Q4 FY26:</strong> Revenue ₹883.3 Cr (−12.9% YoY† / +6.2% on comparable basis) | PAT ₹125.7 Cr (+51.6% excluding carved-out, +16% overall) | EBITDA ₹126.9 Cr (+2.1%) | Volume Growth +23% YoY (retained business) | Real estate asset sale ₹64.8 Cr boosted Q4 PAT.<br><br><strong>† Revenue decline context:</strong> Powder Coatings + IRC businesses were divested in Q2 FY26 for ₹1,874 Cr. Underlying retained-business revenue grew +6.2% and volumes grew +23%. The headline −12.9% is misleading.<br><br><strong>FY26 Full Year:</strong> Revenue ₹3,599 Cr | Reported PAT ₹1,973.8 Cr (includes exceptional gains from business sale) | Core operating PAT ~₹250-300 Cr | Dividend ₹206/share total (₹50 final + ₹156 special dividend).<br><br><strong>CEO Rajiv Rajgopal:</strong> "In Q4, overall demand conditions improved, and the market saw a demand uptick across verticals. In March 2026, given the geopolitical situation, raw material prices increased sharply. Calibrated price increases were taken." Zero debt company. CMP ~₹2,934.`,
+   ta:`<strong>JSW Dulux Q4 FY26 ✅ (May 13, 2026)</strong><br><br>Revenue ₹883 Cr (−12.9% YoY† ஆனால் retained biz +6.2%) | PAT ₹125.7 Cr (+16%) | EBITDA ₹126.9 Cr | Volume +23% YoY (retained business).<br><br>†Revenue decline: Powder Coatings + IRC business Q2 FY26-ல் divest ஆனது — headline decline misleading. Underlying business +23% volumes.<br><br>FY26: Revenue ₹3,599 Cr | Reported PAT ₹1,973.8 Cr (exceptional gains included) | Dividend ₹206/share total (₹50 final + ₹156 special). Zero debt. CMP ~₹2,934.`},
 
   "jsw dulux restructuring": {en:`<strong>JSW Group Takeover of Akzo Nobel — What Changed?</strong><br><br><strong>Before (Akzo Nobel India):</strong> Dutch MNC subsidiary. Focus on Dulux premium decorative + powder coatings + protective coatings. Conservative growth, Dutch parent's priorities. HQ Kolkata.<br><br><strong>After (JSW Dulux, April 2026):</strong> JSW Group ownership. HQ Mumbai (JSW Center). New CEO Rajiv Rajgopal as Joint MD + CEO. Strategy: retain core decorative + industrial/protective; exit powder coatings (sold for ₹1,874 Cr). Aggressive volume growth focus — +23% volumes in Q4 FY26. Board refreshed with new NED and Independent Director.<br><br><strong>Synergy potential:</strong> JSW Steel + JSW Infrastructure projects = captive protective coatings demand. JSW's national distribution network for steel/cement could overlap with paint distribution. Combined JSW Paints + JSW Dulux = 29,000+ dealer network targeting top-3 in India paints.<br><br><strong>Challenge:</strong> JSW Group has significant overall debt (steel-driven). Capital allocation to paints may be constrained vs Birla Opus' dedicated ₹10,000 Cr paint-specific investment.`,
    ta:`<strong>JSW Takeover பிறகு என்ன மாறியது?</strong><br><br>Before (Akzo Nobel): Dutch MNC, conservative growth, HQ Kolkata.<br>After (JSW Dulux): JSW Group, HQ Mumbai, aggressive volume focus. Powder Coatings ₹1,874 Cr-க்கு sell. Volume +23% Q4 FY26.<br><br>Synergy: JSW Steel/Infra projects → captive protective coatings. Combined 29,000+ dealer network.<br><br>Challenge: JSW Group total debt அதிகம் — Birla's ₹10,000 Cr dedicated paint investment-ஐ match செய்ய கஷ்டம்.`},
 
   // ── INDIGO PAINTS ──
-  "indigo paints margin": {en:`<strong>Indigo Paints — 22.5% EBITDA Margin Explained</strong><br><br>Indigo Paints sustains sector-best EBITDA margin of 22.5% (vs Berger 16.8%, Asian Paints 17.7%, JSW Dulux 14.4%) through three structural advantages:<br><br><strong>1. Differentiated Product Mix:</strong> Indigo focuses on products where it holds first-mover advantage — Cement Concrete Primer, Metallic Emulsion, Floor Coat, Dirtproof Exterior Emulsion. These products have limited direct competition and command 15-25% price premiums. Competitors like Birla Opus are only now entering these categories.<br><br><strong>2. Premium Gross Margin Protection:</strong> Q4 FY26 gross margin was 48.6% — held despite key RM prices surging 50-100% in March 2026. Management attributed this to "richer mix of differentiated and premium products" — essentially, Indigo's product basket is less TiO2-intensive than commodity emulsions.<br><br><strong>3. Apple Chemie Subsidiary:</strong> Construction chemicals (Apple Chemie) growing fast and contributing incremental high-margin revenue.<br><br><strong>Risk to margin:</strong> Birla Opus is entering differentiated categories. As competition increases in Indigo's niche, pricing power may erode. FII exit (−380bps in Q4) may reflect this concern.`,
-   ta:`<strong>Indigo Paints 22.5% EBITDA Margin எப்படி possible?</strong><br><br>Sector-best margin 3 structural advantages-ஆல்:<br><br>1. <strong>Differentiated Products:</strong> Cement Concrete Primer, Metallic Emulsion, Floor Coat — first-mover advantage. Limited competition. 15-25% price premium.<br><br>2. <strong>Premium Gross Margin:</strong> Q4 FY26 gross margin 48.6% — RM 50-100% spike-ல் hold ஆனது. Premium product basket less TiO2-intensive.<br><br>3. <strong>Apple Chemie:</strong> Construction chemicals subsidiary fast-growing, high-margin.<br><br>Risk: Birla Opus differentiated categories-ல் enter ஆகி வருகிறது. Pricing power erosion possible. FII −380bps signal இதை indicate செய்யலாம்.`},
+  "indigo paints margin": {en:`<strong>Indigo Paints — 23.0% EBITDA Margin Explained</strong><br><br>Indigo Paints sustains sector-best EBITDA margin of 23.0% (vs Berger 18.3%, Asian Paints 17.7%, JSW Dulux 14.4%) through three structural advantages:<br><br><strong>1. Differentiated Product Mix:</strong> Indigo focuses on products where it holds first-mover advantage — Cement Concrete Primer, Metallic Emulsion, Floor Coat, Dirtproof Exterior Emulsion. These products have limited direct competition and command 15-25% price premiums. Competitors like Birla Opus are only now entering these categories.<br><br><strong>2. Premium Gross Margin Protection:</strong> Q4 FY26 gross margin was 48.6% — held despite key RM prices surging 50-100% in March 2026. Management attributed this to "richer mix of differentiated and premium products" — essentially, Indigo's product basket is less TiO2-intensive than commodity emulsions.<br><br><strong>3. Apple Chemie Subsidiary:</strong> Construction chemicals (Apple Chemie) growing fast and contributing incremental high-margin revenue.<br><br><strong>Risk to margin:</strong> Birla Opus is entering differentiated categories. As competition increases in Indigo's niche, pricing power may erode. FII exit (−380bps in Q4) may reflect this concern.`,
+   ta:`<strong>Indigo Paints 23.0% EBITDA Margin எப்படி possible?</strong><br><br>Sector-best margin 3 structural advantages-ஆல்:<br><br>1. <strong>Differentiated Products:</strong> Cement Concrete Primer, Metallic Emulsion, Floor Coat — first-mover advantage. Limited competition. 15-25% price premium.<br><br>2. <strong>Premium Gross Margin:</strong> Q4 FY26 gross margin 48.6% — RM 50-100% spike-ல் hold ஆனது. Premium product basket less TiO2-intensive.<br><br>3. <strong>Apple Chemie:</strong> Construction chemicals subsidiary fast-growing, high-margin.<br><br>Risk: Birla Opus differentiated categories-ல் enter ஆகி வருகிறது. Pricing power erosion possible. FII −380bps signal இதை indicate செய்யலாம்.`},
 
-  "indigo fii selling": {en:`<strong>Indigo Paints — FII Sold 380bps in Q4 FY26. What Does It Signal?</strong><br><br>FII holding fell sharply from 11.21% (Dec 2025) to 7.41% (Mar 2026) — a reduction of 380 basis points in a single quarter. Meanwhile, MFs accumulated (20.80% → 22.69% +189bps). This institutional divergence is significant.<br><br><strong>Bear interpretation (FII view):</strong> FIIs are concerned about Indigo's growth trajectory — revenue grew only 4.8% in FY26 vs sector competitors. Birla Opus is a credible threat to Indigo's differentiated categories. At a ~₹4,700 Cr market cap with ~₹152 Cr PAT, the growth-to-size ratio seems challenged. The PAT barely grew (+1.4% Q4, +7.1% FY26). For FIIs with return targets of 15-20%, Indigo doesn't meet the bar at current growth rates.<br><br><strong>Bull interpretation (MF view):</strong> Revenue +9.7% in Q4 (sector-best growth), 22.5% EBITDA margins, 48.6% gross margin in an RM spike — operational quality is exceptional. At ~31× P/E, valuation is cheapest in the sector. MFs see the FII selling as an opportunity. Jodhpur plant + Apple Chemie are FY27-28 catalysts.<br><br><strong>CB Research:</strong> The FII exodus is a yellow flag, not a red flag. Core business quality is strong. Accumulate below ₹1,000.`,
-   ta:`<strong>Indigo-ல் FII 380bps sell செய்தது — என்ன signal?</strong><br><br>FII: 11.21% → 7.41% (−380bps single quarter). MF: 20.80% → 22.69% (+189bps). Institutional divergence significant.<br><br>FII bear view: Revenue growth 4.8% FY26 மட்டுமே. Birla Opus differentiated categories-ல் enter. PAT barely grew. Return targets meet ஆகவில்லை.<br><br>MF bull view: Q4 revenue +9.7% sector-best. 22.5% EBITDA, 48.6% gross margin in RM spike — exceptional quality. ~31× P/E sector-ல் cheapest. Jodhpur + Apple Chemie catalysts.<br><br>CB Research: Yellow flag, not red flag. Core business strong. ₹1,000 கீழே accumulate.`},
+  "indigo fii selling": {en:`<strong>Indigo Paints — FII Sold 380bps in Q4 FY26. What Does It Signal?</strong><br><br>FII holding fell sharply from 11.21% (Dec 2025) to 7.41% (Mar 2026) — a reduction of 380 basis points in a single quarter. Meanwhile, MFs accumulated (20.80% → 22.69% +189bps). This institutional divergence is significant.<br><br><strong>Bear interpretation (FII view):</strong> FIIs are concerned about Indigo's growth trajectory — revenue grew only 4.8% in FY26 vs sector competitors. Birla Opus is a credible threat to Indigo's differentiated categories. At a ~₹4,700 Cr market cap with ~₹152 Cr PAT, the growth-to-size ratio seems challenged. The PAT barely grew (+1.4% Q4, +7.1% FY26). For FIIs with return targets of 15-20%, Indigo doesn't meet the bar at current growth rates.<br><br><strong>Bull interpretation (MF view):</strong> Revenue +9.7% in Q4 (sector-best growth), 23.0% EBITDA margins (standalone), 48.6% gross margin in an RM spike — operational quality is exceptional. At ~31× P/E, valuation is cheapest in the sector. MFs see the FII selling as an opportunity. Jodhpur plant + Apple Chemie are FY27-28 catalysts.<br><br><strong>CB Research:</strong> The FII exodus is a yellow flag, not a red flag. Core business quality is strong. Accumulate below ₹1,000.`,
+   ta:`<strong>Indigo-ல் FII 380bps sell செய்தது — என்ன signal?</strong><br><br>FII: 11.21% → 7.41% (−380bps single quarter). MF: 20.80% → 22.69% (+189bps). Institutional divergence significant.<br><br>FII bear view: Revenue growth 4.8% FY26 மட்டுமே. Birla Opus differentiated categories-ல் enter. PAT barely grew. Return targets meet ஆகவில்லை.<br><br>MF bull view: Q4 revenue +9.7% sector-best. 23.0% EBITDA, 48.6% gross margin in RM spike — exceptional quality. ~31× P/E sector-ல் cheapest. Jodhpur + Apple Chemie catalysts.<br><br>CB Research: Yellow flag, not red flag. Core business strong. ₹1,000 கீழே accumulate.`},
 
-  "indigo q4 results": {en:`<strong>Indigo Paints Q4 FY26 Results ✅ (May 22, 2026)</strong><br><br><strong>Consolidated Q4 FY26:</strong> Revenue ₹425.3 Cr (+9.7% YoY) | PAT ₹57.7 Cr (+1.4% YoY, +58.5% QoQ) | EBITDA ₹95.6 Cr (+9.3%) | EBITDA Margin 22.5% (vs 23.4% Q4 FY25, −90bps) | Gross Margin 48.6% — held despite 50-100% RM spike in March 2026.<br><br><strong>PAT muted despite volume growth</strong> due to: non-cash MTM treasury loss (bond yield spike in Q4) treated as exceptional item of ₹6.1 Cr. Core operations were healthy. Labour code implementation cost ₹6.1 Cr exceptional item.<br><br><strong>FY26 Full Year:</strong> Consol Revenue ₹1,405 Cr (+4.8%) | Consol PAT ₹152.2 Cr (+7.1%) | Standalone EBITDA Margin 18.5% | Dividend ₹5/share.<br><br>Highlights: Sales momentum gained from November 2025 continued. Highest-ever quarterly revenue ₹425 Cr. Apple Chemie growing. New CBO and GM Finance appointed. CMP ~₹1,003.`,
-   ta:`<strong>Indigo Paints Q4 FY26 ✅ (May 22, 2026)</strong><br><br>Revenue ₹425 Cr (+9.7%) | PAT ₹57.7 Cr (+1.4%) | EBITDA Margin 22.5% | Gross Margin 48.6% — RM spike-ல் hold ஆனது.<br><br>PAT muted: MTM treasury loss (bond yield spike) + Labour code implementation — non-cash/exceptional items.<br><br>FY26: Revenue ₹1,405 Cr (+4.8%) | PAT ₹152.2 Cr (+7.1%) | Dividend ₹5/share. Highest-ever quarterly revenue ₹425 Cr. CMP ~₹1,003.`},
+  "indigo q4 results": {en:`<strong>Indigo Paints Q4 FY26 Results ✅ (May 22, 2026)</strong><br><br><strong>Consolidated Q4 FY26:</strong> Revenue ₹425.3 Cr (+9.7% YoY) | PAT ₹57.7 Cr (+1.4% YoY, +58.5% QoQ) | EBITDA ₹95.6 Cr (+9.3%) | EBITDA Margin 23.0% standalone (vs 23.4% Q4 FY25, −40bps) | Gross Margin 48.6% — held despite 50-100% RM spike in March 2026.<br><br><strong>PAT muted despite volume growth</strong> due to: non-cash MTM treasury loss (bond yield spike in Q4) treated as exceptional item of ₹6.1 Cr. Core operations were healthy. Labour code implementation cost ₹6.1 Cr exceptional item.<br><br><strong>FY26 Full Year:</strong> Consol Revenue ₹1,405 Cr (+4.8%) | Consol PAT ₹152.2 Cr (+7.1%) | Standalone EBITDA Margin 18.5% | Dividend ₹5/share.<br><br>Highlights: Sales momentum gained from November 2025 continued. Highest-ever quarterly revenue ₹425 Cr. Apple Chemie growing. New CBO and GM Finance appointed. CMP ~₹1,003.`,
+   ta:`<strong>Indigo Paints Q4 FY26 ✅ (May 22, 2026)</strong><br><br>Revenue ₹425 Cr (+9.7%) | PAT ₹57.7 Cr (+1.4%) | EBITDA Margin 23.0% (sttd) | Gross Margin 48.6% — RM spike-ல் hold ஆனது.<br><br>PAT muted: MTM treasury loss (bond yield spike) + Labour code implementation — non-cash/exceptional items.<br><br>FY26: Revenue ₹1,405 Cr (+4.8%) | PAT ₹152.2 Cr (+7.1%) | Dividend ₹5/share. Highest-ever quarterly revenue ₹425 Cr. CMP ~₹1,003.`},
 
   // ── RAW MATERIALS ──
   "tio2 raw material paint cost": {en:`<strong>TiO2 — The Most Critical Raw Material in Paint</strong><br><br>Titanium Dioxide (TiO2) is the white pigment that makes paint opaque and white. It's irreplaceable — no cost-effective substitute in quality decorative emulsions at scale. It alone accounts for <strong>12-35% of raw material costs</strong> depending on product mix. India imports significant volumes from China, Germany, and South Korea. Domestic production capacity is limited and insufficient to buffer supply shocks.<br><br><strong>March 2026 Crisis:</strong> Middle East conflict (Iran-related) disrupted key supply chains. TiO2 and crude derivative prices surged 50-100% during March 2026. The full impact was contained in Q4 FY26 because companies had inventory — but <strong>Q1 FY27 will bear the full brunt</strong>. Analysts expect 200-400bps gross margin compression in Q1 FY27.<br><br><strong>Why FY26-27 is worse than FY22:</strong> In FY22, paint companies took 20-25% cumulative price hikes because Birla Opus didn't exist. Today, Birla Opus is 5-12% cheaper — so AP can't hike 15% without widening the gap to 20-25% and accelerating dealer switching. <em>The RM spike meets competitive constraint: companies can't fully pass through costs this time.</em> CRISIL projects only 3-5% organised revenue growth in FY27-28 despite 7-8% volume growth — the gap is forced price compression.`,
@@ -1182,8 +1521,8 @@ const KB = {
   "paint marketing change contractor": {en:`<strong>How India Paint Marketing Has Changed — The Contractor Revolution</strong><br><br>The biggest structural change in Indian paint marketing is the rise of the <strong>contractor/painter as kingmaker</strong>. Research shows contractors influence 70-80% of final brand decisions — when a homeowner asks "which paint?", the painter's recommendation almost always wins.<br><br><strong>Old Model (Asian Paints-led):</strong> Bollywood celebrity advertising → consumer brand recall → consumer asks dealer for AP → dealer sells AP → AP machine loyalty locks in dealer. The chain started with consumer advertising.<br><br><strong>New Model (Birla Opus disruption):</strong> Pre-onboard contractors (3,00,000 before launch) → contractor recommends Birla → consumer accepts → dealer stocks Birla (because of 20-day credit + free machines + better margin). The chain starts with contractor and dealer economics, not consumer advertising.<br><br><strong>Digital shift:</strong> AI colour visualizers, cloud WMS at depots, IPL over Bollywood, B2B digital platforms (Birla Pivot), D2C direct-to-homeowner channels. Asian Paints' "Colour World" store experience is competing with Birla's phone-based AR tools.<br><br><strong>The net effect:</strong> AP's 80-year brand advertising moat is weakening. The new moat is <em>contractor loyalty + dealer economics</em> — and Birla Opus is winning that battle decisively in FY26.`,
    ta:`<strong>India Paint Marketing மாற்றம் — Contractor Revolution</strong><br><br>மிக முக்கியமான structural change: <strong>Contractor/painter</strong> இப்போது kingmaker. Research: 70-80% homeowner decisions-ல் contractor/painter influence செலுத்துகிறான்.<br><br><strong>Old Model (AP-led):</strong> Bollywood ads → consumer brand recall → consumer asks AP → dealer sells AP → machine loyalty locks dealer. Chain: consumer ads முதல் தொடங்கியது.<br><br><strong>New Model (Birla Opus):</strong> Contractors pre-onboard (3 lakh launch-க்கு முன்) → contractor recommends Birla → consumer accepts → dealer stocks Birla (20-day credit + free machines + better margin). Chain: contractor + dealer economics முதல்.<br><br><strong>Digital shift:</strong> AI colour visualizers, IPL vs Bollywood, cloud WMS, Birla Pivot B2B platform. AP's "Colour World" competing with phone-based AR tools.<br><br><strong>Net effect:</strong> AP's 80-year brand moat weakening. New moat = contractor loyalty + dealer economics — Birla FY26-ல் இதை win செய்கிறது.`},
 
-  "best paint stock fy27": {en:`<strong>Best Risk-Reward Paint Stock for FY27 — CB Research</strong><br><br><strong>🥇 1. Grasim Industries (for Birla Opus exposure)</strong> — Revenue doubled YoY while industry grew 3-4%. 10% market share in 25 months. EBIT margin turning positive. Losses reducing. At ~32× Grasim P/E, you get the paint growth engine + UltraTech (world's largest cement ex-China) + ABFL financial services at a conglomerate discount. FY28 ₹10,000 Cr profitable paint franchise is credible. <strong>BUY.</strong><br><br><strong>🥈 2. Indigo Paints</strong> — 22.5% EBITDA margin, 48.6% gross margin holding in RM spike, +9.7% Q4 revenue (sector-best growth). ~31× P/E — cheapest in sector on earnings quality. Jodhpur plant + Apple Chemie are FY27-28 catalysts. FII selling created a buy window. <strong>Accumulate ₹950-1,050.</strong><br><br><strong>🥉 3. Berger Paints</strong> — Q4 volume +11.8%, bold 11% hike shows confidence. FY27 volume guidance 12-13%. New factories in WB/Odisha. ~50× P/E reasonable for #2 position with improving trajectory. <strong>Buy on dips below ₹460.</strong><br><br><strong>⚠️ Hold: Asian Paints</strong> — Quality business adapting but 65× P/E at 3-4% growth is stretched. Re-rate risk. Wait for ₹1,900-2,000 (50× P/E). Today's Q4 result is key catalyst.<br><br><strong>Watch: JSW Dulux</strong> — Restructuring completing. Q1-Q2 FY27 will show the real post-integration performance.`,
-   ta:`<strong>FY27-ல் சிறந்த Paint Stock — CB Research Verdict</strong><br><br><strong>🥇 1. Grasim Industries</strong> — Revenue doubled YoY. 10% market share. Losses குறைகிறது. ~32× P/E-ல் paint growth + UltraTech + ABFL கிடைக்கிறது. BUY.<br><br><strong>🥈 2. Indigo Paints</strong> — 22.5% EBITDA margin, 48.6% gross margin. ~31× P/E sector-ல் cheapest. FII selling buy window create ஆனது. ₹950-1,050 Accumulate.<br><br><strong>🥉 3. Berger Paints</strong> — Volume +11.8%, 11% hike confidence. FY27 guidance 12-13% volumes. ₹460-க்கு கீழே Buy on dips.<br><br><strong>⚠️ Hold: Asian Paints</strong> — Quality business ஆனால் 65× P/E stretched. ₹1,900-2,000-ல் accumulate. இன்று Q4 result key catalyst.<br><br><strong>Watch: JSW Dulux</strong> — Restructuring complete. Q1-Q2 FY27 real performance தெரியும்.`},
+  "best paint stock fy27": {en:`<strong>Best Risk-Reward Paint Stock for FY27 — CB Research</strong><br><br><strong>🥇 1. Grasim Industries (for Birla Opus exposure)</strong> — Revenue doubled YoY while industry grew 3-4%. 10% market share in 25 months. EBIT margin turning positive. Losses reducing. At ~32× Grasim P/E, you get the paint growth engine + UltraTech (world's largest cement ex-China) + ABFL financial services at a conglomerate discount. FY28 ₹10,000 Cr profitable paint franchise is credible. <strong>BUY.</strong><br><br><strong>🥈 2. Indigo Paints</strong> — 23.0% standalone EBITDA margin, 48.6% gross margin holding in RM spike, +9.7% Q4 revenue (sector-best growth). ~31× P/E — cheapest in sector on earnings quality. Jodhpur plant + Apple Chemie are FY27-28 catalysts. FII selling created a buy window. <strong>Accumulate ₹950-1,050.</strong><br><br><strong>🥉 3. Berger Paints</strong> — Q4 volume +11.8%, bold 11% hike shows confidence. FY27 volume guidance 12-13%. New factories in WB/Odisha. ~50× P/E reasonable for #2 position with improving trajectory. <strong>Buy on dips below ₹460.</strong><br><br><strong>⚠️ Hold: Asian Paints</strong> — Quality business adapting but 65× P/E at 3-4% growth is stretched. Re-rate risk. Wait for ₹1,900-2,000 (50× P/E). Today's Q4 result is key catalyst.<br><br><strong>Watch: JSW Dulux</strong> — Restructuring completing. Q1-Q2 FY27 will show the real post-integration performance.`,
+   ta:`<strong>FY27-ல் சிறந்த Paint Stock — CB Research Verdict</strong><br><br><strong>🥇 1. Grasim Industries</strong> — Revenue doubled YoY. 10% market share. Losses குறைகிறது. ~32× P/E-ல் paint growth + UltraTech + ABFL கிடைக்கிறது. BUY.<br><br><strong>🥈 2. Indigo Paints</strong> — 23.0% EBITDA margin (sttd), 48.6% gross margin. ~31× P/E sector-ல் cheapest. FII selling buy window create ஆனது. ₹950-1,050 Accumulate.<br><br><strong>🥉 3. Berger Paints</strong> — Volume +11.8%, 11% hike confidence. FY27 guidance 12-13% volumes. ₹460-க்கு கீழே Buy on dips.<br><br><strong>⚠️ Hold: Asian Paints</strong> — Quality business ஆனால் 65× P/E stretched. ₹1,900-2,000-ல் accumulate. இன்று Q4 result key catalyst.<br><br><strong>Watch: JSW Dulux</strong> — Restructuring complete. Q1-Q2 FY27 real performance தெரியும்.`},
 
   "paint fy28 market share prediction": {en:`<strong>India Paint Market Share Prediction — FY28</strong><br><br>Based on current trajectory, growth rates, and strategic positions:<br><br><strong>Asian Paints:</strong> FY26: ~50% → FY28 est: ~45-47%. Market share erosion likely to continue at 1-2%/year as Birla Opus deepens Tier-2/3 penetration. But luxury and waterproofing segments will help floor the decline.<br><br><strong>Birla Opus:</strong> FY26: >10% → FY28 est: ~15-18%. Still aggressive growth phase. 6 mega-plants + dealer expansion + contractor network growing. Revenue doubling each year may slow but 30-35% growth likely in FY27-28.<br><br><strong>Berger Paints:</strong> FY26: ~19.5% → FY28 est: ~20-21%. Slight gains as AP loses share; Berger absorbs some of the switching. New eastern India factories add capacity.<br><br><strong>JSW Dulux:</strong> FY26: ~6% → FY28 est: ~8-10%. Post-restructuring, full JSW Group backing. Dulux brand premium position intact. Combined JSW Paints + Dulux scaling up.<br><br><strong>Kansai Nerolac:</strong> ~9-10% — broadly stable.<br><br><strong>Indigo Paints:</strong> ~3.5-4% — growing gradually.<br><br><strong>The big story:</strong> India's paint market is moving from a near-monopoly (AP at 59%) to a competitive oligopoly by FY28 — AP ~45-47%, Birla ~15-18%, Berger ~20-21%, JSW ~8-10%. This structural change is irreversible. Price competition will intensify, favouring consumers.`,
    ta:`<strong>India Paint Market Share FY28 Prediction</strong><br><br>தற்போதைய trends based:<br><br><strong>Asian Paints:</strong> FY26 ~50% → FY28 ~45-47%. Birla Opus Tier-2/3-ல் deepen ஆவதால் erosion continue. Luxury + waterproofing floor the decline.<br><br><strong>Birla Opus:</strong> FY26 >10% → FY28 ~15-18%. Aggressive growth phase continue. 30-35% revenue growth FY27-28 likely.<br><br><strong>Berger:</strong> FY26 ~19.5% → FY28 ~20-21%. AP loss-ல் slight gains.<br><br><strong>JSW Dulux:</strong> FY26 ~6% → FY28 ~8-10%. Post-restructuring full JSW backing. Dulux brand intact.<br><br><strong>Big story:</strong> India paint market near-monopoly (AP 59%) → competitive oligopoly (AP ~45%, Birla ~17%, Berger ~21%, JSW ~9%) by FY28. This irreversible. Consumer-க்கு benefit — price competition intensify ஆகும்.`}
@@ -1240,7 +1579,7 @@ function findAnswer(q, lang){
     "jsw dulux acquisition deal": ['jsw','acquisition','akzo','₹12915','deal','good deal','₹12,915','bought','purchased'],
     "jsw dulux q4 results":       ['jsw dulux','q4','revenue','883','pat','125','volume','23%','results'],
     "jsw dulux restructuring":    ['restructuring','changed','powder','divest','strategy','after jsw','takeover'],
-    "indigo paints margin":       ['indigo','margin','22.5','ebitda','how','maintain','sustainable','48%','gross'],
+    "indigo paints margin":       ['indigo','margin','23.0','ebitda','how','maintain','sustainable','48%','gross'],
     "indigo fii selling":         ['fii','sold','380','selling','signal','institutional','foreign','11.21','7.41'],
     "indigo q4 results":          ['indigo','q4','425','revenue','pat','57','results','financial'],
     "tio2 raw material paint cost": ['tio2','titanium','titanium dioxide','pigment','critical','march 2026','spike','worse than fy22','fy22'],
