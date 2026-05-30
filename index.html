@@ -164,42 +164,36 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 @media(max-width:640px){.p-body{padding:16px 14px}.p-header{padding:8px 14px}.grid-reports{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.login-card{padding:22px 16px 18px}.brand-name{font-size:22px}}
 
 /* ── ADDED: Search bar ── */
-.p-search-wrap{padding:10px 16px;width:100%;background:#f5f7fa;border-bottom:1px solid #e2e8f0;}
-.p-search-box{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #e2e8f0;border-radius:11px;padding:8px 14px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
-.p-search-box svg{color:#94a3b8;flex-shrink:0;width:15px;height:15px}
-#reportSearch{flex:1;border:none;outline:none;font-family:inherit;font-size:13px;color:#0f172a;background:transparent}
+/* ── PORTAL BODY ── */
+.p-search-area{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 16px 0;position:sticky;top:0;z-index:100}
+.p-search-box{display:flex;align-items:center;gap:8px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:8px 12px;margin-bottom:10px}
+.p-search-box svg{color:#94a3b8;flex-shrink:0;width:14px;height:14px}
+#reportSearch{flex:1;border:none;outline:none;font-family:inherit;font-size:14px;color:#0f172a;background:transparent;min-width:0}
 #reportSearch::placeholder{color:#94a3b8}
-.p-search-count{font-size:11px;color:#94a3b8;font-family:monospace;white-space:nowrap}
+.p-search-count{font-size:11px;color:#94a3b8;font-family:monospace;white-space:nowrap;flex-shrink:0}
 #srCount{color:#6366f1;font-weight:700}
-
-/* ── ADDED: Sidebar layout ── */
-.p-body-wrap{display:flex;width:100%;gap:0}
-.p-sidebar{width:200px;flex-shrink:0;background:#f8fafc;border-right:1px solid #e2e8f0;padding:14px 8px 24px;}
-.p-sidebar-head{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;padding:0 8px 8px;display:flex;align-items:center;gap:6px}
-.p-sidebar-head::after{content:'';flex:1;height:1px;background:#e2e8f0}
-.pcat-btn{display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;border-radius:7px;padding:7px 10px;cursor:pointer;font-family:inherit;font-size:12px;color:#475569;text-align:left;transition:all .14s;margin-bottom:1px}
-.pcat-btn:hover{background:#eef2ff;color:#4338ca}
-.pcat-btn.active{background:#eef2ff;color:#4338ca;font-weight:600}
-.pcat-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
-.pcat-count{margin-left:auto;font-size:10px;font-family:monospace;color:#94a3b8}
-.p-content{flex:1;min-width:0;}
-.p-glossary-btn{background:linear-gradient(135deg,#0f766e,#14b8a6);border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;display:flex;align-items:center;gap:5px;text-decoration:none}
-.p-glossary-btn:hover{opacity:.9}
+.p-sector-pills{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.p-sector-pills::-webkit-scrollbar{display:none}
+.spill{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:#475569;cursor:pointer;font-family:inherit;flex-shrink:0;transition:all .15s}
+.spill:active{transform:scale(.96)}
+.spill.active{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+.spill-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.p-main{padding:18px 16px 60px;background:#f5f7fa}
+.p-glossary-btn{background:linear-gradient(135deg,#0f766e,#14b8a6);border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;font-family:inherit;white-space:nowrap;display:flex;align-items:center;gap:4px;text-decoration:none;flex-shrink:0}
 @media(max-width:640px){
-  .p-sidebar{display:none}
-  .p-body-wrap{display:block}
-  .p-content{padding:0;display:block;width:100%}
-  .p-body{padding:14px 14px 40px}
-  .p-search-wrap{padding:8px 14px 8px}
-  .p-search-box{padding:7px 12px}
   .grid-reports{grid-template-columns:1fr}
   .stats{grid-template-columns:repeat(2,1fr)}
-  .p-header{padding:8px 14px}
+  .p-header{padding:8px 12px}
+  .p-title{font-size:12px}
   .login-card{padding:22px 16px 18px}
   .brand-name{font-size:22px}
-  .hbtns{gap:5px}
+  .hbtns{gap:4px}
   .p-nav-btn{font-size:10px;padding:4px 8px}
-  .p-exit{font-size:10px;padding:4px 9px}
+  .p-exit{font-size:10px;padding:4px 8px}
+  .p-main{padding:14px 12px 60px}
+  .rc{padding:14px}
+  .welcome h2{font-size:17px}
+  .welcome p{font-size:12px}
 }
 
 </style>
@@ -327,43 +321,34 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 <button class="p-admin" id="adminBtn" onclick="openAdmin()">🔧 Admin Panel</button>
     </div>
   </div>
-  <!-- search bar -->
-  <div class="p-search-wrap" id="pSearchWrap" style="display:none">
-    <div class="p-search-box">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg>
-      <input id="reportSearch" type="text" placeholder="Search reports by sector, keyword…" autocomplete="off">
-      <span class="p-search-count"><span id="srCount">0</span> reports</span>
+  <!-- portal body — always visible after login -->
+  <div id="portalBody" style="display:none;flex-direction:column;flex:1">
+    <!-- search + sector pills -->
+    <div class="p-search-area">
+      <div class="p-search-box">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg>
+        <input id="reportSearch" type="text" placeholder="Search reports…" autocomplete="off">
+        <span class="p-search-count"><span id="srCount">0</span></span>
+      </div>
+      <div class="p-sector-pills" id="sectorPills"></div>
+    </div>
+    <!-- main content -->
+    <div class="p-main">
+      <div class="welcome">
+        <h2>Welcome, <span class="pw" id="welcomeName">Member</span> 👋</h2>
+        <p>Tap any report to open it. Use search or sector pills to filter.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="sv" style="color:#6366f1" id="stReports">—</div><div class="sl">Reports</div></div>
+        <div class="stat"><div class="sv" style="color:#f59e0b" id="stMembers">—</div><div class="sl">Members</div></div>
+        <div class="stat"><div class="sv" style="color:#4ade80">May 2026</div><div class="sl">Updated</div></div>
+        <div class="stat"><div class="sv" style="color:#34d399" id="stTime">—</div><div class="sl">Loaded</div></div>
+      </div>
+      <div class="notice"><span style="font-size:17px;flex-shrink:0">💡</span><span>Reports sorted newest first. <strong>Market Breaking News</strong> always appears at top.</span></div>
+      <div class="sec-head" id="reportsHead">📊 All Reports — Newest First</div>
+      <div class="grid-reports" id="reportsGrid"></div>
     </div>
   </div>
-  <!-- sidebar + content -->
-  <div class="p-body-wrap" id="pBodyWrap" style="display:none">
-    <div class="p-sidebar" id="pSidebar">
-      <div class="p-sidebar-head">Sectors</div>
-      <div id="sidebarCats"></div>
-    </div>
-    <div class="p-content">
-      <div class="p-body">
-        <div class="welcome">
-          <h2>Welcome, <span class="pw" id="welcomeName">Member</span> 👋</h2>
-          <p>Your exclusive CB Research reports are below. Each opens in a new tab — press Back or close the tab to return here.</p>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="sv" style="color:#6366f1" id="stReports">—</div><div class="sl">Reports</div></div>
-          <div class="stat"><div class="sv" style="color:#f59e0b" id="stMembers">—</div><div class="sl">Members</div></div>
-          <div class="stat"><div class="sv" style="color:#4ade80">May 2026</div><div class="sl">Last Updated</div></div>
-          <div class="stat"><div class="sv" style="color:#34d399" id="stTime">—</div><div class="sl">Loaded At</div></div>
-        </div>
-        <div class="notice"><span style="font-size:17px;flex-shrink:0">💡</span><span>Reports are sorted newest first. <strong>Bookmark this page</strong> — new reports appear automatically.</span></div>
-        <div class="quick-nav">
-          <button class="qnav-btn" onclick="document.getElementById('reportsGrid').scrollIntoView({behavior:'smooth'})">📊 All Reports</button>
-          <button class="qnav-btn" style="background:#f0fdf4;color:#059669;border-color:#6ee7b7" onclick="window.scrollTo({top:0,behavior:'smooth'})">🏠 Top</button>
-          <button class="qnav-btn" style="background:#fef3c7;color:#92400e;border-color:#fcd34d" onclick="openAdmin()">🔧 Admin</button>
-        </div>
-        <div class="sec-head">📊 All Reports — Newest First</div>
-        <div class="grid-reports" id="reportsGrid"></div>
-      </div><!-- /.p-body -->
-    </div><!-- /.p-content -->
-  </div><!-- /.p-body-wrap -->
 <div class="p-footer"><strong style="color:#475569">© 2026 CB Research &amp; Analytics. All Rights Reserved.</strong><br>CB Research™ · CB Assist™ · Sector Analysis™ are trademarks of CB Research &amp; Analytics.<br>For authorised members only. Not investment advice.</div>
 </div>
 
@@ -485,13 +470,15 @@ function fmtTitle(f){
     .replace(/\b\w/g,l=>l.toUpperCase()).replace(/\s+/g,' ').trim();
 }
 
-function buildCard(r){
+function buildCard(r, isPinned){
   const m    = getMeta(r.file);
   const title= fmtTitle(r.file);
   const tags = m.tags.map(t=>`<span class="rc-tag" style="background:${m.color}18;color:${m.color};border:1px solid ${m.color}33">${t}</span>`).join('');
   const isNew= r.ts && (Date.now()-r.ts < 7*86400000);
-  return `<a class="rc" href="${r.file}" target="_blank">
-    ${isNew?'<span class="rc-new">NEW</span>':''}
+  const pinnedStyle = isPinned ? 'border:2px solid #f59e0b;background:linear-gradient(135deg,#fffbeb,#fff);' : '';
+  const pinnedBadge = isPinned ? '<span style="position:absolute;top:12px;right:12px;background:#f59e0b;color:#fff;font-size:9px;font-weight:800;padding:2px 8px;border-radius:8px;font-family:monospace;letter-spacing:.5px">📌 PINNED</span>' : '';
+  return `<a class="rc" href="${r.file}" target="_blank" style="${pinnedStyle}">
+    ${isPinned ? pinnedBadge : (isNew ? '<span class="rc-new">NEW</span>' : '')}
     <div class="rc-icon">${m.icon}</div>
     <div class="rc-sector">${m.sector}</div>
     <div class="rc-title">${title}</div>
@@ -505,9 +492,9 @@ function buildCard(r){
 }
 
 function loadReports(){
-  // Show search + sidebar
-  document.getElementById('pSearchWrap').style.display='block';
-  document.getElementById('pBodyWrap').style.display=window.innerWidth>640?'flex':'block';
+  // show portal body
+  const pb = document.getElementById('portalBody');
+  pb.style.display='flex';
   // wire search
   document.getElementById('reportSearch').addEventListener('input', function(){
     filterReports(this.value.toLowerCase().trim());
@@ -517,8 +504,13 @@ function loadReports(){
   const sorted = [...PORTAL_CONFIG.reports]
     .map(r => ({ ...r, ts: new Date(r.date).getTime() }))
     .sort((a,b) => b.ts - a.ts);
-  document.getElementById('reportsGrid').innerHTML = sorted.map(buildCard).join('');
-  document.getElementById('srCount').textContent = sorted.length;
+  // Pin Market Breaking News always first
+  const pinned = sorted.filter(r=>r.file.toLowerCase().includes('breaking'));
+  const rest   = sorted.filter(r=>!r.file.toLowerCase().includes('breaking'));
+  const final  = [...pinned, ...rest];
+  document.getElementById('reportsGrid').innerHTML = final.map((r,i)=>buildCard(r,i===0&&pinned.length>0)).join('');
+  document.getElementById('srCount').textContent = final.length;
+  document.getElementById('reportsHead').textContent = '📊 All Reports — Newest First';
   buildPortalSidebar(sorted);
 
   document.getElementById('stReports').textContent  = sorted.length;
@@ -805,17 +797,18 @@ function buildPortalSidebar(reports){
   const counts = {};
   reports.forEach(r => { const s=getSectorTag(r.file); counts[s]=(counts[s]||0)+1; });
   const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
-  let html = '<button class="pcat-btn active" data-cat="" onclick="setCatFilter(\'\',this)"><span class="pcat-dot" style="background:#6366f1"></span><span>All Reports</span><span class="pcat-count">'+reports.length+'</span></button>';
+  const total = reports.length;
+  let html = `<button class="spill active" data-cat="" onclick="setCatFilter('',this)"><span class="spill-dot" style="background:#6366f1"></span>All <span style="opacity:.6">${total}</span></button>`;
   sorted.forEach(([cat,count])=>{
     const dot=(CAT_COLORS[cat]||{dot:'#6366f1'}).dot;
-    html+=`<button class="pcat-btn" data-cat="${cat}" onclick="setCatFilter('${cat}',this)"><span class="pcat-dot" style="background:${dot}"></span><span>${cat}</span><span class="pcat-count">${count}</span></button>`;
+    html+=`<button class="spill" data-cat="${cat}" onclick="setCatFilter('${cat}',this)"><span class="spill-dot" style="background:${dot}"></span>${cat} <span style="opacity:.6">${count}</span></button>`;
   });
-  document.getElementById('sidebarCats').innerHTML=html;
+  document.getElementById('sectorPills').innerHTML=html;
 }
 
 function setCatFilter(cat, btn){
   activeCatFilter = cat;
-  document.querySelectorAll('.pcat-btn').forEach(b=>b.classList.toggle('active',b===btn));
+  document.querySelectorAll('.spill').forEach(b=>b.classList.toggle('active',b===btn));
   filterReports(document.getElementById('reportSearch').value.toLowerCase().trim());
 }
 
@@ -827,8 +820,13 @@ function filterReports(q){
     const qOk = !q || r.file.toLowerCase().includes(q) || sector.toLowerCase().includes(q) || (r.date||'').includes(q);
     return catOk && qOk;
   });
-  document.getElementById('reportsGrid').innerHTML = filtered.map(buildCard).join('');
-  document.getElementById('srCount').textContent = filtered.length;
+  // Pin Market Breaking News always first
+  const pinned = filtered.filter(r=>r.file.toLowerCase().includes('breaking'));
+  const rest   = filtered.filter(r=>!r.file.toLowerCase().includes('breaking'));
+  const final  = [...pinned, ...rest];
+  document.getElementById('reportsGrid').innerHTML = final.map((r,i)=>buildCard(r,i===0&&pinned.length>0)).join('');
+  document.getElementById('srCount').textContent = final.length;
+  document.getElementById('reportsHead').textContent = activeCatFilter ? '📊 '+activeCatFilter+' Reports' : '📊 All Reports — Newest First';
 }
 
 </script>
