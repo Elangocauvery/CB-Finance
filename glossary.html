@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>CB Research — Analyst Glossary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f4ef;
+  --surface:#ffffff;
+  --surface2:#f2ede6;
+  --border:#e8e0d4;
+  --border2:#d6c9b8;
+  --ink:#1c1712;
+  --ink2:#4a3f32;
+  --ink3:#8a7a68;
+  --accent:#b84f00;
+  --accent2:#d4600a;
+  --accent-lt:#fff4ed;
+  --sidebar:248px;
+  --hdr:58px;
+
+  /* category colours */
+  --c-pl:#1d6b3e;     /* P&L Concepts */
+  --c-struct:#1e40af; /* Corporate Structure */
+  --c-sector:#7c2d12; /* Sector Specific */
+  --c-strategy:#5b21b6; /* Strategy & Analogy */
+  --c-unit:#0f766e;   /* Unit Economics */
+  --c-market:#9f1239; /* Market Terms */
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* ── HEADER ── */
+.hdr{position:fixed;inset:0 0 auto 0;height:var(--hdr);background:var(--ink);
+  display:flex;align-items:center;padding:0 22px;gap:14px;z-index:200}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent2),#f59e0b 40%,transparent 75%)}
+.h-brand{display:flex;align-items:baseline;gap:9px;flex-shrink:0}
+.h-cb{font-family:'Instrument Serif',serif;font-size:21px;color:#f5ede2;letter-spacing:-.2px}
+.h-sep{color:#4a3f32;font-size:14px}
+.h-gl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent2);
+  letter-spacing:2.5px;text-transform:uppercase}
+.h-divider{width:1px;height:20px;background:#2e2820}
+.srch{flex:1;max-width:380px;position:relative}
+.srch svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  width:13px;height:13px;color:#6b5e52;pointer-events:none}
+#gS{width:100%;background:#2a2320;border:1px solid #3a3028;border-radius:7px;
+  color:#f5ede2;font-family:'Sora',sans-serif;font-size:12.5px;
+  padding:6px 12px 6px 30px;outline:none;transition:all .2s}
+#gS::placeholder{color:#6b5e52}
+#gS:focus{border-color:var(--accent2);background:#2e2820;box-shadow:0 0 0 3px rgba(212,96,10,.15)}
+.h-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.h-cnt{font-family:'JetBrains Mono',monospace;font-size:10px;color:#6b5e52}
+.h-cnt b{color:var(--accent2)}
+.h-back{display:flex;align-items:center;gap:5px;text-decoration:none;
+  font-family:'Sora',sans-serif;font-size:11px;font-weight:500;color:#8a7a68;
+  border:1px solid #3a3028;border-radius:6px;padding:5px 12px;transition:all .15s}
+.h-back:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* ── SHELL ── */
+.shell{display:flex;height:100vh;padding-top:var(--hdr)}
+
+/* ── SIDEBAR ── */
+.sb{width:var(--sidebar);flex-shrink:0;background:var(--ink);
+  overflow-y:auto;padding:14px 10px 28px}
+.sb-head{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:2.5px;
+  text-transform:uppercase;color:#4a3f32;padding:10px 10px 6px;
+  display:flex;align-items:center;gap:6px}
+.sb-head::after{content:'';flex:1;height:1px;background:#2a2320}
+.cat-btn{display:flex;align-items:center;gap:9px;width:100%;background:none;border:none;
+  border-radius:6px;padding:8px 10px;cursor:pointer;font-family:'Sora',sans-serif;
+  font-size:11.5px;color:#8a7a68;text-align:left;transition:all .15s;margin-bottom:1px;position:relative}
+.cat-btn:hover{background:#1e1a16;color:#c8b89e}
+.cat-btn.active{background:#1e1a16;color:#f5ede2}
+.cat-btn.active::before{content:'';position:absolute;left:0;top:5px;bottom:5px;
+  width:2.5px;border-radius:0 2px 2px 0}
+.cat-btn[data-c="pl"].active::before{background:var(--c-pl)}
+.cat-btn[data-c="struct"].active::before{background:var(--c-struct)}
+.cat-btn[data-c="sector"].active::before{background:var(--c-sector)}
+.cat-btn[data-c="strategy"].active::before{background:var(--c-strategy)}
+.cat-btn[data-c="unit"].active::before{background:var(--c-unit)}
+.cat-btn[data-c="market"].active::before{background:var(--c-market)}
+.cat-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.cat-n{flex:1;line-height:1.3}
+.cat-cnt{font-family:'JetBrains Mono',monospace;font-size:9px;color:#4a3f32;
+  background:#1a1612;padding:1px 6px;border-radius:8px}
+.cat-btn.active .cat-cnt{color:var(--accent2);background:#2e1f0e}
+
+/* ── MAIN ── */
+.main{flex:1;overflow-y:auto;padding:28px 32px 56px;background:var(--bg)}
+
+/* ── HERO ── */
+.hero{margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
+.hero h1{font-family:'Instrument Serif',serif;font-size:30px;color:var(--ink);
+  line-height:1.2;margin-bottom:8px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{font-size:12.5px;color:var(--ink2);line-height:1.8;max-width:580px}
+
+/* ── SECTION ── */
+.section{margin-bottom:38px;scroll-margin-top:20px}
+.sec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  padding-bottom:10px;border-bottom:2px solid var(--border)}
+.sec-stripe{width:4px;height:28px;border-radius:2px;flex-shrink:0}
+.sec-title{font-family:'Instrument Serif',serif;font-size:19px;color:var(--ink)}
+.sec-count{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink3);
+  background:var(--surface2);border:1px solid var(--border);
+  padding:2px 8px;border-radius:8px;letter-spacing:.5px}
+
+/* ── CARDS ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:13px}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:11px;
+  padding:18px 20px;display:flex;flex-direction:column;gap:10px;
+  transition:all .2s;animation:fu .35s ease both;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:.7}
+.card:hover{border-color:var(--border2);transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.card.lit{border-color:var(--accent2);box-shadow:0 0 0 3px rgba(212,96,10,.12)}
+
+/* stripe colours per category */
+.card[data-c="pl"]::before{background:var(--c-pl)}
+.card[data-c="struct"]::before{background:var(--c-struct)}
+.card[data-c="sector"]::before{background:var(--c-sector)}
+.card[data-c="strategy"]::before{background:var(--c-strategy)}
+.card[data-c="unit"]::before{background:var(--c-unit)}
+.card[data-c="market"]::before{background:var(--c-market)}
+
+.card-top{display:flex;align-items:flex-start;gap:11px}
+.card-ico{font-size:20px;line-height:1;flex-shrink:0;margin-top:1px}
+.card-meta{flex:1}
+.card-term{font-family:'Instrument Serif',serif;font-size:16px;color:var(--ink);line-height:1.2}
+.card-aka{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--ink3);
+  margin-top:2px;letter-spacing:.3px}
+
+.card-def{font-size:12.5px;color:var(--ink2);line-height:1.78}
+
+.card-cb{background:var(--surface2);border-left:3px solid var(--border2);
+  border-radius:0 7px 7px 0;padding:9px 13px}
+.card-cb-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--accent2);margin-bottom:4px}
+.card-cb-text{font-size:12px;color:var(--ink2);line-height:1.7;font-style:italic}
+
+.card-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;
+  border-radius:4px;letter-spacing:.3px}
+
+/* ── EMPTY ── */
+.empty{display:none;flex-direction:column;align-items:center;
+  justify-content:center;padding:70px 20px;gap:10px;color:var(--ink3);text-align:center}
+.empty.show{display:flex}
+.empty p{font-size:13px;line-height:1.6}
+
+/* ── FLOATING BUTTON (for embedding in sector reports) ── */
+#floatBtn{position:fixed;bottom:22px;right:22px;z-index:500;
+  display:flex;align-items:center;gap:7px;
+  background:var(--ink);color:#f5ede2;border:none;border-radius:30px;
+  font-family:'Sora',sans-serif;font-size:12px;font-weight:600;
+  padding:10px 18px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.2);transition:all .2s}
+#floatBtn:hover{background:var(--accent);transform:translateY(-2px)}
+
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:660px){
+  :root{--sidebar:0px}
+  .sb{display:none}
+  .main{padding:20px 16px 48px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="h-brand">
+    <span class="h-cb">CB Research</span>
+    <span class="h-sep">/</span>
+    <span class="h-gl">Analyst Glossary</span>
+  </div>
+  <div class="h-divider"></div>
+  <div class="srch">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg>
+    <input id="gS" type="text" placeholder="Search terms, sectors, concepts…" autocomplete="off">
+  </div>
+  <div class="h-right">
+    <span class="h-cnt"><b id="vCnt">0</b> terms</span>
+    <a class="h-back" href="index.html">← Portal</a>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sb" id="sb"></aside>
+  <main class="main" id="main">
+    <div class="hero">
+      <div class="hero-label">CB Research · House Dictionary</div>
+      <h1>Terms we use.<br><em>Explained our way.</em></h1>
+      <p>These are the specific terms, analogies and metrics used across CB Research sector reports — written the way we mean them. When a report references any of these, this is the source of truth. No textbook definitions; just how we actually use them.</p>
+    </div>
+    <div id="content"></div>
+    <div class="empty" id="empty">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <p>No terms match.<br>Try a shorter word.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+//  CB RESEARCH — HOUSE GLOSSARY
+//  Add new terms here. Fields:
+//  term, aka, icon, cat (pl/struct/sector/strategy/unit/market),
+//  def (our definition), cb (how we use it in reports), tags[]
+// ══════════════════════════════════════════════════════════════════
+const TERMS = [
+
+// ── P&L CONCEPTS ─────────────────────────────────────────────────
+{
+  term:'Adjusted EBITDA',
+  aka:'Normalised EBITDA / Clean EBITDA',
+  icon:'⚙️', cat:'pl',
+  def:'EBITDA after stripping out one-time, non-recurring or non-cash items — employee stock options (ESOPs), restructuring charges, one-time write-offs, or extraordinary gains. It is the "clean" operating profit that will likely repeat next quarter.',
+  cb:'When a company books a large one-time gain (say, an asset sale) or a one-time charge (VRS payout), reported EBITDA distorts the picture. We always flag Adjusted EBITDA so members compare like-with-like across quarters. If Reported EBITDA is ₹500 cr but includes ₹80 cr ESOP expense, Adjusted EBITDA is ₹580 cr.',
+  tags:['P&L','Normalisation','Key Metric']
+},
+{
+  term:'Reported Profit',
+  aka:'Statutory PAT / GAAP Profit',
+  icon:'📄', cat:'pl',
+  def:'The net profit number exactly as reported in the company\'s audited accounts under Indian GAAP or Ind AS — including all one-time items, exceptional charges, forex gains/losses, and deferred tax movements.',
+  cb:'Reported profit can be noisy. A company may show zero profit due to a one-time impairment, or inflated profit due to a land sale. We always tell members what is driving the gap between Reported and Adjusted figures — so the underlying business trend is clear.',
+  tags:['P&L','Earnings']
+},
+{
+  term:'Operating Leverage',
+  aka:'Fixed Cost Leverage / Margin Expansion',
+  icon:'🔧', cat:'pl',
+  def:'When a business has high fixed costs, every additional rupee of revenue beyond breakeven flows disproportionately to profit. A small increase in revenue causes a larger percentage increase in EBITDA — margins expand sharply with volume growth.',
+  cb:'We use this term when a company has absorbed its fixed cost base and is now scaling. "Operating leverage is kicking in" means: volumes are growing, fixed costs are flat, so margins are expanding faster than revenue. Classic in cement, steel, and capital goods sectors after a capex cycle completes.',
+  tags:['P&L','Margins','Scaling']
+},
+{
+  term:'Negative Working Capital',
+  aka:'NWC Advantage / Supplier-Funded Model',
+  icon:'🔄', cat:'pl',
+  def:'When a company collects cash from customers faster than it pays its suppliers — meaning the business is effectively funded by its own supply chain rather than by its own capital. Current Liabilities exceed Current Assets in the operating cycle.',
+  cb:'We highlight NWC as a quality signal. A company with negative working capital needs less capital to grow — every incremental rupee of revenue actually generates cash rather than consuming it. Retailers like DMart, QSR chains, and subscription businesses often carry negative working capital. It is structurally superior to high-working-capital businesses like EPC contractors.',
+  tags:['Balance Sheet','Quality','Cash Flow']
+},
+
+// ── CORPORATE STRUCTURE ───────────────────────────────────────────
+{
+  term:'Profit Attributable to Shareholders',
+  aka:'PAT Attributable / Owners\' Share of Profit',
+  icon:'👥', cat:'struct',
+  def:'When a company owns subsidiaries, the consolidated profit includes 100% of each subsidiary\'s earnings — even those it does not fully own. Profit Attributable to Shareholders is the portion that belongs to the parent company\'s shareholders after deducting the share belonging to minority (outside) investors.',
+  cb:'This is the correct profit figure to use when calculating EPS, P/E, and returns for the listed entity\'s shareholders. Total Consolidated PAT ₹1,000 cr minus Minority Interest ₹150 cr = PAT Attributable to Shareholders ₹850 cr. We always flag this distinction in reports that have significant subsidiaries.',
+  tags:['Structure','Consolidated','EPS']
+},
+{
+  term:'Minority Interest',
+  aka:'Non-Controlling Interest / NCI',
+  icon:'🔢', cat:'struct',
+  def:'The share of a subsidiary\'s profit or net assets that belongs to outside shareholders — those who own a stake in the subsidiary but not in the parent listed company. It sits as a deduction from Consolidated PAT and as a separate line in the Consolidated Balance Sheet.',
+  cb:'When we show consolidated numbers for a company like Sun Pharma or Bajaj Finance, Minority Interest tells members "this slice of profit does not belong to you as a shareholder of the parent." A growing Minority Interest line can sometimes signal subsidiaries gaining scale — which is itself worth watching.',
+  tags:['Structure','Consolidated']
+},
+{
+  term:'JV Share of Profit',
+  aka:'Share of Associates / Equity Method Income',
+  icon:'🤝', cat:'struct',
+  def:'When a company owns 20–50% of a joint venture or associate company, it does not consolidate the JV line by line. Instead, it records its proportionate share of the JV\'s profit as a single line in the P&L — typically below EBIT, just before PBT.',
+  cb:'This line is often overlooked but can be significant. Maruti Suzuki\'s share of profit from its JV with Suzuki Motor Gujarat adds meaningfully to its PBT. We specifically call it out when the JV\'s trajectory differs from the parent — it can swing consolidated PAT materially even if the core business is flat.',
+  tags:['Structure','JV','Associate']
+},
+
+// ── SECTOR SPECIFIC ───────────────────────────────────────────────
+{
+  term:'GMM',
+  aka:'Gross Marketing Margin',
+  icon:'⛽', cat:'sector',
+  def:'Used specifically for Oil Marketing Companies (OMCs) like HPCL, BPCL, and Indian Oil. It is the difference between the retail selling price of fuel (petrol/diesel) and the cost at which the OMC procures or refines it — expressed per litre. It is the OMC equivalent of gross margin.',
+  cb:'GMM is the single most watched metric for OMC earnings. When global crude spikes but government holds retail fuel prices, GMM collapses — and so does OMC profit. When crude softens or retail prices are hiked, GMM expands sharply. In our OMC reports, GMM trajectory is the first thing we discuss before touching volumes or market share.',
+  tags:['OMC','Oil & Gas','Margin']
+},
+{
+  term:'GRM',
+  aka:'Gross Refining Margin',
+  icon:'🛢️', cat:'sector',
+  def:'The spread between the market value of all refined petroleum products (petrol, diesel, jet fuel, naphtha) produced from a barrel of crude oil and the cost of that crude barrel. Measured in USD per barrel. Distinct from GMM — GRM is for refiners, GMM is for fuel retailers.',
+  cb:'Reliance Industries reports GRM every quarter — it is the core profitability driver of the O2C (Oil-to-Chemicals) segment. Singapore Complex GRM is the global benchmark. We compare Reliance\'s GRM to this benchmark to assess whether their refinery complexity is generating a premium.',
+  tags:['Refinery','Oil & Gas','Margin']
+},
+{
+  term:'Contributions',
+  aka:'Contribution Margin / Variable Cost Coverage',
+  icon:'🛵', cat:'sector',
+  def:'The total variable cost directly involved in producing or delivering a single unit of service — in platform and quick-commerce businesses, this is the cost of picking, packing, and delivering one order. Contributions turn positive when this per-order cost is lower than the per-order revenue, before any fixed costs.',
+  cb:'We use this term primarily for Zomato, Swiggy, and quick-commerce players. "Contributions are positive" is the first milestone — it means the company at least covers its direct delivery costs per order. It does NOT mean profitability — fixed costs (tech, salaries, marketing) still need to be covered. It is a precursor metric that tells us the unit model works before scale.',
+  tags:['Platform','Quick-Commerce','Unit Economics']
+},
+{
+  term:'Float',
+  aka:'Insurance Float / Premium Float',
+  icon:'🎈', cat:'sector',
+  def:'In the insurance sector: the pool of premium money collected from policyholders that the insurer holds and invests between the date of premium collection and the date of claim payment. The insurer gets to earn investment income on this money — which it did not have to raise from shareholders.',
+  cb:'Float is the secret engine of insurance profitability. A life insurer with a large, long-duration policy book holds enormous float — sometimes 10x its equity. If the Combined Ratio (claims + expenses) is below 100%, the insurer earns an underwriting profit AND earns investment income on float. That compounding is why Buffett calls float "free money." We highlight float size and investment yield when analysing LIC, SBI Life, and general insurers.',
+  tags:['Insurance','Investment Income','Quality']
+},
+{
+  term:'PLF',
+  aka:'Plant Load Factor / Capacity Utilisation',
+  icon:'⚡', cat:'sector',
+  def:'Used in the power sector. PLF is the actual units of electricity generated by a power plant divided by the maximum units it could have generated if it ran at full capacity 24×7. Expressed as a percentage.',
+  cb:'PLF directly drives per-unit fixed cost recovery. A thermal plant with 90% PLF spreads its fixed costs over many more units than a plant at 60% PLF — the latter has much higher cost per unit and lower margins. In our power sector reports, PLF trajectory tells us whether demand is absorbing new capacity or whether overcapacity is building.',
+  tags:['Power','Capacity','Utilisation']
+},
+{
+  term:'Capacity Overhang',
+  aka:'Oversupply / Excess Capacity',
+  icon:'⚠️', cat:'sector',
+  def:'A situation where industry-wide installed production capacity significantly exceeds current demand. When too many players have built capacity simultaneously — often chasing the same demand cycle — pricing power collapses because no single player needs to protect market share at the cost of margins.',
+  cb:'We use this as a red flag in cyclical sectors. "Capacity overhang in cement" means the industry has built more cement capacity than the market can absorb at current demand growth rates — so prices remain under pressure and utilisation stays low for all players. Recovery only happens when demand catches up or capacity is idled. We track utilisation rates to signal when overhang is clearing.',
+  tags:['Cyclical','Supply','Pricing']
+},
+
+// ── STRATEGY & ANALOGY ────────────────────────────────────────────
+{
+  term:'Trojan Horse',
+  aka:'Stealth Disruption / Asymmetric Entry',
+  icon:'🐴', cat:'strategy',
+  def:'An established, dominant player — seemingly invincible in its market — being threatened by a new entrant who arrives with a completely different business model or approach. The new entrant does not compete head-on; it attacks from an angle the incumbent cannot defend without cannibalising itself.',
+  cb:'We use Trojan Horse when a new player exploits a structural blind spot of the incumbent. Jio entering telecom with free data — Airtel and Vodafone could not match it without destroying their own ARPU. Zepto entering quick commerce — Zomato\'s restaurant delivery model had no answer at 10 minutes. The Trojan Horse is dangerous precisely because the incumbent\'s existing business model prevents a clean response.',
+  tags:['Strategy','Disruption','Competition']
+},
+{
+  term:'Re-rating Candidate',
+  aka:'Multiple Expansion Story',
+  icon:'🚀', cat:'strategy',
+  def:'A company that the market currently values at a discount to peers — but where we identify specific, concrete triggers that could cause the market to assign it a higher valuation multiple (P/E, EV/EBITDA). Re-rating is a valuation uplift separate from earnings growth.',
+  cb:'Two ways to make money in equities: earnings grow, or the multiple re-rates. A re-rating candidate gives you both. We call a company a re-rating candidate when: (1) it trades at a discount for a reason that is changing — governance improving, debt reducing, new management, margin recovery; (2) peers trade at a significantly higher multiple; (3) there is a visible catalyst. Without a catalyst, a discount is just a discount.',
+  tags:['Valuation','Catalyst','Upside']
+},
+{
+  term:'Proxy Play',
+  aka:'Indirect Beneficiary / Second-Order Bet',
+  icon:'🎭', cat:'strategy',
+  def:'Instead of directly investing in the sector that is growing, invest in a company that supplies to or enables that sector — one that benefits regardless of which player within the sector wins.',
+  cb:'We recommend Proxy Plays when the direct sector has too much competition or valuation froth. "Instead of picking the winning solar developer, buy cables & wires — every solar project needs wiring whoever builds it." The proxy typically has lower risk, more predictable growth, and often lower valuations than the direct play. We explicitly flag Proxy Play opportunities in our sector conclusions.',
+  tags:['Strategy','Risk-Reward','Diversification']
+},
+{
+  term:'Moat',
+  aka:'Durable Competitive Advantage',
+  icon:'🏰', cat:'strategy',
+  def:'A structural advantage that protects a company\'s market position and profitability from competition over a long period. Not just current market share — but the reason competitors cannot easily replicate it.',
+  cb:'We classify moats in our reports: Distribution moat (Asian Paints — 65,000 dealers), Brand moat (Nestle — Maggi dominance), Switching cost moat (SAP, Oracle — deeply embedded in client processes), Network effect moat (BSE, NSE — more users = more value for all). We flag when a "moat" is actually shallow — a tech advantage or product leadership that can be copied is NOT a moat.',
+  tags:['Quality','Competitive Advantage','Long-term']
+},
+{
+  term:'Tailwind vs Headwind',
+  aka:'Macro Support vs Macro Drag',
+  icon:'💨', cat:'strategy',
+  def:'Tailwind: an external force that helps a business grow with less effort — like wind pushing a boat forward. Headwind: an external force working against the business, slowing it down even if management executes well.',
+  cb:'We always separate company-specific performance from macro factors. An airline reporting losses in a quarter of rising crude is facing a headwind — we do not penalise management for it. An FMCG company gaining market share despite rural slowdown is overcoming a headwind — that is quality. Conversely, a company growing only because of a tailwind (currency depreciation helping exporters) needs to be assessed on what happens when the tailwind fades.',
+  tags:['Macro','Context','Analysis']
+},
+
+// ── UNIT ECONOMICS ────────────────────────────────────────────────
+{
+  term:'Unit Economics',
+  aka:'Per-Order / Per-User Profitability',
+  icon:'🧮', cat:'unit',
+  def:'The revenue and cost structure of a single unit of business — one order, one customer, one delivery, one subscription. Unit economics asks: does this business make money on each individual transaction, before considering fixed overheads? If unit economics are negative, scale makes losses larger, not smaller.',
+  cb:'We apply unit economics analysis to new-age, platform, and subscription businesses where the company-level P&L can be misleading. Three stages we track: (1) Contribution negative — losing money even before fixed costs; (2) Contribution positive but EBITDA negative — covering variable costs but fixed costs not yet covered; (3) EBITDA positive — the business works at scale. Zomato crossed Stage 3 in FY24 — that was the re-rating trigger.',
+  tags:['Platform','New-Age','Profitability']
+},
+{
+  term:'CAC',
+  aka:'Customer Acquisition Cost',
+  icon:'🎯', cat:'unit',
+  def:'The total sales and marketing spend divided by the number of new customers acquired in a period. One half of the critical unit economics equation for subscription and platform businesses.',
+  cb:'CAC alone is meaningless — it must always be read against LTV (Lifetime Value). If CAC is ₹500 and LTV is ₹5,000 then the payback makes sense. If CAC is ₹800 and LTV is ₹600 — the business destroys value with every customer it acquires. We flag LTV/CAC ratio when analysing fintech, insurance distribution, and e-commerce players.',
+  tags:['Unit Economics','Platform','Marketing']
+},
+{
+  term:'LTV',
+  aka:'Lifetime Value / Customer LTV',
+  icon:'♾️', cat:'unit',
+  def:'The total profit a business expects to generate from a single customer over the entire duration of that customer\'s relationship. LTV = (Average Order Value × Frequency × Gross Margin) × Average Customer Lifespan.',
+  cb:'LTV justifies high upfront CAC. A life insurance company spending ₹8,000 to acquire a customer paying ₹12,000/year for 20 years has extraordinary LTV. A quick-commerce platform spending ₹300 per customer who orders twice and churns has terrible LTV. We look at cohort retention data — how many customers from year 1 are still ordering in year 3 — as the real LTV signal.',
+  tags:['Unit Economics','Retention','Platform']
+},
+{
+  term:'Contribution per Order',
+  aka:'Per-Order Margin / Order-Level Economics',
+  icon:'📦', cat:'unit',
+  def:'Revenue from one order minus all variable costs directly attributable to fulfilling that order — food/product cost, packaging, delivery partner fee, payment gateway fee. Does NOT include platform fixed costs (tech, salaries, marketing).',
+  cb:'The progression from negative to positive Contribution per Order is the most-watched milestone for quick-commerce and food delivery. Zomato\'s Contribution per Order turned positive in FY23 — before that, every order delivered was a cash burn even before fixed costs. Once positive, the debate shifts to whether volume can cover the fixed cost base — which is a solvable problem through scale.',
+  tags:['Quick-Commerce','Platform','Profitability']
+},
+
+// ── MARKET TERMS ─────────────────────────────────────────────────
+{
+  term:'JIT to Shareholders',
+  aka:'Just-in-Time Capital Return / Lean Dividend Policy',
+  icon:'⏱️', cat:'market',
+  def:'A company that retains minimal cash on its balance sheet — distributing profits to shareholders promptly through dividends or buybacks rather than accumulating idle cash. Like the manufacturing concept of Just-In-Time inventory, capital is not hoarded but returned exactly when it is generated.',
+  cb:'We use JIT to Shareholders as a positive quality flag for mature, high-FCF businesses that have no high-return reinvestment opportunities. TCS, Infosys, Coal India — they cannot reinvest ₹50,000 cr at 20% ROCE, so returning it to shareholders is the right capital allocation. The risk of NOT being JIT: management sitting on cash and making poor acquisitions. We flag this risk when a company\'s cash pile grows without a stated deployment plan.',
+  tags:['Capital Allocation','Dividend','Shareholder Value']
+},
+{
+  term:'Re-rating',
+  aka:'Multiple Expansion / Valuation Re-rating',
+  icon:'📈', cat:'market',
+  def:'When the market assigns a higher valuation multiple (P/E, EV/EBITDA) to a company without any change in current earnings — purely because of improved future expectations, better governance, debt reduction, or sector re-classification.',
+  cb:'Re-rating is distinct from earnings growth — it is a change in how much the market will pay per rupee of earnings. PSU banks re-rated sharply in FY23–24 as NPA cycles cleaned up and ROEs improved. A stock can double on re-rating alone with zero earnings growth — which is why identifying re-rating candidates early is one of the highest-return strategies in Indian mid-caps.',
+  tags:['Valuation','Multiple','Markets']
+},
+{
+  term:'Margin of Safety',
+  aka:'Downside Protection / Valuation Buffer',
+  icon:'🛡️', cat:'market',
+  def:'The discount between a stock\'s intrinsic value (what the business is truly worth) and its current market price. A larger margin of safety means the investor can be wrong about future growth assumptions and still not lose money.',
+  cb:'We embed margin of safety in our stock assessments. When we say "limited downside at current valuations," we mean the margin of safety is adequate — even in a bear case, the stock should hold value. When we say "priced for perfection," we mean there is no margin of safety — any earnings miss will cause sharp correction.',
+  tags:['Valuation','Risk','Investing']
+},
+{
+  term:'Overhang',
+  aka:'Supply Overhang / Shareholding Overhang',
+  icon:'☁️', cat:'market',
+  def:'A large block of shares that is known or suspected to be available for sale — from a promoter, PE fund, or government stake sale. The existence of this potential supply caps the stock\'s upside because the market prices in future selling pressure.',
+  cb:'Overhang suppresses re-rating even when fundamentals improve. We flag it when a PE fund is approaching its exit window, when government holds a large disinvestment candidate, or when a promoter is pledged. "Overhang clearing" — when the block is finally sold — is often a strong bullish catalyst because the cap on the stock is removed.',
+  tags:['Markets','Shareholding','Catalyst']
+},
+
+];
+
+// ══════════════════════════════════════════════════════════════════
+//  CATEGORY CONFIG
+// ══════════════════════════════════════════════════════════════════
+const CATS = {
+  pl:      { label:'P&L Concepts',         color:'var(--c-pl)',       dot:'#1d6b3e' },
+  struct:  { label:'Corporate Structure',  color:'var(--c-struct)',   dot:'#1e40af' },
+  sector:  { label:'Sector Specific',      color:'var(--c-sector)',   dot:'#7c2d12' },
+  strategy:{ label:'Strategy & Analogy',   color:'var(--c-strategy)', dot:'#5b21b6' },
+  unit:    { label:'Unit Economics',       color:'var(--c-unit)',     dot:'#0f766e' },
+  market:  { label:'Market Terms',         color:'var(--c-market)',   dot:'#9f1239' },
+};
+
+const TAG_COLORS = {
+  'P&L':'#dcfce7:#166534','Normalisation':'#dbeafe:#1e40af',
+  'Key Metric':'#fef3c7:#92400e','Structure':'#ede9fe:#4c1d95',
+  'Consolidated':'#dbeafe:#1e3a8a','EPS':'#fce7f3:#9d174d',
+  'Balance Sheet':'#ecfdf5:#065f46','Quality':'#f0fdf4:#14532d',
+  'Cash Flow':'#cffafe:#164e63','OMC':'#ffedd5:#7c2d12',
+  'Oil & Gas':'#ffedd5:#92400e','Margin':'#fef3c7:#78350f',
+  'Refinery':'#fff7ed:#c2410c','Platform':'#f5f3ff:#4c1d95',
+  'Quick-Commerce':'#ede9fe:#5b21b6','Unit Economics':'#ccfbf1:#134e4a',
+  'Insurance':'#fce7f3:#831843','Investment Income':'#fef9c3:#713f12',
+  'Power':'#fef9c3:#78350f','Capacity':'#ffedd5:#9a3412',
+  'Utilisation':'#fff7ed:#c2410c','Cyclical':'#fef2f2:#991b1b',
+  'Supply':'#fee2e2:#b91c1c','Pricing':'#fef3c7:#92400e',
+  'Strategy':'#f5f3ff:#5b21b6','Disruption':'#fae8ff:#7e22ce',
+  'Competition':'#ede9fe:#4c1d95','Valuation':'#fff7ed:#c2410c',
+  'Catalyst':'#ecfdf5:#065f46','Upside':'#f0fdf4:#166534',
+  'Risk-Reward':'#f0fdf4:#15803d','Diversification':'#dbeafe:#1d4ed8',
+  'Long-term':'#f5f3ff:#4c1d95','Competitive Advantage':'#ecfdf5:#065f46',
+  'Macro':'#e0f2fe:#075985','Context':'#f0f9ff:#0c4a6e',
+  'Analysis':'#f0fdf4:#14532d','Marketing':'#fce7f3:#9d174d',
+  'Retention':'#ccfbf1:#134e4a','Capital Allocation':'#fef3c7:#78350f',
+  'Dividend':'#ecfdf5:#065f46','Shareholder Value':'#f0fdf4:#166534',
+  'Multiple':'#fff7ed:#c2410c','Markets':'#ffe4e6:#be123c',
+  'Investing':'#ede9fe:#4c1d95','Shareholding':'#fce7f3:#831843',
+  'Earnings':'#fef9c3:#713f12','Margins':'#dcfce7:#166534',
+  'Scaling':'#d1fae5:#065f46','JV':'#dbeafe:#1e3a8a','Associate':'#ede9fe:#4c1d95',
+  'New-Age':'#f5f3ff:#5b21b6','Profitability':'#dcfce7:#14532d',
+  'Subscription':'#fce7f3:#9d174d','Risk':'#fee2e2:#b91c1c',
+  'Investing':'#ede9fe:#4c1d95',
+};
+
+function tagStyle(t){
+  const pair=(TAG_COLORS[t]||'#f1f5f9:#475569').split(':');
+  return `background:${pair[0]};color:${pair[1]}`;
+}
+
+function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-'); }
+
+function grouped(terms){
+  const g={};
+  terms.forEach(t=>{ if(!g[t.cat]) g[t.cat]=[]; g[t.cat].push(t); });
+  return g;
+}
+
+function buildSidebar(allG){
+  let html='<div class="sb-head">Categories</div>';
+  Object.keys(CATS).forEach(k=>{
+    const c=CATS[k]; const cnt=(allG[k]||[]).length;
+    if(!cnt) return;
+    html+=`<button class="cat-btn" data-c="${k}" onclick="jumpCat('${k}',this)">
+      <span class="cat-dot" style="background:${c.dot}"></span>
+      <span class="cat-n">${c.label}</span>
+      <span class="cat-cnt">${cnt}</span>
+    </button>`;
+  });
+  document.getElementById('sb').innerHTML=html;
+}
+
+function card(t, idx){
+  const tags=t.tags.map(tg=>`<span class="tag" style="${tagStyle(tg)}">${tg}</span>`).join('');
+  return `<div class="card" data-c="${t.cat}" id="t-${slugify(t.term)}" style="animation-delay:${idx*.03}s">
+    <div class="card-top">
+      <span class="card-ico">${t.icon}</span>
+      <div class="card-meta">
+        <div class="card-term">${t.term}</div>
+        <div class="card-aka">Also: ${t.aka}</div>
+      </div>
+    </div>
+    <div class="card-def">${t.def}</div>
+    <div class="card-cb">
+      <div class="card-cb-label">📌 How we use it in CB Research reports</div>
+      <div class="card-cb-text">${t.cb}</div>
+    </div>
+    <div class="card-tags">${tags}</div>
+  </div>`;
+}
+
+function render(terms){
+  const g=grouped(terms);
+  const allG=grouped(TERMS);
+  buildSidebar(allG);
+  document.getElementById('vCnt').textContent=terms.length;
+  const empty=document.getElementById('empty');
+  const content=document.getElementById('content');
+  if(!terms.length){ content.innerHTML=''; empty.classList.add('show'); return; }
+  empty.classList.remove('show');
+  let html='', idx=0;
+  Object.keys(CATS).forEach(k=>{
+    if(!g[k]||!g[k].length) return;
+    const c=CATS[k];
+    html+=`<div class="section" id="s-${k}">
+      <div class="sec-hdr">
+        <span class="sec-stripe" style="background:${c.dot}"></span>
+        <h2 class="sec-title">${c.label}</h2>
+        <span class="sec-count">${g[k].length} terms</span>
+      </div>
+      <div class="grid">${g[k].map(t=>card(t,idx++)).join('')}</div>
+    </div>`;
+  });
+  content.innerHTML=html;
+}
+
+function jumpCat(k, btn){
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('active',b===btn));
+  const el=document.getElementById('s-'+k);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// hash jump — glossary.html#trojan-horse
+function handleHash(){
+  const h=location.hash.slice(1); if(!h) return;
+  setTimeout(()=>{
+    const el=document.getElementById('t-'+h)||document.getElementById('t-'+slugify(h));
+    if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.classList.add('lit'); setTimeout(()=>el.classList.remove('lit'),2500); }
+  },350);
+}
+
+// search
+document.getElementById('gS').addEventListener('input',function(){
+  const q=this.value.toLowerCase().trim();
+  if(!q){ render(TERMS); handleHash(); return; }
+  render(TERMS.filter(t=>
+    t.term.toLowerCase().includes(q)||
+    t.aka.toLowerCase().includes(q)||
+    t.def.toLowerCase().includes(q)||
+    t.cb.toLowerCase().includes(q)||
+    t.tags.some(tg=>tg.toLowerCase().includes(q))||
+    CATS[t.cat].label.toLowerCase().includes(q)
+  ));
+});
+
+// scroll spy
+document.getElementById('main').addEventListener('scroll',function(){
+  const secs=document.querySelectorAll('.section');
+  let cur='';
+  secs.forEach(s=>{ if(s.offsetTop-this.scrollTop<140) cur=s.id.replace('s-',''); });
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('active',b.dataset.c===cur));
+});
+
+render(TERMS);
+handleHash();
+window.addEventListener('hashchange',handleHash);
+</script>
+</body>
+</html>
