@@ -225,6 +225,9 @@ footer span{color:#ffe0c0}
 .breaking-section .news-card:hover{margin:0;padding-left:0;padding-right:0;border-radius:0}
 .pill-ofs{background:#fff0f3;color:#8a001a}
 .pill-coal{background:#f0ece4;color:#3a2800}
+.pill-disinvest{background:#e8eaf6;color:#283593}
+.pill-aviation{background:#e0f2fe;color:#01579b}
+.pill-markets{background:#fce4ec;color:#880e4f}
 .pill-shanthi{background:#fff8e1;color:#5d4037}
 .tag-ofs-bg{background:#fff0f3}.tag-ofs{color:#8a001a}
 .tag-coal-bg{background:#f0ece4}.tag-coal{color:#3a2800}
@@ -366,6 +369,9 @@ footer span{color:#ffe0c0}
           <option value="coal_ofs">Coal India OFS</option>
           <option value="ntpc_green">NTPC Green Energy</option>
           <option value="shanthi_gold">Shanthi Gold Q4</option>
+          <option value="idbi_sale">IDBI Bank Privatisation</option>
+          <option value="indigo_loss">IndiGo Q4 Loss</option>
+          <option value="market_fall">May 29 Market Crash</option>
         </select>
       </div>
       <div class="assist-q-wrap">
@@ -403,6 +409,8 @@ footer span{color:#ffe0c0}
           <button class="sector-btn" data-s="rbi" onclick="setSector('rbi');event.stopPropagation()">RBI / Rates <span class="scount" id="sc-rbi">0</span></button>
           <button class="sector-btn" data-s="nps" onclick="setSector('nps');event.stopPropagation()">NPS / Pension <span class="scount" id="sc-nps">0</span></button>
           <button class="sector-btn" data-s="ecomm" onclick="setSector('ecomm');event.stopPropagation()">FDI / E-Commerce <span class="scount" id="sc-ecomm">0</span></button>
+          <button class="sector-btn" data-s="disinvest" onclick="setSector('disinvest');event.stopPropagation()">Disinvestment <span class="scount" id="sc-disinvest">0</span></button>
+          <button class="sector-btn" data-s="markets" onclick="setSector('markets');event.stopPropagation()">Markets / F&amp;O <span class="scount" id="sc-markets">0</span></button>
         </div>
       </div>
       <div class="cat-nav">
@@ -419,6 +427,7 @@ footer span{color:#ffe0c0}
           <button class="sector-btn" data-s="cement" onclick="setSector('cement');event.stopPropagation()">Cement <span class="scount" id="sc-cement">0</span></button>
           <button class="sector-btn" data-s="ems" onclick="setSector('ems');event.stopPropagation()">EMS <span class="scount" id="sc-ems">0</span></button>
           <button class="sector-btn" data-s="coal" onclick="setSector('coal');event.stopPropagation()">Coal / PSU <span class="scount" id="sc-coal">0</span></button>
+          <button class="sector-btn" data-s="aviation" onclick="setSector('aviation');event.stopPropagation()">Aviation <span class="scount" id="sc-aviation">0</span></button>
         </div>
       </div>
     </div>
@@ -455,7 +464,7 @@ footer span{color:#ffe0c0}
 <footer>SectorWire &nbsp;·&nbsp; May–June 2026 Sector Intelligence Digest &nbsp;·&nbsp; <span id="footer-time"></span></footer>
 
 <script>
-const MACRO_SECTORS = ['rbi','nps','ecomm'];
+const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets'];
 
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
@@ -738,6 +747,73 @@ const NEWS = [
       neg:['ரியல் எஸ்டேட், வாகன கடன்கள், MSME கடன்கள் தலைவலி எதிர்கொள்ளும்; வட்டி குறைப்பு கதை முறிந்தால் பங்குச் சந்தை மதிப்பிழக்கும்.']
     },
     companies:[]
+  },
+  {
+    id:11, date:'2026-05-30', sector:'disinvest', cat:'macro', sectorLabel:'Disinvestment', pillCls:'pill-disinvest', time:'30 May 2026',
+    breaking:true,
+    impact:'mixed', badges:['Fairfax + Emirates NBD','Bids Below Reserve Price','₹24,000 Cr Stake'],
+    en:{
+      headline:'IDBI Bank Privatisation Revived — Govt May Accept Sub-Reserve Bids from Fairfax & Emirates NBD',
+      context:['The government is exploring legal provisions that could allow it to accept earlier bids submitted by Fairfax Financial Holdings (Prem Watsa) and Emirates NBD for the 60.72% stake sale in IDBI Bank — bids that were previously rejected for falling below the undisclosed reserve price.','The privatisation process was paused in March 2026 after financial bids came in below the government\'s internal valuation benchmark. At current market prices, the proposed stake is valued at approximately ₹24,000 crore. Officials are now studying tendering-framework provisions that may allow sub-reserve-price acceptance.','Additional hurdles remain: IDBI Bank\'s public shareholding is just 5.29%, well below SEBI\'s minimum float norms — the government may seek SEBI guidance on this. Any winning bidder must also clear RBI\'s \'fit and proper\' assessment and make an open offer to minority shareholders under SEBI takeover rules.'],
+      pos:['Revival signals the government\'s commitment to strategic disinvestment and non-tax revenue targets for FY27 — completing this deal would be a landmark, being the first privatisation of an Indian bank via competitive bidding.','IDBI Bank has significantly cleaned up its balance sheet over the past four years — NPAs sharply reduced, capital adequacy restored, and profitability recovered — making it a genuinely attractive asset for a strategic buyer now.','For minority shareholders, a successful deal triggers a mandatory open offer at the acquisition price, potentially offering an exit at a premium to market.'],
+      neg:['Government exploring sub-reserve-price acceptance signals that fair market value may not be achieved — a policy compromise that could set an uncomfortable precedent for future disinvestments.','Low public float (5.29%) is a live regulatory issue — SEBI guidance required before deal closure; this adds time and uncertainty to an already five-year-old process.','RBI \'fit and proper\' assessment for the new owner adds another regulatory layer; geopolitical sensitivities around Emirates NBD (UAE-based acquirer) may also require additional government-level clearances.','Market uncertainty around the eventual buyer\'s strategy — will it retain IDBI\'s government-linked book, restructure aggressively, or pivot the bank\'s model? Uncertainty overhangs the stock.']
+    },
+    ta:{
+      headline:'IDBI வங்கி தனியார்மயம் மீண்டும் — Fairfax & Emirates NBD ஏலங்களை ஏற்க அரசு சட்ட வழி தேடுகிறது',
+      context:['அரசு Fairfax Financial Holdings (பிரேம் வத்சா) மற்றும் Emirates NBD சமர்ப்பித்த ஏலங்களை ஏற்கும் வகையில் சட்ட விதிகளை ஆய்வு செய்கிறது — இந்த ஏலங்கள் முன்பு இரகசிய இட விலைக்கு கீழே இருந்ததால் நிராகரிக்கப்பட்டன.','மார்ச் 2026ல் நிதி ஏலங்கள் அரசின் மதிப்பீட்டிற்கு கீழே வந்ததால் தனியார்மயம் நிறுத்தப்பட்டது. தற்போதைய சந்தை விலையில் ~₹24,000 கோடி மதிப்புள்ள 60.72% பங்கு விற்பனை.','IDBI வங்கியின் பொது பங்குதாரர் பங்கு 5.29% மட்டுமே — SEBI குறைந்தபட்ச மிதப்பு விதிமுறைக்கு கீழே; SEBI வழிகாட்டுதல் தேவை. வெற்றி பெறும் ஏலதாரர் RBI \'fit and proper\' மதிப்பீடு மற்றும் சிறுபான்மை பங்குதாரர்களுக்கு திறந்த சலுகை தர வேண்டும்.'],
+      pos:['தனியார்மய மறுதொடக்கம் FY27 இலக்குகளுக்கு அரசின் உறுதியை சமிக்ஞை செய்கிறது — இந்திய வங்கியை போட்டி ஏலம் மூலம் தனியார்மயமாக்கும் முதல் நிகழ்வாக இருக்கும்.','IDBI இப்போது கட்டமைப்பு ரீதியாக வலுவானது — NPA வெகுவாக குறைந்துள்ளது, மூலதன போதுமானது மீட்கப்பட்டது, லாபம் மீண்டும் திரும்பியது.'],
+      neg:['இட விலைக்கு கீழே ஏற்பு பரிசீலனை நியாயமான சந்தை மதிப்பை அடையவில்லை என்று சமிக்ஞை செய்கிறது — எதிர்கால தனியார்மயங்களுக்கு ஆபத்தான முன்னுதாரணம்.','குறைந்த பொது மிதப்பு (5.29%) — SEBI வழிகாட்டுதல் தேவை; ஐந்து வருட பழைய செயல்முறைக்கு மேலும் தாமதம் மற்றும் நிச்சயமின்மை.']
+    },
+    companies:[
+      {name:'IDBI Bank',status:'Privatisation Revival',cls:'cobadge-partial'},
+      {name:'Fairfax Financial (Prem Watsa)',status:'Prospective Bidder',cls:'cobadge-partial'},
+      {name:'Emirates NBD',status:'Prospective Bidder',cls:'cobadge-partial'},
+      {name:'LIC (co-seller with Govt)',status:'Stake Seller',cls:'cobadge-partial'}
+    ]
+  },
+  {
+    id:12, date:'2026-05-29', sector:'aviation', cat:'sector', sectorLabel:'Aviation', pillCls:'pill-aviation', time:'29 May 2026',
+    breaking:true,
+    impact:'negative', badges:['Q4FY26 Loss ₹2,537 Cr','Forex Hit ₹~9bn Exposure','Revenue +3% YoY'],
+    en:{
+      headline:'IndiGo Posts ₹2,537 Cr Q4 Loss — Rupee Depreciation on Lease Liabilities Wipes Out Gains',
+      context:['InterGlobe Aviation (IndiGo) reported a net loss of ₹2,537 crore in Q4FY26, reversing a profit of ₹3,068 crore in Q4FY25 — a massive year-on-year swing of over ₹5,600 crore. Full year FY26 net loss stood at ₹2,394 crore.','The primary driver: IndiGo\'s aircraft lease liabilities and maintenance obligations are denominated in US dollars. With approximately $9 billion in net forex exposure, every ₹1 depreciation translates to ~₹900 crore in foreign exchange loss. Sharp rupee weakness through FY26 created an outsized forex charge that overwhelmed operational profitability.','Excluding forex impact and exceptional items, IndiGo actually delivered an operating profit of ₹7,500 crore for FY26 — underscoring that the core airline business remains fundamentally sound. Capacity grew 9.5% and total revenue rose 6%. However, passenger numbers dipped 1.1% in Q4, load factor fell to 85.8%, and yield declined 2.2% to ₹5.20 — marginal traffic softness amplified the cost headwinds.'],
+      pos:['Core operational profit of ₹7,500 cr for FY26 (ex-forex, ex-exceptional items) confirms the underlying business is healthy — IndiGo\'s 63.3% domestic market share and low-cost model remain structurally intact.','Capacity growth of 9.5% positions IndiGo to capture demand recovery; rupee stabilisation (if it occurs in FY27) could sharply reverse the forex drag without any operational change.','Free cash balance of ₹36,216 crore as of March 2026 provides strong liquidity runway — the reported loss is largely non-cash forex accounting, not a cash burn.'],
+      neg:['$9 billion net forex exposure with lease liabilities in USD is a structural vulnerability — as long as the rupee faces depreciation pressure, IndiGo\'s reported P&L will be hostage to currency movements regardless of flying performance.','Passenger volumes dipped 1.1% in Q4 and yield fell 2.2% — demand growth is no longer automatic; marginal traffic softness combined with cost pressures squeezes margins even before forex.','Fuel costs, though down 1.5% in Q4, remain the largest cash operating cost (~40% of airline expenditure); any oil price spike on geopolitical risk (Iran, crude above $104) would add another headwind.','Stock fell 3.27% to ₹4,418 on results day — market is pricing in sustained forex and cost uncertainty into FY27.']
+    },
+    ta:{
+      headline:'IndiGo ₹2,537 கோடி Q4 இழப்பு — ரூபாய் சரிவு குத்தகை பொறுப்புகளில் தாக்கி லாபத்தை துடைத்தது',
+      context:['IndiGo Q4FY26 நிகர இழப்பு ₹2,537 கோடி — Q4FY25 லாபம் ₹3,068 கோடியிலிருந்து மாறியது; ஆண்டுவாரி ஊசல் ₹5,600+ கோடி. FY26 முழு ஆண்டு இழப்பு ₹2,394 கோடி.','முக்கிய காரணம்: IndiGo விமான குத்தகை மற்றும் பராமரிப்பு கடமைகள் USD-ல் உள்ளன. ~$9 பில்லியன் நிகர forex வெளிப்பாட்டில் ஒவ்வொரு ₹1 சரிவும் ~₹900 கோடி forex இழப்பாக மாறுகிறது. FY26-ல் ரூபாய் கடுமையான வீழ்ச்சி இந்த சுமையை தாங்கமுடியாமல் செய்தது.','Forex மற்றும் விதிவிலக்கான பொருட்களை நீக்கிய பிறகு FY26-க்கு இயக்க லாபம் ₹7,500 கோடி — அடிப்படை வணிகம் ஆரோக்கியமாக உள்ளது. திறன் 9.5% வளர்ந்தது; ஆனால் Q4-ல் பயணிகள் 1.1% குறைந்தனர், சுமை காரணி 85.8%.'],
+      pos:['Forex நீக்கிய இயக்க லாபம் ₹7,500 கோடி — IndiGo-யின் 63.3% உள்நாட்டு சந்தை பங்கு மற்றும் குறைந்த செலவு மாதிரி கட்டமைப்பு ரீதியாக வலுவானது.','₹36,216 கோடி இலவச பணம் — அறிவிக்கப்பட்ட இழப்பு பெரும்பாலும் நடைமுறை அல்லாத forex கணக்கியல், பண எரிப்பு அல்ல.'],
+      neg:['$9 பில்லியன் நிகர forex வெளிப்பாடு ஒரு கட்டமைப்பு பலவீனம் — ரூபாய் சரிவு தொடரும்போது IndiGo-யின் லாப & நஷ்டம் செலாவணி நகர்வுகளால் பாதிக்கப்படும்.','Q4-ல் பயணி அளவுகள் 1.1% குறைந்தன, வருமானம் 2.2% சரிந்தது — தேவை வளர்ச்சி இனி தானாக வருவதில்லை.','எரிபொருள் செலவு மிகப்பெரிய பண இயக்க செலவாக உள்ளது (~40%); நிலவியல் அரசியல் ஆபத்தில் எண்ணெய் விலை உயர்வு மேலும் தலைவலி சேர்க்கும்.']
+    },
+    companies:[
+      {name:'IndiGo (InterGlobe Aviation)',status:'Q4 Loss ₹2,537 Cr',cls:'cobadge-hit'},
+      {name:'Aviation Sector',status:'Forex & Cost Headwind',cls:'cobadge-hit'}
+    ]
+  },
+  {
+    id:13, date:'2026-05-29', sector:'markets', cat:'macro', sectorLabel:'Markets / F&O', pillCls:'pill-markets', time:'29 May 2026',
+    breaking:true,
+    impact:'negative', badges:['Sensex -1,092 pts','Nifty -359 pts','~₹9,000 Cr FPI Selling'],
+    en:{
+      headline:'Sensex Crashes 1,092 pts on Friday Close — MSCI Rejig + Iran Crude + Monsoon Shock Combine',
+      context:['Indian markets posted their steepest single-day fall in over two weeks on Friday, May 29 — Sensex dropped 1,092 points (1.44%) to 74,776 and Nifty fell 359 points (1.5%) to 23,548. The sell-off intensified sharply in the final 30 minutes of trade as multiple triggers converged simultaneously.','The MSCI May 2026 rebalancing took effect at the close. Global passive funds tracking the MSCI Standard Index were mechanically required to sell stocks being removed — RVNL, Kalyan Jewellers, Jubilant FoodWorks and Hyundai Motor India were among the deletions — generating an estimated ₹9,000 crore+ of forced passive selling concentrated in the last 30 minutes of trade. India\'s weight in MSCI Emerging Markets was also revised lower (IIFL Capital estimated a fall from current levels to ~11.2%), prompting broader FPI outflows from financials.','Stalled US-Iran peace talks and Brent crude holding above $104/barrel kept geopolitical risk elevated throughout the day. Separately, IMD issued a forecast of 50–60% below-normal monsoon probability, which raised concerns about rural demand, food inflation, and a potential negative for rate-cut expectations. Being a Friday close, positions were not carried over the weekend — F&O expiry dynamics and risk-off positioning ahead of two days of geopolitical news flow amplified the selling. Sectors worst hit: Oil & Gas, Metals, Auto (all down ~2%); only IT gained (+0.6%).'],
+      pos:['MSCI rebalancing is a one-time mechanical event — forced passive selling is now complete. A technical rebound on Monday is plausible once the rebalancing overhang is cleared.','Nifty immediate support at 23,400–23,350; a recovery above 23,750–23,800 would signal stabilisation. Long-term investors with quality portfolios are not facing an earnings deterioration — this was an external-trigger crash.','IT sector gained 0.6% on the day — export-oriented tech benefits from rupee weakness; defensive positioning in quality large-caps may outperform in the near term.'],
+      neg:['US-Iran geopolitical uncertainty remains unresolved — crude above $104 is a persistent headwind for India (3rd largest crude importer); sustained high oil would widen the current account deficit and put fresh depreciation pressure on the rupee.','Below-normal monsoon forecast (50–60% probability) is a new domestic risk — if it materialises, rural consumption, Kharif output, and food inflation could all move adversely, potentially ruling out rate cuts and weighing on FMCG, auto, and agri-input stocks.','India\'s falling MSCI EM weight means structurally lower passive inflows — FPIs tracking the index will reduce India allocations; this is not just a one-day event but a multi-week adjustment.','Friday\'s close amplified the sell-off — weekend position risk meant traders cut longs aggressively. If US-Iran talks remain stalled over the weekend, Monday could open under fresh selling pressure.']
+    },
+    ta:{
+      headline:'வெள்ளி Sensex 1,092 pts வீழ்ச்சி — MSCI மறுசீரமைப்பு + ஈரான் கச்சா + பருவமழை அதிர்ச்சி ஒன்றாக தாக்கியது',
+      context:['மே 29 வெள்ளி இந்திய சந்தை இரண்டு வாரங்களில் மிகக் கடுமையான வீழ்ச்சி பதிவு செய்தது — Sensex 1,092 pts (1.44%) குறைந்து 74,776 மற்றும் Nifty 359 pts (1.5%) குறைந்து 23,548ல் முடிந்தது. கடைசி 30 நிமிடங்களில் கடுமையான விற்பனை.','MSCI மே 2026 மறுசீரமைப்பு கடைசி அமர்வில் நடைமுறைக்கு வந்தது. RVNL, Kalyan Jewellers, Jubilant FoodWorks, Hyundai Motor India நீக்கம் — ~₹9,000 கோடி கட்டாய passive விற்பனை கடைசி 30 நிமிடங்களில் குவிந்தது. India MSCI EM எடையும் குறைக்கப்பட்டது (~11.2%கு) — நிதித் துறையிலிருந்து FPI வெளியேறல்.','அமெரிக்கா-ஈரான் சமாதான பேச்சுவார்த்தை தடைபட்டது; Brent கச்சா $104+. IMD 50-60% குறைவான பருவமழை கணிப்பு — கிராமப்புற தேவை, உணவு பணவீக்கம், வட்டி வெட்டல் எதிர்பார்ப்புக்கு எதிர்மறை. வெள்ளி முடிவு F&O பொசிஷன்கள் வார இறுதி ஆபத்தை தவிர்க்க மூடப்பட்டன.'],
+      pos:['MSCI மறுசீரமைப்பு ஒரு முறை நிகழ்வு — கட்டாய passive விற்பனை முடிந்துவிட்டது. திங்களன்று தொழில்நுட்ப மீட்சி சாத்தியம்.','Nifty ஆதரவு 23,400-23,350; 23,750-23,800 மேலே மீட்சி நிலைப்படுத்தலை சமிக்ஞை செய்யும். இது வருவாய் சரிவு அல்ல — வெளிப்புற தூண்டுதல் வீழ்ச்சி.'],
+      neg:['அமெரிக்கா-ஈரான் நிச்சயமின்மை தொடர்கிறது — $104+ கச்சா இந்தியாவுக்கு (3வது பெரிய கச்சா இறக்குமதியாளர்) தொடர்ந்த தலைவலி.','குறைவான பருவமழை கணிப்பு புதிய உள்நாட்டு ஆபத்து — FMCG, வாகன, விவசாய-உள்ளீட்டு பங்குகளில் பாதிப்பு.','India MSCI EM எடை வீழ்ச்சி பல வாரங்கள் FPI வெளியேறலை தொடரும் — இது ஒரு நாள் நிகழ்வு அல்ல.']
+    },
+    companies:[
+      {name:'RVNL / Kalyan Jewellers / Jubilant / Hyundai India',status:'MSCI Deleted — Passive Sold',cls:'cobadge-hit'},
+      {name:'Federal Bank / MCX / Nalco / Indian Bank',status:'MSCI Added',cls:'cobadge-ok'},
+      {name:'Nifty Oil & Gas / Metal / Auto',status:'Down ~2% Each',cls:'cobadge-hit'},
+      {name:'Nifty IT',status:'+0.6% — Outperformer',cls:'cobadge-ok'}
+    ]
   }
 ];
 
@@ -771,7 +847,7 @@ function updateCounts() {
   document.getElementById('cnt-all').textContent = NEWS.length;
   document.getElementById('cnt-macro').textContent = NEWS.filter(n=>n.cat==='macro').length;
   document.getElementById('cnt-sector').textContent = NEWS.filter(n=>n.cat==='sector').length;
-  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal'].forEach(s=>{
+  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal','disinvest','aviation','markets'].forEach(s=>{
     const el=document.getElementById('sc-'+s);
     if(el) el.textContent=NEWS.filter(n=>n.sector===s).length;
   });
@@ -890,7 +966,7 @@ function renderFeed() {
   };
   let titleStr=titleMap[activeCat]||'All Breaking News';
   if(activeSector!=='all'){
-    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS',coal:'Coal / PSU'};
+    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS',coal:'Coal / PSU',disinvest:'Disinvestment',aviation:'Aviation',markets:'Markets / F&O'};
     titleStr=(lm[activeSector]||activeSector)+(isTA?' — செய்திகள்':' — Breaking News');
   }
   document.getElementById('feed-title').textContent=titleStr;
@@ -1137,6 +1213,39 @@ const ASSIST_QA = {
     {q:"Why is Shanthi expanding capacity now?",
      a:"Management is responding to a sustained demand pipeline from its B2B clients. B2B customers in the jewellery sector often give advance order commitments — this provides Shanthi with revenue visibility to justify capex. The expansion also positions Shanthi to capture a larger share of the physically-driven gold demand cycle, which continues to show resilience even at elevated price levels.",
      src:"Source: Shanthi Gold management commentary; SectorWire analysis"}
+  ],
+  idbi_sale:[
+    {q:"Why was the IDBI Bank privatisation paused in March 2026?",
+     a:"Financial bids submitted by Fairfax Financial Holdings (Prem Watsa) and Emirates NBD fell below the government's undisclosed reserve price — the minimum valuation the government was willing to accept. The process was formally paused in March 2026 after no bid met this threshold. The government is now exploring legal provisions that could allow it to accept sub-reserve-price bids under the existing tendering framework.",
+     src:"Source: Free Press Journal / AngelOne reports, May 2026"},
+    {q:"What is the size of the IDBI stake sale and who are the sellers?",
+     a:"The government (through DIPAM) and LIC together hold 60.72% in IDBI Bank and are jointly selling this stake. At current market prices, this stake is valued at approximately ₹24,000 crore. This is a pure strategic sale — control of the bank transfers to the private buyer. The government has been working on this divestment since 2022 and this deal would be the first privatisation of an Indian bank via competitive bidding.",
+     src:"Source: DIPAM / IDBI Bank regulatory filings; SectorWire analysis"},
+    {q:"What regulatory hurdles remain before the deal can close?",
+     a:"Three major regulatory hurdles: (1) RBI 'fit and proper' assessment — the central bank must approve the new owner as suitable to run a licensed bank; (2) SEBI guidance on public shareholding — IDBI's current public float is just 5.29%, below minimum norms, and SEBI needs to provide direction; (3) Mandatory open offer — the winning bidder must make a public offer to minority shareholders at the acquisition price under SEBI's takeover code.",
+     src:"Source: RBI banking regulations; SEBI takeover code; SectorWire analysis"}
+  ],
+  indigo_loss:[
+    {q:"Why did IndiGo report a ₹2,537 crore loss despite growing capacity?",
+     a:"IndiGo's aircraft are leased and maintenance obligations are in USD. The airline has approximately $9 billion in net forex exposure. Every ₹1 drop in the rupee translates to roughly ₹900 crore in accounting losses. Sharp rupee depreciation through FY26 created a massive non-cash forex charge that overwhelmed the airline's operational profitability. Excluding forex impact and exceptional items, IndiGo actually made an operating profit of ₹7,500 crore.",
+     src:"Source: IndiGo Q4FY26 / FY26 earnings release, May 2026; ANI / Business Standard"},
+    {q:"Is IndiGo's business fundamentally broken?",
+     a:"No. The core business remains sound — 63.3% domestic market share, 9.5% capacity growth, total revenue up 6%, and free cash of ₹36,216 crore. The reported loss is largely a non-cash accounting charge from forex revaluation of USD-denominated lease liabilities. When crude stabilises and rupee recovers, the same P&L mechanism that created losses will reverse and create large accounting gains.",
+     src:"Source: IndiGo Q4FY26 results; MD Rahul Bhatia statement"},
+    {q:"What are the structural risks for IndiGo going forward?",
+     a:"Three structural risks: (1) USD forex exposure — $9bn net liability means every depreciation cycle creates large reported losses, making earnings highly volatile; (2) Fuel cost risk — aviation turbine fuel is ~40% of operating costs and oil above $104 (geopolitical Iran risk) would add pressure; (3) Traffic softness — passenger numbers dipped 1.1% in Q4 and yield fell 2.2%, suggesting demand growth is not automatic even as capacity expands.",
+     src:"Source: IndiGo Q4 results; SectorWire analysis"}
+  ],
+  market_fall:[
+    {q:"What caused the Sensex to crash 1,092 points on May 29, 2026?",
+     a:"Six triggers converged simultaneously: (1) MSCI May 2026 rebalancing — ~₹9,000 crore of forced passive selling concentrated in the final 30 minutes; (2) Stalled US-Iran peace talks keeping Brent crude above $104; (3) IMD monsoon forecast of 50-60% below-normal probability; (4) FPI outflows from financials linked to India's reduced MSCI EM weight; (5) Friday F&O expiry dynamics — traders cut positions before a two-day geopolitical news gap; (6) Month-end profit booking after April's 7.5% recovery.",
+     src:"Source: Business Standard / ANI / Tron Weekly, May 29 2026; SectorWire analysis"},
+    {q:"What is MSCI rebalancing and why does it move Indian stocks?",
+     a:"MSCI periodically updates the composition and weightings of its indices. Global passive funds (ETFs and index funds) that track MSCI indices must mirror the index exactly to avoid 'tracking error'. When stocks are removed from the index or India's weight is reduced, these funds are required by mandate to sell those stocks on the effective date — regardless of price. This creates concentrated, mechanical selling that has nothing to do with the fundamentals of the companies involved.",
+     src:"Source: MSCI methodology; IIFL Capital estimates, May 2026"},
+    {q:"What is the outlook after the May 29 crash — will markets recover?",
+     a:"The MSCI rebalancing is a one-time mechanical event — the forced selling is now complete, removing a key overhang. A technical rebound on Monday is plausible. However, the broader direction depends on: (1) US-Iran talks — resolution would sharply ease crude prices and rupee pressure; (2) Monsoon development — if IMD's below-normal forecast materialises, rural consumption and inflation trajectory worsen; (3) Nifty holds the 23,400-23,350 support zone; a break could extend losses to 23,200.",
+     src:"Source: SBI Securities (Sudeep Shah); CapGrow Capital (Arun Malhotra); SectorWire analysis"}
   ]
 };
 
