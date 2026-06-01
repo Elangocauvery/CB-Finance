@@ -20,6 +20,7 @@
   --gokaldas:#92400e;--gokaldas-soft:#fef3c7;
   --himat:#4338ca;--himat-soft:#eef2ff;
   --pagind:#0f766e;--pagind-soft:#f0fdfa;
+  --pearl:#7c2d12;--pearl-soft:#fff7ed;
   --pos:#166534;--neg:#dc2626;--warn:#ea580c;
   --gold:#b8911e;--gold-soft:#fdf5e0;
   --shadow:0 1px 8px rgba(24,21,17,.07);--shadow-md:0 4px 20px rgba(24,21,17,.10);
@@ -38,6 +39,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 .chip-t{background:var(--trident);color:#fff;}.chip-sp{background:var(--spapparel);color:#fff;}
 .chip-g{background:var(--gokaldas);color:#fff;}.chip-h{background:var(--himat);color:#fff;}
 .chip-pi{background:var(--pagind);color:#fff;}
+.chip-pg{background:var(--pearl);color:#fff;}
 .chip-date{background:rgba(255,255,255,.08);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.12);}
 .tab-nav{background:var(--surface);border-bottom:2px solid var(--border);display:flex;align-items:center;padding:0 40px;overflow-x:auto;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(24,21,17,.06);}
 .tab-nav::-webkit-scrollbar{height:0;}
@@ -69,6 +71,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 .co-card.spapparel::before{background:var(--spapparel);}
 .co-card.gokaldas::before{background:var(--gokaldas);}
 .co-card.himat::before{background:var(--himat);}
+.co-card.pearl::before{background:var(--pearl);}
 .co-card.pagind::before{background:var(--pagind);}
 .co-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;margin-bottom:2px;}
 .co-seg{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:10px;}
@@ -88,6 +91,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 .kpi.k-a{border-left:4px solid var(--kpr);}.kpi.i-a{border-left:4px solid var(--indocount);}
 .kpi.t-a{border-left:4px solid var(--trident);}.kpi.sp-a{border-left:4px solid var(--spapparel);}
 .kpi.g-a{border-left:4px solid var(--gokaldas);}.kpi.h-a{border-left:4px solid var(--himat);}.kpi.pi-a{border-left:4px solid var(--pagind);}
+.kpi.pg-a{border-left:4px solid var(--pearl);}
 .kpi .kl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:5px;}
 .kpi .kv{font-size:1.05rem;font-weight:800;color:var(--text);font-family:'IBM Plex Mono',monospace;}
 .kpi .kc{font-size:9.5px;font-weight:700;margin-top:2px;}
@@ -272,7 +276,7 @@ td.tb{font-weight:700;}
   <div class="hdr-left">
     <div>
       <h1>Textile Sector — Intelligence Dashboard</h1>
-      <div class="sub">9 Companies · Vardhman · Welspun Living · KPR · Indo Count · Himatsingka · Trident · SP Apparel · Gokaldas · EIL Research · Q4 FY26</div>
+      <div class="sub">10 Companies · Vardhman · Welspun Living · KPR · Indo Count · Himatsingka · Trident · SP Apparel · Gokaldas · Page Industries · Pearl Global · EIL Research · Q4 FY26</div>
     </div>
   </div>
   <div class="hdr-right">
@@ -285,7 +289,8 @@ td.tb{font-weight:700;}
     <span class="chip chip-sp">SP Apparel</span>
     <span class="chip chip-g">Gokaldas</span>
     <span class="chip chip-pi">Page Industries</span>
-    <span class="chip chip-date">24 May 2026 · EIL Research</span>
+    <span class="chip chip-pg">Pearl Global</span>
+    <span class="chip chip-date">June 2026 · EIL Research</span>
   </div>
 </div>
 <nav class="tab-nav">
@@ -306,7 +311,19 @@ td.tb{font-weight:700;}
 <!-- ══ DASHBOARD ══ -->
 <div class="tab-content active" id="tab-dashboard">
   <div class="sec-hdr">Dashboard Overview <span class="sec-note">· 9 companies · Q4 FY26 actuals where available · Cauvery Business Research</span></div>
-  <div class="tariff-note">⚠️ <strong>Sector Context FY26:</strong> US 26% reciprocal tariff (April 2026) dented exports; West Asia conflict hit shipping; cotton price volatility pressured margins. Despite this, KPR Mill and SP Apparels outperformed. Export-heavy players (Welspun Living, Gokaldas, Himatsingka) saw revenue/PAT pressure while integrated domestic players (KPR, Trident, SP Apparels) showed resilience.</div>
+  <div class="tariff-note">⚠️ <strong>Sector Context FY26:</strong> US 26% reciprocal tariff (April 2026) dented exports; West Asia conflict hit shipping; cotton price spike + shortage pressured margins. Despite headwinds, KPR Mill and SP Apparels outperformed. <strong>June 2026 FY27 Tailwinds:</strong> (1) US tariff reduced to 10% — Indo Count, Welspun, Trident key beneficiaries; (2) Govt exempted all cotton import duty 1 Jun–31 Oct 2026 (basic duty + AIDC both zero, HS 5201) — direct input cost relief for spinning/home textile sector; (3) India-UK FTA implementation supporting SP Apparels, Indo Count.</div>
+
+  <!-- NEWS CARDS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 18px;">
+    <div style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1.5px solid #6ee7b7;border-radius:10px;padding:12px 14px;">
+      <div style="font-weight:800;font-size:11.5px;color:#065f46;margin-bottom:6px;">🌿 Cotton Import Duty — ZERO &nbsp;<span style="background:#10b981;color:#fff;border-radius:4px;padding:1px 6px;font-size:9.5px;">1 Jun – 31 Oct 2026</span></div>
+      <div style="font-size:11px;line-height:1.6;color:#065f46;">Govt waived <b>entire customs duty + AIDC</b> on raw cotton (HS 5201). Normal burden: ~11%. Triggered by severe domestic price rise and supply shortage. Relief to spinning mills, garment exporters, and SME weavers.<br><span style="font-size:10px;margin-top:3px;display:block;">▲ Vardhman · Trident · KPR Mill · Indo Count · SP Apparels</span></div>
+    </div>
+    <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1.5px solid #93c5fd;border-radius:10px;padding:12px 14px;">
+      <div style="font-weight:800;font-size:11.5px;color:#1e3a8a;margin-bottom:6px;">📋 Indo Count Q4 FY26 Declared &nbsp;<span style="background:#3b82f6;color:#fff;border-radius:4px;padding:1px 6px;font-size:9.5px;">✅ 30 May 2026</span></div>
+      <div style="font-size:11px;line-height:1.6;color:#1e3a8a;">Rev <b>₹1,057.7 Cr (+3.4%)</b> · Adj. PAT <b>₹33.8 Cr (+60.1%)</b> · EBITDA 8.2% (transitional). US tariff 26%→10%. FY27 guidance: 105-110 mn pcs vol, EBITDA 13%, New Biz ₹1,500 Cr. Stock +14% on results day to 52-wk high ₹353.<br><span style="font-size:10px;margin-top:3px;display:block;color:#1d4ed8;">BUY maintained · TP ₹480</span></div>
+    </div>
+  </div>
   <div class="kpi-row">
     <div class="kpi v-a"><div class="kl">Vardhman Q4 Revenue ✅</div><div class="kv">₹2,498 Cr</div><div class="kc neg">▼ 0.4% YoY</div></div>
     <div class="kpi wl-a"><div class="kl">Welspun Liv Q4 Revenue ✅</div><div class="kv">₹2,435 Cr</div><div class="kc neg">▼ 8% YoY</div></div>
@@ -354,12 +371,12 @@ td.tb{font-weight:700;}
     </div>
     <div class="co-card indocount">
       <div class="co-name" style="color:var(--indocount)">Indo Count Industries</div>
-      <div class="co-seg">Bed Linen · Home Textiles · USA Exports · Q4 FY26 ⏳</div>
-      <div class="m-row"><span class="m-lbl">Q4 Revenue (Est.)</span><span class="m-val">~₹1,115 Cr</span></div>
-      <div class="m-row"><span class="m-lbl">Q4 PAT (Est.)</span><span class="m-val">~₹80 Cr</span></div>
-      <div class="m-row"><span class="m-lbl">Q3 FY26 PAT (Actual)</span><span class="m-val">₹75 Cr (+30% YoY)</span></div>
+      <div class="co-seg">Bed Linen · Home Textiles · USA Exports · Q4 FY26 ✅</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val tpos">₹1,057.7 Cr (+3.4% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 Adj. PAT</span><span class="m-val tpos">₹33.8 Cr (+60.1% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA%</span><span class="m-val warn">8.2% (Margin Pressure)</span></div>
       <div class="m-row"><span class="m-lbl">US Market Share</span><span class="m-val">Top 3 Global Bed Sheet</span></div>
-      <div class="m-row"><span class="m-lbl">USA Revenue Mix</span><span class="m-val warn">~70% of revenue</span></div>
+      <div class="m-row"><span class="m-lbl">FY27 Vol Guidance</span><span class="m-val tpos">105-110 mn pcs · EBITDA 13%</span></div>
       <div class="badge-row"><span class="badge b-pend">Q4 Pending</span><span class="badge b-watch">US Tariff Risk</span><span class="badge b-pos">Cheapest PE 14x</span></div>
     </div>
     <div class="co-card himat">
@@ -412,6 +429,17 @@ td.tb{font-weight:700;}
       <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val" style="color:var(--pos)">₹764 Cr (+4.8%)</span></div>
       <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-pos">Volume Growth</span><span class="badge b-pos">Div ₹550/sh</span></div>
     </div>
+    <div class="co-card pearl" style="border-color:var(--pearl);">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--pearl);"></div>
+      <div class="co-name" style="color:var(--pearl)">Pearl Global Industries</div>
+      <div class="co-seg">Apparel Export · BSE: 523260 · Mid-Cap</div>
+      <div class="m-row"><span class="m-lbl">Q4 FY26 Revenue</span><span class="m-val tpos">₹1,200 Cr (+22% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 FY26 PAT</span><span class="m-val tpos">₹72 Cr (+18% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val tpos">₹4,400 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val tpos">₹260 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">EBITDA% Q4</span><span class="m-val tpos">14.5%</span></div>
+      <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-pos">Bangladesh+1 Play</span><span class="badge b-pos">USA+EU Diversified</span></div>
+    </div>
     <div class="co-card" style="border-color:var(--gold);">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);"></div>
       <div class="co-name" style="color:var(--gold)">Sector Summary</div>
@@ -439,6 +467,7 @@ td.tb{font-weight:700;}
           <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (20 May)</span></td><td class="num">~365 (Q4)</td><td class="num">FY26 ₹88 Cr (+5.2%)</td></tr>
           <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas Exports</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (22 May)</span></td><td class="num">1,087</td><td class="num tneg">FY26 ₹100 Cr (▼37%)</td></tr>
           <tr><td class="tb" style="color:var(--pagind)">Page Industries</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (22 May)</span></td><td class="num tpos">1,253</td><td class="num tpos">179 (+9%)</td></tr>
+          <tr><td class="tb" style="color:var(--pearl)">Pearl Global Industries</td><td><span class="badge b-buy">Q4 FY26 ✅ Declared (20 May)</span></td><td class="num tpos">1,200</td><td class="num tpos">72 (+18%)</td></tr>
         </tbody>
       </table></div>
     </div>
@@ -486,7 +515,7 @@ td.tb{font-weight:700;}
     <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);white-space:nowrap;">Filter by Segment</div>
 
     <select id="fin-filter" onchange="renderFinTable()" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;border:1.5px solid var(--border);border-radius:7px;padding:7px 28px 7px 10px;background:var(--surface);color:var(--text);cursor:pointer;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236e6860'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 10px center;outline:none;">
-      <option value="all">All Companies (9)</option>
+      <option value="all">All Companies (10)</option>
       <option value="yarn">Yarn & Spinning</option>
       <option value="home">Home Textiles</option>
       <option value="apparel">Apparel / Garment Export</option>
@@ -526,12 +555,13 @@ td.tb{font-weight:700;}
     { name:'Vardhman Textiles',  color:'var(--vardhman)',  segment:['yarn','integrated'],  declared:true,  q4rev:2498, q4yoy:-0.4,  q4pat:185,  patyoy:-22.2, q4ebitda:11.8,  fy26rev:9869,  fy26pat:753,  fy26ebitda:12.1 },
     { name:'Welspun Living',     color:'var(--welspunliv)',segment:['home','integrated'],   declared:true,  q4rev:2435, q4yoy:-7.95, q4pat:104,  patyoy:-21.3, q4ebitda:10.8,  fy26rev:9399,  fy26pat:213,  fy26ebitda:9.1 },
     { name:'KPR Mill',           color:'var(--kpr)',       segment:['yarn','apparel','integrated'], declared:true, q4rev:1784, q4yoy:0.9, q4pat:227, patyoy:11.1, q4ebitda:20.3, fy26rev:6650, fy26pat:867, fy26ebitda:20.65 },
-    { name:'Indo Count',         color:'var(--indocount)', segment:['home'],               declared:false, q4rev:1115, q4yoy:5,     q4pat:80,   patyoy:3,    q4ebitda:13.5,  fy26rev:4200,  fy26pat:310,  fy26ebitda:13.0,  est:true },
+    { name:'Indo Count',         color:'var(--indocount)', segment:['home'],               declared:true,  q4rev:1057.7, q4yoy:3.4, q4pat:24.2, patyoy:15,   q4ebitda:8.2,   fy26rev:4106,  fy26pat:114,  fy26ebitda:12.0 },
     { name:'Himatsingka',        color:'var(--himat)',     segment:['home'],               declared:false, q4rev:600,  q4yoy:-2,    q4pat:12,   patyoy:-40,  q4ebitda:15.8,  fy26rev:2500,  fy26pat:50,   fy26ebitda:15.5,  est:true },
     { name:'Trident',            color:'var(--trident)',   segment:['yarn','home','integrated'], declared:true,  q4rev:1633, q4yoy:-12.4, q4pat:102,  patyoy:-23.5, q4ebitda:15.05, fy26rev:6701,  fy26pat:377,  fy26ebitda:14.0 },
     { name:'SP Apparels',        color:'var(--spapparel)', segment:['apparel'],            declared:true,  q4rev:365,  q4yoy:-6,    q4pat:18.5, patyoy:-39.2, q4ebitda:12.2,  fy26rev:1579,  fy26pat:88,   fy26ebitda:13.8 },
     { name:'Gokaldas Exports',   color:'var(--gokaldas)',  segment:['apparel'],            declared:true,  q4rev:1087, q4yoy:5,     q4pat:36,   patyoy:-32,   q4ebitda:12.4,  fy26rev:4065,  fy26pat:100,  fy26ebitda:10.7 },
     { name:'Page Industries',    color:'var(--pagind)',    segment:['innerwear'],          declared:true,  q4rev:1253, q4yoy:14.1,  q4pat:179,  patyoy:9,    q4ebitda:20.8,  fy26rev:5247,  fy26pat:764,  fy26ebitda:22.0 },
+    { name:'Pearl Global Industries', color:'var(--pearl)',    segment:['apparel'],            declared:true,  q4rev:1200, q4yoy:22,    q4pat:72,   patyoy:18,   q4ebitda:14.5,  fy26rev:4400,  fy26pat:260,  fy26ebitda:14.2 },
   ];
 
   let finSortCol = null;
@@ -588,7 +618,7 @@ td.tb{font-weight:700;}
       return dir === 'desc' ? bv - av : av - bv;
     });
 
-    document.getElementById('fin-count').textContent = rows.length + ' of 9 companies';
+    document.getElementById('fin-count').textContent = rows.length + ' of 10 companies';
 
     const tbody = document.getElementById('fin-tbody');
     tbody.innerHTML = rows.map(r => {
@@ -670,15 +700,16 @@ td.tb{font-weight:700;}
   </div>
   <div class="g3" style="margin-top:16px;">
     <div class="card">
-      <div class="card-lbl">Indo Count — Financial Deep-Dive</div>
-      <div class="m-row"><span class="m-lbl">Q4 Revenue (est.)</span><span class="m-val warn">~₹1,115 Cr</span></div>
-      <div class="m-row"><span class="m-lbl">Q4 PAT (est.)</span><span class="m-val warn">~₹80 Cr</span></div>
-      <div class="m-row"><span class="m-lbl">Q4 EBITDA% (est.)</span><span class="m-val warn">~13.5%</span></div>
-      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val warn">~₹4,200 Cr</span></div>
-      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val warn">~₹310 Cr</span></div>
-      <div class="m-row"><span class="m-lbl">USA Revenue %</span><span class="m-val tneg">~70% (highest tariff risk)</span></div>
-      <div class="m-row"><span class="m-lbl">Market Position</span><span class="m-val">Top-3 bed sheet USA</span></div>
-      <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-neg">US Tariff Risk</span></div>
+      <div class="card-lbl">Indo Count — Financial Deep-Dive ✅ Q4 FY26 Declared</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val tpos">₹1,057.7 Cr (+3.4% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 Reported PAT</span><span class="m-val tpos">₹24.2 Cr (+15% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 Adjusted PAT</span><span class="m-val tpos">₹33.8 Cr (+60.1% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA%</span><span class="m-val warn">8.2% (▼62bps YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 Volume</span><span class="m-val tneg">20.5 mn pieces (▼20% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val">₹4,106 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val warn">₹114 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY27 Guidance</span><span class="m-val tpos">Vol 105-110 mn pcs · EBITDA 13%</span></div>
+      <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-pos">Tariff Relief</span><span class="badge b-pos">US Spindle Expansion</span></div>
     </div>
     <div class="card">
       <div class="card-lbl">Himatsingka Seide — Financial Deep-Dive</div>
@@ -737,6 +768,20 @@ td.tb{font-weight:700;}
       <div class="m-row"><span class="m-lbl">Sales Volume Q4</span><span class="m-val tpos">54.5M pieces (+10.8%)</span></div>
       <div class="m-row"><span class="m-lbl">Dividend FY26</span><span class="m-val tpos">₹550/share (4 interim)</span></div>
       <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-pos">Domestic Moat</span><span class="badge b-pos">Margin Leader</span></div>
+    </div>
+  </div>
+  <div class="g3" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-lbl">Pearl Global Industries — Financial Deep-Dive</div>
+      <div class="m-row"><span class="m-lbl">Q4 Revenue</span><span class="m-val tpos">₹1,200 Cr (+22% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 PAT</span><span class="m-val tpos">₹72 Cr (+18% YoY)</span></div>
+      <div class="m-row"><span class="m-lbl">Q4 EBITDA%</span><span class="m-val tpos">14.5%</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 Revenue</span><span class="m-val tpos">₹4,400 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 PAT</span><span class="m-val tpos">₹260 Cr</span></div>
+      <div class="m-row"><span class="m-lbl">FY26 EBITDA%</span><span class="m-val tpos">14.2%</span></div>
+      <div class="m-row"><span class="m-lbl">Net Debt</span><span class="m-val tpos">~₹200 Cr (Low)</span></div>
+      <div class="m-row"><span class="m-lbl">ROCE</span><span class="m-val tpos">~18%</span></div>
+      <div class="badge-row"><span class="badge b-buy">BUY</span><span class="badge b-pos">Bangladesh+1 Beneficiary</span><span class="badge b-pos">Multi-Country Mfg</span></div>
     </div>
   </div>
 </div>
@@ -872,6 +917,17 @@ td.tb{font-weight:700;}
       <div class="val-row"><span>EV/EBITDA</span><span class="num">35x</span></div>
       <div class="val-row"><span>P/B</span><span class="num">22x</span></div>
       <div class="val-row"><span>Div Yield</span><span class="num tpos">1.4% (₹550/sh)</span></div>
+    </div>
+    <div class="val-card" style="border-top:4px solid var(--pearl)">
+      <div class="val-co" style="color:var(--pearl)">Pearl Global Industries</div>
+      <div class="val-rating buy">BUY</div>
+      <div class="val-row"><span>CMP</span><span class="num">~₹270</span></div>
+      <div class="val-row"><span>Target Price</span><span class="num tpos">₹350</span></div>
+      <div class="val-row"><span>Upside</span><span class="num tpos">+29.6%</span></div>
+      <div class="val-row"><span>P/E (FY26)</span><span class="num">17.3x</span></div>
+      <div class="val-row"><span>EV/EBITDA</span><span class="num">11.5x</span></div>
+      <div class="val-row"><span>P/B</span><span class="num">3.1x</span></div>
+      <div class="val-row"><span>Div Yield</span><span class="num">0.5%</span></div>
     </div>
   </div>
   <div class="card" style="margin-top:20px;">
@@ -1071,6 +1127,28 @@ td.tb{font-weight:700;}
         </table>
       </div>
     </div>
+
+    <!-- PEARL GLOBAL INDUSTRIES -->
+    <div class="seg-card">
+      <div class="seg-header" style="background:var(--pearl)">Pearl Global Industries — Apparel Export Specialist</div>
+      <div class="seg-body">
+        <div class="seg-desc">India's fast-growing apparel exporter listed on BSE. Multi-geography manufacturing model spanning India, Bangladesh, Vietnam, and Indonesia. Supplies to top global fashion brands. Key Bangladesh+1 beneficiary as global buyers diversify sourcing.</div>
+        <div class="seg-bars">
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Woven Garments</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:55%;background:var(--pearl)"></div></div><span class="seg-bar-pct">55%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Knit Garments</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:30%;background:var(--pearl);opacity:.75"></div></div><span class="seg-bar-pct">30%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Fabric/Yarn</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:10%;background:var(--pearl);opacity:.5"></div></div><span class="seg-bar-pct">10%</span></div>
+          <div class="seg-bar-row"><span class="seg-bar-lbl">Domestic</span><div class="seg-bar-track"><div class="seg-bar-fill" style="width:5%;background:#4ade80"></div></div><span class="seg-bar-pct">5%</span></div>
+        </div>
+        <table style="width:100%;font-size:11px;margin-top:8px;">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Key Clients</td><td>H&M, Gap, Walmart, Target, Zara</td></div></tr>
+          <tr><td>Manufacturing Footprint</td><td>India + Bangladesh + Vietnam + Indonesia</td></tr>
+          <tr><td>Export Focus</td><td>USA ~45%, EU ~35%, Others ~20%</td></tr>
+          <tr><td>EBITDA Margin</td><td>14.5% (above sector median)</td></tr>
+          <tr><td>Key USP</td><td>Multi-country manufacturing = tariff flexibility</td></tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 <!-- ==================== BUSINESS ANALYSIS TAB ==================== -->
@@ -1184,6 +1262,20 @@ td.tb{font-weight:700;}
       </div>
     </div>
 
+    <!-- PEARL GLOBAL INDUSTRIES -->
+    <div class="biz-card">
+      <div class="biz-header" style="background:var(--pearl)">Pearl Global Industries — Business Analysis</div>
+      <div class="biz-body">
+        <div class="swot-grid">
+          <div class="swot-box swot-s"><div class="swot-title">💪 Strengths</div>Multi-geography manufacturing (India, Bangladesh, Vietnam, Indonesia) — world-class tariff flexibility. Q4 FY26 revenue +22% YoY. Trusted by H&amp;M, Gap, Walmart. EBITDA 14.5% above sector median. Strong Q4 PAT growth +18%.</div>
+          <div class="swot-box swot-w"><div class="swot-title">⚠️ Weaknesses</div>Mid-cap with lower brand recognition vs peers. Complex multi-country operations. Bangladesh operations still carry 26% US tariff risk. Limited domestic revenue (5%).</div>
+          <div class="swot-box swot-o"><div class="swot-title">🚀 Opportunities</div>Bangladesh+1 = India ops gain more orders. US tariff on Bangladesh-made goods = Pearl's India operations benefit. India-EU FTA. Global fashion brand diversification away from single-country risk.</div>
+          <div class="swot-box swot-t"><div class="swot-title">🚨 Threats</div>US 26% tariff on India-origin garments. Bangladesh political instability. Wage inflation across multiple geographies. Currency fluctuation across 4 manufacturing nations.</div>
+        </div>
+        <div class="biz-verdict">📌 Investment View: BUY. Multi-geography manufacturing is a structural advantage in the tariff-volatility era. Strong FY26 growth (+22% Q4 rev, +18% PAT) at affordable P/E of 17x. TP ₹350. India's best-positioned mid-cap apparel exporter.</div>
+      </div>
+    </div>
+
   </div>
 </div>
 <!-- ==================== ANALYST RATINGS TAB ==================== -->
@@ -1280,6 +1372,17 @@ td.tb{font-weight:700;}
       <div class="analyst-catalysts"><b>Watch for:</b> Q4 results 27 May · Debt restructuring · Asset sale announcement · New management actions</div>
     </div>
 
+    <div class="analyst-card" style="border-color:var(--pearl)">
+      <div class="analyst-co" style="color:var(--pearl)">Pearl Global Industries</div>
+      <div class="analyst-rating buy">BUY</div>
+      <div class="analyst-meta">CMP: ~₹270 · Target: ₹350 · Upside: +29.6%</div>
+      <div class="analyst-thesis">India's most compelling mid-cap apparel exporter story. Multi-geography manufacturing (India, Bangladesh, Vietnam, Indonesia) provides unmatched tariff agility. Q4 FY26 revenue +22% YoY and PAT +18% demonstrates strong execution. Trading at just 17x P/E vs sector at 22-25x for comparable growth. Bangladesh+1 ordering trend directly benefits India operations. Top global brands (H&M, Gap, Walmart) continue to increase India share.</div>
+      <div class="analyst-metrics">
+        <span>P/E: 17.3x</span><span>EV/EBITDA: 11.5x</span><span>Q4 Rev: +22%</span><span>EBITDA: 14.5%</span>
+      </div>
+      <div class="analyst-catalysts"><b>Key Catalysts:</b> India-EU FTA progress · Bangladesh instability driving India orders · US tariff resolution · New global brand wins · Capacity expansion</div>
+    </div>
+
   </div>
 </div>
 <!-- ==================== EXPORTS & GEOGRAPHY TAB ==================== -->
@@ -1307,6 +1410,7 @@ td.tb{font-weight:700;}
         <tr><td class="tb" style="color:var(--trident)">Trident</td><td class="num warn">~40%</td><td class="num">~30%</td><td class="num">~8%</td><td class="num">—</td><td class="num">~15%</td><td class="num">~7%</td><td>Towel + paper export diversification</td></tr>
         <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td class="num">~5%</td><td class="num tpos">~80%</td><td class="num">~2%</td><td class="num">—</td><td class="num">~10%</td><td class="num">~3%</td><td>UK FTA max beneficiary; Zenith (UK arm)</td></tr>
         <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas Exports</td><td class="num warn">~55%</td><td class="num">~20%</td><td class="num">~2%</td><td class="num tpos">~22%</td><td class="num">~1%</td><td class="num">—</td><td>AGOA (Africa ops) = duty-free US access</td></tr>
+        <tr><td class="tb" style="color:var(--pearl)">Pearl Global</td><td class="num warn">~45%</td><td class="num tpos">~35%</td><td class="num">~2%</td><td class="num">—</td><td class="num">~12%</td><td class="num">~6%</td><td>Multi-geography — US+EU balanced; Bangladesh+1 beneficiary</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -1324,6 +1428,7 @@ td.tb{font-weight:700;}
         <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas Exports</td><td class="num">~55%</td><td><span class="badge b-watch">MEDIUM</span></td><td><span style="color:var(--pos)">AGOA (duty-free via Africa)</span></td><td class="tpos">AGOA partially neutralises</td></tr>
         <tr><td class="tb" style="color:var(--kpr)">KPR Mill</td><td class="num tpos">~15%</td><td><span class="badge b-pos">LOW</span></td><td>EU ~70% = natural buffer</td><td class="tpos">Minimal impact</td></tr>
         <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td class="num tpos">~5%</td><td><span class="badge b-pos">MINIMAL</span></td><td>UK FTA = direct benefit instead</td><td class="tpos">Net POSITIVE from FTA</td></tr>
+        <tr><td class="tb" style="color:var(--pearl)">Pearl Global</td><td class="num warn">~45%</td><td><span class="badge b-watch">MEDIUM</span></td><td>EU 35% buffer; multi-country operations</td><td class="warn">Moderate; EU offset helps</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -1342,6 +1447,7 @@ td.tb{font-weight:700;}
           <tr><td class="tb" style="color:var(--spapparel)">SP Apparels</td><td>Knit Garments</td><td>~3.5 Cr pcs/year (est.)</td></tr>
           <tr><td class="tb" style="color:var(--gokaldas)">Gokaldas</td><td>Woven Garments</td><td>~4 Cr pcs/year (est.)</td></tr>
           <tr><td class="tb" style="color:var(--himat)">Himatsingka</td><td>Spindles + Looms</td><td>~1.5 lakh spindles</td></tr>
+          <tr><td class="tb" style="color:var(--pearl)">Pearl Global</td><td>Woven + Knit Garments</td><td>~5 Cr pcs/year (est.)</td></tr>
         </tbody>
       </table>
     </div>
@@ -1484,6 +1590,19 @@ td.tb{font-weight:700;}
       </div>
     </div>
 
+    <div class="moat-card">
+      <div class="moat-icon">🌏</div>
+      <div class="moat-co" style="color:var(--pearl)">Pearl Global Industries</div>
+      <div class="moat-type">Geopolitical Agility Moat</div>
+      <div class="moat-body">
+        <div class="moat-row"><span class="moat-lbl">Primary Moat</span><span>Multi-country manufacturing — tariff agility across 4 nations</span></div>
+        <div class="moat-row"><span class="moat-lbl">Footprint</span><span>India + Bangladesh + Vietnam + Indonesia</span></div>
+        <div class="moat-row"><span class="moat-lbl">Brand Clients</span><span>H&amp;M, Gap, Walmart, Target, Zara</span></div>
+        <div class="moat-row"><span class="moat-lbl">Bangladesh+1</span><span>India ops gain as buyers diversify from Bangladesh</span></div>
+        <div class="moat-row"><span class="moat-lbl">Moat Strength</span><span class="badge b-buy">STRONG — Multi-Geography Edge</span></div>
+      </div>
+    </div>
+
   </div>
 </div>
 <!-- ==================== VERDICT TAB ==================== -->
@@ -1527,36 +1646,43 @@ td.tb{font-weight:700;}
             <td class="num">₹372</td><td class="num tpos">₹480</td>
             <td>Top-3 global bed sheet · Trough valuation · EU shift</td>
           </tr>
+          <tr style="background:#fff7ed;">
+            <td class="num tpos">5</td>
+            <td class="tb" style="color:var(--pearl)">Pearl Global</td>
+            <td><span class="badge b-buy">BUY</span></td>
+            <td class="num">~₹270</td><td class="num tpos">₹350</td>
+            <td>Multi-country mfg moat · Bangladesh+1 play · 17x P/E value</td>
+          </tr>
           <tr>
-            <td class="num">5</td>
+            <td class="num">6</td>
             <td class="tb" style="color:var(--vardhman)">Vardhman</td>
             <td><span class="badge b-hold">HOLD</span></td>
             <td class="num">₹450</td><td class="num">₹500</td>
             <td>Scale leader · Margin recovery needed · Low P/E buffer</td>
           </tr>
           <tr>
-            <td class="num">6</td>
+            <td class="num">7</td>
             <td class="tb" style="color:var(--trident)">Trident</td>
             <td><span class="badge b-hold">HOLD</span></td>
             <td class="num">₹24</td><td class="num">₹28</td>
             <td>Global towel leader · Paper USP · Accumulate lower</td>
           </tr>
           <tr>
-            <td class="num">7</td>
+            <td class="num">8</td>
             <td class="tb" style="color:var(--welspunliv)">Welspun Living</td>
             <td><span class="badge b-hold">HOLD</span></td>
             <td class="num">₹141</td><td class="num">₹165</td>
             <td>FCF recovery impressive · PAT needs improvement</td>
           </tr>
           <tr>
-            <td class="num">8</td>
+            <td class="num">9</td>
             <td class="tb" style="color:var(--gokaldas)">Gokaldas</td>
             <td><span class="badge b-hold">HOLD</span></td>
             <td class="num">₹900</td><td class="num">₹950</td>
             <td>AGOA unique moat · PAT decline · 32x P/E stretched</td>
           </tr>
           <tr style="background:#fee2e2;">
-            <td class="num tneg">9</td>
+            <td class="num tneg">10</td>
             <td class="tb" style="color:var(--himat)">Himatsingka</td>
             <td><span class="badge b-avoid">AVOID</span></td>
             <td class="num">₹78</td><td class="num tneg">—</td>
@@ -1594,7 +1720,8 @@ td.tb{font-weight:700;}
           <b style="color:var(--kpr)">KPR Mill</b> — Core holding. Best in sector. TP ₹1,150<br>
           <b style="color:var(--pagind)">Page Industries</b> — Monopoly brand. Volume growth sustaining. TP ₹44,000<br>
           <b style="color:var(--spapparel)">SP Apparels</b> — FTA play. Accumulate. TP ₹920<br>
-          <b style="color:var(--indocount)">Indo Count</b> — Trough buy. TP ₹480
+          <b style="color:var(--indocount)">Indo Count</b> — Trough buy. TP ₹480<br>
+          <b style="color:var(--pearl)">Pearl Global</b> — Bangladesh+1 play. Multi-country moat. TP ₹350
         </div>
       </div>
       <div>
@@ -2042,119 +2169,200 @@ td.tb{font-weight:700;}
 <!-- ==================== CB ASSIST TAB ==================== -->
 
 <div id="tab-cbassist" class="tab-content">
-  <div class="tab-title">🤖 CB Assist — Textile Intelligence Chat</div>
+  <div class="tab-title">🤖 CB Assist — Smart Company Q&amp;A</div>
 
-  <!-- ENGLISH SECTION -->
-  <div class="cba-section" id="lang-en">
-    <div class="cba-lang-header" style="background:var(--kpr);color:#fff;">
-      🇬🇧 English Questions — Click a question to get an instant answer
-    </div>
-    <div class="preset-tabs">
-      <button class="pt active" onclick="switchTextilePreset('en','basics',this)">Basics</button>
-      <button class="pt" onclick="switchTextilePreset('en','performance',this)">Performance</button>
-      <button class="pt" onclick="switchTextilePreset('en','investment',this)">Investment</button>
-      <button class="pt" onclick="switchTextilePreset('en','risks',this)">Risks</button>
-    </div>
-    <div id="tpq-en-basics" class="tpq-panel active">
-      <div class="pq-btn" onclick="askTextilePreset('What does Vardhman Textiles do and what is their main business?')"><span class="pq-en">What does Vardhman Textiles do?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What is KPR Mill known for and why is it considered the best textile company in India?')"><span class="pq-en">Why is KPR Mill the best in sector?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Explain what Welspun Living does and what are their key brands?')"><span class="pq-en">What does Welspun Living make?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What is Indo Count Industries and what makes them a global leader?')"><span class="pq-en">What is Indo Count's global position?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What does Gokaldas Exports do and what is AGOA?')"><span class="pq-en">What is AGOA and why does Gokaldas benefit?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What is the India-UK FTA and how does SP Apparels benefit from it?')"><span class="pq-en">How does SP Apparels benefit from India-UK FTA?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What does Trident make besides textiles?')"><span class="pq-en">What else does Trident make besides textiles?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Why is Himatsingka Seide under pressure and what is their debt situation?')"><span class="pq-en">Why is Himatsingka struggling?</span></div>
-    </div>
-    <div id="tpq-en-performance" class="tpq-panel">
-      <div class="pq-btn" onclick="askTextilePreset('Which textile company had the best Q4 FY26 performance and why?')"><span class="pq-en">Which company had the best Q4 FY26?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Compare KPR Mill and Vardhman Textiles revenue and profit for FY26?')"><span class="pq-en">Compare KPR Mill vs Vardhman FY26</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Which textile company has the best EBITDA margin in Q4 FY26?')"><span class="pq-en">Who has the best EBITDA margin?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Why did Welspun Living PAT fall 67% in FY26 despite revenue growth?')"><span class="pq-en">Why did Welspun PAT fall 67%?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('How did Gokaldas Exports revenue grow 22% in Q4 FY26?')"><span class="pq-en">How did Gokaldas grow revenue 22%?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What is SP Apparels FY27 revenue target and is it achievable?')"><span class="pq-en">Is SP Apparels ₹2,000 Cr FY27 target achievable?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Which textile companies have results still pending for Q4 FY26?')"><span class="pq-en">Which Q4 results are still pending?</span></div>
-    </div>
-    <div id="tpq-en-investment" class="tpq-panel">
-      <div class="pq-btn" onclick="askTextilePreset('Which textile stock should I buy today and why?')"><span class="pq-en">Which textile stock to buy today?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Is KPR Mill at ₹918 a good buy with target price ₹1150?')"><span class="pq-en">Is KPR Mill a good buy at ₹918?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Why should I avoid Himatsingka Seide at current prices?')"><span class="pq-en">Why avoid Himatsingka Seide?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Between SP Apparels and Indo Count, which is the better BUY right now?')"><span class="pq-en">SP Apparels vs Indo Count — which to buy?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Is Trident a good long term investment in the textile sector?')"><span class="pq-en">Is Trident a good long-term investment?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What is the best textile stock for a 2-year holding period?')"><span class="pq-en">Best textile stock for 2-year hold?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Rank all 8 textile companies from best to worst investment right now')"><span class="pq-en">Rank all 8 companies from best to worst</span></div>
-    </div>
-    <div id="tpq-en-risks" class="tpq-panel">
-      <div class="pq-btn" onclick="askTextilePreset('How does the US 26% reciprocal tariff impact Indian textile companies?')"><span class="pq-en">How does US 26% tariff impact textiles?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('Which Indian textile company is most at risk from US tariffs?')"><span class="pq-en">Who faces maximum US tariff risk?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('How does Gokaldas use AGOA to avoid US tariffs?')"><span class="pq-en">How does Gokaldas avoid tariffs via AGOA?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What are the main risks in the Indian textile sector for FY27?')"><span class="pq-en">What are main FY27 sector risks?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('How does cotton price affect textile companies like Vardhman?')"><span class="pq-en">How does cotton price affect Vardhman?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('What is the West Asia conflict impact on Welspun Living?')"><span class="pq-en">West Asia conflict impact on Welspun?</span></div>
-    </div>
-  </div>
+  <style>
+  .cba2-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin-bottom:20px;}
+  .cba2-co-tabs{display:flex;flex-wrap:wrap;gap:6px;background:var(--surface2);padding:10px 14px;border-bottom:2px solid var(--border);}
+  .cba2-co-btn{padding:5px 13px;border-radius:20px;font-size:10.5px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);transition:all .15s;white-space:nowrap;}
+  .cba2-co-btn:hover{border-color:#181511;color:var(--text);}
+  .cba2-co-btn.active{color:#fff !important;border-color:transparent !important;}
+  .cba2-qs-panel{display:none;padding:14px 16px;}
+  .cba2-qs-panel.active{display:block;}
+  .cba2-qs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+  @media(max-width:820px){.cba2-qs-grid{grid-template-columns:1fr;}}
+  .cba2-q{padding:9px 13px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--text);line-height:1.45;text-align:left;}
+  .cba2-q:hover{background:#f0ede6;border-color:#181511;}
+  .cba2-q.active{background:#181511;color:#fff;border-color:#181511;}
+  .cba2-answer{border:1.5px solid var(--border);border-radius:10px;padding:16px 18px;font-size:12.5px;line-height:1.7;color:var(--text);display:none;background:#fff;margin-top:6px;}
+  .cba2-answer.show{display:block;animation:fadeIn .2s ease;}
+  .cba2-answer h4{font-family:'Playfair Display',serif;font-size:0.97rem;font-weight:700;margin:0 0 10px;padding-bottom:7px;border-bottom:2px solid var(--border);}
+  .cba2-answer .ans-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;margin:0 4px 8px 0;}
+  .cba2-answer ul{margin:6px 0 8px 18px;font-size:12px;line-height:1.75;}
+  .cba2-answer li{margin-bottom:3px;}
+  .cba2-answer p{margin:6px 0;font-size:12px;}
+  .cba2-answer .metric{display:inline-flex;align-items:center;gap:4px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;margin:2px 2px 4px 0;}
+  .cba2-divider{height:1px;background:var(--border);margin:10px 0;}
+  .cba2-note{font-size:10.5px;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);}
+  .cba2-chat-section{padding:14px 16px;border-top:2px solid var(--border);}
+  .cba2-chat-hdr{font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;}
+  .cba2-chat-out{min-height:70px;max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+  .cba2-input-row{display:flex;gap:8px;}
+  .cba2-input{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);outline:none;}
+  .cba2-input:focus{border-color:#181511;}
+  .cba2-send{background:#181511;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:12px;font-weight:700;cursor:pointer;}
+  </style>
 
-  <!-- TAMIL SECTION -->
-  <div class="cba-section" id="lang-ta" style="margin-top:20px;">
-    <div class="cba-lang-header" style="background:#7c3aed;color:#fff;">
-      🇮🇳 தமிழ் கேள்விகள் — ஒரு கேள்வியை கிளிக் செய்யுங்கள்
+  <div class="cba2-wrap">
+    <div class="cba2-co-tabs">
+      <button class="cba2-co-btn active" style="background:var(--kpr);border-color:var(--kpr)" onclick="showCo('kpr',this)">KPR Mill</button>
+      <button class="cba2-co-btn" onclick="showCo('pagind',this)">Page Industries</button>
+      <button class="cba2-co-btn" onclick="showCo('spapparel',this)">SP Apparels</button>
+      <button class="cba2-co-btn" onclick="showCo('indocount',this)">Indo Count</button>
+      <button class="cba2-co-btn" onclick="showCo('pearl',this)">Pearl Global</button>
+      <button class="cba2-co-btn" onclick="showCo('vardhman',this)">Vardhman</button>
+      <button class="cba2-co-btn" onclick="showCo('welspun',this)">Welspun Living</button>
+      <button class="cba2-co-btn" onclick="showCo('trident',this)">Trident</button>
+      <button class="cba2-co-btn" onclick="showCo('gokaldas',this)">Gokaldas</button>
+      <button class="cba2-co-btn" onclick="showCo('himat',this)">Himatsingka</button>
+      <button class="cba2-co-btn" onclick="showCo('sector',this)">🏭 Sector</button>
     </div>
-    <div class="preset-tabs">
-      <button class="pt active" onclick="switchTextilePreset('ta','basics',this)">அடிப்படை</button>
-      <button class="pt" onclick="switchTextilePreset('ta','performance',this)">செயல்திறன்</button>
-      <button class="pt" onclick="switchTextilePreset('ta','investment',this)">முதலீடு</button>
-      <button class="pt" onclick="switchTextilePreset('ta','risks',this)">அபாயங்கள்</button>
-    </div>
-    <div id="tpq-ta-basics" class="tpq-panel active">
-      <div class="pq-btn" onclick="askTextilePreset('வர்த்தமான் டெக்ஸ்டைல்ஸ் என்ன செய்கிறது? அவர்களின் முக்கிய வணிகம் என்ன?','ta')"><span class="pq-ta">வர்த்தமான் டெக்ஸ்டைல்ஸ் என்ன செய்கிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('KPR மில் ஏன் இந்தியாவின் சிறந்த ஜவுளி நிறுவனமாக கருதப்படுகிறது?','ta')"><span class="pq-ta">KPR மில் ஏன் சிறந்தது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('வெல்ஸ்பன் லிவிங் என்ன தயாரிக்கிறது? அவர்களின் முக்கிய பிராண்டுகள் என்னென்ன?','ta')"><span class="pq-ta">வெல்ஸ்பன் லிவிங் என்ன தயாரிக்கிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('இந்தோ கவுண்ட் இண்டஸ்ட்ரீஸ் உலகளவில் எந்த நிலையில் உள்ளது?','ta')"><span class="pq-ta">இந்தோ கவுண்ட் உலக நிலை என்ன?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('கோகல்தாஸ் எக்ஸ்போர்ட்ஸ் என்ன செய்கிறது? AGOA என்றால் என்ன?','ta')"><span class="pq-ta">AGOA என்றால் என்ன? கோகல்தாஸுக்கு எப்படி பயன்படுகிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('SP அப்பாரல்ஸ் இந்திய-UK FTA ஒப்பந்தத்தால் எப்படி பயன் அடைகிறது?','ta')"><span class="pq-ta">SP அப்பாரல்ஸ் UK FTA-யால் எப்படி பயன் அடைகிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('ட்ரைடன்ட் ஜவுளி தவிர வேறு என்ன தயாரிக்கிறது?','ta')"><span class="pq-ta">ட்ரைடன்ட் வேறு என்ன தயாரிக்கிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('ஹிமத்சிங்கா ஏன் இப்போது கஷ்டத்தில் உள்ளது? அவர்களின் கடன் நிலை என்ன?','ta')"><span class="pq-ta">ஹிமத்சிங்கா ஏன் கஷ்டத்தில் உள்ளது?</span></div>
-    </div>
-    <div id="tpq-ta-performance" class="tpq-panel">
-      <div class="pq-btn" onclick="askTextilePreset('Q4 FY26-ல் எந்த ஜவுளி நிறுவனம் சிறப்பான செயல்திறன் காட்டியது?','ta')"><span class="pq-ta">Q4 FY26-ல் சிறந்த நிறுவனம் எது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('KPR மில் மற்றும் வர்த்தமான் டெக்ஸ்டைல்ஸ் FY26 வருமானம் ஒப்பிடுங்கள்','ta')"><span class="pq-ta">KPR மில் vs வர்த்தமான் FY26 ஒப்பீடு</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('எந்த ஜவுளி நிறுவனத்திற்கு சிறந்த EBITDA மார்ஜின் உள்ளது?','ta')"><span class="pq-ta">சிறந்த EBITDA மார்ஜின் உள்ள நிறுவனம் எது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('வெல்ஸ்பன் லிவிங் PAT FY26-ல் 67% ஏன் குறைந்தது?','ta')"><span class="pq-ta">வெல்ஸ்பன் PAT 67% ஏன் குறைந்தது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('SP அப்பாரல்ஸ் FY27 இலக்கு ₹2000 கோடி சாத்தியமா?','ta')"><span class="pq-ta">SP அப்பாரல்ஸ் ₹2000 கோடி இலக்கு சாத்தியமா?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('இன்னும் Q4 FY26 முடிவுகள் அறிவிக்காத நிறுவனங்கள் எவை?','ta')"><span class="pq-ta">இன்னும் Q4 முடிவுகள் அறிவிக்காதவை எவை?</span></div>
-    </div>
-    <div id="tpq-ta-investment" class="tpq-panel">
-      <div class="pq-btn" onclick="askTextilePreset('இப்போது எந்த ஜவுளி பங்கை வாங்கலாம்? ஏன்?','ta')"><span class="pq-ta">இப்போது எந்த பங்கை வாங்கலாம்?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('KPR மில் ₹918-ல் வாங்குவது நல்லதா? இலக்கு விலை என்ன?','ta')"><span class="pq-ta">KPR மில் ₹918-ல் வாங்கலாமா?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('ஏன் ஹிமத்சிங்கா பங்கை தவிர்க்க வேண்டும்?','ta')"><span class="pq-ta">ஏன் ஹிமத்சிங்கா தவிர்க்க வேண்டும்?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('SP அப்பாரல்ஸ் மற்றும் இந்தோ கவுண்ட் - இரண்டில் எது சிறந்த வாங்குதல்?','ta')"><span class="pq-ta">SP அப்பாரல்ஸ் vs இந்தோ கவுண்ட் - எது சிறந்தது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('2 வருட முதலீட்டிற்கு சிறந்த ஜவுளி பங்கு எது?','ta')"><span class="pq-ta">2 வருட முதலீட்டிற்கு சிறந்த பங்கு எது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('8 ஜவுளி நிறுவனங்களை சிறந்தது முதல் மோசமானது வரை வரிசைப்படுத்துங்கள்','ta')"><span class="pq-ta">8 நிறுவனங்களை சிறந்தது முதல் மோசம் வரை வரிசை</span></div>
-    </div>
-    <div id="tpq-ta-risks" class="tpq-panel">
-      <div class="pq-btn" onclick="askTextilePreset('அமெரிக்காவின் 26% வரி இந்திய ஜவுளி நிறுவனங்களை எப்படி பாதிக்கிறது?','ta')"><span class="pq-ta">US 26% வரி ஜவுளி நிறுவனங்களை எப்படி பாதிக்கிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('US வரியால் அதிகமாக பாதிக்கப்படும் இந்திய ஜவுளி நிறுவனம் எது?','ta')"><span class="pq-ta">US வரியால் அதிகம் பாதிக்கப்படும் நிறுவனம் எது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('கோகல்தாஸ் AGOA மூலம் US வரியை எப்படி தவிர்க்கிறது?','ta')"><span class="pq-ta">கோகல்தாஸ் AGOA மூலம் வரியை எப்படி தவிர்க்கிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('FY27-ல் இந்திய ஜவுளி துறையின் முக்கிய அபாயங்கள் என்னென்ன?','ta')"><span class="pq-ta">FY27 ஜவுளி துறை முக்கிய அபாயங்கள் என்னென்ன?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('பருத்தி விலை உயர்வு வர்த்தமான் போன்ற நிறுவனங்களை எப்படி பாதிக்கிறது?','ta')"><span class="pq-ta">பருத்தி விலை ஏற்றம் நிறுவனங்களை எப்படி பாதிக்கிறது?</span></div>
-      <div class="pq-btn" onclick="askTextilePreset('மேற்கு ஆசியா போர் வெல்ஸ்பன் லிவிங்கை எப்படி பாதித்தது?','ta')"><span class="pq-ta">மேற்கு ஆசியா நெருக்கடி வெல்ஸ்பன்னை பாதித்ததா?</span></div>
-    </div>
-  </div>
 
-  <!-- SHARED CHAT WINDOW -->
-  <div class="cba-chat-wrap" style="margin-top:20px;">
-    <div class="cba-chat-header">💬 CB Assist Response</div>
-    <div id="textile-chat-output" class="cba-chat-output">
-      <div class="cba-welcome">
-        <div style="font-size:24px;margin-bottom:8px;">🧵</div>
-        <div style="font-weight:700;margin-bottom:4px;">Welcome to CB Assist — Textile Intelligence</div>
-        <div style="color:#888;font-size:13px;">Click any English or Tamil preset question above, or type your own question below.</div>
+    <div id="co-kpr" class="cba2-qs-panel active">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('kpr',0,this)">Why is KPR Mill the only company with PAT growth in FY26?</div>
+        <div class="cba2-q" onclick="showAns('kpr',1,this)">How does KPR's 20.65% EBITDA beat every textile peer?</div>
+        <div class="cba2-q" onclick="showAns('kpr',2,this)">What is KPR's EU concentration risk and how does it manage it?</div>
+        <div class="cba2-q" onclick="showAns('kpr',3,this)">KPR is debt-free — where does the free cash go?</div>
+        <div class="cba2-q" onclick="showAns('kpr',4,this)">How does sugar/ethanol diversification protect KPR's earnings?</div>
+        <div class="cba2-q" onclick="showAns('kpr',5,this)">What's the bull case for KPR hitting TP ₹1,150?</div>
+      </div>
+      <div id="ans-kpr" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-pagind" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('pagind',0,this)">Why does Page Industries deserve a 56x P/E premium?</div>
+        <div class="cba2-q" onclick="showAns('pagind',1,this)">What happens to Page if Jockey's licence is not renewed?</div>
+        <div class="cba2-q" onclick="showAns('pagind',2,this)">How does Page grow volume while raising prices simultaneously?</div>
+        <div class="cba2-q" onclick="showAns('pagind',3,this)">Can a global brand like CK or Tommy Hilfiger threaten Page directly?</div>
+        <div class="cba2-q" onclick="showAns('pagind',4,this)">Why is ₹550/share dividend sustainable and what does it signal?</div>
+        <div class="cba2-q" onclick="showAns('pagind',5,this)">Can Page reach ₹8,000 Cr revenue by FY28-29?</div>
+      </div>
+      <div id="ans-pagind" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-spapparel" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('spapparel',0,this)">Why is SP Apparels the maximum India-UK FTA beneficiary?</div>
+        <div class="cba2-q" onclick="showAns('spapparel',1,this)">How does Zenith Clothing (UK subsidiary) create a structural moat?</div>
+        <div class="cba2-q" onclick="showAns('spapparel',2,this)">Why did SP Apparels PAT fall 39% in Q4 despite FTA tailwind?</div>
+        <div class="cba2-q" onclick="showAns('spapparel',3,this)">Is the ₹2,000 Cr FY27 revenue target realistic?</div>
+        <div class="cba2-q" onclick="showAns('spapparel',4,this)">80% UK revenue — what's the concentration risk profile?</div>
+        <div class="cba2-q" onclick="showAns('spapparel',5,this)">SP Apparels vs KPR Mill — which is the better long-term bet?</div>
+      </div>
+      <div id="ans-spapparel" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-indocount" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('indocount',0,this)">Why does 70% US revenue make Indo Count both a risk and a recovery play?</div>
+        <div class="cba2-q" onclick="showAns('indocount',1,this)">What makes Wamsutta a moat — can competitors easily copy it?</div>
+        <div class="cba2-q" onclick="showAns('indocount',2,this)">How would a US tariff reduction re-rate Indo Count's stock?</div>
+        <div class="cba2-q" onclick="showAns('indocount',3,this)">Indo Count at 16.5x P/E vs sector — is it genuinely cheap?</div>
+        <div class="cba2-q" onclick="showAns('indocount',4,this)">What are Indo Count's EU diversification options?</div>
+        <div class="cba2-q" onclick="showAns('indocount',5,this)">What should Q4 FY26 results show to trigger a BUY upgrade?</div>
+      </div>
+      <div id="ans-indocount" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-pearl" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('pearl',0,this)">What exactly is the Bangladesh+1 strategy and how does Pearl benefit?</div>
+        <div class="cba2-q" onclick="showAns('pearl',1,this)">Pearl operates in 4 countries — how does this create tariff arbitrage?</div>
+        <div class="cba2-q" onclick="showAns('pearl',2,this)">Pearl Q4 Rev +22% — what's driving this outperformance vs peers?</div>
+        <div class="cba2-q" onclick="showAns('pearl',3,this)">At 17x P/E, is Pearl Global the most undervalued stock in the sector?</div>
+        <div class="cba2-q" onclick="showAns('pearl',4,this)">Key risks: US tariff + Bangladesh operations — how does Pearl manage?</div>
+        <div class="cba2-q" onclick="showAns('pearl',5,this)">Pearl vs Gokaldas — both multi-geography exporters. Which is better?</div>
+      </div>
+      <div id="ans-pearl" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-vardhman" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('vardhman',0,this)">Why does India's largest yarn maker have only 11.8% EBITDA?</div>
+        <div class="cba2-q" onclick="showAns('vardhman',1,this)">How does cotton price volatility flow through Vardhman's P&amp;L?</div>
+        <div class="cba2-q" onclick="showAns('vardhman',2,this)">At 8.5x P/E, why isn't Vardhman a screaming buy?</div>
+        <div class="cba2-q" onclick="showAns('vardhman',3,this)">What triggers would make analysts upgrade Vardhman to BUY?</div>
+        <div class="cba2-q" onclick="showAns('vardhman',4,this)">Vardhman has 13 lakh spindles — moat or liability?</div>
+        <div class="cba2-q" onclick="showAns('vardhman',5,this)">How would the PLI MMF scheme benefit Vardhman if it pivots?</div>
+      </div>
+      <div id="ans-vardhman" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-welspun" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('welspun',0,this)">FCF ₹956 Cr grew 8.5x yet PAT fell 67% — how is this possible?</div>
+        <div class="cba2-q" onclick="showAns('welspun',1,this)">What is Hygrocotton® and why does it matter as a moat?</div>
+        <div class="cba2-q" onclick="showAns('welspun',2,this)">Domestic +29.2% growth — can Spaces brand offset US/ME weakness?</div>
+        <div class="cba2-q" onclick="showAns('welspun',3,this)">Net debt fell 52% — what's Welspun's capital allocation plan next?</div>
+        <div class="cba2-q" onclick="showAns('welspun',4,this)">Welspun at 25x P/E on depressed PAT — expensive or recovery bet?</div>
+        <div class="cba2-q" onclick="showAns('welspun',5,this)">When will Welspun's earnings recover? Path to 13%+ EBITDA?</div>
+      </div>
+      <div id="ans-welspun" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-trident" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('trident',0,this)">How does wheat straw paper give Trident a unique circular economy moat?</div>
+        <div class="cba2-q" onclick="showAns('trident',1,this)">Trident is world's largest terry towel exporter — why is stock at ₹24?</div>
+        <div class="cba2-q" onclick="showAns('trident',2,this)">Q4 Revenue fell 12.4% — US tariff, demand, or internal issue?</div>
+        <div class="cba2-q" onclick="showAns('trident',3,this)">Paper segment: underappreciated asset or drag on the business?</div>
+        <div class="cba2-q" onclick="showAns('trident',4,this)">Is Trident worth accumulating at ₹22-24? Margin of safety analysis</div>
+        <div class="cba2-q" onclick="showAns('trident',5,this)">How does Barnala's integrated campus give Trident cost leadership?</div>
+      </div>
+      <div id="ans-trident" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-gokaldas" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('gokaldas',0,this)">AGOA: what exactly is it and how does Gokaldas get duty-free US access?</div>
+        <div class="cba2-q" onclick="showAns('gokaldas',1,this)">Revenue +22% in Q4 but PAT -37% FY26 — why the disconnect?</div>
+        <div class="cba2-q" onclick="showAns('gokaldas',2,this)">Ethiopia political risk — how does instability threaten AGOA operations?</div>
+        <div class="cba2-q" onclick="showAns('gokaldas',3,this)">At 32x P/E, is Gokaldas pricing in AGOA's full upside already?</div>
+        <div class="cba2-q" onclick="showAns('gokaldas',4,this)">How does Gokaldas win orders from Gap, H&amp;M, PVH simultaneously?</div>
+        <div class="cba2-q" onclick="showAns('gokaldas',5,this)">Pearl Global vs Gokaldas — multi-geography model compared</div>
+      </div>
+      <div id="ans-gokaldas" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-himat" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('himat',0,this)">₹2,100 Cr debt on ₹50 Cr PAT — how did Himatsingka get into this trap?</div>
+        <div class="cba2-q" onclick="showAns('himat',1,this)">WestPoint is a premium US brand — why can't it save Himatsingka?</div>
+        <div class="cba2-q" onclick="showAns('himat',2,this)">Stock fell 52.7% in 12 months — what would trigger a reversal?</div>
+        <div class="cba2-q" onclick="showAns('himat',3,this)">Is there any scenario where Himatsingka becomes a BUY in FY27?</div>
+        <div class="cba2-q" onclick="showAns('himat',4,this)">Could an acquirer find value in Himatsingka's brand assets?</div>
+        <div class="cba2-q" onclick="showAns('himat',5,this)">Q4 FY26 results due — what numbers would change the AVOID call?</div>
+      </div>
+      <div id="ans-himat" class="cba2-answer"></div>
+    </div>
+
+    <div id="co-sector" class="cba2-qs-panel">
+      <div class="cba2-qs-grid">
+        <div class="cba2-q" onclick="showAns('sector',0,this)">US 26% tariff: which companies are structurally safe vs temporarily hurt?</div>
+        <div class="cba2-q" onclick="showAns('sector',1,this)">India textile exports 4% global share for 20 years — why can't it grow?</div>
+        <div class="cba2-q" onclick="showAns('sector',2,this)">Which company benefits most from Bangladesh labour unrest?</div>
+        <div class="cba2-q" onclick="showAns('sector',3,this)">Rank top 3 sector picks for a 2-year investment horizon</div>
+        <div class="cba2-q" onclick="showAns('sector',4,this)">What is the single biggest FY27 catalyst for Indian textiles?</div>
+        <div class="cba2-q" onclick="showAns('sector',5,this)">Cotton vs MMF: why does India's cotton obsession limit global share?</div>
+      </div>
+      <div id="ans-sector" class="cba2-answer"></div>
+    </div>
+
+    <div class="cba2-chat-section">
+      <div class="cba2-chat-hdr">💬 Ask Anything — Free Text (Claude API)</div>
+      <div id="textile-chat-output" class="cba2-chat-out">
+        <div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">Type any question about textile companies, sector outlook, or investment thesis…</div>
+      </div>
+      <div class="cba2-input-row">
+        <input type="text" id="textile-user-input" class="cba2-input" placeholder="Ask in English or Tamil about any textile company…" onkeydown="if(event.key==='Enter')sendTextileChat()">
+        <button class="cba2-send" onclick="sendTextileChat()">Send ➤</button>
       </div>
     </div>
-    <div class="cba-input-row">
-      <input type="text" id="textile-user-input" class="cba-input" placeholder="Ask in English or Tamil about any textile company..." onkeydown="if(event.key==='Enter')sendTextileChat()">
-      <button class="cba-send-btn" onclick="sendTextileChat()">Send ➤</button>
-    </div>
+
   </div>
+
 </div>
 </div><!-- end .content-wrap -->
 
@@ -2184,21 +2392,21 @@ function initTextileCharts() {
   if (chartsInit) return;
   chartsInit = true;
 
-  const companies = ['Vardhman','Welspun\nLiving','KPR Mill','Indo Count','Himatsingka','Trident','SP Apparels','Gokaldas','Page\nIndustries'];
-  const colors = ['#1d4ed8','#0e7490','#166534','#7c3aed','#4338ca','#d97706','#be185d','#92400e','#0f766e'];
+  const companies = ['Vardhman','Welspun\nLiving','KPR Mill','Indo Count','Himatsingka','Trident','SP Apparels','Gokaldas','Page\nIndustries','Pearl\nGlobal'];
+  const colors = ['#1d4ed8','#0e7490','#166534','#7c3aed','#4338ca','#d97706','#be185d','#92400e','#0f766e','#7c2d12'];
   const alphaColors = colors.map(c => c + 'cc');
 
   // FY26 Revenue
   new Chart(document.getElementById('ch-rev'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'FY26 Revenue (₹Cr)', data:[9869,9399,6650,4200,2500,6701,1579,4065,5247], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'FY26 Revenue (₹Cr)', data:[9869,9399,6650,4106,2500,6701,1579,4065,5247,4400], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{ color:'#666', font:{size:10} }, grid:{color:'#eee'} }, x:{ ticks:{ color:'#555', font:{size:9} } } } }
   });
 
   // FY26 PAT
   new Chart(document.getElementById('ch-pat'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'FY26 PAT (₹Cr)', data:[753,213,867,310,50,377,88,100,764], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'FY26 PAT (₹Cr)', data:[753,213,867,114,50,377,88,100,764,260], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
 
@@ -2206,7 +2414,7 @@ function initTextileCharts() {
   // Vardhman:9869×12.1%=1194, Welspun:9399×11.2%=1053, KPR:6650×20.65%=1373, IndoCount:4200×13%=546, Himat:2500×15.5%=388, Trident:6775×14.8%=1003, SP:1578×12%=189, Gokaldas:4065×12.6%=512, Page:5247×22%=1154
   new Chart(document.getElementById('ch-ebitda-amt'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'FY26 EBITDA (₹Cr)', data:[1194,855,1373,546,388,938,218,435,1154], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'FY26 EBITDA (₹Cr)', data:[1194,855,1373,493,388,938,218,435,1154,625], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
 
@@ -2214,14 +2422,14 @@ function initTextileCharts() {
   // Vardhman:2498×11.8%=295, Welspun:2435×10.8%=263, KPR:1784×20.3%=362, IndoCount:1115×13.5%=151, Himat:600×15.8%=95, Trident:1650×15%=248, SP:446×12.2%=54, Gokaldas:1087×12.4%=135, Page:1253×20.8%=261
   new Chart(document.getElementById('ch-ebitda-q4'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'Q4 FY26 EBITDA (₹Cr)', data:[295,263,362,151,95,247,45,135,261], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'Q4 FY26 EBITDA (₹Cr)', data:[295,263,362,87,95,247,45,135,261,174], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
 
   // EBITDA Margin
   new Chart(document.getElementById('ch-ebitda'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'EBITDA Margin %', data:[12.1,9.1,20.65,13.0,15.5,14.0,13.8,10.7,22.0], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'EBITDA Margin %', data:[12.1,9.1,20.65,12.0,15.5,14.0,13.8,10.7,22.0,14.2], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ min:0, max:25, ticks:{color:'#666',font:{size:10},callback:v=>v+'%'}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
 
@@ -2231,8 +2439,8 @@ function initTextileCharts() {
     data:{
       labels:companies,
       datasets:[
-        { label:'Q4 FY26', data:[2498,2435,1784,1115,600,1633,365,1087,1253], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 },
-        { label:'Q4 FY25 (est.)', data:[2630,2255,1769,1060,612,1864,388,1032,1098], backgroundColor:'rgba(200,200,200,0.4)', borderColor:'#aaa', borderWidth:1 }
+        { label:'Q4 FY26', data:[2498,2435,1784,1057.7,600,1633,365,1087,1253,1200], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 },
+        { label:'Q4 FY25 (est.)', data:[2630,2255,1769,1060,612,1864,388,1032,1098,985], backgroundColor:'rgba(200,200,200,0.4)', borderColor:'#aaa', borderWidth:1 }
       ]
     },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{labels:{color:'#555',font:{size:10}}} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
@@ -2241,21 +2449,21 @@ function initTextileCharts() {
   // Q4 FY26 Revenue standalone
   new Chart(document.getElementById('ch-q4rev'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'Q4 FY26 Revenue (₹Cr)', data:[2498,2435,1784,1115,600,1633,365,1087,1253], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'Q4 FY26 Revenue (₹Cr)', data:[2498,2435,1784,1057.7,600,1633,365,1087,1253,1200], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
 
   // Q4 FY26 PAT standalone
   new Chart(document.getElementById('ch-q4pat'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'Q4 FY26 PAT (₹Cr)', data:[185,104,227,80,12,102,18.5,36,179], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'Q4 FY26 PAT (₹Cr)', data:[185,104,227,24.2,12,102,18.5,36,179,72], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10}}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
 
   // Q4 FY26 EBITDA Margin %
   new Chart(document.getElementById('ch-ebitda-q4-margin'), {
     type:'bar',
-    data:{ labels:companies, datasets:[{ label:'Q4 EBITDA Margin %', data:[11.8,10.8,20.3,13.5,15.8,15.1,12.2,12.4,20.8], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
+    data:{ labels:companies, datasets:[{ label:'Q4 EBITDA Margin %', data:[11.8,10.8,20.3,8.2,15.8,15.1,12.2,12.4,20.8,14.5], backgroundColor:alphaColors, borderColor:colors, borderWidth:2 }] },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ min:0, max:25, ticks:{color:'#666',font:{size:10},callback:v=>v+'%'}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
 
@@ -2279,7 +2487,7 @@ function initTextileCharts() {
     type:'bar',
     data:{
       labels:companies,
-      datasets:[{ label:'PAT Growth YoY %', data:[-16,-67,6.3,3,-40,2,5.2,-37,4.8], backgroundColor:[-15,-67,6.3,3,-40,2,5.2,-37,4.8].map(v=>v>0?'rgba(22,163,74,0.7)':'rgba(220,38,38,0.7)'), borderColor:[-15,-67,6.3,3,-40,2,5.2,-37,4.8].map(v=>v>0?'#16a34a':'#dc2626'), borderWidth:2 }]
+      datasets:[{ label:'PAT Growth YoY %', data:[-16,-67,6.3,15,-40,2,5.2,-37,4.8,18], backgroundColor:[-15,-67,6.3,3,-40,2,5.2,-37,4.8,18].map(v=>v>0?'rgba(22,163,74,0.7)':'rgba(220,38,38,0.7)'), borderColor:[-15,-67,6.3,3,-40,2,5.2,-37,4.8,18].map(v=>v>0?'#16a34a':'#dc2626'), borderWidth:2 }]
     },
     options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ y:{ ticks:{color:'#666',font:{size:10},callback:v=>v+'%'}, grid:{color:'#eee'} }, x:{ ticks:{color:'#555',font:{size:9}} } } }
   });
@@ -2339,6 +2547,7 @@ DATA — Q4 FY26 ACTUALS & ESTIMATES:
 • SP Apparels: Q4 Rev ~₹365 Cr (▼6% YoY), Q4 PAT ₹18.5 Cr (▼39% YoY), FY26 Rev ₹1,578 Cr, FY26 PAT ₹88 Cr (+5.2%). UK subsidiary Zenith Clothing (profitable). India-UK FTA MAX beneficiary. FY27 target ₹2,000 Cr. UK ~80% revenue. Rating: BUY, TP ₹920, CMP ₹728.
 • Gokaldas Exports: Q4 Rev ₹1,087 Cr (+5% YoY), Q4 PAT ₹36 Cr (▼32%), FY26 Rev ₹4,065 Cr (+4%), FY26 PAT ₹100 Cr (▼37%). Africa AGOA +17% YoY = duty-free US access. ONLY listed Indian textile co with AGOA. US ~55%. Rating: HOLD, TP ₹950, CMP ₹900.
 • Page Industries: Exclusive Jockey & Speedo licensee. Q4 FY26 Rev ₹1,253 Cr (+14.1% YoY), PAT ₹179 Cr (+9%), EBITDA margin 20.8%. FY26 Rev ₹5,247 Cr (+6.3%), FY26 PAT ₹764 Cr (+4.8%), FY26 EBITDA 22% (highest in sector). Sales volume 54.5M pieces in Q4 (+10.8%). Dividend ₹550/share FY26. Mkt Cap ~₹42,730 Cr. Rating: BUY, CMP ₹38,403. FY28-29 target ₹8,000 Cr revenue.
+• Pearl Global Industries (BSE:523260): Q4 FY26 Rev ₹1,200 Cr (+22% YoY), PAT ₹72 Cr (+18%), EBITDA 14.5%. FY26 Rev ₹4,400 Cr, FY26 PAT ₹260 Cr. Multi-geography manufacturing (India+Bangladesh+Vietnam+Indonesia). Key clients: H&M, Gap, Walmart, Target, Zara. USA ~45%, EU ~35% revenue. Bangladesh+1 beneficiary. Net Debt ~₹200 Cr (low). ROCE ~18%. Rating: BUY, CMP ~₹270, TP ₹350 (17x FY27E P/E).
 
 KEY SECTOR EVENTS:
 • US 26% Reciprocal Tariff (April 2026) — major headwind for Indo Count (70% US), Himatsingka (55%), Welspun (45%)
@@ -2348,7 +2557,7 @@ KEY SECTOR EVENTS:
 • West Asia conflict — weakens Welspun ME revenue
 • Bangladesh labour issues — order gains for India (Gokaldas, SP Apparels)
 
-RANKINGS: 1.KPR Mill (STRONG BUY), 2.Page Industries (BUY), 3.SP Apparels (BUY), 4.Indo Count (BUY), 5.Vardhman (HOLD), 6.Trident (HOLD), 7.Welspun Living (HOLD), 8.Gokaldas (HOLD), 9.Himatsingka (AVOID)
+RANKINGS: 1.KPR Mill (STRONG BUY), 2.Page Industries (BUY), 3.SP Apparels (BUY), 4.Indo Count (BUY), 5.Pearl Global (BUY), 6.Vardhman (HOLD), 7.Trident (HOLD), 8.Welspun Living (HOLD), 9.Gokaldas (HOLD), 10.Himatsingka (AVOID)
 
 LANGUAGE RULES:
 ${isTamil ? 
@@ -2381,6 +2590,132 @@ Format your response clearly. For investment questions, always give a recommenda
 
 // Init first tab
 showTab('dashboard', document.querySelector('.tab-btn'));
+</script>
+
+<script>
+const coColors = {"kpr": "var(--kpr)", "pagind": "var(--pagind)", "spapparel": "var(--spapparel)", "indocount": "var(--indocount)", "pearl": "var(--pearl)", "vardhman": "var(--vardhman)", "welspun": "var(--welspunliv)", "trident": "var(--trident)", "gokaldas": "var(--gokaldas)", "himat": "var(--himat)", "sector": "var(--gold)"};
+const staticAnswers = {
+  kpr: [
+    `<h4 style="color:var(--kpr)">KPR Mill — Why the Only PAT Grower in FY26?</h4><span class="ans-tag" style="background:#dcfce7;color:#15803d;">STRONG BUY</span><p>Three structural advantages converged in FY26:</p><ul><li><b>EU export dominance (~70%):</b> US imposed 26% tariff in April 2026. KPR was nearly immune — EU buyers faced no such disruption. Peers with 40-70% US exposure took direct PAT hits.</li><li><b>Energy cost advantage:</b> 70%+ of power from captive wind/solar. While textile peers paid ₹8-10/unit grid power, KPR's effective energy cost is significantly lower — directly protecting EBITDA margin.</li><li><b>Cotton-to-garment integration:</b> KPR absorbs cotton price volatility internally — no margin leakage between spinning, weaving, and garmenting.</li></ul><div class="cba2-divider"></div><div><span class="metric" style="color:var(--kpr)">FY26 PAT: ₹867 Cr (+6.3%)</span><span class="metric" style="color:var(--kpr)">EBITDA: 20.65%</span><span class="metric" style="color:var(--kpr)">Net Debt: Zero</span><span class="metric" style="color:var(--kpr)">EU Revenue: ~70%</span></div><p class="cba2-note">KPR is the <b>only company in the 10-stock universe</b> with positive PAT growth in FY26.</p>`,
+    `<h4 style="color:var(--kpr)">KPR Mill — How 20.65% EBITDA is Built</h4><p>KPR's margin is <b>8-10 percentage points above the sector median</b>:</p><ul><li><b>Full vertical integration:</b> Cotton seed → fibre → yarn → fabric → finished garment in-house. Every outsourced step eliminated = margin captured.</li><li><b>Own renewable energy (70%+):</b> Textiles is 15-20% energy-cost-to-revenue. Cutting that cost in half vs grid = ~3-4% direct EBITDA benefit.</li><li><b>Sugar/Ethanol (8% revenue):</b> Non-textile income stream with different cost structure. Smooths cotton cycle earnings.</li><li><b>Scale in garmenting:</b> 11.5 Cr pieces/year allows machine utilisation rates smaller peers cannot achieve.</li></ul><div class="cba2-divider"></div><div><span class="metric" style="color:var(--kpr)">Sector median EBITDA: ~12-13%</span><span class="metric" style="color:var(--kpr)">KPR advantage: +7-8 ppt</span><span class="metric" style="color:var(--kpr)">Renewable power: 70%+</span></div>`,
+    `<h4 style="color:var(--kpr)">KPR Mill — EU Concentration: Risk or Advantage?</h4><p>In the current tariff environment, EU focus is an <b>accidental advantage</b>:</p><ul><li><b>Why EU protects now:</b> US imposed 26% tariff on India. EU has no such tariff on Indian textiles. KPR's ~70% EU revenue means ~70% of exports face no new tariff headwind.</li><li><b>Real EU risk:</b> Germany/France consumer demand slowdown. If European consumers reduce apparel spend, KPR's order books thin — no US geographic buffer.</li><li><b>India-EU FTA (in negotiation):</b> Current 12% EU duty on Indian garments → zero under FTA = direct margin accretion for KPR.</li><li><b>Mitigation:</b> KPR has been adding Middle East, Japan clients. EU share may moderate to 60% over FY27-28 naturally.</li></ul><div class="cba2-divider"></div><span class="metric" style="color:var(--kpr)">EU Revenue: ~70%</span><span class="metric" style="color:var(--kpr)">US Revenue: ~15% (low exposure)</span><p class="cba2-note">EU concentration is a <b>net positive in FY26-27</b>. The risk becomes material only if EU enters a deep recession.</p>`,
+    `<h4 style="color:var(--kpr)">KPR Mill — Debt-Free: Where Does FCF Go?</h4><p>Being debt-free in a capital-intensive sector is remarkable. KPR's FCF goes into three buckets:</p><ul><li><b>Capacity expansion:</b> Garmenting capex (FY27) to expand from 11.5 Cr to 14+ Cr pieces/year. Funded from internal accruals — no equity dilution, no debt.</li><li><b>Dividends:</b> ₹6/share FY26. Modest but consistent — signals management confidence in earnings.</li><li><b>Sugar/Ethanol capex:</b> Distillery expansion being evaluated. Non-textile income buffer could grow from 8% to 12% of revenue.</li></ul><div class="cba2-divider"></div><span class="metric" style="color:var(--kpr)">FY26 PAT: ₹867 Cr</span><span class="metric" style="color:var(--kpr)">Dividend: ₹6/share</span><span class="metric" style="color:var(--kpr)">ROCE: ~22%</span><p class="cba2-note">A company with 22% ROCE reinvesting FCF internally is compounding wealth without asking for more capital. Cleanest balance sheet in the sector.</p>`,
+    `<h4 style="color:var(--kpr)">KPR Mill — Sugar/Ethanol as Earnings Buffer</h4><p>The sugar/ethanol segment (~8% revenue) is an underappreciated stabiliser:</p><ul><li><b>Counter-cyclical income:</b> When cotton prices spike and textile margins compress, sugar/ethanol earnings are uncorrelated — providing blended P&L stability.</li><li><b>Government policy support:</b> India mandates 20% ethanol blending. Distillery operators benefit from fixed government purchase prices — regulated revenue, not market-dependent.</li><li><b>Capex already sunk:</b> The distillery investment is done. Incremental revenue flows at high margins to bottom line.</li><li><b>Future expansion:</b> KPR has flagged distillery capacity expansion. Ethanol contribution could grow to 12-15% of revenue.</li></ul><div class="cba2-divider"></div><span class="metric" style="color:var(--kpr)">Sugar/Ethanol: ~8% of revenue</span><span class="metric" style="color:var(--kpr)">Govt ethanol mandate: 20%</span><p class="cba2-note">Think of it as a "textile insurance policy." No other listed textile company has this buffer.</p>`,
+    `<h4 style="color:var(--kpr)">KPR Mill — Bull Case to TP ₹1,150</h4><p>Target ₹1,150 = <b>25% upside from CMP ₹918</b>. The path:</p><ul><li><b>FY27 PAT ~₹1,000 Cr:</b> At 20x forward P/E → ₹1,000 × 20 = ₹20,000 Cr market cap → ~₹1,143/share. Achievable if garment revenue grows 12-15%.</li><li><b>India-EU FTA finalised:</b> 12% duty elimination = direct margin accretion. Even 50% pass-through = +1.5% EBITDA lift → ₹80-100 Cr PAT uplift.</li><li><b>Capacity expansion payoff:</b> FY27 garmenting expansion (11.5→14 Cr pieces) contributes Q3/Q4 FY27. Revenue could touch ₹7,500-8,000 Cr.</li></ul><div class="cba2-divider"></div><span class="metric tpos" style="color:var(--kpr)">CMP: ₹918</span><span class="metric tpos" style="color:var(--kpr)">TP: ₹1,150 (+25.3%)</span><span class="metric" style="color:var(--kpr)">P/E basis: 20x FY27E</span><p class="cba2-note"><b>CB Research:</b> KPR is the #1 pick. Accumulate on any dip to ₹850-880.</p>`
+  ],
+  pagind: [
+    `<h4 style="color:var(--pagind)">Page Industries — Why Does 56x P/E Make Sense?</h4><span class="ans-tag" style="background:#dcfce7;color:#15803d;">BUY</span><p>56x P/E sounds expensive. But Page is not a textile company — it's a <b>brand monopoly company that happens to make textiles:</b></p><ul><li><b>Exclusive licence = zero competition:</b> No other company can sell Jockey in India, Bangladesh, Sri Lanka, Nepal, UAE. A legal monopoly.</li><li><b>22% EBITDA margin:</b> Consumer brand economics, not textile economics. FMCG comparables trade at 40-70x P/E routinely.</li><li><b>Volume + price growth simultaneously:</b> Q4 FY26 volumes +10.8% while revenue grew 14.1%. Pricing power on top of volume growth.</li><li><b>ROCE ~30%+:</b> High ROCE businesses deserve high P/E multiples to reflect compounding value.</li></ul><div class="cba2-divider"></div><span class="metric" style="color:var(--pagind)">FY26 EBITDA: 22%</span><span class="metric" style="color:var(--pagind)">Q4 Vol growth: +10.8%</span><span class="metric" style="color:var(--pagind)">Dividend: ₹550/share</span><p class="cba2-note">Compare Page to Titan (67x), Asian Paints (50x), Marico (45x) — all monopoly consumer brands. By that lens, 56x is reasonable.</p>`,
+    `<h4 style="color:var(--pagind)">Page Industries — What If Jockey Licence Is Not Renewed?</h4><p>The #1 bear case. Honest assessment:</p><ul><li><b>Current licence status:</b> Multi-decade exclusive agreement, last extension well into 2030s. No public indication of non-renewal.</li><li><b>Why Jockey won't exit:</b> Jockey's India business (₹5,247 Cr revenue) is one of their LARGEST international markets. Disrupting that is commercially irrational.</li><li><b>Even if not renewed:</b> Page has 100,000+ retail touchpoints. Brand recall means a rebrand would lose share but distribution network retains value.</li><li><b>Speedo licence:</b> Separate agreement, also exclusive. Even if Jockey lapses, Speedo continues.</li></ul><span class="metric" style="color:var(--pagind)">Licence: Extended to 2030s+</span><span class="metric" style="color:var(--pagind)">India = top Jockey global market</span><p class="cba2-note"><b>Probability of non-renewal: Very Low.</b> More likely risk: licence fee escalation reducing margin.</p>`,
+    `<h4 style="color:var(--pagind)">Page Industries — Volume AND Price Growth Together</h4><p>Most companies face a trade-off. Page defies it because of brand power:</p><ul><li><b>Q4 FY26:</b> Volume 54.5M pieces (+10.8% YoY) AND Revenue ₹1,253 Cr (+14.1% YoY). The 3.3 ppt difference = price/mix improvement.</li><li><b>Premium segment expansion:</b> ₹400-600 athleisure and ₹800+ premium innerwear carry 35-40% gross margins vs 25-28% for basic Jockey. Mix shift = higher blended realisation.</li><li><b>E-commerce channel:</b> Online sales carry ~20% higher ASP than MBO channel. Growing e-commerce share pulls up blended pricing.</li><li><b>No private label threat:</b> Jockey brand recall prevents retailers from replacing it with own brands. Pricing power is durable.</li></ul><span class="metric" style="color:var(--pagind)">Q4 Vol: 54.5M pcs (+10.8%)</span><span class="metric" style="color:var(--pagind)">Q4 Rev: ₹1,253 Cr (+14.1%)</span>`,
+    `<h4 style="color:var(--pagind)">Page Industries — Can Global Brands Enter India Directly?</h4><p>The competition risk, honestly assessed:</p><ul><li><b>Lux/Rupa threat:</b> Domestic brands compete on price, not brand premium. They cannot match Jockey's urban consumer positioning. Market segments are different.</li><li><b>Calvin Klein/Tommy Hilfiger direct entry:</b> Already in India via Arvind Fashions. At ₹600-1,200 per piece, they address the premium segment Page is moving into. This is the real emerging threat.</li><li><b>Jockey International cannot exit Page:</b> They are contractually locked into the Page exclusive.</li><li><b>Why 2026 threat is low:</b> Page's 100,000+ touchpoint distribution is irreplaceable. Any new entrant needs 5-7 years to build equivalent reach.</li></ul><p class="cba2-note">Risk is gradual premium erosion above ₹600 price point — not a cliff-edge event. Manageable over 3-5 year horizon.</p>`,
+    `<h4 style="color:var(--pagind)">Page Industries — ₹550/Share Dividend: Sustainable?</h4><p>₹550/share on FY26 PAT ₹764 Cr. The math:</p><ul><li><b>Shares outstanding:</b> ~1.11 Cr shares. Total payout: ₹550 × 1.11 Cr = ~₹611 Cr = <b>80% of FY26 PAT.</b></li><li><b>Sustainability logic:</b> Page has minimal capex needs (asset-light, outsources manufacturing). FCF conversion is high. 80% payout is aggressive but maintainable.</li><li><b>What it signals:</b> Management has no large capex planned. Returning cash = confident earnings trajectory.</li><li><b>Risk:</b> If PAT dips below ₹700 Cr, maintaining ₹550/sh payout would exceed 90% ratio — management might cut dividend.</li></ul><span class="metric" style="color:var(--pagind)">Dividend: ₹550/sh</span><span class="metric" style="color:var(--pagind)">Payout ratio: ~80%</span><span class="metric" style="color:var(--pagind)">Yield at CMP: ~1.4%</span>`,
+    `<h4 style="color:var(--pagind)">Page Industries — ₹8,000 Cr Revenue by FY28-29: Achievable?</h4><p>FY26 revenue: ₹5,247 Cr. Target ₹8,000 Cr = <b>52% growth in 2-3 years</b> = ~18-22% CAGR:</p><ul><li><b>Trajectory check:</b> Growing at 14% YoY → FY27 ~₹5,980 Cr, FY28 ~₹6,820 Cr, FY29 ~₹7,780 Cr. Roughly achievable at current growth rate.</li><li><b>What needs to happen:</b> Volume growth 10%+ sustained, price/mix +3-4% annually, premium athleisure (Speedo, Jockey Sport) acceleration.</li><li><b>Geographic expansion:</b> UAE, Bangladesh, Sri Lanka markets growing. International contribution still small (~5-8%) but could become a lever.</li><li><b>Risk factors:</b> Urban discretionary slowdown, competition from premium imports, any Jockey licence friction.</li></ul><span class="metric tpos" style="color:var(--pagind)">FY26: ₹5,247 Cr</span><span class="metric tpos" style="color:var(--pagind)">FY28E: ~₹6,820 Cr</span><span class="metric tpos" style="color:var(--pagind)">FY29E: ~₹7,780-8,000 Cr</span>`
+  ],
+  spapparel: [
+    `<h4 style="color:var(--spapparel)">SP Apparels — Maximum India-UK FTA Beneficiary</h4><span class="ans-tag" style="background:#dcfce7;color:#15803d;">BUY</span><p>80% of SP Apparels' revenue comes from UK. FTA is transformational:</p><ul><li><b>Current scenario:</b> Indian garments to UK face ~12% import duty. Bangladeshi garments face ~0% (LDC status). SP competes at a 12% cost disadvantage.</li><li><b>Post-FTA:</b> Indian garments → UK duty becomes 0%. India GAINS structural cost competitiveness vs Bangladesh.</li><li><b>Why SP specifically benefits most:</b> 80% UK revenue means 80% of SP's revenue directly benefits. KPR gets ~10% benefit (10% UK revenue). SP gets 10x the exposure.</li></ul><div class="cba2-divider"></div><span class="metric tpos" style="color:var(--spapparel)">UK Revenue: 80%</span><span class="metric tpos" style="color:var(--spapparel)">Current duty: 12% → Post-FTA: 0%</span><span class="metric" style="color:var(--spapparel)">TP: ₹920</span>`,
+    `<h4 style="color:var(--spapparel)">SP Apparels — Zenith Clothing (UK) as Structural Moat</h4><p>Having a UK subsidiary is a market intelligence and relationships moat:</p><ul><li><b>Local buyer access:</b> UK retailers prefer dealing with local entities. Zenith is that local face — Indian competitors without UK ops must deal via agents at higher cost and lower trust.</li><li><b>Design partnership:</b> Zenith team tracks UK consumer trends real-time — giving SP 2-3 month earlier design adjustments vs India-only exporters.</li><li><b>Post-FTA advantage amplified:</b> Zenith can source from India parent at zero import duty and sell locally — effectively a vertically integrated UK-India operation.</li><li><b>Profitable already:</b> Zenith was profitable in FY26. Unlike many overseas subsidiaries, this is already contributing positively.</li></ul><p class="cba2-note">Replicating Zenith's UK retail relationships takes 5-7 years minimum. A time-locked competitive advantage.</p>`,
+    `<h4 style="color:var(--spapparel)">SP Apparels — Why PAT Fell 39% in Q4 Despite FTA Tailwind</h4><p>Q4 PAT ₹18.5 Cr (▼39% YoY). The FTA benefit hasn't kicked in yet. Why:</p><ul><li><b>FTA implementation lag:</b> FTA was signed but benefit flows gradually through duty drawback timelines. Q4 FY26 orders were placed before FTA certainty.</li><li><b>Revenue also fell (-6%):</b> Global uncertainty post-US tariff caused UK buyers to pause orders. SP wasn't immune.</li><li><b>Operating leverage:</b> Fixed overheads (Zenith UK staff, India plant fixed costs) don't reduce proportionately when revenue dips 6%.</li><li><b>FY26 full year PAT ₹88 Cr (+5.2%):</b> Full-year picture is actually positive. Q4 was seasonally weaker.</li></ul><p class="cba2-note">Q4 PAT dip is timing/transition noise. FY27 Q1 is the first full quarter where FTA-driven orders should start reflecting.</p>`,
+    `<h4 style="color:var(--spapparel)">SP Apparels — Is ₹2,000 Cr FY27 Revenue Realistic?</h4><p>FY26: ₹1,578 Cr. Target ₹2,000 Cr = <b>+26.7% growth needed in 1 year.</b></p><ul><li><b>Bull case:</b> India-UK FTA triggers surge in UK retailer orders shifting from Bangladesh. If 3-4 large UK buyers increase India sourcing by 30%, SP's order book swells. Zenith's local relationships can convert this quickly.</li><li><b>Capacity available:</b> Current utilisation ~70-75%. ₹2,000 Cr doesn't require new greenfield — just utilisation ramp.</li><li><b>Bear case:</b> UK consumer spending subdued. Even with zero duty, UK buyers may not frontload orders if demand uncertain.</li></ul><span class="metric" style="color:var(--spapparel)">FY26 Rev: ₹1,578 Cr</span><span class="metric tpos" style="color:var(--spapparel)">Mgmt Target: ₹2,000 Cr</span><span class="metric" style="color:var(--spapparel)">CB Est: ₹1,800-1,900 Cr</span>`,
+    `<h4 style="color:var(--spapparel)">SP Apparels — 80% UK Revenue: Risk Profile</h4><p>High single-geography concentration — double-edged sword:</p><ul><li><b>Currently a tailwind:</b> FTA eliminates duty precisely in SP's largest market. 80% UK exposure + 0% FTA duty = maximum benefit capture.</li><li><b>The concentration risk:</b> UK GDP growth forecast 1.5-2% for FY26-27. If UK economy weakens, SP has no meaningful alternative revenue source (USA 5%, EU 10%, domestic 4%).</li><li><b>Brexit aftermath:</b> UK trade policy still evolving. FTA benefit could theoretically be modified if UK politics change. Low probability but non-zero.</li><li><b>Mitigation in progress:</b> SP management has cited EU expansion as FY27-28 priority via Zenith platform.</li></ul><span class="metric" style="color:var(--spapparel)">UK Rev share: 80%</span><span class="metric tpos" style="color:var(--spapparel)">FTA: 12%→0%</span>`,
+    `<h4 style="color:var(--spapparel)">SP Apparels vs KPR Mill — Long-Term Comparison</h4><p>Both BUY-rated apparel exporters. Different risk-reward profiles:</p><table style="font-size:11px;width:100%;border-collapse:collapse;margin-top:8px;"><tr><th style="text-align:left;padding:5px 8px;background:#f5f5f5;">Metric</th><th style="padding:5px 8px;background:#f5f5f5;text-align:center;color:var(--kpr);">KPR Mill</th><th style="padding:5px 8px;background:#f5f5f5;text-align:center;color:var(--spapparel);">SP Apparels</th></tr><tr><td style="padding:5px 8px;">P/E (FY26)</td><td style="padding:5px 8px;text-align:center;color:var(--kpr)">18.5x</td><td style="padding:5px 8px;text-align:center;color:var(--spapparel)">22x</td></tr><tr><td style="padding:5px 8px;">EBITDA%</td><td style="padding:5px 8px;text-align:center;color:var(--kpr)">20.65%</td><td style="padding:5px 8px;text-align:center;color:var(--spapparel)">12.2%</td></tr><tr><td style="padding:5px 8px;">Net Debt</td><td style="padding:5px 8px;text-align:center;color:var(--kpr)">Zero</td><td style="padding:5px 8px;text-align:center;">Moderate</td></tr><tr><td style="padding:5px 8px;">Catalyst</td><td style="padding:5px 8px;text-align:center;color:var(--kpr)">Organic + EU FTA</td><td style="padding:5px 8px;text-align:center;color:var(--spapparel)">UK FTA policy</td></tr></table><p class="cba2-note"><b>Verdict:</b> KPR for <b>3-5 year compounding</b>. SP for <b>12-18 month FTA trade</b>. Both deserve a place in a textile portfolio.</p>`
+  ],
+  indocount: [
+    `<h4 style="color:var(--indocount)">Indo Count Q4 FY26 — Actuals vs Expectations</h4><span class="ans-tag" style="background:#dcfce7;color:#15803d;">BUY</span><span class="ans-tag" style="background:#eff6ff;color:#1e40af;">Q4 Declared ✅</span><p>Results declared 30 May 2026. Stock surged 14% to 52-week high ₹353.40:</p><ul><li><b>Revenue ₹1,057.7 Cr (+3.4% YoY):</b> Beat expectations despite volume falling 20% YoY to 20.5 mn pieces. Realisation improved sharply from better product mix and favourable exchange rate.</li><li><b>Reported PAT ₹24.2 Cr (+15% YoY):</b> Adjusted PAT ₹33.8 Cr (+60.1% YoY) — after excluding one-time IGST interest payment of ₹12.8 Cr.</li><li><b>Gross margin 57.2% (+588bps YoY):</b> Favourable input cost conditions drove exceptional gross margin expansion.</li><li><b>EBITDA 8.2% (▼62bps YoY):</b> Higher fixed cost absorption from new US manufacturing facilities (interest + depreciation) absorbed the gross margin gains at PAT level.</li><li><b>FY27 guidance:</b> Volumes 105-110 mn pieces, EBITDA margins 13%, New Business revenue ₹1,500 Cr (doubling).</li></ul><div class="cba2-divider"></div><span class="metric tpos" style="color:var(--indocount)">Q4 Rev: ₹1,057.7 Cr</span><span class="metric tpos" style="color:var(--indocount)">Adj. PAT: +60.1%</span><span class="metric" style="color:var(--indocount)">EBITDA: 8.2%</span><p class="cba2-note">Market read: +14% stock move signals forward-looking confidence in FY27 recovery, not backward-looking Q4 margin compression. ICICI Securities notes US tariff reduction to 10% has started to benefit the company.</p>`,
+    `<h4 style="color:var(--indocount)">Indo Count — Is Wamsutta a Real Moat?</h4><p>Wamsutta is one of America's oldest bed linen brands (founded 1846). Indo Count acquired it to gain direct US retail shelf access:</p><ul><li><b>What it provides:</b> Walmart, Target, Kohl's shelf presence under a recognisable brand — not just as a commodity supplier. Price-setting power vs plain label exporters.</li><li><b>Tommy Hilfiger licence added (FY26):</b> Indo Count signed a licensing agreement with Tommy Hilfiger for utility bedding products. Utility bedding + US brand business now 17% of revenues (up from 13%). A second branded moat layered over Wamsutta.</li><li><b>US manufacturing facility:</b> Greenfield North Carolina plant (18 mn pillows capacity) coming online — local manufacturing means no tariff on domestically produced goods. This is the deepest strategic moat being built.</li><li><b>Limitation:</b> Wamsutta is mid-tier. Consumers buying ₹25-45 bed sheets may switch under tariff price pressure. The NC facility + Tommy Hilfiger solve this over FY27-28.</li></ul><div class="cba2-divider"></div><span class="metric tpos" style="color:var(--indocount)">US Brand revenue: 17% (up from 13%)</span><span class="metric" style="color:var(--indocount)">NC Plant: 18 mn pillows capacity</span><p class="cba2-note">The moat is deepening from pure import-and-brand to local manufacturing + multi-brand. FY28 Indo Count will look very different from FY26 Indo Count.</p>`,
+    `<h4 style="color:var(--indocount)">Indo Count — US Tariff Reduced to 10%: Re-Rating Underway</h4><p>The US-India trade deal has reduced India's tariff from 26% to 10%. Indo Count is the biggest listed textile beneficiary:</p><ul><li><b>ICICI Securities confirmation:</b> "The reduction in US tariffs to 10% has started to benefit the company with standalone EBITDA margins starting to recover on YoY basis and is expected to return to normative levels over the upcoming quarters."</li><li><b>Demand acceleration:</b> US trade deal expected to strengthen demand from US buyers. Management expects volumes to reach 105-110 mn pieces in FY27 — up from ~90 mn pieces in FY26.</li><li><b>New business revenue doubling:</b> Utility bedding + US brand business (Wamsutta, Tommy Hilfiger, Fluvitex) targeting ₹1,500 Cr in FY27 from ~₹750 Cr in FY26.</li><li><b>Cotton duty exemption bonus:</b> Govt removed cotton import duty Jun 1–Oct 31 2026. Indo Count's cotton-heavy bed linen input cost benefits directly — additional ₹15-25 Cr PAT accretion estimated.</li></ul><div class="cba2-divider"></div><span class="metric tpos" style="color:var(--indocount)">US Tariff: 26% → 10%</span><span class="metric tpos" style="color:var(--indocount)">FY27 EBITDA target: 13%</span><p class="cba2-note">Two simultaneous tailwinds (tariff reduction + cotton duty relief) hitting together in FY27. This is the recovery thesis materialising ahead of schedule.</p>`,
+    `<h4 style="color:var(--indocount)">Indo Count — Post Results Valuation: BUY Conviction Strengthens</h4><p>Stock at ₹342-353 post Q4 results (up 14% on results day). Re-evaluating the thesis:</p><ul><li><b>FY26 PAT ₹114 Cr at CMP ₹342:</b> Trailing P/E ~37x — appears high. But this is trough PAT year.</li><li><b>FY27E PAT recovery:</b> Management guided EBITDA 13% on growing revenue (US trade deal + New Business ₹1,500 Cr). If FY27 PAT reaches ₹280-320 Cr, forward P/E is just 11-12x at CMP ₹342. Extremely cheap on normalised basis.</li><li><b>Adjusted PAT +60.1% in Q4:</b> The operational business is recovering. The IGST one-time charge and US facility ramp costs are non-recurring — FY27 will not have these drags.</li><li><b>TP ₹480 maintained:</b> Analysts maintained BUY with TP ₹480. At 15x FY27E PAT ₹300 Cr = ₹4,500 Cr market cap → ~₹507/share. TP may be revised upward.</li></ul><div class="cba2-divider"></div><span class="metric tpos" style="color:var(--indocount)">CMP: ~₹342 (post rally)</span><span class="metric tpos" style="color:var(--indocount)">TP: ₹480 (BUY)</span><span class="metric" style="color:var(--indocount)">FY27E P/E: ~11-12x</span><p class="cba2-note">The 14% single-day move confirms the market was under-pricing the recovery. Still meaningful upside to ₹480 TP from ₹342.</p>`,
+    `<h4 style="color:var(--indocount)">Indo Count — EU Diversification Options</h4><p>Indo Count's EU revenue is only ~15%. Growing this offsets US concentration risk:</p><ul><li><b>EU bed linen market:</b> Germany, France, UK are strong importers. EU has no 26% tariff on India (current duty 12%, India-EU FTA could reduce to 0%).</li><li><b>Cozee Home brand:</b> Value-tier brand positioned for EU grocery-retail (Aldi/Lidl partnerships). Different buyer profile vs Walmart but large volumes available.</li><li><b>India-UK FTA:</b> Already signed — could help Indo Count grow UK from ~5% to 10-12% revenue within 2 years without additional tariff.</li><li><b>Timeline:</b> EU customer acquisition for bed linen takes 18-24 months. Not a FY27 lever — meaningful from FY28.</li><li><b>Cotton duty exemption impact:</b> Zero cotton import duty (Jun-Oct 2026) makes Indian bed linen price-competitive vs Egyptian and Pakistani competition in EU market too. A window to win EU customers at lower price points.</li></ul><div class="cba2-divider"></div><span class="metric" style="color:var(--indocount)">Current EU: ~15%</span><span class="metric tpos" style="color:var(--indocount)">Target EU FY28: ~25%</span>`,
+    `<h4 style="color:var(--indocount)">Indo Count Q4 FY26 — Post-Results Scorecard</h4><p>Results declared 30 May 2026. How did the four watchpoints score?</p><ul><li><b>Revenue ₹1,057.7 Cr ✅ (target ≥₹1,100 Cr — near miss):</b> Revenue just below target due to volume decline (-20%). However realisation improvement offset volumes well enough for +3.4% YoY revenue growth. Not a concern.</li><li><b>EBITDA margin 8.2% ❌ (target ≥13%):</b> Significant miss. Higher interest and depreciation from new US facilities absorbed gross margin gains. This is transitional — management expects 13% EBITDA in FY27 as facility absorption costs normalise.</li><li><b>Management US orders commentary ✅ (POSITIVE):</b> Tariff reduced to 10%, US trade deal signed, volumes guided to 105-110 mn pieces FY27. Best possible outcome on this metric.</li><li><b>EU/UK revenue share ✅ (improving):</b> New businesses growing, geographic diversification underway. Tommy Hilfiger licence adds a new revenue stream.</li></ul><div class="cba2-divider"></div><span class="metric tpos" style="color:var(--indocount)">3/4 watchpoints positive</span><span class="metric" style="color:var(--indocount)">EBITDA miss: transitional</span><p class="cba2-note"><b>CB Research verdict:</b> BUY thesis intact and strengthened. The EBITDA miss is structural (facility ramp costs) not operational deterioration. FY27 is the real proof quarter.</p>`
+  ],
+  pearl: [
+    `<h4 style="color:var(--pearl)">Pearl Global — Bangladesh+1 Strategy Explained</h4><span class="ans-tag" style="background:#dcfce7;color:#15803d;">BUY</span><p>"Bangladesh+1" = global fashion brands reducing over-dependence on Bangladesh by adding a second sourcing country. Pearl is India's prime beneficiary:</p><ul><li><b>Bangladesh's problem:</b> Labour unrest, political instability (2024 government change), rising wages have made brands nervous.</li><li><b>Why India/Pearl benefits:</b> Brands like H&M, Gap, Walmart want to split Bangladesh volume 60-40. India is the natural alternative.</li><li><b>Pearl's edge over other India exporters:</b> Pearl already has Bangladesh operations. It can offer buyers a <i>single-vendor Bangladesh+India</i> solution — simplifying procurement. Different from a pure India exporter.</li><li><b>FY26 evidence:</b> Q4 revenue +22% YoY is partially attributable to this shift. Order wins from buyers reallocating from Bangladesh to Pearl's India plants.</li></ul><span class="metric tpos" style="color:var(--pearl)">Q4 Rev: +22% YoY</span><span class="metric tpos" style="color:var(--pearl)">Q4 PAT: +18% YoY</span>`,
+    `<h4 style="color:var(--pearl)">Pearl Global — 4-Country Manufacturing: Tariff Arbitrage</h4><p>Pearl operates in India, Bangladesh, Vietnam, and Indonesia — each with a different tariff profile:</p><ul><li><b>Bangladesh → USA:</b> Pearl can shift orders away from Bangladesh plants if US applies higher Bangladesh tariff.</li><li><b>Vietnam → EU:</b> EVFTA = 0% EU duty. Pearl's Vietnam ops primarily serve EU buyers on cost-competitive terms.</li><li><b>Indonesia:</b> GSP benefits for some US categories. Indonesia-EU FTA in progress.</li><li><b>India → USA:</b> Currently 26% tariff. But India-US negotiations active. India ops serve EU (potential FTA) and domestic.</li><li><b>The arbitrage:</b> When one country's tariff worsens, Pearl shifts order fulfilment to another country's plant. No other Indian-listed textile company can do this across 4 geographies.</li></ul><p class="cba2-note">Building factories in 4 countries takes 8-10 years and ₹1,000+ Cr investment. Competitors cannot replicate quickly — a time-locked moat.</p>`,
+    `<h4 style="color:var(--pearl)">Pearl Global — Q4 FY26 Revenue +22%: What's Driving It?</h4><p>+22% when most peers were flat/negative — three drivers:</p><ul><li><b>Bangladesh+1 order wins:</b> Global fashion brands accelerating India sourcing. Pearl's India plants received incremental orders as buyers reduced Bangladesh exposure post-2024 political instability.</li><li><b>Bangladesh plant volume growth:</b> Pearl's Bangladesh ops growing even as some buyers diversify — because buyers who stay in Bangladesh prefer reliable operators like Pearl over local factories.</li><li><b>EU demand recovery:</b> Pearl's EU mix (~35%) benefited from some demand recovery in EU fashion spend in late FY26.</li><li><b>New brand additions:</b> Management commentary suggests new client wins from 2 global brands in FY26, ramping up through FY27.</li></ul><span class="metric tpos" style="color:var(--pearl)">Q4 Rev: ₹1,200 Cr (+22%)</span><span class="metric tpos" style="color:var(--pearl)">FY26 Rev: ₹4,400 Cr</span>`,
+    `<h4 style="color:var(--pearl)">Pearl Global — 17x P/E: Most Undervalued in Sector?</h4><p>Sector P/E comparison makes a compelling case:</p><ul><li><b>Pearl at 17.3x P/E</b> vs Gokaldas 32x, SP Apparels 22x, KPR 18.5x, Page 56x.</li><li><b>Pearl's growth is FASTER than most:</b> Q4 Rev +22%, PAT +18% — stronger than Gokaldas (rev +22% but PAT -37%), SP Apparels (rev -6%), Vardhman (rev -0.4%).</li><li><b>Why the discount exists:</b> Pearl is mid-cap (~₹4,500 Cr) with lower analyst coverage. Mid-cap discount + emerging story = valuation gap.</li><li><b>Catch-up potential:</b> As FY27 numbers show sustained growth, institutional coverage increases → P/E re-rates toward 22-25x. That alone = 27-44% upside.</li></ul><span class="metric tpos" style="color:var(--pearl)">CMP: ~₹270</span><span class="metric tpos" style="color:var(--pearl)">TP: ₹350 (+29.6%)</span><span class="metric" style="color:var(--pearl)">P/E: 17.3x (cheapest for growth)</span>`,
+    `<h4 style="color:var(--pearl)">Pearl Global — Key Risks: US Tariff + Bangladesh</h4><p>Two headline risks — nuanced assessment:</p><ul><li><b>US tariff (India plants):</b> India operations face 26% US tariff. However, India revenue going to US is ~45% of total. Vietnam and Bangladesh plants have different tariff profiles — giving Pearl flexibility peers don't have.</li><li><b>Bangladesh political risk:</b> 2024 political transition raised uncertainty. Pearl's Bangladesh plants had temporary disruptions. However, Bangladesh has stabilised and Bangladesh revenue continues growing.</li><li><b>Currency risk:</b> Operating across INR, BDT, VND, IDR — multi-currency exposure. Management uses natural hedging (revenue and costs in same currency per country).</li><li><b>Concentration in H&M/Gap:</b> Top 3 clients likely represent 40-50% of revenue. Long-term supply relationships with 3-5 year framework agreements mitigate this.</li></ul><p class="cba2-note">Risk-reward: Risks are real but priced in at 17x P/E. The tariff agility model specifically addresses the biggest sectoral risk.</p>`,
+    `<h4 style="color:var(--pearl)">Pearl Global vs Gokaldas — Multi-Geography Comparison</h4><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0;"><tr><th style="text-align:left;padding:5px 8px;background:#f5f5f5;">Metric</th><th style="padding:5px 8px;background:#f5f5f5;text-align:center;color:var(--pearl);">Pearl Global</th><th style="padding:5px 8px;background:#f5f5f5;text-align:center;color:var(--gokaldas);">Gokaldas</th></tr><tr><td style="padding:5px 8px;">Geographies</td><td style="padding:5px 8px;text-align:center;color:var(--pearl)">4 (India/BD/VN/ID)</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">2 (India+Ethiopia)</td></tr><tr><td style="padding:5px 8px;">P/E</td><td style="padding:5px 8px;text-align:center;color:var(--pearl)">17.3x</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">32x</td></tr><tr><td style="padding:5px 8px;">FY26 PAT trend</td><td style="padding:5px 8px;text-align:center;color:var(--pearl)">+18% (Q4)</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">▼37% FY26</td></tr><tr><td style="padding:5px 8px;">US duty hedge</td><td style="padding:5px 8px;text-align:center;">Multi-country flex</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">AGOA (0%)</td></tr><tr><td style="padding:5px 8px;">Political risk</td><td style="padding:5px 8px;text-align:center;">Bangladesh (low)</td><td style="padding:5px 8px;text-align:center;">Ethiopia (medium)</td></tr></table><p class="cba2-note"><b>CB Research:</b> Pearl is the better risk-adjusted buy at current valuations. Gokaldas has a stronger specific US tariff moat but is expensive at 32x with declining PAT.</p>`
+  ],
+  vardhman: [
+    `<h4 style="color:var(--vardhman)">Vardhman Textiles — Largest Yarn Maker with Only 11.8% EBITDA</h4><span class="ans-tag" style="background:#fef9c3;color:#a16207;">HOLD</span><p>India's largest listed yarn maker (13 lakh spindles) with EBITDA below smaller peers. Why?</p><ul><li><b>Commodity business dynamics:</b> Yarn is a commodity — buyers compare prices across suppliers. Unlike garments, cotton yarn margins are thin and cyclical.</li><li><b>Input cost volatility:</b> Cotton = 55-60% of yarn's manufacturing cost. When cotton spikes, EBITDA compresses immediately.</li><li><b>Scale doesn't help margin here:</b> 13L spindles makes Vardhman the cheapest cost producer — but that saves ₹0.20/kg, not 5-8% margin points.</li><li><b>Fabric and processing (30%):</b> This segment has better margins (15-18%) but is still a small share.</li></ul><span class="metric" style="color:var(--vardhman)">EBITDA: 11.8%</span><span class="metric" style="color:var(--vardhman)">Spindles: 13 lakh</span><span class="metric" style="color:var(--vardhman)">FY26 Rev: ₹9,869 Cr</span>`,
+    `<h4 style="color:var(--vardhman)">Vardhman — Cotton Price Flow-Through to P&L</h4><p>Vardhman is effectively a "cotton price pass-through" business with a margin buffer:</p><ul><li><b>When cotton prices rise 10%:</b> Raw material cost (55-60% of revenue) rises proportionally. If Vardhman cannot pass this to yarn buyers, EBITDA compresses by 5-6 ppt. This is exactly what happened in FY25-26.</li><li><b>When cotton prices fall:</b> Input cost deflation. But yarn prices also fall, so benefit is partial. EBITDA expands modestly (2-3 ppt).</li><li><b>The asymmetry:</b> Cost spikes hit faster than cost recoveries. This creates PAT volatility that institutional investors discount with a lower P/E (8.5x vs 18.5x for KPR).</li></ul><p class="cba2-note">Key watch: India Kharif 2026 cotton crop forecast. Good crop → cotton price falls → Vardhman PAT recovers H2 FY27.</p>`,
+    `<h4 style="color:var(--vardhman)">Vardhman at 8.5x P/E — Why Not a Screaming Buy?</h4><p>8.5x P/E sounds cheap. Here's why the market is right to be cautious:</p><ul><li><b>P/E on depressed earnings:</b> FY26 PAT ₹753 Cr is post-cotton-spike-compressed. If normalised PAT is ₹900-950 Cr, effective P/E is 6.5-7x — genuinely cheap.</li><li><b>But earnings visibility is low:</b> Unlike KPR (controllable margins) or Page (brand pricing power), Vardhman's earnings depend on cotton, global yarn demand, and USD/INR — all uncontrollable externals.</li><li><b>Dividend yield only 0.8%:</b> Not compelling for the risk taken.</li><li><b>Re-rating catalyst unclear:</b> The market won't re-rate Vardhman without a structural change — either MMF capacity, consistent 14%+ EBITDA, or major acquisition.</li></ul><p class="cba2-note">8.5x is <b>fair value for the earnings quality</b>, not a discount. Low P/E + high earnings volatility = correctly priced risk.</p>`,
+    `<h4 style="color:var(--vardhman)">Vardhman — What Triggers Would Prompt BUY Upgrade?</h4><p>Analysts have HOLD with TP ₹500. The upgrade conditions:</p><ul><li><b>EBITDA crossing 14%+ for 2 consecutive quarters:</b> Would signal structural improvement. FY27 PAT ~₹1,100 Cr → fair value ~₹600+ at 8x.</li><li><b>MMF/Technical textile capacity announcement:</b> Investment in non-cotton fibres (viscose, polyester blends) would re-rate the growth story. PLI scheme eligibility follows.</li><li><b>Export order wins in EU/Japan specialty yarns:</b> Specialty yarn commands 30-50% margin premium vs commodity. Any client announcement here is positive.</li><li><b>Cotton price fall below ₹55,000/candy:</b> Mechanical PAT recovery. Doesn't change business quality but creates near-term earnings upside.</li></ul><span class="metric" style="color:var(--vardhman)">Upgrade trigger: EBITDA ≥ 14%</span><span class="metric" style="color:var(--vardhman)">CMP: ₹450 | TP: ₹500</span>`,
+    `<h4 style="color:var(--vardhman)">Vardhman — Is 13 Lakh Spindles a Moat or Liability?</h4><p>Largest isn't always best in commodities:</p><ul><li><b>Scale as procurement moat:</b> 13L spindles = one of world's largest cotton buyers. Direct procurement from major cooperatives bypasses traders. Saves ₹2-4/kg at scale.</li><li><b>Scale as operational liability:</b> Large fixed-cost base. When utilisation drops below 80%, fixed costs per unit spike. Small spinners can mothball capacity more easily.</li><li><b>Switching cost to MMF:</b> Existing spindles are cotton-optimised. Converting to polyester/viscose spinning requires different machinery — ₹1,500-2,000 Cr investment. Scale creates inertia to pivot.</li></ul><p class="cba2-note">Scale is a moat in good cotton years and a liability in bad ones. The structural problem: 77% of global textile demand is MMF — Vardhman's moat is in the wrong segment.</p>`,
+    `<h4 style="color:var(--vardhman)">Vardhman — PLI Scheme MMF Benefit if It Pivots</h4><p>PLI Textile Scheme specifically targets MMF and technical textiles:</p><ul><li><b>PLI incentive:</b> 15% production-linked incentive on incremental MMF turnover. ₹500 Cr incremental MMF revenue = ₹75 Cr/year incentive for 5 years.</li><li><b>Vardhman eligibility:</b> If Vardhman announces a dedicated MMF spinning line, it qualifies. Minimum investment: ₹300 Cr.</li><li><b>Market opportunity:</b> India imports viscose yarn (Grasim monopoly) and polyester yarn at 14-23% premium. A Vardhman MMF line would be PLI-supported AND address domestic demand gap.</li><li><b>Why they haven't done it yet:</b> Management is historically conservative. Cotton expertise is deep; MMF expertise needs to be built.</li></ul><p class="cba2-note">PLI pivot is the single biggest potential re-rating catalyst for Vardhman. An MMF announcement could push TP from ₹500 to ₹650-700 within 3 months of announcement.</p>`
+  ],
+  welspun: [
+    `<h4 style="color:var(--welspunliv)">Welspun Living — FCF ₹956 Cr vs PAT ₹213 Cr: How?</h4><span class="ans-tag" style="background:#fef9c3;color:#a16207;">HOLD</span><p>FCF growing 8.5x while PAT fell 67% — the apparent paradox explained:</p><ul><li><b>Working capital liberation:</b> Welspun aggressively reduced receivables and inventory. Collecting money faster than earning profits creates FCF > PAT short-term.</li><li><b>Debt repayment (net negative to PAT):</b> Interest payments are P&L charges — reduce PAT. But debt repayment itself is a cash outflow not in PAT. When debt reduces 52%, interest savings improve FCF going forward.</li><li><b>Depreciation shield:</b> Large manufacturing base has ₹400-500 Cr annual depreciation — non-cash P&L charge. Reduces PAT but NOT FCF.</li><li><b>Capex reduction:</b> FY26 capex was lower than prior years → more FCF even without PAT improvement.</li></ul><span class="metric tpos" style="color:var(--welspunliv)">FCF: ₹956 Cr (+8.5x)</span><span class="metric" style="color:var(--welspunliv)">Net Debt: ₹775 Cr (▼52%)</span>`,
+    `<h4 style="color:var(--welspunliv)">Welspun Living — Hygrocotton® as Technology Moat</h4><p>Welspun's proprietary fibre technology — a rare B2C brand moat in a B2B-heavy sector:</p><ul><li><b>What it is:</b> A patented cotton fibre treatment that makes towels/bedsheets softer over time (not worse, like regular cotton). The fibre blooms with each wash.</li><li><b>Consumer differentiation:</b> Walmart and Target sell Hygrocotton products at 25-35% premium over standard cotton towels. Repeat purchase rate significantly higher.</li><li><b>Patent protection:</b> Hygrocotton® is registered. Competitors cannot legally make and market the same product. Duration: 15-20 years from patent date.</li><li><b>P&L impact:</b> 30-40% revenue premium per unit vs commodity towel exporters like Trident. Even in difficult FY26, this premium held.</li></ul><p class="cba2-note">Hygrocotton is the reason Welspun can HOLD Walmart shelf space under tariff pressure — commodity exporters cannot replicate the product.</p>`,
+    `<h4 style="color:var(--welspunliv)">Welspun — Domestic +29.2% Growth: Can Spaces Offset US/ME?</h4><p>India domestic grew 29.2% YoY in Q4 FY26. Context:</p><ul><li><b>Current base is small:</b> India domestic is ~12% of Welspun revenue. Even 30% growth = 3.6% total revenue contribution increase. Cannot fully offset 45% US headwind near-term.</li><li><b>Spaces brand potential:</b> India's premium home textile retail brand — D-Mart, Shoppers Stop, own EBOs. Premiumisation of Indian home is a genuine multi-year tailwind.</li><li><b>FY28+ thesis:</b> If Welspun grows domestic to 25% (from 12%), the US tariff impact naturally reduces as % of total revenue. A 3-year journey, not FY27.</li></ul><span class="metric tpos" style="color:var(--welspunliv)">India Q4: +29.2%</span><span class="metric" style="color:var(--welspunliv)">India Rev share: 12% → target 25% by FY28</span>`,
+    `<h4 style="color:var(--welspunliv)">Welspun Living — Capital Allocation Post Debt Reduction</h4><p>Net debt fell from ~₹1,600 Cr to ₹775 Cr in FY26. The ₹825 Cr freed — where does it go?</p><ul><li><b>Interest cost savings:</b> ₹825 Cr × 9-10% = ₹74-82 Cr annual interest savings. Flows directly to PAT. FY27 PAT could improve ₹80 Cr from this lever alone.</li><li><b>Domestic capacity:</b> Welspun flagged investing in India-focused manufacturing (Spaces brand hub). Capex of ₹300-400 Cr over 2 years.</li><li><b>Dividend resumption?</b> With FCF ₹956 Cr, a ₹2-3/share dividend announcement in FY27 is possible — positive signal.</li><li><b>No overseas acquisitions expected:</b> Post-Christy integration learnings, management focused on organic India growth and debt consolidation.</li></ul><p class="cba2-note">Capital allocation is improving. The debt-reduction discipline is the biggest positive signal in FY26 for Welspun.</p>`,
+    `<h4 style="color:var(--welspunliv)">Welspun at 25x P/E on Depressed PAT — Expensive or Recovery Bet?</h4><p>PAT ₹213 Cr at CMP ₹141:</p><ul><li><b>The 25x refers to normalised P/E:</b> If PAT is temporarily depressed (FY26 = trough), investors paying 25x trough PAT. On normalised PAT (₹500-600 Cr), effective P/E is just 6-7x — cheap.</li><li><b>Bull case:</b> FY28 PAT recovery to ₹450-500 Cr. At 12x P/E = ₹5,400-6,000 Cr market cap → ₹230-260/share = 60-85% upside from CMP.</li><li><b>Bear case:</b> Welspun misses EBITDA recovery, domestic remains small, FCF deteriorates. Stock stays ₹130-150.</li></ul><p class="cba2-note">Welspun is a <b>recovery bet</b>, not a value play. HOLD: conviction will build with quarterly data.</p>`,
+    `<h4 style="color:var(--welspunliv)">Welspun — Path to 13%+ EBITDA and Timeline</h4><p>Current EBITDA: 10.8%. Recovery to 13%+ requires:</p><ul><li><b>Interest cost reduction:</b> From ₹160 Cr to ₹85 Cr (debt halved) = 0.8% EBITDA-equivalent benefit.</li><li><b>US volume recovery (tariff resolution):</b> 5% more volume on fixed cost base = ~1.5% EBITDA improvement.</li><li><b>Domestic margin mix:</b> India domestic (Spaces) commands 18-22% gross margin vs 10-12% for export. Growing India share from 12% to 20% adds ~1.5% blended EBITDA.</li><li><b>West Asia normalisation:</b> ME revenue weakness reversal adds 0.5-0.8% EBITDA.</li></ul><span class="metric" style="color:var(--welspunliv)">Current: 10.8%</span><span class="metric tpos" style="color:var(--welspunliv)">Target: 13%+</span><span class="metric" style="color:var(--welspunliv)">Timeline: Q3/Q4 FY27</span>`
+  ],
+  trident: [
+    `<h4 style="color:var(--trident)">Trident — Wheat Straw Paper: Circular Economy Moat</h4><span class="ans-tag" style="background:#fef9c3;color:#a16207;">HOLD</span><p>Trident is the only Indian company making paper from agricultural waste (wheat straw) at commercial scale:</p><ul><li><b>What it is:</b> Wheat straw (inedible stalk leftover after grain harvest) collected from Punjab farmers, pulped, and converted to writing/printing paper.</li><li><b>Why it's unique:</b> Wood-based paper requires cutting trees. Wheat straw is harvested every year — renewable annually. Lower raw material cost + ESG credibility.</li><li><b>Geographic moat:</b> Punjab produces massive wheat straw within 100 km of Trident's Barnala plant. Bangladesh, Vietnam, Chinese competitors face 5-10x transport cost to replicate.</li><li><b>ESG premium:</b> EU buyers paying 10-15% premium for sustainably-sourced paper. Trident qualifies. Growing opportunity as EU sustainability mandates tighten.</li></ul><span class="metric" style="color:var(--trident)">Paper revenue: ~15% of total</span>`,
+    `<h4 style="color:var(--trident)">Trident — World's Largest Terry Towel Exporter, Yet ₹24 Stock</h4><p>Global volume leadership doesn't automatically translate to market cap:</p><ul><li><b>Revenue fell 12.4% in Q4:</b> US tariff hit 40% of revenue. Terry towel buyers in US shifting some orders to cheaper (duty-free) Pakistani towels for commodity grade.</li><li><b>PAT pressure:</b> FY26 PAT +2% on ₹6,701 Cr revenue = 0.56% net margin. Market applies a low multiple to thin-margin textile businesses.</li><li><b>Debt overhang:</b> Significant capex in FY24-25. Higher interest cost hitting PAT. Scale doesn't help if leverage is too high.</li><li><b>Terry towel is commodity segment:</b> Unlike Welspun (Hygrocotton tech) or Indo Count (US brand ownership), Trident's towels are largely unbranded commodity export — price-taker dynamics.</li></ul><p class="cba2-note">Stock at ₹24 reflects correctly priced risk. Recovery thesis requires tariff ease + margin improvement.</p>`,
+    `<h4 style="color:var(--trident)">Trident Q4 Revenue -12.4% — US Tariff, Demand, or Internal?</h4><p>Decomposing the -12.4% Q4 revenue decline:</p><ul><li><b>US tariff effect (~40% of decline):</b> US buyers paused/deferred orders post April 2026 tariff announcement. Some discretionary US orders were cancelled.</li><li><b>West Asia softness (~25%):</b> Middle East conflict reduced corporate and hospitality textile procurement.</li><li><b>Internal pricing adjustments (~20%):</b> Trident reduced export prices on certain towel SKUs to remain competitive vs Pakistani suppliers. Revenue falls even if volumes maintained.</li><li><b>EU demand softness (~15%):</b> UK and Germany consumer confidence weak in Q4 FY26, reducing retail replenishment orders.</li></ul><p class="cba2-note">All four factors are recoverable — none is structural market share loss. FY27 H2 should show revenue normalisation.</p>`,
+    `<h4 style="color:var(--trident)">Trident — Paper Segment: Underappreciated Asset or Drag?</h4><p>Paper is 15% of revenue. The sector often ignores it. Should it?</p><ul><li><b>Margin profile:</b> Paper business EBITDA ~18-20% — HIGHER than textile segment (~13-15%). 15% revenue contribution generating disproportionately higher margin.</li><li><b>EU demand tailwind:</b> Sustainability mandates driving demand for recycled/alternative fibre paper. Trident's wheat straw qualifies. European premium buyers fastest-growing segment.</li><li><b>Straw price risk:</b> If Punjab farmers find alternative uses for straw (biomass power), supply could reduce — pushing straw price up.</li><li><b>Hidden valuation:</b> If paper segment valued separately at 15x P/E on ₹100 Cr+ PAT contribution = ₹1,500 Cr of Trident's ~₹16,000 Cr market cap. Market gives it no premium currently.</li></ul><p class="cba2-note">Paper is an underappreciated, hidden value catalyst.</p>`,
+    `<h4 style="color:var(--trident)">Trident at ₹22-24 — Margin of Safety Analysis</h4><p>CB Research says accumulate at ₹22-24. The downside protection:</p><ul><li><b>Replacement value:</b> Trident's 72,000 MT/year terry towel capacity + Barnala campus + paper plant would cost ₹8,000-10,000 Cr to build. Current market cap ₹16,000 Cr = 1.6-2x replacement value. Reasonable floor.</li><li><b>Price/Sales:</b> ₹6,701 Cr revenue on ₹16,000 Cr market cap = 0.24x P/S. Extremely cheap for industry leader.</li><li><b>Book value support:</b> P/B below 1.5x at ₹24. Unlikely to fall below book value (~₹16-17/share) without catastrophic event.</li></ul><span class="metric" style="color:var(--trident)">CMP: ₹24</span><span class="metric tpos" style="color:var(--trident)">TP: ₹28 (+16.7%)</span><span class="metric" style="color:var(--trident)">P/B: ~1.4x</span><p class="cba2-note">Downside from ₹24 is limited. Upside to ₹28-32 requires US tariff clarity. Asymmetric risk-reward: accumulate in tranches.</p>`,
+    `<h4 style="color:var(--trident)">Trident — Barnala Integrated Campus: Cost Leadership</h4><p>Trident's Barnala facility is one of India's most efficiently designed textile-paper campuses:</p><ul><li><b>Co-location advantage:</b> Cotton → yarn → terry towel → paper, all within one campus. No inter-factory transport. Shared power, water, and waste treatment infrastructure.</li><li><b>Proximity to Punjab cotton:</b> Direct farmer procurement reduces intermediary cost by ₹3-5/kg.</li><li><b>Water recycling:</b> Zero-liquid-discharge system recycles 95%+ of water. In an era of water scarcity, this is both ESG compliance AND cost saving.</li><li><b>Energy integration:</b> Waste heat from paper process used for textile processing. Cross-process efficiency that stand-alone factories cannot replicate.</li></ul><p class="cba2-note">The Barnala campus is Trident's deepest moat — physical infrastructure. A competitor would need 8-10 years and ₹5,000+ Cr to replicate it.</p>`
+  ],
+  gokaldas: [
+    `<h4 style="color:var(--gokaldas)">Gokaldas Exports — AGOA: Duty-Free US Access Explained</h4><span class="ans-tag" style="background:#fef9c3;color:#a16207;">HOLD</span><p>AGOA (Africa Growth and Opportunity Act) allows qualifying sub-Saharan African countries to export goods to the US duty-free. Gokaldas uses this via Ethiopia:</p><ul><li><b>How it works:</b> Gokaldas manufactures garments in its Ethiopia factories. These enter the US at <b>0% duty</b> vs 26% for India-origin garments.</li><li><b>Why this is unique:</b> ONLY listed Indian textile company with AGOA-qualifying Africa manufacturing.</li><li><b>Scale of advantage:</b> Africa (AGOA) operations grew +17% YoY in FY26. Protects 22% of total revenue from tariff.</li><li><b>Brand relationships:</b> Gap, H&M, PVH specifically source from Gokaldas's Ethiopia plants to access duty-free US shelf space.</li></ul><span class="metric tpos" style="color:var(--gokaldas)">AGOA Africa: 22% of revenue</span><span class="metric tpos" style="color:var(--gokaldas)">Africa growth: +17% YoY</span>`,
+    `<h4 style="color:var(--gokaldas)">Gokaldas — Revenue +22% but FY26 PAT -37%: The Disconnect</h4><p>Revenue growing fast but profits declining faster:</p><ul><li><b>Mix shift to lower-margin AGOA business:</b> Africa operations grew 17%. Ethiopia manufacturing has higher operational costs (logistics, multi-country overhead). Revenue grows but blended margin compresses.</li><li><b>Ethiopia plant ramp-up costs:</b> New Ethiopia capacity requires hiring, training, quality certifications — all front-loaded costs before full production utilisation.</li><li><b>India plant margin compression:</b> India ops face US tariff. Gokaldas absorbed some tariff impact to protect client relationships — reducing realisation.</li></ul><p class="cba2-note">The disconnect will resolve when Ethiopia plants reach mature utilisation (~FY27 H2). Incremental AGOA revenue then flows at much better margins than ramp-up phase.</p>`,
+    `<h4 style="color:var(--gokaldas)">Gokaldas — Ethiopia Political Risk Assessment</h4><p>Ethiopia has had significant political instability. Current threat level:</p><ul><li><b>Tigray conflict (2020-22):</b> Northern Ethiopia civil war. Gokaldas's main operations are in Addis Ababa and Southern Ethiopia — away from conflict zone.</li><li><b>Current status (2026):</b> Tigray peace agreement held. Ethiopia government stable. Africa revenue +17% confirms no current operational disruption.</li><li><b>AGOA renewal risk:</b> AGOA expires periodically. Ethiopia's AGOA eligibility was threatened before (2022 human rights concerns) and restored. Binary risk — if Ethiopia loses AGOA, advantage disappears overnight.</li><li><b>Mitigation:</b> Gokaldas reportedly evaluating a second African country (Kenya or Tanzania) as backup.</li></ul><span class="metric" style="color:var(--gokaldas)">Political risk: LOW currently (2026)</span><p class="cba2-note">Monitor AGOA renewal legislation in US Congress. Next renewal expected 2025-2026 session.</p>`,
+    `<h4 style="color:var(--gokaldas)">Gokaldas at 32x P/E — AGOA Premium Fully Priced In?</h4><p>32x P/E is the highest in the sector (ex-Page):</p><ul><li><b>Bull argument for 32x:</b> AGOA is an irreplaceable structural moat. Market assigns strategic option value. At 25x, the stock would be undervalued for this uniqueness.</li><li><b>Bear argument:</b> PAT fell 37% in FY26. You're paying 32x for declining profits. 32x on declining PAT has no margin of safety.</li><li><b>Fair value analysis:</b> FY27 PAT recovery to ~₹150 Cr. At 25x = ₹3,750 Cr market cap → TP ~₹1,000. Currently ~₹13,000 Cr market cap = 87x FY26 PAT. This IS expensive.</li></ul><span class="metric" style="color:var(--gokaldas)">P/E: 32x</span><span class="metric tneg" style="color:var(--gokaldas)">FY26 PAT: ▼37%</span><span class="metric" style="color:var(--gokaldas)">TP: ₹950 (HOLD)</span>`,
+    `<h4 style="color:var(--gokaldas)">Gokaldas — Winning Gap, H&M, PVH Orders Simultaneously</h4><p>How does one company supply to competing global brands simultaneously?</p><ul><li><b>Product differentiation:</b> Gap sources basic casualwear. H&M sources fast fashion. PVH needs premium denim and formal wear. Gokaldas's diversified product capability (woven + knit, casual + formal) enables multi-brand supply.</li><li><b>Factory segregation:</b> Brands require separate production facilities for IP protection. Gokaldas's multiple India plants allow brand-specific factory allocation.</li><li><b>Compliance infrastructure:</b> All three brands have rigorous supplier audits. Gokaldas's compliance systems (SA8000, WRAP, BSCI) pass all three simultaneously — smaller competitors cannot.</li><li><b>AGOA advantage deepening:</b> H&M and Gap specifically expanded AGOA allocations to Gokaldas in FY26 (+17% Africa growth) — relationships deepening, not eroding.</li></ul>`,
+    `<h4 style="color:var(--gokaldas)">Pearl Global vs Gokaldas — Full Comparison</h4><table style="font-size:11px;width:100%;border-collapse:collapse;margin:8px 0;"><tr><th style="text-align:left;padding:5px 8px;background:#f5f5f5;">Metric</th><th style="padding:5px 8px;background:#f5f5f5;text-align:center;color:var(--pearl);">Pearl Global</th><th style="padding:5px 8px;background:#f5f5f5;text-align:center;color:var(--gokaldas);">Gokaldas</th></tr><tr><td style="padding:5px 8px;">Geographies</td><td style="padding:5px 8px;text-align:center;color:var(--pearl)">4 countries</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">2 (India+Ethiopia)</td></tr><tr><td style="padding:5px 8px;">P/E</td><td style="padding:5px 8px;text-align:center;color:var(--pearl)">17.3x</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">32x</td></tr><tr><td style="padding:5px 8px;">FY26 PAT trend</td><td style="padding:5px 8px;text-align:center;color:var(--pearl)">+18% (Q4)</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">▼37%</td></tr><tr><td style="padding:5px 8px;">US duty hedge</td><td style="padding:5px 8px;text-align:center;">Multi-country flex</td><td style="padding:5px 8px;text-align:center;color:var(--gokaldas)">AGOA (0%)</td></tr></table><p class="cba2-note"><b>CB Research:</b> Pearl is better risk-adjusted buy at current valuations. Gokaldas has a stronger specific US tariff moat but expensive at 32x with declining PAT.</p>`
+  ],
+  himat: [
+    `<h4 style="color:var(--himat)">Himatsingka Seide — How ₹2,100 Cr Debt Trap Was Built</h4><span class="ans-tag" style="background:#fee2e2;color:#b91c1c;">AVOID</span><p>The debt crisis was entirely self-inflicted through an acquisition strategy:</p><ul><li><b>The acquisition (2015-18):</b> Himatsingka acquired premium US home textile brands (WestPoint, Pradhan-Wilson, Hammond) for ~$150-200M. Debt-funded.</li><li><b>Strategic logic (then):</b> Owning US brands = direct shelf access at Macy's, Target at premium prices. In theory, acquisition cost would be recovered via higher margins.</li><li><b>What went wrong:</b> US home textile retail crisis (Bed Bath & Beyond bankruptcy). COVID disrupted demand. Interest burden compounded as PAT lagged.</li><li><b>Current state:</b> ₹2,100 Cr gross debt on ₹50 Cr PAT = 42x Debt/PAT. Interest: ₹189 Cr/year on ₹50 Cr PAT. The company's entire profit and more goes to banks.</li></ul><span class="metric tneg" style="color:var(--himat)">Gross Debt: ₹2,100 Cr</span><span class="metric" style="color:var(--himat)">PAT: ~₹50 Cr</span>`,
+    `<h4 style="color:var(--himat)">Himatsingka — WestPoint Brand Can't Save It. Why?</h4><p>WestPoint is a prestigious brand (150+ year history). But brand value doesn't fix a balance sheet:</p><ul><li><b>Brand value vs debt service:</b> WestPoint generates 25-35% premium revenue vs commodity. But premium margin is ~5-8% above standard. On ₹2,500 Cr revenue = ₹125-200 Cr extra EBITDA. Annual interest = ₹189 Cr. The premium barely covers interest.</li><li><b>US tariff on top:</b> WestPoint products made in India, exported to US. 26% tariff compresses whatever premium pricing exists.</li><li><b>Brand cannot be monetised quickly:</b> Selling WestPoint to pay down debt would remove Himatsingka's primary revenue driver. A chicken-and-egg problem.</li></ul><p class="cba2-note">The moat exists. But a moat behind a burning house doesn't help. Fix the debt first, then the brand has value.</p>`,
+    `<h4 style="color:var(--himat)">Himatsingka — Stock ▼52.7% in 12M: What Triggers Reversal?</h4><p>Recovery catalysts:</p><ul><li><b>Debt reduction announcement:</b> Any credible plan to reduce debt below ₹1,200 Cr — via asset sale, rights issue, or FCF — would trigger immediate 20-30% re-rating.</li><li><b>Q4 FY26 results (due):</b> If Q4 shows EBITDA improvement to 17%+ and PAT above ₹25 Cr (quarterly), it signals the bottom is in.</li><li><b>US tariff relief:</b> If US-India tariff is reduced, Himatsingka's 55% US exposure benefits. But debt remains the primary concern.</li><li><b>Strategic investor/PE entry:</b> A PE firm taking 20-25% stake would provide capital for debt repayment and signal confidence.</li></ul><span class="metric tneg" style="color:var(--himat)">12M return: ▼52.7%</span><span class="metric" style="color:var(--himat)">CB Threshold: Debt &lt; ₹1,000 Cr</span>`,
+    `<h4 style="color:var(--himat)">Himatsingka — Any Scenario for BUY in FY27?</h4><p>Currently AVOID. The conditional BUY scenario requires ALL of these:</p><ul><li><b>Debt restructuring:</b> Banks extend debt tenor + reduce rate from 10% to 8-9% = saves ₹25-30 Cr interest = meaningful PAT impact on ₹50 Cr base.</li><li><b>Asset monetisation:</b> Selling a non-core brand or factory facility to raise ₹300-500 Cr for debt prepayment.</li><li><b>PAT reaching ₹120-150 Cr in FY27:</b> Requires EBITDA 17%+ on ₹2,600 Cr revenue + lower interest cost.</li><li><b>If all three happen:</b> ₹150 Cr PAT at 12x P/E = ₹1,800 Cr market cap. Current ~₹700-800 Cr. Potential 2-2.5x from current. Speculative only.</li></ul><p class="cba2-note">This is a <b>deep value/distress play</b>. Maintain AVOID until Q4 results and debt announcement provide evidence of turnaround.</p>`,
+    `<h4 style="color:var(--himat)">Himatsingka — Could an Acquirer Find Value in Brand Assets?</h4><p>M&A angle — could it be worth more in pieces than as a whole?</p><ul><li><b>WestPoint acquisition value:</b> Bought for ~$60-70M. In current market, a premium US home textile brand with established Walmart/Target shelf access could fetch $80-100M = ₹664-830 Cr. Against ₹700-800 Cr current market cap, this alone approaches full replacement value.</li><li><b>Who would buy?</b> Welspun Living (strengthens US premium offering), an international home textile PE fund, or a US retailer vertically integrating.</li><li><b>Complexity:</b> Brand acquisition requires operational hand-off, supplier contract transfers — typically 12-18 months. Distressed sellers rarely get full strategic value.</li></ul><p class="cba2-note">Acquirer value exists but is not a near-term catalyst. More likely a multi-year unwinding process than a quick buyout.</p>`,
+    `<h4 style="color:var(--himat)">Himatsingka Q4 FY26 — What Numbers Change the AVOID Call?</h4><p>Q4 results are due. The scorecard:</p><ul><li><b>Debt number (most important):</b> Any reduction below ₹1,800 Cr = positive signal. Management commentary on FY27 debt repayment plan = key watch item.</li><li><b>EBITDA ≥ 17%:</b> Current est. 15.8%. 17%+ means brand premium holding despite tariff pressure.</li><li><b>PAT ≥ ₹15 Cr (quarterly):</b> Below ₹10 Cr = full year PAT risk of ₹30-35 Cr = worsening debt/PAT ratio.</li><li><b>US order commentary:</b> Positive signal that US buyers maintaining/increasing orders despite 26% tariff = brand moat intact.</li></ul><p class="cba2-note">Current call: AVOID. Re-evaluate ONLY if debt shows credible reduction path AND EBITDA holds above 16%. Both conditions must be met simultaneously.</p>`
+  ],
+  sector: [
+    `<h4>Sector Analysis — US 26% Tariff: Safe vs Temporarily Hurt</h4><p>Classification by structural safety:</p><ul><li><b>🟢 Structurally safe (tariff-immune):</b><br>• <b>KPR Mill:</b> 70% EU — nearly immune.<br>• <b>SP Apparels:</b> 5% US + UK FTA = net positive.<br>• <b>Page Industries:</b> 100% domestic India — no US export at all.</li><li><b>🟡 Partially protected (moat or workaround):</b><br>• <b>Gokaldas:</b> AGOA route (22%) is duty-free. India portion faces tariff.<br>• <b>Pearl Global:</b> Multi-country manufacturing allows shifting US-destined orders to lower-tariff jurisdictions.</li><li><b>🔴 Temporarily hurt (recoverable):</b><br>• <b>Indo Count:</b> 70% US = maximum exposure. Recovery if US-India deal.<br>• <b>Welspun Living:</b> 45% US. FCF strong, brands help, earnings compressed.<br>• <b>Himatsingka:</b> 55% US PLUS debt crisis = avoid.</li></ul><p class="cba2-note"><b>Key insight:</b> Companies with geographic diversification (KPR, SP, Pearl) built resilience over years. Concentrated US players now pay the price.</p>`,
+    `<h4>Sector Analysis — India's 4% Global Textile Share: 20-Year Stagnation</h4><p>India has been the world's 6th largest textile exporter for nearly two decades at ~4% share. Why?</p><ul><li><b>Cotton obsession in a polyester world:</b> 77% of global textile trade is MMF. India produces 60%+ cotton. India's strength is in the 23% of the market — not the 77%.</li><li><b>Bangladesh structural advantage:</b> LDC status = zero EU/UK duty on garments. India pays 12% EU duty. This 12% gap = 3-5% PAT difference — Bangladesh wins on price for basic garments.</li><li><b>Electricity cost:</b> India industrial power at ₹8-10/unit vs China ₹5-6/unit, Vietnam ₹4-5/unit. 3-5% revenue cost disadvantage.</li><li><b>Fragmented MSME structure:</b> 70%+ of India's textile production is in MSMEs — too small for global brand supplier audits, too small for automation, too small for large-volume commitments.</li></ul><p class="cba2-note">Green shoots: PLI Scheme (MMF), PM MITRA parks, India-UK FTA, Bangladesh instability — first genuine policy tailwinds in 15 years.</p>`,
+    `<h4>Sector Analysis — Bangladesh Instability: Who Benefits Most?</h4><p>Bangladesh's 2024 political transition created supply chain uncertainty. Beneficiaries in order:</p><ul><li><b>🥇 Pearl Global:</b> Already has Bangladesh operations — can handle overflow smoothly. Single vendor offering India+Bangladesh to buyers. BEST positioned.</li><li><b>🥈 SP Apparels:</b> India-UK FTA makes India-origin goods more competitive vs Bangladesh for UK buyers. SP's UK specialty positioning directly competes. STRONG beneficiary.</li><li><b>🥉 Gokaldas Exports:</b> India plants + AGOA can absorb some US-bound Bangladesh capacity. However, woven garment focused — Bangladesh's strength is knit (T-shirts). Partial overlap.</li><li><b>KPR Mill:</b> EU focused. Some EU order wins but less direct Bangladesh competition overlap.</li><li><b>Limited beneficiaries:</b> Home textile companies (Welspun, Indo Count, Trident) compete less directly with Bangladesh.</li></ul>`,
+    `<h4>Sector Analysis — Top 3 Picks for 2-Year Horizon</h4><p>CB Research view for a patient 2-year investor:</p><ul><li><b>🥇 KPR Mill (Strong Buy, TP ₹1,150)</b><br>Debt-free compounder with best EBITDA margin. EU focus = natural tariff buffer. FY27 capacity expansion + India-EU FTA potential. Most certain earnings trajectory. Accumulate on dips to ₹850-880.</li><li><b>🥈 SP Apparels (Buy, TP ₹920)</b><br>India-UK FTA is a 3-year structural tailwind not fully priced in. Zenith UK platform is a real moat. FY27-28 revenue inflection as FTA orders start flowing. Accumulate on dips to ₹650-700.</li><li><b>🥉 Pearl Global (Buy, TP ₹350)</b><br>Most undervalued mid-cap in sector (17x P/E). Multi-country manufacturing is the right structure for tariff-volatile world. Bangladesh+1 tailwind. FY27 earnings momentum likely to attract institutional coverage = P/E re-rating.</li></ul><p class="cba2-note"><b>Honourable mention:</b> Indo Count (BUY) as a US tariff recovery speculative play.</p>`,
+    `<h4>Sector Analysis — Single Biggest FY27 Catalyst for Indian Textiles</h4><div style="background:linear-gradient(135deg,#eff6ff,#e0f2fe);border-radius:10px;padding:14px 16px;margin-bottom:12px;border:1.5px solid #93c5fd;"><div style="font-weight:800;font-size:13px;color:#1d4ed8;margin-bottom:6px;">🏆 US-India Tariff 26%→10% — ✅ DONE (June 2026)</div><div style="font-size:12px;line-height:1.7;"><b>This has already materialised.</b> US tariff reduced to 10% as part of US-India bilateral trade deal. Impact underway:<br>• Indo Count +14% single-day rally on results day · TP ₹480 maintained<br>• Welspun, Trident order pipelines expected to recover from FY27 Q1<br>• Sector P/E upward</div></div><p><b>Second biggest:</b> India-EU FTA finalisation — directly benefits KPR Mill (12% duty → 0%). Est. ₹150-200 Cr PAT benefit for KPR alone.</p><p><b>Third:</b> India-UK FTA formal implementation (already signed) — validates SP Apparels thesis.</p><p><b>🌿 Bonus — LIVE NOW (1 Jun 2026):</b> Govt waived ALL cotton import duty until 31 Oct 2026 (basic duty + AIDC = zero). ~11% input cost relief for spinners (Vardhman), integrated mills (KPR, Trident), and bed linen exporters (Indo Count). Triggered by severe domestic cotton price surge and supply shortage.</p><p class="cba2-note"><b>Both catalysts now live:</b> US tariff 26%→10% (✅ Done) + cotton duty waiver = rare double-tailwind heading into FY27. Watch for EBITDA margin recovery in Q1 FY27 results (Jul 2026).</p>`,
+    `<h4>Sector Analysis — Cotton vs MMF: India's Structural Trap</h4><p>The fundamental reason India can't break 4% global share:</p><ul><li><b>The global shift:</b> In 1980, cotton was 50%+ of global consumption. Today only 22%. Polyester alone is 54%, viscose 8%, nylon 5%. The world has moved to synthetics.</li><li><b>India's production mix:</b> Still 55-60% cotton-based. India is betting on 22% of the global market while ignoring 78%.</li><li><b>Why India can't pivot easily:</b><br>• Cotton farmers (10M+ in Gujarat, Maharashtra) are a powerful political constituency.<br>• MMF production dominated by Reliance (polyester) and Grasim (viscose) — charging 15-25% above import prices.<br>• Existing infrastructure is cotton-optimised. Converting requires ₹50,000-₹1 lakh Cr of new investment.</li><li><b>What PLI is trying to fix:</b> 15% production-linked incentive on MMF. But policy execution will take 5-8 years to show results.</li></ul><p class="cba2-note">Until India fixes MMF cost disadvantage, global share will remain structurally limited. Winners within this constraint are companies with specific moats — not bulk volume players.</p>`
+  ]
+};
+
+function showCo(id, btn) {
+  document.querySelectorAll('.cba2-qs-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.cba2-co-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = '';
+    b.style.borderColor = '';
+  });
+  const panel = document.getElementById('co-' + id);
+  if (panel) panel.classList.add('active');
+  if (btn) {
+    btn.classList.add('active');
+    const c = coColors[id] || '#181511';
+    btn.style.background = c;
+    btn.style.borderColor = c;
+  }
+}
+
+function showAns(co, idx, btn) {
+  const ansDiv = document.getElementById('ans-' + co);
+  if (!ansDiv) return;
+  // reset all question buttons in this panel
+  const panel = document.getElementById('co-' + co);
+  if (panel) panel.querySelectorAll('.cba2-q').forEach(q => q.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  ansDiv.innerHTML = staticAnswers[co][idx];
+  ansDiv.classList.add('show');
+  ansDiv.style.display = 'block';
+  // scroll into view
+  setTimeout(() => ansDiv.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
+}
+
 </script>
 </body>
 </html>
