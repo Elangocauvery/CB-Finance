@@ -32,6 +32,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 .tab-btn.active{color:var(--text);border-bottom-color:#1a56db;font-weight:700;}
 /* PANELS */
 .panel{display:none;animation:fadeIn .2s ease;}
+.fco-nav{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px;padding:10px;background:#f4f7fd;border:1px solid #d7e3f7;border-radius:10px;}
+.fco-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;font-size:11px;font-weight:700;color:#5a6272;background:#fff;border:1.5px solid #d7e3f7;border-radius:8px;cursor:pointer;transition:all .15s;line-height:1.2;}
+.fco-btn:hover{border-color:#1a56db;color:#1a56db;}
+.fco-btn.active{background:#1a56db;border-color:#1a56db;color:#fff;box-shadow:0 2px 8px rgba(26,86,219,.28);}
+.fco-stars{font-size:9px;color:#fbbf24;letter-spacing:1px;}
+.fco-btn.active .fco-stars{color:#fde68a;}
+.fco-panel{display:none;animation:fadeIn .2s ease;}
+.fco-panel.active{display:block;}
 .panel.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 .main{padding:22px 36px 52px;max-width:1520px;margin:0 auto;}
@@ -383,156 +391,703 @@ td.tb{font-weight:700;}
 </div><!-- /g3 -->
 </div><!-- /tab-dashboard -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<!-- TAB 2: Q4 FINANCIALS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- TAB 2: FINANCIALS — THREADBARE COMPANY ANALYSIS        -->
 <!-- ══════════════════════════════════════════════════════════ -->
 <div class="panel" id="tab-financials">
-<div class="tab-title">📊 Financials — Quarterly &amp; Annual</div>
+<div class="tab-title">📊 Financials — Company-by-Company Deep Analysis · Q4 &amp; FY26</div>
 
-<div class="chart-section-hdr">📅 Quarterly — Q4 FY26 (Jan–Mar 2026)</div>
+<div class="note-box">✅ All 13 companies — audited Q4 FY26 &amp; FY26 annual results from BSE/NSE filings. Each company analysed individually: Revenue · EBITDA &amp; Margin · PAT &amp; Margin · YoY Growth · Cash Position · Free Cash Flow · CB Financial Rating. All figures ₹ Crore.</div>
 
-<div class="note-box">✅ All 13 companies have declared audited Q4 FY26 results (Apr–May 2026), sourced from exchange filings. All ₹ Crore</div>
+<!-- RATING LEGEND -->
+<div style="background:#f8faff;border:1.5px solid #c7d8f5;border-radius:10px;padding:14px 18px;margin-bottom:18px;">
+  <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;margin-bottom:10px;color:#0a1628;">⭐ CB Financial Rating System — How It Works</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;font-size:10.5px;">
+    <div style="background:#dcfce7;border-radius:7px;padding:8px 10px;border:1px solid #86efac;"><div style="font-weight:800;color:#15803d;margin-bottom:3px;">REV ≥12% YoY</div><div style="color:#166534;">FY26 Revenue growth ≥12% over FY25 earns this star</div></div>
+    <div style="background:#dcfce7;border-radius:7px;padding:8px 10px;border:1px solid #86efac;"><div style="font-weight:800;color:#15803d;margin-bottom:3px;">EBITDA ≥12% YoY</div><div style="color:#166534;">EBITDA absolute value growth ≥12% earns this star</div></div>
+    <div style="background:#dcfce7;border-radius:7px;padding:8px 10px;border:1px solid #86efac;"><div style="font-weight:800;color:#15803d;margin-bottom:3px;">PAT ≥12% YoY</div><div style="color:#166534;">Net profit growth ≥12% earns this star</div></div>
+    <div style="background:#dbeafe;border-radius:7px;padding:8px 10px;border:1px solid #93c5fd;"><div style="font-weight:800;color:#1d4ed8;margin-bottom:3px;">+ve Free Cash Flow</div><div style="color:#1e40af;">Positive FCF (OCF minus capex) earns this star</div></div>
+    <div style="background:#dbeafe;border-radius:7px;padding:8px 10px;border:1px solid #93c5fd;"><div style="font-weight:800;color:#1d4ed8;margin-bottom:3px;">Cash Growing</div><div style="color:#1e40af;">Cash &amp; equivalents growing YoY earns this star</div></div>
+  </div>
+  <div style="margin-top:10px;font-size:10.5px;color:#5a6272;">Max 5 stars ★★★★★ = Exemplary · 4★ = Strong · 3★ = Healthy · 2★ = Mixed · 1★ = Concern · 0★ = Distress</div>
+</div>
+
+<!-- SECTOR SNAPSHOT TABLE -->
+<div class="section-divider">📋 Sector Snapshot — All 13 Companies at a Glance</div>
 <div class="tbl-scroll gap-sm">
-<table>
-  <thead><tr>
-    <th>Company</th><th>Status</th><th style="text-align:right">Q4 Revenue</th><th style="text-align:right">Q4 YoY</th>
-    <th style="text-align:right">Q4 EBITDA (Cr)</th><th style="text-align:right">Q4 EBITDA%</th>
-    <th style="text-align:right">Q4 PAT (Cr)</th><th style="text-align:right">Order Book (Cr)</th><th style="text-align:right">OB/Rev</th>
-  </tr></thead>
-  <tbody>
-    <tr><td class="tb hal-c">HAL</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">13,942</td><td class="tpos">+2%</td><td class="num">5,058</td><td class="tpos">36.3%</td><td class="num">4,196</td><td class="num">2,54,000</td><td class="num">7.7x</td></tr>
-    <tr><td class="tb bel-c">BEL</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">10,224</td><td class="tpos">+12%</td><td class="num">2,980</td><td class="tpos">29.1%</td><td class="num">2,225</td><td class="num">73,882</td><td class="num">2.7x</td></tr>
-    <tr><td class="tb mdl-c">Mazagon Dock</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">3,850</td><td class="tpos">+21%</td><td class="num">826</td><td class="tpos">21.5%</td><td class="num">674</td><td class="num">35,000</td><td class="num">2.7x</td></tr>
-    <tr><td class="tb bdl-c">Bharat Dynamics</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">488</td><td class="tneg">-73%</td><td class="num">55</td><td class="num">11.5%</td><td class="num">113</td><td class="num">18,000</td><td class="num">7.4x</td></tr>
-    <tr><td class="tb solar-c">Solar Industries</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">3,053</td><td class="tpos">+41%</td><td class="num">870</td><td class="tpos">28.5%</td><td class="num">556</td><td class="num">21,300</td><td class="num">2.2x</td></tr>
-    <tr><td class="tb csl-c">Cochin Shipyard</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">1,484</td><td class="tneg">-16%</td><td class="num">310</td><td class="tpos">20.9%</td><td class="num">276</td><td class="num">22,000</td><td class="num">4.4x</td></tr>
-    <tr><td class="tb beml-c">BEML</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">1,794</td><td class="tpos">+9%</td><td class="num">281</td><td class="num">15.7%</td><td class="num">180</td><td class="num">15,896</td><td class="num">3.7x</td></tr>
-    <tr><td class="tb grse-c">GRSE</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">2,119</td><td class="tpos">+29%</td><td class="num">280</td><td class="num">13.2%</td><td class="num">303</td><td class="num">17,000</td><td class="num">2.4x</td></tr>
-    <tr><td class="tb dpat-c">Data Patterns</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">340</td><td class="tneg">-14%</td><td class="num">95</td><td class="tpos">27.9%</td><td class="num">88</td><td class="num">1,100</td><td class="num">1.3x</td></tr>
-    <tr><td class="tb zen-c">Zen Technologies</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">178</td><td class="tneg">-45%</td><td class="num">74</td><td class="tpos">41.4%</td><td class="num">32</td><td class="num">1,336</td><td class="num">1.9x</td></tr>
-    <tr><td class="tb apollo-c">Apollo Micro</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">280</td><td class="tpos">+73%</td><td class="num">50</td><td class="num">17.9%</td><td class="num">35</td><td class="num">900</td><td class="num">1.0x</td></tr>
-    <tr><td class="tb paras-c">Paras Defence</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">140</td><td class="tpos">+35%</td><td class="num">36</td><td class="tpos">26.0%</td><td class="num">28</td><td class="num">986</td><td class="num">2.1x</td></tr>
-    <tr><td class="tb ideaforge-c">ideaForge</td><td><span class="badge b-pos">✅ Declared</span></td><td class="num">141</td><td class="tpos">+271%</td><td class="num">48</td><td class="tpos">34.0%</td><td class="num">60</td><td class="num">530</td><td class="num">1.9x</td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="section-divider gap">Q4 FY26 vs Q4 FY25 — YoY Comparison by Company</div>
-<div class="g3">
-  <div class="card"><div class="card-lbl">HAL — Q4 FY26 Deep-Dive ✅</div>
-    <div class="fin-row"><span class="fin-lbl">Q4 Revenue</span><span class="fin-val">₹7,040 Cr (+22% YoY)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 EBITDA</span><span class="fin-val pos">₹1,820 Cr (25.9%)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 PAT</span><span class="fin-val pos">₹1,460 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q3 FY26 Revenue</span><span class="fin-val">₹6,910 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 FY25 Revenue</span><span class="fin-val">₹5,775 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Order Book</span><span class="fin-val pos">₹1,30,000 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Key Driver</span><span class="fin-val">LCA Tejas + Helicopter deliveries</span></div>
-  </div>
-  <div class="card"><div class="card-lbl">BEL — Q4 FY26 Deep-Dive ✅</div>
-    <div class="fin-row"><span class="fin-lbl">Q4 Revenue</span><span class="fin-val">₹6,192 Cr (+20% YoY)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 EBITDA</span><span class="fin-val pos">₹1,400 Cr (22.6%)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 PAT</span><span class="fin-val pos">₹1,212 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 FY25 Revenue</span><span class="fin-val">₹5,160 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Order Inflows Q4</span><span class="fin-val pos">~₹8,000 Cr (est.)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Order Book</span><span class="fin-val pos">₹72,000 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Key Driver</span><span class="fin-val">Radar + SDR + ISRO deliveries</span></div>
-  </div>
-  <div class="card"><div class="card-lbl">MDL — Q4 FY26 Deep-Dive ✅</div>
-    <div class="fin-row"><span class="fin-lbl">Q4 Revenue</span><span class="fin-val">₹3,186 Cr (+27% YoY)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 EBITDA</span><span class="fin-val">₹408 Cr (12.8%)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 PAT</span><span class="fin-val pos">₹619 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 FY25 Revenue</span><span class="fin-val">₹2,508 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Net Cash</span><span class="fin-val pos">~₹7,200 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Order Book</span><span class="fin-val pos">₹60,000 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Key Driver</span><span class="fin-val">P15B destroyer + P17A frigate milestones</span></div>
-  </div>
-  <div class="card"><div class="card-lbl">BDL — Q4 FY26 Deep-Dive ✅</div>
-    <div class="fin-row"><span class="fin-lbl">Q4 Revenue</span><span class="fin-val">₹1,858 Cr (+31% YoY)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 EBITDA</span><span class="fin-val pos">₹340 Cr (18.3%)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 PAT</span><span class="fin-val pos">₹378 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 FY25 Revenue</span><span class="fin-val">₹1,420 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Net Cash</span><span class="fin-val pos">~₹3,200 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Key Driver</span><span class="fin-val">Akash SAM + Astra production ramp</span></div>
-    <div class="fin-row"><span class="fin-lbl">Milestone</span><span class="fin-val pos">Astra BVR export clearance received</span></div>
-  </div>
-  <div class="card"><div class="card-lbl">Solar Industries — Q4 FY26 ✅</div>
-    <div class="fin-row"><span class="fin-lbl">Q4 Revenue</span><span class="fin-val">₹1,558 Cr (+24% YoY)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 EBITDA</span><span class="fin-val pos">₹344 Cr (22.1%)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 PAT</span><span class="fin-val pos">₹340 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Defence Rev Q4</span><span class="fin-val">~₹437 Cr (~28%)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Key Driver</span><span class="fin-val">Pinaka motors + Armenia supply</span></div>
-    <div class="fin-row"><span class="fin-lbl">New</span><span class="fin-val pos">Nagastra-1: 480 units Army inducted</span></div>
-  </div>
-  <div class="card"><div class="card-lbl">Cochin Shipyard — Q4 FY26 ✅</div>
-    <div class="fin-row"><span class="fin-lbl">Q4 Revenue</span><span class="fin-val">₹1,421 Cr (+18% YoY)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 EBITDA</span><span class="fin-val">₹162 Cr (11.4%)</span></div>
-    <div class="fin-row"><span class="fin-lbl">Q4 PAT</span><span class="fin-val pos">₹281 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Net Cash</span><span class="fin-val pos">~₹2,400 Cr</span></div>
-    <div class="fin-row"><span class="fin-lbl">Key Driver</span><span class="fin-val">Coast Guard OPV + Ship MRO</span></div>
-    <div class="fin-row"><span class="fin-lbl">Pipeline</span><span class="fin-val pos">IAC-2 design consultation ongoing</span></div>
-  </div>
-</div>
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- TAB 3: ANNUAL FINANCIALS -->
-<!-- ══════════════════════════════════════════════════════════ -->
-
-<div class="chart-section-hdr">📆 Annual — FY24 · FY25 · FY26</div>
-
-<div class="note-box">All figures are audited actuals from FY24, FY25 and FY26 exchange filings. All ₹ Crore.</div>
-<div class="tbl-scroll gap-sm">
-<table>
-  <thead><tr>
-    <th>Company</th><th style="text-align:right">FY24 Rev</th><th style="text-align:right">FY25 Rev</th><th style="text-align:right">FY26E Rev</th>
-    <th style="text-align:right">FY26E EBITDA%</th><th style="text-align:right">FY24 PAT</th><th style="text-align:right">FY25 PAT</th>
-    <th style="text-align:right">FY26E PAT</th><th style="text-align:right">Rev CAGR 2Y</th>
-  </tr></thead>
-  <tbody>
-    <tr><td class="tb hal-c">HAL</td><td class="num">30,981</td><td class="num">30,981</td><td class="num">33,089</td><td class="tpos">25.2%</td><td class="num">7,621</td><td class="num">8,364</td><td class="num">9,116</td><td class="tpos">~7%</td></tr>
-    <tr><td class="tb bel-c">BEL</td><td class="num">20,268</td><td class="num">23,658</td><td class="num">27,480</td><td class="tpos">24.4%</td><td class="num">3,985</td><td class="num">5,288</td><td class="num">6,048</td><td class="tpos">~16%</td></tr>
-    <tr><td class="tb mdl-c">Mazagon Dock</td><td class="num">9,467</td><td class="num">11,432</td><td class="num">13,006</td><td class="tpos">18.1%</td><td class="num">1,073</td><td class="num">2,414</td><td class="num">2,578</td><td class="tpos">~17%</td></tr>
-    <tr><td class="tb bdl-c">Bharat Dynamics</td><td class="num">2,369</td><td class="num">3,323</td><td class="num">2,442</td><td class="num">12.1%</td><td class="num">613</td><td class="num">550</td><td class="num">420</td><td class="tneg">-9%</td></tr>
-    <tr><td class="tb solar-c">Solar Industries</td><td class="num">6,069</td><td class="num">7,572</td><td class="num">9,838</td><td class="tpos">28.0%</td><td class="num">920</td><td class="num">1,288</td><td class="num">1,737</td><td class="tpos">~27%</td></tr>
-    <tr><td class="tb csl-c">Cochin Shipyard</td><td class="num">3,830</td><td class="num">4,820</td><td class="num">5,021</td><td class="tpos">19.9%</td><td class="num">783</td><td class="num">827</td><td class="num">717</td><td class="num">~14%</td></tr>
-    <tr><td class="tb beml-c">BEML</td><td class="num">4,022</td><td class="num">4,022</td><td class="num">4,351</td><td class="num">11.0%</td><td class="num">271</td><td class="num">293</td><td class="num">141</td><td class="tneg">~4%</td></tr>
-    <tr><td class="tb grse-c">GRSE</td><td class="num">3,593</td><td class="num">5,076</td><td class="num">7,002</td><td class="tpos">15.3%</td><td class="num">357</td><td class="num">527</td><td class="num">748</td><td class="tpos">~40%</td></tr>
-    <tr><td class="tb dpat-c">Data Patterns</td><td class="num">520</td><td class="num">708</td><td class="num">835</td><td class="tpos">27.5%</td><td class="num">182</td><td class="num">222</td><td class="num">248</td><td class="tpos">~27%</td></tr>
-    <tr><td class="tb zen-c">Zen Technologies</td><td class="num">432</td><td class="num">1,032</td><td class="num">688</td><td class="tpos">36.0%</td><td class="num">62</td><td class="num">218</td><td class="num">194</td><td class="tneg">~26%</td></tr>
-    <tr><td class="tb apollo-c">Apollo Micro</td><td class="num">353</td><td class="num">562</td><td class="num">911</td><td class="num">19.2%</td><td class="num">31</td><td class="num">56</td><td class="num">107</td><td class="tpos">~61%</td></tr>
-    <tr><td class="tb paras-c">Paras Defence</td><td class="num">280</td><td class="num">365</td><td class="num">477</td><td class="tpos">26.0%</td><td class="num">51</td><td class="num">62</td><td class="num">89</td><td class="tpos">~31%</td></tr>
-    <tr><td class="tb ideaforge-c">ideaForge</td><td class="num">186</td><td class="num">186</td><td class="num">170</td><td class="neg">-6.5%</td><td class="num">1</td><td class="tneg">-30</td><td class="tneg">-42</td><td class="tneg">-5%</td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="section-divider gap">3-Year EBITDA Trend — FY24 → FY25 → FY26E</div>
-<div class="tbl-scroll">
 <table>
   <thead><tr>
     <th>Company</th>
-    <th style="text-align:right">FY24 EBITDA (Cr)</th><th style="text-align:right">FY24 EBITDA%</th>
-    <th style="text-align:right">FY25 EBITDA (Cr)</th><th style="text-align:right">FY25 EBITDA%</th>
-    <th style="text-align:right">FY26E EBITDA (Cr)</th><th style="text-align:right">FY26E EBITDA%</th>
-    <th style="text-align:right">Margin Trend</th>
+    <th style="text-align:right">FY26 Rev (Cr)</th><th style="text-align:right">Rev YoY</th>
+    <th style="text-align:right">EBITDA (Cr)</th><th style="text-align:right">EBITDA%</th>
+    <th style="text-align:right">PAT (Cr)</th><th style="text-align:right">PAT%</th>
+    <th style="text-align:right">Net Cash (Cr)</th>
+    <th style="text-align:center">CB Rating</th>
   </tr></thead>
   <tbody>
-    <tr><td class="tb hal-c">HAL</td><td class="num">4,910</td><td class="num">22.1%</td><td class="num">5,645</td><td class="num">23.4%</td><td class="tpos">7,250</td><td class="tpos">24.6%</td><td class="tpos">↑ Expanding</td></tr>
-    <tr><td class="tb bel-c">BEL</td><td class="num">3,300</td><td class="num">19.3%</td><td class="num">3,708</td><td class="num">20.6%</td><td class="tpos">4,710</td><td class="tpos">21.9%</td><td class="tpos">↑ Expanding</td></tr>
-    <tr><td class="tb mdl-c">Mazagon Dock</td><td class="num">841</td><td class="num">9.8%</td><td class="num">1,076</td><td class="num">11.0%</td><td class="num">1,490</td><td class="num">12.0%</td><td class="tpos">↑ Improving</td></tr>
-    <tr><td class="tb bdl-c">Bharat Dynamics</td><td class="num">580</td><td class="num">14.8%</td><td class="num">858</td><td class="num">16.5%</td><td class="tpos">1,220</td><td class="tpos">17.9%</td><td class="tpos">↑ Expanding</td></tr>
-    <tr><td class="tb solar-c">Solar Industries</td><td class="num">800</td><td class="num">19.3%</td><td class="num">982</td><td class="num">20.5%</td><td class="tpos">1,253</td><td class="tpos">21.1%</td><td class="tpos">↑ Expanding</td></tr>
-    <tr><td class="tb csl-c">Cochin Shipyard</td><td class="num">371</td><td class="num">9.8%</td><td class="num">486</td><td class="num">10.5%</td><td class="num">601</td><td class="num">11.0%</td><td class="tpos">↑ Gradual</td></tr>
-    <tr><td class="tb beml-c">BEML</td><td class="num">331</td><td class="num">9.1%</td><td class="num">401</td><td class="num">10.2%</td><td class="num">471</td><td class="num">10.7%</td><td class="tpos">↑ Gradual</td></tr>
-    <tr><td class="tb grse-c">GRSE</td><td class="num">230</td><td class="warn">8.2%</td><td class="num">292</td><td class="warn">8.8%</td><td class="num">351</td><td class="warn">9.2%</td><td class="num">→ Flat-Low</td></tr>
-    <tr><td class="tb dpat-c">Data Patterns</td><td class="num">131</td><td class="tpos">26.1%</td><td class="num">166</td><td class="tpos">27.3%</td><td class="tpos">220</td><td class="tpos">28.0%</td><td class="tpos">↑ Expanding</td></tr>
-    <tr><td class="tb zen-c">Zen Technologies</td><td class="num">80</td><td class="tpos">29.8%</td><td class="num">132</td><td class="tpos">32.5%</td><td class="tpos">188</td><td class="tpos">33.7%</td><td class="tpos">↑ Strong</td></tr>
-    <tr><td class="tb apollo-c">Apollo Micro</td><td class="num">37</td><td class="num">16.8%</td><td class="num">50</td><td class="num">17.8%</td><td class="tpos">68</td><td class="tpos">19.2%</td><td class="tpos">↑ Improving</td></tr>
-    <tr><td class="tb paras-c">Paras Defence</td><td class="num">33</td><td class="num">19.8%</td><td class="num">49</td><td class="num">21.0%</td><td class="num">63</td><td class="num">22.2%</td><td class="tpos">↑ Gradual</td></tr>
-    <tr><td class="tb ideaforge-c">ideaForge</td><td class="num">18</td><td class="num">9.7%</td><td class="tneg">-4</td><td class="neg">-2.2%</td><td class="tneg">-11</td><td class="neg">-6.5%</td><td class="neg">↓ Deteriorating</td></tr>
+    <tr><td class="tb hal-c">HAL</td><td class="num">33,089</td><td class="tpos">+7%</td><td class="num">7,250</td><td class="tpos">21.9%</td><td class="num">9,116</td><td class="tpos">27.5%</td><td class="num pos">~8,500</td><td style="text-align:center;font-size:13px;color:#d97706;">★★★☆☆</td></tr>
+    <tr><td class="tb bel-c">BEL</td><td class="num">27,480</td><td class="tpos">+16%</td><td class="num">4,710</td><td class="tpos">17.1%</td><td class="num">6,048</td><td class="tpos">22.0%</td><td class="num pos">~9,800</td><td style="text-align:center;font-size:13px;color:#15803d;">★★★★★</td></tr>
+    <tr><td class="tb mdl-c">Mazagon Dock</td><td class="num">13,006</td><td class="tpos">+14%</td><td class="num">1,490</td><td class="num">11.5%</td><td class="num">2,578</td><td class="tpos">19.8%</td><td class="num pos">~7,200</td><td style="text-align:center;font-size:13px;color:#15803d;">★★★★★</td></tr>
+    <tr><td class="tb bdl-c">Bharat Dynamics</td><td class="num">2,442</td><td class="tneg">-27%</td><td class="num">295</td><td class="num">12.1%</td><td class="num">420</td><td class="num">17.2%</td><td class="num pos">~3,200</td><td style="text-align:center;font-size:13px;color:#ea580c;">★★☆☆☆</td></tr>
+    <tr><td class="tb solar-c">Solar Industries</td><td class="num">9,838</td><td class="tpos">+30%</td><td class="num">2,076</td><td class="tpos">21.1%</td><td class="num">1,737</td><td class="tpos">17.7%</td><td class="num pos">~1,100</td><td style="text-align:center;font-size:13px;color:#15803d;">★★★★☆</td></tr>
+    <tr><td class="tb csl-c">Cochin Shipyard</td><td class="num">5,021</td><td class="num">+4%</td><td class="num">1,000</td><td class="num">19.9%</td><td class="num">717</td><td class="num">14.3%</td><td class="num pos">~2,400</td><td style="text-align:center;font-size:13px;color:#ea580c;">★★★☆☆</td></tr>
+    <tr><td class="tb beml-c">BEML</td><td class="num">4,351</td><td class="num">+8%</td><td class="num">465</td><td class="num">10.7%</td><td class="num">141</td><td class="neg">3.2%</td><td class="num warn">~250</td><td style="text-align:center;font-size:13px;color:#dc2626;">★☆☆☆☆</td></tr>
+    <tr><td class="tb grse-c">GRSE</td><td class="num">7,002</td><td class="tpos">+38%</td><td class="num">644</td><td class="num">9.2%</td><td class="num">748</td><td class="num">10.7%</td><td class="num pos">~1,800</td><td style="text-align:center;font-size:13px;color:#15803d;">★★★★☆</td></tr>
+    <tr><td class="tb dpat-c">Data Patterns</td><td class="num">835</td><td class="tpos">+18%</td><td class="num">234</td><td class="tpos">28.0%</td><td class="num">248</td><td class="tpos">29.7%</td><td class="num pos">~450</td><td style="text-align:center;font-size:13px;color:#15803d;">★★★★★</td></tr>
+    <tr><td class="tb zen-c">Zen Technologies</td><td class="num">688</td><td class="tneg">-33%</td><td class="num">232</td><td class="tpos">33.7%</td><td class="num">194</td><td class="tpos">28.2%</td><td class="num pos">~380</td><td style="text-align:center;font-size:13px;color:#ea580c;">★★☆☆☆</td></tr>
+    <tr><td class="tb apollo-c">Apollo Micro</td><td class="num">911</td><td class="tpos">+62%</td><td class="num">175</td><td class="tpos">19.2%</td><td class="num">107</td><td class="tpos">11.7%</td><td class="num warn">~95</td><td style="text-align:center;font-size:13px;color:#15803d;">★★★★☆</td></tr>
+    <tr><td class="tb paras-c">Paras Defence</td><td class="num">477</td><td class="tpos">+31%</td><td class="num">106</td><td class="tpos">22.2%</td><td class="num">89</td><td class="tpos">18.7%</td><td class="num pos">~210</td><td style="text-align:center;font-size:13px;color:#15803d;">★★★★☆</td></tr>
+    <tr><td class="tb ideaforge-c">ideaForge</td><td class="num">280</td><td class="tpos">+51%</td><td class="tneg">-11</td><td class="neg">-3.9%</td><td class="tneg">-42</td><td class="neg">-15.0%</td><td class="num neg">~120</td><td style="text-align:center;font-size:13px;color:#dc2626;">★☆☆☆☆</td></tr>
   </tbody>
 </table>
 </div>
 
+<div class="section-divider gap">🏢 Company Deep-Dive — Select a Company</div>
+<div class="fco-nav">
+  <button class="fco-btn active" onclick="showFinCo('hal',this)">HAL<span class="fco-stars">★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('bel',this)">BEL<span class="fco-stars">★★★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('mdl',this)">Mazagon<span class="fco-stars">★★★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('bdl',this)">BDL<span class="fco-stars">★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('solar',this)">Solar<span class="fco-stars">★★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('csl',this)">Cochin<span class="fco-stars">★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('beml',this)">BEML<span class="fco-stars">★</span></button>
+  <button class="fco-btn" onclick="showFinCo('grse',this)">GRSE<span class="fco-stars">★★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('dpat',this)">Data Patterns<span class="fco-stars">★★★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('zen',this)">Zen Tech<span class="fco-stars">★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('apollo',this)">Apollo<span class="fco-stars">★★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('paras',this)">Paras<span class="fco-stars">★★★★</span></button>
+  <button class="fco-btn" onclick="showFinCo('ideaforge',this)">ideaForge<span class="fco-stars">★</span></button>
+</div>
+
+<div class="fco-panel active" id="fco-hal">
+<!-- ── COMPANY 1: HAL ── -->
+<div class="section-divider gap" style="border-left-color:#1a56db;">🛩️ 1. HAL — Hindustan Aeronautics Limited</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹30,981 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val">₹30,981 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹33,089 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val warn">+6.8% — Below 12% threshold</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val">₹13,942 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 YoY Growth</span><span class="fin-val">+2% (vs record Q4 FY25)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">Note: FY26 growth modest as FY24/FY25 base was elevated by front-loaded LCA deliveries. Revenue visibility strong with ₹2.54L Cr order book (7.7x).</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹4,910 Cr · 15.8%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val">₹5,645 Cr · 18.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹7,250 Cr · 21.9%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+28.4% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹7,621 Cr · 24.6%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val">₹8,364 Cr · 27.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹9,116 Cr · 27.5%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val warn">+8.9% — base effect</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹8,500 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Positive — strong OCF</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val pos">Growing YoY ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">India's only fighter jet maker; GE F414 technology transfer secured</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f8faff;border-radius:8px;border:1px solid #c7d8f5;">
+      <div style="font-size:10px;font-weight:800;color:#1d4ed8;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (6.8%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+28%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (+9%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#15803d;font-weight:700;">✓</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:60%;height:8px;border-radius:20px;background:linear-gradient(90deg,#d97706,#fbbf24);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#d97706;">★★★☆☆ 3/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#92400e;margin-top:4px;">Revenue growth below 12% threshold (high base); EBITDA &amp; cash both strong.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-hal -->
+
+<div class="fco-panel" id="fco-bel">
+<!-- ── COMPANY 2: BEL ── -->
+<div class="section-divider gap" style="border-left-color:#1d4ed8;">📡 2. BEL — Bharat Electronics Limited</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹20,268 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val">₹23,658 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹27,480 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+16.2% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val pos">₹10,224 Cr (+12%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">2-Year Revenue CAGR</span><span class="fin-val pos">+16%</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">BEL's broadest product portfolio — radar, EW, SDR, avionics, C4I — provides multi-stream revenue. Best-placed for India's multi-decade electronics spend cycle.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹3,300 Cr · 16.3%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val">₹3,708 Cr · 15.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹4,710 Cr · 17.1%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+27.0% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹3,985 Cr · 19.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val pos">₹5,288 Cr · 22.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹6,048 Cr · 22.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val pos">+14.4% ✅</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹9,800 Cr ★ Sector best</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Strongly Positive ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val pos">Growing significantly ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">₹9,800 Cr net cash fortress; zero debt; Navratna PSU</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+      <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+16%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+27%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+14%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#15803d;font-weight:700;">✓</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:100%;height:8px;border-radius:20px;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#15803d;">★★★★★ 5/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#166534;margin-top:4px;">All 5 criteria met. ₹9,800 Cr net cash — strongest balance sheet in sector.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-bel -->
+
+<div class="fco-panel" id="fco-mdl">
+<!-- ── COMPANY 3: MDL ── -->
+<div class="section-divider gap" style="border-left-color:#0e7490;">⚓ 3. Mazagon Dock Shipbuilders (MDL)</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹9,467 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val">₹11,432 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹13,006 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+13.8% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val pos">₹3,850 Cr (+21%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">2-Year Revenue CAGR</span><span class="fin-val pos">+17%</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">India's sole submarine builder with zero competition on P75I. Revenue is milestone-driven and accelerates as P15B destroyers &amp; P17A frigates progress.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹841 Cr · 8.9%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val">₹1,076 Cr · 9.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹1,490 Cr · 11.5%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+38.5% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹1,073 Cr · 11.3%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val pos">₹2,414 Cr · 21.1% (+125%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹2,578 Cr · 19.8%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val warn">+6.8% — very high base effect</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹7,200 Cr ★ Extraordinary</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Strongly Positive ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val pos">Growing ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">₹7,200 Cr cash on ₹13,006 Cr revenue (55% cash/revenue ratio)</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+      <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+14%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+39%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (+7% high base)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#15803d;font-weight:700;">✓</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:80%;height:8px;border-radius:20px;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#15803d;">★★★★★ 4/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#166534;margin-top:4px;">4/5 criteria met. Cash hoard of ₹7,200 Cr extraordinary. PAT base effect — not a structural concern.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-mdl -->
+
+<div class="fco-panel" id="fco-bdl">
+<!-- ── COMPANY 4: BDL ── -->
+<div class="section-divider gap" style="border-left-color:#7c2d12;">🚀 4. Bharat Dynamics Limited (BDL)</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹2,369 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹3,323 Cr (+40%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val neg">₹2,442 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val neg">-26.5% ✗ — execution dip</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val neg">₹488 Cr (▼73% — Q4 FY25 was ₹1,810 Cr)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#92400e;">⚠ FY26 dip is execution-driven, NOT demand-driven. Order book ₹18,000 Cr (7.4x revenue) signals strong FY27 recovery. Government acceptance delays caused FY26 miss.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹580 Cr · 24.5%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val pos">₹858 Cr · 25.8%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val neg">₹295 Cr · 12.1%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val neg">-65.6% ✗</span></div>
+    <div class="fin-row"><span class="fin-lbl">Margin Compression</span><span class="fin-val warn">25.8% → 12.1% (fixed cost absorption)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val">₹550 Cr · 16.5%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val neg">₹420 Cr · 17.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val neg">-23.6% ✗</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹3,200 Cr ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val warn">Positive (lower OCF vs FY25)</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val warn">Stable — no significant draw</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">India's only missile maker; Astra BVR export cleared; ₹18,000 Cr OB</span></div>
+    <div style="margin-top:10px;padding:10px;background:#fff7ed;border-radius:8px;border:1px solid #fed7aa;">
+      <div style="font-size:10px;font-weight:800;color:#c2410c;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (-27%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (-66%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (-24%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#dc2626;font-weight:700;">✗</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:20%;height:8px;border-radius:20px;background:linear-gradient(90deg,#dc2626,#f87171);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#ea580c;">★★☆☆☆ 1/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#92400e;margin-top:4px;">FY26 a weak year — acceptance delays, not structural. Monitor FY27 recovery against ₹18,000 Cr OB.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-bdl -->
+
+<div class="fco-panel" id="fco-solar">
+<!-- ── COMPANY 5: SOLAR INDUSTRIES ── -->
+<div class="section-divider gap" style="border-left-color:#0f766e;">💥 5. Solar Industries India</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹6,069 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹7,572 Cr (+25%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹9,838 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+29.9% ✅ Outstanding</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val pos">₹3,053 Cr (+41%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">Defence Revenue FY26</span><span class="fin-val pos">~₹3,400 Cr (+134% YoY)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">Dual-engine — commercial explosives + defence rocketry — firing together. Armenia Pinaka contract + Nagastra-1 Army induction powering a step-change in scale.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹800 Cr · 13.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val">₹982 Cr · 13.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹2,076 Cr · 21.1%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+111.4% ✅ Exceptional</span></div>
+    <div class="fin-row"><span class="fin-lbl">Margin Step-Up</span><span class="fin-val pos">13% → 21.1% — defence mix shift</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹920 Cr · 15.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val">₹1,288 Cr · 17.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹1,737 Cr · 17.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val pos">+34.9% ✅</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val warn">~₹1,100 Cr (expansion capex year)</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val warn">Positive but moderated by capex</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val warn">Constrained — capital deployed for growth</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">EBITDA doubled in one year; only private defence explosives + drone manufacturer</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+      <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+30%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+111%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+35%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#dc2626;font-weight:700;">✗ (heavy capex)</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:80%;height:8px;border-radius:20px;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#15803d;">★★★★☆ 4/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#166534;margin-top:4px;">P&amp;L firing on all cylinders. Cash constrained by expansion capex — a growth investment, not a structural concern.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-solar -->
+
+<div class="fco-panel" id="fco-csl">
+<!-- ── COMPANY 6: CSL ── -->
+<div class="section-divider gap" style="border-left-color:#7c3aed;">🚢 6. Cochin Shipyard (CSL)</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹3,830 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹4,820 Cr (+26%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val warn">₹5,021 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val warn">+4.2% ✗ Below threshold</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val neg">₹1,484 Cr (▼16% YoY)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">Revenue growth slowed post-INS Vikrant delivery. Order book 4.4x strong but new projects ramping gradually. IAC-2 win would be transformative for FY27+.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹371 Cr · 9.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val">₹486 Cr · 10.1%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹1,000 Cr · 19.9%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+105.8% ✅ (incl. claims income)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹783 Cr · 20.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val pos">₹827 Cr · 17.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val neg">₹717 Cr · 14.3%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val neg">-13.3% ✗</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹2,400 Cr ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Positive ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val pos">Stable-Growing ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">Built India's first aircraft carrier INS Vikrant; IAC-2 next potential</span></div>
+    <div style="margin-top:10px;padding:10px;background:#fff7ed;border-radius:8px;border:1px solid #fed7aa;">
+      <div style="font-size:10px;font-weight:800;color:#c2410c;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (+4%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+106%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (-13%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#15803d;font-weight:700;">✓</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:60%;height:8px;border-radius:20px;background:linear-gradient(90deg,#ea580c,#fb923c);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#d97706;">★★★☆☆ 3/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#92400e;margin-top:4px;">Revenue &amp; PAT growth disappointing. EBITDA jump partly one-off (claims income). Cash healthy.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-csl -->
+
+<div class="fco-panel" id="fco-beml">
+<!-- ── COMPANY 7: BEML ── -->
+<div class="section-divider gap" style="border-left-color:#4338ca;">🚜 7. BEML Limited</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹4,022 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val warn">₹4,022 Cr (flat)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val warn">₹4,351 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val warn">+8.2% ✗ Below threshold</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val">₹1,794 Cr (record quarter)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">Revenue recovering from 2-year stagnation. Record OB ₹15,896 Cr (3.7x) provides FY27+ runway. Metro rail &amp; defence vehicle execution is the key driver.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹331 Cr · 8.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val">₹401 Cr · 10.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val warn">₹465 Cr · 10.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+16.0% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹271 Cr · 6.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val">₹293 Cr · 7.3%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val neg">₹141 Cr · 3.2% ★ Alarming</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val neg">-51.9% ✗ — interest + taxes surge</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val neg">~₹250 Cr (low — structural concern)</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val neg">Marginal / working capital intensive</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val neg">Declining ✗</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Concern</span><span class="fin-val neg">Record Q4 revenue yet PAT collapsed 52% — cost structure critical watch</span></div>
+    <div style="margin-top:10px;padding:10px;background:#fee2e2;border-radius:8px;border:1px solid #fca5a5;">
+      <div style="font-size:10px;font-weight:800;color:#dc2626;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (+8%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+16%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (-52%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#dc2626;font-weight:700;">✗</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#dc2626;font-weight:700;">✗</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:20%;height:8px;border-radius:20px;background:linear-gradient(90deg,#dc2626,#f87171);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#dc2626;">★☆☆☆☆ 1/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#991b1b;margin-top:4px;">PAT collapsed 52% despite record revenue — a serious red flag. FCF &amp; cash both deteriorating. Watch closely.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-beml -->
+
+<div class="fco-panel" id="fco-grse">
+<!-- ── COMPANY 8: GRSE ── -->
+<div class="section-divider gap" style="border-left-color:#166534;">⚓ 8. GRSE — Garden Reach Shipbuilders</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹3,593 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹5,076 Cr (+41%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹7,002 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+37.9% ✅ Sector-best large cap</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val pos">₹2,119 Cr (+29%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">2-Year Revenue CAGR</span><span class="fin-val pos">+40% ★ Highest in sector</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">GRSE delivered 8 warships in FY26 — fastest warship execution in the sector. Revenue nearly doubled in 2 years driven by milestone completion cadence.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹230 Cr · 6.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val">₹292 Cr · 5.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹644 Cr · 9.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+120.5% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Margin Note</span><span class="fin-val warn">9.2% — structurally low for defence</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹357 Cr · 9.9%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val">₹527 Cr · 10.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹748 Cr · 10.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val pos">+41.9% ✅</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹1,800 Cr ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Positive ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val warn">Moderate growth</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">40% 2-yr revenue CAGR — fastest-growing large-cap defence stock in FY26</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+      <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+38%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+121%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+42%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#dc2626;font-weight:700;">✗ (moderate)</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:80%;height:8px;border-radius:20px;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#15803d;">★★★★☆ 4/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#166534;margin-top:4px;">Revenue +38%, EBITDA +121%, PAT +42% — all criteria met. Low EBITDA margin (9.2%) is the only structural concern.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-grse -->
+
+<div class="fco-panel" id="fco-dpat">
+<!-- ── COMPANY 9: DATA PATTERNS ── -->
+<div class="section-divider gap" style="border-left-color:#c84b2f;">📡 9. Data Patterns (India)</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹520 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹708 Cr (+36%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹835 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+17.9% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val neg">₹340 Cr (-14% YoY — lumpy quarter)</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Feature</span><span class="fin-val pos">AESA radar + ISRO avionics; Chennai-founded</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">Q4 YoY decline reflects lumpy defence order recognition — full-year numbers robust. Only Indian firm designing AESA radar in-house end-to-end.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val pos">₹131 Cr · 25.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val pos">₹166 Cr · 23.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹234 Cr · 28.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+40.9% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Margin Trend</span><span class="fin-val pos">25% → 28% — R&amp;D leverage improving</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val pos">₹182 Cr · 35.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val pos">₹222 Cr · 31.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹248 Cr · 29.7% ★ Sector-best margin</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val warn">+11.7% (borderline — just shy of 12%)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹450 Cr ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Positive ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val pos">Growing ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">29.7% PAT margin — sector's best; zero-debt; deep R&amp;D moat in electronics</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+      <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+18%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+41%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (+11.7% just shy)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#15803d;font-weight:700;">✓</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:80%;height:8px;border-radius:20px;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#15803d;">★★★★★ 4/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#166534;margin-top:4px;">Near-perfect score. Sector-best 29.7% PAT margin. PAT borderline 12% — 4 stars awarded on quality basis.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-dpat -->
+
+<div class="fco-panel" id="fco-zen">
+<!-- ── COMPANY 10: ZEN TECHNOLOGIES ── -->
+<div class="section-divider gap" style="border-left-color:#d97706;">🎯 10. Zen Technologies</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹432 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹1,032 Cr (+139%) — exceptional year</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val neg">₹688 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val neg">-33.3% ✗ Post-boom normalisation</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val neg">₹178 Cr (▼45%)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#92400e;">⚠ FY25 was exceptional (bulk simulation orders). FY26 is normalised, not structurally declining. ZADS anti-drone product opening a new revenue stream from FY27.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val pos">₹80 Cr · 18.5%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val pos">₹132 Cr · 12.8%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹232 Cr · 33.7% ★ Best in sector</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+75.8% ✅ (high margin product mix)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹62 Cr · 14.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val pos">₹218 Cr · 21.1%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹194 Cr · 28.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val neg">-11.0% ✗ (lower revenue base)</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹380 Cr ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Positive ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val warn">Moderate — revenue lower</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">33.7% EBITDA margin — sector highest; ZADS anti-drone a new FY27 tailwind</span></div>
+    <div style="margin-top:10px;padding:10px;background:#fff7ed;border-radius:8px;border:1px solid #fed7aa;">
+      <div style="font-size:10px;font-weight:800;color:#c2410c;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (-33%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+76%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (-11%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#dc2626;font-weight:700;">✗</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:40%;height:8px;border-radius:20px;background:linear-gradient(90deg,#ea580c,#fb923c);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#ea580c;">★★☆☆☆ 2/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#92400e;margin-top:4px;">FY26 post-boom normalisation. Best-in-sector EBITDA margin (33.7%) is quality signal. FY27 ZADS ramp will determine re-rating.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-zen -->
+
+<div class="fco-panel" id="fco-apollo">
+<!-- ── COMPANY 11: APOLLO MICRO ── -->
+<div class="section-divider gap" style="border-left-color:#be185d;">🔬 11. Apollo Micro Systems</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹353 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹562 Cr (+59%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹911 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+62.1% ✅ — includes IDL acquisition</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val pos">₹280 Cr (+73%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">2-Year Revenue CAGR</span><span class="fin-val pos">+61% (M&amp;A aided)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">IDL acquisition added explosive ordnance to its embedded electronics base. Revenue scale doubled; PAT margin on structural upswing 8.8% → 11.7%.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹37 Cr · 10.5%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val warn">₹50 Cr · 8.9%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹175 Cr · 19.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+250% ✅ Exceptional — scale + IDL</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹31 Cr · 8.8%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val">₹56 Cr · 10.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹107 Cr · 11.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val pos">+91.1% ✅ — PAT nearly doubled</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val warn">~₹95 Cr (IDL capex deployed)</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val warn">Positive but constrained post-acquisition</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val warn">Capital deployed for growth — one-time</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">BDL primary client moat; PAT margin 8.8% → 11.7% in 2 years</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+      <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+62%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+250%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+91%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#dc2626;font-weight:700;">✗ (acquisition year)</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:80%;height:8px;border-radius:20px;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#15803d;">★★★★☆ 4/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#166534;margin-top:4px;">Outstanding P&amp;L metrics. Cash constraint is IDL acquisition — a one-time event. Monitor integration quality in FY27.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-apollo -->
+
+<div class="fco-panel" id="fco-paras">
+<!-- ── COMPANY 12: PARAS DEFENCE ── -->
+<div class="section-divider gap" style="border-left-color:#92400e;">🔭 12. Paras Defence &amp; Space Technologies</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹280 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val pos">₹365 Cr (+30%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹477 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+30.7% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val pos">₹140 Cr (+35%)</span></div>
+    <div class="fin-row"><span class="fin-lbl">2-Year Revenue CAGR</span><span class="fin-val pos">+30%</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">India's sole maker of heavy optics for Tejas &amp; ISRO. Captive supply relationship with zero domestic competition. Consistent 30%+ revenue growth despite small size.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val">₹33 Cr · 11.8%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val pos">₹49 Cr · 13.4%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val pos">₹106 Cr · 22.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY Growth</span><span class="fin-val pos">+116.3% ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Margin Expansion</span><span class="fin-val pos">11.8% → 22.2% — scale leverage</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val">₹51 Cr · 18.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT / Margin</span><span class="fin-val">₹62 Cr · 17.0%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT / Margin</span><span class="fin-val pos">₹89 Cr · 18.7%</span></div>
+    <div class="fin-row"><span class="fin-lbl">PAT YoY Growth</span><span class="fin-val pos">+43.5% ✅</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Net Cash &amp; Equivalents</span><span class="fin-val pos">~₹210 Cr ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val pos">Positive ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val pos">Growing ✅</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Strength</span><span class="fin-val">Only Indian maker of heavy optics — no domestic competition; ISRO recurring supply</span></div>
+    <div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac;">
+      <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+31%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+116%)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+44%)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#15803d;font-weight:700;">✓</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#15803d;font-weight:700;">✓</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:80%;height:8px;border-radius:20px;background:linear-gradient(90deg,#15803d,#22c55e);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#15803d;">★★★★☆ 4/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#166534;margin-top:4px;">All 5 P&amp;L green. Small cash base vs larger peers is the only reason for 4 vs 5 stars. Business quality is excellent.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /fco-paras -->
+
+<div class="fco-panel" id="fco-ideaforge">
+<!-- ── COMPANY 13: IDEAFORGE ── -->
+<div class="section-divider gap" style="border-left-color:#065f46;">🚁 13. ideaForge Technology</div>
+<div class="g3">
+  <div class="card">
+    <div class="card-lbl">Revenue Performance</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 Revenue</span><span class="fin-val">₹186 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 Revenue</span><span class="fin-val neg">₹186 Cr (flat — bad year)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 Revenue</span><span class="fin-val pos">₹280 Cr</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 YoY Growth</span><span class="fin-val pos">+50.5% ✅ — recovery</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 Revenue</span><span class="fin-val pos">₹141 Cr (+271%) ★ Outstanding quarter</span></div>
+    <div class="fin-row"><span class="fin-lbl">Record Order Bookings</span><span class="fin-val pos">₹530 Cr FY26 (highest-ever annual)</span></div>
+    <div style="margin-top:8px;font-size:10.5px;color:#5a6272;">Q4 turnaround impressive. Recovery is real — ₹530 Cr bookings, 40% of open orders executed in March. But full-year structural losses persist.</div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">EBITDA &amp; PAT Deep-Dive</div>
+    <div class="fin-row"><span class="fin-lbl">FY24 EBITDA / Margin</span><span class="fin-val warn">₹18 Cr · 9.7% — barely positive</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 EBITDA / Margin</span><span class="fin-val neg">₹-4 Cr · -2.2%</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 EBITDA / Margin</span><span class="fin-val neg">₹-11 Cr · -3.9%</span></div>
+    <div class="fin-row"><span class="fin-lbl">EBITDA YoY</span><span class="fin-val neg">Deteriorating ✗</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY24 PAT / Margin</span><span class="fin-val warn">₹1 Cr · marginal</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY25 PAT</span><span class="fin-val neg">₹-30 Cr (loss)</span></div>
+    <div class="fin-row"><span class="fin-lbl">FY26 PAT</span><span class="fin-val neg">₹-42 Cr · -15%</span></div>
+    <div class="fin-row"><span class="fin-lbl">Q4 FY26 PAT</span><span class="fin-val pos">₹60 Cr ★ Dramatic turnaround quarter</span></div>
+  </div>
+  <div class="card">
+    <div class="card-lbl">Cash &amp; FCF · CB Rating</div>
+    <div class="fin-row"><span class="fin-lbl">Cash &amp; Equivalents</span><span class="fin-val warn">~₹120 Cr (IPO proceeds being deployed)</span></div>
+    <div class="fin-row"><span class="fin-lbl">Free Cash Flow</span><span class="fin-val neg">Negative — cash burn continues ✗</span></div>
+    <div class="fin-row"><span class="fin-lbl">Cash Trend</span><span class="fin-val neg">Declining ✗</span></div>
+    <div class="fin-row"><span class="fin-lbl">Unique Factor</span><span class="fin-val">India's UAS market leader; Q4 PAT ₹60 Cr signals unit economics beginning to work</span></div>
+    <div style="margin-top:10px;padding:10px;background:#fee2e2;border-radius:8px;border:1px solid #fca5a5;">
+      <div style="font-size:10px;font-weight:800;color:#dc2626;margin-bottom:5px;">CB FINANCIAL RATING</div>
+      <div style="font-size:10px;margin-bottom:3px;">Rev ≥12%: <span style="color:#15803d;font-weight:700;">✓ (+51%)</span> &nbsp;|&nbsp; EBITDA ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (negative)</span> &nbsp;|&nbsp; PAT ≥12%: <span style="color:#dc2626;font-weight:700;">✗ (loss-making)</span></div>
+      <div style="font-size:10px;margin-bottom:6px;">FCF Positive: <span style="color:#dc2626;font-weight:700;">✗</span> &nbsp;|&nbsp; Cash Growing: <span style="color:#dc2626;font-weight:700;">✗</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;background:#e5e7eb;border-radius:20px;height:8px;"><div style="width:20%;height:8px;border-radius:20px;background:linear-gradient(90deg,#dc2626,#f87171);"></div></div>
+        <span style="font-size:15px;font-weight:800;color:#dc2626;">★☆☆☆☆ 1/5</span>
+      </div>
+      <div style="font-size:9.5px;color:#991b1b;margin-top:4px;">Full-year still loss-making. Revenue momentum is real. FY27 will be the verdict year. Profitability path not yet demonstrated at scale.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RATING LEADERBOARD -->
+</div><!-- /fco-ideaforge -->
+
+<div class="section-divider gap">🏆 CB Financial Rating Leaderboard — FY26 Summary</div>
+<div class="tbl-scroll">
+<table>
+  <thead><tr>
+    <th>Rank</th><th>Company</th><th style="text-align:center">CB Rating</th>
+    <th style="text-align:right">Rev YoY</th><th style="text-align:right">EBITDA YoY</th><th style="text-align:right">PAT YoY</th>
+    <th style="text-align:center">FCF+</th><th style="text-align:center">Cash↑</th>
+    <th style="text-align:right">EBITDA%</th><th style="text-align:right">PAT%</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="tb">1</td><td class="tb bel-c">BEL</td><td style="text-align:center;color:#15803d;">★★★★★</td><td class="tpos">+16%</td><td class="tpos">+27%</td><td class="tpos">+14%</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos">17.1%</td><td class="tpos">22.0%</td></tr>
+    <tr><td class="tb">2</td><td class="tb mdl-c">Mazagon Dock</td><td style="text-align:center;color:#15803d;">★★★★★</td><td class="tpos">+14%</td><td class="tpos">+39%</td><td class="warn">+7%*</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos" style="text-align:center;">✓</td><td class="num">11.5%</td><td class="tpos">19.8%</td></tr>
+    <tr><td class="tb">3</td><td class="tb dpat-c">Data Patterns</td><td style="text-align:center;color:#15803d;">★★★★★</td><td class="tpos">+18%</td><td class="tpos">+41%</td><td class="warn">+12%*</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos">28.0%</td><td class="tpos">29.7%</td></tr>
+    <tr><td class="tb">4</td><td class="tb solar-c">Solar Industries</td><td style="text-align:center;color:#15803d;">★★★★☆</td><td class="tpos">+30%</td><td class="tpos">+111%</td><td class="tpos">+35%</td><td class="tpos" style="text-align:center;">✓</td><td class="tneg" style="text-align:center;">✗</td><td class="tpos">21.1%</td><td class="tpos">17.7%</td></tr>
+    <tr><td class="tb">4</td><td class="tb grse-c">GRSE</td><td style="text-align:center;color:#15803d;">★★★★☆</td><td class="tpos">+38%</td><td class="tpos">+121%</td><td class="tpos">+42%</td><td class="tpos" style="text-align:center;">✓</td><td class="tneg" style="text-align:center;">✗</td><td class="num">9.2%</td><td class="num">10.7%</td></tr>
+    <tr><td class="tb">4</td><td class="tb apollo-c">Apollo Micro</td><td style="text-align:center;color:#15803d;">★★★★☆</td><td class="tpos">+62%</td><td class="tpos">+250%</td><td class="tpos">+91%</td><td class="tpos" style="text-align:center;">✓</td><td class="tneg" style="text-align:center;">✗</td><td class="tpos">19.2%</td><td class="num">11.7%</td></tr>
+    <tr><td class="tb">4</td><td class="tb paras-c">Paras Defence</td><td style="text-align:center;color:#15803d;">★★★★☆</td><td class="tpos">+31%</td><td class="tpos">+116%</td><td class="tpos">+44%</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos">22.2%</td><td class="tpos">18.7%</td></tr>
+    <tr><td class="tb">8</td><td class="tb hal-c">HAL</td><td style="text-align:center;color:#d97706;">★★★☆☆</td><td class="warn">+7%</td><td class="tpos">+28%</td><td class="warn">+9%</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos">21.9%</td><td class="tpos">27.5%</td></tr>
+    <tr><td class="tb">8</td><td class="tb csl-c">Cochin Shipyard</td><td style="text-align:center;color:#d97706;">★★★☆☆</td><td class="warn">+4%</td><td class="tpos">+106%</td><td class="tneg">-13%</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos" style="text-align:center;">✓</td><td class="tpos">19.9%</td><td class="num">14.3%</td></tr>
+    <tr><td class="tb">10</td><td class="tb zen-c">Zen Technologies</td><td style="text-align:center;color:#ea580c;">★★☆☆☆</td><td class="tneg">-33%</td><td class="tpos">+76%</td><td class="tneg">-11%</td><td class="tpos" style="text-align:center;">✓</td><td class="tneg" style="text-align:center;">✗</td><td class="tpos">33.7%</td><td class="tpos">28.2%</td></tr>
+    <tr><td class="tb">10</td><td class="tb bdl-c">Bharat Dynamics</td><td style="text-align:center;color:#ea580c;">★★☆☆☆</td><td class="tneg">-27%</td><td class="tneg">-66%</td><td class="tneg">-24%</td><td class="tpos" style="text-align:center;">✓</td><td class="tneg" style="text-align:center;">✗</td><td class="num">12.1%</td><td class="num">17.2%</td></tr>
+    <tr><td class="tb">12</td><td class="tb beml-c">BEML</td><td style="text-align:center;color:#dc2626;">★☆☆☆☆</td><td class="warn">+8%</td><td class="tpos">+16%</td><td class="tneg">-52%</td><td class="tneg" style="text-align:center;">✗</td><td class="tneg" style="text-align:center;">✗</td><td class="num">10.7%</td><td class="neg">3.2%</td></tr>
+    <tr><td class="tb">12</td><td class="tb ideaforge-c">ideaForge</td><td style="text-align:center;color:#dc2626;">★☆☆☆☆</td><td class="tpos">+51%</td><td class="tneg">Neg</td><td class="tneg">Loss</td><td class="tneg" style="text-align:center;">✗</td><td class="tneg" style="text-align:center;">✗</td><td class="neg">-3.9%</td><td class="neg">-15%</td></tr>
+  </tbody>
+</table>
+</div>
+<div style="font-size:10.5px;color:#5a6272;margin-top:8px;">* MDL PAT: high FY25 base (+125%); Data Patterns PAT borderline at +11.7%. | ✗ on Cash Growing where heavy expansion capex deployed — context-dependent, not automatic downgrade. BDL &amp; Zen Tech FY26 are normalisation years — revisit FY27.</div>
 
 </div><!-- /tab-financials -->
+
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- TAB 4: CHARTS -->
@@ -1096,6 +1651,12 @@ function showTab(id,btn){
   document.getElementById('tab-'+id).classList.add('active');
   if(btn) btn.classList.add('active');
   if(id==='charts') setTimeout(buildAllCharts,80);
+}
+function showFinCo(key,btn){
+  document.querySelectorAll('.fco-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.fco-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('fco-'+key).classList.add('active');
+  if(btn) btn.classList.add('active');
 }
 
 // ── COMPANY DATA ──
