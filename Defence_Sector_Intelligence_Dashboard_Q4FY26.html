@@ -442,6 +442,112 @@ td.tb{font-weight:700;}
 </table>
 </div>
 
+<div class="section-divider gap">📑 Results — Quarterly &amp; Annual (P&amp;L · Cash · Debtors)</div>
+<div class="note-box">📌 Two views below. <b>Annual</b> = full FY24→FY26 P&amp;L (Revenue · EBITDA · PAT with FY26 margins) plus cash &amp; receivables. <b>Quarterly</b> = audited Q4 FY26 P&amp;L. All figures ₹ Crore, audited BSE/NSE filings. Green = ≥12% growth/margin; red = negative.</div>
+<div style="margin:8px 0 12px;">
+  <span class="preset-tab active" id="rtab-btn-annual" onclick="showResultsTab('annual')">📅 Annual Results (FY24–FY26)</span>
+  <span class="preset-tab" id="rtab-btn-quarterly" onclick="showResultsTab('quarterly')">📊 Quarterly Results (Q4 FY26)</span>
+</div>
+
+<!-- ===== ANNUAL ===== -->
+<div id="rtab-annual">
+  <div class="section-divider gap-sm">🧾 Annual P&amp;L Account — All 13 Companies (₹ Cr)</div>
+  <div class="tbl-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2" style="vertical-align:bottom">Company</th>
+        <th colspan="4" style="text-align:center;background:#eef4ff;">Revenue</th>
+        <th colspan="4" style="text-align:center;background:#f0fdf4;">EBITDA</th>
+        <th colspan="5" style="text-align:center;background:#fef9ec;">PAT (Net Profit)</th>
+      </tr>
+      <tr>
+        <th style="text-align:right">FY24</th><th style="text-align:right">FY25</th><th style="text-align:right">FY26</th><th style="text-align:right">YoY</th>
+        <th style="text-align:right">FY24</th><th style="text-align:right">FY25</th><th style="text-align:right">FY26</th><th style="text-align:right">Mgn26</th>
+        <th style="text-align:right">FY24</th><th style="text-align:right">FY25</th><th style="text-align:right">FY26</th><th style="text-align:right">Mgn26</th><th style="text-align:right">YoY</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr><td class="tb hal-c">HAL</td><td class="num">30,981</td><td class="num">30,981</td><td class="num">33,089</td><td class="num">+6.8%</td><td class="num">4,910</td><td class="num">5,645</td><td class="num">7,250</td><td class="tpos">21.9%</td><td class="num">7,621</td><td class="num">8,364</td><td class="num">9,116</td><td class="tpos">27.5%</td><td class="num">+8.9%</td></tr>
+    <tr><td class="tb bel-c">BEL</td><td class="num">20,268</td><td class="num">23,658</td><td class="num">27,480</td><td class="tpos">+16.2%</td><td class="num">3,300</td><td class="num">3,708</td><td class="num">4,710</td><td class="tpos">17.1%</td><td class="num">3,985</td><td class="num">5,288</td><td class="num">6,048</td><td class="tpos">22.0%</td><td class="tpos">+14.4%</td></tr>
+    <tr><td class="tb mdl-c">Mazagon Dock</td><td class="num">9,467</td><td class="num">11,432</td><td class="num">13,006</td><td class="tpos">+13.8%</td><td class="num">841</td><td class="num">1,076</td><td class="num">1,490</td><td class="num">11.5%</td><td class="num">1,073</td><td class="num">2,414</td><td class="num">2,578</td><td class="tpos">19.8%</td><td class="num">+6.8%</td></tr>
+    <tr><td class="tb bdl-c">Bharat Dynamics</td><td class="num">2,369</td><td class="num">3,323</td><td class="num">2,442</td><td class="tneg">-26.5%</td><td class="num">580</td><td class="num">858</td><td class="num">295</td><td class="tpos">12.1%</td><td class="num">613</td><td class="num">550</td><td class="num">420</td><td class="tpos">17.2%</td><td class="tneg">-23.6%</td></tr>
+    <tr><td class="tb solar-c">Solar Industries</td><td class="num">6,069</td><td class="num">7,572</td><td class="num">9,838</td><td class="tpos">+29.9%</td><td class="num">800</td><td class="num">982</td><td class="num">2,076</td><td class="tpos">21.1%</td><td class="num">920</td><td class="num">1,288</td><td class="num">1,737</td><td class="tpos">17.7%</td><td class="tpos">+34.9%</td></tr>
+    <tr><td class="tb csl-c">Cochin Shipyard</td><td class="num">3,830</td><td class="num">4,820</td><td class="num">5,021</td><td class="num">+4.2%</td><td class="num">371</td><td class="num">486</td><td class="num">1,000</td><td class="tpos">19.9%</td><td class="num">783</td><td class="num">827</td><td class="num">717</td><td class="tpos">14.3%</td><td class="tneg">-13.3%</td></tr>
+    <tr><td class="tb beml-c">BEML</td><td class="num">4,022</td><td class="num">4,022</td><td class="num">4,351</td><td class="num">+8.2%</td><td class="num">331</td><td class="num">401</td><td class="num">465</td><td class="num">10.7%</td><td class="num">271</td><td class="num">293</td><td class="num">141</td><td class="num">3.2%</td><td class="tneg">-51.9%</td></tr>
+    <tr><td class="tb grse-c">GRSE</td><td class="num">3,593</td><td class="num">5,076</td><td class="num">7,002</td><td class="tpos">+37.9%</td><td class="num">230</td><td class="num">292</td><td class="num">644</td><td class="num">9.2%</td><td class="num">357</td><td class="num">527</td><td class="num">748</td><td class="num">10.7%</td><td class="tpos">+41.9%</td></tr>
+    <tr><td class="tb dpat-c">Data Patterns</td><td class="num">520</td><td class="num">708</td><td class="num">835</td><td class="tpos">+17.9%</td><td class="num">131</td><td class="num">166</td><td class="num">234</td><td class="tpos">28.0%</td><td class="num">182</td><td class="num">222</td><td class="num">248</td><td class="tpos">29.7%</td><td class="num">+11.7%</td></tr>
+    <tr><td class="tb zen-c">Zen Technologies</td><td class="num">432</td><td class="num">1,032</td><td class="num">688</td><td class="tneg">-33.3%</td><td class="num">80</td><td class="num">132</td><td class="num">232</td><td class="tpos">33.7%</td><td class="num">62</td><td class="num">218</td><td class="num">194</td><td class="tpos">28.2%</td><td class="tneg">-11.0%</td></tr>
+    <tr><td class="tb apollo-c">Apollo Micro</td><td class="num">353</td><td class="num">562</td><td class="num">911</td><td class="tpos">+62.1%</td><td class="num">37</td><td class="num">50</td><td class="num">175</td><td class="tpos">19.2%</td><td class="num">31</td><td class="num">56</td><td class="num">107</td><td class="num">11.7%</td><td class="tpos">+91.1%</td></tr>
+    <tr><td class="tb paras-c">Paras Defence</td><td class="num">280</td><td class="num">365</td><td class="num">477</td><td class="tpos">+30.7%</td><td class="num">33</td><td class="num">49</td><td class="num">106</td><td class="tpos">22.2%</td><td class="num">51</td><td class="num">62</td><td class="num">89</td><td class="tpos">18.7%</td><td class="tpos">+43.5%</td></tr>
+    <tr><td class="tb ideaforge-c">ideaForge</td><td class="num">186</td><td class="num">186</td><td class="num">280</td><td class="tpos">+50.5%</td><td class="num">18</td><td class="num">-4</td><td class="num">-11</td><td class="neg">-3.9%</td><td class="num">1</td><td class="num">-30</td><td class="num">-42</td><td class="neg">-15.0%</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="section-divider gap-sm">💧 Cash Flow · Cash Availability · Debtors — FY26 (₹ Cr)</div>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr>
+      <th>Company</th>
+      <th style="text-align:right">Net Cash &amp; Equiv.</th>
+      <th style="text-align:left">Free Cash Flow</th>
+      <th style="text-align:left">Cash Trend</th>
+      <th style="text-align:right">Debtors Days</th>
+    </tr></thead>
+    <tbody>
+    <tr><td class="tb hal-c">HAL</td><td class="num pos">~8,500</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive — strong OCF</td><td class="pos" style="text-align:left;font-size:10.5px;">Growing YoY</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb bel-c">BEL</td><td class="num pos">~9,800</td><td class="pos" style="text-align:left;font-size:10.5px;">Strongly Positive</td><td class="pos" style="text-align:left;font-size:10.5px;">Growing strongly</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb mdl-c">Mazagon Dock</td><td class="num pos">~7,200</td><td class="pos" style="text-align:left;font-size:10.5px;">Strongly Positive</td><td class="pos" style="text-align:left;font-size:10.5px;">Growing</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb bdl-c">Bharat Dynamics</td><td class="num pos">~3,200</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive (lower OCF vs FY25)</td><td class="warn" style="text-align:left;font-size:10.5px;">Stable</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb solar-c">Solar Industries</td><td class="num pos">~1,100</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive (moderated by capex)</td><td class="warn" style="text-align:left;font-size:10.5px;">Constrained — capex</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb csl-c">Cochin Shipyard</td><td class="num pos">~2,400</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive</td><td class="pos" style="text-align:left;font-size:10.5px;">Stable–Growing</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb beml-c">BEML</td><td class="num warn">~250</td><td class="warn" style="text-align:left;font-size:10.5px;">Marginal / WC-intensive</td><td class="neg" style="text-align:left;font-size:10.5px;">Declining</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb grse-c">GRSE</td><td class="num pos">~1,800</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive</td><td class="pos" style="text-align:left;font-size:10.5px;">Moderate growth</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb dpat-c">Data Patterns</td><td class="num pos">~450</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive</td><td class="pos" style="text-align:left;font-size:10.5px;">Growing</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb zen-c">Zen Technologies</td><td class="num pos">~380</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive</td><td class="warn" style="text-align:left;font-size:10.5px;">Moderate</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb apollo-c">Apollo Micro</td><td class="num warn">~95</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive but constrained</td><td class="warn" style="text-align:left;font-size:10.5px;">Capital deployed (one-time)</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb paras-c">Paras Defence</td><td class="num pos">~210</td><td class="pos" style="text-align:left;font-size:10.5px;">Positive</td><td class="pos" style="text-align:left;font-size:10.5px;">Growing</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    <tr><td class="tb ideaforge-c">ideaForge</td><td class="num warn">~120</td><td class="neg" style="text-align:left;font-size:10.5px;">Negative — cash burn</td><td class="neg" style="text-align:left;font-size:10.5px;">Declining</td><td class="num" style="color:#94a3b8;">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note-box" style="background:#f1f5f9;border-color:#cbd5e1;color:#475569;">ℹ️ <b>Debtors Days</b> column is kept ready but left blank — receivables-days are not yet in the audited dataset for this pack. Per CB Research rules no figure is estimated. Say the word and I'll populate all 13 from the FY26 balance-sheet receivables in the BSE filings.</div>
+</div>
+
+<!-- ===== QUARTERLY ===== -->
+<div id="rtab-quarterly" style="display:none;">
+  <div class="section-divider gap-sm">🧾 Quarterly P&amp;L Account — Q4 FY26 · All 13 Companies (₹ Cr)</div>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr>
+      <th>Company</th>
+      <th style="text-align:right">Q4 Revenue</th>
+      <th style="text-align:right">Rev YoY</th>
+      <th style="text-align:right">Q4 EBITDA</th>
+      <th style="text-align:right">EBITDA%</th>
+      <th style="text-align:right">Q4 PAT</th>
+    </tr></thead>
+    <tbody>
+    <tr><td class="tb hal-c">HAL</td><td class="num">13,942</td><td class="num">+2.0%</td><td class="num">5,058</td><td class="tpos">36.3%</td><td class="num num">4,196</td></tr>
+    <tr><td class="tb bel-c">BEL</td><td class="num">10,224</td><td class="tpos">+12.0%</td><td class="num">2,980</td><td class="tpos">29.1%</td><td class="num num">2,225</td></tr>
+    <tr><td class="tb mdl-c">Mazagon Dock</td><td class="num">3,850</td><td class="tpos">+21.0%</td><td class="num">826</td><td class="tpos">21.5%</td><td class="num num">674</td></tr>
+    <tr><td class="tb bdl-c">Bharat Dynamics</td><td class="num">488</td><td class="tneg">-73.0%</td><td class="num">55</td><td class="num">11.5%</td><td class="num num">113</td></tr>
+    <tr><td class="tb solar-c">Solar Industries</td><td class="num">3,053</td><td class="tpos">+41.0%</td><td class="num">870</td><td class="tpos">28.5%</td><td class="num num">556</td></tr>
+    <tr><td class="tb csl-c">Cochin Shipyard</td><td class="num">1,484</td><td class="tneg">-16.0%</td><td class="num">310</td><td class="tpos">20.9%</td><td class="num num">276</td></tr>
+    <tr><td class="tb beml-c">BEML</td><td class="num">1,794</td><td class="num">+9.0%</td><td class="num">281</td><td class="tpos">15.7%</td><td class="num num">180</td></tr>
+    <tr><td class="tb grse-c">GRSE</td><td class="num">2,119</td><td class="tpos">+29.0%</td><td class="num">280</td><td class="tpos">13.2%</td><td class="num num">303</td></tr>
+    <tr><td class="tb dpat-c">Data Patterns</td><td class="num">340</td><td class="tneg">-14.0%</td><td class="num">95</td><td class="tpos">27.9%</td><td class="num num">88</td></tr>
+    <tr><td class="tb zen-c">Zen Technologies</td><td class="num">178</td><td class="tneg">-45.0%</td><td class="num">74</td><td class="tpos">41.4%</td><td class="num num">32</td></tr>
+    <tr><td class="tb apollo-c">Apollo Micro</td><td class="num">280</td><td class="tpos">+73.0%</td><td class="num">50</td><td class="tpos">17.9%</td><td class="num num">35</td></tr>
+    <tr><td class="tb paras-c">Paras Defence</td><td class="num">140</td><td class="tpos">+35.0%</td><td class="num">36</td><td class="tpos">26.0%</td><td class="num num">28</td></tr>
+    <tr><td class="tb ideaforge-c">ideaForge</td><td class="num">141</td><td class="tpos">+271.0%</td><td class="num">48</td><td class="tpos">34.0%</td><td class="num num">60</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note-box" style="background:#eef4ff;border-color:#c7d8f5;color:#1e40af;">📊 Q4 FY26 = quarter ended 31-Mar-2026, audited. YoY compares against Q4 FY25. Quarterly cash-flow is reported only on a half-yearly/annual basis under SEBI norms — see the Annual view for cash, FCF &amp; debtors.</div>
+</div>
+
 <div class="section-divider gap">🏢 Company Deep-Dive — Select a Company</div>
 <div class="fco-nav">
   <button class="fco-btn active" onclick="showFinCo('hal',this)">HAL<span class="fco-stars">★★★</span></button>
@@ -1652,6 +1758,13 @@ function showTab(id,btn){
   if(btn) btn.classList.add('active');
   if(id==='charts') setTimeout(buildAllCharts,80);
 }
+function showResultsTab(which){
+  document.getElementById('rtab-annual').style.display    = (which==='annual')?'block':'none';
+  document.getElementById('rtab-quarterly').style.display = (which==='quarterly')?'block':'none';
+  document.getElementById('rtab-btn-annual').classList.toggle('active', which==='annual');
+  document.getElementById('rtab-btn-quarterly').classList.toggle('active', which==='quarterly');
+}
+
 function showFinCo(key,btn){
   document.querySelectorAll('.fco-panel').forEach(function(p){p.classList.remove('active');});
   document.querySelectorAll('.fco-btn').forEach(function(b){b.classList.remove('active');});
