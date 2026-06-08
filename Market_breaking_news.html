@@ -229,6 +229,8 @@ footer span{color:#ffe0c0}
 .pill-aviation{background:#e0f2fe;color:#01579b}
 .pill-markets{background:#fce4ec;color:#880e4f}
 .pill-shanthi{background:#fff8e1;color:#5d4037}
+.pill-fpi{background:#fff3e8;color:#b84000;border:1px solid #f5c090}
+.pill-energy{background:#e3f2fd;color:#0d3c6e}
 .tag-ofs-bg{background:#fff0f3}.tag-ofs{color:#8a001a}
 .tag-coal-bg{background:#f0ece4}.tag-coal{color:#3a2800}
 
@@ -411,6 +413,7 @@ footer span{color:#ffe0c0}
           <button class="sector-btn" data-s="ecomm" onclick="setSector('ecomm');event.stopPropagation()">FDI / E-Commerce <span class="scount" id="sc-ecomm">0</span></button>
           <button class="sector-btn" data-s="disinvest" onclick="setSector('disinvest');event.stopPropagation()">Disinvestment <span class="scount" id="sc-disinvest">0</span></button>
           <button class="sector-btn" data-s="markets" onclick="setSector('markets');event.stopPropagation()">Markets / F&amp;O <span class="scount" id="sc-markets">0</span></button>
+          <button class="sector-btn" data-s="fpi" onclick="setSector('fpi');event.stopPropagation()">FPI Flows <span class="scount" id="sc-fpi">0</span></button>
         </div>
       </div>
       <div class="cat-nav">
@@ -428,6 +431,7 @@ footer span{color:#ffe0c0}
           <button class="sector-btn" data-s="ems" onclick="setSector('ems');event.stopPropagation()">EMS <span class="scount" id="sc-ems">0</span></button>
           <button class="sector-btn" data-s="coal" onclick="setSector('coal');event.stopPropagation()">Coal / PSU <span class="scount" id="sc-coal">0</span></button>
           <button class="sector-btn" data-s="aviation" onclick="setSector('aviation');event.stopPropagation()">Aviation <span class="scount" id="sc-aviation">0</span></button>
+          <button class="sector-btn" data-s="energy" onclick="setSector('energy');event.stopPropagation()">Energy / Grid <span class="scount" id="sc-energy">0</span></button>
         </div>
       </div>
     </div>
@@ -464,7 +468,7 @@ footer span{color:#ffe0c0}
 <footer>SectorWire &nbsp;·&nbsp; May–June 2026 Sector Intelligence Digest &nbsp;·&nbsp; <span id="footer-time"></span></footer>
 
 <script>
-const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets'];
+const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi'];
 
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
@@ -814,6 +818,99 @@ const NEWS = [
       {name:'Nifty Oil & Gas / Metal / Auto',status:'Down ~2% Each',cls:'cobadge-hit'},
       {name:'Nifty IT',status:'+0.6% — Outperformer',cls:'cobadge-ok'}
     ]
+  },
+  {
+    id:14, date:'2026-05-29', sector:'fpi', cat:'macro', sectorLabel:'FPI Flows', pillCls:'pill-fpi', time:'29 May 2026',
+    impact:'mixed', breaking:true, badges:['₹2.26L Cr Sold in 2026','Hot Money Exit','Long-Term Investors Stayed'],
+    en:{
+      headline:'Meet the FPIs Leading the Sell-Off — It\'s Hot Money, Not Long-Term Conviction Exiting India',
+      context:[
+        'FPIs have sold ₹2.26 lakh crore in Indian shares in 2026, following ₹1.66 lakh crore in outflows during 2025. The selling wave began around September 2024 as global capital rotated toward cheaper markets — China, Taiwan, and South Korea for AI-linked opportunities.',
+        'The picture, however, is nuanced. Of 12,000+ registered FPIs, long-term players — pension funds, sovereign wealth funds, ETFs and regulated mutual funds — have largely stayed put. The biggest reductions came from tax-haven hubs: Singapore (-28.8%), Mauritius (-25.7%) and Luxembourg (-15.6%), which typically host hedge funds and short-term speculative capital.',
+        'Pension funds actually increased their Indian exposure by +1.9%, and Norway\'s sovereign wealth fund barely reduced — its asset decline was mainly driven by market corrections, not selling. Japan (+1.3%) and France (+4.2%) bucked the trend entirely with net positive inflows.'
+      ],
+      pos:[
+        'The sell-off is dominated by short-term "hot money" from offshore tax-haven structures — not by structural exits by long-term institutional allocators. A macro or sentiment shift can quickly reverse these flows.',
+        'Pension funds increased Indian exposure by +1.9% and Norway\'s sovereign wealth fund held steady — these are the most stable classes of global capital and their conviction in India\'s long-term story remains intact.',
+        'Japan and France registered positive inflows; regulated funds saw only -10.9% decline (mostly mark-to-market), signalling that fundamentally-driven allocators are not running for the exits.'
+      ],
+      neg:[
+        'Singapore and Mauritius — India\'s two largest offshore FPI conduits — saw the sharpest reductions (-28.8% and -25.7% respectively). While much of this is hedge fund money, the size of the exit creates sustained near-term supply pressure on Indian equities.',
+        'Unregulated funds and LP/trust structures fell -22% to -23%, confirming speculative capital is systematically exiting. Until global risk appetite for EM improves, this trend could persist.',
+        'The US — India\'s largest FPI source at ~43% — reduced holdings by -9.8%. Even if mostly mark-to-market driven, any fresh round of US institutional reallocation away from EM would meaningfully increase outflow pressure on India.'
+      ]
+    },
+    ta:{
+      headline:'FPI விற்பனையை வழிநடத்துவது யார்? — இது குறுகிய கால "சூடான பணம்", நீண்ட கால முதலீட்டாளர்கள் அல்ல',
+      context:[
+        '2026ல் FPIகள் இந்திய பங்குகளில் ₹2.26 லட்சம் கோடி விற்று வெளியேறியுள்ளனர். இந்த விற்பனை செப்டம்பர் 2024 முதல் தொடங்கியது — சீனா, தைவான், தென் கொரியா போன்ற மலிவான சந்தைகளில் AI வாய்ப்புகளை நோக்கி உலகளாவிய மூலதனம் இடம் பெயர்ந்தது.',
+        'ஆனால் படம் சிக்கலானது. 12,000+ பதிவுசெய்யப்பட்ட FPIகளில், பென்ஷன் நிதிகள், இறையாண்மை நிதிகள் மற்றும் ஒழுங்குபடுத்தப்பட்ட நிதிகள் பெரும்பாலும் தங்கியிருக்கின்றன. சிங்கப்பூர் (-28.8%), மொரீஷியஸ் (-25.7%), லக்சம்பர்க் (-15.6%) போன்ற வரி புகலிடங்களிலிருந்தே மிகப்பெரிய விற்பனை வந்தது.',
+        'பென்ஷன் நிதிகள் +1.9% அதிகரித்தன. நார்வேயின் இறையாண்மை நிதியம் கிட்டத்தட்ட விற்கவில்லை. ஜப்பான் (+1.3%), பிரான்ஸ் (+4.2%) நேர்மறை ஓட்டத்தை பதிவு செய்தன.'
+      ],
+      pos:[
+        'விற்பனை முக்கியமாக offshore கட்டமைப்புகளிலிருந்த குறுகிய கால "சூடான பணம்" — நீண்டகால நிறுவன ஒதுக்கீட்டாளர்களிடமிருந்தல்ல. மேக்ரோ அல்லது உணர்வு மாற்றம் இந்த ஓட்டங்களை விரைவாக மாற்றும்.',
+        'பென்ஷன் நிதிகள் +1.9% அதிகரித்தன; நார்வேயின் இறையாண்மை நிதியம் நிலையாக இருந்தது — இந்தியாவின் நீண்டகால வளர்ச்சி கதையில் அவர்களின் நம்பிக்கை அப்படியே உள்ளது.',
+        'ஜப்பான், பிரான்ஸ் நேர்மறை ஓட்டம்; ஒழுங்குபடுத்தப்பட்ட நிதிகள் -10.9% மட்டுமே குறைந்தன — அடிப்படை-சார்ந்த ஒதுக்கீட்டாளர்கள் வெளியேறவில்லை.'
+      ],
+      neg:[
+        'சிங்கப்பூர் மற்றும் மொரீஷியஸ் — மிகப்பெரிய வெளியேறல் (-28.8% மற்றும் -25.7%) — குறுகிய காலத்தில் பங்கு சந்தையில் நிரந்தர அழுத்தம் உருவாக்குகின்றன.',
+        'ஒழுங்குபடுத்தப்படாத நிதிகள் -22% முதல் -23% வரை குறைந்தன. EM-ல் உலகளாவிய ஆபத்து அனுமதி மேம்படும் வரை இந்த போக்கு தொடரலாம்.',
+        'US (-9.8%) — ~43% பங்கு கொண்ட மிகப்பெரிய FPI மூலம். US நிறுவன மறு-ஒதுக்கீடு வெளியேறல் அழுத்தத்தை அதிகரிக்கும்.'
+      ]
+    },
+    companies:[
+      {name:'Singapore / Mauritius / Luxembourg FPIs',status:'Largest Sellers (-22% to -29%)',cls:'cobadge-hit'},
+      {name:'Pension Funds (Global)',status:'+1.9% — Increased Exposure',cls:'cobadge-ok'},
+      {name:'Norway Sovereign Wealth Fund',status:'Held Steady — Market Correction Only',cls:'cobadge-ok'},
+      {name:'Japan / France FPIs',status:'Net Positive Inflows',cls:'cobadge-ok'},
+      {name:'US-based FPIs (43% of AUC)',status:'-9.8% — Mostly Mark-to-Market',cls:'cobadge-partial'}
+    ]
+  },
+  {
+    id:15, date:'2026-05-26', sector:'energy', cat:'sector', sectorLabel:'Energy / Grid', pillCls:'pill-energy', time:'26 May 2026',
+    impact:'negative', breaking:false, badges:['Peak 270.8 GW on 21 May','Shortage up to 15.9 MU','Storage Gap Exposed'],
+    en:{
+      headline:'India\'s Evening Power Crisis — Solar Helps by Day, but Storage Gap Leaves Homes Dark After Sunset',
+      context:[
+        'India\'s electricity grid hit a record peak demand of 270.8 GW on 21 May 2026 — the highest ever recorded. Evening peak demand stayed stubbornly high at 242–246 GW on most days as households switched on air conditioners after sunset, creating a sustained supply gap through the critical 6–10 PM window.',
+        'Energy shortages ranged from 3.5 MU to 15.9 MU across the week, with the worst gap on 26 May (15.9 MU). Solar generation — which helps substantially during daytime — dropped to near-zero after sunset, exposing the fundamental mismatch between India\'s fast-growing renewable capacity and its ability to serve evening peak loads.',
+        'The data reveals a structural problem: without grid-scale battery storage or pumped hydro, solar surplus generated during the day cannot be shifted to cover the evening demand spike. India\'s thermal fleet is already running near peak capacity — making the storage gap the decisive constraint on grid reliability.'
+      ],
+      pos:[
+        'The crisis creates a strong investment and policy case for battery energy storage systems (BESS), pumped hydro, and gas peaker plants. Accelerated capital allocation here would directly address the evening supply gap and reduce shortages.',
+        'Daytime solar generation continues to suppress midday grid costs and reduce thermal dispatch requirements — the solar buildout itself is working; what is missing is the storage layer to extend its benefit into evenings.',
+        'The urgency highlighted by this data is likely to fast-track storage mandates in upcoming power policy announcements — creating near-term opportunities in the BESS supply chain, including battery manufacturers, EPC companies, and grid integration players.'
+      ],
+      neg:[
+        'Peak demand crossed 270 GW and energy shortages are rising year-on-year. Without accelerated storage deployment, these shortfalls will worsen each summer as AC penetration increases in Tier 2 and Tier 3 cities.',
+        'Evening power shortages directly hit industrial productivity and household welfare. Load-shedding in the 6–10 PM window affects cooking, cooling, and economic activity — a material drag on the quality of life and small business output.',
+        'The structural mismatch between India\'s renewable capacity additions and evening grid reliability creates a medium-term risk to power sector creditworthiness — distribution companies (DISCOMs) face rising procurement costs as they source expensive peak power to fill the storage gap.'
+      ]
+    },
+    ta:{
+      headline:'இந்தியாவின் மாலை மின்சார நெருக்கடி — பகலில் சூரிய ஆற்றல் உதவுகிறது, சேமிப்பு இல்லாமல் மாலையில் இருண்டுவிடுகிறது',
+      context:[
+        'இந்தியாவின் மின்சாரக் கட்டம் 21 மே 2026ல் 270.8 GW என்ற சாதனை உச்ச தேவையை எட்டியது. மாலை உச்ச தேவை 242–246 GW ஆக இருந்தது — குடும்பங்கள் சூரிய அஸ்தமனத்திற்கு பிறகு AC போட்டுக்கொள்வதால் மாலை 6–10 மணி வரை தொடர்ச்சியான விநியோக இடைவெளி உருவானது.',
+        'வாரம் முழுவதும் ஆற்றல் பற்றாக்குறை 3.5 MU முதல் 15.9 MU வரை இருந்தது. 26 மே அதிகபட்ச பற்றாக்குறை (15.9 MU). சூரிய ஆற்றல் பகலில் நன்றாக உதவுகிறது, ஆனால் சூரிய அஸ்தமனத்திற்கு பிறகு கிட்டத்தட்ட சுழியமாகி விடுகிறது.',
+        'இது ஒரு கட்டமைப்பு சிக்கலை வெளிப்படுத்துகிறது: கட்டம்-அளவிலான பேட்டரி சேமிப்பு அல்லது பம்ப் செய்யப்பட்ட நீர் இல்லாமல், பகல் நேர சூரிய ஆற்றல் மாலை உச்ச சுமையை சமாளிக்க முடியாது.'
+      ],
+      pos:[
+        'இந்த நெருக்கடி BESS, பம்ப் ஹைட்ரோ மற்றும் கேஸ் பீக்கர் ஆலைகளுக்கு வலுவான முதலீட்டு வழக்கை உருவாக்குகிறது — நேரடியாக மாலை விநியோக இடைவெளியை நிவர்த்தி செய்யும்.',
+        'பகல் நேர சூரிய ஆற்றல் மத்தியான கட்ட செலவுகளை தொடர்ந்து குறைக்கிறது — சூரிய கட்டுமானம் வேலை செய்கிறது; தேவையானது மாலை நேரத்தை உள்ளடக்கும் சேமிப்பு அடுக்கு மட்டுமே.',
+        'இந்த தரவின் அவசரம் வரவிருக்கும் சக்தி கொள்கை அறிவிப்புகளில் சேமிப்பு ஆணைகளை விரைவுபடுத்தும் — BESS சப்ளை சங்கிலியில் குறுகிய கால வாய்ப்புகள்.'
+      ],
+      neg:[
+        'உச்ச தேவை 270 GW கடந்தது; ஆண்டுக்கு ஆண்டு பற்றாக்குறை அதிகரிக்கிறது. சேமிப்பு இல்லாமல், AC ஊடுருவல் அதிகரிக்கும்போது ஒவ்வொரு கோடையிலும் இந்த நிலை மோசமாகும்.',
+        'மாலை மின்சார பற்றாக்குறை நேரடியாக தொழில்துறை உற்பத்தித்திறன் மற்றும் குடும்ப நலனை பாதிக்கிறது. சிறிய வணிக வெளியீடு மற்றும் வாழ்க்கைத் தரத்தில் பாதிப்பு.',
+        'DISCOM கள் சேமிப்பு இடைவெளியை நிரப்ப விலையுயர்ந்த உச்ச மின்சாரம் கொள்முதல் செய்கின்றன — சக்தித் துறை கடன் தகுதிக்கு நடுத்தர கால ஆபத்து.'
+      ]
+    },
+    companies:[
+      {name:'Grid-Scale BESS Suppliers',status:'Key Beneficiary of Storage Push',cls:'cobadge-ok'},
+      {name:'State DISCOMs (Rajasthan / UP / MP)',status:'Worst Affected by Evening Shortfall',cls:'cobadge-hit'},
+      {name:'Gas Peaker Plant Operators',status:'Rising Dispatch Value at Evening Peak',cls:'cobadge-ok'},
+      {name:'Solar IPPs (Large-Scale)',status:'Daytime Performance Strong; Evening Gap Exposes Limits',cls:'cobadge-partial'}
+    ]
   }
 ];
 
@@ -847,7 +944,7 @@ function updateCounts() {
   document.getElementById('cnt-all').textContent = NEWS.length;
   document.getElementById('cnt-macro').textContent = NEWS.filter(n=>n.cat==='macro').length;
   document.getElementById('cnt-sector').textContent = NEWS.filter(n=>n.cat==='sector').length;
-  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal','disinvest','aviation','markets'].forEach(s=>{
+  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal','disinvest','aviation','markets','fpi','energy'].forEach(s=>{
     const el=document.getElementById('sc-'+s);
     if(el) el.textContent=NEWS.filter(n=>n.sector===s).length;
   });
@@ -966,7 +1063,7 @@ function renderFeed() {
   };
   let titleStr=titleMap[activeCat]||'All Breaking News';
   if(activeSector!=='all'){
-    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS',coal:'Coal / PSU',disinvest:'Disinvestment',aviation:'Aviation',markets:'Markets / F&O'};
+    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS',coal:'Coal / PSU',disinvest:'Disinvestment',aviation:'Aviation',markets:'Markets / F&O',fpi:'FPI Flows',energy:'Energy / Grid'};
     titleStr=(lm[activeSector]||activeSector)+(isTA?' — செய்திகள்':' — Breaking News');
   }
   document.getElementById('feed-title').textContent=titleStr;
