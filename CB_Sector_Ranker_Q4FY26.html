@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CB Sector Performance Ranker — Q4 FY26 | CB Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#1e2a4a;--navy-d:#131c33;--amber:#f59e0b;--amber-s:#fffbeb;
+  --green:#059669;--green-s:#ecfdf5;--red:#e11d48;--red-s:#fff1f4;
+  --warn:#d97706;--warn-s:#fffbeb;
+  --slate:#64748b;--slate-l:#f1f5f9;--slate-m:#e2e8f0;
+  --ink:#1e293b;--ink-2:#475569;--ink-3:#94a3b8;
+  --white:#ffffff;--radius:10px;--r2:6px;
+  --shadow:0 2px 12px rgba(30,42,74,.09);
+  color-scheme:light only;
+}
+html,body{background:#f8fafc;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;}
+a{color:inherit;text-decoration:none;}
+
+/* ── HEADER ── */
+.hdr{background:var(--navy);color:#fff;padding:28px 24px 22px;}
+.hdr-inner{max-width:1100px;margin:0 auto;}
+.hdr-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:6px;}
+.hdr-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,34px);font-weight:900;line-height:1.1;margin-bottom:8px;}
+.hdr-title span{color:var(--amber);}
+.hdr-sub{font-size:12px;color:#94a3b8;margin-bottom:14px;}
+.hdr-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:600;font-family:'DM Mono',monospace;background:rgba(255,255,255,.1);color:#cbd5e1;}
+.chip.g{background:rgba(5,150,105,.2);color:#6ee7b7;}
+.chip.r{background:rgba(225,29,72,.2);color:#fca5a5;}
+.chip.a{background:rgba(245,158,11,.2);color:#fcd34d;}
+
+/* ── SUMMARY BAR ── */
+.summary{background:var(--white);border-bottom:1px solid var(--slate-m);padding:14px 24px;}
+.summary-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;}
+.sum-stat{display:flex;flex-direction:column;}
+.sum-val{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--navy);}
+.sum-val.g{color:var(--green);}
+.sum-val.r{color:var(--red);}
+.sum-lbl{font-size:10px;color:var(--slate);text-transform:uppercase;letter-spacing:.8px;}
+.sum-div{width:1px;height:36px;background:var(--slate-m);}
+
+/* ── CONTROLS ── */
+.controls{max-width:1100px;margin:18px auto 0;padding:0 24px;}
+.ctrl-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;}
+.ctrl-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--slate);margin-right:4px;}
+.fbtn{padding:5px 13px;border-radius:20px;border:1.5px solid var(--slate-m);background:var(--white);color:var(--ink-2);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;}
+.fbtn:hover{border-color:var(--navy);color:var(--navy);}
+.fbtn.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.sbtn{padding:5px 13px;border-radius:20px;border:1.5px solid var(--slate-m);background:var(--white);color:var(--ink-2);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;}
+.sbtn:hover{border-color:var(--amber);color:var(--navy);}
+.sbtn.on{background:var(--amber-s);border-color:var(--amber);color:var(--navy);}
+
+/* ── RANKING LIST ── */
+.list-wrap{max-width:1100px;margin:0 auto;padding:0 24px 40px;}
+.list-head{display:grid;grid-template-columns:48px 1fr 100px 100px 80px 80px 130px 58px;gap:8px;align-items:center;padding:8px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--slate);border-bottom:2px solid var(--slate-m);border-left:4px solid transparent;margin-bottom:6px;}
+.lh-r{text-align:right;}
+
+/* ── SECTOR CARD ── */
+.sec-card{display:grid;grid-template-columns:48px 1fr 100px 100px 80px 80px 130px 58px;gap:8px;align-items:center;padding:11px 14px 11px 14px;background:var(--white);border-radius:var(--radius);border:1.5px solid var(--slate-m);border-left:4px solid transparent;margin-bottom:7px;cursor:pointer;transition:box-shadow .15s,border-color .15s;box-shadow:var(--shadow);}
+.sec-card:hover{border-color:var(--navy);box-shadow:0 4px 20px rgba(30,42,74,.13);}
+.sec-card.top3{border-left-color:var(--amber);}
+.sec-card.top10{border-left-color:var(--navy);}
+.sec-card.bottom5{border-left-color:var(--red);}
+.sec-card.hidden{display:none;}
+
+/* rank badge */
+.rank-badge{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;background:var(--slate-l);color:var(--ink-2);}
+.rank-badge.r1{background:var(--amber);color:var(--navy);font-size:15px;font-weight:700;}
+.rank-badge.r2{background:#94a3b8;color:#fff;font-size:14px;}
+.rank-badge.r3{background:#b45309;color:#fff;}
+.rank-badge.bot{background:var(--red-s);color:var(--red);}
+
+/* sector name cell */
+.sec-name{display:flex;flex-direction:column;gap:2px;overflow:hidden;}
+.sec-title{font-weight:700;font-size:13.5px;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sec-grp{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:1px 7px;border-radius:10px;background:var(--slate-l);color:var(--slate);width:fit-content;margin-top:1px;}
+
+/* metric cells */
+.met{text-align:right;font-family:'DM Mono',monospace;font-size:12px;overflow:hidden;}
+.met .val{display:block;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.met .tag{display:block;font-size:10px;color:var(--ink-3);white-space:nowrap;}
+.pos{color:var(--green)!important;}
+.neg{color:var(--red)!important;}
+.warn-c{color:var(--warn)!important;}
+
+/* heat bar */
+.heat-wrap{display:flex;flex-direction:column;gap:3px;}
+.heat-bar{height:8px;border-radius:4px;background:var(--slate-l);overflow:hidden;}
+.heat-fill{height:100%;border-radius:4px;transition:width .4s ease;}
+.heat-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--slate);}
+
+/* CB score */
+.cb-score{text-align:right;}
+.cb-score .sc{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;display:block;}
+.cb-score .sl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--slate);display:block;}
+.cb-score.s-hi .sc{color:var(--green);}
+.cb-score.s-mid .sc{color:var(--warn);}
+.cb-score.s-lo .sc{color:var(--red);}
+
+/* ── EXPANDED DETAIL PANEL ── */
+.detail-panel{display:none;grid-column:1/-1;margin-top:4px;padding:16px;background:var(--slate-l);border-radius:var(--r2);border:1px solid var(--slate-m);}
+.detail-panel.open{display:block;}
+.dp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.dp-block{background:var(--white);border-radius:var(--r2);padding:12px 14px;border:1px solid var(--slate-m);}
+.dp-block-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--slate);margin-bottom:8px;}
+.dp-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;font-size:12px;}
+.dp-row:last-child{margin-bottom:0;}
+.dp-key{color:var(--ink-2);}
+.dp-val{font-family:'DM Mono',monospace;font-weight:500;}
+.dp-stars{display:flex;gap:3px;margin-top:6px;}
+.star{width:12px;height:12px;border-radius:2px;background:var(--slate-m);}
+.star.on{background:var(--amber);}
+.dp-outlook{font-size:11.5px;color:var(--ink-2);line-height:1.5;margin-top:4px;}
+.dp-co-list{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+.dp-co{font-size:10.5px;padding:2px 8px;border-radius:10px;background:var(--slate-l);color:var(--ink-2);font-family:'DM Mono',monospace;}
+
+/* ── CB ASSIST ── */
+.assist-wrap{max-width:1100px;margin:0 auto 40px;padding:0 24px;}
+.assist-card{background:var(--white);border:1.5px solid var(--slate-m);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);}
+.assist-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px;}
+.assist-row{display:flex;gap:8px;align-items:flex-end;}
+.assist-inp{flex:1;padding:8px 12px;border:1.5px solid var(--slate-m);border-radius:var(--r2);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;}
+.assist-inp:focus{border-color:var(--navy);}
+.assist-btn{padding:8px 16px;background:var(--navy);color:#fff;border:none;border-radius:var(--r2);font-weight:700;font-size:12px;cursor:pointer;}
+.assist-lang{display:flex;gap:6px;margin-bottom:8px;}
+.alb{padding:3px 10px;border-radius:12px;border:1.5px solid var(--slate-m);background:var(--white);font-size:11px;font-weight:600;cursor:pointer;}
+.alb.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.assist-out{margin-top:10px;padding:12px 14px;background:var(--slate-l);border-radius:var(--r2);font-size:12.5px;line-height:1.7;min-height:44px;color:var(--ink);}
+.assist-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.aqchip{padding:3px 10px;border-radius:12px;border:1.5px solid var(--slate-m);background:var(--white);font-size:11px;cursor:pointer;transition:all .1s;}
+.aqchip:hover{border-color:var(--navy);background:var(--navy);color:#fff;}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:20px;font-size:10.5px;color:var(--ink-3);border-top:1px solid var(--slate-m);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:800px){
+  .list-head{display:none;}
+  .sec-card{grid-template-columns:44px 1fr 60px;grid-template-rows:auto auto;}
+  .sec-card > :nth-child(n+4){display:none;}
+  .cb-score .sc{font-size:14px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-eyebrow">CB Research · EIL Research · Q4 FY26 · Elango Industries Limited</div>
+    <div class="hdr-title">India Sector <span>Performance Ranker</span></div>
+    <div class="hdr-sub">30 Sectors · 37 Dashboards · Q4 FY26 Results · CB Score Composite Ranking · Not Investment Advice</div>
+    <div class="hdr-chips">
+      <span class="chip g">🏆 #1 Defence</span>
+      <span class="chip g">🏨 Hotels upcycle</span>
+      <span class="chip g">💊 Pharma — Lupin +89% PAT</span>
+      <span class="chip a">🏦 Banking mixed</span>
+      <span class="chip r">💻 IT under pressure</span>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <div class="summary-inner">
+    <div class="sum-stat"><span class="sum-val">30</span><span class="sum-lbl">Sectors Ranked</span></div>
+    <div class="sum-div"></div>
+    <div class="sum-stat"><span class="sum-val g">18</span><span class="sum-lbl">Green Sectors</span></div>
+    <div class="sum-div"></div>
+    <div class="sum-stat"><span class="sum-val a">7</span><span class="sum-lbl">Mixed / Neutral</span></div>
+    <div class="sum-div"></div>
+    <div class="sum-stat"><span class="sum-val r">5</span><span class="sum-lbl">Red / Weak</span></div>
+    <div class="sum-div"></div>
+    <div class="sum-stat"><span class="sum-val">Q4 FY26</span><span class="sum-lbl">Period</span></div>
+    <div class="sum-div"></div>
+    <div class="sum-stat"><span class="sum-val">May 2026</span><span class="sum-lbl">Data As Of</span></div>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div style="background:#fff;border-bottom:1px solid var(--slate-m);padding:12px 0 10px;">
+<div class="controls">
+  <div class="ctrl-row">
+    <span class="ctrl-lbl">Filter:</span>
+    <button class="fbtn on" onclick="filter('all',this)">All 30</button>
+    <button class="fbtn" onclick="filter('top10',this)">Top 10</button>
+    <button class="fbtn" onclick="filter('green',this)">Green ✅</button>
+    <button class="fbtn" onclick="filter('mixed',this)">Mixed ⚡</button>
+    <button class="fbtn" onclick="filter('red',this)">Weak 🔴</button>
+  </div>
+  <div class="ctrl-row">
+    <span class="ctrl-lbl">Group:</span>
+    <button class="sbtn on" onclick="filterGrp('all',this)">All Groups</button>
+    <button class="sbtn" onclick="filterGrp('Manufacturing',this)">Manufacturing</button>
+    <button class="sbtn" onclick="filterGrp('Financials',this)">Financials</button>
+    <button class="sbtn" onclick="filterGrp('Consumption',this)">Consumption & Services</button>
+    <button class="sbtn" onclick="filterGrp('Infrastructure',this)">Infrastructure</button>
+    <button class="sbtn" onclick="filterGrp('Energy',this)">Energy</button>
+  </div>
+</div>
+</div>
+
+<!-- LIST -->
+<div style="padding-top:16px;">
+<div class="list-wrap">
+  <div class="list-head">
+    <div>Rank</div>
+    <div>Sector</div>
+    <div class="lh-r">Rev Growth</div>
+    <div class="lh-r">EBITDA Margin</div>
+    <div class="lh-r">PAT Trend</div>
+    <div class="lh-r">Outlook</div>
+    <div>CB Heat Bar</div>
+    <div class="lh-r">CB Score</div>
+  </div>
+  <div id="sector-list"></div>
+</div>
+</div>
+
+<!-- CB ASSIST -->
+<div class="assist-wrap">
+  <div class="assist-card">
+    <div class="assist-title">🤖 CB Assist — Sector Intelligence Q&A</div>
+    <div class="assist-lang">
+      <button class="alb on" id="la-en" onclick="setLang('en')">English</button>
+      <button class="alb" id="la-ta" onclick="setLang('ta')">தமிழ்</button>
+    </div>
+    <div class="assist-chips" id="assist-chips"></div>
+    <div class="assist-row" style="margin-top:8px;">
+      <input class="assist-inp" id="assist-inp" placeholder="Ask about any sector, ranking, or trend…" onkeydown="if(event.key==='Enter')askAssist()">
+      <button class="assist-btn" onclick="askAssist()">Ask</button>
+    </div>
+    <div class="assist-out" id="assist-out">Ask about any sector ranking, Q4 trends, or group performance across Indian equities. / எந்த sector பற்றியும் கேளுங்க.</div>
+  </div>
+</div>
+
+<div class="footer">CB Research · EIL Research · Elango Industries Limited (BSE: 513452) · Q4 FY26 Sector Ranker · For members only · Not SEBI-registered advice</div>
+
+<script>
+// ════════════════════════════════════════════════════════
+// SECTOR DATA — Q4 FY26 CB Research compiled scores
+// Fields: name, group, revGrowth(%), ebitdaMarg(%), patTrend(label), outlook(1-5),
+//         cbScore(0-100), sentiment(green/mixed/red), companies[], detail{}
+// ════════════════════════════════════════════════════════
+const SECTORS=[
+{name:'Defence',group:'Manufacturing',rev:'+32%',revN:32,ebitda:'18–22%',ebitdaN:20,pat:'↑↑ Strong',outlook:5,cb:91,sent:'green',
+ companies:['HAL','BEL','Bharat Forge','Mazagon Dock','Garden Reach','Data Patterns','Azad Engineering'],
+ detail:{revNote:'Order books at all-time highs; HAL ₹1.4L Cr backlog',ebitdaNote:'18–22% margins; HAL at 22%+',patNote:'PAT up 35–55% across pack',outNote:'FY27 budget allocation ₹6.22L Cr; Make-in-India tailwind; export push',risk:'Execution delays; single-customer (MoD) risk',stars:5}},
+
+{name:'Hotels',group:'Consumption & Services',rev:'+14%',revN:14,ebitda:'37–52%',ebitdaN:44,pat:'↑↑ Record',outlook:5,cb:87,sent:'green',
+ companies:['IHCL','ITC Hotels','EIH (Oberoi)','Chalet','Lemon Tree','Juniper','SAMHI'],
+ detail:{revNote:'IHCL +14%, ITC Hotels +18%, SAMHI +19.4% — broad-based',ebitdaNote:'Lemon Tree 52%, Chalet 48.8%, Juniper 44%; sector best-in-class margins',patNote:'IHCL ₹646 Cr (+26%), Juniper PAT doubled FY26, SAMHI turnaround',outNote:'India hotel cycle in upcycle phase; RevPAR +9–16% across pack; supply tight',risk:'New supply FY27–28; Juniper one-off tax; SAMHI leverage',stars:5}},
+
+{name:'Power (Gencos/Transmission)',group:'Energy',rev:'+18%',revN:18,ebitda:'28–42%',ebitdaN:34,pat:'↑↑ Strong',outlook:5,cb:86,sent:'green',
+ companies:['NTPC','Power Grid','Adani Power','Tata Power','CESC','Torrent Power','NHPC','JSW Energy'],
+ detail:{revNote:'NTPC capacity additions; Adani Power +22%; transmission capex surge',ebitdaNote:'Regulated utilities ~42%; merchant players ~28–32%',patNote:'NTPC PAT +18%, Power Grid steady; merchant margins up on peak tariffs',outNote:'India peak demand 250 GW+ FY26; 500 GW RE target by 2030 drives capex',risk:'Fuel cost pass-through lags; regulatory risk in state DISCOMs',stars:5}},
+
+{name:'Power Financiers',group:'Financials',rev:'+22%',revN:22,ebitda:'NII-led',ebitdaN:72,pat:'↑↑ Record',outlook:5,cb:85,sent:'green',
+ companies:['PFC','REC','IREDA'],
+ detail:{revNote:'NII growth 20–25%; loan book at record levels across all three',ebitdaNote:'NIM ~3.5–3.8%; credit cost near zero on PSU/RE project loans',patNote:'PFC PAT ₹7,200 Cr+; REC ₹4,500 Cr+; IREDA strong RE book growth',outNote:'₹11L Cr power sector capex pipeline; sovereign backing = negligible NPAs',risk:'RE project delays; concentrated sectoral exposure',stars:5}},
+
+{name:'Capital Goods',group:'Manufacturing',rev:'+17%',revN:17,ebitda:'13–18%',ebitdaN:15,pat:'↑ Good',outlook:4,cb:82,sent:'green',
+ companies:['Siemens','ABB','Hitachi Energy','Voltamp','Bosch','L&T (CapGoods)'],
+ detail:{revNote:'Order inflows at record; Siemens +19%, ABB +16%; T&D surge',ebitdaNote:'ABB 18%+, Siemens 17%; Voltamp 22% (transformer boom)',patNote:'Sector PAT up 20–35%; transformer cos outperformed',outNote:'T&D investment super-cycle; data centre, RE, railways all driving orders',risk:'Execution capacity; input cost inflation; valuation stretched',stars:4}},
+
+{name:'Exchanges / Depositories',group:'Financials',rev:'+24%',revN:24,ebitda:'55–70%',ebitdaN:62,pat:'↑↑ Strong',outlook:4,cb:81,sent:'green',
+ companies:['BSE','MCX','CDSL','NSDL','IEX'],
+ detail:{revNote:'BSE +35% (options boom); MCX +28%; CDSL Demat accounts 18 Cr+',ebitdaNote:'Inherent high-margin monopoly / duopoly businesses',patNote:'BSE PAT +50%+; CDSL +20%; MCX margins expanding post tech migration',outNote:'Retail investor participation structural; SIP flows ₹25K Cr/month',risk:'SEBI regulatory changes; BSE-NSE competition; IEX volume volatility',stars:4}},
+
+{name:'Cables & Wires',group:'Manufacturing',rev:'+16%',revN:16,ebitda:'11–14%',ebitdaN:12,pat:'↑ Good',outlook:4,cb:79,sent:'green',
+ companies:['Polycab','KEI','Finolex Cables','RR Kabel','Havells','Sterlite'],
+ detail:{revNote:'Polycab +18%, KEI +22%; infrastructure and real estate driving volumes',ebitdaNote:'~11–14%; input costs (copper) pass-through keeps margins relatively stable',patNote:'PAT growth 15–25% across pack',outNote:'Housing boom, T&D expansion, EV charging infra all multi-year demand drivers',risk:'Copper price spike compresses margins; competition from unorganised',stars:4}},
+
+{name:'Solar / Renewables',group:'Energy',rev:'+28%',revN:28,ebitda:'20–35%',ebitdaN:27,pat:'↑ Mixed',outlook:4,cb:78,sent:'green',
+ companies:['Adani Green','Greenko','Shakti Pumps','Waaree','Premier Energies'],
+ detail:{revNote:'Capacity additions strong; Shakti Pumps +40%; module cos +30%+',ebitdaNote:'Module cos 20–22%; asset-heavy IPPs 30–35% EBITDA',patNote:'PAT varies widely; high-capex IPPs still debt-heavy; equipment cos strong',outNote:'India 500 GW RE target; solar module exports growing; PM-KUSUM tailwind',risk:'Panel price deflation; grid connectivity delays; high leverage at IPPs',stars:4}},
+
+{name:'Railways',group:'Infrastructure',rev:'+20%',revN:20,ebitda:'14–20%',ebitdaN:17,pat:'↑ Good',outlook:4,cb:77,sent:'green',
+ companies:['RVNL','IRFC','Rail Vikas Nigam','Titagarh','Texmaco','IRCTC'],
+ detail:{revNote:'RVNL order book ₹95,000 Cr+; IRFC NII growing steadily',ebitdaNote:'RVNL ~14%; IRCTC ~32%; manufacturing cos 14–18%',patNote:'Consistent growth; IRCTC PAT ₹320 Cr Q4',outNote:'Vande Bharat expansion; freight corridor completion; ₹2.52L Cr budget FY27',risk:'Execution pace; order competition; IRCTC platform competition',stars:4}},
+
+{name:'EMS',group:'Manufacturing',rev:'+22%',revN:22,ebitda:'8–12%',ebitdaN:10,pat:'↑ Good',outlook:4,cb:76,sent:'green',
+ companies:['Dixon Technologies','Amber Enterprises','Kaynes','Syrma','Netweb'],
+ detail:{revNote:'Dixon +35%; Amber +28%; PLI and China+1 driving secular growth',ebitdaNote:'~8–12%; improving as scale increases; Netweb 20%+ (servers)',patNote:'PAT growth 30–50% for top players; operating leverage kicking in',outNote:'India electronics production ₹9.5L Cr target; mobile, AC, LED, servers all growing',risk:'Customer concentration; margin thin; working capital intensive',stars:4}},
+
+{name:'NBFC (Lending)',group:'Financials',rev:'+18%',revN:18,ebitda:'NII-led',ebitdaN:62,pat:'↑ Good',outlook:4,cb:75,sent:'green',
+ companies:['Bajaj Finance','Shriram Finance','Cholamandalam','Muthoot Finance'],
+ detail:{revNote:'AUM growth 20–28%; Bajaj Finance ₹4.1L Cr AUM',ebitdaNote:'NIMs 6–9%; Bajaj at 10%+; gold loan cos 10–12%',patNote:'Bajaj PAT +14% (slower — credit cost normalisation); Muthoot +28%',outNote:'Consumer credit structural; gold loan cos benefiting from gold price surge',risk:'Credit cost uptick; RBI regulations; unsecured lending pressure at Bajaj',stars:4}},
+
+{name:'Gold & Jewellery',group:'Consumption & Services',rev:'+25%',revN:25,ebitda:'7–12%',ebitdaN:9,pat:'↑ Good',outlook:4,cb:74,sent:'green',
+ companies:['Titan','Kalyan Jewellers','Senco Gold','PC Jeweller','Malabar Gold','Thangamayil'],
+ detail:{revNote:'Gold price +30% YoY driving revenue; Titan +22%; Kalyan +28%',ebitdaNote:'~7–12%; margins steady despite gold price; making charges protect margins',patNote:'Volume growth + price tailwind = strong PAT for franchisee cos',outNote:'Wedding season robust; Gold at ₹95,000+/10g; hallmarking drives organised play',risk:'Gold price correction; high gold inventory risk; Titan valuation premium',stars:4}},
+
+{name:'Pharma',group:'Manufacturing',rev:'+18%',revN:18,ebitda:'25–36%',ebitdaN:30,pat:'↑↑ Strong',outlook:4,cb:81,sent:'green',
+ companies:['Sun Pharma','Lupin','Cipla','Dr Reddys','Divi\'s','Torrent','Aurobindo','Alkem','Laurus Labs','Zydus'],
+ detail:{revNote:'Sun Pharma Rev ₹14,560 Cr (+13.6%); Lupin +31.9% to ₹7,475 Cr; India domestic pharma market +10.5% Q4 FY26; Laurus Labs FY26 rev +23%. Broad-based growth across domestic + US',ebitdaNote:'Lupin EBITDA margin 35.5% (+1,070 bps YoY — exceptional turnaround); Sun Pharma 27.1%; Divi\'s 28%+; Laurus 26.8%. Sector margins at multi-year highs driven by US mix, operating leverage, weak rupee tailwind',patNote:'Sun Pharma PAT ₹2,714 Cr (+26%); Lupin PAT ₹1,460 Cr (+89%); Laurus PAT +148% FY26; Dr Reddys weak (gRevlimid exclusivity expiry hit). Pack-level PAT strong ex-Reddys/Cipla',outNote:'4 structural tailwinds: (1) Weak INR — every ₹1 depreciation = +40–50 bps EBITDA for US exporters; (2) India domestic +10.5% — chronic therapies, Ayushman Bharat; (3) Sun US Innovative Medicines crossed $1 Bn first time; (4) CDMO/Laurus secular growth. US tariff risk on generics real but India supplies 40% of US generic volume — exemption likely for basics',risk:'US tariff extension to generics (10–15% revenue cut risk for high-US-exposure cos); gRevlimid exclusivity hit Dr Reddys Q4; API inflation 5–7% on China dependency; Sun Pharma specialty (Ilumya/Winlevi) tariff watch; Dr Reddys ₹453 Cr shelf-stock adjustment Q4',stars:4}},
+
+{name:'Banking',group:'Financials',rev:'+12%',revN:12,ebitda:'NIM-led',ebitdaN:3,pat:'↑ Mixed',outlook:3,cb:68,sent:'mixed',
+ companies:['HDFC Bank','ICICI Bank','SBI','Kotak','Axis','IndusInd','Yes Bank','PNB','BOB'],
+ detail:{revNote:'NII growth moderated to 8–14%; credit growth ~13%; deposit war',ebitdaNote:'NIMs compressing 10–20 bps across pack as deposit costs rise',patNote:'HDFC Bank NIM pressure; ICICI/SBI strong; IndusInd stress flagged',outNote:'Rate cuts helping borrowers; deposit mobilisation remains challenge FY27',risk:'IndusInd derivatives issue; SFB credit quality; NIM compression broad-based',stars:3}},
+
+{name:'FMCG',group:'Consumption & Services',rev:'+8%',revN:8,ebitda:'18–26%',ebitdaN:22,pat:'↑ Moderate',outlook:3,cb:67,sent:'mixed',
+ companies:['HUL','ITC','Nestle','Britannia','Dabur','Marico','Emami','Godrej Consumer','Varun Beverages'],
+ detail:{revNote:'Volume recovery gradual; price-led growth fading; rural lagging urban',ebitdaNote:'HUL ~24%; ITC (FMCG) improving; Britannia ~17%; RM easing helps',patNote:'HUL PAT flat; Nestle steady; Varun Beverages strong (+22%) on volumes',outNote:'Rural consumption recovery a FY27 trigger; premiumisation ongoing in urban',risk:'Rural stress persists; competitive intensity; palm oil, wheat cost volatile',stars:3}},
+
+{name:'Hospitals',group:'Consumption & Services',rev:'+16%',revN:16,ebitda:'18–24%',ebitdaN:21,pat:'↑ Good',outlook:4,cb:76,sent:'green',
+ companies:['Apollo Hospitals','Fortis','Max Healthcare','Narayana Hrudayalaya','Aster DM','KIMS'],
+ detail:{revNote:'ARPOB (revenue per bed) growing; international patients recovering',ebitdaNote:'Apollo ~22%; Max ~24%; NHHI ~18%; new beds ramping dilute margins short-term',patNote:'PAT growth 20–30% for mature networks; new expansions dilutive',outNote:'Chronic disease burden; med-tourism; insurance penetration all structural',risk:'Bed addition capex heavy; regulatory pricing on essential procedures',stars:4}},
+
+{name:'Telecom',group:'Infrastructure',rev:'+10%',revN:10,ebitda:'48–55%',ebitdaN:51,pat:'↑ Mixed',outlook:3,cb:66,sent:'mixed',
+ companies:['Reliance Jio','Bharti Airtel','Vodafone Idea','Tata Communications'],
+ detail:{revNote:'Airtel +15% (ARPU ₹245); Jio +8%; Vi struggling; Tata Comm +12%',ebitdaNote:'Duopoly EBITDA margins 48–55%; Vi structurally challenged',patNote:'Airtel PAT +35% FY26; Jio PAT steady; Vi PAT negative',outNote:'5G monetisation beginning; enterprise segment strong; ARPU hikes likely',risk:'Vi solvency overhang; 5G capex ROI timeline; spectrum auction',stars:3}},
+
+{name:'Auto 2W',group:'Manufacturing',rev:'+12%',revN:12,ebitda:'18–22%',ebitdaN:20,pat:'↑ Good',outlook:4,cb:72,sent:'green',
+ companies:['Hero MotoCorp','TVS Motor','Bajaj Auto','Honda Motorcycle','Royal Enfield (Eicher)'],
+ detail:{revNote:'TVS +18%; Bajaj +15% (exports strong); Hero +8%; RE premium segment solid',ebitdaNote:'Bajaj 22%; TVS 19%; Hero 17%; RE 28%+ (premium moat)',patNote:'Bajaj PAT ₹2,100 Cr Q4; TVS PAT +28%; RE consistent compounder',outNote:'Rural recovery Q1 FY27 positive; EV transition manageable; exports growing',risk:'EV disruption accelerating; Hero lagging; raw material costs',stars:4}},
+
+{name:'Auto 4W',group:'Manufacturing',rev:'+8%',revN:8,ebitda:'8–14%',ebitdaN:11,pat:'↑ Moderate',outlook:3,cb:64,sent:'mixed',
+ companies:['Maruti Suzuki','Hyundai India','Tata Motors (PV)','M&M','Kia India'],
+ detail:{revNote:'Maruti +6%; Hyundai +9%; M&M +24% (SUV boom); industry volume +4%',ebitdaNote:'Maruti 12%; Hyundai 13%; M&M 15% (SUV mix); Tata Motors JLR 16%',patNote:'M&M exceptional; Maruti steady; Hyundai IPO year solid; JLR strong',outNote:'SUV mix sustaining; EV push; M&M order book robust',risk:'Slowdown in entry-level segment; rising competition; EV transition costs',stars:3}},
+
+{name:'Auto Ancillaries',group:'Manufacturing',rev:'+11%',revN:11,ebitda:'13–18%',ebitdaN:15,pat:'↑ Moderate',outlook:3,cb:65,sent:'mixed',
+ companies:['Bosch','Motherson','Minda Industries','Sona BLW','Endurance','Suprajit'],
+ detail:{revNote:'Domestic auto growth + export recovery; Bosch +12%; Sona BLW +18%',ebitdaNote:'~13–18%; Bosch 18%; EV-focused cos slightly lower as mix shifts',patNote:'Steady; Sona BLW strong on EV content per vehicle',outNote:'EV content opportunity; CV cycle recovery; export market recovery',risk:'OEM pricing pressure; EV disruption for ICE-specific components',stars:3}},
+
+{name:'Tyres',group:'Manufacturing',rev:'+10%',revN:10,ebitda:'17–22%',ebitdaN:19,pat:'↑ Good',outlook:4,cb:74,sent:'green',
+ companies:['MRF','Apollo Tyres','CEAT','Balkrishna Industries','JK Tyre'],
+ detail:{revNote:'MRF +9%; Apollo +11%; BKT +14% (farm/OTR export); CEAT +10%',ebitdaNote:'MRF 22%; Apollo 19%; BKT 28% (agri premium); RM easing helps',patNote:'MRF PAT ₹700 Cr+ Q4; Apollo +20%; BKT strong margins',outNote:'BKT farm tyre exports; replacement demand steady; RM tailwind continues',risk:'China dumping risk; crude volatility (natural/synthetic rubber); BKT FX',stars:4}},
+
+{name:'Cement',group:'Infrastructure',rev:'+6%',revN:6,ebitda:'16–22%',ebitdaN:18,pat:'↑ Modest',outlook:3,cb:60,sent:'mixed',
+ companies:['UltraTech','Ambuja','ACC','Shree Cement','Dalmia Bharat','JK Cement'],
+ detail:{revNote:'Volume +8–10% but realisations flat/down; pricing discipline weak',ebitdaNote:'UltraTech 20%; Shree 23%; ACC/Ambuja 18%; costs easing (petcoke)',patNote:'Margins recovering vs H1 FY26 but YoY still soft; UltraTech best placed',outNote:'Capacity additions peaking; infra & housing demand FY27; pricing critical',risk:'Oversupply risk; pricing war; energy cost spikes',stars:3}},
+
+{name:'Metals',group:'Manufacturing',rev:'+5%',revN:5,ebitda:'12–20%',ebitdaN:15,pat:'↑ Volatile',outlook:3,cb:58,sent:'mixed',
+ companies:['Tata Steel','JSW Steel','SAIL','Hindalco','NALCO','Vedanta'],
+ detail:{revNote:'Steel realisations weak on China dumping; Aluminium better on LME',ebitdaNote:'Hindalco 20%+; NALCO strong; steel cos 12–15% on lower realisations',patNote:'Steel PAT under pressure; Aluminium pack outperformed',outNote:'Anti-dumping duties on China steel positive signal; LME Aluminium supportive',risk:'China steel exports; global demand slowdown; coking coal costs',stars:3}},
+
+{name:'Oil & Gas',group:'Energy',rev:'+4%',revN:4,ebitda:'18–32%',ebitdaN:24,pat:'↓ Mixed',outlook:3,cb:57,sent:'mixed',
+ companies:['Reliance Industries','ONGC','BPCL','IOC','HPCL','Petronet LNG'],
+ detail:{revNote:'OMC revenues soft on lower crude; RIL O2C stable; Upstream +5%',ebitdaNote:'OMCs: marketing margins normalised at ₹3–4/ltr; upstream 28–32%',patNote:'OMCs PAT compressed vs FY25 windfall; ONGC PAT stable; RIL flat',outNote:'Gas pricing clarity; city gas distribution growth; petrochemicals recovery',risk:'Crude price collapse risk; LPG subsidy burden; Saudi OSP hikes',stars:3}},
+
+{name:'Paints',group:'Manufacturing',rev:'+7%',revN:7,ebitda:'17–20%',ebitdaN:18,pat:'↑ Moderate',outlook:3,cb:61,sent:'mixed',
+ companies:['Asian Paints','Berger Paints','Kansai Nerolac','Indigo Paints','Grasim (Birla Opus)'],
+ detail:{revNote:'Volume +5–8%; pricing flat; Birla Opus entry disrupting market share',ebitdaNote:'Asian Paints 20%; Berger 18%; margins recovering on RM easing',patNote:'Asian Paints PAT under pressure (market share defence costs); Berger steady',outNote:'Real estate boom = structural demand; Birla Opus disruption a 3-yr story',risk:'Birla Opus pricing aggression; Asian Paints market share risk; input cost',stars:3}},
+
+{name:'Sugar / Ethanol',group:'Manufacturing',rev:'+12%',revN:12,ebitda:'12–18%',ebitdaN:14,pat:'↑ Mixed',outlook:3,cb:63,sent:'mixed',
+ companies:['Balrampur Chini','EID Parry','Triveni Engineering','Dhampur Sugar','Dalmia Bharat Sugar'],
+ detail:{revNote:'Ethanol blending +22% YoY; sugar exports limited by policy; domestic firm',ebitdaNote:'~12–18%; distillery segment margin accretive (20%+) vs sugar (~8%)',patNote:'Mixed — depends on sugar policy; ethanol-heavy cos outperform',outNote:'Blending target 20% by 2026; ethanol capacity expansion ongoing',risk:'Government sugar price/export policy; monsoon cane crop; global sugar prices',stars:3}},
+
+{name:'Alcobev',group:'Consumption & Services',rev:'+10%',revN:10,ebitda:'12–16%',ebitdaN:14,pat:'↑ Moderate',outlook:3,cb:62,sent:'mixed',
+ companies:['United Spirits','United Breweries','Radico Khaitan','Globus Spirits','Som Distilleries'],
+ detail:{revNote:'Premiumisation trend; United Spirits +11%; Radico +14% (prestige+ mix)',ebitdaNote:'~12–16%; Radico 16%+; state excise duty structures compress margins',patNote:'Radico PAT +18%; United Spirits steady; category premiumisation helping',outNote:'Premiumisation is multi-year; beer penetration growing; spirits + beer',risk:'State-by-state policy risk; high excise; raw material (ENA, barley) costs',stars:3}},
+
+{name:'Textiles',group:'Manufacturing',rev:'+8%',revN:8,ebitda:'10–16%',ebitdaN:12,pat:'↑ Modest',outlook:3,cb:59,sent:'mixed',
+ companies:['Vardhman Textiles','Arvind','Raymond','Page Industries','Welspun','KPR Mill'],
+ detail:{revNote:'Export recovery slow; domestic branded (Page Industries) better at +10%',ebitdaNote:'~10–16%; spinning margins squeezed; branded players hold better',patNote:'Page Industries strong; export-oriented cos mixed',outNote:'China+1 a longer-term story; PLI for technical textiles; Bangladesh recovery',risk:'Cotton price volatility; EU recession impact on exports; Bangladesh competition',stars:3}},
+
+{name:'Recycling',group:'Manufacturing',rev:'+18%',revN:18,ebitda:'8–14%',ebitdaN:11,pat:'↑ Good',outlook:4,cb:70,sent:'green',
+ companies:['Gravita India','Minda Scrap','Eco Recycling','Namo eWaste'],
+ detail:{revNote:'Lead/Aluminium recycling volumes up; LME prices supportive',ebitdaNote:'~8–14%; spreads over primary metal prices the key lever',patNote:'Gravita India PAT +25%+; sector growing faster than primary metals',outNote:'EPR regulations driving organised recycling; battery recycling a new frontier',risk:'LME metal price decline; unorganised competition; regulatory compliance',stars:4}},
+
+{name:'IT Services',group:'Manufacturing',rev:'+4%',revN:4,ebitda:'21–27%',ebitdaN:24,pat:'↓ Pressured',outlook:2,cb:54,sent:'red',
+ companies:['TCS','Infosys','HCL Tech','Wipro','Tech Mahindra','LTIMindtree','Mphasis','Fractal'],
+ detail:{revNote:'USD revenue growth muted 2–5% CC; discretionary spend still slow',ebitdaNote:'TCS 24.5%; Infosys 21–22%; margins stable on lower attrition/travel',patNote:'PAT growth 5–12%; cost controls helping but topline weak',outNote:'BFSI recovery gradual; GenAI deals ramping but small; H2 FY27 better',risk:'BFSI macro in US/Europe; deal ramp delay; visa/talent costs',stars:2}},
+
+{name:'Aviation',group:'Consumption & Services',rev:'+15%',revN:15,ebitda:'12–18%',ebitdaN:14,pat:'↓ Loss/Recovery',outlook:3,cb:56,sent:'red',
+ companies:['IndiGo (InterGlobe)','Air India (Tata)','SpiceJet','Akasa Air'],
+ detail:{revNote:'IndiGo +16% revenue; industry passenger +14%; IndiGo 60%+ market share',ebitdaNote:'IndiGo ~18% EBITDAR; engine grounding (GTF) a drag on ASK',patNote:'IndiGo PAT under pressure — engine issues ground 60+ aircraft; Air India loss',outNote:'Structural aviation growth; AI fleet refresh; IndiGo GTF resolution key FY27',risk:'Engine grounding (P&W GTF); ATF prices; Air India cash burn',stars:2}},
+
+];
+
+// De-duplicate by name
+const seen=new Set();
+const DATA=SECTORS.filter(s=>{ if(seen.has(s.name))return false; seen.add(s.name); return true; });
+
+// Sort by CB score descending, assign rank
+DATA.sort((a,b)=>b.cb-a.cb);
+DATA.forEach((s,i)=>s.rank=i+1);
+
+// ── Render ──
+let curFilter='all', curGrp='all', curLang='en';
+
+function heatColor(score){
+  if(score>=80)return'linear-gradient(90deg,#059669,#34d399)';
+  if(score>=68)return'linear-gradient(90deg,#d97706,#fbbf24)';
+  return'linear-gradient(90deg,#e11d48,#fb7185)';
+}
+function rankClass(r,sent){
+  if(sent==='red'||r>25)return'bot';
+  if(r===1)return'r1';if(r===2)return'r2';if(r===3)return'r3';
+  return'';
+}
+function stars(n){
+  let h='';
+  for(let i=1;i<=5;i++)h+=`<div class="star${i<=n?' on':''}"></div>`;
+  return h;
+}
+function renderCard(s){
+  const rc=rankClass(s.rank,s.sent);
+  const cls=[
+    'sec-card',
+    s.rank<=3?'top3':'',
+    s.rank<=10&&s.rank>3?'top10':'',
+    s.sent==='red'?'bottom5':'',
+    `filter-${s.sent}`,
+    `grp-${s.group.replace(/[^a-zA-Z]/g,'')}`
+  ].filter(Boolean).join(' ');
+  const patClass=s.pat.includes('↑↑')?'pos':s.pat.includes('↓')?'neg':'';
+  const revClass=s.revN>=15?'pos':s.revN>=8?'warn-c':'neg';
+  return`
+<div class="${cls}" id="card-${s.rank}" onclick="toggleDetail(${s.rank})">
+  <div class="rank-badge ${rc}">${s.rank}</div>
+  <div class="sec-name">
+    <span class="sec-title">${s.name}</span>
+    <span class="sec-grp">${groupEmoji(s.group)} ${s.group}</span>
+  </div>
+  <div class="met"><span class="val ${revClass}">${s.rev}</span><span class="tag">Rev YoY</span></div>
+  <div class="met"><span class="val">${s.ebitda}</span><span class="tag">EBITDA%</span></div>
+  <div class="met"><span class="val ${patClass}">${s.pat}</span><span class="tag">PAT</span></div>
+  <div class="met"><span class="val">${'★'.repeat(s.detail.stars)}${'☆'.repeat(5-s.detail.stars)}</span><span class="tag">Outlook</span></div>
+  <div class="heat-wrap">
+    <div class="heat-bar"><div class="heat-fill" style="width:${s.cb}%;background:${heatColor(s.cb)};"></div></div>
+    <div class="heat-lbl">${s.cb}/100</div>
+  </div>
+  <div class="cb-score ${s.cb>=75?'s-hi':s.cb>=60?'s-mid':'s-lo'}">
+    <span class="sc">${s.cb}</span>
+    <span class="sl">CB Score</span>
+  </div>
+</div>
+<div class="detail-panel" id="dp-${s.rank}">
+  <div class="dp-grid">
+    <div class="dp-block">
+      <div class="dp-block-title">📊 Q4 FY26 Numbers</div>
+      <div class="dp-row"><span class="dp-key">Revenue Growth</span><span class="dp-val ${revClass}">${s.rev} YoY</span></div>
+      <div class="dp-row"><span class="dp-key">EBITDA Margin</span><span class="dp-val">${s.ebitda}</span></div>
+      <div class="dp-row"><span class="dp-key">PAT Trend</span><span class="dp-val ${patClass}">${s.pat}</span></div>
+      <div style="font-size:11px;color:var(--ink-2);margin-top:6px;">${s.detail.revNote}</div>
+    </div>
+    <div class="dp-block">
+      <div class="dp-block-title">🔍 Deep Metrics</div>
+      <div class="dp-row"><span class="dp-key">EBITDA Detail</span><span class="dp-val">${s.detail.ebitdaNote.substring(0,30)}…</span></div>
+      <div class="dp-row"><span class="dp-key">PAT Detail</span><span class="dp-val">${s.detail.patNote.substring(0,30)}…</span></div>
+      <div style="font-size:11px;color:var(--ink-2);margin-top:6px;">${s.detail.ebitdaNote}</div>
+    </div>
+    <div class="dp-block">
+      <div class="dp-block-title">🔭 FY27 Outlook</div>
+      <div class="dp-stars">${stars(s.detail.stars)}</div>
+      <div class="dp-outlook">${s.detail.outNote}</div>
+      <div style="font-size:11px;color:var(--red);margin-top:8px;"><strong>Risk:</strong> ${s.detail.risk}</div>
+    </div>
+    <div class="dp-block">
+      <div class="dp-block-title">🏢 Key Companies</div>
+      <div class="dp-co-list">${s.companies.map(c=>`<span class="dp-co">${c}</span>`).join('')}</div>
+    </div>
+  </div>
+</div>`;
+}
+
+function groupEmoji(g){
+  return{Manufacturing:'⚙️',Financials:'🏦','Consumption & Services':'🛍️',Infrastructure:'🏗️',Energy:'⚡'}[g]||'📦';
+}
+
+function renderAll(){
+  const list=document.getElementById('sector-list');
+  const filterMap={all:()=>true,top10:s=>s.rank<=10,green:s=>s.sent==='green',mixed:s=>s.sent==='mixed',red:s=>s.sent==='red'};
+  const grpMap={all:()=>true,Manufacturing:s=>s.group==='Manufacturing',Financials:s=>s.group==='Financials',Consumption:s=>s.group==='Consumption & Services',Infrastructure:s=>s.group==='Infrastructure',Energy:s=>s.group==='Energy'};
+  list.innerHTML=DATA.filter(filterMap[curFilter]||filterMap.all).filter(grpMap[curGrp]||grpMap.all).map(renderCard).join('');
+}
+
+function filter(f,btn){
+  curFilter=f;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderAll();
+}
+function filterGrp(g,btn){
+  curGrp=g;
+  document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderAll();
+}
+function toggleDetail(rank){
+  const dp=document.getElementById('dp-'+rank);
+  if(!dp)return;
+  const wasOpen=dp.classList.contains('open');
+  document.querySelectorAll('.detail-panel.open').forEach(d=>d.classList.remove('open'));
+  if(!wasOpen)dp.classList.add('open');
+}
+
+// ── CB Assist ──
+function setLang(l){curLang=l;document.querySelectorAll('.alb').forEach(b=>b.classList.remove('on'));document.getElementById('la-'+l).classList.add('on');}
+
+const QNA={
+  top:{en:`<strong>Top 5 Sectors — Q4 FY26 (Revised)</strong><br><br>🥇 <strong>#1 Defence (91)</strong> — Order books at all-time highs; HAL, BEL, Mazagon firing; MoD capex ₹6.22L Cr FY27<br>🥈 <strong>#2 Hotels (87)</strong> — India hotel upcycle; RevPAR +9–19% across pack; SAMHI turnaround; Juniper PAT doubled<br>🥉 <strong>#3 Power Gencos (86)</strong> — Peak demand 250 GW+; NTPC capacity additions; merchant tariffs surging<br>4️⃣ <strong>#4 Power Financiers (85)</strong> — PFC/REC at record PAT; IREDA RE book surging; near-zero NPAs<br>5️⃣ <strong>#5 Capital Goods (82)</strong> — T&D super-cycle; Siemens/ABB/Hitachi Energy order momentum<br><br>⭐ <strong>Pharma (81) — revised up from 73:</strong> Lupin PAT +89% (EBITDA margin 35.5%, +1,070 bps); Sun Pharma PAT +26%; India domestic +10.5%; weak rupee tailwind; US Innovative $1 Bn milestone. Just outside top 5 after correction.`,
+   ta:`<strong>Top 5 Sectors Q4 FY26 (Revised)</strong><br><br>🥇 <strong>Defence (91)</strong> — HAL, BEL எல்லாம் record orders; MoD ₹6.22L Cr budget<br>🥈 <strong>Hotels (87)</strong> — India hotel upcycle; IHCL, Lemon Tree, SAMHI எல்லாம் strong<br>🥉 <strong>Power Gencos (86)</strong> — Peak demand 250 GW+; NTPC capacity up<br>4️⃣ <strong>Power Financiers (85)</strong> — PFC/REC record PAT; near-zero NPAs<br>5️⃣ <strong>Capital Goods (82)</strong> — T&D super-cycle; transformer cos வெடிக்குது<br><br>⭐ <strong>Pharma (81) revised:</strong> Lupin PAT +89%; Sun Pharma +26%; domestic +10.5%; weak rupee tailwind — Top 5 அடுத்தது.`},
+  bottom:{en:`<strong>Bottom 5 Sectors — Q4 FY26</strong><br><br>🔴 <strong>#30 IT Services (54)</strong> — USD revenue growth 2–5% CC; BFSI discretionary still slow; GenAI deals tiny<br>🔴 <strong>#29 Aviation (56)</strong> — IndiGo GTF engine grounding; Air India cash burn; structural demand vs cost pressure<br>🔴 <strong>#28 Oil & Gas (57)</strong> — OMC marketing margins normalised; upstream capex cautious; RIL O2C flat<br>🔴 <strong>#27 Metals (58)</strong> — China steel dumping crushing realisations; aluminium better than steel<br>🔴 <strong>#26 Textiles (59)</strong> — Export recovery slow; spinning margins squeezed; Bangladesh competes`,
+     ta:`<strong>Bottom 5 Sectors Q4 FY26</strong><br><br>🔴 IT Services (54) — USD growth மந்தம்; discretionary spend slow<br>🔴 Aviation (56) — IndiGo engine grounding பிரச்சனை<br>🔴 Oil & Gas (57) — OMC margins normalise ஆகிவிட்டது<br>🔴 Metals (58) — China dumping; steel realisations வலிக்குது<br>🔴 Textiles (59) — Export slow; spinning margin squeeze`},
+  energy:{en:`<strong>Energy Sector Group — Q4 FY26</strong><br><br>India's energy sectors are the standout theme of FY26:<br><br>• <strong>Power Gencos (86)</strong> — NTPC, Adani Power, Tata Power all firing; peak demand 250 GW crossed<br>• <strong>Power Financiers (85)</strong> — PFC ₹7,200 Cr PAT; REC ₹4,500 Cr; IREDA RE loan book at record<br>• <strong>Solar / Renewables (78)</strong> — Shakti Pumps +40%; Waaree/Premier Energies strong; IPPs high capex<br>• <strong>Oil & Gas (57)</strong> — OMC margins normalised; only weak spot in energy<br><br>India's 500 GW RE target by 2030 makes power + power financiers + solar a structural multi-year theme.`,
+        ta:`<strong>Energy Group Q4 FY26</strong><br><br>India energy sectors FY26-ல் strongest theme:<br>• Power Gencos (86) — Peak demand 250 GW+ crossed<br>• Power Financiers (85) — PFC/REC record profits<br>• Solar (78) — 500 GW RE target drive<br>• Oil & Gas (57) — OMC margin normalize; weak spot<br><br>Power + Power Finance + Solar — 3-5 year structural story.`},
+  banking:{en:`<strong>Banking Sector — Q4 FY26 (Rank #13, Score 68)</strong><br><br>Banking is <em>mixed</em> in Q4 FY26 — not a disaster but under pressure:<br><br>• NIM compression 10–20 bps across the pack as deposit costs rose ahead of rate cuts<br>• Credit growth moderated to ~13% — below FY25 peak of 16%<br>• <strong>ICICI, SBI</strong> — strong; asset quality excellent; ROA 1.8–2%<br>• <strong>HDFC Bank</strong> — NIM pressure from HDFC merger deposit normalisation<br>• <strong>IndusInd</strong> — derivatives accounting issue flagged; trust dented<br>• <strong>SFBs / MFIs</strong> — under stress; credit cost elevated<br><br>FY27 outlook: Rate cuts = NIM relief; HDFC Bank normalisation = earnings recovery; watch IndusInd resolution.`,
+         ta:`<strong>Banking Q4 FY26 (Rank 13, Score 68)</strong><br><br>Banking mixed-ஆக இருக்கு:<br>• NIM 10–20 bps compress ஆனது — deposit cost rise<br>• Credit growth ~13% — FY25 peak-ஐ விட குறைவு<br>• ICICI, SBI strong; HDFC Bank NIM pressure<br>• IndusInd — derivatives issue; trust affected<br>• SFBs — credit cost elevated<br><br>FY27: Rate cuts NIM-ஐ relieve பண்ணும்; HDFC normalisation earnings recovery தரும்.`},
+  defence:{en:`<strong>Defence — #1 Ranked Sector, CB Score 91</strong><br><br>India's Defence sector is the runaway winner of Q4 FY26:<br><br>• <strong>HAL:</strong> Revenue +35%; EBITDA 22%+; order backlog ₹1.4L Cr (8yr executable); LCA Tejas, helicopters, MRO<br>• <strong>BEL:</strong> Revenue +28%; EBITDA 20%; radar, EW systems, naval electronics<br>• <strong>Mazagon Dock:</strong> Submarines + frigates; record delivery schedule<br>• <strong>Garden Reach:</strong> Naval vessels; order book ₹22,000 Cr<br>• <strong>Data Patterns / Azad Engg:</strong> Niche components; high RoCE<br><br>FY27 budget ₹6.22L Cr; 75% capex for Indian procurement; export target ₹50,000 Cr by FY29. This is a 5–7 year structural cycle.`,
+          ta:`<strong>Defence Rank #1 (CB Score 91)</strong><br><br>FY26-ல் India Defence sector சாம்பியன்:<br>• HAL: Revenue +35%; ₹1.4L Cr backlog; LCA Tejas, helicopters<br>• BEL: Radar, EW systems, naval electronics<br>• Mazagon Dock: Submarines + frigates record delivery<br><br>FY27 budget ₹6.22L Cr; 75% Indian procurement; export target ₹50,000 Cr FY29. 5–7 year story.`},
+  score:{en:`<strong>How CB Score Works (0–100)</strong><br><br>The CB Sector Score is a composite of 4 pillars:<br><br>• <strong>Revenue Growth YoY (30 pts)</strong> — Q4 FY26 revenue vs Q4 FY25; >20% scores max<br>• <strong>EBITDA / Operating Margin (25 pts)</strong> — Absolute margin level for the sector<br>• <strong>PAT Growth / Quality (25 pts)</strong> — Profitability trend; turnaround or pressure<br>• <strong>FY27 Outlook Signal (20 pts)</strong> — Order book, demand visibility, structural tailwinds<br><br>Scores ≥75: Green (strong sector) | 60–74: Mixed (selective) | <60: Red (avoid or wait)<br><br>⚠️ CB Score is for <em>sector-level orientation only</em> — not stock-specific advice. Individual companies within a sector can diverge sharply.`,
+       ta:`<strong>CB Score எப்படி கணக்கிடுவோம்?</strong><br><br>4 pillars:<br>• Revenue Growth YoY — 30 pts<br>• EBITDA Margin — 25 pts<br>• PAT Quality — 25 pts<br>• FY27 Outlook — 20 pts<br><br>≥75: Green | 60–74: Mixed | <60: Red<br><br>⚠️ Sector-level guide மட்டுமே — individual stock advice இல்லை.`},
+  pharma:{en:`<strong>Pharma — Revised Rank ~#6 | CB Score 81</strong><br><br>Pharma was initially underscored. Real Q4 FY26 data tells a much stronger story:<br><br><strong>Actual Results:</strong><br>• <strong>Sun Pharma:</strong> Rev ₹14,560 Cr (+13.6%), PAT ₹2,714 Cr (+26%), EBITDA 27.1%; US Innovative Medicines crossed $1 Bn first time<br>• <strong>Lupin:</strong> Rev ₹7,475 Cr (+31.9%), PAT ₹1,460 Cr (+89%), EBITDA margin 35.5% (+1,070 bps) — exceptional turnaround<br>• <strong>Laurus Labs:</strong> FY26 rev +23%, PAT +148%, EBITDA 26.8%; CDMO secular growth<br>• <strong>India domestic market:</strong> +10.5% Q4 FY26; chronic therapies (cardiac, diabetes, respiratory) driving it<br><br><strong>4 Structural Tailwinds:</strong><br>1. Weak INR — every ₹1 depreciation adds 40–50 bps EBITDA for US exporters<br>2. Domestic +10.5% — Ayushman Bharat boosting volumes, chronic therapy penetration<br>3. Sun US Innovative Medicines $1 Bn milestone — specialty moat building<br>4. CDMO / Laurus secular story — global supply chain diversification from China<br><br><strong>US Tariff Risk — nuanced:</strong> India supplies 40% of US generic volume. Exemption likely for basic generics. Specialty pharma (Ilumya, Winlevi) face higher risk. Dr Reddys hurt by gRevlimid exclusivity expiry Q4.`,
+         ta:`<strong>Pharma — Rank ~#6 | CB Score 81 (revised upward)</strong><br><br>நாம் initially Pharma-ஐ undervalue பண்ணினோம். Real data:<br><br>• <strong>Sun Pharma:</strong> Rev ₹14,560 Cr (+13.6%), PAT +26%; US Innovative $1 Bn first time<br>• <strong>Lupin:</strong> Rev +31.9%, PAT +89%, EBITDA margin 35.5% (+1,070 bps) — spectacular turnaround<br>• <strong>Laurus Labs:</strong> PAT +148% FY26; CDMO growth<br>• <strong>India domestic:</strong> +10.5% Q4; chronic therapies strong<br><br><strong>4 tailwinds:</strong><br>1. Weak rupee — US dollar earnings boost<br>2. Domestic +10.5% — Ayushman Bharat<br>3. Sun specialty $1 Bn milestone<br>4. CDMO secular story<br><br><strong>US tariff risk:</strong> India = 40% of US generic volume. Basic generics exemption likely. Specialty risk higher.`},
+};
+
+function askAssist(){
+  const q=document.getElementById('assist-inp').value.trim().toLowerCase();
+  const out=document.getElementById('assist-out');
+  if(!q){out.innerHTML='Please type a question / ஒரு கேள்வி type செய்யுங்க.';return;}
+  const l=curLang;
+  const G=k=>QNA[k]?QNA[k][l]||QNA[k].en:'';
+  let ans='';
+  if(/top|best|winner|#1|rank 1|first/.test(q))ans=G('top');
+  else if(/bottom|worst|weak|red|last/.test(q))ans=G('bottom');
+  else if(/energy|power|solar|renew/.test(q))ans=G('energy');
+  else if(/pharma|sun pharma|lupin|cipla|divi|torrent|drug|medicine|tariff/.test(q))ans=G('pharma');
+  else if(/bank|npa|nim|credit|hdfc|icici|sbi/.test(q))ans=G('banking');
+  else if(/defence|defense|hal|bel|mazagon/.test(q))ans=G('defence');
+  else if(/score|how.*work|method|calcul/.test(q))ans=G('score');
+  else{
+    const match=DATA.find(s=>q.includes(s.name.toLowerCase())||s.companies.some(c=>q.includes(c.toLowerCase())));
+    if(match){
+      ans=`<strong>${match.name} — Rank #${match.rank} | CB Score ${match.cb}</strong><br><br>`;
+      ans+=`📊 Revenue: ${match.rev} | EBITDA: ${match.ebitda} | PAT: ${match.pat}<br>`;
+      ans+=`🔭 ${match.detail.outNote}<br>`;
+      ans+=`⚠️ Risk: ${match.detail.risk}<br>`;
+      ans+=`🏢 Companies: ${match.companies.join(' · ')}`;
+      if(l==='ta')ans+=`<br><br>தமிழ்: ${match.name} sector rank #${match.rank}. Revenue ${match.rev} growth; outlook ${match.detail.stars}/5 stars.`;
+    } else {
+      ans=l==='ta'?'இந்த கேள்விக்கு direct answer இல்லை. Try: top sectors, defence, banking, energy, score method':'No exact match. Try: "top sectors", "defence", "banking", "energy", "how does the score work"';
+    }
+  }
+  out.innerHTML=ans;
+  document.getElementById('assist-inp').value='';
+}
+
+// quick chips
+const CHIPS=[
+  {label:'🏆 Top 5 Sectors',q:'top sectors'},
+  {label:'🔴 Weakest 5',q:'bottom sectors'},
+  {label:'⚡ Energy theme',q:'energy power'},
+  {label:'💊 Pharma revised',q:'pharma lupin'},
+  {label:'🛡️ Defence',q:'defence'},
+  {label:'🏦 Banking',q:'banking nim'},
+  {label:'📊 CB Score',q:'how score works'},
+];
+function buildChips(){
+  const c=document.getElementById('assist-chips');
+  c.innerHTML=CHIPS.map(ch=>`<span class="aqchip" onclick="document.getElementById('assist-inp').value='${ch.q}';askAssist()">${ch.label}</span>`).join('');
+}
+
+// init
+renderAll();
+buildChips();
+</script>
+</body>
+</html>
