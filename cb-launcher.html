@@ -58,10 +58,42 @@
 
   footer{margin-top:38px;text-align:center;font-size:11px;color:var(--muted);line-height:1.6}
   .watermark{font-weight:700;color:var(--slate);opacity:.55}
+
+  /* ── Install banner (shown only in Safari browser, hidden when in PWA mode) ── */
+  .install-banner{
+    display:none; /* JS shows it only when needed */
+    align-items:flex-start;gap:12px;
+    background:#fff8f0;border:1.5px solid #FF6A00;border-radius:16px;
+    padding:14px 14px;margin-bottom:20px;
+  }
+  .install-banner .ib-icon{font-size:26px;flex-shrink:0;margin-top:1px}
+  .install-banner .ib-body{flex:1}
+  .install-banner .ib-title{font-size:13px;font-weight:700;color:var(--slate);margin-bottom:3px}
+  .install-banner .ib-steps{font-size:12px;color:var(--muted);line-height:1.6}
+  .install-banner .ib-steps b{color:var(--slate)}
+  .install-banner .ib-close{
+    background:none;border:none;font-size:18px;color:#aaa;cursor:pointer;
+    padding:0 2px;flex-shrink:0;line-height:1;margin-top:-2px;
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
+
+  <!-- Install-to-Home-Screen banner (auto-shown in Safari browser only) -->
+  <div class="install-banner" id="installBanner">
+    <div class="ib-icon">📲</div>
+    <div class="ib-body">
+      <div class="ib-title">Hide browser bar — Add to Home Screen</div>
+      <div class="ib-steps">
+        1. Tap the <b>Share</b> icon <b>⎙</b> at the bottom<br>
+        2. Scroll and tap <b>"Add to Home Screen"</b><br>
+        3. Open <b>CB Apps</b> from your Home Screen — full screen, no Safari bar
+      </div>
+    </div>
+    <button class="ib-close" onclick="dismissBanner()" aria-label="Close">✕</button>
+  </div>
+
   <header>
     <div class="brandrow">
       <div class="dot"></div>
@@ -166,6 +198,21 @@
     document.getElementById('ts').textContent=s+' IST';
   }
   fmt(); setInterval(fmt,60000);
+
+  // Show install banner only in Safari browser (not when already installed as PWA)
+  (function(){
+    var isStandalone = window.navigator.standalone === true; // true = launched from Home Screen
+    var isSafari = /iP(hone|ad|od)/.test(navigator.userAgent) && /WebKit/.test(navigator.userAgent) && !window.MSStream;
+    var dismissed = sessionStorage.getItem('ib_dismissed');
+    if(isSafari && !isStandalone && !dismissed){
+      document.getElementById('installBanner').style.display='flex';
+    }
+  })();
+
+  function dismissBanner(){
+    document.getElementById('installBanner').style.display='none';
+    sessionStorage.setItem('ib_dismissed','1');
+  }
 </script>
 </body>
 </html>
