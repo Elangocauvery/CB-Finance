@@ -39,9 +39,10 @@
 
   .card{
     display:flex;flex-direction:column;gap:6px;
-    text-decoration:none;color:inherit;
+    color:inherit;cursor:pointer;
     border:1px solid var(--line);border-radius:16px;
     padding:15px 14px;background:#fff;
+    -webkit-tap-highlight-color:transparent;
     transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
   }
   .card:active{transform:scale(.97)}
@@ -56,44 +57,44 @@
   .bg-blue{background:var(--blue)} .bg-orange{background:var(--orange)}
   .bg-slate{background:var(--slate)} .bg-lime{background:var(--lime)}
 
+  /* Back button — shown only when iframe is visible */
+  #back-bar{
+    display:none;position:fixed;top:0;left:0;right:0;z-index:999;
+    background:#fff;border-bottom:1px solid var(--line);
+    padding:10px 16px;
+    padding-top:calc(10px + env(safe-area-inset-top));
+    display:none;align-items:center;gap:10px;
+  }
+  #back-bar button{
+    background:var(--blue);color:#fff;border:none;border-radius:10px;
+    font-size:14px;font-weight:700;padding:7px 16px;cursor:pointer;
+  }
+  #back-bar .back-title{font-size:14px;font-weight:600;color:var(--slate);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+
+  /* Full-screen iframe overlay */
+  #app-frame{
+    display:none;position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    width:100%;height:100%;
+    border:none;z-index:998;background:#fff;
+  }
+
   footer{margin-top:38px;text-align:center;font-size:11px;color:var(--muted);line-height:1.6}
   .watermark{font-weight:700;color:var(--slate);opacity:.55}
-
-  /* ── Install banner (shown only in Safari browser, hidden when in PWA mode) ── */
-  .install-banner{
-    display:none; /* JS shows it only when needed */
-    align-items:flex-start;gap:12px;
-    background:#fff8f0;border:1.5px solid #FF6A00;border-radius:16px;
-    padding:14px 14px;margin-bottom:20px;
-  }
-  .install-banner .ib-icon{font-size:26px;flex-shrink:0;margin-top:1px}
-  .install-banner .ib-body{flex:1}
-  .install-banner .ib-title{font-size:13px;font-weight:700;color:var(--slate);margin-bottom:3px}
-  .install-banner .ib-steps{font-size:12px;color:var(--muted);line-height:1.6}
-  .install-banner .ib-steps b{color:var(--slate)}
-  .install-banner .ib-close{
-    background:none;border:none;font-size:18px;color:#aaa;cursor:pointer;
-    padding:0 2px;flex-shrink:0;line-height:1;margin-top:-2px;
-  }
 </style>
 </head>
 <body>
+
+<!-- Back bar (shown when an app is open) -->
+<div id="back-bar">
+  <button onclick="closeApp()">← Back</button>
+  <span class="back-title" id="back-title"></span>
+</div>
+
+<!-- App iframe -->
+<iframe id="app-frame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
+
 <div class="wrap">
-
-  <!-- Install-to-Home-Screen banner (auto-shown in Safari browser only) -->
-  <div class="install-banner" id="installBanner">
-    <div class="ib-icon">📲</div>
-    <div class="ib-body">
-      <div class="ib-title">Hide browser bar — Add to Home Screen</div>
-      <div class="ib-steps">
-        1. Tap the <b>Share</b> icon <b>⎙</b> at the bottom<br>
-        2. Scroll and tap <b>"Add to Home Screen"</b><br>
-        3. Open <b>CB Apps</b> from your Home Screen — full screen, no Safari bar
-      </div>
-    </div>
-    <button class="ib-close" onclick="dismissBanner()" aria-label="Close">✕</button>
-  </div>
-
   <header>
     <div class="brandrow">
       <div class="dot"></div>
@@ -105,83 +106,83 @@
 
   <div class="group-label">Cauvery Business <span class="acct">@elangovan2015es-cmd</span></div>
   <div class="grid">
-    <a class="card" href="https://elangovan2015es-cmd.github.io/cauvery-business/">
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/cauvery-business/','Sector Dashboards')">
       <div class="icon bg-blue">📊</div>
       <div class="name">Sector Dashboards</div>
       <div class="desc">CB Research landing page</div>
-    </a>
-    <a class="card" href="https://elangovan2015es-cmd.github.io/cauvery-business-qa/">
+    </div>
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/cauvery-business-qa/','Live Q&A')">
       <div class="icon bg-orange">🎙️</div>
       <div class="name">Live Q&A</div>
       <div class="desc">Stream assistant v5.x</div>
-    </a>
-    <a class="card" href="https://elangovan2015es-cmd.github.io/cauvery-pulse/">
+    </div>
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/cauvery-pulse/','Cauvery Pulse')">
       <div class="icon bg-lime">₹</div>
       <div class="name">Cauvery Pulse</div>
       <div class="desc">Personal finance PWA</div>
-    </a>
+    </div>
   </div>
 
   <div class="group-label">CB Finance <span class="acct">@Elangocaucery</span></div>
   <div class="grid">
-    <a class="card" href="https://elangocauvery.github.io/CB-Finance/">
+    <div class="card" onclick="openApp('https://elangocauvery.github.io/CB-Finance/','CB-Finance')">
       <div class="icon bg-blue">📈</div>
       <div class="name">CB-Finance</div>
       <div class="desc">Members portal · sectors</div>
-    </a>
-    <a class="card" href="https://elangocauvery.github.io/CB_Finance26/">
+    </div>
+    <div class="card" onclick="openApp('https://elangocauvery.github.io/CB_Finance26/','CB Finance 26')">
       <div class="icon bg-slate">🧮</div>
       <div class="name">CB Finance 26</div>
       <div class="desc">Macro + sector picks</div>
-    </a>
+    </div>
   </div>
 
   <div class="group-label">EIL Solar <span class="acct">@elangovan2015es-cmd</span></div>
   <div class="grid">
-    <a class="card" href="https://elangovan2015es-cmd.github.io/eil-solar/">
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/eil-solar/','Rooftop Monitor')">
       <div class="icon bg-orange">☀️</div>
       <div class="name">Rooftop Monitor</div>
       <div class="desc">6 kWp Growatt PWA</div>
-    </a>
-    <a class="card" href="https://elangovan2015es-cmd.github.io/EIL_solar_Ground/">
+    </div>
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/EIL_solar_Ground/','Solar Ground')">
       <div class="icon bg-slate">⚡</div>
       <div class="name">Solar Ground</div>
       <div class="desc">CPP modeling tool</div>
-    </a>
-    <a class="card" href="https://elangovan2015es-cmd.github.io/eil-group-captive-cpp/">
+    </div>
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/eil-group-captive-cpp/','Group Captive CPP')">
       <div class="icon bg-lime">🔋</div>
       <div class="name">Group Captive CPP</div>
       <div class="desc">10 MW project finance</div>
-    </a>
-    <a class="card" href="https://elangovan2015es-cmd.github.io/eil-solar-industrial/">
+    </div>
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/eil-solar-industrial/','Solar Industrial')">
       <div class="icon bg-blue">🏭</div>
       <div class="name">Solar Industrial</div>
       <div class="desc">Industrial rooftop + bill reader</div>
-    </a>
-    <a class="card" href="https://eil-chatbot-production.up.railway.app/">
+    </div>
+    <div class="card" onclick="openApp('https://eil-chatbot-production.up.railway.app/','EIL Chatbot')">
       <div class="icon bg-orange">💬</div>
       <div class="name">EIL Chatbot</div>
       <div class="desc">Claude Haiku assistant</div>
-    </a>
+    </div>
   </div>
 
   <div class="group-label">Tools <span class="acct">@elangovan2015es-cmd</span></div>
   <div class="grid">
-    <a class="card" href="https://elangovan2015es-cmd.github.io/towers-badminton/">
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/towers-badminton/','Towers BC')">
       <div class="icon bg-blue">🏸</div>
       <div class="name">Towers BC</div>
       <div class="desc">Group A — v3.49</div>
-    </a>
-    <a class="card" href="https://elangovan2015es-cmd.github.io/Bill_Analyser/">
+    </div>
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/Bill_Analyser/','Bill Analyser')">
       <div class="icon bg-slate">🧾</div>
       <div class="name">Bill Analyser</div>
       <div class="desc">Confirm live URL</div>
-    </a>
-    <a class="card" href="https://elangovan2015es-cmd.github.io/orientcam/">
+    </div>
+    <div class="card" onclick="openApp('https://elangovan2015es-cmd.github.io/orientcam/','OrientCam')">
       <div class="icon bg-lime">📷</div>
       <div class="name">OrientCam</div>
       <div class="desc">Remote camera · voice/sign</div>
-    </a>
+    </div>
   </div>
 
   <footer>
@@ -199,19 +200,30 @@
   }
   fmt(); setInterval(fmt,60000);
 
-  // Show install banner only in Safari browser (not when already installed as PWA)
-  (function(){
-    var isStandalone = window.navigator.standalone === true; // true = launched from Home Screen
-    var isSafari = /iP(hone|ad|od)/.test(navigator.userAgent) && /WebKit/.test(navigator.userAgent) && !window.MSStream;
-    var dismissed = sessionStorage.getItem('ib_dismissed');
-    if(isSafari && !isStandalone && !dismissed){
-      document.getElementById('installBanner').style.display='flex';
-    }
-  })();
+  var frame=document.getElementById('app-frame');
+  var backBar=document.getElementById('back-bar');
+  var backTitle=document.getElementById('back-title');
+  var wrap=document.querySelector('.wrap');
 
-  function dismissBanner(){
-    document.getElementById('installBanner').style.display='none';
-    sessionStorage.setItem('ib_dismissed','1');
+  function openApp(url, name){
+    frame.src=url;
+    frame.style.display='block';
+    backBar.style.display='flex';
+    // push down the bar height
+    var barH=backBar.offsetHeight;
+    frame.style.top=barH+'px';
+    frame.style.height='calc(100% - '+barH+'px)';
+    backTitle.textContent=name;
+    wrap.style.display='none';
+    document.body.style.overflow='hidden';
+  }
+
+  function closeApp(){
+    frame.style.display='none';
+    backBar.style.display='none';
+    frame.src='';
+    wrap.style.display='block';
+    document.body.style.overflow='';
   }
 </script>
 </body>
