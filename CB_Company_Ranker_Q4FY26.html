@@ -90,6 +90,7 @@ td.rank-cell{font-family:'DM Mono',monospace;font-weight:500;font-size:11px;colo
 .co-cell{display:flex;flex-direction:column;gap:1px;}
 .co-name{font-weight:700;color:var(--navy);font-size:13px;white-space:nowrap;letter-spacing:-0.2px;}
 .co-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px;}
+.co-why{font-size:10.5px;color:var(--ink-2);margin-top:3px;line-height:1.4;max-width:340px;font-style:italic;}
 .tag{display:inline-block;padding:1px 6px;border-radius:8px;font-size:9.5px;font-weight:600;white-space:nowrap;}
 .tag-sec{background:#f0f4ff;color:#4361a8;}
 .tag-grp{background:#ecfdf5;color:#047857;}
@@ -237,201 +238,201 @@ const DATA=[
 <strong>Additional Risk:</strong><br>
 • HAL chose Israeli ELTA radar over indigenous Uttam for Mk1A — Israel controls the software. India's Astra Mk1 missile failed a March 2025 test due to radar data-sync issues.<br><br>
 <em>Revenue &amp; PAT growth remain real — order backlog ₹1.4L Cr is genuine. But execution bottleneck (engines) and image risk (crashes) make the 92-score untenable. CB Score revised 92 → 72. Signal: Selective.</em>`},
-{name:'BEL',sector:'Defence',group:'Manufacturing',rev:6130,revYoy:28,ebitda:20,patYoy:38,cb:88,sig:'Strong'},
-{name:'Mazagon Dock',sector:'Defence',group:'Manufacturing',rev:3200,revYoy:32,ebitda:12,patYoy:55,cb:85,sig:'Strong'},
-{name:'Garden Reach',sector:'Defence',group:'Manufacturing',rev:1480,revYoy:25,ebitda:10,patYoy:40,cb:80,sig:'Strong'},
-{name:'Bharat Forge',sector:'Defence',group:'Manufacturing',rev:1720,revYoy:14,ebitda:22,patYoy:18,cb:72,sig:'Selective'},
-{name:'Data Patterns',sector:'Defence',group:'Manufacturing',rev:290,revYoy:8,ebitda:28,patYoy:12,cb:65,sig:'Selective'},
-{name:'Azad Engineering',sector:'Defence',group:'Manufacturing',rev:160,revYoy:20,ebitda:24,patYoy:30,cb:74,sig:'Selective'},
+{name:'BEL',sector:'Defence',group:'Manufacturing',rev:6130,revYoy:28,ebitda:20,patYoy:38,cb:88,sig:'Strong',why:'Clean execution; radar/EW/naval electronics; no engine bottleneck like HAL'},
+{name:'Mazagon Dock',sector:'Defence',group:'Manufacturing',rev:3200,revYoy:32,ebitda:12,patYoy:55,cb:85,sig:'Strong',why:'Submarines + frigates on record delivery schedule; PAT +55%'},
+{name:'Garden Reach',sector:'Defence',group:'Manufacturing',rev:1480,revYoy:25,ebitda:10,patYoy:40,cb:80,sig:'Strong',why:'Naval order book ₹22,000 Cr; steady execution, clean story'},
+{name:'Bharat Forge',sector:'Defence',group:'Manufacturing',rev:1720,revYoy:14,ebitda:22,patYoy:18,cb:72,sig:'Selective',why:'Defence + auto cyclical mix; growth solid but not best-in-class'},
+{name:'Data Patterns',sector:'Defence',group:'Manufacturing',rev:290,revYoy:8,ebitda:28,patYoy:12,cb:65,sig:'Selective',why:'Niche high-margin components but small base, slower growth'},
+{name:'Azad Engineering',sector:'Defence',group:'Manufacturing',rev:160,revYoy:20,ebitda:24,patYoy:30,cb:74,sig:'Selective',why:'High-RoCE precision parts; strong PAT growth off small base'},
 
 // ── HOTELS ──
-{name:'IHCL',sector:'Hotels',group:'Consumption & Services',rev:2765,revYoy:14,ebitda:37,patYoy:26,cb:88,sig:'Strong'},
-{name:'Lemon Tree',sector:'Hotels',group:'Consumption & Services',rev:420,revYoy:11,ebitda:52,patYoy:22,cb:86,sig:'Strong'},
-{name:'Juniper Hotels',sector:'Hotels',group:'Consumption & Services',rev:302,revYoy:9,ebitda:44,patYoy:99,cb:84,sig:'Strong'},
-{name:'ITC Hotels',sector:'Hotels',group:'Consumption & Services',rev:1254,revYoy:18,ebitda:38,patYoy:20,cb:83,sig:'Strong'},
-{name:'EIH (Oberoi)',sector:'Hotels',group:'Consumption & Services',rev:910,revYoy:10,ebitda:43,patYoy:-5,cb:78,sig:'Selective'},
-{name:'SAMHI Hotels',sector:'Hotels',group:'Consumption & Services',rev:249,revYoy:19,ebitda:38,patYoy:999,cb:76,sig:'Selective'},
-{name:'Chalet Hotels',sector:'Hotels',group:'Consumption & Services',rev:558,revYoy:7,ebitda:49,patYoy:15,cb:74,sig:'Selective'},
+{name:'IHCL',sector:'Hotels',group:'Consumption & Services',rev:2765,revYoy:14,ebitda:37,patYoy:26,cb:88,sig:'Strong',why:'Sector leader; +14% rev, 37% EBITDA, PAT +26%; hotel upcycle tailwind'},
+{name:'Lemon Tree',sector:'Hotels',group:'Consumption & Services',rev:420,revYoy:11,ebitda:52,patYoy:22,cb:86,sig:'Strong',why:'Best-in-class 52% EBITDA margin; mid-market dual model scaling'},
+{name:'Juniper Hotels',sector:'Hotels',group:'Consumption & Services',rev:302,revYoy:9,ebitda:44,patYoy:99,cb:84,sig:'Strong',why:'PAT nearly doubled FY26; 81% occupancy highest in pack'},
+{name:'ITC Hotels',sector:'Hotels',group:'Consumption & Services',rev:1254,revYoy:18,ebitda:38,patYoy:20,cb:83,sig:'Strong',why:'+18% rev post-demerger; luxury pure-play; margin expanding'},
+{name:'EIH (Oberoi)',sector:'Hotels',group:'Consumption & Services',rev:910,revYoy:10,ebitda:43,patYoy:-5,cb:78,sig:'Selective',why:'Record EBITDA but PAT dipped YoY; ultra-luxury ARR-led growth'},
+{name:'SAMHI Hotels',sector:'Hotels',group:'Consumption & Services',rev:249,revYoy:19,ebitda:38,patYoy:999,cb:76,sig:'Selective',why:'Turnaround to profit FY26 but high leverage (~₹1,900 Cr net debt)'},
+{name:'Chalet Hotels',sector:'Hotels',group:'Consumption & Services',rev:558,revYoy:7,ebitda:49,patYoy:15,cb:74,sig:'Selective',why:'48.8% EBITDA; owned upscale + CRE; Q4 occupancy softened'},
 
 // ── POWER GENCOS ──
-{name:'NTPC',sector:'Power (Gencos)',group:'Energy',rev:46800,revYoy:18,ebitda:32,patYoy:18,cb:84,sig:'Strong'},
-{name:'Adani Power',sector:'Power (Gencos)',group:'Energy',rev:14200,revYoy:22,ebitda:35,patYoy:28,cb:83,sig:'Strong'},
-{name:'Tata Power',sector:'Power (Gencos)',group:'Energy',rev:16100,revYoy:16,ebitda:20,patYoy:22,cb:78,sig:'Strong'},
-{name:'Power Grid',sector:'Power (Gencos)',group:'Energy',rev:11800,revYoy:10,ebitda:85,patYoy:12,cb:76,sig:'Strong'},
-{name:'Torrent Power',sector:'Power (Gencos)',group:'Energy',rev:8900,revYoy:14,ebitda:28,patYoy:20,cb:75,sig:'Strong'},
-{name:'JSW Energy',sector:'Power (Gencos)',group:'Energy',rev:3200,revYoy:12,ebitda:42,patYoy:15,cb:72,sig:'Selective'},
-{name:'NHPC',sector:'Power (Gencos)',group:'Energy',rev:3600,revYoy:8,ebitda:55,patYoy:10,cb:70,sig:'Selective'},
-{name:'CESC',sector:'Power (Gencos)',group:'Energy',rev:4200,revYoy:9,ebitda:22,patYoy:12,cb:68,sig:'Selective'},
+{name:'NTPC',sector:'Power (Gencos)',group:'Energy',rev:46800,revYoy:18,ebitda:32,patYoy:18,cb:84,sig:'Strong',why:'Capacity additions + peak demand 250GW; PAT +18%; regulated stability'},
+{name:'Adani Power',sector:'Power (Gencos)',group:'Energy',rev:14200,revYoy:22,ebitda:35,patYoy:28,cb:83,sig:'Strong',why:'+22% rev; merchant tariffs surging; 35% EBITDA; strong momentum'},
+{name:'Tata Power',sector:'Power (Gencos)',group:'Energy',rev:16100,revYoy:16,ebitda:20,patYoy:22,cb:78,sig:'Strong',why:'Integrated utility + RE pivot; PAT +22%; transmission capex'},
+{name:'Power Grid',sector:'Power (Gencos)',group:'Energy',rev:11800,revYoy:10,ebitda:85,patYoy:12,cb:76,sig:'Strong',why:'85% EBITDA monopoly; steady +12% PAT; T&D capex visibility'},
+{name:'Torrent Power',sector:'Power (Gencos)',group:'Energy',rev:8900,revYoy:14,ebitda:28,patYoy:20,cb:75,sig:'Strong',why:'Integrated play; +14% rev, PAT +20%; distribution franchise strong'},
+{name:'JSW Energy',sector:'Power (Gencos)',group:'Energy',rev:3200,revYoy:12,ebitda:42,patYoy:15,cb:72,sig:'Selective',why:'42% EBITDA; RE pipeline building but high capex intensity'},
+{name:'NHPC',sector:'Power (Gencos)',group:'Energy',rev:3600,revYoy:8,ebitda:55,patYoy:10,cb:70,sig:'Selective',why:'Hydro stability, 55% EBITDA; slower growth profile'},
+{name:'CESC',sector:'Power (Gencos)',group:'Energy',rev:4200,revYoy:9,ebitda:22,patYoy:12,cb:68,sig:'Selective',why:'Distribution-heavy; steady but modest growth; regulated returns'},
 
 // ── POWER FINANCIERS ──
-{name:'PFC',sector:'Power Financiers',group:'Financials',rev:11200,revYoy:22,ebitda:96,patYoy:25,cb:88,sig:'Strong'},
-{name:'REC',sector:'Power Financiers',group:'Financials',rev:9800,revYoy:20,ebitda:96,patYoy:22,cb:86,sig:'Strong'},
-{name:'IREDA',sector:'Power Financiers',group:'Financials',rev:1680,revYoy:28,ebitda:94,patYoy:35,cb:84,sig:'Strong'},
+{name:'PFC',sector:'Power Financiers',group:'Financials',rev:11200,revYoy:22,ebitda:96,patYoy:25,cb:88,sig:'Strong',why:'NII +22%; near-zero NPAs; ₹11L Cr power capex pipeline backing'},
+{name:'REC',sector:'Power Financiers',group:'Financials',rev:9800,revYoy:20,ebitda:96,patYoy:22,cb:86,sig:'Strong',why:'Loan book record; sovereign-backed RE lending; clean asset quality'},
+{name:'IREDA',sector:'Power Financiers',group:'Financials',rev:1680,revYoy:28,ebitda:94,patYoy:35,cb:84,sig:'Strong',why:'Fastest-growing RE financier; NII +28%, PAT +35%; 500GW tailwind'},
 
 // ── CAPITAL GOODS ──
-{name:'ABB India',sector:'Capital Goods',group:'Manufacturing',rev:3200,revYoy:16,ebitda:18,patYoy:28,cb:84,sig:'Strong'},
-{name:'Siemens India',sector:'Capital Goods',group:'Manufacturing',rev:4800,revYoy:19,ebitda:17,patYoy:32,cb:83,sig:'Strong'},
-{name:'Hitachi Energy',sector:'Capital Goods',group:'Manufacturing',rev:1680,revYoy:24,ebitda:14,patYoy:40,cb:80,sig:'Strong'},
-{name:'Voltamp Transformers',sector:'Capital Goods',group:'Manufacturing',rev:540,revYoy:22,ebitda:22,patYoy:35,cb:82,sig:'Strong'},
-{name:'Bosch India',sector:'Capital Goods',group:'Manufacturing',rev:4600,revYoy:10,ebitda:16,patYoy:15,cb:72,sig:'Selective'},
+{name:'ABB India',sector:'Capital Goods',group:'Manufacturing',rev:3200,revYoy:16,ebitda:18,patYoy:28,cb:84,sig:'Strong',why:'18% EBITDA; record order inflow; T&D + automation super-cycle'},
+{name:'Siemens India',sector:'Capital Goods',group:'Manufacturing',rev:4800,revYoy:19,ebitda:17,patYoy:32,cb:83,sig:'Strong',why:'+19% rev; PAT +32%; energy + digital industries momentum'},
+{name:'Hitachi Energy',sector:'Capital Goods',group:'Manufacturing',rev:1680,revYoy:24,ebitda:14,patYoy:40,cb:80,sig:'Strong',why:'+24% rev; PAT +40%; pure T&D play in transmission boom'},
+{name:'Voltamp Transformers',sector:'Capital Goods',group:'Manufacturing',rev:540,revYoy:22,ebitda:22,patYoy:35,cb:82,sig:'Strong',why:'22% EBITDA; transformer demand boom; PAT +35% off niche'},
+{name:'Bosch India',sector:'Capital Goods',group:'Manufacturing',rev:4600,revYoy:10,ebitda:16,patYoy:15,cb:72,sig:'Selective',why:'Steady but slower; auto-tech mix; +10% rev, +15% PAT'},
 
 // ── EXCHANGES / DEPOSITORIES ──
-{name:'BSE',sector:'Exchanges',group:'Financials',rev:760,revYoy:35,ebitda:62,patYoy:52,cb:90,sig:'Strong'},
-{name:'MCX',sector:'Exchanges',group:'Financials',rev:210,revYoy:28,ebitda:52,patYoy:38,cb:84,sig:'Strong'},
-{name:'CDSL',sector:'Exchanges',group:'Financials',rev:280,revYoy:22,ebitda:68,patYoy:20,cb:82,sig:'Strong'},
-{name:'IEX',sector:'Exchanges',group:'Financials',rev:160,revYoy:18,ebitda:72,patYoy:15,cb:78,sig:'Strong'},
-{name:'NSDL',sector:'Exchanges',group:'Financials',rev:180,revYoy:15,ebitda:60,patYoy:18,cb:74,sig:'Selective'},
+{name:'BSE',sector:'Exchanges',group:'Financials',rev:760,revYoy:35,ebitda:62,patYoy:52,cb:90,sig:'Strong',why:'Options volume boom; +35% rev, PAT +52%; duopoly economics'},
+{name:'MCX',sector:'Exchanges',group:'Financials',rev:210,revYoy:28,ebitda:52,patYoy:38,cb:84,sig:'Strong',why:'+28% rev post tech migration; commodity volumes recovering'},
+{name:'CDSL',sector:'Exchanges',group:'Financials',rev:280,revYoy:22,ebitda:68,patYoy:20,cb:82,sig:'Strong',why:'68% EBITDA; 18Cr+ demat accounts; retail participation structural'},
+{name:'IEX',sector:'Exchanges',group:'Financials',rev:160,revYoy:18,ebitda:72,patYoy:15,cb:78,sig:'Strong',why:'72% EBITDA monopoly; volume growth steady; power market expansion'},
+{name:'NSDL',sector:'Exchanges',group:'Financials',rev:180,revYoy:15,ebitda:60,patYoy:18,cb:74,sig:'Selective',why:'Depository duopoly; steady 60% EBITDA; slower than CDSL'},
 
 // ── CABLES & WIRES ──
-{name:'Polycab',sector:'Cables & Wires',group:'Manufacturing',rev:5200,revYoy:18,ebitda:13,patYoy:22,cb:80,sig:'Strong'},
-{name:'KEI Industries',sector:'Cables & Wires',group:'Manufacturing',rev:2800,revYoy:22,ebitda:11,patYoy:28,cb:79,sig:'Strong'},
-{name:'RR Kabel',sector:'Cables & Wires',group:'Manufacturing',rev:1480,revYoy:20,ebitda:10,patYoy:24,cb:75,sig:'Strong'},
-{name:'Havells India',sector:'Cables & Wires',group:'Manufacturing',rev:5600,revYoy:14,ebitda:12,patYoy:16,cb:72,sig:'Selective'},
-{name:'Finolex Cables',sector:'Cables & Wires',group:'Manufacturing',rev:1100,revYoy:10,ebitda:13,patYoy:12,cb:66,sig:'Selective'},
+{name:'Polycab',sector:'Cables & Wires',group:'Manufacturing',rev:5200,revYoy:18,ebitda:13,patYoy:22,cb:80,sig:'Strong',why:'Market leader; +18% rev; infra + housing demand; PAT +22%'},
+{name:'KEI Industries',sector:'Cables & Wires',group:'Manufacturing',rev:2800,revYoy:22,ebitda:11,patYoy:28,cb:79,sig:'Strong',why:'+22% rev fastest in pack; T&D + real estate; PAT +28%'},
+{name:'RR Kabel',sector:'Cables & Wires',group:'Manufacturing',rev:1480,revYoy:20,ebitda:10,patYoy:24,cb:75,sig:'Strong',why:'+20% rev; consumer + cables; scaling well off mid base'},
+{name:'Havells India',sector:'Cables & Wires',group:'Manufacturing',rev:5600,revYoy:14,ebitda:12,patYoy:16,cb:72,sig:'Selective',why:'Diversified electricals; steady +14%; brand strength'},
+{name:'Finolex Cables',sector:'Cables & Wires',group:'Manufacturing',rev:1100,revYoy:10,ebitda:13,patYoy:12,cb:66,sig:'Selective',why:'Slower +10% growth; cables steady but limited catalysts'},
 
 // ── SOLAR / RENEWABLES ──
-{name:'Shakti Pumps',sector:'Solar/Renewables',group:'Energy',rev:820,revYoy:40,ebitda:18,patYoy:55,cb:86,sig:'Strong'},
-{name:'Waaree Energies',sector:'Solar/Renewables',group:'Energy',rev:4200,revYoy:32,ebitda:20,patYoy:45,cb:84,sig:'Strong'},
-{name:'Premier Energies',sector:'Solar/Renewables',group:'Energy',rev:1100,revYoy:35,ebitda:18,patYoy:50,cb:82,sig:'Strong'},
-{name:'Adani Green',sector:'Solar/Renewables',group:'Energy',rev:3200,revYoy:22,ebitda:82,patYoy:18,cb:74,sig:'Selective'},
+{name:'Shakti Pumps',sector:'Solar/Renewables',group:'Energy',rev:820,revYoy:40,ebitda:18,patYoy:55,cb:86,sig:'Strong',why:'+40% rev top in solar; PM-KUSUM tailwind; PAT +55%'},
+{name:'Waaree Energies',sector:'Solar/Renewables',group:'Energy',rev:4200,revYoy:32,ebitda:20,patYoy:45,cb:84,sig:'Strong',why:'+32% rev; module leader; export demand; PAT +45%'},
+{name:'Premier Energies',sector:'Solar/Renewables',group:'Energy',rev:1100,revYoy:35,ebitda:18,patYoy:50,cb:82,sig:'Strong',why:'+35% rev; integrated cell+module; capacity ramp; PAT +50%'},
+{name:'Adani Green',sector:'Solar/Renewables',group:'Energy',rev:3200,revYoy:22,ebitda:82,patYoy:18,cb:74,sig:'Selective',why:'82% EBITDA but high leverage; capacity additions slower PAT'},
 
 // ── RAILWAYS ──
-{name:'RVNL',sector:'Railways',group:'Infrastructure',rev:6800,revYoy:20,ebitda:14,patYoy:22,cb:78,sig:'Strong'},
-{name:'IRCTC',sector:'Railways',group:'Infrastructure',rev:1120,revYoy:12,ebitda:32,patYoy:15,cb:76,sig:'Strong'},
-{name:'IRFC',sector:'Railways',group:'Infrastructure',rev:7200,revYoy:18,ebitda:96,patYoy:14,cb:74,sig:'Selective'},
-{name:'Titagarh Rail',sector:'Railways',group:'Infrastructure',rev:820,revYoy:25,ebitda:12,patYoy:35,cb:72,sig:'Selective'},
+{name:'RVNL',sector:'Railways',group:'Infrastructure',rev:6800,revYoy:20,ebitda:14,patYoy:22,cb:78,sig:'Strong',why:'Order book ₹95,000 Cr+; +20% rev; railway capex execution'},
+{name:'IRCTC',sector:'Railways',group:'Infrastructure',rev:1120,revYoy:12,ebitda:32,patYoy:15,cb:76,sig:'Strong',why:'32% EBITDA monopoly; ticketing + catering; +12% steady'},
+{name:'IRFC',sector:'Railways',group:'Infrastructure',rev:7200,revYoy:18,ebitda:96,patYoy:14,cb:74,sig:'Selective',why:'96% EBITDA financier; low-risk railway funding; modest +14% PAT'},
+{name:'Titagarh Rail',sector:'Railways',group:'Infrastructure',rev:820,revYoy:25,ebitda:12,patYoy:35,cb:72,sig:'Selective',why:'+25% rev; wagons + Vande Bharat; PAT +35% off small base'},
 
 // ── EMS ──
-{name:'Dixon Technologies',sector:'EMS',group:'Manufacturing',rev:5800,revYoy:35,ebitda:10,patYoy:48,cb:86,sig:'Strong'},
-{name:'Netweb Technologies',sector:'EMS',group:'Manufacturing',rev:480,revYoy:28,ebitda:20,patYoy:42,cb:84,sig:'Strong'},
-{name:'Kaynes Technology',sector:'EMS',group:'Manufacturing',rev:520,revYoy:32,ebitda:12,patYoy:38,cb:80,sig:'Strong'},
-{name:'Amber Enterprises',sector:'EMS',group:'Manufacturing',rev:3200,revYoy:28,ebitda:8,patYoy:30,cb:76,sig:'Strong'},
+{name:'Dixon Technologies',sector:'EMS',group:'Manufacturing',rev:5800,revYoy:35,ebitda:10,patYoy:48,cb:86,sig:'Strong',why:'+35% rev; EMS leader; PLI tailwind; operating leverage PAT +48%'},
+{name:'Netweb Technologies',sector:'EMS',group:'Manufacturing',rev:480,revYoy:28,ebitda:20,patYoy:42,cb:84,sig:'Strong',why:'+28% rev; AI servers 20% EBITDA; high-value EMS niche'},
+{name:'Kaynes Technology',sector:'EMS',group:'Manufacturing',rev:520,revYoy:32,ebitda:12,patYoy:38,cb:80,sig:'Strong',why:'+32% rev; diversified EMS; PAT +38%; scaling fast'},
+{name:'Amber Enterprises',sector:'EMS',group:'Manufacturing',rev:3200,revYoy:28,ebitda:8,patYoy:30,cb:76,sig:'Strong',why:'+28% rev; AC contract mfg leader; thin margins improving'},
 
 // ── NBFC ──
-{name:'Muthoot Finance',sector:'NBFC',group:'Financials',rev:4800,revYoy:28,ebitda:78,patYoy:28,cb:82,sig:'Strong'},
-{name:'Cholamandalam',sector:'NBFC',group:'Financials',rev:4200,revYoy:22,ebitda:70,patYoy:18,cb:78,sig:'Strong'},
-{name:'Shriram Finance',sector:'NBFC',group:'Financials',rev:6800,revYoy:18,ebitda:68,patYoy:16,cb:74,sig:'Selective'},
-{name:'Bajaj Finance',sector:'NBFC',group:'Financials',rev:16200,revYoy:22,ebitda:72,patYoy:14,cb:72,sig:'Selective'},
+{name:'Muthoot Finance',sector:'NBFC',group:'Financials',rev:4800,revYoy:28,ebitda:78,patYoy:28,cb:82,sig:'Strong',why:'Gold loan + gold price surge; +28% rev & PAT; 78% EBITDA'},
+{name:'Cholamandalam',sector:'NBFC',group:'Financials',rev:4200,revYoy:22,ebitda:70,patYoy:18,cb:78,sig:'Strong',why:'+22% AUM; diversified lending; clean asset quality; PAT +18%'},
+{name:'Shriram Finance',sector:'NBFC',group:'Financials',rev:6800,revYoy:18,ebitda:68,patYoy:16,cb:74,sig:'Selective',why:'Vehicle + MSME lending; +18%; merger synergies; steady'},
+{name:'Bajaj Finance',sector:'NBFC',group:'Financials',rev:16200,revYoy:22,ebitda:72,patYoy:14,cb:72,sig:'Selective',why:'+22% AUM but PAT +14% only — credit cost normalisation drag'},
 
 // ── GOLD & JEWELLERY ──
-{name:'Kalyan Jewellers',sector:'Gold & Jewellery',group:'Consumption & Services',rev:7200,revYoy:28,ebitda:8,patYoy:35,cb:78,sig:'Strong'},
-{name:'Titan Company',sector:'Gold & Jewellery',group:'Consumption & Services',rev:12800,revYoy:22,ebitda:11,patYoy:18,cb:74,sig:'Selective'},
-{name:'Thangamayil Jewellery',sector:'Gold & Jewellery',group:'Consumption & Services',rev:1480,revYoy:32,ebitda:7,patYoy:28,cb:72,sig:'Selective'},
+{name:'Kalyan Jewellers',sector:'Gold & Jewellery',group:'Consumption & Services',rev:7200,revYoy:28,ebitda:8,patYoy:35,cb:78,sig:'Strong',why:'+28% rev; franchise model scaling; PAT +35%; organised shift'},
+{name:'Titan Company',sector:'Gold & Jewellery',group:'Consumption & Services',rev:12800,revYoy:22,ebitda:11,patYoy:18,cb:74,sig:'Selective',why:'+22% rev but PAT +18% only; valuation premium caps score'},
+{name:'Thangamayil Jewellery',sector:'Gold & Jewellery',group:'Consumption & Services',rev:1480,revYoy:32,ebitda:7,patYoy:28,cb:72,sig:'Selective',why:'+32% rev fastest; South India focus; PAT +28% off small base'},
 
 // ── PHARMA ──
-{name:'Lupin',sector:'Pharma',group:'Manufacturing',rev:7475,revYoy:32,ebitda:36,patYoy:89,cb:92,sig:'Strong'},
-{name:'Laurus Labs',sector:'Pharma',group:'Manufacturing',rev:1800,revYoy:23,ebitda:27,patYoy:148,cb:88,sig:'Strong'},
-{name:'Sun Pharma',sector:'Pharma',group:'Manufacturing',rev:14560,revYoy:14,ebitda:27,patYoy:26,cb:84,sig:'Strong'},
-{name:'Alkem Laboratories',sector:'Pharma',group:'Manufacturing',rev:3600,revYoy:16,ebitda:22,patYoy:25,cb:80,sig:'Strong'},
-{name:'Torrent Pharma',sector:'Pharma',group:'Manufacturing',rev:2900,revYoy:12,ebitda:28,patYoy:20,cb:78,sig:'Strong'},
-{name:'Divi\'s Laboratories',sector:'Pharma',group:'Manufacturing',rev:2400,revYoy:10,ebitda:28,patYoy:15,cb:74,sig:'Selective'},
-{name:'Cipla',sector:'Pharma',group:'Manufacturing',rev:6800,revYoy:8,ebitda:24,patYoy:-8,cb:66,sig:'Selective'},
-{name:'Dr Reddys',sector:'Pharma',group:'Manufacturing',rev:7200,revYoy:4,ebitda:22,patYoy:-18,cb:60,sig:'Selective'},
+{name:'Lupin',sector:'Pharma',group:'Manufacturing',rev:7475,revYoy:32,ebitda:36,patYoy:89,cb:92,sig:'Strong',why:'PAT +89%, EBITDA 36.5% (+1,070bps); US +57%; spectacular turnaround'},
+{name:'Laurus Labs',sector:'Pharma',group:'Manufacturing',rev:1800,revYoy:23,ebitda:27,patYoy:148,cb:88,sig:'Strong',why:'PAT +148%; CDMO secular growth; EBITDA 26.8% expanding'},
+{name:'Sun Pharma',sector:'Pharma',group:'Manufacturing',rev:14560,revYoy:14,ebitda:27,patYoy:26,cb:84,sig:'Strong',why:'Largest pharma; US Innovative crossed $1Bn; PAT +26%; specialty moat'},
+{name:'Alkem Laboratories',sector:'Pharma',group:'Manufacturing',rev:3600,revYoy:16,ebitda:22,patYoy:25,cb:80,sig:'Strong',why:'Domestic-led +16%; chronic therapy strong; PAT +25%'},
+{name:'Torrent Pharma',sector:'Pharma',group:'Manufacturing',rev:2900,revYoy:12,ebitda:28,patYoy:20,cb:78,sig:'Strong',why:'28% EBITDA; branded domestic + acquisitions; PAT +20%'},
+{name:'Divi\'s Laboratories',sector:'Pharma',group:'Manufacturing',rev:2400,revYoy:10,ebitda:28,patYoy:15,cb:74,sig:'Selective',why:'API/CDMO recovery; 28% EBITDA; slower +10% rev caps score'},
+{name:'Cipla',sector:'Pharma',group:'Manufacturing',rev:6800,revYoy:8,ebitda:24,patYoy:-8,cb:66,sig:'Selective',why:'gRevlimid exclusivity expiry hit Q4; PAT -8%; respiratory steady'},
+{name:'Dr Reddys',sector:'Pharma',group:'Manufacturing',rev:7200,revYoy:4,ebitda:22,patYoy:-18,cb:60,sig:'Selective',why:'Weakest large pharma; gRevlimid hit + shelf-stock adj; PAT -18%'},
 
 // ── BANKING ──
-{name:'ICICI Bank',sector:'Banking',group:'Financials',rev:22800,revYoy:15,ebitda:48,patYoy:18,cb:80,sig:'Strong'},
-{name:'SBI',sector:'Banking',group:'Financials',rev:68000,revYoy:12,ebitda:38,patYoy:16,cb:76,sig:'Strong'},
-{name:'Kotak Mahindra',sector:'Banking',group:'Financials',rev:14200,revYoy:12,ebitda:46,patYoy:14,cb:72,sig:'Selective'},
-{name:'Axis Bank',sector:'Banking',group:'Financials',rev:15800,revYoy:10,ebitda:40,patYoy:12,cb:68,sig:'Selective'},
-{name:'HDFC Bank',sector:'Banking',group:'Financials',rev:42000,revYoy:8,ebitda:44,patYoy:6,cb:64,sig:'Selective'},
-{name:'PNB',sector:'Banking',group:'Financials',rev:16200,revYoy:10,ebitda:28,patYoy:22,cb:62,sig:'Selective'},
-{name:'Bank of Baroda',sector:'Banking',group:'Financials',rev:18400,revYoy:8,ebitda:30,patYoy:12,cb:60,sig:'Selective'},
-{name:'IndusInd Bank',sector:'Banking',group:'Financials',rev:12800,revYoy:6,ebitda:38,patYoy:-14,cb:42,sig:'Weak'},
+{name:'ICICI Bank',sector:'Banking',group:'Financials',rev:22800,revYoy:15,ebitda:48,patYoy:18,cb:80,sig:'Strong',why:'Best large bank; +15% rev; ROA ~2.4%; clean asset quality'},
+{name:'SBI',sector:'Banking',group:'Financials',rev:68000,revYoy:12,ebitda:38,patYoy:16,cb:76,sig:'Strong',why:'Largest PSU bank; +12%; strong recovery; PAT +16%; valuation comfort'},
+{name:'Kotak Mahindra',sector:'Banking',group:'Financials',rev:14200,revYoy:12,ebitda:46,patYoy:14,cb:72,sig:'Selective',why:'Conservative; +12%; high CASA but growth moderating'},
+{name:'Axis Bank',sector:'Banking',group:'Financials',rev:15800,revYoy:10,ebitda:40,patYoy:12,cb:68,sig:'Selective',why:'+10%; NIM pressure; asset quality stable but slower momentum'},
+{name:'HDFC Bank',sector:'Banking',group:'Financials',rev:42000,revYoy:8,ebitda:44,patYoy:6,cb:64,sig:'Selective',why:'Merger deposit normalisation drags NIM; PAT +6% only'},
+{name:'PNB',sector:'Banking',group:'Financials',rev:16200,revYoy:10,ebitda:28,patYoy:22,cb:62,sig:'Selective',why:'PSU recovery; PAT +22% on low base; asset quality improving'},
+{name:'Bank of Baroda',sector:'Banking',group:'Financials',rev:18400,revYoy:8,ebitda:30,patYoy:12,cb:60,sig:'Selective',why:'PSU steady; +8%; modest growth; clean book'},
+{name:'IndusInd Bank',sector:'Banking',group:'Financials',rev:12800,revYoy:6,ebitda:38,patYoy:-14,cb:42,sig:'Weak',why:'Derivatives accounting issue flagged; PAT -14%; trust dented'},
 
 // ── FMCG ──
-{name:'Varun Beverages',sector:'FMCG',group:'Consumption & Services',rev:5200,revYoy:22,ebitda:22,patYoy:22,cb:78,sig:'Strong'},
-{name:'Dabur India',sector:'FMCG',group:'Consumption & Services',rev:3400,revYoy:10,ebitda:20,patYoy:12,cb:66,sig:'Selective'},
-{name:'Marico',sector:'FMCG',group:'Consumption & Services',rev:2600,revYoy:8,ebitda:19,patYoy:10,cb:64,sig:'Selective'},
-{name:'Nestle India',sector:'FMCG',group:'Consumption & Services',rev:5100,revYoy:9,ebitda:24,patYoy:8,cb:63,sig:'Selective'},
-{name:'Britannia',sector:'FMCG',group:'Consumption & Services',rev:4200,revYoy:7,ebitda:17,patYoy:8,cb:60,sig:'Selective'},
-{name:'HUL',sector:'FMCG',group:'Consumption & Services',rev:15200,revYoy:6,ebitda:24,patYoy:2,cb:56,sig:'Selective'},
+{name:'Varun Beverages',sector:'FMCG',group:'Consumption & Services',rev:5200,revYoy:22,ebitda:22,patYoy:22,cb:78,sig:'Strong',why:'+22% rev best in FMCG; PepsiCo bottling; volume-led PAT +22%'},
+{name:'Dabur India',sector:'FMCG',group:'Consumption & Services',rev:3400,revYoy:10,ebitda:20,patYoy:12,cb:66,sig:'Selective',why:'+10%; rural lag; ayurveda portfolio; modest recovery'},
+{name:'Marico',sector:'FMCG',group:'Consumption & Services',rev:2600,revYoy:8,ebitda:19,patYoy:10,cb:64,sig:'Selective',why:'+8%; Saffola/Parachute; rural stress; margin steady'},
+{name:'Nestle India',sector:'FMCG',group:'Consumption & Services',rev:5100,revYoy:9,ebitda:24,patYoy:8,cb:63,sig:'Selective',why:'+9% but PAT +8%; premium portfolio; input cost watch'},
+{name:'Britannia',sector:'FMCG',group:'Consumption & Services',rev:4200,revYoy:7,ebitda:17,patYoy:8,cb:60,sig:'Selective',why:'+7%; biscuit leader; thin 17% margin; rural-dependent'},
+{name:'HUL',sector:'FMCG',group:'Consumption & Services',rev:15200,revYoy:6,ebitda:24,patYoy:2,cb:56,sig:'Selective',why:'Largest FMCG but PAT +2% flat; rural stress; volume recovery slow'},
 
 // ── HOSPITALS ──
-{name:'Max Healthcare',sector:'Hospitals',group:'Consumption & Services',rev:1960,revYoy:20,ebitda:24,patYoy:32,cb:84,sig:'Strong'},
-{name:'Narayana Hrudayalaya',sector:'Hospitals',group:'Consumption & Services',rev:2100,revYoy:18,ebitda:22,patYoy:28,cb:82,sig:'Strong'},
-{name:'Apollo Hospitals',sector:'Hospitals',group:'Consumption & Services',rev:5400,revYoy:16,ebitda:20,patYoy:24,cb:78,sig:'Strong'},
-{name:'Fortis Healthcare',sector:'Hospitals',group:'Consumption & Services',rev:2200,revYoy:14,ebitda:18,patYoy:20,cb:72,sig:'Selective'},
+{name:'Max Healthcare',sector:'Hospitals',group:'Consumption & Services',rev:1960,revYoy:20,ebitda:24,patYoy:32,cb:84,sig:'Strong',why:'+20% rev; 24% EBITDA; bed additions ramping; PAT +32%'},
+{name:'Narayana Hrudayalaya',sector:'Hospitals',group:'Consumption & Services',rev:2100,revYoy:18,ebitda:22,patYoy:28,cb:82,sig:'Strong',why:'+18%; cardiac-focused; asset-light efficiency; PAT +28%'},
+{name:'Apollo Hospitals',sector:'Hospitals',group:'Consumption & Services',rev:5400,revYoy:16,ebitda:20,patYoy:24,cb:78,sig:'Strong',why:'Largest network; +16%; pharmacy + diagnostics; PAT +24%'},
+{name:'Fortis Healthcare',sector:'Hospitals',group:'Consumption & Services',rev:2200,revYoy:14,ebitda:18,patYoy:20,cb:72,sig:'Selective',why:'+14%; network recovery; margins improving steadily'},
 
 // ── TELECOM ──
-{name:'Bharti Airtel',sector:'Telecom',group:'Infrastructure',rev:22800,revYoy:15,ebitda:54,patYoy:35,cb:78,sig:'Strong'},
-{name:'Tata Communications',sector:'Telecom',group:'Infrastructure',rev:5800,revYoy:12,ebitda:28,patYoy:18,cb:68,sig:'Selective'},
-{name:'Vodafone Idea',sector:'Telecom',group:'Infrastructure',rev:10400,revYoy:4,ebitda:42,patYoy:-999,cb:28,sig:'Weak'},
+{name:'Bharti Airtel',sector:'Telecom',group:'Infrastructure',rev:22800,revYoy:15,ebitda:54,patYoy:35,cb:78,sig:'Strong',why:'ARPU ₹245; +15% rev; PAT +35%; 5G monetisation; FCF strong'},
+{name:'Tata Communications',sector:'Telecom',group:'Infrastructure',rev:5800,revYoy:12,ebitda:28,patYoy:18,cb:68,sig:'Selective',why:'+12%; enterprise data + cloud; margin recovery slower'},
+{name:'Vodafone Idea',sector:'Telecom',group:'Infrastructure',rev:10400,revYoy:4,ebitda:42,patYoy:-999,cb:28,sig:'Weak',why:'Weakest in universe; negative PAT; solvency overhang; AGR debt'},
 
 // ── AUTO 2W ──
-{name:'TVS Motor',sector:'Auto 2W',group:'Manufacturing',rev:9200,revYoy:18,ebitda:19,patYoy:28,cb:80,sig:'Strong'},
-{name:'Bajaj Auto',sector:'Auto 2W',group:'Manufacturing',rev:13200,revYoy:15,ebitda:22,patYoy:22,cb:79,sig:'Strong'},
-{name:'Royal Enfield (Eicher)',sector:'Auto 2W',group:'Manufacturing',rev:4800,revYoy:12,ebitda:28,patYoy:18,cb:76,sig:'Strong'},
-{name:'Hero MotoCorp',sector:'Auto 2W',group:'Manufacturing',rev:10400,revYoy:8,ebitda:17,patYoy:12,cb:66,sig:'Selective'},
+{name:'TVS Motor',sector:'Auto 2W',group:'Manufacturing',rev:9200,revYoy:18,ebitda:19,patYoy:28,cb:80,sig:'Strong',why:'+18% rev best in 2W; premium + EV; PAT +28%; export momentum'},
+{name:'Bajaj Auto',sector:'Auto 2W',group:'Manufacturing',rev:13200,revYoy:15,ebitda:22,patYoy:22,cb:79,sig:'Strong',why:'22% EBITDA; exports strong; PAT +22%; premium mix'},
+{name:'Royal Enfield (Eicher)',sector:'Auto 2W',group:'Manufacturing',rev:4800,revYoy:12,ebitda:28,patYoy:18,cb:76,sig:'Strong',why:'28% EBITDA moat; premium 350cc+; consistent compounder'},
+{name:'Hero MotoCorp',sector:'Auto 2W',group:'Manufacturing',rev:10400,revYoy:8,ebitda:17,patYoy:12,cb:66,sig:'Selective',why:'+8% only; entry-level dependent; EV transition lag'},
 
 // ── AUTO 4W ──
-{name:'M&M',sector:'Auto 4W',group:'Manufacturing',rev:28400,revYoy:24,ebitda:15,patYoy:38,cb:82,sig:'Strong'},
-{name:'Hyundai India',sector:'Auto 4W',group:'Manufacturing',rev:18200,revYoy:9,ebitda:13,patYoy:14,cb:66,sig:'Selective'},
-{name:'Maruti Suzuki',sector:'Auto 4W',group:'Manufacturing',rev:40200,revYoy:6,ebitda:12,patYoy:10,cb:63,sig:'Selective'},
-{name:'Tata Motors',sector:'Auto 4W',group:'Manufacturing',rev:120000,revYoy:8,ebitda:12,patYoy:18,cb:62,sig:'Selective'},
+{name:'M&M',sector:'Auto 4W',group:'Manufacturing',rev:28400,revYoy:24,ebitda:15,patYoy:38,cb:82,sig:'Strong',why:'+24% rev; SUV boom; tractor recovery; PAT +38%; best auto play'},
+{name:'Hyundai India',sector:'Auto 4W',group:'Manufacturing',rev:18200,revYoy:9,ebitda:13,patYoy:14,cb:66,sig:'Selective',why:'+9% post-IPO; SUV mix; PAT +14%; steady but not standout'},
+{name:'Maruti Suzuki',sector:'Auto 4W',group:'Manufacturing',rev:40200,revYoy:6,ebitda:12,patYoy:10,cb:63,sig:'Selective',why:'+6%; entry-segment slowdown; EV transition cost; PAT +10%'},
+{name:'Tata Motors',sector:'Auto 4W',group:'Manufacturing',rev:120000,revYoy:8,ebitda:12,patYoy:18,cb:62,sig:'Selective',why:'JLR + India PV; +8%; PAT +18%; demerger value unlock pending'},
 
 // ── AUTO ANCILLARIES ──
-{name:'Sona BLW',sector:'Auto Ancillaries',group:'Manufacturing',rev:1120,revYoy:18,ebitda:24,patYoy:22,cb:76,sig:'Strong'},
-{name:'Minda Industries',sector:'Auto Ancillaries',group:'Manufacturing',rev:4200,revYoy:14,ebitda:14,patYoy:18,cb:68,sig:'Selective'},
-{name:'Motherson Sumi',sector:'Auto Ancillaries',group:'Manufacturing',rev:26000,revYoy:10,ebitda:10,patYoy:14,cb:60,sig:'Selective'},
+{name:'Sona BLW',sector:'Auto Ancillaries',group:'Manufacturing',rev:1120,revYoy:18,ebitda:24,patYoy:22,cb:76,sig:'Strong',why:'+18%; EV content per vehicle rising; 24% EBITDA; structural'},
+{name:'Minda Industries',sector:'Auto Ancillaries',group:'Manufacturing',rev:4200,revYoy:14,ebitda:14,patYoy:18,cb:68,sig:'Selective',why:'+14%; diversified components; steady; EV-ready portfolio'},
+{name:'Motherson Sumi',sector:'Auto Ancillaries',group:'Manufacturing',rev:26000,revYoy:10,ebitda:10,patYoy:14,cb:60,sig:'Selective',why:'Global auto exposure; +10%; thin 10% margin; broad but slow'},
 
 // ── TYRES ──
-{name:'Balkrishna Industries',sector:'Tyres',group:'Manufacturing',rev:2960,revYoy:14,ebitda:28,patYoy:22,cb:82,sig:'Strong'},
-{name:'MRF',sector:'Tyres',group:'Manufacturing',rev:7200,revYoy:9,ebitda:22,patYoy:18,cb:76,sig:'Strong'},
-{name:'Apollo Tyres',sector:'Tyres',group:'Manufacturing',rev:6800,revYoy:11,ebitda:19,patYoy:20,cb:74,sig:'Selective'},
-{name:'CEAT',sector:'Tyres',group:'Manufacturing',rev:3400,revYoy:10,ebitda:16,patYoy:16,cb:68,sig:'Selective'},
+{name:'Balkrishna Industries',sector:'Tyres',group:'Manufacturing',rev:2960,revYoy:14,ebitda:28,patYoy:22,cb:82,sig:'Strong',why:'28% EBITDA; farm/OTR tyre export niche; PAT +22%'},
+{name:'MRF',sector:'Tyres',group:'Manufacturing',rev:7200,revYoy:9,ebitda:22,patYoy:18,cb:76,sig:'Strong',why:'Tyre leader; 22% EBITDA; +9% rev; RM easing tailwind; PAT +18%'},
+{name:'Apollo Tyres',sector:'Tyres',group:'Manufacturing',rev:6800,revYoy:11,ebitda:19,patYoy:20,cb:74,sig:'Selective',why:'+11%; replacement demand; PAT +20%; margin recovery'},
+{name:'CEAT',sector:'Tyres',group:'Manufacturing',rev:3400,revYoy:10,ebitda:16,patYoy:16,cb:68,sig:'Selective',why:'+10%; 2W/PV tyres; thinner margins; steady'},
 
 // ── CEMENT ──
-{name:'Shree Cement',sector:'Cement',group:'Infrastructure',rev:5200,revYoy:8,ebitda:23,patYoy:5,cb:62,sig:'Selective'},
-{name:'UltraTech Cement',sector:'Cement',group:'Infrastructure',rev:21800,revYoy:6,ebitda:20,patYoy:4,cb:60,sig:'Selective'},
-{name:'Ambuja Cements',sector:'Cement',group:'Infrastructure',rev:8400,revYoy:5,ebitda:18,patYoy:3,cb:56,sig:'Selective'},
+{name:'Shree Cement',sector:'Cement',group:'Infrastructure',rev:5200,revYoy:8,ebitda:23,patYoy:5,cb:62,sig:'Selective',why:'23% best cement margin; +8%; but realisations flat; PAT +5%'},
+{name:'UltraTech Cement',sector:'Cement',group:'Infrastructure',rev:21800,revYoy:6,ebitda:20,patYoy:4,cb:60,sig:'Selective',why:'Largest; +6% rev; volume up but pricing weak; PAT +4%'},
+{name:'Ambuja Cements',sector:'Cement',group:'Infrastructure',rev:8400,revYoy:5,ebitda:18,patYoy:3,cb:56,sig:'Selective',why:'+5%; Adani synergies; weakest pricing; PAT +3%'},
 
 // ── METALS ──
-{name:'NALCO',sector:'Metals',group:'Manufacturing',rev:4800,revYoy:14,ebitda:22,patYoy:28,cb:74,sig:'Selective'},
-{name:'Hindalco',sector:'Metals',group:'Manufacturing',rev:58000,revYoy:8,ebitda:14,patYoy:15,cb:65,sig:'Selective'},
-{name:'JSW Steel',sector:'Metals',group:'Manufacturing',rev:44000,revYoy:4,ebitda:14,patYoy:-8,cb:52,sig:'Weak'},
-{name:'Tata Steel',sector:'Metals',group:'Manufacturing',rev:56000,revYoy:3,ebitda:12,patYoy:-12,cb:48,sig:'Weak'},
+{name:'NALCO',sector:'Metals',group:'Manufacturing',rev:4800,revYoy:14,ebitda:22,patYoy:28,cb:74,sig:'Selective',why:'Aluminium + alumina; +14%; LME tailwind; PAT +28%; integrated'},
+{name:'Hindalco',sector:'Metals',group:'Manufacturing',rev:58000,revYoy:8,ebitda:14,patYoy:15,cb:65,sig:'Selective',why:'Novelis + India; +8%; 20% EBITDA; PAT +15%; aluminium strength'},
+{name:'JSW Steel',sector:'Metals',group:'Manufacturing',rev:44000,revYoy:4,ebitda:14,patYoy:-8,cb:52,sig:'Weak',why:'China dumping hit realisations; PAT -8%; volume up but prices weak'},
+{name:'Tata Steel',sector:'Metals',group:'Manufacturing',rev:56000,revYoy:3,ebitda:12,patYoy:-12,cb:48,sig:'Weak',why:'Weakest metal; China steel glut; Europe drag; PAT -12%'},
 
 // ── OIL & GAS ──
-{name:'ONGC',sector:'Oil & Gas',group:'Energy',rev:72000,revYoy:6,ebitda:32,patYoy:5,cb:60,sig:'Selective'},
-{name:'RIL (O2C+)',sector:'Oil & Gas',group:'Energy',rev:240000,revYoy:4,ebitda:18,patYoy:6,cb:58,sig:'Selective'},
-{name:'Petronet LNG',sector:'Oil & Gas',group:'Energy',rev:14400,revYoy:8,ebitda:14,patYoy:10,cb:56,sig:'Selective'},
-{name:'BPCL',sector:'Oil & Gas',group:'Energy',rev:128000,revYoy:2,ebitda:5,patYoy:-20,cb:44,sig:'Weak'},
-{name:'IOC',sector:'Oil & Gas',group:'Energy',rev:220000,revYoy:1,ebitda:4,patYoy:-25,cb:40,sig:'Weak'},
+{name:'ONGC',sector:'Oil & Gas',group:'Energy',rev:72000,revYoy:6,ebitda:32,patYoy:5,cb:60,sig:'Selective',why:'Upstream +6%; stable production; PAT +5%; gas pricing watch'},
+{name:'RIL (O2C+)',sector:'Oil & Gas',group:'Energy',rev:240000,revYoy:4,ebitda:18,patYoy:6,cb:58,sig:'Selective',why:'Diversified giant; O2C flat; retail/Jio steady; PAT +6%'},
+{name:'Petronet LNG',sector:'Oil & Gas',group:'Energy',rev:14400,revYoy:8,ebitda:14,patYoy:10,cb:56,sig:'Selective',why:'+8%; regas volumes; modest; gas demand recovery'},
+{name:'BPCL',sector:'Oil & Gas',group:'Energy',rev:128000,revYoy:2,ebitda:5,patYoy:-20,cb:44,sig:'Weak',why:'Marketing margin normalised; PAT -20%; OMC windfall faded'},
+{name:'IOC',sector:'Oil & Gas',group:'Energy',rev:220000,revYoy:1,ebitda:4,patYoy:-25,cb:40,sig:'Weak',why:'Weakest OMC; refining + marketing squeeze; PAT -25%; subsidy burden'},
 
 // ── PAINTS ──
-{name:'Berger Paints',sector:'Paints',group:'Manufacturing',rev:2800,revYoy:8,ebitda:18,patYoy:10,cb:62,sig:'Selective'},
-{name:'Kansai Nerolac',sector:'Paints',group:'Manufacturing',rev:2200,revYoy:7,ebitda:14,patYoy:8,cb:58,sig:'Selective'},
-{name:'Asian Paints',sector:'Paints',group:'Manufacturing',rev:8600,revYoy:6,ebitda:18,patYoy:-5,cb:54,sig:'Selective'},
-{name:'Indigo Paints',sector:'Paints',group:'Manufacturing',rev:340,revYoy:10,ebitda:15,patYoy:12,cb:60,sig:'Selective'},
+{name:'Berger Paints',sector:'Paints',group:'Manufacturing',rev:2800,revYoy:8,ebitda:18,patYoy:10,cb:62,sig:'Selective',why:'+8%; #2 paint; 18% EBITDA; steady share defence'},
+{name:'Kansai Nerolac',sector:'Paints',group:'Manufacturing',rev:2200,revYoy:7,ebitda:14,patYoy:8,cb:58,sig:'Selective',why:'+7%; auto + deco; margin pressure; slower growth'},
+{name:'Asian Paints',sector:'Paints',group:'Manufacturing',rev:8600,revYoy:6,ebitda:18,patYoy:-5,cb:54,sig:'Selective',why:'Market leader but Birla Opus disruption; PAT -5%; share defence cost'},
+{name:'Indigo Paints',sector:'Paints',group:'Manufacturing',rev:340,revYoy:10,ebitda:15,patYoy:12,cb:60,sig:'Selective',why:'+10%; niche challenger; small base; scaling'},
 
 // ── SUGAR / ETHANOL ──
-{name:'Balrampur Chini',sector:'Sugar/Ethanol',group:'Manufacturing',rev:2800,revYoy:14,ebitda:16,patYoy:18,cb:66,sig:'Selective'},
-{name:'Triveni Engineering',sector:'Sugar/Ethanol',group:'Manufacturing',rev:2200,revYoy:12,ebitda:14,patYoy:15,cb:63,sig:'Selective'},
-{name:'EID Parry',sector:'Sugar/Ethanol',group:'Manufacturing',rev:1800,revYoy:10,ebitda:12,patYoy:12,cb:60,sig:'Selective'},
+{name:'Balrampur Chini',sector:'Sugar/Ethanol',group:'Manufacturing',rev:2800,revYoy:14,ebitda:16,patYoy:18,cb:66,sig:'Selective',why:'Ethanol mix accretive; +14%; PAT +18%; blending tailwind'},
+{name:'Triveni Engineering',sector:'Sugar/Ethanol',group:'Manufacturing',rev:2200,revYoy:12,ebitda:14,patYoy:15,cb:63,sig:'Selective',why:'Sugar + engineering; +12%; distillery margin; PAT +15%'},
+{name:'EID Parry',sector:'Sugar/Ethanol',group:'Manufacturing',rev:1800,revYoy:10,ebitda:12,patYoy:12,cb:60,sig:'Selective',why:'Sugar + nutraceuticals; +10%; Coromandel stake value'},
 
 // ── ALCOBEV ──
-{name:'Radico Khaitan',sector:'Alcobev',group:'Consumption & Services',rev:1120,revYoy:14,ebitda:16,patYoy:18,cb:68,sig:'Selective'},
-{name:'United Spirits',sector:'Alcobev',group:'Consumption & Services',rev:3200,revYoy:11,ebitda:14,patYoy:12,cb:63,sig:'Selective'},
-{name:'United Breweries',sector:'Alcobev',group:'Consumption & Services',rev:2400,revYoy:9,ebitda:12,patYoy:10,cb:59,sig:'Selective'},
+{name:'Radico Khaitan',sector:'Alcobev',group:'Consumption & Services',rev:1120,revYoy:14,ebitda:16,patYoy:18,cb:68,sig:'Selective',why:'Premiumisation; +14%; prestige mix; PAT +18%; best alcobev'},
+{name:'United Spirits',sector:'Alcobev',group:'Consumption & Services',rev:3200,revYoy:11,ebitda:14,patYoy:12,cb:63,sig:'Selective',why:'+11%; Diageo portfolio; premium shift; excise drag'},
+{name:'United Breweries',sector:'Alcobev',group:'Consumption & Services',rev:2400,revYoy:9,ebitda:12,patYoy:10,cb:59,sig:'Selective',why:'+9%; beer leader; state policy risk; margin thin'},
 
 // ── TEXTILES ──
-{name:'KPR Mill',sector:'Textiles',group:'Manufacturing',rev:1480,revYoy:12,ebitda:18,patYoy:15,cb:66,sig:'Selective'},
-{name:'Page Industries',sector:'Textiles',group:'Manufacturing',rev:1420,revYoy:10,ebitda:20,patYoy:12,cb:64,sig:'Selective'},
-{name:'Vardhman Textiles',sector:'Textiles',group:'Manufacturing',rev:2800,revYoy:8,ebitda:14,patYoy:8,cb:56,sig:'Selective'},
+{name:'KPR Mill',sector:'Textiles',group:'Manufacturing',rev:1480,revYoy:12,ebitda:18,patYoy:15,cb:66,sig:'Selective',why:'Integrated textile + sugar; +12%; 18% EBITDA; better than peers'},
+{name:'Page Industries',sector:'Textiles',group:'Manufacturing',rev:1420,revYoy:10,ebitda:20,patYoy:12,cb:64,sig:'Selective',why:'Jockey licensee; +10%; brand moat; premium innerwear'},
+{name:'Vardhman Textiles',sector:'Textiles',group:'Manufacturing',rev:2800,revYoy:8,ebitda:14,patYoy:8,cb:56,sig:'Selective',why:'Spinning margin squeeze; +8%; export-dependent; weak cycle'},
 
 // ── RECYCLING ──
-{name:'Gravita India',sector:'Recycling',group:'Manufacturing',rev:880,revYoy:20,ebitda:10,patYoy:28,cb:74,sig:'Selective'},
+{name:'Gravita India',sector:'Recycling',group:'Manufacturing',rev:880,revYoy:20,ebitda:10,patYoy:28,cb:74,sig:'Selective',why:'Lead recycling +20%; EPR tailwind; PAT +28%; organised shift'},
 
 // ── IT SERVICES ──
-{name:'LTIMindtree',sector:'IT Services',group:'Manufacturing',rev:9800,revYoy:8,ebitda:22,patYoy:12,cb:62,sig:'Selective'},
-{name:'HCL Technologies',sector:'IT Services',group:'Manufacturing',rev:29600,revYoy:6,ebitda:26,patYoy:10,cb:60,sig:'Selective'},
-{name:'TCS',sector:'IT Services',group:'Manufacturing',rev:63400,revYoy:4,ebitda:25,patYoy:6,cb:56,sig:'Selective'},
-{name:'Infosys',sector:'IT Services',group:'Manufacturing',rev:40200,revYoy:5,ebitda:22,patYoy:8,cb:54,sig:'Selective'},
-{name:'Tech Mahindra',sector:'IT Services',group:'Manufacturing',rev:13800,revYoy:4,ebitda:14,patYoy:5,cb:48,sig:'Weak'},
-{name:'Wipro',sector:'IT Services',group:'Manufacturing',rev:22500,revYoy:2,ebitda:21,patYoy:4,cb:46,sig:'Weak'},
+{name:'LTIMindtree',sector:'IT Services',group:'Manufacturing',rev:9800,revYoy:8,ebitda:22,patYoy:12,cb:62,sig:'Selective',why:'Best mid-IT; +8%; deal wins; PAT +12%; merger synergies'},
+{name:'HCL Technologies',sector:'IT Services',group:'Manufacturing',rev:29600,revYoy:6,ebitda:26,patYoy:10,cb:60,sig:'Selective',why:'26% EBITDA; +6%; ER&D + products; resilient'},
+{name:'TCS',sector:'IT Services',group:'Manufacturing',rev:63400,revYoy:4,ebitda:25,patYoy:6,cb:56,sig:'Selective',why:'Largest IT; +4% CC; margins stable but discretionary spend slow'},
+{name:'Infosys',sector:'IT Services',group:'Manufacturing',rev:40200,revYoy:5,ebitda:22,patYoy:8,cb:54,sig:'Selective',why:'+5% CC; BFSI recovery gradual; PAT +8%; GenAI deals small'},
+{name:'Tech Mahindra',sector:'IT Services',group:'Manufacturing',rev:13800,revYoy:4,ebitda:14,patYoy:5,cb:48,sig:'Weak',why:'Weak; +4%; telecom vertical drag; turnaround in progress'},
+{name:'Wipro',sector:'IT Services',group:'Manufacturing',rev:22500,revYoy:2,ebitda:21,patYoy:4,cb:46,sig:'Weak',why:'Weakest large IT; +2%; deal ramp delays; margin focus'},
 
 // ── AVIATION ──
-{name:'IndiGo (InterGlobe)',sector:'Aviation',group:'Consumption & Services',rev:22400,revYoy:15,ebitda:16,patYoy:-40,cb:42,sig:'Weak'},
+{name:'IndiGo (InterGlobe)',sector:'Aviation',group:'Consumption & Services',rev:22400,revYoy:15,ebitda:16,patYoy:-40,cb:42,sig:'Weak',why:'GTF engine grounding; PAT -40%; 60% share but capacity hit'},
 ];
 
 // ── Sort & Rank ──
@@ -488,6 +489,7 @@ function render(){
       <td><div class="co-cell">
         <span class="co-name">${d.name}${hasNotes?'<span class="notes-toggle">⚠ Notes</span>':''}</span>
         <div class="co-tags"><span class="tag tag-sec">${d.sector}</span><span class="tag tag-grp">${d.group}</span></div>
+        ${d.why?`<div class="co-why">${d.why}</div>`:''}
       </div></td>
       <td class="r neu">${revFmt(d.rev)}</td>
       <td class="r">${pctFmt(d.revYoy,'pos')}</td>
