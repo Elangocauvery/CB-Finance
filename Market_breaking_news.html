@@ -1272,13 +1272,11 @@ function renderFeed() {
 }
 
 function buildTicker() {
-  const items=NEWS.slice().sort((a,b)=>b.id-a.id);
-  const tickerItems=items.map(n=>{
-    const L=activeLang==='ta'?n.ta:n.en;
-    const preview=encodeURIComponent(L.context||L.headline);
-    return `<span class="ticker-item" onclick="showTickerPreview('${n.id}')"><strong>${n.sectorLabel}:</strong> ${L.headline}</span>`;
-  });
-  document.getElementById('ticker-scroll').innerHTML=[...tickerItems,...tickerItems].join('');
+  const items=NEWS.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
+  const latest=items[0];
+  const L=activeLang==='ta'?latest.ta:latest.en;
+  const single=`<span class="ticker-item" onclick="showTickerPreview('${latest.id}')"><strong>${latest.sectorLabel}:</strong> ${L.headline}</span>`;
+  document.getElementById('ticker-scroll').innerHTML=Array(8).fill(single).join('');
 }
 
 function showTickerPreview(id){
