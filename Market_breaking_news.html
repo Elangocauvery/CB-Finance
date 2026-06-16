@@ -374,6 +374,9 @@ footer span{color:#ffe0c0}
           <option value="idbi_sale">IDBI Bank Privatisation</option>
           <option value="indigo_loss">IndiGo Q4 Loss</option>
           <option value="market_fall">May 29 Market Crash</option>
+          <option value="iran_deal">US-Iran Deal — Crude Impact</option>
+          <option value="ppi_may26">PPI (WPI) May 2026 Rise</option>
+          <option value="trade_deficit">Exports &amp; Trade Deficit</option>
         </select>
       </div>
       <div class="assist-q-wrap">
@@ -414,6 +417,9 @@ footer span{color:#ffe0c0}
           <button class="sector-btn" data-s="disinvest" onclick="setSector('disinvest');event.stopPropagation()">Disinvestment <span class="scount" id="sc-disinvest">0</span></button>
           <button class="sector-btn" data-s="markets" onclick="setSector('markets');event.stopPropagation()">Markets / F&amp;O <span class="scount" id="sc-markets">0</span></button>
           <button class="sector-btn" data-s="fpi" onclick="setSector('fpi');event.stopPropagation()">FPI Flows <span class="scount" id="sc-fpi">0</span></button>
+          <button class="sector-btn" data-s="geopolitics" onclick="setSector('geopolitics');event.stopPropagation()">Geopolitics / Oil <span class="scount" id="sc-geopolitics">0</span></button>
+          <button class="sector-btn" data-s="trade" onclick="setSector('trade');event.stopPropagation()">Trade / Exports <span class="scount" id="sc-trade">0</span></button>
+          <button class="sector-btn" data-s="macro" onclick="setSector('macro');event.stopPropagation()">Inflation / PPI <span class="scount" id="sc-macro">0</span></button>
         </div>
       </div>
       <div class="cat-nav">
@@ -468,7 +474,7 @@ footer span{color:#ffe0c0}
 <footer>SectorWire &nbsp;·&nbsp; May–June 2026 Sector Intelligence Digest &nbsp;·&nbsp; <span id="footer-time"></span></footer>
 
 <script>
-const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi'];
+const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi','geopolitics','trade','macro'];
 
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
@@ -555,7 +561,7 @@ const NEWS = [
   },
   {
     id:6, date:'2026-05-22', sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'22 May 2026',
-    impact:'positive', badges:['₹2.87L Cr FY26 Record','+6.99% vs FY25','Fiscal Deficit Cushion'],
+    impact:'positive', breaking:true, badges:['₹2.87L Cr FY26 Record','+6.99% vs FY25','Fiscal Deficit Cushion'],
     en:{
       headline:'RBI Pays Record ₹2.87 Lakh Crore Dividend to Govt — How It Earns & Why It Matters',
       context:['RBI Central Board (22 May 2026) approved ₹2,86,588 cr surplus to Centre for FY26 — up 6.99% over FY25. Gross income surged 26.42% to ₹3.95L cr; balance sheet grew 20.61% to ₹91.97L cr.','Payout missed market expectation of ₹2.9–3.2L cr — 10Y bond yield rose 3 bps post-announcement; borrowing programme stays intact. RBI doubled Contingent Risk Buffer to ₹1.09L cr, capping future headroom.','Every ₹1L cr RBI dividend cuts fiscal deficit by ~15 bps of GDP. Gold now 16.7% of forex reserves (vs 5.9% in FY21) — adds annual revaluation income diversifying RBI earnings.'],
@@ -596,7 +602,7 @@ const NEWS = [
   },
   {
     id:5, date:'2026-05-27', sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
-    impact:'negative', badges:['CVD 126% + ADD 123%','230%+ Combined','Retroactive 90 Days'],
+    impact:'negative', breaking:true, badges:['CVD 126% + ADD 123%','230%+ Combined','Retroactive 90 Days'],
     en:{
       headline:'US Slaps 230%+ Tariff on Indian Solar — Exports Dead',
       context:['US imposed 126% CVD (Feb 2026) + 123% ADD (Apr 2026) on Indian solar modules — combined burden 230%+, making Indian exports to the US commercially unviable.','Critical-circumstances clause invoked: duties apply retroactively for 90 days of past shipments — Adani Solar and Premier Energies face maximum duty + retroactive cash liability. Final ruling due Jul 2026.','Waaree Energies is insulated — its 1.6 GW US factory (expanding to 4.2 GW by end-2026) fulfils US orders locally, fully bypassing import duties.'],
@@ -619,7 +625,7 @@ const NEWS = [
   },
   {
     id:4, date:'2026-05-27', sector:'solar', cat:'sector', sectorLabel:'Solar', pillCls:'pill-solar', time:'27 May 2026',
-    impact:'mixed', badges:['Cells Only — Not Wafers','No Blanket Extension','Net Metering Must Comply'],
+    impact:'mixed', breaking:true, badges:['Cells Only — Not Wafers','No Blanket Extension','Net Metering Must Comply'],
     en:{
       headline:'ALMM List-2 (Cells) Mandatory from 1 June 2026 — No Blanket Extension',
       context:['MNRE enforces ALMM List-2 (solar PV cells) from 1 June 2026 — no blanket extension. Only project-specific 2 or 4-month deferrals considered on merit by MNRE.','Net metering and open access projects must comply without exception. Developers using imported cells risk rejection of net-metering and subsidy claims from 1 June.','Wafers fall under ALMM List-3 — separate mandate from June 2028, and only after 3 Indian manufacturers with 15 GW combined capacity are operational. Today only cells are impacted.'],
@@ -636,7 +642,7 @@ const NEWS = [
   },
   {
     id:3, date:'2026-05-27', sector:'ecomm', cat:'macro', sectorLabel:'FDI / E-Commerce', pillCls:'pill-ecomm', time:'27 May 2026',
-    impact:'mixed', badges:['FEMA Press Note 2','No Inventory / No Price Control','Swiggy Vote Failed'],
+    impact:'mixed', breaking:true, badges:['FEMA Press Note 2','No Inventory / No Price Control','Swiggy Vote Failed'],
     en:{
       headline:'Why Swiggy Wants Indian Status — FDI Rules Ban Foreign Cos from Inventory & Pricing',
       context:['Under FEMA Press Note 2/2018, foreign-controlled platforms (Swiggy, Amazon, Flipkart) can ONLY act as a pure broker/facilitator — they cannot own inventory, fix prices, hold equity in sellers, or impose exclusivity.','IOCC status (>50% Indian ownership + board control) would unlock inventory-led q-commerce for Swiggy — letting it own stock, fix prices, and compete head-on with Blinkit and Zepto on Instamart.','Swiggy filed AoA amendments in May 2026 to qualify as IOCC — shareholder vote failed to pass. Swiggy remains foreign-controlled, locked in broker-only mode under FEMA.'],
@@ -657,7 +663,7 @@ const NEWS = [
   },
   {
     id:2, date:'2026-05-27', sector:'nps', cat:'macro', sectorLabel:'NPS / Pension', pillCls:'pill-nps', time:'27 May 2026',
-    impact:'positive', badges:['From Age 60 Only','60% Tax-Free','Annuity Now Just 20%'],
+    impact:'positive', breaking:true, badges:['From Age 60 Only','60% Tax-Free','Annuity Now Just 20%'],
     en:{
       headline:'NPS Gets SLW & SUR — Phased Drawdown from Age 60, 60% Tax-Free',
       context:['PFRDA (Dec 2025) introduced SLW and SUR — subscribers can draw their corpus in structured instalments (monthly/quarterly/half-yearly/annually) from age 60, automated with one instruction, up to age 75.','Mandatory annuity purchase slashed from 40% to just 20% — subscribers can now withdraw up to 80% as lump sum or instalments.','First 60% of corpus is fully tax-free under Sec 10(12A). The extra 20% PFRDA now permits is taxable at slab rate — Income Tax Act not yet aligned with PFRDA rules; law-policy mismatch unresolved.'],
@@ -673,9 +679,9 @@ const NEWS = [
     companies:[]
   },
   {
-    id:10, date:'2026-05-28', sector:'rbi', cat:'macro', sectorLabel:'RBI / Banking', pillCls:'pill-rbi', time:'28 May 2026',
+    id:20, date:'2026-05-28', sector:'rbi', cat:'macro', sectorLabel:'RBI / Banking', pillCls:'pill-rbi', time:'28 May 2026',
     breaking:true,
-    impact:'negative', badges:['₹45 Cr Commission','RBI Scrutiny Live','Chairman Exit Cited Ethics'],
+    impact:'negative', breaking:true, badges:['₹45 Cr Commission','RBI Scrutiny Live','Chairman Exit Cited Ethics'],
     en:{
       headline:'HDFC ₹45 Cr Deposit Commission Row — RBI Steps In, Ex-Chairman\'s Ethics Alarm Resurfaces',
       context:['HDFC Bank paid ₹45 crore in commissions linked to deposit mobilisation — the bank has described the arrangement as standard business practice, but the scale and structure of the payouts have drawn RBI attention, with the regulator actively examining the matter.','The controversy has renewed focus on remarks by a former HDFC chairman who cited unethical practices and internal governance concerns as reasons for his departure — adding reputational weight to what management calls a routine transaction.','Market reaction was negative; the RBI scrutiny overhang weighed on banking indices and dragged the broader Nifty/Sensex lower on the day, reflecting investor anxiety over regulatory risk at one of India\'s largest private lenders.'],
@@ -694,9 +700,9 @@ const NEWS = [
     ]
   },
   {
-    id:9, date:'2026-05-28', sector:'power', cat:'sector', sectorLabel:'Power / Infra', pillCls:'pill-power', time:'28 May 2026',
+    id:19, date:'2026-05-28', sector:'power', cat:'sector', sectorLabel:'Power / Infra', pillCls:'pill-power', time:'28 May 2026',
     breaking:true,
-    impact:'positive', badges:['Q4 Profit Surge','52-Week High','Order Book Strong'],
+    impact:'positive', breaking:true, badges:['Q4 Profit Surge','52-Week High','Order Book Strong'],
     en:{
       headline:'Hitachi Energy Hits 52-Week High — Q4 Profit Surge Powers Rally',
       context:['Hitachi Energy India posted a sharp surge in Q4 profits, driven by strong execution of its power infrastructure and grid technology order book — the results came in well ahead of market estimates, triggering a rally to a fresh 52-week high.','The company continues to benefit from India\'s aggressive power grid expansion, data centre build-out demand, and the global push for grid modernisation — all segments where Hitachi Energy holds a structurally strong position.','Order inflows remain robust; the management commentary pointed to a healthy pipeline across transmission, transformer, and grid automation businesses — reinforcing confidence in sustained earnings momentum through FY27.'],
@@ -715,9 +721,9 @@ const NEWS = [
     ]
   },
   {
-    id:8, date:'2026-05-28', sector:'coal', cat:'sector', sectorLabel:'Coal / PSU', pillCls:'pill-coal', time:'28 May 2026',
+    id:21, date:'2026-05-28', sector:'coal', cat:'sector', sectorLabel:'Coal / PSU', pillCls:'pill-coal', time:'28 May 2026',
     breaking:true,
-    impact:'mixed', badges:['Govt Keeps ₹19,000 Cr — Zero to Co.','8x Subscribed','Pure Promoter Sell-Down'],
+    impact:'mixed', breaking:true, badges:['Govt Keeps ₹19,000 Cr — Zero to Co.','8x Subscribed','Pure Promoter Sell-Down'],
     en:{
       headline:'Coal India OFS: Govt Retains Entire ₹19,000 Crore — Not a Single Rupee Goes to Company',
       context:['KEY POINT: The entire ₹19,000 crore raised goes directly to the Government of India — this is a pure promoter Offer for Sale (OFS), not a fresh fundraise. Coal India\'s balance sheet, capex plans, and debt levels are completely unaffected. The money is fiscal revenue for the Centre, period.','The OFS was subscribed approximately 8 times over, signalling strong institutional and retail demand — retail investors received an additional 5% discount over the floor price, driving broad participation.','For Coal India as a company, nothing changes operationally — production targets, dividend policy, and capital allocation remain exactly as before. The only change is the government\'s shareholding reduces marginally.'],
@@ -737,7 +743,7 @@ const NEWS = [
   },
   {
     id:1, date:'2026-05-27', sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'27 May 2026',
-    impact:'mixed', badges:['Neutral Stance','Rate Hike Risk Live','Inflation 4.6% FY27'],
+    impact:'mixed', breaking:true, badges:['Neutral Stance','Rate Hike Risk Live','Inflation 4.6% FY27'],
     en:{
       headline:'RBI Governor: Inflation First, Growth Second — Rate Hike Back on Table',
       context:['RBI Governor Malhotra signals a clear priority shift: price stability over growth support. After 125 bps of cumulative cuts to repo rate of 5.25%, MPC held in April 2026 citing West Asia crude-driven inflation risks.','Stance is neutral — a hike or cut is equally possible. But tone is hawkish: any sustained inflation overshoot will mean rate hikes, reversing the current dovish cycle. FY27 inflation projected at 4.6%.','Banks and NBFCs with floating-rate books benefit if rates hold or rise (NIM support). Real estate, auto loans, and MSME credit face headwinds; equity markets may de-rate if the rate-cut narrative breaks.'],
@@ -868,7 +874,7 @@ const NEWS = [
   },
   {
     id:15, date:'2026-05-26', sector:'energy', cat:'sector', sectorLabel:'Energy / Grid', pillCls:'pill-energy', time:'26 May 2026',
-    impact:'negative', breaking:false, badges:['Peak 270.8 GW on 21 May','Shortage up to 15.9 MU','Storage Gap Exposed'],
+    impact:'negative', breaking:true, badges:['Peak 270.8 GW on 21 May','Shortage up to 15.9 MU','Storage Gap Exposed'],
     en:{
       headline:'India\'s Evening Power Crisis — Solar Helps by Day, but Storage Gap Leaves Homes Dark After Sunset',
       context:[
@@ -911,6 +917,146 @@ const NEWS = [
       {name:'Gas Peaker Plant Operators',status:'Rising Dispatch Value at Evening Peak',cls:'cobadge-ok'},
       {name:'Solar IPPs (Large-Scale)',status:'Daytime Performance Strong; Evening Gap Exposes Limits',cls:'cobadge-partial'}
     ]
+  },
+
+  {
+    id:18, date:'2026-06-16', sector:'geopolitics', cat:'macro', sectorLabel:'Geopolitics / Oil', pillCls:'pill-markets', time:'16 Jun 2026',
+    impact:'positive', breaking:true, badges:['US-Iran Nuclear Deal','Crude Price Crash Risk','India Net Importer Benefit'],
+    en:{
+      headline:'US-Iran Nuclear Deal Signed — Crude Could Crash $15–20/bbl; India Stands to Gain Big',
+      context:[
+        'The United States and Iran have reached a nuclear agreement that paves the way for lifting sanctions on Iranian oil exports. Iran holds ~3.2 million bpd of production capacity currently locked out of global markets — its full re-entry would be the largest single supply shock since Saudi Arabia\'s 2020 production cuts.',
+        'Brent crude, already under pressure from OPEC+ easing, could fall $15–20/barrel on confirmed deal implementation. India — the world\'s 3rd largest crude importer spending ~$140 billion/year on oil — stands to gain directly through lower import bills, a narrowing current account deficit, and reduced inflation pressure.',
+        'The deal also removes a key geopolitical risk premium that was embedded in Indian equity markets after Sensex\'s 1,092-pt crash on 29 May 2026 (when stalled Iran talks + crude above ₹104 were cited as triggers). Resolution could trigger a multi-sector re-rating across aviation, paints, chemicals, and logistics.'
+      ],
+      pos:[
+        'Every $10/bbl fall in crude saves India approximately $13–15 billion in annual import costs — a $15–20 fall would be one of the largest single macro tailwinds for India in recent years, narrowing CAD and reducing forex pressure on the rupee.',
+        'Sectors that directly benefit: Aviation (ATF cost ~40% of airline OPEX), Paints (crude-linked raw materials), Tyres, Chemicals/Petrochemicals, Road Transport/Logistics, FMCG (packaging cost relief). IndiGo, Asian Paints, Berger Paints, MRF, Pidilite are key watch names.',
+        'Macro benefit: lower oil = lower inflation = more room for RBI rate cuts. If WPI/CPI trajectory improves on crude relief, RBI could resume the easing cycle that was paused in April 2026 — positive for rate-sensitive sectors (Banking, Real Estate, Auto).'
+      ],
+      neg:[
+        'Oil & Gas upstream companies (ONGC, Oil India) face earnings pressure as crude realisations fall — every $5/bbl drop reduces ONGC\'s net realisation significantly. IOC, BPCL, HPCL benefit on marketing margins but upstream suffers.',
+        'Deal implementation risk remains: US Congress ratification, IAEA verification timelines, and Iranian domestic political consensus are all uncertainties. A deal announcement without fast execution could see initial crude rally reversal.',
+        'Rupee appreciation (likely on CAD improvement) hurts IT exporters\' INR revenue translation — a $10–15 crude fall could strengthen INR by 1–2%, trimming IT sector margin tailwinds.'
+      ]
+    },
+    ta:{
+      headline:'அமெரிக்கா-ஈரான் அணு ஒப்பந்தம் — கச்சா எண்ணெய் $15–20 வீழ்ச்சி ஆபத்து; இந்தியாவுக்கு பெரும் லாபம்',
+      context:[
+        'அமெரிக்காவும் ஈரானும் அணு ஒப்பந்தம் கையெழுத்திட்டன — ஈரான் எண்ணெய் ஏற்றுமதிக்கான தடைகள் விலகும் வாய்ப்பு. ஈரானிடம் தற்போது தடுக்கப்பட்ட ~32 லட்சம் பாரல்/நாள் உற்பத்தி திறன் உள்ளது.',
+        'பிரெண்ட் கச்சா எண்ணெய் $15–20/பாரல் வீழ்ச்சி காண வாய்ப்பு. இந்தியா — உலகின் மூன்றாவது மிகப்பெரிய கச்சா எண்ணெய் இறக்குமதியாளர் (~$140 பில்லியன்/ஆண்டு) — நேரடியாக பயனடையும்.',
+        '29 மே 2026 சென்செக்ஸ் 1,092 புள்ளி வீழ்ச்சிக்கு (ஈரான் பேச்சுவார்த்தை தடுமாற்றம் + $104+ கச்சா) காரணமான ஆபத்து இப்போது குறையும் — பல துறைகளில் மறு மதிப்பீடு சாத்தியம்.'
+      ],
+      pos:[
+        'கச்சா எண்ணெய் $10/பாரல் வீழ்ச்சி = இந்தியாவுக்கு ~$13–15 பில்லியன் ஆண்டு சேமிப்பு. CAD குறையும்; ரூபாய் ஸ்திரமடையும்.',
+        'நேரடி பயன் பெறும் துறைகள்: விமான சேவை (ATF செலவு 40%), வண்ணப்பூச்சு, டயர், வேதியியல், தளவாடம். IndiGo, Asian Paints, MRF கவனிக்க வேண்டிய பங்குகள்.',
+        'மேக்ரோ நலன்: குறைந்த எண்ணெய் = குறைந்த பணவீக்கம் = RBI வட்டி குறைப்பு வாய்ப்பு. வங்கி, ரியல் எஸ்டேட், வாகன துறைகளுக்கு நேர்மறை.'
+      ],
+      neg:[
+        'ONGC, Oil India போன்ற மேல்நிலை நிறுவனங்கள் கச்சா விலை வீழ்ச்சியில் வருவாய் இழப்பு காணும்.',
+        'ஒப்பந்தம் நடைமுறைப்படுத்தல் ஆபத்து: அமெரிக்க காங்கிரஸ் ஒப்புதல், IAEA சரிபார்ப்பு, ஈரான் உள்நாட்டு அரசியல் — அனைத்தும் நிச்சயமற்றவை.',
+        'ரூபாய் பலப்படும்போது IT ஏற்றுமதியாளர்களின் INR வருவாய் மொழிபெயர்ப்பு பாதிக்கும்.'
+      ]
+    },
+    companies:[
+      {name:'IndiGo / SpiceJet',status:'Major Beneficiary — ATF Cost Relief',cls:'cobadge-ok'},
+      {name:'Asian Paints / Berger / Pidilite',status:'Crude-Linked RM Cost Relief',cls:'cobadge-ok'},
+      {name:'ONGC / Oil India',status:'Earnings Pressure on Lower Crude Realisation',cls:'cobadge-hit'},
+      {name:'IOC / BPCL / HPCL',status:'Marketing Margin Improvement',cls:'cobadge-ok'}
+    ]
+  },
+
+  {
+    id:17, date:'2026-06-16', sector:'macro', cat:'macro', sectorLabel:'Inflation / WPI', pillCls:'pill-rbi', time:'16 Jun 2026',
+    impact:'mixed', breaking:true, badges:['WPI May 2026 Released','Name Changed to PPI','Inflation Rises'],
+    en:{
+      headline:'WPI Renamed PPI (Producer Price Index) — May 2026 Reading Rises; Cost Pressure Re-Emerges for Manufacturers',
+      context:[
+        'India\'s Wholesale Price Index (WPI) has been officially renamed the Producer Price Index (PPI) — aligning with global nomenclature used by the IMF and World Bank. The PPI for May 2026 has been released, showing a higher reading compared to the previous month, signalling renewed input cost pressure across manufacturing sectors.',
+        'The PPI (erstwhile WPI) is a critical lead indicator for corporate margin trends. A rising PPI typically precedes CPI inflation by 6–8 weeks as manufacturers pass through input cost increases. It also directly affects sectors with commodity-linked pricing — steel, cement, chemicals, textiles, and food processing.',
+        'The index name change itself is cosmetic, but the methodology review that often accompanies such renaming could adjust base-year weights and commodity basket composition — affecting how future readings are interpreted by markets and policymakers.'
+      ],
+      pos:[
+        'Input price-setting companies (metals, chemicals, commodity producers) benefit from a rising PPI as they can command higher output prices — SAIL, Tata Steel, UPL, and commodity-linked midcaps are key beneficiaries in an upward PPI cycle.',
+        'Commodity-linked NBFC and trade finance companies see rising collateral values and better pricing power among their borrower base — a mild positive for trade credit segments.',
+        'If the PPI rise is driven by energy (crude) and not food, an Iran deal-driven crude correction could quickly reverse the reading in subsequent months — limiting sustained inflation risk.'
+      ],
+      neg:[
+        'Rising PPI compresses manufacturing EBITDA margins — companies unable to pass through cost increases (consumer durables, auto OEMs, mid-market FMCG) face margin squeeze in coming quarters.',
+        'A higher PPI reading reduces the probability of near-term RBI rate cuts — if it bleeds into CPI, the MPC\'s neutral stance could harden toward hawkish, delaying any easing cycle resumption.',
+        'Export competitiveness suffers when domestic input costs rise faster than global peers — especially for labour-intensive sectors like textiles, leather, and gems & jewellery where India competes with Bangladesh, Vietnam, and Cambodia.'
+      ]
+    },
+    ta:{
+      headline:'WPI பெயர் மாறி PPI ஆனது — மே 2026 படிப்பு உயர்வு; உற்பத்தியாளர்களுக்கு மூலப்பொருள் விலை அழுத்தம் திரும்பியது',
+      context:[
+        'இந்தியாவின் மொத்த விலைக் குறியீடு (WPI) இப்போது உற்பத்தியாளர் விலைக் குறியீடு (PPI) என மறுபெயரிடப்பட்டது — IMF மற்றும் உலக வங்கி பயன்படுத்தும் உலகளாவிய வழிமுறைக்கு இணங்க. மே 2026 PPI வெளியிடப்பட்டது; முந்தைய மாதத்தை விட உயர்ந்த படிப்பு காட்டுகிறது.',
+        'PPI (முன்பு WPI) என்பது கார்ப்பரேட் லாப அளவு போக்குகளுக்கான முன்னோடி குறிகாட்டி. உயரும் PPI பொதுவாக 6–8 வாரங்களில் CPI பணவீக்கத்திற்கு வழிவகுக்கும்.',
+        'பெயர் மாற்றம் அலங்கார மாற்றம் மட்டுமே. ஆனால் அடிப்படை ஆண்டு எடைகள் மற்றும் பொருட்கள் கூடை மாற்றம் சந்தை விளக்கங்களை பாதிக்கலாம்.'
+      ],
+      pos:[
+        'உலோகங்கள், வேதியியல், பொருட்கள் உற்பத்தியாளர்கள் — SAIL, Tata Steel, UPL — உயரும் PPI சுழற்சியில் பயனடைவார்கள்.',
+        'ஈரான் ஒப்பந்தம் கச்சா எண்ணெய் குறைத்தால், PPI உயர்வு விரைவில் தலைகீழாகலாம் — நீடித்த பணவீக்க ஆபத்தை கட்டுப்படுத்தும்.'
+      ],
+      neg:[
+        'உயரும் PPI உற்பத்தி EBITDA மார்ஜினை சுருக்கும் — நுகர்வோர் நீடுழி பொருட்கள், வாகன OEM, FMCG நிறுவனங்கள் விலை உயர்வை கடந்து செல்ல முடியாமல் மார்ஜின் இழப்பை சந்திக்கலாம்.',
+        'RBI வட்டி குறைப்பு தாமதமாகும் வாய்ப்பு — MPC நடுநிலை நிலைப்பாடு கடினமாகலாம்.',
+        'ஏற்றுமதி போட்டித்தன்மை பாதிக்கப்படும் — ஜவுளி, தோல், நகை போன்ற துறைகளில் இந்தியா பங்களாதேஷ், வியட்நாமுடன் போட்டியிடுகிறது.'
+      ]
+    },
+    companies:[
+      {name:'SAIL / Tata Steel / JSW Steel',status:'Benefit from Higher Steel PPI',cls:'cobadge-ok'},
+      {name:'Auto OEMs (Maruti / M&M)',status:'Input Cost Margin Pressure',cls:'cobadge-hit'},
+      {name:'Consumer Durables (Havells / Voltas)',status:'Commodity Cost Pressure',cls:'cobadge-hit'},
+      {name:'UPL / Coromandel Intl',status:'Agri-Chemical PPI Benefit',cls:'cobadge-ok'}
+    ]
+  },
+
+  {
+    id:16, date:'2026-06-16', sector:'trade', cat:'macro', sectorLabel:'Trade / Exports', pillCls:'pill-ecomm', time:'16 Jun 2026',
+    impact:'mixed', breaking:true, badges:['Exports Leap to Record','Trade Deficit Widens','CAD Pressure Returns'],
+    en:{
+      headline:'Goods Exports Leap — But Trade Deficit Balloons; Net CAD Impact Uncertain',
+      context:[
+        'India\'s merchandise exports recorded a strong jump in the latest data release, driven by engineering goods, chemicals, and pharmaceuticals. However, the trade deficit has also widened significantly — imports have risen faster in value terms, led by gold, crude oil, and electronics — partially offsetting the export gains.',
+        'The widening trade deficit is a direct input into India\'s Current Account Deficit (CAD). A structurally high CAD puts pressure on the rupee and could limit RBI\'s room for rate cuts. India historically runs a trade deficit of $20–25 billion/month; any spike above this range attracts FPI caution and currency market attention.',
+        'On a net basis, the export momentum is positive for GDP and manufacturing employment (especially engineering exports from Gujarat, Tamil Nadu, Maharashtra). But sustained import growth in non-productive categories (gold, crude) weakens the headline benefit and keeps the CAD elevated.'
+      ],
+      pos:[
+        'Strong engineering goods and pharma exports signal that India\'s manufacturing competitiveness is improving — a validation of PLI scheme outcomes and capacity investments made in FY24–25.',
+        'A buoyant export environment supports INR revenue for export-oriented sectors: IT services, pharma exports (Sun Pharma, Dr Reddy\'s, Cipla), speciality chemicals (Aarti Industries, Vinati Organics), and auto component exporters.',
+        'Export diversification away from the US (amid tariff pressures) toward Middle East, Africa, and ASEAN markets is gradually reducing single-market dependence — structurally positive for trade resilience.'
+      ],
+      neg:[
+        'Ballooning trade deficit widens CAD — if deficit exceeds $25 billion/month consistently, rupee faces structural depreciation pressure and FPI flows into debt become uncertain.',
+        'Gold import surge (seasonal and investment demand) is a non-productive import that adds to CAD without creating employment or GDP value — policymakers may consider duty adjustments if this persists.',
+        'Crude oil imports remain elevated in value terms even if volumes are stable, as Brent above $100 inflates the import bill. Without an Iran deal reducing crude prices, the deficit could worsen further in the coming months.'
+      ]
+    },
+    ta:{
+      headline:'ஏற்றுமதி பாய்ச்சல் — ஆனால் வர்த்தக பற்றாக்குறையும் பெரியது; நிகர CAD தாக்கம் கேள்விக்குறி',
+      context:[
+        'இந்தியாவின் சரக்கு ஏற்றுமதி சாதனை — பொறியியல் பொருட்கள், வேதியியல், மருந்து துறைகளால் இயக்கப்பட்டது. ஆனால் வர்த்தக பற்றாக்குறையும் விரிவடைந்தது — தங்கம், கச்சா எண்ணெய், மின்னணு இறக்குமதி ஏற்றுமதி லாபத்தை குறைக்கிறது.',
+        'விரிவடையும் வர்த்தக பற்றாக்குறை நடப்பு கணக்கு பற்றாக்குறையை (CAD) நேரடியாக பாதிக்கிறது — ரூபாய் மற்றும் FPI ஓட்டங்களில் அழுத்தம்.',
+        'ஒட்டுமொத்தமாக, ஏற்றுமதி வேகம் GDP மற்றும் வேலைவாய்ப்புக்கு நேர்மறை; ஆனால் தங்கம், கச்சா தொடர்ச்சியான இறக்குமதி நன்மையை குறைக்கிறது.'
+      ],
+      pos:[
+        'பொறியியல் மற்றும் மருந்து ஏற்றுமதி வலிமை PLI திட்டம் பலன் தரும் என்பதை உறுதிப்படுத்துகிறது.',
+        'Sun Pharma, Dr Reddy\'s, Aarti Industries, Vinati Organics, வாகன உதிரி ஏற்றுமதியாளர்கள் — வலுவான ஏற்றுமதி சூழலில் பயன்படுவர்.',
+        'அமெரிக்கா கட்டணங்களிலிருந்து விலகி மத்திய கிழக்கு, ஆப்பிரிக்கா, ASEAN சந்தைகளை நோக்கி ஏற்றுமதி பல்வகைப்படுத்தல் நீண்ட காலத்திற்கு நேர்மறை.'
+      ],
+      neg:[
+        'வர்த்தக பற்றாக்குறை $25 பில்லியன்/மாதம் தாண்டினால் CAD மோசமடையும் — ரூபாய் தேய்மான அழுத்தம் மற்றும் FPI கடன் ஓட்டங்கள் நிச்சயமற்று போகும்.',
+        'தங்கம் இறக்குமதி எழுச்சி (பருவகால மற்றும் முதலீட்டு தேவை) CAD-க்கு வளம் இல்லா இறக்குமதி.',
+        'கச்சா எண்ணெய் விலை $100+ ஆக இருக்கும்போது இறக்குமதி பட்ஜெட் பெரிதாகிறது — ஈரான் ஒப்பந்தம் இல்லாவிட்டால் பற்றாக்குறை மேலும் அதிகரிக்கலாம்.'
+      ]
+    },
+    companies:[
+      {name:'Sun Pharma / Dr Reddy\'s / Cipla',status:'Pharma Export Beneficiary',cls:'cobadge-ok'},
+      {name:'Aarti Industries / Vinati Organics',status:'Speciality Chemical Export Gain',cls:'cobadge-ok'},
+      {name:'Gold Importers / Bullion Trade',status:'Gold Import Surge — CAD Risk',cls:'cobadge-hit'},
+      {name:'IOC / BPCL / HPCL',status:'Crude Import Cost Pressure on Deficit',cls:'cobadge-hit'}
+    ]
   }
 ];
 
@@ -944,7 +1090,7 @@ function updateCounts() {
   document.getElementById('cnt-all').textContent = NEWS.length;
   document.getElementById('cnt-macro').textContent = NEWS.filter(n=>n.cat==='macro').length;
   document.getElementById('cnt-sector').textContent = NEWS.filter(n=>n.cat==='sector').length;
-  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal','disinvest','aviation','markets','fpi','energy'].forEach(s=>{
+  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal','disinvest','aviation','markets','fpi','energy','geopolitics','trade','macro'].forEach(s=>{
     const el=document.getElementById('sc-'+s);
     if(el) el.textContent=NEWS.filter(n=>n.sector===s).length;
   });
@@ -1063,7 +1209,7 @@ function renderFeed() {
   };
   let titleStr=titleMap[activeCat]||'All Breaking News';
   if(activeSector!=='all'){
-    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS',coal:'Coal / PSU',disinvest:'Disinvestment',aviation:'Aviation',markets:'Markets / F&O',fpi:'FPI Flows',energy:'Energy / Grid'};
+    const lm={rbi:'RBI / Macro',nps:'NPS / Pension',ecomm:'FDI / E-Commerce',solar:'Solar',gold:'Gold',power:'Power','2w':'2-Wheelers',pv:'PV (Cars)',spare:'Spare Parts',cement:'Cement',ems:'EMS',coal:'Coal / PSU',disinvest:'Disinvestment',aviation:'Aviation',markets:'Markets / F&O',fpi:'FPI Flows',energy:'Energy / Grid',geopolitics:'Geopolitics / Oil',trade:'Trade / Exports',macro:'Inflation / PPI'};
     titleStr=(lm[activeSector]||activeSector)+(isTA?' — செய்திகள்':' — Breaking News');
   }
   document.getElementById('feed-title').textContent=titleStr;
@@ -1343,6 +1489,39 @@ const ASSIST_QA = {
     {q:"What is the outlook after the May 29 crash — will markets recover?",
      a:"The MSCI rebalancing is a one-time mechanical event — the forced selling is now complete, removing a key overhang. A technical rebound on Monday is plausible. However, the broader direction depends on: (1) US-Iran talks — resolution would sharply ease crude prices and rupee pressure; (2) Monsoon development — if IMD's below-normal forecast materialises, rural consumption and inflation trajectory worsen; (3) Nifty holds the 23,400-23,350 support zone; a break could extend losses to 23,200.",
      src:"Source: SBI Securities (Sudeep Shah); CapGrow Capital (Arun Malhotra); SectorWire analysis"}
+  ],
+  iran_deal:[
+    {q:"What is the US-Iran nuclear deal and why does it matter for India?",
+     a:"The US and Iran have reached a nuclear agreement that paves the way for lifting oil sanctions on Iran. Iran holds approximately 3.2 million barrels/day of suppressed production capacity. If Iranian oil re-enters global markets at full capacity, it would be the largest single supply addition since Saudi Arabia's 2020 production cuts — pushing Brent crude down by an estimated $15–20/barrel. For India, the world's 3rd largest crude importer (~$140 billion/year), this is among the most significant macro tailwinds possible.",
+     src:"Source: EIL Research / CB Research analysis, June 2026"},
+    {q:"Which Indian sectors benefit most from a crude price fall due to the Iran deal?",
+     a:"Direct beneficiaries: Aviation (ATF is ~40% of airline costs — IndiGo, SpiceJet benefit immediately), Paints (Asian Paints, Berger Paints — crude-linked raw materials like TiO2 and solvents), Tyres (MRF, Apollo — rubber and carbon black linked to crude), Speciality Chemicals (Aarti Industries, Vinati Organics), Logistics and Road Transport. Macro beneficiaries: Banking and Real Estate (if crude fall → lower inflation → RBI rate cuts).",
+     src:"Source: EIL Research / CB Research analysis, June 2026"},
+    {q:"Which Indian companies or sectors are hurt by the Iran deal?",
+     a:"Upstream oil producers suffer most: ONGC and Oil India see lower crude realisations — every $5/barrel fall significantly reduces their net revenue per barrel. For IT exporters, a rupee appreciation (likely if CAD improves) would hurt INR revenue translation from USD earnings. Broadly, the deal hurts commodity exporters but benefits the domestic demand-driven economy.",
+     src:"Source: EIL Research / CB Research analysis, June 2026"}
+  ],
+  ppi_may26:[
+    {q:"What is PPI and how is it different from the old WPI?",
+     a:"PPI stands for Producer Price Index — it is the renamed version of India's Wholesale Price Index (WPI). The name change aligns India with global IMF/World Bank terminology. Conceptually, both measure the price change at the producer/wholesale level, before goods reach retail consumers. The methodology may be updated alongside the renaming (base year revision, commodity basket changes) but the core function remains: tracking input cost inflation at the production stage.",
+     src:"Source: Ministry of Commerce / DPIIT; EIL Research analysis, June 2026"},
+    {q:"May 2026 PPI has risen — what does this mean for companies?",
+     a:"A rising PPI means input costs are going up for manufacturers. Companies that can pass through price increases (commodity producers, steel makers, chemical companies) benefit. Companies that face price resistance from consumers (consumer durables, auto OEMs, mid-market FMCG) face margin pressure. The PPI typically leads CPI by 6–8 weeks — if the PPI rise persists, consumer prices are likely to rise, which may delay RBI rate cuts.",
+     src:"Source: EIL Research / CB Research analysis, June 2026"},
+    {q:"Does a rising PPI change the outlook for RBI rate cuts?",
+     a:"Yes — a sustained rise in PPI (now called PPI, formerly WPI) reduces the probability of near-term rate cuts. The MPC (Monetary Policy Committee) already held rates in April 2026 citing inflation risks. A rising producer price index signals that cost pressures in the supply chain are rebuilding, and if this bleeds into retail CPI, RBI's neutral stance could harden toward hawkish — meaning rate cuts get pushed further into FY27 or beyond.",
+     src:"Source: RBI MPC April 2026; EIL Research analysis, June 2026"}
+  ],
+  trade_deficit:[
+    {q:"Exports jumped but the trade deficit is also high — is this positive or negative for India?",
+     a:"It is mixed. Strong exports (especially engineering goods and pharma) are positive for GDP, employment, and manufacturing competitiveness. But a widening trade deficit — driven by gold and crude oil imports — means the net current account benefit is reduced. India typically runs a trade deficit of $20–25 billion/month. If the deficit consistently exceeds this range, the rupee faces depreciation pressure and FPI flows into debt become uncertain. The net verdict depends on which side grows faster.",
+     src:"Source: Ministry of Commerce trade data; EIL Research analysis, June 2026"},
+    {q:"Why is gold import hurting India's trade balance?",
+     a:"Gold is a non-productive import — it adds to the trade deficit and Current Account Deficit (CAD) without creating employment or GDP growth in return. India's gold import demand is driven by cultural/wedding season buying, investment demand (as a hedge against inflation and currency risk), and jewellery manufacturing for export. When gold imports surge, they directly widen the CAD, putting downward pressure on the rupee. Policymakers have historically managed this through import duty adjustments.",
+     src:"Source: DGCI&S data; RBI Annual Report; EIL Research analysis, June 2026"},
+    {q:"What is CAD and why does it matter for Indian equity markets?",
+     a:"CAD (Current Account Deficit) is the difference between what India earns from abroad (exports, remittances, services) and what it pays abroad (imports, dividends). A high CAD means India needs foreign capital to finance the gap — making it dependent on FPI flows. If CAD widens, the rupee depreciates, imported inflation rises, and FPIs may reduce India exposure. For equity markets, a sustained high CAD is a structural headwind — it limits rupee stability and constrains RBI's ability to cut rates.",
+     src:"Source: RBI Balance of Payments data; EIL Research analysis, June 2026"}
   ]
 };
 
