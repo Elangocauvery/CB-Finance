@@ -231,6 +231,7 @@ footer span{color:#ffe0c0}
 .pill-shanthi{background:#fff8e1;color:#5d4037}
 .pill-fpi{background:#fff3e8;color:#b84000;border:1px solid #f5c090}
 .pill-energy{background:#e3f2fd;color:#0d3c6e}
+.pill-ipo{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7}
 .tag-ofs-bg{background:#fff0f3}.tag-ofs{color:#8a001a}
 .tag-coal-bg{background:#f0ece4}.tag-coal{color:#3a2800}
 
@@ -333,7 +334,7 @@ footer span{color:#ffe0c0}
         </div>
       </div>
       <div class="edition-bar">
-        <span class="ebl">Macro:</span><span class="ebs">RBI &nbsp;·&nbsp; NPS &nbsp;·&nbsp; FDI / Regulations &nbsp;·&nbsp; PSU OFS</span>
+        <span class="ebl">Macro:</span><span class="ebs">RBI &nbsp;·&nbsp; NPS &nbsp;·&nbsp; FDI / Regulations &nbsp;·&nbsp; PSU OFS &nbsp;·&nbsp; Jio &amp; NSE IPOs</span>
         &nbsp;&nbsp;
         <span class="ebl">Sectors:</span><span class="ebs">Solar &nbsp;·&nbsp; Gold &nbsp;·&nbsp; Power / NTPC Green &nbsp;·&nbsp; Coal &nbsp;·&nbsp; 2-Wheelers &nbsp;·&nbsp; PV &nbsp;·&nbsp; Spare Parts &nbsp;·&nbsp; Cement &nbsp;·&nbsp; EMS</span>
       </div>
@@ -377,6 +378,9 @@ footer span{color:#ffe0c0}
           <option value="iran_deal">US-Iran Deal — Crude Impact</option>
           <option value="ppi_may26">PPI (WPI) May 2026 Rise</option>
           <option value="trade_deficit">Exports &amp; Trade Deficit</option>
+          <option value="jio_ipo">Jio Platforms IPO vs Airtel</option>
+          <option value="nse_ipo">NSE IPO vs BSE</option>
+          <option value="rbi_m3">RBI Money Creation — M0 to M3</option>
         </select>
       </div>
       <div class="assist-q-wrap">
@@ -420,6 +424,7 @@ footer span{color:#ffe0c0}
           <button class="sector-btn" data-s="geopolitics" onclick="setSector('geopolitics');event.stopPropagation()">Geopolitics / Oil <span class="scount" id="sc-geopolitics">0</span></button>
           <button class="sector-btn" data-s="trade" onclick="setSector('trade');event.stopPropagation()">Trade / Exports <span class="scount" id="sc-trade">0</span></button>
           <button class="sector-btn" data-s="macro" onclick="setSector('macro');event.stopPropagation()">Inflation / PPI <span class="scount" id="sc-macro">0</span></button>
+          <button class="sector-btn" data-s="ipo" onclick="setSector('ipo');event.stopPropagation()">IPO / Listings <span class="scount" id="sc-ipo">0</span></button>
         </div>
       </div>
       <div class="cat-nav">
@@ -474,10 +479,141 @@ footer span{color:#ffe0c0}
 <footer>SectorWire &nbsp;·&nbsp; May–June 2026 Sector Intelligence Digest &nbsp;·&nbsp; <span id="footer-time"></span></footer>
 
 <script>
-const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi','geopolitics','trade','macro'];
+const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi','geopolitics','trade','macro','ipo'];
 
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
+  {
+    id:22, date:'2026-06-19', sector:'ipo', cat:'macro', sectorLabel:'IPO / Listings', pillCls:'pill-ipo', time:'19 Jun 2026',
+    impact:'positive', breaking:true, badges:['DRHP Filed 19 Jun 2026','100% Fresh Issue — 27 Cr Shares','Race for India\'s Largest-Ever IPO'],
+    en:{
+      headline:'Jio Platforms Files DRHP for ₹35,000–40,000 Cr IPO — How It Stacks Up Against Bharti Airtel',
+      context:[
+        'Jio Platforms\' board approved its DRHP at RIL\'s 49th AGM on 19 June 2026 — a 100% fresh issue of up to 27 crore equity shares (face value ₹10), with NO Offer-for-Sale component. Every rupee raised goes into Jio\'s own business (debt repayment + general corporate purposes), unlike NSE\'s pure-OFS IPO filed two days earlier. Bankers expect a raise of roughly ₹35,000–40,000 crore (~$4 billion) at a valuation of $130–180 billion — enough to beat Hyundai Motor India\'s $3.3 billion 2024 issue as India\'s largest-ever IPO.',
+        'Bharti Airtel, already listed, currently carries a market cap of roughly ₹12.7 lakh crore (~$143 billion). A Jio listing at the top end of bankers\' range ($170bn) would instantly make it bigger than Airtel, putting it among India\'s 2–3 most valuable companies on debut.',
+        'On scale, Jio leads with ~527 million subscribers vs Airtel\'s ~450 million — but Airtel earns more per user, with ARPU of ₹256 vs Jio\'s ₹211. Jio\'s IPO pitch rests on absolute EBITDA and free-cash-flow scale outweighing Airtel\'s superior per-user monetisation.'
+      ],
+      pos:[
+        'Jio\'s fresh-issue structure — unlike NSE\'s pure OFS — means IPO proceeds directly strengthen its balance sheet, accelerating debt reduction and funding AI, 5G and data-centre capex.',
+        '19 Book Running Lead Managers have been roped in — the largest banker lineup ever assembled for an Indian IPO — signalling strong expected global institutional demand.',
+        'Existing Reliance Industries shareholders get a dedicated shareholder quota, giving retail RIL holders early access to a marquee digital-economy listing.'
+      ],
+      neg:[
+        'The valuation range is wide ($130–180bn) — pricing at the lower vs upper end materially changes whether Jio actually surpasses Airtel and NSE in market value at listing.',
+        'SEBI review (30+ days) is still pending, and CreditSights (Fitch Group) has flagged a possible delay to H2 FY27 on West Asia geopolitical and market-condition risk.',
+        'A Jio listing is widely seen as the trigger for a fresh industry-wide 15% tariff hike — a near-term cost risk for subscribers even as it lifts sector free cash flow and Airtel\'s own earnings.'
+      ]
+    },
+    ta:{
+      headline:'Jio Platforms ₹35,000–40,000 கோடி IPO-வுக்கு DRHP தாக்கல் — Airtel-உடன் ஒப்பீடு',
+      context:[
+        'Jio Platforms இயக்குநர் குழு 19 ஜூன் 2026 RIL 49வது AGM-ல் DRHP-ஐ அங்கீகரித்தது — 100% புதிய பங்கு வழங்கல் (27 கோடி பங்குகள் வரை, முக மதிப்பு ₹10), OFS கூறு இல்லை. திரட்டப்படும் தொகை முழுவதும் Jio-வின் சொந்த வணிகத்திற்கே (கடன் திருப்பிச் செலுத்துதல் + பொது நிறுவன நோக்கங்கள்) செல்கிறது — NSE-ன் முழு-OFS IPO-விலிருந்து வேறுபட்டது. வங்கியாளர்கள் ~₹35,000–40,000 கோடி ($4 பில்லியன்) திரட்டல் எதிர்பார்க்கின்றனர், $130–180 பில்லியன் மதிப்பீட்டில் — Hyundai Motor India-ன் 2024 $3.3 பில்லியன் IPO-ஐ முறியடித்து இந்தியாவின் மிகப்பெரிய IPO ஆகலாம்.',
+        'ஏற்கனவே பட்டியலிடப்பட்ட Bharti Airtel-ன் தற்போதைய சந்தை மதிப்பு ~₹12.7 லட்சம் கோடி (~$143 பில்லியன்). Jio உச்ச மதிப்பீட்டில் ($170bn) பட்டியலிட்டால், உடனடியாக Airtel-ஐ விட பெரிதாகி, இந்தியாவின் 2–3வது மிக மதிப்புமிக்க நிறுவனமாகும்.',
+        'சந்தாதாரர் எண்ணிக்கையில் Jio முன்னிலையில் (~52.7 கோடி) Airtel-ஐ (~45 கோடி) விட, ஆனால் Airtel ஒரு பயனருக்கு அதிக வருவாய் ஈட்டுகிறது — ARPU ₹256 vs Jio-வின் ₹211.'
+      ],
+      pos:[
+        'Jio-வின் புதிய பங்கு வழங்கல் கட்டமைப்பு — NSE-ன் OFS போலல்லாமல் — நிதி நேரடியாக Jio-வின் இருப்புத்தாளை வலுப்படுத்தும், கடன் குறைப்பு மற்றும் AI/5G முதலீட்டை துரிதப்படுத்தும்.',
+        '19 முன்னணி வங்கி மேலாளர்கள் — இந்திய IPO வரலாற்றில் மிகப்பெரிய வங்கியாளர் குழு — பெரும் நிறுவன ஆர்வத்தை குறிக்கிறது.',
+        'ஏற்கனவே உள்ள RIL பங்குதாரர்களுக்கு தனி ஒதுக்கீடு — சில்லறை முதலீட்டாளர்களுக்கு முன்கூட்டிய அணுகல்.'
+      ],
+      neg:[
+        'மதிப்பீட்டு வரம்பு பரந்தது ($130–180bn) — குறைந்த/உயர் முடிவில் விலை நிர்ணயம் Jio உண்மையில் Airtel/NSE-ஐ முந்துமா என்பதை மாற்றும்.',
+        'SEBI மறுஆய்வு (30+ நாட்கள்) நிலுவையில் உள்ளது; புவிசார் அரசியல் ஆபத்தால் H2 FY27 வரை தாமதம் சாத்தியம்.',
+        'Jio பட்டியலிடல் தொழில்துறை 15% கட்டண உயர்வுக்கு தூண்டுதலாக காணப்படுகிறது — சந்தாதாரர்களுக்கு குறுகிய கால செலவு ஆபத்து.'
+      ]
+    },
+    companies:[
+      {name:'Jio Platforms Ltd',status:'IPO Filer — 100% Fresh Issue',cls:'cobadge-ok'},
+      {name:'Bharti Airtel Ltd',status:'Listed Peer / Comparison Benchmark',cls:'cobadge-partial'},
+      {name:'Reliance Industries Ltd (Promoter, 66.43%)',status:'Parent / Key Beneficiary',cls:'cobadge-ok'}
+    ]
+  },
+  {
+    id:23, date:'2026-06-17', sector:'ipo', cat:'macro', sectorLabel:'IPO / Listings', pillCls:'pill-ipo', time:'17 Jun 2026',
+    impact:'mixed', breaking:true, badges:['DRHP Filed 17 Jun 2026','100% OFS — ~6% Stake Dilution','P/E ~35–40x vs BSE ~65x'],
+    en:{
+      headline:'NSE Files DRHP for ~₹30,000 Cr IPO — Priced Cheaper Than BSE Despite 4x the Profit',
+      context:[
+        'NSE filed its 607-page DRHP with SEBI on 17 June 2026 — a pure Offer-for-Sale of up to 14.89 crore shares (~6.02% of its 247.5 crore total shares) by existing shareholders led by SBI and MS Strategic Mauritius. NSE itself raises zero capital — every rupee goes to selling shareholders, the opposite of Jio\'s 100% fresh-issue structure filed two days later.',
+        'Expected issue size of ₹21,000–30,000 crore implies a full-company valuation of roughly ₹4.2–6 lakh crore (~$50–72 billion). At FY26 EPS of ₹41.62, that prices NSE at a P/E of just ~35–40x — well below BSE\'s ~65x — despite NSE generating roughly 4x BSE\'s annual profit (₹10,300 crore+ vs ~₹2,500 crore) and dominating with ~93% cash-equity market share and near-100% in equity futures.',
+        'The valuation gap exists because BSE is the higher-growth story — its FY26 PAT grew ~88% (3-yr CAGR ~124%) on Sensex weekly-options share gains — while NSE offers scale, an established moat and a far bigger treasury but slower incremental growth. NSE will list exclusively on BSE\'s mainboard, creating a direct head-to-head valuation comparison investors haven\'t had before; BSE shares fell ~4% on the DRHP filing day on this "sell the news" effect.'
+      ],
+      pos:[
+        'At ~35–40x P/E vs BSE\'s ~65x, NSE offers more earnings per rupee invested for a dominant, structurally moated franchise — the world\'s largest derivatives exchange by notional value ($34.7 trillion) and #1 globally in IPO listings (255 in FY25).',
+        'NSE\'s ~93% cash-equity and near-monopoly derivatives share give it pricing power and resilience few Indian listed businesses can match, alongside one of the highest adjusted EBITDA margins among global exchanges.',
+        'A second listed exchange stock gives investors a genuine head-to-head comparison, which should improve price discovery across India\'s capital-market infrastructure names (BSE, CDSL, NSDL, CAMS).'
+      ],
+      neg:[
+        'Pure-OFS means NSE itself gets no fresh capital from the IPO — it is purely a stake sale by existing shareholders (SBI, MS Strategic Mauritius, insurers); the listing doesn\'t fund NSE\'s own growth.',
+        'BSE\'s sharper re-rating on faster profit growth means NSE\'s "cheaper P/E" could persist structurally rather than close — a value-trap risk if NSE\'s growth doesn\'t accelerate post-listing.',
+        'Regulatory overhang remains — NSE operates under continuous SEBI scrutiny and the NOC for this IPO was issued only in January 2026; any future restriction on derivatives volumes (a key profit driver) is a structural risk to the franchise.'
+      ]
+    },
+    ta:{
+      headline:'NSE ~₹30,000 கோடி IPO-வுக்கு DRHP தாக்கல் — 4 மடங்கு லாபம் இருந்தும் BSE-ஐ விட மலிவான விலை',
+      context:[
+        'NSE 17 ஜூன் 2026 அன்று SEBI-யிடம் 607 பக்க DRHP தாக்கல் செய்தது — 14.89 கோடி பங்குகள் வரை (மொத்த 247.5 கோடியில் ~6.02%) முழுமையான OFS, SBI மற்றும் MS Strategic Mauritius தலைமையில். NSE-க்கு நேரடியாக எந்த நிதியும் கிடைக்காது — Jio-வின் 100% புதிய பங்கு வழங்கலுக்கு நேர்மாறானது.',
+        '₹21,000–30,000 கோடி எதிர்பார்க்கப்படும் இஷ்யூ அளவு ~₹4.2–6 லட்சம் கோடி ($50–72 பில்லியன்) முழு நிறுவன மதிப்பீட்டை குறிக்கிறது. FY26 EPS ₹41.62-ல், இது NSE-ஐ ~35–40x P/E-ல் வைக்கிறது — BSE-ன் ~65x-ஐ விட மிகவும் குறைவு — NSE BSE-ஐ விட ~4 மடங்கு லாபம் (₹10,300+ கோடி vs ~₹2,500 கோடி) ஈட்டினாலும்.',
+        'BSE வேகமான வளர்ச்சி கதை (FY26 PAT ~88% உயர்வு) என்பதால் இந்த இடைவெளி உள்ளது; NSE அளவு, கோட்டை போன்ற மேலாதிக்கம் தருகிறது ஆனால் மெதுவான வளர்ச்சி. NSE BSE முதன்மை பலகையில் மட்டுமே பட்டியலிடப்படும் — நேரடி ஒப்பீடு உருவாக்குகிறது; DRHP தாக்கல் நாளில் BSE பங்கு ~4% வீழ்ந்தது.'
+      ],
+      pos:[
+        '~35–40x P/E என்பது BSE-ன் ~65x-ஐ விட மலிவானது — உலகின் மிகப்பெரிய டெரிவேடிவ் பரிமாற்றம் ($34.7 டிரில்லியன்) மற்றும் IPO பட்டியலில் உலகின் #1 (255, FY25).',
+        'NSE-ன் ~93% பணப் பங்கு மற்றும் கிட்டத்தட்ட ஏகபோக டெரிவேடிவ் பங்கு விலை நிர்ணய சக்தியை தருகிறது.',
+        'இரண்டாவது பட்டியலிடப்பட்ட பரிமாற்ற பங்கு முதலீட்டாளர்களுக்கு உண்மையான ஒப்பீட்டை தரும்.'
+      ],
+      neg:[
+        'முழு-OFS என்பதால் NSE-க்கு புதிய மூலதனம் கிடைக்காது — ஏற்கனவே உள்ள பங்குதாரர்களின் பங்கு விற்பனை மட்டுமே.',
+        'BSE-ன் வேக வளர்ச்சி NSE-ன் "மலிவான P/E"-ஐ நீடிக்கச் செய்யலாம் — வளர்ச்சி துரிதமாகாவிட்டால் ஆபத்து.',
+        'ஒழுங்குமுறை மேற்பார்வை தொடர்கிறது — NOC ஜனவரி 2026-ல் மட்டுமே வழங்கப்பட்டது; எதிர்கால டெரிவேடிவ் கட்டுப்பாடுகள் கட்டமைப்பு ஆபத்து.'
+      ]
+    },
+    companies:[
+      {name:'National Stock Exchange (NSE)',status:'IPO Filer — 100% OFS',cls:'cobadge-partial'},
+      {name:'BSE Ltd',status:'Listed Comparable — Under Pressure',cls:'cobadge-hit'},
+      {name:'State Bank of India',status:'Selling Shareholder',cls:'cobadge-partial'}
+    ]
+  },
+  {
+    id:24, date:'2026-06-18', sector:'rbi', cat:'macro', sectorLabel:'RBI / Macro', pillCls:'pill-rbi', time:'18 Jun 2026',
+    impact:'mixed', breaking:true, badges:['M3 Growth FY26: 13%','Nominal GDP Growth: 8%','Currency in Circulation +10.5%'],
+    en:{
+      headline:'How RBI Creates Money — From Asset Purchases to M0, M3 and Currency in Your Hands',
+      context:[
+        'RBI\'s balance sheet runs on one rule: Assets = Liabilities. When RBI buys foreign currency assets, government securities (via open market operations) or gold, its balance sheet expands on the asset side — and to pay for those assets, it creates new rupees, recorded as liabilities: currency in circulation, bank deposits/reserves (CRR), and government deposits. This newly created liability is base money or M0 — the raw money RBI directly creates.',
+        'M0 then expands into the far larger M3 (broad money) as it moves through the banking system: banks receiving fresh reserves can lend more, those loans create new deposits, and economic activity rises — multiplying the original M0 several times over into M3. Of a representative ₹100 of new money created, only ~₹20 typically ends up as physical cash in public hands; ~₹80 stays as bank deposits — which is why M3 growth, not cash growth, is the real gauge of total money creation.',
+        'M3 (broad money) growth for FY26 stands at 13% against nominal GDP growth of just 8% — a 5-point gap that sits in the "moderate" inflation-risk zone on RBI\'s own money-growth-vs-GDP rule of thumb. Only later in the chain does currency in circulation itself rise, as people withdraw more cash from growing deposits — currency in circulation increased 10.5% in FY26, lagging M3 growth as expected since most new money stays digital/in-bank rather than becoming physical cash.'
+      ],
+      pos:[
+        'A 13% M3 expansion against 8% GDP growth still sits in the "moderate" inflation-risk band on RBI\'s rule-of-thumb scale — it would need to cross roughly 15–20% money growth (at the same GDP pace) to turn high-risk.',
+        'Heavy FY26 OMO G-Sec buying and forex accumulation have pushed more liquidity into banks, directly supporting credit growth for the banking and NBFC sector\'s loan books.',
+        'If productivity and supply (production, imports, energy prices) keep pace with the 13% money growth, the 5-point gap over GDP growth need not translate into runaway inflation.'
+      ],
+      neg:[
+        'A 5-point gap between M3 growth (13%) and nominal GDP growth (8%) is now in the "moderate" inflation-risk zone — if it persists or widens past ~15%, inflation pressure could build, especially alongside supply shocks like a weak monsoon or a crude price spike.',
+        'Most new money (M3) doesn\'t immediately become cash — it sits as bank deposits — so the inflationary impact has a lag; markets may underestimate the buildup until currency-in-circulation growth (already 10.5%) accelerates further.',
+        'A sustained period of money growth meaningfully above GDP growth typically forces RBI to act via OMO sales, CRR hikes or a hawkish rate stance — a risk to bond yields and rate-sensitive sectors (real estate, auto, banking) if the MPC moves to contain it.'
+      ]
+    },
+    ta:{
+      headline:'RBI எப்படி பணம் உருவாக்குகிறது — சொத்து வாங்குதலில் இருந்து M0, M3 மற்றும் உங்கள் கையில் உள்ள பணம் வரை',
+      context:[
+        'RBI இருப்புத்தாள் ஒரே விதியில் இயங்குகிறது: சொத்துக்கள் = பொறுப்புகள். RBI அந்நிய நாணய சொத்துக்கள், அரசு பத்திரங்கள் (OMO வழியாக) அல்லது தங்கம் வாங்கும்போது, அதன் இருப்புத்தாள் சொத்து பக்கம் விரிவடைகிறது — அதற்கு பணம் செலுத்த புதிய ரூபாய்களை உருவாக்குகிறது, இது பொறுப்புகளாக பதிவாகிறது: புழக்கத்தில் உள்ள நாணயம், வங்கி வைப்பு (CRR), அரசு வைப்பு. இந்த புதிய பொறுப்பே அடிப்படை பணம் அல்லது M0.',
+        'M0 பின்னர் வங்கி அமைப்பு வழியாக மிகப் பெரிய M3-ஆக விரிவடைகிறது: வங்கிகள் கடன் கொடுக்கின்றன, அந்த கடன்கள் புதிய வைப்புகளை உருவாக்குகின்றன, பொருளாதார செயல்பாடு உயர்கிறது — M0-ஐ பல மடங்கு பெருக்கி M3 ஆக்குகிறது. ஒரு மாதிரி ₹100 புதிய பணத்தில், ~₹20 மட்டுமே பணமாக பொதுமக்கள் கையில்; ~₹80 வங்கி வைப்பாகவே உள்ளது.',
+        'FY26-க்கான M3 (பரந்த பணம்) வளர்ச்சி 13%, நாமினல் GDP வளர்ச்சி 8%-க்கு எதிராக — இந்த 5-புள்ளி இடைவெளி RBI-ன் சொந்த விதிப்படி "மிதமான" பணவீக்க ஆபத்து மண்டலத்தில் உள்ளது. சங்கிலியின் பிற்பகுதியில் மட்டுமே புழக்கத்தில் உள்ள நாணயம் உயர்கிறது — FY26-ல் 10.5% உயர்வு, M3 வளர்ச்சியை விட பின்தங்கியது.'
+      ],
+      pos:[
+        '8% GDP வளர்ச்சிக்கு எதிராக 13% M3 விரிவாக்கம் இன்னும் "மிதமான" பணவீக்க ஆபத்து மண்டலத்தில் உள்ளது — ~15–20% கடந்தால் மட்டுமே உயர் ஆபத்து.',
+        'FY26 அதிக OMO G-Sec வாங்குதல் வங்கிகளுக்கு திரவத்தன்மையை அளித்து கடன் வளர்ச்சியை ஆதரிக்கிறது.',
+        'உற்பத்தித்திறன் மற்றும் சப்ளை பணவளர்ச்சியுடன் ஒத்திருந்தால், இடைவெளி கட்டுக்கடங்காத பணவீக்கமாக மாறாது.'
+      ],
+      neg:[
+        'M3 (13%) மற்றும் GDP (8%) இடையேயான 5-புள்ளி இடைவெளி தற்போது "மிதமான" ஆபத்தில் உள்ளது — ~15%-ஐ தாண்டினால் பணவீக்க அழுத்தம் கூடலாம், குறிப்பாக மழை பற்றாக்குறை/கச்சா விலை உயர்வுடன் சேர்ந்தால்.',
+        'புதிய பணத்தில் பெரும்பகுதி உடனடியாக பணமாக மாறுவதில்லை — தாமத விளைவு உள்ளது.',
+        'GDP-ஐ விட நீடித்த உயர் பணவளர்ச்சி RBI-ஐ OMO விற்பனை, CRR உயர்வு அல்லது கடுமையான வட்டி நிலைப்பாட்டுக்கு தள்ளும் — வங்கி, ரியல் எஸ்டேட், வாகனத் துறைகளுக்கு ஆபத்து.'
+      ]
+    },
+    companies:[]
+  },
   {
     id:10, date:'2026-05-27', sector:'coal', cat:'sector', sectorLabel:'Coal / PSU', pillCls:'pill-coal', time:'27 May 2026',
     impact:'mixed', breaking:true, badges:['Floor ₹412 — 10.1% Discount','Non-Retail: 27 May | Retail: 29 May','Size ~₹5,078 Cr + Greenshoe'],
@@ -1090,7 +1226,7 @@ function updateCounts() {
   document.getElementById('cnt-all').textContent = NEWS.length;
   document.getElementById('cnt-macro').textContent = NEWS.filter(n=>n.cat==='macro').length;
   document.getElementById('cnt-sector').textContent = NEWS.filter(n=>n.cat==='sector').length;
-  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal','disinvest','aviation','markets','fpi','energy','geopolitics','trade','macro'].forEach(s=>{
+  ['rbi','nps','ecomm','solar','gold','power','2w','pv','spare','cement','ems','coal','disinvest','aviation','markets','fpi','energy','geopolitics','trade','macro','ipo'].forEach(s=>{
     const el=document.getElementById('sc-'+s);
     if(el) el.textContent=NEWS.filter(n=>n.sector===s).length;
   });
@@ -1522,6 +1658,46 @@ const ASSIST_QA = {
      src:"Source: RBI Balance of Payments data; EIL Research analysis, June 2026"}
   ]
 };
+
+const ASSIST_QA_NEW = {
+  jio_ipo:[
+    {q:"What is the size and structure of the Jio Platforms IPO?",
+     a:"Jio Platforms filed its DRHP with SEBI on 19 June 2026 for a 100% fresh issue of up to 27 crore equity shares (face value ₹10) — no Offer-for-Sale component. Bankers expect the raise to be around ₹35,000–40,000 crore (~$4 billion) at a valuation of $130–180 billion, positioning it to become India's largest-ever IPO, beating Hyundai Motor India's $3.3 billion 2024 issue.",
+     src:"Source: RIL 49th AGM, 19 June 2026; company DRHP filing"},
+    {q:"How does Jio's IPO compare with Bharti Airtel?",
+     a:"Bharti Airtel is already listed with a market cap of roughly ₹12.7 lakh crore (~$143 billion). If Jio prices at the top end of its valuation range ($170bn), it would instantly be worth more than Airtel. On fundamentals, Jio leads in subscribers (~527 million vs Airtel's ~450 million) but Airtel earns more per user — ARPU of ₹256 vs Jio's ₹211.",
+     src:"Source: Business Standard, Bloomberg; brokerage estimates, 2026"},
+    {q:"Why is Jio's fresh issue different from NSE's IPO structure?",
+     a:"Jio's IPO is a 100% fresh issue — every rupee raised goes into the company for debt repayment and general corporate purposes. NSE's IPO, filed two days earlier, is a 100% Offer-for-Sale — NSE itself receives zero proceeds, as existing shareholders are simply selling their stake.",
+     src:"Source: Jio Platforms & NSE DRHP filings, June 2026"}
+  ],
+  nse_ipo:[
+    {q:"What is the expected size and valuation of the NSE IPO?",
+     a:"NSE filed its DRHP on 17 June 2026 for a pure Offer-for-Sale of up to 14.89 crore shares (~6% of total shares) by existing shareholders led by SBI. The expected issue size is ₹21,000–30,000 crore, implying a full-company valuation of roughly ₹4.2–6 lakh crore (~$50–72 billion).",
+     src:"Source: NSE DRHP, 17 June 2026"},
+    {q:"Why is NSE's IPO priced cheaper than BSE despite higher profit?",
+     a:"At FY26 EPS of ₹41.62, the expected issue size prices NSE at a P/E of roughly 35–40x — well below BSE's ~65x — even though NSE earns about 4x BSE's annual profit (₹10,300 crore+ vs ~₹2,500 crore). The gap exists because BSE is growing faster (FY26 PAT +88%, 3-yr CAGR ~124%) while NSE offers scale and dominance but slower incremental growth.",
+     src:"Source: Company filings; brokerage analysis, June 2026"},
+    {q:"How big is NSE compared to other global stock exchanges?",
+     a:"NSE ranks 3rd globally in cash equity trading ($8.2 trillion, FY2025), is the world's largest derivatives exchange by notional value ($34.7 trillion), and is ranked #1 globally in number of IPO listings (255 in FY2025) — ahead of Nasdaq, Shanghai SE and NYSE.",
+     src:"Source: World Federation of Exchanges; NSE DRHP data, FY2025"}
+  ],
+  rbi_m3:[
+    {q:"How does RBI create new money (M0)?",
+     a:"RBI's balance sheet works on Assets = Liabilities. When RBI buys foreign currency assets, government securities (via OMO) or gold, its asset side expands — and to pay for those assets it creates new rupees, recorded as liabilities (currency in circulation, bank deposits/CRR, government deposits). This newly created liability is base money or M0 — the raw money RBI directly creates.",
+     src:"Source: RBI balance sheet framework; SectorWire analysis, June 2026"},
+    {q:"How does M0 turn into the much larger M3?",
+     a:"M0 expands into M3 (broad money) as it moves through the banking system — banks lend out fresh reserves, those loans create new deposits, and economic activity rises, multiplying M0 several times into M3. Of every ₹100 of new money created, only about ₹20 typically ends up as physical cash; ₹80 stays as bank deposits.",
+     src:"Source: RBI money-multiplier framework; SectorWire analysis"},
+    {q:"Does 13% M3 growth in FY26 mean inflation is a risk?",
+     a:"M3 grew 13% in FY26 against nominal GDP growth of 8% — a 5-point gap that sits in the 'moderate' inflation-risk zone on RBI's own rule of thumb (risk turns high only past ~15-20% money growth at similar GDP pace). Inflation risk is moderate unless production, productivity and supply fail to keep pace.",
+     src:"Source: RBI M3 data, FY26; SectorWire analysis"},
+    {q:"Why did currency in circulation rise only 10.5% if M3 grew 13%?",
+     a:"Currency in circulation is only one part of M3 — it is the cash that actually leaves the banking system into people's hands. Since most new money stays as bank deposits (digital balances) rather than being withdrawn, currency-in-circulation growth (10.5% in FY26) typically lags M3 growth (13%).",
+     src:"Source: RBI FY26 currency data; SectorWire analysis"}
+  ]
+};
+Object.assign(ASSIST_QA, ASSIST_QA_NEW);
 
 function assistTopicChange(){
   const topic = document.getElementById('assist-topic').value;
