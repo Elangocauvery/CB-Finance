@@ -501,6 +501,130 @@ const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi','geopolit
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
   {
+    id:27, date:'2026-06-22', sector:'fpi', cat:'macro', sectorLabel:'FPI / DII Flows', pillCls:'pill-fpi', time:'22 Jun 2026',
+    impact:'mixed', breaking:true,
+    badges:['DII Ownership All-Time High 20.9%','FPI Outflow ~₹2.25L Cr (Jan–May ’26)','MF Inflow ~₹2.44L Cr (Jan–May ’26)','Cash ADT 2-Year High ₹1.45L Cr'],
+    image:'indian-markets-hold-strong-2026.png',
+    en:{
+      headline:'Indian Markets Hold Strong in 2026: Domestic Investors Step Up as Cash Market Turnover Hits a 2-Year High',
+      imageCap:'CB Research infographic: cash market turnover, the FPI–DII flow divergence, the Nifty 500 ownership shift and the contrasting derivatives-market story — January to May 2026.',
+      context:[
+        'Benchmark indices corrected roughly 15% between January and March 2026 — the sharpest drawdown since the Covid crash — yet cash market average daily turnover (ADT) kept climbing right through the fall, from ₹1.02 lakh crore in December 2025 to ₹1.35 lakh crore in March 2026 (+32%), and on to a 2-year high of ₹1.42–1.45 lakh crore in April–May 2026.',
+        'The correction exposed a clear divide in who was buying and who was selling: FPIs net sold roughly ₹1.3 lakh crore during the Jan–Mar 2026 correction while domestic Mutual Funds net bought roughly ₹1.5 lakh crore, absorbing the selling pressure. Over the wider Jan–May 2026 window, FPI outflows totalled ~₹2.25 lakh crore against Mutual Fund inflows of ~₹2.44 lakh crore, with total MF net investment in equities reaching ₹2.87 lakh crore.',
+        'The ownership shift is now structural, not a one-quarter blip: DII share of Nifty 500 companies has climbed from 14.9% in March 2020 to an all-time high of 20.9% in March 2026, while FPI share has fallen from 19.9% to a new low of 17.1% over the same six years — Mutual Fund net investment during this correction (₹1,53,000 crore) was nearly 4x the entire Covid sell-off deployment (₹41,304 crore).',
+        'Non-institutional investors are also back in small- and mid-cap stocks, supporting cash market turnover, even as the derivatives market tells a different story — average daily turnover there slipped from ₹472 lakh crore (Dec 2025) to ₹462 lakh crore (May 2026), though that is still a sharp recovery from the post-SEBI-norms low of ₹296 lakh crore in December 2024, with retail and small-contract traders most affected by the tighter F&O rules.'
+      ],
+      compareTable:[
+        {title:'Cash Market — Average Daily Turnover (₹ lakh crore)',
+         headers:['Period','Cash Market ADT','Note'],
+         rows:[
+           ['Dec 2025','₹1.02 lakh cr','Pre-correction base'],
+           ['Jan 2026','₹1.18 lakh cr',''],
+           ['Feb 2026','₹1.22 lakh cr',''],
+           ['Mar 2026','₹1.35 lakh cr','+32% vs Dec ’25, despite the ~15% index correction'],
+           ['Apr 2026','₹1.42 lakh cr',''],
+           ['May 2026','₹1.45 lakh cr','2-year high']
+         ]},
+        {title:'Nifty 500 Ownership — DII vs FPI',
+         headers:['Metric','Mar 2020','Mar 2026'],
+         rows:[
+           ['DII Ownership','14.9%','20.9% (all-time high)'],
+           ['FPI Ownership','19.9%','17.1% (new low)']
+         ]},
+        {title:'FPI vs Mutual Fund Net Flows',
+         headers:['Flow','Amount','Period'],
+         rows:[
+           ['FPI — Net Outflow','-₹1.3 lakh crore','Jan–Mar 2026 correction'],
+           ['Mutual Funds — Net Inflow','+₹1.5 lakh crore','Jan–Mar 2026 correction'],
+           ['FPI — Net Outflow (cumulative)','-₹2.25 lakh crore','Jan–May 2026'],
+           ['Mutual Funds — Net Inflow (cumulative)','+₹2.44 lakh crore','Jan–May 2026'],
+           ['MF Net Investment in Equities (total)','+₹2.87 lakh crore','Jan–May 2026']
+         ]},
+        {title:'Derivatives Market — Average Daily Turnover (₹ lakh crore)',
+         headers:['Period','Derivatives ADT','Note'],
+         rows:[
+           ['Dec 2024','₹296 lakh cr','Low after SEBI tightened F&O norms'],
+           ['Dec 2025','₹472 lakh cr',''],
+           ['May 2026','₹462 lakh cr','Down slightly from Dec ’25, but well above the Dec ’24 low']
+         ]}
+      ],
+      pos:[
+        'Even as benchmark indices corrected ~15% in Jan–Mar 2026 — the sharpest pullback since the Covid crash — cash market average daily turnover kept climbing, touching a 2-year high of ₹1.42–1.45 lakh crore in Apr–May 2026, evidence of structural, not just rally-driven, participation.',
+        'Domestic Mutual Funds net bought ~₹1.5 lakh crore during the Jan–Mar correction, nearly 4x the ₹41,304 crore deployed during the entire Covid sell-off, while DII ownership of Nifty 500 companies climbed to an all-time high of 20.9% — domestic capital pools are now deep enough to absorb large foreign outflows without a liquidity scare.',
+        'Non-institutional investors are returning to small- and mid-cap stocks, broadening cash-market participation beyond index heavyweights — a healthier, more durable base for sustained turnover growth.',
+        'The derivatives market\'s recovery from its post-norms low of ₹296 lakh crore (Dec 2024) to ₹462 lakh crore (May 2026) shows the market adapting to SEBI\'s tighter F&O framework rather than suffering a permanent activity collapse.'
+      ],
+      neg:[
+        'FPIs net sold roughly ₹2.25 lakh crore of Indian equities between January and May 2026, and FPI ownership of Nifty 500 companies slipped to a new low of 17.1% — a structural overhang that persists unless global risk sentiment toward India improves.',
+        'The ~15% correction in benchmark indices during Jan–Mar 2026 was severe by any standard, and a recovering turnover does not reverse the capital losses already booked by investors who held through the fall.',
+        'Derivatives ADT of ₹462 lakh crore in May 2026 is still below the ₹472 lakh crore seen in Dec 2025, and retail or individual traders with smaller capital remain the most affected by higher contract sizes under SEBI\'s tightened F&O norms — effectively pricing out a segment of participants.',
+        'Heavy reliance on mutual fund inflows to offset persistent FPI selling creates a new kind of concentration risk: any reversal in domestic SIP or retail sentiment could leave the cash market without its current main buffer.'
+      ]
+    },
+    ta:{
+      headline:'2026-ல் இந்திய சந்தைகள் உறுதியாக நிற்கின்றன: Cash Market Turnover 2-ஆண்டு உச்சத்தை எட்டியதும், உள்நாட்டு முதலீட்டாளர்களின் முன்னேற்றமும்',
+      imageCap:'CB Research இன்போகிராபிக்: Cash Market Turnover, FPI–DII ஓட்ட வேறுபாடு, Nifty 500 உரிமை மாற்றம் மற்றும் Derivatives சந்தையின் மாறுபட்ட கதை — ஜனவரி முதல் மே 2026 வரை.',
+      context:[
+        'ஜனவரி–மார்ச் 2026-க்கு இடையில் பெஞ்ச்மார்க் இண்டிசுகள் சுமார் 15% சரிந்தன — Covid தாக்குதலுக்குப் பின் இதுவே மிகக் கடுமையான வீழ்ச்சி — ஆனாலும் இந்த வீழ்ச்சியின் போதே Cash Market Average Daily Turnover (ADT) தொடர்ந்து உயர்ந்தது: டிசம்பர் 2025-ல் ₹1.02 லட்சம் கோடியிலிருந்து மார்ச் 2026-ல் ₹1.35 லட்சம் கோடிக்கு (+32%) ஏறி, ஏப்ரல்–மே 2026-ல் ₹1.42–1.45 லட்சம் கோடி எனும் 2-ஆண்டு உச்சத்தை எட்டியது.',
+        'இந்த சரிவில் வாங்குபவர் யார், விற்பவர் யார் என்பதில் தெளிவான பிளவு தெரிந்தது: ஜனவரி–மார்ச் 2026 சரிவில் FPIகள் சுமார் ₹1.3 லட்சம் கோடி நிகர விற்பனை செய்த அதே வேளையில், உள்நாட்டு Mutual Funds சுமார் ₹1.5 லட்சம் கோடி நிகர வாங்கி விற்பனை அழுத்தத்தை உள்வாங்கின. பரந்த ஜனவரி–மே 2026 காலகட்டத்தில், FPI வெளியேற்றம் ~₹2.25 லட்சம் கோடியாகவும், Mutual Fund உட்செலவு ~₹2.44 லட்சம் கோடியாகவும் இருந்தது; பங்குகளில் மொத்த MF நிகர முதலீடு ₹2.87 லட்சம் கோடியை எட்டியது.',
+        'இந்த உரிமை மாற்றம் ஒரு காலாண்டு நிகழ்வு அல்ல, கட்டமைப்பு மாற்றம்: Nifty 500 நிறுவனங்களில் DII பங்கு மார்ச் 2020-ல் 14.9%-லிருந்து மார்ச் 2026-ல் 20.9% எனும் வரலாற்று உச்சத்தை எட்டியது; FPI பங்கு அதே ஆறு ஆண்டுகளில் 19.9%-லிருந்து 17.1% எனும் புதிய தாழ்வுக்கு சரிந்தது — இந்த சரிவின் போது Mutual Fund நிகர முதலீடு (₹1,53,000 கோடி) Covid சரிவின் முழு முதலீட்டை விட (₹41,304 கோடி) கிட்டத்தட்ட 4 மடங்கு அதிகம்.',
+        'Small- மற்றும் mid-cap பங்குகளில் non-institutional முதலீட்டாளர்களும் மீண்டும் செயல்படத் தொடங்கி cash market turnover-க்கு ஆதரவளிக்கின்றனர்; ஆனால் Derivatives சந்தை வேறு கதையைச் சொல்கிறது — அதன் ADT டிசம்பர் 2025-ல் ₹472 லட்சம் கோடியிலிருந்து மே 2026-ல் ₹462 லட்சம் கோடியாகச் சற்று குறைந்தது; எனினும் இது டிசம்பர் 2024-ல் SEBI புதிய F&O விதிகளுக்குப் பின் இருந்த தாழ்வான ₹296 லட்சம் கோடியிலிருந்து கணிசமான மீட்சி — சிறு கான்ட்ராக்ட் வைத்திருக்கும் ரீடெயில் வியாபாரிகளே அதிகம் பாதிக்கப்பட்டுள்ளனர்.'
+      ],
+      compareTable:[
+        {title:'Cash Market — Average Daily Turnover (₹ லட்சம் கோடி)',
+         headers:['காலம்','Cash Market ADT','குறிப்பு'],
+         rows:[
+           ['டிசம்பர் 2025','₹1.02 லட்சம் கோடி','சரிவுக்கு முந்தைய அடிப்படை'],
+           ['ஜனவரி 2026','₹1.18 லட்சம் கோடி',''],
+           ['பிப்ரவரி 2026','₹1.22 லட்சம் கோடி',''],
+           ['மார்ச் 2026','₹1.35 லட்சம் கோடி','டிசம்பர் ’25-ஐ விட +32%, ~15% இண்டெக்ஸ் சரிவு இருந்தும்'],
+           ['ஏப்ரல் 2026','₹1.42 லட்சம் கோடி',''],
+           ['மே 2026','₹1.45 லட்சம் கோடி','2-ஆண்டு உச்சம்']
+         ]},
+        {title:'Nifty 500 உரிமை — DII vs FPI',
+         headers:['அளவுகோல்','மார்ச் 2020','மார்ச் 2026'],
+         rows:[
+           ['DII உரிமை','14.9%','20.9% (வரலாற்று உச்சம்)'],
+           ['FPI உரிமை','19.9%','17.1% (புதிய தாழ்வு)']
+         ]},
+        {title:'FPI vs Mutual Fund நிகர ஓட்டங்கள்',
+         headers:['ஓட்டம்','அளவு','காலம்'],
+         rows:[
+           ['FPI — நிகர வெளியேற்றம்','-₹1.3 லட்சம் கோடி','ஜனவரி–மார்ச் 2026 சரிவு'],
+           ['Mutual Funds — நிகர உட்செலவு','+₹1.5 லட்சம் கோடி','ஜனவரி–மார்ச் 2026 சரிவு'],
+           ['FPI — நிகர வெளியேற்றம் (மொத்தம்)','-₹2.25 லட்சம் கோடி','ஜனவரி–மே 2026'],
+           ['Mutual Funds — நிகர உட்செலவு (மொத்தம்)','+₹2.44 லட்சம் கோடி','ஜனவரி–மே 2026'],
+           ['பங்குகளில் MF நிகர முதலீடு (மொத்தம்)','+₹2.87 லட்சம் கோடி','ஜனவரி–மே 2026']
+         ]},
+        {title:'Derivatives Market — Average Daily Turnover (₹ லட்சம் கோடி)',
+         headers:['காலம்','Derivatives ADT','குறிப்பு'],
+         rows:[
+           ['டிசம்பர் 2024','₹296 லட்சம் கோடி','SEBI புதிய F&O விதிகளுக்குப் பின் தாழ்வு'],
+           ['டிசம்பர் 2025','₹472 லட்சம் கோடி',''],
+           ['மே 2026','₹462 லட்சம் கோடி','டிசம்பர் ’25-ஐ விட சற்று குறைவு, ஆனால் டிசம்பர் ’24 தாழ்வை விட மிக அதிகம்']
+         ]}
+      ],
+      pos:[
+        'ஜனவரி–மார்ச் 2026-ல் பெஞ்ச்மார்க் இண்டிசுகள் ~15% சரிந்தும் — Covid சரிவுக்குப் பின் மிகக் கடுமையான வீழ்ச்சி — Cash Market Average Daily Turnover தொடர்ந்து உயர்ந்து, ஏப்ரல்–மே 2026-ல் ₹1.42–1.45 லட்சம் கோடி எனும் 2-ஆண்டு உச்சத்தை எட்டியது — இது sentiment-ஆல் இயக்கப்படும் வளர்ச்சி அல்ல, கட்டமைப்பு ரீதியான பங்கேற்பு.',
+        'ஜனவரி–மார்ச் சரிவில் உள்நாட்டு Mutual Funds ~₹1.5 லட்சம் கோடி நிகர வாங்கின — Covid சரிவில் முதலீடு செய்த ₹41,304 கோடியை விட கிட்டத்தட்ட 4 மடங்கு அதிகம் — DII உரிமையும் Nifty 500-ல் 20.9% எனும் வரலாற்று உச்சத்தை எட்டியது; வெளிநாட்டு வெளியேற்றத்தை liquidity பயம் இல்லாமல் உள்வாங்கும் ஆழம் உள்நாட்டு மூலதனத்திற்கு உள்ளது.',
+        'Small- மற்றும் mid-cap பங்குகளில் non-institutional முதலீட்டாளர்கள் மீண்டும் செயல்படுவது, Index-சார்ந்த பங்கேற்பைத் தாண்டி broader-ஆன, நீடித்த turnover-க்கான ஆரோக்கியமான அடித்தளத்தை உருவாக்குகிறது.',
+        'Derivatives சந்தை டிசம்பர் 2024 தாழ்வான ₹296 லட்சம் கோடியிலிருந்து மே 2026-ல் ₹462 லட்சம் கோடிக்கு மீட்சி பெற்றது — SEBI-இன் கடுமையான F&O கட்டமைப்புக்கு சந்தை மாற்றியமைந்துள்ளதைக் காட்டுகிறது, நிரந்தர செயல்பாட்டு வீழ்ச்சி அல்ல.'
+      ],
+      neg:[
+        'ஜனவரி–மே 2026-க்கு இடையில் FPIகள் சுமார் ₹2.25 லட்சம் கோடி இந்திய பங்குகளை நிகர விற்றனர், Nifty 500-ல் FPI உரிமையும் 17.1% எனும் புதிய தாழ்வுக்கு சரிந்தது — உலகளாவிய ஆபத்து உணர்வு இந்தியாவை நோக்கி மேம்படாவிட்டால் இது தொடரக்கூடிய கட்டமைப்பு அழுத்தம்.',
+        'ஜனவரி–மார்ச் 2026-ல் பெஞ்ச்மார்க் இண்டிசுகளில் ~15% சரிவு எந்த அளவுகோலிலும் கடுமையானது; turnover மீட்சி, சரிவின் போது தங்கியிருந்த முதலீட்டாளர்கள் ஏற்கனவே பதிவு செய்த மூலதன இழப்புகளை மாற்றாது.',
+        'மே 2026-ல் Derivatives ADT ₹462 லட்சம் கோடியாக இருந்தாலும் டிசம்பர் 2025-ல் இருந்த ₹472 லட்சம் கோடியை விட இன்னும் குறைவே; SEBI-இன் கடுமையான F&O விதிகளின் கீழ் அதிகரித்த contract அளவுகளால் சிறு மூலதனம் கொண்ட ரீடெயில் வியாபாரிகளே அதிகம் பாதிக்கப்படுகின்றனர் — ஒரு பிரிவினரை சந்தையிலிருந்து திறம்பட விலக்குகிறது.',
+        'தொடர்ச்சியான FPI விற்பனையை ஈடுசெய்ய Mutual Fund உட்செலவுகளை அதிகமாக நம்பியிருப்பது புதிய வகை செறிவு ஆபத்தை உருவாக்குகிறது — உள்நாட்டு SIP அல்லது ரீடெயில் உணர்வில் ஏதேனும் மாற்றம் ஏற்பட்டால், cash market-இன் இன்றைய முக்கிய buffer இல்லாமல் போகலாம்.'
+      ]
+    },
+    companies:[
+      {name:'Domestic Mutual Funds (DIIs)',status:'Net Buyers — ₹1.5L Cr (Jan–Mar) / All-Time High 20.9% Ownership',cls:'cobadge-ok'},
+      {name:'Foreign Portfolio Investors (FPIs)',status:'Net Sellers — ~₹2.25L Cr Outflow (Jan–May) / New Low 17.1% Ownership',cls:'cobadge-hit'},
+      {name:'Non-Institutional / Retail Investors',status:'Returning to Small- & Mid-Cap Stocks',cls:'cobadge-ok'},
+      {name:'F&O / Retail Derivatives Traders',status:'Most Affected by Tighter SEBI Contract-Size Norms',cls:'cobadge-partial'}
+    ]
+},
+  {
     id:26, date:'2026-06-20', sector:'rbi', cat:'macro', sectorLabel:'Banking / SFB', pillCls:'pill-rbi', time:'20 Jun 2026',
     impact:'mixed', breaking:true,
     badges:['CRAR Requirement Drops 15% → 11.5% on Conversion','Deposit Cost Can Fall 50–70 bps','Only AU SFB Approved So Far','Ujjivan 61% & Jana 70% Unsecured Advances'],
