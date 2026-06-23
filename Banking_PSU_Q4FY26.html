@@ -186,6 +186,8 @@
       <button class="tab" data-tab="charts">📈 Charts</button>
       <button class="tab" data-tab="biz">🏛 Business Analysis</button>
       <button class="tab" data-tab="school">🎓 School</button>
+      <button class="tab" data-tab="ranking">🏆 Rankings</button>
+      <button class="tab" data-tab="socrates">🦉 Cauvery Socrates</button>
       <button class="tab" data-tab="rating">⭐ CB Rating</button>
       <button class="tab" data-tab="assist">💬 CB Assist</button>
     </nav>
@@ -196,6 +198,8 @@
   <section class="panel" id="charts"></section>
   <section class="panel" id="biz"></section>
   <section class="panel" id="school"></section>
+  <section class="panel" id="ranking"></section>
+  <section class="panel" id="socrates"></section>
   <section class="panel" id="rating"></section>
   <section class="panel" id="assist"></section>
 
@@ -743,6 +747,8 @@ function showTab(id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
   if(id==='charts') setTimeout(drawChart,60);
+  if(id==='ranking') renderRanking();
+  if(id==='socrates') renderSocrates();
 }
 document.getElementById('tabNav').addEventListener('click',e=>{ if(e.target.dataset.tab) showTab(e.target.dataset.tab); });
 
@@ -1442,8 +1448,521 @@ function updatePriceBadge(label, isLive) {
 /* ════════════════════════════════════════════════════════════
    INIT
    ════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════
+   RANKINGS TAB — Multi-metric scorecard, all 8 banks ranked Q4FY26
+   ═══════════════════════════════════════════════════════════════ */
+function renderRanking(){
+  const RANK_METRICS = [
+    {m:'Net Profit (PAT)', lab:'PAT', icon:'₹', lower:false, grp:'Earnings'},
+    {m:'ROA', lab:'ROA', icon:'%', lower:false, grp:'Earnings'},
+    {m:'ROE', lab:'ROE', icon:'%', lower:false, grp:'Earnings'},
+    {m:'NIM', lab:'NIM', icon:'%', lower:false, grp:'Franchise'},
+    {m:'CASA', lab:'CASA', icon:'%', lower:false, grp:'Franchise'},
+    {m:'GNPA', lab:'GNPA', icon:'%', lower:true, grp:'Asset Quality'},
+    {m:'NNPA', lab:'NNPA', icon:'%', lower:true, grp:'Asset Quality'},
+    {m:'PCR', lab:'PCR', icon:'%', lower:false, grp:'Asset Quality'},
+    {m:'CRAR', lab:'CRAR', icon:'%', lower:false, grp:'Capital'},
+    {m:'CET 1', lab:'CET-1', icon:'%', lower:false, grp:'Capital'},
+    {m:'CTI', lab:'CTI', icon:'%', lower:true, grp:'Efficiency'},
+    {m:'P/BV', lab:'P/BV', icon:'x', lower:false, grp:'Valuation'},
+  ];
+
+  // Compute composite rank score (lower rank = better)
+  function rankScore(bank){
+    let pts=0, count=0;
+    RANK_METRICS.forEach(rm=>{
+      const v=val(rm.m,bank,'Q4FY26'); if(v==null)return;
+      const all=ALL_BANKS.map(b=>val(rm.m,b,'Q4FY26')).filter(x=>x!=null).sort((a,b)=>rm.lower?a-b:b-a);
+      const rank=all.indexOf(v)+1;
+      pts+=(ALL_BANKS.length-rank+1); count++;
+    });
+    return count>0?Math.round(pts/count*10)/10:0;
+  }
+
+  const scored=ALL_BANKS.map(b=>({b,score:rankScore(b)})).sort((a,b)=>b.score-a.score);
+
+  let html=`<div class="section-title">Company Rankings — Q4 FY26 · All Metrics</div>
+  <div class="section-note">Banks ranked across 12 metrics (earnings, franchise, asset quality, capital, efficiency, valuation). Composite score = average rank points across all metrics. <b>Not a buy/sell/hold recommendation — analytical scoring only.</b></div>`;
+
+  // Composite leaderboard
+  html+=`<div style="margin-bottom:24px"><div class="grp-head"><h3>🏆 Composite Earnings Quality Ranking</h3></div><div class="tbl-wrap"><table style="min-width:480px"><thead><tr><th>Rank</th><th>Bank</th><th>Type</th><th>Composite Score</th><th>PAT Q4FY26</th><th>ROA</th><th>ROE</th><th>GNPA</th></tr></thead><tbody>`;
+  const medals=['🥇','🥈','🥉','4','5','6','7','8'];
+  scored.forEach(({b,score},i)=>{
+    const pat=val('Net Profit (PAT)',b,'Q4FY26');
+    const roa=val('ROA',b,'Q4FY26');
+    const roe=val('ROE',b,'Q4FY26');
+    const gnpa=val('GNPA',b,'Q4FY26');
+    html+=`<tr${i<3?` style="background:rgba(255,165,0,${0.06-i*0.015})"`:''}>
+      <td style="font-size:16px;text-align:center">${medals[i]}</td>
+      <td class="metric-name">${b} ${typePill(b)}</td>
+      <td>${BANKS[b].tier==='large'?'Large':'Mid'}</td>
+      <td class="mono" style="font-weight:700;color:var(--accent)">${score}</td>
+      <td class="mono pos">₹${Math.round(pat||0).toLocaleString('en-IN')} Cr</td>
+      <td class="mono${roa>=1.5?' pos':roa>=1?' neu':' neg'}">${roa?roa.toFixed(2)+'%':'—'}</td>
+      <td class="mono${roe>=18?' pos':roe>=14?' neu':' neg'}">${roe?roe.toFixed(2)+'%':'—'}</td>
+      <td class="mono${gnpa<=1.5?' pos':gnpa<=2.5?' neu':' neg'}">${gnpa?gnpa.toFixed(2)+'%':'—'}</td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div></div>`;
+
+  // Per-group rankings
+  const RANK_GROUPS=[
+    {lab:'Earnings Dominance',metrics:['Net Profit (PAT)','ROA','ROE','NII']},
+    {lab:'Asset Quality',metrics:['GNPA','NNPA','PCR']},
+    {lab:'Franchise & Funding',metrics:['CASA','NIM','Cost of Deposits']},
+    {lab:'Capital & Efficiency',metrics:['CRAR','CET 1','CTI']},
+  ];
+
+  RANK_GROUPS.forEach(grp=>{
+    html+=`<div style="margin-bottom:20px"><div class="grp-head"><h3>${grp.lab}</h3></div><div class="tbl-wrap"><table style="min-width:700px"><thead><tr><th>Bank</th>`;
+    grp.metrics.forEach(m=>html+=`<th>${m}</th>`);
+    html+=`<th>Rank</th></tr></thead><tbody>`;
+
+    // Score on this group
+    const groupScored=ALL_BANKS.map(b=>{
+      let pts=0,cnt=0;
+      grp.metrics.forEach(m=>{
+        const v=val(m,b,'Q4FY26'); if(v==null)return;
+        const lower=(METRICS[m]||{}).lower;
+        const all=ALL_BANKS.map(bk=>val(m,bk,'Q4FY26')).filter(x=>x!=null).sort((a,c)=>lower?a-c:c-a);
+        pts+=(ALL_BANKS.length-all.indexOf(v)); cnt++;
+      });
+      return {b,pts:cnt>0?pts/cnt:0};
+    }).sort((a,b)=>b.pts-a.pts);
+
+    groupScored.forEach(({b},rank)=>{
+      html+=`<tr><td class="metric-name">${b} ${typePill(b)}</td>`;
+      grp.metrics.forEach(m=>{
+        const v=val(m,b,'Q4FY26');
+        const lower=(METRICS[m]||{}).lower;
+        const all=ALL_BANKS.map(bk=>val(m,bk,'Q4FY26')).filter(x=>x!=null).sort((a,c)=>lower?a-c:c-a);
+        const best=all[0], worst=all[all.length-1];
+        let color='neu';
+        if(v!=null){
+          const pct=(v-worst)/(best-worst||1);
+          color=lower?(pct<0.33?'pos':pct<0.67?'neu':'neg'):(pct>0.67?'pos':pct>0.33?'neu':'neg');
+        }
+        html+=`<td class="mono ${color}">${fmt(v,m)}</td>`;
+      });
+      html+=`<td style="font-weight:700;text-align:center">#${rank+1}</td></tr>`;
+    });
+    html+=`</tbody></table></div></div>`;
+  });
+
+  document.getElementById('ranking').innerHTML=html;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAUVERY SOCRATES Q4FY26 DATA — Specific to these 8 banks
+   ═══════════════════════════════════════════════════════════════ */
+const SOC_TOPICS_BANKING = {
+  nim_q4fy26: {
+    title: { en: "NIM Deep Dive — Q4 FY26", ta: "NIM ஆழமான பகுப்பாய்வு — Q4 FY26" },
+    questions: [
+      {
+        type: "mcq",
+        q: { en: "🟢 SBI NIM fell from 3.15% (Q4FY25) to 2.93% (Q4FY26). IDFC First held at 5.93%. ROA: SBI 1.12%, IDFC First 0.55%. What does this data tell you about NIM versus bank quality?", ta: "🟢 SBI-இன் NIM 3.15% (Q4FY25) இலிருந்து 2.93% (Q4FY26) ஆக குறைந்தது. IDFC First 5.93% இல் நிலையாக இருந்தது. ROA: SBI 1.12%, IDFC First 0.55%. இந்த தரவு NIM மற்றும் வங்கி தரம் பற்றி என்ன சொல்கிறது?" },
+        context: "SBI NIM: 2.93% · IDFC First NIM: 5.93% · SBI Cost of Deposits: 5.00% · IDFC First Cost of Deposits: 6.00% · SBI CASA: 38% · IDFC First CASA: 49.8% · SBI ROA: 1.12% · IDFC First ROA: 0.55%",
+        hint: { en: "IDFC First has 300bps more NIM but earns half the ROA. What absorbs that gap?", ta: "IDFC First-க்கு 300bps அதிக NIM இருந்தாலும் ROA பாதி மட்டுமே. அந்த இடைவெளியை எது உறிஞ்சுகிறது?" },
+        options: [{ en: "Higher NIM always indicates a better franchise — IDFC First is the stronger bank", ta: "அதிக NIM எப்போதும் சிறந்த தரத்தை குறிக்கும் — IDFC First வலிமையான வங்கி" }, { en: "NIM and bank quality are unrelated — only PAT size matters", ta: "NIM மற்றும் வங்கி தரம் தொடர்பற்றவை — PAT அளவு மட்டுமே முக்கியம்" }, { en: "High NIM can reflect high-risk lending; ROA is the real quality test after credit costs and opex", ta: "அதிக NIM அதிக ஆபத்துள்ள கடன் வழங்கலை பிரதிபலிக்கலாம்; கடன் செலவுகளுக்கு பிறகு ROA தான் உண்மையான தர சோதனை" }, { en: "SBI's lower NIM proves PSU banks are structurally inferior to private banks", ta: "SBI-இன் குறைந்த NIM பொதுத்துறை வங்கிகள் தனியார் வங்கிகளை விட அமைப்பு ரீதியாக தாழ்ந்தவை என்பதை நிரூபிக்கிறது" }],
+        correct: 2,
+        responses: [
+          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை செய்யுங்கள்" }, cls: "wrong-resp", text: { en: "IDFC First's 5.93% NIM with 0.55% ROA versus SBI's 2.93% NIM with 1.12% ROA shows the opposite — something between NIM and ROA is consuming IDFC First's spread advantage. What do you think that is?", ta: "IDFC First-இன் 5.93% NIM உடன் 0.55% ROA, SBI-இன் 2.93% NIM உடன் 1.12% ROA-வை விட வேறுபடுகிறது — NIM மற்றும் ROA இடையே எதோ IDFC First-இன் நன்மையை உறிஞ்சுகிறது. அது என்ன என்று நினைக்கிறீர்கள்?" }, followup: { en: "IDFC First's cost of deposits is 6.00% despite 49.8% CASA. SBI pays 5.00% on 38% CASA. Which bank's deposit franchise is genuinely cheaper — and why does CASA ratio alone not answer that question?", ta: "IDFC First 49.8% CASA இருந்தும் 6.00% வைப்பு செலவு தருகிறது. SBI 38% CASA-வில் 5.00% மட்டுமே. எந்த வங்கியின் வைப்பு தளம் உண்மையிலேயே மலிவானது — CASA விகிதம் மட்டுமே ஏன் பதில் சொல்லாது?" } },
+          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை செய்யுங்கள்" }, cls: "wrong-resp", text: { en: "PAT size conflates scale with quality. SBI's ₹19,684 Cr PAT is partly because it has ₹49.32 lakh crore in advances. The question is efficiency per rupee of assets — which is ROA. What drives the gap between NIM and ROA for any bank?", ta: "PAT அளவு அளவை தரத்துடன் குழப்புகிறது. SBI-இன் ₹19,684 Cr PAT ஒரு பகுதியாக ₹49.32 லட்சம் கோடி கடன்கள் காரணம். சொத்துக்கள் ஒவ்வொரு ரூபாயிலும் திறன் — அதாவது ROA — என்பதே கேள்வி. எந்த வங்கிக்கும் NIM மற்றும் ROA இடையே இடைவெளியை எது உருவாக்குகிறது?" }, followup: { en: "Between IDFC First (NIM 5.93%, ROA 0.55%) and Bank of Maharashtra (NIM 3.95%, ROA 1.97%), which bank converts NIM to profit more efficiently — and what explains the difference?", ta: "IDFC First (NIM 5.93%, ROA 0.55%) மற்றும் Bank of Maharashtra (NIM 3.95%, ROA 1.97%) இடையே, எந்த வங்கி NIM-ஐ லாபமாக மிகவும் திறமையாக மாற்றுகிறது — வித்தியாசத்தை என்ன விளக்குகிறது?" } },
+          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Yes — credit cost and opex sit between NIM and ROA. Now trace what specifically absorbs IDFC First's 300bps NIM advantage over SBI.", ta: "ஆம் — கடன் செலவு மற்றும் இயக்க செலவுகள் NIM மற்றும் ROA இடையே உள்ளன. இப்போது IDFC First-இன் SBI-ஐ விட 300bps NIM நன்மையை குறிப்பாக எது உறிஞ்சுகிறது என்று கண்டுபிடியுங்கள்." }, followup: { en: "IDFC First CTI is 71%, SBI CTI is 50%. IDFC First provisions ₹869 Cr on ₹2.90 lakh crore book. Build the NIM→ROA bridge for IDFC First step by step.", ta: "IDFC First CTI 71%, SBI CTI 50%. IDFC First ₹2.90 லட்சம் கோடி புத்தகத்தில் ₹869 Cr வழங்குகிறது. IDFC First-க்கு NIM→ROA பாலத்தை படிப்படியாக கட்டுங்கள்." } },
+          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை செய்யுங்கள்" }, cls: "wrong-resp", text: { en: "Bank of Maharashtra is also a PSU with NIM 3.95% and ROA 1.97% — better than IDFC First's 5.93% NIM with 0.55% ROA. The PSU/private distinction doesn't explain NIM compression. What structural factor in SBI's mandate suppresses its NIM specifically?", ta: "Bank of Maharashtra கூட PSU வங்கி — NIM 3.95%, ROA 1.97% — IDFC First-இன் 5.93% NIM, 0.55% ROA-ஐ விட சிறந்தது. PSU/தனியார் வேறுபாடு NIM குறைப்பை விளக்காது. SBI-இன் ஆணையில் எந்த அமைப்பு காரணி அதன் NIM-ஐ குறிப்பாக அடக்குகிறது?" }, followup: { en: "SBI must deploy 40% of ANBC in priority sector loans at regulated rates. If this earns 200bps less than market rates on ₹49.32 lakh crore advances, estimate the NIM suppression in basis points.", ta: "SBI 40% ANBC-ஐ கட்டுப்படுத்தப்பட்ட விகிதங்களில் முன்னுரிமை துறை கடன்களில் பயன்படுத்த வேண்டும். இது ₹49.32 லட்சம் கோடி கடன்களில் சந்தை விகிதங்களை விட 200bps குறைவாக சம்பாதிக்கிறது என்றால், NIM அடக்கத்தை basis points-ல் மதிப்பிடுங்கள்." } }
+        ]
+      },
+      {
+        type: "mcq",
+        q: { en: "🟡 BoM NIM: 3.95%, Cost of Deposits: 4.60%, CASA: 52.51%. PNB NIM: 2.57%, Cost of Deposits: 5.00%, CASA: 36%. NIM gap is 138bps but deposit cost gap is only 40bps. Where does the remaining ~100bps come from?", ta: "🟡 BoM NIM: 3.95%, வைப்பு செலவு: 4.60%, CASA: 52.51%. PNB NIM: 2.57%, வைப்பு செலவு: 5.00%, CASA: 36%. NIM இடைவெளி 138bps ஆனால் வைப்பு செலவு இடைவெளி 40bps மட்டுமே. மீதமுள்ள ~100bps எங்கிருந்து வருகிறது?" },
+        context: "BoM NIM: 3.95% · BoM CASA: 52.51% · BoM Cost of Deposits: 4.60% · BoM Yield on Advances: 9.00% · PNB NIM: 2.57% · PNB CASA: 36% · PNB Cost of Deposits: 5.00% · PNB Yield on Advances: 7.80%",
+        hint: { en: "NIM = Yield on Advances minus Cost of Deposits (simplified). The deposit cost gap is 40bps. Check the yield on advances gap.", ta: "NIM = கடன் வருவாய் கழித்தல் வைப்பு செலவு. வைப்பு செலவு இடைவெளி 40bps. கடன் வருவாய் இடைவெளியை சரிபாருங்கள்." },
+        options: [{ en: "BoM takes more credit risk — higher yield compensates for worse asset quality", ta: "BoM அதிக கடன் ஆபத்து எடுக்கிறது — அதிக வருவாய் மோசமான சொத்து தரத்தை ஈடுசெய்கிறது" }, { en: "BoM's Maharashtra MSME/retail book yields ~120bps more than PNB's corporate-heavy legacy book", ta: "BoM-இன் மகாராஷ்டிரா MSME/சில்லறை புத்தகம் PNB-இன் கார்ப்பரேட்-கனமான பழைய புத்தகத்தை விட ~120bps அதிக வருவாய் தருகிறது" }, { en: "BoM's smaller size lets it charge higher rates without competitive pressure", ta: "BoM-இன் சிறிய அளவு போட்டி அழுத்தமின்றி அதிக விகிதங்களை வசூலிக்க அனுமதிக்கிறது" }, { en: "PNB's legacy NPA book suppresses NIM through interest de-recognition on NPAs", ta: "PNB-இன் பழைய NPA புத்தகம் NPA-களில் வட்டி நீக்கத்தின் மூலம் NIM-ஐ அடக்குகிறது" }],
+        correct: 1,
+        responses: [
+          { tag: { en: "Check the data", ta: "தரவை சரிபாருங்கள்" }, cls: "wrong-resp", text: { en: "BoM's GNPA is 1.45% versus PNB's 2.95% — BoM actually has better asset quality. Higher yield without higher credit risk points to lending mix, not risk-taking. What does BoM's 9.00% yield versus PNB's 7.80% tell you about their borrower types?", ta: "BoM-இன் GNPA 1.45% மற்றும் PNB 2.95% — BoM உண்மையில் சிறந்த சொத்து தரம் கொண்டுள்ளது. அதிக கடன் ஆபத்தில்லாமல் அதிக வருவாய் கடன் கலவையை சுட்டுகிறது. BoM-இன் 9.00% மற்றும் PNB-இன் 7.80% வருவாய் அவர்களின் கடன் பெறுவோர் வகைகளைப் பற்றி என்ன சொல்கிறது?" }, followup: { en: "BoM ROA is 1.97%, PNB ROA is 1.06% — nearly double despite similar size. Beyond NIM, what other metric in Q4FY26 data explains this ROA gap? Look at CTI.", ta: "BoM ROA 1.97%, PNB ROA 1.06% — ஒரே அளவிருந்தும் இரட்டிப்பு. NIM-க்கு அப்பால், Q4FY26 தரவில் இந்த ROA இடைவெளியை விளக்கும் வேறு என்ன அளவீடு? CTI-ஐ பாருங்கள்." } },
+          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Correct — the yield gap (9.00% vs 7.80% = 120bps) accounts for most of the 138bps NIM difference, with deposit cost doing the rest. Now test whether BoM can hold this yield advantage as it grows.", ta: "சரியாக — வருவாய் இடைவெளி (9.00% vs 7.80% = 120bps) 138bps NIM வித்தியாசத்தில் பெரும்பாலானதை விளக்குகிறது. இப்போது BoM வளரும்போது இந்த வருவாய் நன்மையை தக்கவைக்க முடியுமா என்று சோதியுங்கள்." }, followup: { en: "If BoM expands pan-India beyond Maharashtra, would its yield on advances likely rise or fall — and what happens to its CASA ratio simultaneously? Use IOB's numbers as a comparable benchmark.", ta: "BoM மகாராஷ்டிராவுக்கு அப்பால் பான்-இந்தியாவில் விரிவடைந்தால், அதன் கடன் வருவாய் உயருமா அல்லது குறையுமா — மற்றும் அதே நேரத்தில் CASA விகிதத்திற்கு என்ன ஆகும்? IOB எண்களை ஒரு ஒப்பீட்டு அளவீடாக பயன்படுத்துங்கள்." } },
+          { tag: { en: "Check the data", ta: "தரவை சரிபாருங்கள்" }, cls: "wrong-resp", text: { en: "Small banks often face MORE pricing pressure in local markets, not less. BoM's Maharashtra base has strong MSME demand — but that's a mix story, not a market power story. What specific loan categories command 9.00% yield versus PNB's 7.80%?", ta: "சிறிய வங்கிகள் உள்ளூர் சந்தைகளில் அதிக விலை அழுத்தத்தை எதிர்கொள்கின்றன, குறைவாக அல்ல. BoM-இன் மகாராஷ்டிரா தளம் வலுவான MSME தேவை கொண்டுள்ளது — ஆனால் அது ஒரு கலவை கதை. PNB-இன் 7.80%-க்கு எதிராக 9.00% வருவாய் கோரும் குறிப்பிட்ட கடன் வகைகள் என்ன?" }, followup: { en: "BoM's CD ratio is 83.19% versus PNB's 73.58%. What does a higher CD ratio imply about a bank's willingness to deploy deposits into loans — and how does this contribute to yield differences?", ta: "BoM-இன் CD விகிதம் 83.19% மற்றும் PNB 73.58%. அதிக CD விகிதம் வங்கியின் வைப்புகளை கடன்களில் பயன்படுத்தும் விருப்பத்தை என்ன குறிக்கிறது — இது வருவாய் வேறுபாடுகளுக்கு எவ்வாறு பங்களிக்கிறது?" } },
+          { tag: { en: "Partially right", ta: "பகுதியளவில் சரி" }, cls: "partial-resp", text: { en: "PNB's GNPA is 2.95% — that does suppress NIM through interest de-recognition. But calculate: 2.95% GNPA means roughly ₹37,000 Cr of non-earning assets on ₹12.59 lakh crore — that alone explains maybe 15-20bps of NIM drag, not 100bps. What explains the rest?", ta: "PNB-இன் GNPA 2.95% — அது வட்டி நீக்கம் மூலம் NIM-ஐ அடக்குகிறது. ஆனால் கணக்கிடுங்கள்: 2.95% GNPA என்பது ₹12.59 லட்சம் கோடியில் தோராயமாக ₹37,000 Cr வருமானமற்ற சொத்துக்கள் — அதுவே 15-20bps NIM இழுவை மட்டுமே விளக்கும், 100bps அல்ல. மீதமுள்ளதை என்ன விளக்குகிறது?" }, followup: { en: "PNB's GNPA improved from 3.95% to 2.95% YoY. If this continues to 2.00% by Q4FY27, estimate the NIM uplift from interest re-recognition — and does that alone close the gap with BoM?", ta: "PNB GNPA YoY 3.95% இலிருந்து 2.95% ஆக மேம்பட்டது. Q4FY27 வரை 2.00% ஆக தொடர்ந்தால், வட்டி மறு-அங்கீகாரத்திலிருந்து NIM உயர்வை மதிப்பிடுங்கள் — அதுவே BoM-உடனான இடைவெளியை மூடுமா?" } }
+        ]
+      },
+      {
+        type: "free",
+        q: { en: "🔴 Canara Bank: NIM fell 30bps (2.85%→2.55%), GNPA improved 110bps (2.94%→1.84%), PCR rose (92.7%→94.2%), but PAT fell (₹5,003 Cr→₹4,506 Cr). Management says \"best shape in a decade.\" Evaluate.", ta: "🔴 Canara Bank: NIM 30bps குறைந்தது (2.85%→2.55%), GNPA 110bps மேம்பட்டது (2.94%→1.84%), PCR உயர்ந்தது (92.7%→94.2%), ஆனால் PAT குறைந்தது (₹5,003 Cr→₹4,506 Cr). நிர்வாகம் \"ஒரு தசாப்தத்தில் சிறந்த நிலை\" என்கிறார். மதிப்பீடு செய்யுங்கள்." },
+        context: "Canara NIM: 2.55% (Q4FY26) vs 2.85% (Q4FY25) · GNPA: 1.84% vs 2.94% · PCR: 94.21% vs 92.70% · CASA: 30.50% · ROA: 1.05% · PAT: ₹4,506 Cr vs ₹5,003 Cr · Cost of Deposits: 5.30%",
+        hint: { en: "PCR rising while GNPA falls is unusual — what does it confirm about the NPA improvement? Separately, why does NIM fall when repo rates are cut and CASA is only 30.5%?", ta: "GNPA குறையும்போது PCR உயர்வது அசாதாரணம் — NPA மேம்பாட்டைப் பற்றி அது என்ன உறுதிப்படுத்துகிறது? தனியாக, repo விகிதங்கள் குறைக்கப்படும்போதும் CASA 30.5% மட்டுமே இருக்கும்போது NIM ஏன் குறைகிறது?" },
+        keywords: ["casa", "deposit", "repricing", "rate cut", "mclr", "floating", "fixed", "td", "term deposit", "nii", "liability", "asset", "mismatch", "வைப்பு", "விகிதம்", "குறைப்பு"],
+        partialKeywords: ["rate", "repo", "cost", "funding", "npa", "genuine", "விகிதம்", "செலவு"],
+        responses: {
+          good: { tag: { en: "Strong analysis", ta: "வலுவான பகுப்பாய்வு" }, cls: "correct-resp", text: { en: "Good — you've separated the two stories. Asset quality improvement is genuine (PCR rising rules out write-off manipulation). NIM compression is a liability-side repricing story driven by Canara's low CASA of 30.5% in a rate-cut cycle. Management's claim holds on credit quality but not on earnings trajectory.", ta: "நல்லது — இரண்டு கதைகளையும் பிரித்துவிட்டீர்கள். சொத்து தர மேம்பாடு உண்மையானது (PCR உயர்வு write-off கையாளுதலை நிராகரிக்கிறது). NIM சுருக்கம் rate-cut சுழற்சியில் Canara-இன் குறைந்த CASA 30.5% ஆல் இயக்கப்படும் பொறுப்பு-பக்க மறுவிலையீடு கதை." }, followup: { en: "Canara CASA is 30.5% — lowest in the group. In another 50bps RBI rate cut, model directionally how Canara's NIM moves versus Bank of Maharashtra (CASA 52.51%). Which is structurally more exposed?", ta: "Canara CASA 30.5% — குழுவில் குறைந்தது. மேலும் 50bps RBI விகிதக் குறைப்பில், Canara NIM Bank of Maharashtra (CASA 52.51%)-க்கு எதிராக எந்த திசையில் நகரும் என்று மாதிரி செய்யுங்கள். எது அமைப்பு ரீதியாக அதிகமாக வெளிப்படுகிறது?" } },
+          partial: { tag: { en: "Add the mechanism", ta: "வழிமுறையை சேர்க்கவும்" }, cls: "partial-resp", text: { en: "You've flagged the NIM drop correctly. Add the asset-liability repricing mechanism: with 30.5% CASA and heavy TD reliance, Canara's MCLR-linked loans reprice down fast when RBI cuts, but locked-in TDs reprice slowly. That asymmetry compresses NIM even when credit quality is genuinely improving.", ta: "NIM வீழ்ச்சியை சரியாக கண்டறிந்தீர்கள். சொத்து-பொறுப்பு மறுவிலையீடு வழிமுறையை சேர்க்கவும்: 30.5% CASA மற்றும் அதிக TD சார்பு உடன், RBI குறைக்கும்போது Canara-இன் MCLR-இணைப்பு கடன்கள் வேகமாக குறைகின்றன, ஆனால் பூட்டிய TDs மெதுவாக மறுவிலையீடு ஆகும். அந்த சமச்சீரின்மை கடன் தரம் உண்மையாக மேம்படும்போதும் NIM-ஐ சுருக்குகிறது." }, followup: { en: "Canara's cost of deposits is 5.30% — highest among large PSBs. If TDs reprice down over 18 months after RBI's 50bps cut, what happens to Canara's NIM trajectory in FY27 — does it recover or compress further?", ta: "Canara வைப்பு செலவு 5.30% — பெரிய PSBகளில் அதிகமானது. RBI-இன் 50bps குறைப்புக்குப் பிறகு TDs 18 மாதங்களில் மறுவிலையீடு ஆனால், FY27-ல் Canara-இன் NIM பாதை என்னாகும் — அது மீளுமா அல்லது மேலும் சுருங்குமா?" } },
+          wrong: { tag: { en: "Separate the stories", ta: "கதைகளை பிரியுங்கள்" }, cls: "wrong-resp", text: { en: "The data contains two independent stories: an asset quality story and a revenue story. PCR rising while GNPA falls tells you the NPA improvement is genuine. PAT falling while provisions decline tells you the revenue line (NIM/NII) is the problem. Find the connection between 30.5% CASA and the NIM compression.", ta: "தரவு இரண்டு சுயாதீன கதைகளை கொண்டுள்ளது: சொத்து தர கதை மற்றும் வருவாய் கதை. GNPA குறையும்போது PCR உயர்வது NPA மேம்பாடு உண்மையானது என்று சொல்கிறது. வழங்கல்கள் குறையும்போது PAT குறைவது வருவாய் வரி (NIM/NII) பிரச்சினை என்று சொல்கிறது. 30.5% CASA மற்றும் NIM சுருக்கம் இடையே இணைப்பை கண்டுபிடியுங்கள்." }, followup: { en: "NIM = Yield on Advances minus Cost of Deposits. If Canara's MCLR-linked loans reprice down 40bps after a rate cut, but its average TD cost only falls 10bps over 12 months, what direction does NIM move in the short term — and by how much?", ta: "NIM = கடன் வருவாய் கழித்தல் வைப்பு செலவு. rate cut-க்கு பிறகு Canara MCLR-இணைப்பு கடன்கள் 40bps குறைந்தால், ஆனால் சராசரி TD செலவு 12 மாதங்களில் 10bps மட்டுமே குறைந்தால், குறுகிய காலத்தில் NIM எந்த திசையில் நகரும் — மற்றும் எவ்வளவு?" } }
+        }
+      }
+    ]
+  },
+  casa_q4fy26: {
+    title: { en: "CASA & Deposit Franchise — Q4 FY26", ta: "CASA & வைப்பு தளம் — Q4 FY26" },
+    questions: [
+      {
+        type: "mcq",
+        q: { en: "🟢 Rank these three by deposit franchise QUALITY — not just CASA ratio. BoM: CASA 52.51%, Cost of Deposits 4.60%. SBI: CASA 38.00%, Cost of Deposits 5.00%. IDFC First: CASA 49.80%, Cost of Deposits 6.00%.", ta: "🟢 இந்த மூன்றை வைப்பு தளம் தரம் — வெறும் CASA விகிதம் அல்ல — அடிப்படையில் வரிசைப்படுத்துங்கள். BoM: CASA 52.51%, வைப்பு செலவு 4.60%. SBI: CASA 38.00%, வைப்பு செலவு 5.00%. IDFC First: CASA 49.80%, வைப்பு செலவு 6.00%." },
+        context: "BoM deposits: ₹3.51 lakh crore · SBI deposits: ₹59.75 lakh crore · IDFC First deposits: ₹2.84 lakh crore · IDFC First savings rate offered: ~7% · SBI savings: salary/pension/Jan Dhan/defence accounts · BoM: Maharashtra MSME and retail base",
+        hint: { en: "If IDFC First has nearly 50% CASA but pays 6% cost of deposits, what does that reveal about the nature of its CASA?", ta: "IDFC First கிட்டத்தட்ட 50% CASA கொண்டிருந்தும் 6% வைப்பு செலவு செலுத்துகிறது என்றால், அதன் CASA இயல்பைப் பற்றி அது என்ன வெளிப்படுத்துகிறது?" },
+        options: [{ en: "BoM #1, IDFC First #2, SBI #3 — ranked by CASA ratio", ta: "BoM #1, IDFC First #2, SBI #3 — CASA விகிதத்தின் படி வரிசை" }, { en: "IDFC First #1 — highest CASA among the three at 49.8%", ta: "IDFC First #1 — மூன்றில் அதிக CASA 49.8%" }, { en: "SBI #1, BoM #2, IDFC First #3 — stickiness and actual cost are the real tests", ta: "SBI #1, BoM #2, IDFC First #3 — ஒட்டுதல் மற்றும் உண்மையான செலவு தான் உண்மையான சோதனைகள்" }, { en: "All equal — CASA ratio is the only valid deposit quality measure", ta: "அனைத்தும் சமம் — CASA விகிதம் மட்டுமே சரியான வைப்பு தர அளவீடு" }],
+        correct: 2,
+        responses: [
+          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை" }, cls: "wrong-resp", text: { en: "IDFC First has 49.8% CASA but pays 6.00% cost of deposits. SBI has 38% CASA but pays only 5.00%. If CASA ratio determined quality, IDFC First's cost should be lower. Why does a higher CASA ratio produce a higher deposit cost here?", ta: "IDFC First 49.8% CASA கொண்டுள்ளது ஆனால் 6.00% வைப்பு செலவு செலுத்துகிறது. SBI 38% CASA கொண்டு 5.00% மட்டுமே செலுத்துகிறது. CASA விகிதம் தரத்தை தீர்மானித்தால், IDFC First செலவு குறைவாக இருக்க வேண்டும். அதிக CASA விகிதம் ஏன் அதிக வைப்பு செலவை உருவாக்குகிறது?" }, followup: { en: "IDFC First offers ~7% on savings accounts to build CASA. When RBI pressures this rate down, what happens to IDFC First's CASA ratio and NIM simultaneously?", ta: "IDFC First CASA கட்டமைக்க ~7% சேமிப்பு கணக்கு வழங்குகிறது. RBI இந்த விகிதத்தை குறைக்கும்போது, IDFC First CASA விகிதம் மற்றும் NIM ஒரே நேரத்தில் என்னாகும்?" } },
+          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை" }, cls: "wrong-resp", text: { en: "IDFC First's 49.8% CASA comes at a cost of 6.00% — higher than SBI's 5.00% on 38% CASA. CASA ratio without cost of deposits is an incomplete measure. What type of deposit makes up IDFC First's CASA that explains this paradox?", ta: "IDFC First-இன் 49.8% CASA 6.00% செலவில் வருகிறது — SBI-இன் 38% CASA-வில் 5.00%-ஐ விட அதிகம். வைப்பு செலவின்றி CASA விகிதம் முழுமையற்ற அளவீடு. இந்த முரணை விளக்கும் IDFC First CASA-வை என்ன வகை வைப்பு உருவாக்குகிறது?" }, followup: { en: "Compare IDBI Bank (CASA 44.59%, Cost of Deposits 4.70%) to IDFC First (CASA 49.80%, Cost of Deposits 6.00%). IDBI has lower CASA but cheaper deposits. What does this tell you about their CASA composition?", ta: "IDBI Bank (CASA 44.59%, வைப்பு செலவு 4.70%) மற்றும் IDFC First (CASA 49.80%, வைப்பு செலவு 6.00%) ஒப்பிடுங்கள். IDBI குறைந்த CASA ஆனால் மலிவான வைப்புகள். இது அவர்களின் CASA கலவையைப் பற்றி என்ன சொல்கிறது?" } },
+          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Right — the cost of deposits output reveals stickiness. SBI's 5.00% on ₹59.75 lakh crore is genuinely cheap at scale. Now test what makes it durable.", ta: "சரி — வைப்பு செலவு வெளியீடு ஒட்டுதலை வெளிப்படுத்துகிறது. SBI-இன் ₹59.75 லட்சம் கோடியில் 5.00% உண்மையிலேயே மலிவானது. இப்போது அதை நீடித்திருக்கும் என்பதை சோதியுங்கள்." }, followup: { en: "SBI's CASA fell from 39% to 38% YoY while IDFC First rose from 47.7% to 49.8%. What single structural force is driving industry-wide CASA erosion — and which bank in the group of 8 is most exposed to it?", ta: "SBI CASA YoY 39% இலிருந்து 38% ஆக குறைந்தது, IDFC First 47.7% இலிருந்து 49.8% ஆக உயர்ந்தது. தொழில்துறை முழுவதும் CASA அரிப்பை இயக்கும் ஒரு அமைப்பு சக்தி என்ன — 8 வங்கிகளில் எது அதிகமாக வெளிப்படுகிறது?" } },
+          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை" }, cls: "wrong-resp", text: { en: "If CASA ratio were the only measure, IDFC First (49.8%) would rank above SBI (38%) — but IDFC First pays 100bps more for its deposits. The ratio is an input; cost of deposits is the output. Which other metric confirms SBI's deposit base is stickier despite the lower ratio?", ta: "CASA விகிதம் மட்டுமே அளவீடாக இருந்தால், IDFC First (49.8%) SBI (38%)-ஐ விட உயர்வில் இருக்கும் — ஆனால் IDFC First வைப்புகளுக்கு 100bps அதிகம் செலுத்துகிறது. விகிதம் ஒரு உள்ளீடு; வைப்பு செலவு வெளியீடு. SBI வைப்பு தளம் குறைந்த விகிதம் இருந்தும் ஒட்டுகிறது என்பதை எந்த மற்ற அளவீடு உறுதிப்படுத்துகிறது?" }, followup: { en: "Within CASA, current accounts pay 0% and savings pay 3-7%. If BoM has CA:SA of 20:32 and SBI has CA:SA of 10:28, both with similar total CASA, which has cheaper CASA — and what business type drives current account accumulation?", ta: "CASA-ல், நடப்பு கணக்குகள் 0% மற்றும் சேமிப்பு 3-7% தருகின்றன. BoM CA:SA 20:32 மற்றும் SBI CA:SA 10:28 இருந்தால், இரண்டும் ஒரே மாதிரி மொத்த CASA — எது மலிவான CASA — மற்றும் நடப்பு கணக்கு திரட்டலை என்ன வணிக வகை இயக்குகிறது?" } }
+        ]
+      }
+    ]
+  },
+  asset_quality_q4fy26: {
+    title: { en: "Asset Quality — NPA Trends Q4 FY26", ta: "சொத்து தரம் — NPA போக்குகள் Q4 FY26" },
+    questions: [
+      {
+        type: "mcq",
+        q: { en: "🟡 PNB: provisions fell ₹1,150 Cr→₹424 Cr QoQ. GNPA 3.19%→2.95%. PCR 97.14%. PAT surged to ₹5,225 Cr. What is the most important question before concluding PNB has turned the corner?", ta: "🟡 PNB: வழங்கல்கள் QoQ ₹1,150 Cr→₹424 Cr குறைந்தன. GNPA 3.19%→2.95%. PCR 97.14%. PAT ₹5,225 Cr ஆக உயர்ந்தது. PNB திரும்பியது என்று முடிவு செய்வதற்கு முன் மிக முக்கியமான கேள்வி என்ன?" },
+        context: "PNB Provisions: ₹424 Cr (Q4FY26) vs ₹1,150 Cr (Q3FY26) · GNPA: 2.95% vs 3.19% vs 3.95% (Q4FY25) · PCR: 97.14% · NIM: 2.57% · PAT: ₹5,225 Cr · Advances: ₹12.59 lakh crore · Annualised credit cost implied: ~13bps",
+        hint: { en: "₹424 Cr provision on ₹12.59 lakh crore advances is ~13bps annualised. Is that sustainable or mechanically low because PCR of 97% means new NPAs need almost no incremental provision?", ta: "₹12.59 லட்சம் கோடி கடன்களில் ₹424 Cr வழங்கல் ஆண்டுக்கு ~13bps. அது நீடிக்குமா அல்லது 97% PCR புதிய NPAக்கள் கிட்டத்தட்ட கூடுதல் வழங்கல் தேவையில்லை என்பதால் இயந்திர ரீதியாக குறைவாக உள்ளதா?" },
+        options: [{ en: "Whether PNB's market price of ₹110 is appropriate at P/BV of 0.96x", ta: "PNB சந்தை விலை ₹110 P/BV 0.96x-ல் பொருத்தமானதா என்பது" }, { en: "Whether the ₹424 Cr provision run-rate is sustainable — or mechanically low because 97% PCR means new NPAs need almost no incremental provision", ta: "₹424 Cr வழங்கல் run-rate நிலையானதா — அல்லது 97% PCR புதிய NPAக்களுக்கு கிட்டத்தட்ட கூடுதல் வழங்கல் தேவையில்லை என்பதால் இயந்திர ரீதியாக குறைவாக உள்ளதா" }, { en: "Whether PNB's CASA of 36% is sufficient to fund ₹12.59 lakh crore advances", ta: "PNB CASA 36% ₹12.59 லட்சம் கோடி கடன்களுக்கு போதுமானதா" }, { en: "Whether PNB should raise capital given CRAR of 17.74%", ta: "CRAR 17.74% கொண்டிருக்கும் PNB மூலதனம் திரட்ட வேண்டுமா" }],
+        correct: 1,
+        responses: [
+          { tag: { en: "Not the critical question", ta: "முக்கிய கேள்வி அல்ல" }, cls: "wrong-resp", text: { en: "Valuation is relevant but secondary to understanding whether the earnings are real. P/BV of 0.96x implies the market is already skeptical. The right question is what drives that skepticism — which lies in the provision sustainability, not the market price.", ta: "மதிப்பீடு பொருத்தமானது ஆனால் வருவாய் உண்மையானதா என்று புரிந்துகொள்வதில் இரண்டாம் நிலை. P/BV 0.96x சந்தை ஏற்கனவே சந்தேகிக்கிறது என்று குறிக்கிறது. சரியான கேள்வி அந்த சந்தேகத்தை எது இயக்குகிறது — வழங்கல் நிலைத்தன்மையில் உள்ளது, சந்தை விலையில் அல்ல." }, followup: { en: "PNB justified P/BV (Gordon Growth, ROE 15%, CoE 13%, g 10%) = (15-10)/(13-10) = 1.67x. It trades at 0.96x — a 43% discount. Name two Q4FY26 metrics that explain why the market discounts PNB this heavily.", ta: "PNB நியாயப்படுத்தப்பட்ட P/BV (Gordon Growth) = (15-10)/(13-10) = 1.67x. 0.96x-ல் வர்த்தகம் — 43% தள்ளுபடி. சந்தை PNB-ஐ இந்த அளவு தள்ளுபடி செய்வதை விளக்கும் இரண்டு Q4FY26 அளவீடுகளை பெயரிடுங்கள்." } },
+          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Correct — at 97% PCR, new slippages need almost zero incremental provision, making the current run-rate mechanically unsustainable if slippages normalise. Now calculate the exposure.", ta: "சரி — 97% PCR-ல், புதிய slippages கிட்டத்தட்ட கூடுதல் வழங்கல் தேவையில்லை, slippages இயல்பானால் தற்போதைய run-rate இயந்திர ரீதியாக நிலையற்றது. இப்போது வெளிப்படுவதை கணக்கிடுங்கள்." }, followup: { en: "If PNB's slippage rate normalises to 1.5% on ₹12.59 lakh crore advances, new NPAs = ~₹18,885 Cr annually. At 97% PCR required, provisions needed = ~₹18,318 Cr annually — versus Q4's ₹424 Cr. What does steady-state PAT look like?", ta: "PNB slippage விகிதம் ₹12.59 லட்சம் கோடி கடன்களில் 1.5% ஆனால், புதிய NPAs = ~₹18,885 Cr ஆண்டுக்கு. 97% PCR தேவைப்படுகிறது, வழங்கல்கள் = ~₹18,318 Cr ஆண்டுக்கு — Q4-இன் ₹424 Cr-க்கு எதிராக. நிலையான-நிலை PAT எப்படி இருக்கும்?" } },
+          { tag: { en: "Not the critical question", ta: "முக்கிய கேள்வி அல்ல" }, cls: "wrong-resp", text: { en: "CASA of 36% is below peers and relevant for NIM, but PNB is already funding its book (CD ratio 73.58%) — CASA is a cost issue, not a funding sufficiency issue. The more urgent question is whether the PAT of ₹5,225 Cr is repeatable, which depends on provisions.", ta: "CASA 36% சொந்தக்காரர்களை விட குறைவு மற்றும் NIM-க்கு பொருத்தமானது, ஆனால் PNB ஏற்கனவே தன் புத்தகத்தை நிதியளிக்கிறது (CD விகிதம் 73.58%) — CASA செலவு சிக்கல், நிதி போதுமானது சிக்கல் அல்ல. ₹5,225 Cr PAT திரும்பத்திரும்ப வருமா என்ற அவசரமான கேள்வி வழங்கல்களை சார்ந்துள்ளது." }, followup: { en: "PNB's NIM is 2.57% — second lowest in the group. Even if provisions normalise and depress PAT, what must PNB improve operationally to build a sustainable 1.2%+ ROA? Use the Q4FY26 numbers.", ta: "PNB NIM 2.57% — குழுவில் இரண்டாவது குறைவானது. வழங்கல்கள் இயல்பாகி PAT-ஐ அடக்கினாலும், நிலையான 1.2%+ ROA கட்டமைக்க PNB செயல்பாட்டு ரீதியாக என்ன மேம்படுத்த வேண்டும்? Q4FY26 எண்களை பயன்படுத்துங்கள்." } },
+          { tag: { en: "Not the critical question", ta: "முக்கிய கேள்வி அல்ல" }, cls: "wrong-resp", text: { en: "CRAR of 17.74% is well above minimum — capital is not PNB's constraint. The near-term earnings question is whether ₹424 Cr provisions are sustainable or a mechanical anomaly from ultra-high PCR. That answer determines whether ₹5,225 Cr PAT is a new baseline or a one-off.", ta: "CRAR 17.74% குறைந்தபட்சத்திற்கு மேல் — மூலதனம் PNB-இன் தடை அல்ல. அருகிய-கால வருவாய் கேள்வி ₹424 Cr வழங்கல்கள் நிலையானதா அல்லது மிக-அதிக PCR-இன் இயந்திர ஒழுங்கின்மையா. அந்த பதில் ₹5,225 Cr PAT புதிய அடிப்படையா அல்லது ஒரு-முறையா என்பதை தீர்மானிக்கிறது." }, followup: { en: "Explain mechanically why a bank with 97% PCR would show very low quarterly provisions even if new slippages are occurring. Use: Provisions needed = New NPAs × Required PCR% − Existing provisions already held on those loans.", ta: "97% PCR கொண்ட வங்கி புதிய slippages நிகழ்ந்தாலும் மிகக் குறைந்த காலாண்டு வழங்கல்களை காட்டுவது இயந்திர ரீதியாக ஏன் என்று விளக்குங்கள். பயன்படுத்துங்கள்: தேவையான வழங்கல்கள் = புதிய NPAs × தேவையான PCR% − அந்த கடன்களில் ஏற்கனவே வைத்திருக்கும் வழங்கல்கள்." } }
+        ]
+      }
+    ]
+  },
+  valuation_q4fy26: {
+    title: { en: "Valuation — P/BV Reality Check Q4 FY26", ta: "மதிப்பீடு — P/BV உண்மை சோதனை Q4 FY26" },
+    questions: [
+      {
+        type: "mcq",
+        q: { en: "🟡 BoM: ROE 23.19%, P/BV ~1.88x. PNB: ROE 15.0%, P/BV ~0.96x. IOB: ROE 14.0%, P/BV ~1.94x. Gordon Growth: P/BV = (ROE−g)/(CoE−g). Use CoE=13%, g=10%. Which valuation is most stretched versus its implied justified P/BV?", ta: "🟡 BoM: ROE 23.19%, P/BV ~1.88x. PNB: ROE 15.0%, P/BV ~0.96x. IOB: ROE 14.0%, P/BV ~1.94x. Gordon Growth: P/BV = (ROE−g)/(CoE−g). CoE=13%, g=10% பயன்படுத்துங்கள். நியாயமான P/BV-க்கு எதிராக எந்த மதிப்பீடு அதிகமாக நீட்டிக்கப்பட்டுள்ளது?" },
+        context: "BoM: ROE 23.19%, P/BV ~1.88x, BVPS ₹40, Price ₹75 · PNB: ROE 15.0%, P/BV ~0.96x, BVPS ₹114.77, Price ₹110 · IOB: ROE 14.0%, P/BV ~1.94x, BVPS ₹18, Price ₹35 · CoE assumption: 13% · Growth assumption: 10%",
+        hint: { en: "Calculate justified P/BV for each: (ROE−10)/(13−10). Then compare to actual P/BV. The bank where actual P/BV most exceeds justified P/BV is most stretched.", ta: "ஒவ்வொன்றுக்கும் நியாயப்படுத்தப்பட்ட P/BV கணக்கிடுங்கள்: (ROE−10)/(13−10). பின்னர் உண்மையான P/BV-உடன் ஒப்பிடுங்கள். உண்மையான P/BV நியாயப்படுத்தப்பட்ட P/BV-ஐ அதிகமாக மீறும் வங்கி அதிகமாக நீட்டிக்கப்பட்டுள்ளது." },
+        options: [{ en: "BoM is most stretched at 1.88x", ta: "BoM 1.88x-ல் அதிகமாக நீட்டிக்கப்பட்டுள்ளது" }, { en: "PNB is most stretched — trading at a discount to book", ta: "PNB அதிகமாக நீட்டிக்கப்பட்டுள்ளது — புத்தகத்திற்கு தள்ளுபடியில் வர்த்தகம்" }, { en: "IOB is most stretched — actual 1.94x far exceeds justified 1.33x", ta: "IOB அதிகமாக நீட்டிக்கப்பட்டுள்ளது — உண்மையான 1.94x நியாயப்படுத்தப்பட்ட 1.33x-ஐ விட அதிகம்" }, { en: "All three are fairly valued — P/BV differences reflect risk profiles", ta: "மூன்றும் நியாயமாக மதிப்பிடப்பட்டுள்ளன — P/BV வேறுபாடுகள் ஆபத்து சுயவிவரங்களை பிரதிபலிக்கின்றன" }],
+        correct: 2,
+        responses: [
+          { tag: { en: "Check the calculation", ta: "கணக்கீட்டை சரிபாருங்கள்" }, cls: "wrong-resp", text: { en: "BoM justified P/BV: (23.19−10)/(13−10) = 13.19/3 = 4.4x. Actual is 1.88x. BoM trades at less than half its Gordon Growth justified value — that's the opposite of stretched. Now do the same for IOB.", ta: "BoM நியாயப்படுத்தப்பட்ட P/BV: (23.19−10)/(13−10) = 13.19/3 = 4.4x. உண்மையான 1.88x. BoM அதன் Gordon Growth நியாயப்படுத்தப்பட்ட மதிப்பில் பாதியிலும் குறைவாக வர்த்தகம் — அது நீட்டிக்கப்பட்டதற்கு எதிரானது. இப்போது IOB-க்கும் அதே செய்யுங்கள்." }, followup: { en: "BoM trades at 1.88x P/BV versus Gordon Growth justified 4.4x. List three reasons the market might discount BoM's fair value this heavily — and which risk is most likely to persist?", ta: "BoM Gordon Growth நியாயப்படுத்தப்பட்ட 4.4x-க்கு எதிராக 1.88x P/BV-ல் வர்த்தகம். சந்தை BoM நியாயமான மதிப்பை இவ்வளவு அதிகமாக தள்ளுபடி செய்யக்கூடிய மூன்று காரணங்களை பட்டியலிடுங்கள் — எந்த ஆபத்து நீடிக்க வாய்ப்பு அதிகம்?" } },
+          { tag: { en: "Check the calculation", ta: "கணக்கீட்டை சரிபாருங்கள்" }, cls: "wrong-resp", text: { en: "PNB justified P/BV: (15−10)/(13−10) = 5/3 = 1.67x. Actual is 0.96x — a 43% discount to justified value. That's undervalued on the formula, not stretched. The question is whether the market is discounting something the formula doesn't capture.", ta: "PNB நியாயப்படுத்தப்பட்ட P/BV: (15−10)/(13−10) = 5/3 = 1.67x. உண்மையான 0.96x — நியாயமான மதிப்பில் 43% தள்ளுபடி. சூத்திரத்தில் குறைமதிப்பீடு, நீட்டிக்கப்பட்டதில்லை. சந்தை சூத்திரம் பிடிக்காத ஒன்றை தள்ளுபடி செய்கிறதா என்பது கேள்வி." }, followup: { en: "PNB justified P/BV is 1.67x but trades at 0.96x. The gap implies the market expects ROE to deteriorate. Using Q4FY26 data, identify the two metrics most likely to compress PNB's ROE from 15%.", ta: "PNB நியாயப்படுத்தப்பட்ட P/BV 1.67x ஆனால் 0.96x-ல் வர்த்தகம். இடைவெளி சந்தை ROE சரியும் என்று எதிர்பார்க்கிறது என்பதை குறிக்கிறது. Q4FY26 தரவு பயன்படுத்தி PNB ROE 15% இலிருந்து சுருக்கக்கூடிய இரண்டு அளவீடுகளை கண்டறியுங்கள்." } },
+          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Correct. IOB justified: (14−10)/(13−10) = 1.33x versus actual 1.94x — a 46% premium. The market is pricing in significant ROE improvement that Q4FY26 numbers don't yet show.", ta: "சரி. IOB நியாயப்படுத்தப்பட்டது: (14−10)/(13−10) = 1.33x உண்மையான 1.94x-க்கு எதிராக — 46% பிரீமியம். Q4FY26 எண்கள் இன்னும் காட்டாத குறிப்பிடத்தக்க ROE மேம்பாட்டை சந்தை விலையிடுகிறது." }, followup: { en: "IOB's actual P/BV of 1.94x implies an embedded ROE expectation. Using Gordon Growth in reverse — P/BV × (CoE−g) + g = implied ROE — calculate what ROE the market prices in for IOB. Is that achievable given NIM 3.35% and CTI 44%?", ta: "IOB உண்மையான P/BV 1.94x உட்பொதிக்கப்பட்ட ROE எதிர்பார்ப்பை குறிக்கிறது. Gordon Growth தலைகீழாக பயன்படுத்தி — P/BV × (CoE−g) + g = உட்பொதிக்கப்பட்ட ROE — IOB-க்கு சந்தை என்ன ROE விலையிடுகிறது என்று கணக்கிடுங்கள். NIM 3.35% மற்றும் CTI 44% கொண்டு அது சாத்தியமா?" } },
+          { tag: { en: "Check the calculation", ta: "கணக்கீட்டை சரிபாருங்கள்" }, cls: "wrong-resp", text: { en: "Apply the formula to each. BoM = (23.19−10)/3 = 4.4x justified vs 1.88x actual. PNB = (15−10)/3 = 1.67x justified vs 0.96x actual. IOB = (14−10)/3 = 1.33x justified vs 1.94x actual. Only one has actual P/BV above justified P/BV — which one?", ta: "சூத்திரத்தை ஒவ்வொன்றுக்கும் பயன்படுத்துங்கள். BoM = (23.19−10)/3 = 4.4x நியாயப்படுத்தப்பட்டது vs 1.88x உண்மையான. PNB = (15−10)/3 = 1.67x நியாயப்படுத்தப்பட்டது vs 0.96x உண்மையான. IOB = (14−10)/3 = 1.33x நியாயப்படுத்தப்பட்டது vs 1.94x உண்மையான. நியாயப்படுத்தப்பட்ட P/BV-ஐ விட உண்மையான P/BV அதிகமுள்ளது ஒன்று மட்டுமே — எது?" }, followup: { en: "Of the 8 banks, which has the largest gap between Gordon Growth justified P/BV and actual P/BV — in either direction? Identify both the most undervalued and most overvalued name using Q4FY26 ROE data.", ta: "8 வங்கிகளில், Gordon Growth நியாயப்படுத்தப்பட்ட P/BV மற்றும் உண்மையான P/BV இடையே — எந்த திசையிலும் — மிகப் பெரிய இடைவெளி எதற்கு உள்ளது? Q4FY26 ROE தரவு பயன்படுத்தி மிக குறைமதிப்பீடு மற்றும் மிக அதிக மதிப்பீடு கொண்ட பெயர்களை கண்டறியுங்கள்." } }
+        ]
+      }
+    ]
+  },
+  idfc_boa_q4fy26: {
+    title: { en: "IDFC First — The NIM Paradox", ta: "IDFC First — NIM முரண்பாடு" },
+    questions: [
+      {
+        type: "free",
+        q: { en: "🔴 IDFC First: NIM 5.93%, ROA 0.55%, CTI 71%, Provisions ₹869 Cr, CD ratio 102.05%, Cost of Deposits 6.00%. Build the NIM→ROA bridge. Where does the 5.38% gap disappear?", ta: "🔴 IDFC First: NIM 5.93%, ROA 0.55%, CTI 71%, வழங்கல்கள் ₹869 Cr, CD விகிதம் 102.05%, வைப்பு செலவு 6.00%. NIM→ROA பாலத்தை கட்டுங்கள். 5.38% இடைவெளி எங்கு மறைகிறது?" },
+        context: "IDFC First NIM: 5.93% · ROA: 0.55% · CTI: 71% · Provisions: ₹869 Cr · Advances: ₹2.90 lakh crore · Deposits: ₹2.84 lakh crore · CD ratio: 102.05% · Cost of Deposits: 6.00% · NII: ₹5,677 Cr · Other Income: ₹1,700 Cr",
+        hint: { en: "ROA = (NIM − Credit Cost − OpEx ratio) approximately. CTI of 71% means 71 paise of every revenue rupee goes to operating costs before provisions. Add provisions on top.", ta: "ROA ≈ (NIM − கடன் செலவு − இயக்க செலவு விகிதம்). CTI 71% என்பது ஒவ்வொரு வருவாய் ரூபாயிலும் 71 பைசா வழங்கல்களுக்கு முன் இயக்க செலவுகளுக்கு செல்கிறது. அதன் மேல் வழங்கல்களை சேர்க்கவும்." },
+        keywords: ["cti", "operating", "cost", "provision", "credit cost", "opex", "efficiency", "cd ratio", "borrowing", "consumer", "இயக்க செலவு", "வழங்கல்", "செலவு", "திறன்"],
+        partialKeywords: ["cost", "efficiency", "expense", "provision", "செலவு", "திறன்"],
+        responses: {
+          good: { tag: { en: "Strong analysis", ta: "வலுவான பகுப்பாய்வு" }, cls: "correct-resp", text: { en: "Correct — CTI 71% absorbs most of the NIM, provisions take another ~120bps, and CD ratio above 100% means market borrowing adds cost. These three compressors explain why 5.93% NIM produces only 0.55% ROA.", ta: "சரி — CTI 71% NIM-இல் பெரும்பாலானதை உறிஞ்சுகிறது, வழங்கல்கள் மேலும் ~120bps எடுக்கின்றன, மற்றும் 100%-க்கு மேல் CD விகிதம் சந்தை கடன் செலவை சேர்க்கிறது. இந்த மூன்று சுருக்கிகள் 5.93% NIM ஏன் 0.55% ROA மட்டுமே உருவாக்குகிறது என்று விளக்குகின்றன." }, followup: { en: "Management targets 1.4% ROA by FY28. Which of the three levers — CTI, credit cost, or CD ratio — is hardest to fix in 24 months, and what in Q4FY26 data gives you confidence or concern about each?", ta: "நிர்வாகம் FY28-ல் 1.4% ROA இலக்கு வைக்கிறது. மூன்று நெம்புகோல்களில் — CTI, கடன் செலவு, அல்லது CD விகிதம் — 24 மாதங்களில் எது சரிசெய்வது கடினம், மற்றும் ஒவ்வொன்றிலும் நம்பிக்கை அல்லது கவலை தரும் Q4FY26 தரவில் என்ன உள்ளது?" } },
+          partial: { tag: { en: "Add the CD ratio angle", ta: "CD விகித கோணத்தை சேர்க்கவும்" }, cls: "partial-resp", text: { en: "CTI and credit cost are identified. Add the third: CD ratio of 102.05% means loans exceed deposits. The gap (~₹6,000 Cr) is funded by market borrowings at rates above 6.00%, adding to funding cost beyond what the NIM calculation captures.", ta: "CTI மற்றும் கடன் செலவு கண்டறியப்பட்டன. மூன்றாவதை சேர்க்கவும்: CD விகிதம் 102.05% என்பது கடன்கள் வைப்புகளை விட அதிகம். இடைவெளி (~₹6,000 Cr) 6.00%-க்கு மேல் சந்தை கடன் மூலம் நிதியளிக்கப்படுகிறது, NIM கணக்கீட்டில் பிடிக்காத நிதி செலவை சேர்க்கிறது." }, followup: { en: "If IDFC First reduces CD ratio from 102% to 90% (peer average) by growing deposits faster than loans, what happens to NIM — does it rise or fall? And what happens to ROA through the balance sheet size effect?", ta: "IDFC First கடன்களை விட வேகமாக வைப்புகளை வளர்ப்பதன் மூலம் CD விகிதத்தை 102% இலிருந்து 90% (சொந்தக்காரர் சராசரி) ஆக குறைத்தால், NIM-க்கு என்னாகும் — உயருமா அல்லது குறையுமா? இருப்புநிலை அளவு விளைவால் ROA-க்கு என்னாகும்?" } },
+          wrong: { tag: { en: "Use the P&L waterfall", ta: "P&L வெள்ளப்பாய்ச்சலை பயன்படுத்துங்கள்" }, cls: "wrong-resp", text: { en: "Build it step by step. NIM = 5.93%. Step 1 — CTI 71%: ₹71 of every ₹100 income goes to operating costs before provisions. Step 2 — Provisions: ₹869 Cr on ₹2.90 lakh crore ≈ 120bps. Step 3 — CD ratio 102%: market borrowing adds cost. Now add these up.", ta: "படிப்படியாக கட்டுங்கள். NIM = 5.93%. படி 1 — CTI 71%: ஒவ்வொரு ₹100 வருவாயிலும் ₹71 வழங்கல்களுக்கு முன் இயக்க செலவுகளுக்கு செல்கிறது. படி 2 — வழங்கல்கள்: ₹2.90 லட்சம் கோடியில் ₹869 Cr ≈ 120bps. படி 3 — CD விகிதம் 102%: சந்தை கடன் செலவை சேர்க்கிறது. இப்போது இவற்றை கூட்டுங்கள்." }, followup: { en: "IDFC First CTI is 71% versus Bank of Maharashtra's 36.5%. What explains a 34.5 percentage point efficiency gap between two mid-sized banks — is it revenue insufficiency, cost excess, or both?", ta: "IDFC First CTI 71% மற்றும் Bank of Maharashtra 36.5%. இரண்டு நடுத்தர அளவிலான வங்கிகளுக்கு இடையே 34.5 சதவிகிதப் புள்ளி திறன் இடைவெளியை என்ன விளக்குகிறது — வருவாய் குறைபாடா, செலவு அதிகப்படியா, அல்லது இரண்டுமா?" } }
+        }
+      }
+    ]
+  }
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   CAUVERY SOCRATES ENGINE
+   ═══════════════════════════════════════════════════════════════ */
+/* ═══ SOCRATES LANGUAGE STATE ═══ */
+let SOC_LANG = 'en'; // 'en' or 'ta'
+function L(obj){ return (typeof obj === 'object' && obj !== null && ('en' in obj)) ? (obj[SOC_LANG] || obj['en']) : obj; }
+
+const SOC_STATE={active:null,qi:0,answered:{},response:null,freeText:'',showHint:false};
+Object.keys(SOC_TOPICS_BANKING).forEach(k=>{SOC_STATE.answered[k]=new Set();});
+
+const CLS_MAP={
+  'correct-resp':{panel:'background:#f1f8f2;border:1.5px solid #2e7d32',tag:'color:#1b5e20'},
+  'partial-resp': {panel:'background:#fffde7;border:1.5px solid #f9a825',tag:'color:#7b5800'},
+  'wrong-resp':   {panel:'background:#fff5f5;border:1.5px solid #c62828',tag:'color:#7f0000'}
+};
+
+function socGetDone(tid){return SOC_STATE.answered[tid]?SOC_STATE.answered[tid].size:0;}
+
+function toggleSocLang(){
+  SOC_LANG = SOC_LANG==='en' ? 'ta' : 'en';
+  if(SOC_STATE.active) renderSocrates(); else renderSocWelcome();
+}
+
+function renderSocWelcome(){
+  const topicPills=Object.entries(SOC_TOPICS_BANKING).map(([k,t])=>{
+    const d=socGetDone(k), tot=t.questions.length;
+    return `<button onclick="socOpenTopic('${k}')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--text);font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s" onmouseover="this.style.borderColor='#e86a1a';this.style.color='#c2590a'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">${L(t.title)} <span style="font-size:10px;color:var(--muted)">${d}/${tot}</span></button>`;
+  }).join('');
+
+  const langBtn=`<button onclick="toggleSocLang()" style="margin-left:auto;flex-shrink:0;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">${SOC_LANG==='en'?'தமிழில் படி':'Read in English'}</button>`;
+
+  document.getElementById('socrates').innerHTML=`
+    <div style="padding:0 0 32px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 20px;border-bottom:1px solid var(--border);margin-bottom:32px;align-items:center">
+        <span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;flex-shrink:0">${SOC_LANG==='en'?'Topics':'தலைப்புகள்'}</span>
+        ${topicPills}
+        ${langBtn}
+      </div>
+      <div style="max-width:580px;margin:0 auto;text-align:center">
+        <div style="font-size:52px;margin-bottom:14px">🦉</div>
+        <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px">${SOC_LANG==='en'?'Cauvery Socrates — Banking Q4 FY26':'காவேரி சாக்ரடீஸ் — வங்கி Q4 FY26'}</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:28px">${SOC_LANG==='en'?'Questions built from actual Q4 FY26 audited results.<br>SBI · BoB · Canara · PNB · BoM · IOB · IDBI · IDFC First.<br>Not generic theory — every number is from this dashboard.':'உண்மையான Q4 FY26 தணிக்கை முடிவுகளிலிருந்து கட்டமைக்கப்பட்ட கேள்விகள்.<br>SBI · BoB · Canara · PNB · BoM · IOB · IDBI · IDFC First.<br>பொதுவான கோட்பாடு அல்ல — ஒவ்வொரு எண்ணும் இந்த dashboard-இலிருந்து.'}</div>
+        <div style="display:flex;gap:12px;justify-content:center;margin-bottom:24px;flex-wrap:wrap">
+          ${[['🟢',SOC_LANG==='en'?'Definitional':'வரையறை',SOC_LANG==='en'?'What numbers mean':'எண்களின் பொருள்'],
+             ['🟡',SOC_LANG==='en'?'Analytical':'பகுப்பாய்வு',SOC_LANG==='en'?'Why the numbers are what they are':'எண்கள் ஏன் அப்படி உள்ளன'],
+             ['🔴',SOC_LANG==='en'?'Strategic':'மூலோபாயம்',SOC_LANG==='en'?'Investment implications':'முதலீட்டு தாக்கங்கள்']].map(([d,l,sub])=>`<div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:14px 18px;text-align:center;min-width:130px"><div style="font-size:22px;margin-bottom:4px">${d}</div><div style="font-size:12px;font-weight:700;color:var(--text)">${l}</div><div style="font-size:10px;color:var(--muted);margin-top:3px">${sub}</div></div>`).join('')}
+        </div>
+        <div style="font-size:13px;color:var(--accent);font-weight:600">${SOC_LANG==='en'?'↑ Select a topic above to begin':'↑ தொடங்க மேலே ஒரு தலைப்பை தேர்வு செய்யுங்கள்'}</div>
+      </div>
+      <div style="text-align:center;margin-top:32px;font-size:10px;color:var(--muted)">⚠️ SEBI: ${SOC_LANG==='en'?'Educational only — not investment advice.':'கல்வி நோக்கங்களுக்கு மட்டுமே — முதலீட்டு ஆலோசனை அல்ல.'}</div>
+    </div>`;
+}
+
+function renderSocrates(){
+  const tid=SOC_STATE.active;
+  if(!tid){renderSocWelcome();return;}
+  const tdata=SOC_TOPICS_BANKING[tid];
+  const q=tdata.questions[SOC_STATE.qi];
+  const tot=tdata.questions.length;
+  const done=socGetDone(tid);
+  const pct=Math.round(done/tot*100);
+
+  const langBtn=`<button onclick="toggleSocLang()" style="padding:5px 12px;border-radius:16px;border:1.5px solid var(--border);background:var(--card);color:var(--accent);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">${SOC_LANG==='en'?'தமிழில் படி':'Read in English'}</button>`;
+
+  const topicPills=Object.entries(SOC_TOPICS_BANKING).map(([k,t])=>{
+    const d=socGetDone(k), tot3=t.questions.length, act=SOC_STATE.active===k;
+    return `<button onclick="socOpenTopic('${k}')" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1.5px solid ${act?'#e86a1a':'var(--border)'};background:${act?'rgba(232,106,26,0.1)':'var(--card)'};color:${act?'#c2590a':'var(--text)'};font-size:12px;font-weight:${act?'700':'500'};cursor:pointer;font-family:inherit;white-space:nowrap">${L(t.title).split('—')[0].trim()} <span style="font-size:10px;opacity:0.7">${d}/${tot3}${d===tot3?' ✓':''}</span></button>`;
+  }).join('');
+
+  let body='';
+  if(q.type==='mcq'){
+    body='<div style="display:flex;flex-direction:column;gap:8px">';
+    q.options.forEach((opt,i)=>{
+      let extra='background:var(--surface);border:1.5px solid var(--border);color:var(--text)';
+      if(SOC_STATE.response){
+        if(i===q.correct) extra='background:#f1f8f2;border:1.5px solid #2e7d32;color:#1a3d1e';
+        else if(i===SOC_STATE.response.chosenIdx&&i!==q.correct) extra='background:#fff5f5;border:1.5px solid #c62828;color:#3d0a0a';
+      }
+      body+=`<button onclick="socSelectMCQ(${i})" ${SOC_STATE.response?'disabled':''} style="${extra};text-align:left;padding:11px 16px;border-radius:10px;cursor:${SOC_STATE.response?'default':'pointer'};font-size:13.5px;line-height:1.5;transition:border-color .15s;font-family:inherit;width:100%">${L(opt)}</button>`;
+    });
+    body+='</div>';
+  } else {
+    body=`<textarea id="socFreeText" oninput="SOC_STATE.freeText=this.value" ${SOC_STATE.response?'disabled':''} placeholder="${SOC_LANG==='en'?'Write your reasoning — reference actual Q4FY26 numbers from the context above…':'உங்கள் கருத்தை எழுதுங்கள் — மேலே உள்ள context-இல் இருந்து Q4FY26 எண்களை குறிப்பிடுங்கள்…'}" style="width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--text);padding:12px 14px;font-size:13.5px;line-height:1.6;font-family:inherit;resize:vertical;min-height:110px;outline:none">${SOC_STATE.freeText||''}</textarea>`;
+    if(!SOC_STATE.response) body+=`<button onclick="socSubmitFree()" style="margin-top:8px;background:#e86a1a;border:none;color:#fff;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">${SOC_LANG==='en'?'Submit Answer':'பதில் சமர்ப்பிக்கவும்'}</button>`;
+  }
+
+  let respHtml='';
+  if(SOC_STATE.response){
+    const s=CLS_MAP[SOC_STATE.response.cls]||CLS_MAP['wrong-resp'];
+    respHtml=`<div style="margin-top:16px;border-radius:10px;padding:16px;${s.panel}">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;${s.tag}">${L(SOC_STATE.response.tag)}</div>
+      <div style="font-size:13.5px;line-height:1.65;color:var(--text);margin-bottom:12px">${L(SOC_STATE.response.text)}</div>
+      <div style="background:#fff8f0;border:1.5px solid #f5dcc8;border-radius:8px;padding:10px 14px">
+        <div style="font-size:10px;font-weight:700;color:#c2590a;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔁 ${SOC_LANG==='en'?'Socrates asks…':'சாக்ரடீஸ் கேட்கிறார்…'}</div>
+        <div style="font-size:13px;color:#3d2010;line-height:1.55">${L(SOC_STATE.response.followup)}</div>
+      </div>
+    </div>`;
+    const unanswered=[...Array(tot).keys()].filter(i=>!SOC_STATE.answered[tid].has(i));
+    if(unanswered.length>0) respHtml+=`<button onclick="socNextQ()" style="margin-top:14px;background:var(--card);border:1.5px solid var(--border);color:var(--text);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">${SOC_LANG==='en'?'Next Question →':'அடுத்த கேள்வி →'}</button>`;
+    else respHtml+=`<div style="margin-top:14px;padding:14px;background:#f1f8f2;border:1.5px solid #2e7d32;border-radius:8px;text-align:center;font-size:13px;font-weight:600;color:#1b5e20">${SOC_LANG==='en'?'🏆 Topic complete! Select another topic above.':'🏆 தலைப்பு முடிந்தது! மேலே மற்றொரு தலைப்பை தேர்வு செய்யுங்கள்.'}</div>`;
+  }
+
+  document.getElementById('socrates').innerHTML=`
+    <div style="padding:0 0 32px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 20px;border-bottom:1px solid var(--border);margin-bottom:24px;align-items:center">
+        <span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;flex-shrink:0">${SOC_LANG==='en'?'Topics':'தலைப்புகள்'}</span>
+        ${topicPills}
+        ${langBtn}
+      </div>
+      <div style="max-width:740px;margin:0 auto">
+        <div style="margin-bottom:14px">
+          <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px">${L(tdata.title)}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            ${[q.type==='mcq'?'⬜ MCQ':'✏️ Open',`Q${SOC_STATE.qi+1} / ${tot}`,`${done} ${SOC_LANG==='en'?'done':'முடிந்தது'}`].map(t=>`<span style="font-size:11px;padding:2px 9px;border-radius:4px;background:var(--surface);border:1px solid var(--border);color:var(--muted)">${t}</span>`).join('')}
+          </div>
+          <div style="background:var(--border);border-radius:4px;height:4px;margin-top:10px">
+            <div style="background:linear-gradient(90deg,#e86a1a,#c2590a);height:4px;border-radius:4px;width:${pct}%;transition:width .4s"></div>
+          </div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px">
+          <div style="font-size:15.5px;font-weight:600;color:var(--text);line-height:1.6;margin-bottom:14px">${L(q.q)}</div>
+          <div style="background:#fff8f3;border:1.5px solid #f5dcc8;border-radius:8px;padding:10px 14px;margin-bottom:14px">
+            <div style="font-size:10px;font-weight:700;color:#c2590a;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">📊 ${SOC_LANG==='en'?'Context — Q4 FY26 Actual Data':'Context — Q4 FY26 உண்மையான தரவு'}</div>
+            <div style="font-size:12px;color:#3d2010;line-height:1.7">${q.context}</div>
+          </div>
+          <button onclick="SOC_STATE.showHint=!SOC_STATE.showHint;renderSocrates()" style="background:var(--card);border:1.5px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer;margin-bottom:12px;font-family:inherit">${SOC_STATE.showHint?(SOC_LANG==='en'?'💡 Hide Hint':'💡 குறிப்பை மறை'):(SOC_LANG==='en'?'💡 Show Hint':'💡 குறிப்பை காட்டு')}</button>
+          ${SOC_STATE.showHint?`<div style="background:#fffaf3;border:1.5px solid #f5dcc8;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#3d2010;line-height:1.6">${L(q.hint)}</div>`:''}
+          ${body}
+          ${respHtml}
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:20px;font-size:10px;color:var(--muted)">⚠️ SEBI: ${SOC_LANG==='en'?'Educational only — not investment advice.':'கல்வி நோக்கங்களுக்கு மட்டுமே — முதலீட்டு ஆலோசனை அல்ல.'}</div>
+    </div>`;
+}
+
+function socOpenTopic(tid){
+  const tot=SOC_TOPICS_BANKING[tid].questions.length;
+  const done=socGetDone(tid);
+  const first=[...Array(tot).keys()].find(i=>!SOC_STATE.answered[tid].has(i))??0;
+  SOC_STATE.active=tid;SOC_STATE.qi=done<tot?first:0;SOC_STATE.response=null;SOC_STATE.showHint=false;SOC_STATE.freeText='';
+  renderSocrates();
+}
+
+function socSelectMCQ(i){
+  if(SOC_STATE.response)return;
+  const q=SOC_TOPICS_BANKING[SOC_STATE.active].questions[SOC_STATE.qi];
+  SOC_STATE.response={...q.responses[i],chosenIdx:i};
+  SOC_STATE.answered[SOC_STATE.active].add(SOC_STATE.qi);
+  renderSocrates();
+}
+
+function socSubmitFree(){
+  if(SOC_STATE.response)return;
+  const ft=document.getElementById('socFreeText');
+  const text=ft?ft.value:SOC_STATE.freeText;
+  if(!text.trim())return;
+  SOC_STATE.freeText=text;
+  const q=SOC_TOPICS_BANKING[SOC_STATE.active].questions[SOC_STATE.qi];
+  const input=text.toLowerCase();
+  const hits=q.keywords.filter(k=>input.includes(k.toLowerCase())).length;
+  const partial=q.partialKeywords.filter(k=>input.includes(k.toLowerCase())).length;
+  const resp=hits>=3?q.responses.good:(hits>=1||partial>=1)?q.responses.partial:q.responses.wrong;
+  SOC_STATE.response=resp;
+  SOC_STATE.answered[SOC_STATE.active].add(SOC_STATE.qi);
+  renderSocrates();
+}
+
+function socNextQ(){
+  const tot=SOC_TOPICS_BANKING[SOC_STATE.active].questions.length;
+  const unanswered=[...Array(tot).keys()].filter(i=>!SOC_STATE.answered[SOC_STATE.active].has(i));
+  if(unanswered.length>0){SOC_STATE.qi=unanswered[0];SOC_STATE.response=null;SOC_STATE.showHint=false;SOC_STATE.freeText='';}
+  renderSocrates();
+}
+
+
+function renderRanking(){
+  const RANK_METRICS = [
+    {m:'Net Profit (PAT)', lab:'PAT', icon:'₹', lower:false, grp:'Earnings'},
+    {m:'ROA', lab:'ROA', icon:'%', lower:false, grp:'Earnings'},
+    {m:'ROE', lab:'ROE', icon:'%', lower:false, grp:'Earnings'},
+    {m:'NIM', lab:'NIM', icon:'%', lower:false, grp:'Franchise'},
+    {m:'CASA', lab:'CASA', icon:'%', lower:false, grp:'Franchise'},
+    {m:'GNPA', lab:'GNPA', icon:'%', lower:true, grp:'Asset Quality'},
+    {m:'NNPA', lab:'NNPA', icon:'%', lower:true, grp:'Asset Quality'},
+    {m:'PCR', lab:'PCR', icon:'%', lower:false, grp:'Asset Quality'},
+    {m:'CRAR', lab:'CRAR', icon:'%', lower:false, grp:'Capital'},
+    {m:'CET 1', lab:'CET-1', icon:'%', lower:false, grp:'Capital'},
+    {m:'CTI', lab:'CTI', icon:'%', lower:true, grp:'Efficiency'},
+    {m:'P/BV', lab:'P/BV', icon:'x', lower:false, grp:'Valuation'},
+  ];
+
+  // Compute composite rank score (lower rank = better)
+  function rankScore(bank){
+    let pts=0, count=0;
+    RANK_METRICS.forEach(rm=>{
+      const v=val(rm.m,bank,'Q4FY26'); if(v==null)return;
+      const all=ALL_BANKS.map(b=>val(rm.m,b,'Q4FY26')).filter(x=>x!=null).sort((a,b)=>rm.lower?a-b:b-a);
+      const rank=all.indexOf(v)+1;
+      pts+=(ALL_BANKS.length-rank+1); count++;
+    });
+    return count>0?Math.round(pts/count*10)/10:0;
+  }
+
+  const scored=ALL_BANKS.map(b=>({b,score:rankScore(b)})).sort((a,b)=>b.score-a.score);
+
+  let html=`<div class="section-title">Company Rankings — Q4 FY26 · All Metrics</div>
+  <div class="section-note">Banks ranked across 12 metrics (earnings, franchise, asset quality, capital, efficiency, valuation). Composite score = average rank points across all metrics. <b>Not a buy/sell/hold recommendation — analytical scoring only.</b></div>`;
+
+  // Composite leaderboard
+  html+=`<div style="margin-bottom:24px"><div class="grp-head"><h3>🏆 Composite Earnings Quality Ranking</h3></div><div class="tbl-wrap"><table style="min-width:480px"><thead><tr><th>Rank</th><th>Bank</th><th>Type</th><th>Composite Score</th><th>PAT Q4FY26</th><th>ROA</th><th>ROE</th><th>GNPA</th></tr></thead><tbody>`;
+  const medals=['🥇','🥈','🥉','4','5','6','7','8'];
+  scored.forEach(({b,score},i)=>{
+    const pat=val('Net Profit (PAT)',b,'Q4FY26');
+    const roa=val('ROA',b,'Q4FY26');
+    const roe=val('ROE',b,'Q4FY26');
+    const gnpa=val('GNPA',b,'Q4FY26');
+    html+=`<tr${i<3?` style="background:rgba(255,165,0,${0.06-i*0.015})"`:''}>
+      <td style="font-size:16px;text-align:center">${medals[i]}</td>
+      <td class="metric-name">${b} ${typePill(b)}</td>
+      <td>${BANKS[b].tier==='large'?'Large':'Mid'}</td>
+      <td class="mono" style="font-weight:700;color:var(--accent)">${score}</td>
+      <td class="mono pos">₹${Math.round(pat||0).toLocaleString('en-IN')} Cr</td>
+      <td class="mono${roa>=1.5?' pos':roa>=1?' neu':' neg'}">${roa?roa.toFixed(2)+'%':'—'}</td>
+      <td class="mono${roe>=18?' pos':roe>=14?' neu':' neg'}">${roe?roe.toFixed(2)+'%':'—'}</td>
+      <td class="mono${gnpa<=1.5?' pos':gnpa<=2.5?' neu':' neg'}">${gnpa?gnpa.toFixed(2)+'%':'—'}</td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div></div>`;
+
+  // Per-group rankings
+  const RANK_GROUPS=[
+    {lab:'Earnings Dominance',metrics:['Net Profit (PAT)','ROA','ROE','NII']},
+    {lab:'Asset Quality',metrics:['GNPA','NNPA','PCR']},
+    {lab:'Franchise & Funding',metrics:['CASA','NIM','Cost of Deposits']},
+    {lab:'Capital & Efficiency',metrics:['CRAR','CET 1','CTI']},
+  ];
+
+  RANK_GROUPS.forEach(grp=>{
+    html+=`<div style="margin-bottom:20px"><div class="grp-head"><h3>${grp.lab}</h3></div><div class="tbl-wrap"><table style="min-width:700px"><thead><tr><th>Bank</th>`;
+    grp.metrics.forEach(m=>html+=`<th>${m}</th>`);
+    html+=`<th>Rank</th></tr></thead><tbody>`;
+
+    // Score on this group
+    const groupScored=ALL_BANKS.map(b=>{
+      let pts=0,cnt=0;
+      grp.metrics.forEach(m=>{
+        const v=val(m,b,'Q4FY26'); if(v==null)return;
+        const lower=(METRICS[m]||{}).lower;
+        const all=ALL_BANKS.map(bk=>val(m,bk,'Q4FY26')).filter(x=>x!=null).sort((a,c)=>lower?a-c:c-a);
+        pts+=(ALL_BANKS.length-all.indexOf(v)); cnt++;
+      });
+      return {b,pts:cnt>0?pts/cnt:0};
+    }).sort((a,b)=>b.pts-a.pts);
+
+    groupScored.forEach(({b},rank)=>{
+      html+=`<tr><td class="metric-name">${b} ${typePill(b)}</td>`;
+      grp.metrics.forEach(m=>{
+        const v=val(m,b,'Q4FY26');
+        const lower=(METRICS[m]||{}).lower;
+        const all=ALL_BANKS.map(bk=>val(m,bk,'Q4FY26')).filter(x=>x!=null).sort((a,c)=>lower?a-c:c-a);
+        const best=all[0], worst=all[all.length-1];
+        let color='neu';
+        if(v!=null){
+          const pct=(v-worst)/(best-worst||1);
+          color=lower?(pct<0.33?'pos':pct<0.67?'neu':'neg'):(pct>0.67?'pos':pct>0.33?'neu':'neg');
+        }
+        html+=`<td class="mono ${color}">${fmt(v,m)}</td>`;
+      });
+      html+=`<td style="font-weight:700;text-align:center">#${rank+1}</td></tr>`;
+    });
+    html+=`</tbody></table></div></div>`;
+  });
+
+  document.getElementById('ranking').innerHTML=html;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAUVERY SOCRATES Q4FY26 DATA — Specific to these 8 banks
+   ═══════════════════════════════════════════════════════════════ */
+
+
 function init(){
-  renderDash(); renderFinShell(); renderChartsShell(); renderBiz(); renderSchool(); renderRating(); renderAssistShell();
+  renderDash(); renderFinShell(); renderChartsShell(); renderBiz(); renderSchool(); renderSocWelcome(); renderRating(); renderAssistShell();
   // inject live-price badge into header stamp area
   const stampEl = document.getElementById('stamp');
   if (stampEl) {
