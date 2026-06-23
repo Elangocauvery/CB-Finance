@@ -179,6 +179,47 @@ td.tb{font-weight:700;}
 .cb-wm-sub{font-size:9px;color:var(--muted);text-transform:uppercase;}
 .footer{text-align:center;font-size:10px;color:var(--muted);padding:14px 40px;border-top:1px solid var(--border);margin-top:28px;line-height:1.7;}
 @media(max-width:860px){.main{padding:14px 16px 40px;}.hdr{padding:0 16px;flex-wrap:wrap;}.tab-nav{padding:0 8px;}.g2,.g3,.g5,.kpi-row{grid-template-columns:1fr;}}
+/* ═══ CAUVERY SOCRATES ═══ */
+.soc-intro{background:var(--gold-soft);border:1.5px solid var(--gold);border-radius:10px;padding:14px 18px;font-size:12px;line-height:1.7;margin-bottom:18px;}
+.soc-topic-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.soc-topic-pill{padding:9px 15px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);font-size:11.5px;font-weight:700;cursor:pointer;transition:.15s;font-family:'Inter',sans-serif;}
+.soc-topic-pill:hover{border-color:var(--gold);}
+.soc-topic-pill.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+.soc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow-md);min-height:220px;}
+.soc-placeholder{text-align:center;padding:50px 20px;color:var(--muted);font-size:13px;}
+.soc-progress{font-size:10.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.soc-diff{font-size:13px;}
+.soc-q{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;margin-bottom:12px;line-height:1.42;color:var(--text);}
+.soc-context{background:var(--surface2);border-left:3px solid var(--gold);padding:10px 14px;font-size:11.5px;color:var(--muted);border-radius:6px;margin-bottom:12px;font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.soc-hint{font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:16px;cursor:pointer;padding:6px 0;border-bottom:1px dashed var(--border);display:inline-block;}
+.soc-hint:hover{color:var(--text);}
+.soc-options{display:flex;flex-direction:column;gap:9px;margin-bottom:6px;}
+.soc-opt{padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:12.5px;cursor:pointer;text-align:left;background:var(--surface);transition:.15s;line-height:1.5;}
+.soc-opt:hover{border-color:var(--gold);background:var(--gold-soft);}
+.soc-opt.opt-disabled{cursor:default;pointer-events:none;}
+.soc-opt.opt-correct{border-color:#166534;background:#f0fdf4;font-weight:600;}
+.soc-opt.opt-wrong{border-color:#b91c1c;background:#fef2f2;}
+.soc-textarea{width:100%;min-height:96px;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:12.5px;resize:vertical;margin-bottom:10px;}
+.soc-textarea:focus{border-color:var(--gold);outline:none;}
+.soc-submit{background:var(--gold);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:12px;font-weight:700;cursor:pointer;}
+.soc-submit:hover{opacity:.9;}
+.soc-resp{margin-top:18px;padding:17px 19px;border-radius:10px;border:1.5px solid;animation:fadeIn .25s ease;}
+.correct-resp{background:#f0fdf4;border-color:#86efac;}
+.partial-resp{background:#fffbeb;border-color:#fcd34d;}
+.wrong-resp{background:#fef2f2;border-color:#fca5a5;}
+.soc-resp-tag{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;display:block;}
+.correct-resp .soc-resp-tag{color:#166534;}
+.partial-resp .soc-resp-tag{color:#b45309;}
+.wrong-resp .soc-resp-tag{color:#b91c1c;}
+.soc-resp-text{font-size:12.5px;line-height:1.65;}
+.soc-followup{margin-top:13px;padding-top:13px;border-top:1px dashed rgba(0,0,0,.12);font-size:12.5px;font-weight:600;line-height:1.55;}
+.soc-followup span{font-weight:800;}
+.soc-next-row{margin-top:16px;display:flex;justify-content:flex-end;}
+.soc-next-btn{background:var(--text);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:12px;font-weight:700;cursor:pointer;}
+.soc-next-btn:hover{opacity:.88;}
+.soc-complete{text-align:center;padding:36px 20px;}
+.soc-complete h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:10px;}
+.soc-complete p{font-size:12.5px;color:var(--muted);margin-bottom:18px;}
 </style>
 </head>
 <body>
@@ -195,7 +236,7 @@ td.tb{font-weight:700;}
     <span class="chip chip-opus">Birla Opus</span>
     <span class="chip chip-jswd">JSW Dulux</span>
     <span class="chip chip-indigo">Indigo</span>
-    <span class="chip chip-date">30 May 2026 · CB Research</span>
+    <span class="chip chip-date">23 Jun 2026 · CB Research</span>
   </div>
 </div>
 <nav class="tab-nav">
@@ -212,6 +253,7 @@ td.tb{font-weight:700;}
   <button class="tab-btn" onclick="showTab('analyst',this)">Analysts Rating</button>
   <button class="tab-btn" onclick="showTab('trojan',this)" style="color:#c2410c;font-weight:800;">Trojan Horse</button>
   <button class="tab-btn" onclick="showTab('cbassist',this)" style="color:var(--ap);font-weight:800;">CB Assists</button>
+  <button class="tab-btn" onclick="showTab('socrates',this)" style="color:var(--gold);font-weight:800;">🦉 Cauvery Socrates</button>
 </nav>
 <div class="main">
 
@@ -1330,6 +1372,15 @@ td.tb{font-weight:700;}
   </div>
 </div>
 
+<!-- ═══════════ CAUVERY SOCRATES TAB ═══════════ -->
+<div class="panel" id="tab-socrates">
+  <div class="sec-hdr">Cauvery Socrates <span class="sec-note">· Learn to Think, Not to Memorise · India Paint Sector · CB Research</span></div>
+  <div class="soc-intro">🦉 <strong>How this works:</strong> Pick a topic below. Each question pushes you to reason through real Q4 FY26 numbers — get it right and the next question gets harder; get it wrong and CB Research explains the specific gap before pushing you again. This is a dialogue, not a quiz to "complete."</div>
+  <div class="soc-topic-bar" id="socTopicBar"></div>
+  <div class="soc-card" id="socCard">
+    <div class="soc-placeholder">👆 Choose a topic above to start the dialogue.</div>
+  </div>
+</div>
 </div><!-- /main -->
 <div class="cb-wm">
   <div class="cb-wm-logo">CB</div>
@@ -1371,6 +1422,131 @@ function showPeriod(period,btn){
   });
   btn.style.background='#181511';btn.style.color='#fff';btn.style.border='none';
 }
+
+/* ═══ CAUVERY SOCRATES ENGINE ═══ */
+const SOC_DIFF = {
+  mkt_share_erosion:'🟡', volume_value_gap:'🟡', margin_mechanics_rm:'🟡', opus_unit_economics:'🟡',
+  valuation_derate:'🔴', dealer_contractor_economics:'🟡', trojan_horse_moat:'🔴',
+  industry_structure_shift:'🔴', jswd_restructuring_signal:'🔴', comparison_paint:'🔴'
+};
+let socState = { topic: null, qIdx: 0, answered: false };
+
+function socInit(){
+  const bar = document.getElementById('socTopicBar');
+  if (!bar || bar.dataset.built) return;
+  bar.dataset.built = '1';
+  Object.keys(SOC_TOPICS).forEach(tid=>{
+    const btn = document.createElement('button');
+    btn.className = 'soc-topic-pill';
+    btn.id = 'socpill-' + tid;
+    btn.innerHTML = (SOC_DIFF[tid]||'🟢') + ' ' + SOC_TOPICS[tid].title;
+    btn.onclick = function(){ socOpenTopic(tid); };
+    bar.appendChild(btn);
+  });
+}
+
+function socOpenTopic(tid){
+  document.querySelectorAll('.soc-topic-pill').forEach(b=>b.classList.remove('active'));
+  const pill = document.getElementById('socpill-'+tid);
+  if (pill) pill.classList.add('active');
+  socState = { topic: tid, qIdx: 0, answered: false };
+  socRenderQ();
+}
+
+function socRenderQ(){
+  const card = document.getElementById('socCard');
+  const topic = SOC_TOPICS[socState.topic];
+  const q = topic.questions[socState.qIdx];
+  const total = topic.questions.length;
+  const diff = SOC_DIFF[socState.topic] || '🟢';
+  let html = '<div class="soc-progress">' + topic.title + ' &nbsp;·&nbsp; Question ' + (socState.qIdx+1) + ' of ' + total + ' <span class="soc-diff">' + diff + '</span></div>';
+  html += '<div class="soc-q">' + q.q + '</div>';
+  html += '<div class="soc-context">📊 ' + q.context + '</div>';
+  html += '<div class="soc-hint" onclick="this.nextElementSibling.style.display=\'block\';this.style.display=\'none\';">💡 Need a nudge? Click for a hint</div>';
+  html += '<div style="display:none;font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:14px;">💡 ' + q.hint + '</div>';
+
+  if (q.type === 'mcq'){
+    html += '<div class="soc-options" id="socOptions">';
+    q.options.forEach((opt,i)=>{
+      html += '<button class="soc-opt" onclick="socAnswerMCQ(' + i + ')">' + opt + '</button>';
+    });
+    html += '</div>';
+  } else {
+    html += '<textarea class="soc-textarea" id="socFreeInput" placeholder="Write your reasoning here — a few sentences is enough..."></textarea>';
+    html += '<button class="soc-submit" onclick="socAnswerFree()">Submit Answer</button>';
+  }
+  html += '<div id="socRespArea"></div>';
+  card.innerHTML = html;
+}
+
+function socAnswerMCQ(idx){
+  if (socState.answered) return;
+  socState.answered = true;
+  const topic = SOC_TOPICS[socState.topic];
+  const q = topic.questions[socState.qIdx];
+  const opts = document.querySelectorAll('#socOptions .soc-opt');
+  opts.forEach((b,i)=>{
+    b.classList.add('opt-disabled');
+    if (i === q.correct) b.classList.add('opt-correct');
+    if (i === idx && idx !== q.correct) b.classList.add('opt-wrong');
+  });
+  const r = q.responses[idx];
+  socRenderResp(r);
+}
+
+function socAnswerFree(){
+  if (socState.answered) return;
+  const input = document.getElementById('socFreeInput');
+  const txt = (input.value || '').toLowerCase();
+  if (!txt.trim()){ input.focus(); return; }
+  socState.answered = true;
+  input.disabled = true;
+  document.querySelector('#socCard .soc-submit').disabled = true;
+  document.querySelector('#socCard .soc-submit').style.opacity = '.5';
+
+  const topic = SOC_TOPICS[socState.topic];
+  const q = topic.questions[socState.qIdx];
+  let hits = 0;
+  q.keywords.forEach(k=>{ if (txt.indexOf(k.toLowerCase()) !== -1) hits++; });
+  let partialHits = 0;
+  q.partialKeywords.forEach(k=>{ if (txt.indexOf(k.toLowerCase()) !== -1) partialHits++; });
+
+  let r;
+  if (hits >= 3) r = q.responses.good;
+  else if (hits >= 1 || partialHits >= 1) r = q.responses.partial;
+  else r = q.responses.wrong;
+  socRenderResp(r);
+}
+
+function socRenderResp(r){
+  const area = document.getElementById('socRespArea');
+  area.innerHTML =
+    '<div class="soc-resp ' + r.cls + '">' +
+      '<span class="soc-resp-tag">' + r.tag + '</span>' +
+      '<div class="soc-resp-text">' + r.text + '</div>' +
+      '<div class="soc-followup"><span>🤔 Think further:</span> ' + r.followup + '</div>' +
+    '</div>' +
+    '<div class="soc-next-row"><button class="soc-next-btn" onclick="socNextQ()">Next Question →</button></div>';
+  area.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function socNextQ(){
+  const topic = SOC_TOPICS[socState.topic];
+  if (socState.qIdx < topic.questions.length - 1){
+    socState.qIdx++;
+    socState.answered = false;
+    socRenderQ();
+  } else {
+    document.getElementById('socCard').innerHTML =
+      '<div class="soc-complete">' +
+        '<h3>🦉 Topic complete — ' + topic.title + '</h3>' +
+        '<p>You\'ve worked through every question in this topic. Pick another topic above to keep going, or revisit this one — the questions adapt to how you answer, so a second pass often reveals new depth.</p>' +
+      '</div>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', socInit);
+if (document.readyState === 'complete' || document.readyState === 'interactive') socInit();
 
 /* ─── CHART PERIOD TOGGLE ─── */
 function showCharts(period,btn){
@@ -1629,4 +1805,470 @@ function findAnswer(q, lang){
   }
   return `<strong>CB Assist</strong> — I can answer questions on all 5 paint companies using Q4 FY26 dashboard data. Try asking about:<br><br>• <em>Asian Paints Trojan Horse / moat analysis</em><br>• <em>Birla Opus strategy and 10% market share</em><br>• <em>TiO2 raw material cost and margin impact</em><br>• <em>Berger / Indigo / JSW Dulux Q4 results</em><br>• <em>Best paint stock for FY27</em><br>• <em>Paint marketing shift — contractor vs consumer</em><br>• <em>India paint market share FY28 prediction</em>`;
 }
+
+const SOC_TOPICS = {
+  mkt_share_erosion: {
+    title: "Market Share Erosion: Rate, Floor, and Durability",
+    questions: [
+      {
+        type: "mcq",
+        q: "Asian Paints' share fell from ~59% (FY23) to ~50% now — roughly 9 points in about 2 years, the fastest such decline in Indian branded FMCG history. Yet CB Research's own FY28 projection has AP falling only to 45–47%, implying the PACE of share loss roughly halves from here. What's the most defensible reason to expect deceleration rather than continued straight-line decline?",
+        context: "AP share: 59% (FY23) → 50% (now) → 45–47% (FY28 projected) · Birla Opus: 0% (Mar 24) → >10% (Mar 26) in 25 months",
+        hint: "Think about WHICH dealers and contractors switch first when a new, aggressively-priced challenger enters — and what that implies about who's left in AP's base today.",
+        options: ["There's no real reason to expect deceleration — share loss should continue at the same straight-line pace indefinitely", "The earliest-switching dealers and contractors — price-sensitive, low-loyalty, easiest to flip with free machines and better credit — likely switched first; the dealers/contractors still with AP today skew toward more loyal, premium-segment, or harder-to-reach accounts, making the next tranche of share structurally harder for Birla Opus to capture at the same speed", "Birla Opus will simply run out of capital to keep growing, forcing deceleration", "Market share figures are only estimates, so extrapolating any trend from them is meaningless"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Straight-line extrapolation ignores a very common pattern in competitive disruption: the easiest-to-convert customers convert first, and the remaining base gets progressively harder to move — there's no reason to assume the same conversion rate holds forever.", followup: "If you were Birla Opus's strategy team, would you expect the NEXT 9 percentage points of AP's share to be as easy to capture as the FIRST 9 points were? Why or why not?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right read — this is a classic adoption-curve pattern. The price-sensitive, low-switching-cost segment of AP's dealer base moved fastest under Opus's free-machine, 20-day-credit offer. What remains is disproportionately weighted toward premium dealers, international-adjacent accounts, and contractors with deeper, longer AP relationships — all harder and slower to flip.", followup: "If this deceleration thesis is right, what specific NEXT data point (beyond just the headline % share number) would confirm the remaining AP base really is 'stickier' rather than just slower to report the same switching?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Capital constraints could eventually slow Birla Opus, but Grasim has already committed ₹10,000 Cr with a stated FY28 paints value target of ~₹30,000 Cr — nothing in the dashboard suggests capital is the near-term binding constraint. The more immediate reason for deceleration is about WHO's left to convert, not whether Opus can afford to keep trying.", followup: "Given Grasim's committed capital, what's a more likely near-term constraint on Opus's share-gain SPEED than running out of money?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Estimates can still reveal a meaningful trend even if imprecise — the direction and rough magnitude (near-monopoly losing share fast) is consistent across multiple dashboard sections, so dismissing the trend entirely isn't justified.", followup: "If the exact percentage points are uncertain estimates, what should you still trust about this data — the precise number, or the direction and rough pace of the trend?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "Asian Paints' CEO described the environment as 'a market which is already slow' combined with 'intensity of competitive action' — a 'double whammy.' Separate these two forces: which part of AP's slowdown is CYCLICAL (tied to overall paint demand) and which is STRUCTURAL (tied specifically to Birla Opus's entry) — and why does that distinction matter for how durable the damage is?",
+        context: "AP Q4 FY26 revenue +10.6% YoY (demand recovering) · FY26 full year revenue +5.1% (slower) · Market share 59%→50% over the disruption period · Q4 volume +12.4% YoY (Deco)",
+        hint: "One of these two forces should reverse on its own once the broader economy/housing cycle improves. The other won't reverse just because demand improves — what would it actually take to reverse THAT one?",
+        keywords: ["cyclical", "structural", "demand slowdown", "competitive entry", "recover", "temporary", "permanent", "both forces", "double whammy", "reverse", "housing"],
+        partialKeywords: ["slow", "competition", "separate", "durable"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Right distinction — a cyclical demand slowdown (weak housing/macro conditions) should ease and lift AP's volumes when the broader cycle turns, independent of competition; Q4 FY26's volume recovery (+12.4%) is consistent with cyclical improvement already underway. But the STRUCTURAL piece — share permanently ceded to a well-funded, now-entrenched rival — does NOT reverse just because demand recovers; it requires AP to actively win back dealers and contractors from Opus. Conflating the two risks assuming the whole problem fixes itself when the cycle turns, when only half of it does.", followup: "Given Q4 FY26 already shows demand recovering (volume +12.4%) while market share is still ~50% (not rebounding), what does that combination tell you about how much of AP's problem is now purely structural versus cyclical?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've identified the two forces exist, but be specific about WHICH one is self-correcting and which one requires AP to actively do something — that's the part that determines how durable the damage is.", followup: "If overall Indian paint demand fully recovers next year but Birla Opus keeps its dealer network intact, would Asian Paints' market share recover on its own? Why or why not?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Start by separating the two forces explicitly: one is about the SIZE of the overall pie (demand), the other is about AP's SLICE of that pie (competitive share). A bigger pie doesn't automatically restore AP's slice if a rival has structurally taken part of it.", followup: "Of 'weak housing demand' and 'Birla Opus's entry,' which one is about the total market size, and which is about how that market gets divided up between companies?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "CB Research projects Berger's share rising slightly (19.5%→20–21%) by FY28 even as Birla Opus keeps growing (>10%→15–18%) — both gaining at the same time. If Birla Opus is the disruptor taking share, why would Berger — AP's other major incumbent rival — ALSO be projected to gain, rather than also lose share to Opus?",
+        context: "FY28 projections: AP 59%(FY23)→~45-47% · Birla Opus >10%→15-18% · Berger 19.5%→20-21% · JSW Dulux ~6%→8-10%",
+        hint: "If two players are gaining at once, the share has to be coming predominantly from ONE source. Which company's specific weaknesses (described elsewhere in the dashboard) make it the more exposed target?",
+        options: ["Berger and Birla Opus serve entirely separate, non-overlapping customer segments, so there's no competitive interaction between them at all", "This pattern suggests Asian Paints is the primary source of share being redistributed — AP's specific vulnerabilities (higher pricing, shorter dealer credit, costlier tinting machines) are being exploited by Opus more than Berger's positioning is, while some AP defectors may be choosing the 'safer' established alternative (Berger) over an unproven new entrant — a plausible inference worth testing against future data, not a confirmed mechanism", "Berger's projected gain is simply a forecasting error elsewhere in the dashboard", "Berger is also losing share; the stated dashboard figures must be wrong"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Berger and Birla Opus compete in many of the same dealer networks and price segments — claiming zero overlap contradicts the dashboard's own competitive-war framing, which treats AP, Berger, Opus, and JSW Dulux as all fighting over the same dealer shelf space.", followup: "If Berger and Opus genuinely don't compete for the same customers, why would the dashboard group them together in a single 'market share scoreboard' at all?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "That's the most defensible inference — and it's worth holding as a hypothesis to test, not a settled fact. AP's specific, named vulnerabilities (price gap, shorter credit, costlier machines) are exactly what Opus is attacking; Berger isn't described as having those same exposures, so it's plausible some AP defectors choose the established #2 (lower switching risk) rather than an unproven new entrant.", followup: "What specific future data point — beyond just the headline share percentages — would let you confirm whether Berger's gains are really coming from AP defectors, versus from Berger's own independent volume growth?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Treating consistent figures across multiple dashboard sections as a 'forecasting error' isn't the most useful first response — it's worth first trying to explain the pattern logically before assuming the data itself is wrong.", followup: "Before concluding the numbers are an error, what logical explanation could account for AP losing share while BOTH Berger and Opus gain simultaneously?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Berger isn't shown losing share anywhere in the dashboard's figures — its projection is explicitly upward (19.5%→20-21%). Assuming the stated numbers are simply incorrect skips past a plausible and more interesting explanation.", followup: "If Berger really is gaining share (as projected), what would have to be true about WHERE that gain is coming from, given AP is the company explicitly losing share?" }
+        ]
+      }
+    ]
+  },
+  volume_value_gap: {
+    title: "Volume Growth ≠ Revenue Growth: The Price Compression Story",
+    questions: [
+      {
+        type: "mcq",
+        q: "CRISIL projects the organised paint sector will grow volumes 7–8% in FY27–28 but REVENUE only 3–5%. What does this volume-revenue gap actually represent?",
+        context: "CRISIL FY27-28 projection: organised revenue growth 3-5% despite volume growth 7-8% · AP Q4 FY26 volume +12.4% vs FY26 full-year revenue growth only +5.1%",
+        hint: "If companies are selling MORE litres of paint but revenue grows much slower than that litre count, where is the missing revenue going?",
+        options: ["This must be a data or reporting error, since revenue should always track volume one-for-one", "Price/realization compression — companies are selling more litres but at a lower average realization per litre, driven by competitive pricing pressure constraining how much value each litre can be sold for", "It reflects currency translation effects on export revenue", "It means the organised paint sector is actually shrinking in real economic terms despite the volume figure"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "There's a much simpler, dashboard-supported explanation than a reporting error — the gap between volume and revenue growth is explicitly the kind of pattern the RM/competitive-constraint sections describe directly.", followup: "What specific competitive dynamic, described elsewhere in this dashboard, would directly cause litres sold to grow faster than rupees earned per litre?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly right — Revenue = Volume × Realization (price per litre). If volume grows 7-8% but revenue only 3-5%, realization per litre must be falling, consistent with the dashboard's own competitive-constraint trap: companies can't push price increases through fully without losing share to a cheaper rival.", followup: "Given this, if Asian Paints wanted REVENUE growth to match its 7-8%+ volume growth, what would it have to do to realization — and what risk would that carry given Birla Opus's pricing position?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Currency effects aren't the relevant driver here — this is a domestic organised-sector projection for the India paint market, not an export or multi-currency consolidation issue.", followup: "Since this is a domestic India market projection, what DOMESTIC factor (rather than currency) would explain volume outgrowing revenue?" },
+          { tag: "Partially right", cls: "partial-resp", text: "The sector isn't necessarily shrinking — more litres are still being sold, which usually reflects genuine demand growth. The nuance is that each litre is being monetized less, not that overall activity is declining.", followup: "If 'shrinking' isn't the right word, what's the more precise way to describe what's happening to the sector's economics here?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "Asian Paints' FY26 PAT grew 17.9% even though FY26 revenue grew only 5.1%. Reconcile how profit can grow more than 3× faster than revenue in a year when the company is explicitly facing market-share loss and price-compression pressure.",
+        context: "AP FY26: Revenue ₹35,516 Cr (+5.1%) · PAT ₹4,325 Cr (+17.9%) · Q4 EBITDA Margin 19.3% (+210bps YoY) · Q4 PAT ₹1,172 Cr (+69.3% YoY, off a likely soft FY25 base)",
+        hint: "PAT growth outpacing revenue growth this dramatically usually means something below the revenue line — margins, costs, or the prior year's comparison base — is doing a lot of the work.",
+        keywords: ["margin expansion", "ebitda margin", "cost control", "operating leverage", "low base", "prior year", "favorable comparison", "mix", "premium", "210bps", "beat"],
+        partialKeywords: ["margin", "cost", "profit", "base"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Right track — the Q4 EBITDA margin expanded 210bps YoY to 19.3%, meaning AP is converting each rupee of (slower-growing) revenue into meaningfully more profit than it did a year ago, likely through cost discipline and a more favorable RM cost base earlier in the year. The eye-catching Q4 PAT growth of +69.3% also implies FY25's comparable quarter was a relatively weak base (likely depressed by the intense competitive response and RM pressure at the time), making the YoY comparison flattering even on modest top-line growth.", followup: "If Q1 FY27 brings the RM cost spike (200-400bps gross margin compression flagged elsewhere in the dashboard) while AP is also up against a much HARDER prior-year base, would you expect this kind of PAT-outpacing-revenue pattern to repeat — or to reverse?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You're right that margins are involved, but be specific about the mechanism: is this margin expansion sustainable cost structure improvement, or partly a flattering comparison against a weak prior-year base — and how would you tell the two apart?", followup: "What single additional data point (hint: look at the Q4 FY25 PAT figure implied by the growth rate) would tell you how much of this is 'real' improvement versus base effect?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Revenue and PAT don't have to move in lockstep — PAT is revenue minus costs, so if costs (or the cost STRUCTURE relative to last year) move favorably, profit can grow much faster than revenue even in a slow-revenue-growth year.", followup: "Looking at the EBITDA margin figures in the dashboard, did margin expand or contract YoY in Q4 FY26 — and what would that alone do to the relationship between revenue growth and profit growth?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "Asian Paints' Q4 revenue grew +10.6% YoY while Birla Opus's grew +52% YoY. Comparing these growth RATES directly to conclude 'Opus is growing 5× faster, therefore winning decisively' would be misleading. Why?",
+        context: "AP Q4 revenue ₹9,247 Cr (+10.6%) off a ~50% share base · Birla Opus Q4 revenue ~₹3,000 Cr (+52%) off a base built from 0% share just 25 months earlier",
+        hint: "Percentage growth rates are highly sensitive to the SIZE of the starting base. A small base can post a huge percentage gain from a modest absolute rupee increase.",
+        options: ["Growth rate comparisons are always meaningless and should never be used for any two companies", "Percentage growth is heavily distorted by base size — Opus's 52% growth comes off a much smaller, very recently-built revenue base, so the same percentage represents a much smaller ABSOLUTE rupee increase than AP's 10.6% growth on its far larger base; the right comparison is incremental rupees or share points gained, not the percentage alone", "Birla Opus's growth rate is actually fabricated and should be disregarded entirely", "Asian Paints' growth rate is the only one that matters since it's the market leader"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Growth rates aren't meaningless — they're just incomplete without knowing the base they're calculated from. The fix is to look at BOTH the rate and the base, not to discard rate comparisons altogether.", followup: "What additional number, alongside the growth RATE, would let you make a fair comparison between AP's and Opus's revenue growth?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right caution. AP's 10.6% growth on a ~₹9,247 Cr base is roughly ₹885 Cr of incremental quarterly revenue; Opus's 52% growth on a much smaller ~₹3,000 Cr base is a smaller absolute increase even at the higher percentage. The meaningful comparison for 'who's actually winning' is incremental rupees or market-share points captured, which is exactly why the dashboard tracks share points (e.g., >10% crossed) rather than relying on growth percentages alone.", followup: "If Birla Opus's growth rate naturally decelerates as its base gets larger (a near-universal pattern), at what rough revenue size would you expect its percentage growth to start looking more like a mature incumbent's than a disruptor's — and why does that matter for projecting its FY28 share target?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "There's no basis in the dashboard to call Opus's growth rate fabricated — it's consistent with the independently-tracked market-share gain (0%→>10% in 25 months). The issue isn't whether the number is real, it's how to interpret it fairly against a much larger incumbent.", followup: "If you accept the growth rate is real, what's the correct way to make it comparable to AP's growth rate given the very different base sizes?" },
+          { tag: "Partially right", cls: "partial-resp", text: "AP's growth rate matters, but so does Opus's — dismissing one company's numbers because it's currently smaller misses the entire point of why this sector's competitive dynamics are being tracked so closely in the first place.", followup: "Why would CB Research dedicate an entire 'Competitive War' tab to a company with only ~10% market share, if its growth rate 'didn't matter'?" }
+        ]
+      }
+    ]
+  },
+  margin_mechanics_rm: {
+    title: "Gross Margin Under Siege: Reading the RM Cycle",
+    questions: [
+      {
+        type: "mcq",
+        q: "Paint companies took 2–11% price hikes in March–April 2026, but the dashboard states 10–15%+ hikes are needed to FULLY protect gross margins against the RM spike. What does this 'hike gap' (taken vs. needed) imply for Q1 FY27 results, even with the hikes already announced?",
+        context: "Hikes taken: AP ~2-6%, Berger ~11%, Nerolac ~2-3%, Birla Opus ~2-6%, JSW Dulux calibrated · Hikes needed to fully offset: 10-15%+ · Dashboard's own estimate: 200-400bps gross margin compression likely in Q1 FY27",
+        hint: "If the hikes taken cover only a fraction of the cost increase, the UNCOVERED portion has to show up somewhere in the P&L — where?",
+        options: ["Gross margins will fully recover in Q1 FY27 since meaningful hikes were already taken across the sector", "Gross margins will likely still compress (the dashboard itself estimates 200-400bps) in Q1 FY27, because the hikes taken cover only a fraction of the RM cost increase — the uncovered gap has to be absorbed as margin compression rather than passed fully to the customer", "The hike gap is irrelevant since Q4 FY26 margins already fully absorbed the RM shock", "Companies will simply reverse the price hikes once RM prices stabilize, eliminating any margin impact"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Hikes of 2-11% don't close a gap that needs 10-15%+ to fully offset — there's a real shortfall left over, and that shortfall doesn't disappear, it shows up as margin pressure.", followup: "If a company needed a 12% hike to fully offset its RM cost increase but only took a 6% hike, what happens to the other 6 percentage points of cost increase?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly — this is precisely what the dashboard itself flags: a 200-400bps gross margin compression expected in Q1 FY27 BECAUSE the hike-to-cost-increase gap is real and unresolved. The hikes taken so far only partially offset, not fully neutralize, the RM spike.", followup: "Given competitive constraints (Birla Opus pricing 5-12% below AP) limit how much MORE companies can hike beyond what's already been taken, what would have to happen — besides further price hikes — for this margin compression to ease by Q2 or Q3 FY27?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "The dashboard explicitly states Q4 FY26 margins 'largely escaped' the shock due to EXISTING INVENTORY bought at older, lower RM prices — that's a timing cushion, not full absorption. The real test comes once that older inventory runs out, which is exactly the Q1 FY27 concern.", followup: "Why would a company's reported Q4 margin look fine even as RM PRICES are already spiking — what's the timing mechanism that explains the lag?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Companies reversing price hikes once RM costs ease is plausible longer-term behavior, but it doesn't address the IMMEDIATE Q1 FY27 question — the gap between hikes taken and hikes needed is a near-term margin problem regardless of what happens to pricing many quarters from now.", followup: "Even if hikes get reversed eventually, what happens to margins in the specific QUARTER (Q1 FY27) when RM costs are elevated but the hike-to-cost gap hasn't yet been closed?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "In FY22, Asian Paints faced a similar RM spike (crude ~$120) and took 3–4 rounds of price hikes totaling 20–25% cumulative, with margins recovering V-shaped in 2 quarters. In FY26–27, why is this exact playbook NOT available to Asian Paints anymore?",
+        context: "FY22: AP could hike freely (no credible rival), margins recovered V-shaped in 2 quarters · FY26-27: Birla Opus already pricing 5-12% below AP with >10% share; CRISIL: organised revenue growth only 3-5% despite 7-8% volume growth due to price compression",
+        hint: "What's the ONE major structural difference between the competitive landscape in FY22 versus FY26-27 that would make AP hesitant to repeat the same aggressive hiking strategy?",
+        keywords: ["birla opus", "competitive constraint", "can't hike", "dealer switching", "price gap", "widens", "share loss", "trap", "structural", "no rival", "near-monopoly"],
+        partialKeywords: ["competition", "hike", "share", "constrained"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Exactly the structural difference — in FY22, AP operated in a near-monopoly with no credible price-competitive rival, so dealers had no real alternative to absorb a hike. In FY26-27, Birla Opus is already priced 5-12% below AP with over 10% share; if AP repeated the FY22 playbook with a 20-25% cumulative hike, the price gap to Opus would widen dramatically, directly accelerating dealer and contractor switching. AP is now caught in what the dashboard calls the 'competitive constraint trap': it can't NOT hike (margins bleed from RM costs) but can't hike too much either (market share bleeds to Opus).", followup: "Given this trap, what's the most likely OUTCOME for AP's gross margin over the next several quarters — a full V-shaped recovery like FY22, a U-shaped extended recovery, or a new permanently lower margin range — and what would you watch to tell these apart?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've sensed competition is the difference, but be precise about the MECHANISM: it's specifically the price GAP to Birla Opus widening with each AP hike that risks accelerating switching — spell out why that mechanism didn't exist in FY22.", followup: "In FY22, if AP raised prices 10%, was there a competitor pricing meaningfully below AP that dealers could switch to instead? What's different about FY26-27 specifically on this point?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Think about what's changed in the competitive landscape between FY22 and now — specifically, who EXISTS today as a viable lower-priced alternative that simply didn't exist (or wasn't credible) back in FY22.", followup: "Name the specific company that gives dealers a credible reason to switch away from Asian Paints today, that had essentially zero market presence in FY22." }
+        }
+      },
+      {
+        type: "mcq",
+        q: "Indigo Paints reported a Q4 gross margin of 48.6% — the best in the sector — 'despite the RM spike,' even without Asian Paints' raw-material buying scale. Given the dashboard doesn't directly explain this, what's the most defensible INFERENCE (not a confirmed fact) for this margin resilience?",
+        context: "Indigo Paints: 'differentiated premium' positioning · Q4 gross margin 48.6% (sector-best) · Q4 EBITDA margin 23.0% standalone (also sector-best) · Q4 revenue ₹425 Cr, much smaller scale than AP's ₹9,247 Cr",
+        hint: "Gross margin is a function of selling price relative to cost. If a fixed rupee RM cost increase hits two companies, which one absorbs it more easily — the one selling at a lower average price, or a higher one?",
+        options: ["Indigo doesn't purchase TiO2 or any of the affected raw materials, so it's simply unaffected", "Indigo's premium/differentiated product positioning likely commands a higher per-litre selling price, which cushions a given absolute rupee RM cost increase as a smaller percentage of that higher price — the most defensible inference here, though it isn't directly confirmed by the dashboard and would be worth verifying against Indigo's actual product-mix disclosures", "Indigo's accounting standards for calculating gross margin differ fundamentally from larger peers, making the comparison invalid", "Gross margin has no relationship to raw material cost for any paint company"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "All decorative paint companies use TiO2 and similar pigments/solvents as core inputs — there's no basis to assume Indigo is somehow exempt from the same raw material exposure as its peers.", followup: "If Indigo uses the same core raw materials as every other paint company, what ELSE about its business (hint: think pricing, not inputs) could explain its margin resilience?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "That's the right way to reason through this — and importantly, framed as the best-supported INFERENCE rather than a dashboard-confirmed fact. A higher average selling price per litre means the same absolute rupee RM cost increase eats a smaller percentage of revenue, which is a standard mechanism in differentiated/premium product categories generally.", followup: "What specific disclosure (e.g., Indigo's segment-wise revenue mix between premium and mass-market SKUs) would you want to see before fully trusting this inference rather than treating it as a reasonable guess?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "There's no indication anywhere in the dashboard that Indigo's accounting methodology differs from peers — assuming an accounting discrepancy is a less useful explanation than considering the company's actual business positioning.", followup: "Without assuming an accounting difference, what business-level explanation (pricing, mix, scale) could account for the margin gap instead?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Gross margin is directly tied to raw material cost as a percentage of selling price for every paint company — claiming no relationship at all contradicts the entire RM-cost-breakdown section of the dashboard.", followup: "If RM cost is 50-60% of total cost for the sector generally, why would gross margin NOT be affected by an RM cost spike?" }
+        ]
+      }
+    ]
+  },
+  opus_unit_economics: {
+    title: "Birla Opus: Investment-Phase Loss or Structural Problem?",
+    questions: [
+      {
+        type: "mcq",
+        q: "Birla Opus posted Q4 paints EBITDA of ₹540 Cr (+150% YoY) — a strongly positive number — yet the company also reported an adjusted LOSS of ₹120 Cr for the same quarter. How can both be true at once?",
+        context: "Birla Opus Q4: EBITDA (paints) ₹540 Cr (+150% YoY) · Q4 Adjusted Loss −₹120 Cr (invested phase) · 50,000+ dealers, 11,500 towns built in 25 months",
+        hint: "EBITDA stops before several major cost lines. What is Opus likely spending heavily on — BELOW the EBITDA line, or even above it in ways that don't show up cleanly in a simple EBITDA figure — during its deliberate land-grab phase?",
+        options: ["The two figures are contradictory and one of them must be a reporting error", "EBITDA excludes depreciation, interest, and other items, and Opus is deliberately running heavy upfront brand-building, distribution, and dealer-incentive investment (free tinting machines, contractor onboarding, extended credit, ad spend) during its land-grab phase — substantial costs that push the bottom line into a reported adjusted loss even as the core operating metric (EBITDA) turns strongly positive", "The ₹540 Cr EBITDA figure already includes and offsets the loss, meaning the company is secretly profitable overall", "The adjusted loss refers to a completely unrelated Grasim business segment, not paints"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Both figures can be simultaneously true and accurate — large companies in aggressive growth-investment phases routinely show this exact pattern (positive core operating metric, negative bottom line) without any contradiction or error.", followup: "Can you think of another well-known company (in any industry) that has shown strongly positive EBITDA alongside a net loss during a heavy investment phase? What did that combination signal about its stage of growth?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly right — this is a textbook investment-phase pattern. Opus's actual paint-making and selling generates real operating profit (EBITDA ₹540 Cr), but the company is choosing to spend heavily on dealer incentives, free machines, contractor onboarding, and brand-building below that line, deliberately running an adjusted loss to buy market share faster than organic, profitable growth would allow.", followup: "Given this is a CHOICE rather than a structural inability to be profitable, what specific decision would Birla Opus's management need to make to flip from adjusted loss to adjusted profit relatively quickly, even before the FY27-28 breakeven target?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "EBITDA and adjusted loss are reported as two distinct, separate figures precisely because EBITDA stops before key costs (D&A, interest, and in this case, heavy investment spend below the line) — one doesn't 'already include' the other in the way that would make them offset.", followup: "What specific cost lines sit BETWEEN 'EBITDA' and 'adjusted loss' in a typical P&L, and why would a company in Opus's growth-investment phase have unusually large amounts in exactly those lines?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Both figures are explicitly described as paints-related in the dashboard — the EBITDA figure is labeled '(paints)' and the adjusted loss is tied to the same business in the same quarter, not a separate Grasim segment.", followup: "If both numbers are confirmed to be about the SAME paints business in the SAME quarter, what's the real explanation for why one is positive and one is negative?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "Birla Opus crossed 10% market share in just 25 months from a zero base — the fastest share gain in Indian paint history. Given this speed, why might 'how fast Opus is GROWING' be a misleading signal for 'how fast Opus will become PROFITABLE'?",
+        context: "Birla Opus: 0% (Mar 24) → >10% share (Mar 26) · Free tinting machines, 20-day dealer credit, 4,50,000 contractors onboarded · Q4 adjusted loss −₹120 Cr · FY27-28 stated breakeven target",
+        hint: "The same tools that are driving FAST growth (free machines, generous credit, heavy incentives) are themselves COSTS. Does scaling up automatically make those specific costs shrink as a percentage of revenue, the way costs normally do with scale?",
+        keywords: ["fixed cost", "dealer incentive", "contractor incentive", "free machines", "scale", "dilute", "growth investment", "breakeven", "structural cost", "spend rate", "per dealer"],
+        partialKeywords: ["fast", "growth", "profitable", "cost"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Right insight — normally, growing revenue dilutes FIXED costs (rent, corporate overhead) as a percentage of sales, which is what 'operating leverage' means. But Opus's growth engine is built on variable, per-dealer and per-contractor INCENTIVES — free machines, extended credit, onboarding costs — that scale roughly WITH the number of dealers/contractors added, not against them. So adding more dealers faster doesn't automatically shrink the loss; it could just mean MORE incentive spend, unless the per-dealer incentive intensity itself starts to decline over time.", followup: "What specific trend would tell you Opus's growth IS turning into durable profitability — rising market share alone, or something else more directly tied to the cost-per-dealer/contractor metric?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've sensed that fast growth doesn't automatically mean fast profitability, but be specific about WHY — name the type of cost (incentive-driven, scales with dealer count) that behaves differently from a typical fixed cost that dilutes with scale.", followup: "If Opus added 50,000 dealers using free machines and extended credit, does giving away the NEXT 50,000 machines cost proportionally less, the same, or more than the first 50,000? What does that tell you about whether this spend naturally shrinks with scale?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Fast revenue growth in most businesses DOES improve profitability over time through operating leverage on fixed costs — but Opus's specific growth tools (free machines, extended credit, per-contractor incentives) are more variable than fixed, so they don't automatically shrink as a share of revenue just because the company is growing fast.", followup: "What's the difference between a FIXED cost (like a head-office building) and a cost that scales WITH the number of new dealers added (like a free tinting machine per new dealer)? Which type does Opus's growth strategy rely on more heavily?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "Grasim values Birla Opus's FY28 paints potential at ~₹30,000 Cr while having already committed ₹10,000 Cr of capex. JSW Dulux, by contrast, is flagged as facing a risk that 'JSW Group has high debt overall; paint investment may be limited vs Birla's already-committed capital.' Why does CAPITAL COMMITMENT matter as much as strategy in this specific competitive battle?",
+        context: "Grasim/Birla Opus: ₹10,000 Cr capex already committed, FY28 paints value target ~₹30,000 Cr · JSW Group: described as having high overall debt that may constrain paint investment",
+        hint: "This fight is explicitly being won through sustained below-the-line spending — free machines, extended dealer credit, ad spend. What kind of company can keep funding that kind of spending the longest?",
+        options: ["Capital commitment doesn't matter in categories like this; only brand strength and marketing creativity decide outcomes", "In a battle explicitly being fought through dealer credit terms, free machines, and sustained investment-phase losses, the company with deeper, already-committed balance sheet capacity (Birla Opus, backed by Grasim) can sustain the loss-making land-grab phase longer than a rival whose parent group faces broader debt constraints (JSW), which could force a slower or more cautious investment pace", "JSW Dulux's debt is held in a completely separate legal entity and therefore has zero bearing on its paints business strategy", "Capital commitment only matters for building physical manufacturing capacity, not for the dealer/contractor incentive economics described elsewhere in the dashboard"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Brand and marketing matter, but the dashboard's entire 'Competitive War' framing is built around financially-funded weapons — free machines, credit terms, dealer margins — all of which require sustained capital, not just creative marketing.", followup: "Looking at the specific weapons listed in the dashboard's 'Birla Opus Entry Strategy' table, how many of them require ongoing capital spend versus pure marketing creativity?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right read — this isn't a battle that can be won on brand alone; it's a capital-intensive land-grab using dealer incentives and credit as weapons, and the dashboard explicitly flags that JSW's broader group debt situation could constrain how aggressively JSW Dulux can match that spend versus Birla's already-committed war chest.", followup: "If JSW Group's debt situation improves or worsens materially over the next year, how would you expect that to show up in JSW Dulux's competitive behavior specifically — more aggressive dealer incentives, or more conservative ones?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Group-level debt constraints often do flow through to how much capital a subsidiary or affiliated entity can deploy — that's exactly the risk the dashboard itself flags for JSW Dulux, so treating it as fully isolated contradicts the dashboard's own framing.", followup: "Why would the dashboard explicitly call out JSW Group's debt as a risk FOR JSW Dulux specifically, if the two were truly unconnected financially?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Capital commitment matters well beyond just manufacturing plants here — the dealer credit terms, free tinting machines, and contractor incentive economics described throughout the Competitive War tab are themselves capital-intensive, ongoing expenses, not one-time factory investments.", followup: "Of the specific competitive weapons listed (free machines, 20-day credit, dealer margins, advertising), which ones require REPEATED capital outlay rather than a single one-time investment?" }
+        ]
+      }
+    ]
+  },
+  valuation_derate: {
+    title: "Why a Rich P/E Is the Sector's Central Debate",
+    questions: [
+      {
+        type: "mcq",
+        q: "Asian Paints has historically traded near 65× P/E when its market share was compounding and PAT grew 15–20% CAGR. CB Research argues that multiple is no longer justified given FY26 revenue growth of just 5.1%. What's the core logic behind this 'de-rate' argument?",
+        context: "AP historical PAT CAGR: 15-20% · FY26 actual revenue growth: +5.1% · AP P/E ~59-65× (varies by measurement point) · CB Research view: valuation needs to de-rate 20-30% to reflect new competitive structure",
+        hint: "A premium multiple is a market BET on a specific future growth rate continuing. What should happen to the multiple if the underlying growth rate that justified it has structurally changed?",
+        options: ["A high P/E is inherently wrong for any company regardless of its growth rate, so this isn't really about AP specifically", "A premium P/E reflects a bet on a SPECIFIC growth rate persisting; if the growth rate that justified that premium has structurally fallen (from double-digit historical CAGR to mid-single-digit reality), the multiple investors should rationally be willing to pay for that slower growth should also fall, even though the company itself isn't failing or losing money", "P/E should be ignored entirely for any company in the FMCG/consumer staples category", "The de-rate argument only applies once a company reports an actual accounting loss, which Asian Paints has not done"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "This isn't a blanket claim that high P/E is always wrong — plenty of companies justifiably trade at high multiples when their growth genuinely supports it. The specific argument here is about whether AP's PARTICULAR growth rate still supports its PARTICULAR multiple.", followup: "If AP's growth rate were still 15-20% CAGR today, would the same 65× P/E argument apply? What's actually changed to trigger the de-rate case?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right framing — P/E is fundamentally a price paid for a unit of expected future earnings growth. AP's historical multiple was earned by historical growth; the de-rate thesis says that growth has structurally slowed (competitive share loss, price compression), so the multiple should rationally compress even without AP becoming a 'bad' company — it's a re-pricing of slower growth, not a verdict on quality.", followup: "If AP's market share stabilizes over the next few quarters (the dashboard's own stated test), would that fully restore the case for the old multiple, or only partially — and what would still be different from the pre-disruption era even if share stabilizes?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "P/E remains a relevant, widely-used framework for FMCG/consumer companies generally — the issue here isn't that P/E doesn't apply to this category, it's whether the SPECIFIC multiple AP commands still matches its SPECIFIC growth outlook.", followup: "If P/E is a valid framework for FMCG companies in general, what's the specific question being asked about AP's particular P/E level right now?" },
+          { tag: "Partially right", cls: "partial-resp", text: "A de-rate argument doesn't require an actual accounting loss — it's about the relationship between the multiple and the GROWTH RATE, which can deteriorate well before (or even without) any loss ever showing up on the income statement.", followup: "Can a profitable, growing company still be considered 'overvalued' on a de-rate basis? What would that actually mean if the company hasn't reported a loss?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "Indigo Paints trades at just ~31× P/E despite having the BEST gross margin (48.6%) and EBITDA margin (23.0%) in the entire sector — both meaningfully above Asian Paints'. Explain why a smaller company with better margins can still trade at a much lower multiple than the sector leader.",
+        context: "Indigo: P/E ~31×, Mkt Cap ~₹4,712 Cr, EBITDA margin 23.0% (sector-best), Gross margin 48.6% (sector-best) · Asian Paints: P/E ~59×, Mkt Cap ~₹2,57,000 Cr, EBITDA margin 19.3%",
+        hint: "P/E reflects more than just CURRENT margin quality — it also prices in scale, growth durability, distribution reach, and the market's confidence that today's advantage will SURVIVE competition at a much bigger size.",
+        keywords: ["market cap", "scale", "liquidity", "growth ceiling", "market share", "small cap", "risk premium", "distribution", "brand", "discount", "size", "defend"],
+        partialKeywords: ["smaller", "margin", "multiple", "trust"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Right direction — superior CURRENT margins don't automatically earn a premium multiple if the market doubts those margins are DEFENSIBLE at much larger scale. Indigo's much smaller absolute size (~₹4,712 Cr market cap vs AP's ~₹2,57,000 Cr) means lower distribution reach, lower trading liquidity, and a real question of whether its margin advantage would survive if it tried to scale up against AP's and Opus's much larger ad and dealer-incentive budgets — high margin today doesn't guarantee it's a durable, scalable moat.", followup: "If Indigo deliberately chose to grow much faster (sacrificing some margin to gain scale and distribution), would you expect its P/E to rise or fall in the near term — and why might that trade-off be a genuinely hard strategic choice for its management?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've noted scale matters, but be specific about WHY the market would discount a smaller company's superior margin — is it about distribution capacity, liquidity, defensibility, or some combination, and how does each connect to the multiple?", followup: "Name two SPECIFIC things (other than 'it's smaller') that change for Indigo if it tried to compete directly with AP at AP's scale, and explain how each could pressure its current 23% EBITDA margin." },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Margins and valuation multiples aren't the same thing — a multiple prices the market's confidence in FUTURE durability and growth at scale, not just today's profitability snapshot. A smaller company can have excellent current margins and still trade cheap if the market isn't confident those margins scale.", followup: "What does P/E actually measure — current profitability, or the market's expectation about FUTURE profitability and its durability? How does that distinction help explain Indigo's lower multiple despite better current margins?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "JSW Dulux's reported P/E (~47×, core) and Grasim's P/E (~32×, the parent holding Birla Opus) both partly reflect 'option value' on a paints business whose full economics aren't yet showing up in current earnings. Why is a 'sum-of-the-parts/option value' framing more appropriate for these two than a straightforward trailing P/E?",
+        context: "JSW Dulux: P/E ~47× (core, excl. exceptional items) · Grasim: P/E ~32× (blends cement, other businesses, AND a still-loss-making Birla Opus paints bet) · Grasim FY26 Adj PAT ₹5,203 Cr · Paints value FY28 target ~₹30,000 Cr potential",
+        hint: "A trailing P/E assumes current reported earnings are a clean, representative snapshot of the business. What's specifically NOT clean about what's inside Grasim's and JSW Dulux's current reported earnings?",
+        options: ["Because trailing P/E always overstates value for every company, with no exception", "Because the current reported earnings don't cleanly isolate what the PAINTS business specifically is worth or is becoming — Grasim's reported P/E blends cement and other established businesses with a currently loss-making-but-fast-growing paints bet, while JSW Dulux's earnings reflect a transition year shaped by a major divestiture and restructuring — making a straightforward trailing multiple a poor proxy for what either company's paints exposure is actually worth", "Because both companies refuse to disclose any segment-level financial data whatsoever", "Because paints companies can never be meaningfully valued using any earnings-based multiple under any circumstances"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Trailing P/E works perfectly well for many companies with clean, representative earnings — the issue here is specific to these two companies' current earnings being blended or transition-affected, not a universal flaw in trailing P/E itself.", followup: "For a company like Asian Paints, with a single clean paints business and no major one-off items this year, would the same 'option value' caveat apply as strongly? Why or why not?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly right — Grasim's P/E of ~32× is calculated on TOTAL adjusted PAT (₹5,203 Cr) that mostly reflects its established cement and other businesses, with the loss-making Birla Opus bet actually dragging that number down rather than reflecting its ₹30,000 Cr FY28 potential. JSW Dulux's core P/E similarly sits on a transition-year earnings base distorted by the Powder Coatings/IRC divestiture. Both need a sum-of-the-parts lens to value the paints piece on its OWN trajectory rather than the blended/distorted current number.", followup: "If you tried to back out an implied value for JUST Birla Opus's paints business from Grasim's ₹1,65,000 Cr market cap, what would you need to know about the value of Grasim's OTHER businesses (cement, etc.) first?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Both companies disclose meaningful segment-level detail elsewhere in this very dashboard (Birla Opus paints EBITDA, JSW Dulux retained-business figures) — the issue isn't a lack of disclosure, it's that the company-LEVEL reported P/E doesn't isolate that segment data into a clean multiple.", followup: "If segment data IS available (as shown elsewhere in the dashboard), why is the company-level P/E still not the right number to use for valuing the paints business specifically?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Earnings multiples absolutely CAN be used for paints companies — Asian Paints, Berger, and Indigo are all valued this way in the dashboard's own valuation tab without this caveat. The 'option value' framing is specifically needed for Grasim and JSW Dulux because of their unusual current-year earnings composition, not because earnings multiples never work for this industry.", followup: "Why does the 'option value' caveat apply to Grasim and JSW Dulux specifically, but not equally to Asian Paints, Berger, or Indigo in the same valuation tab?" }
+        ]
+      }
+    ]
+  },
+  dealer_contractor_economics: {
+    title: "Tinting Machines, Credit Terms, Contractor Incentives: The Real Cost-Benefit",
+    questions: [
+      {
+        type: "mcq",
+        q: "Birla Opus offers free tinting machines (vs. AP's ₹1.5–2L paid machines) AND 20-day dealer credit (vs. AP's 5-day). Which of these two levers is the more STRUCTURAL threat to Asian Paints, and why?",
+        context: "Birla Opus: free tinting machines (vs AP ₹1.5-2L paid, 40% smaller for Tier-2) · 20-day dealer credit (vs AP 5-day) · 30-40% of dealer shelf space already shifted to Opus",
+        hint: "Think about whether each lever is a ONE-TIME event or a RECURRING one for a dealer's economics. Which keeps mattering, billing cycle after billing cycle?",
+        options: ["The free tinting machine, because dealers literally cannot afford to own any machine without it being free", "The 20-day credit, because it directly improves a dealer's working capital on EVERY billing cycle, a recurring and compounding financial benefit — whereas a tinting machine is a one-time capital item that, once a dealer owns either company's machine, largely stops being an active switching lever going forward", "Both levers are equally structural since Birla Opus launched them together as a single bundled offer", "Neither lever matters — only the underlying 5-12% price discount fully explains the dealer-share shift"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Dealers historically did pay ₹1.5-2L for AP's machines for years before Opus existed — affordability alone isn't the core issue; the issue is the ONGOING financial relationship a credit term creates versus a one-time capital purchase.", followup: "If a dealer already owns an AP tinting machine, does the existence of a free Opus machine elsewhere change that dealer's day-to-day cash flow the way a 20-day credit term would?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right distinction — a tinting machine is a sunk, one-time capital decision; once acquired (free or paid), it stops actively driving behavior. Credit terms, by contrast, affect a dealer's cash flow on every single restocking cycle, indefinitely, making it a far more durable and recurring incentive to stay loyal to whichever brand offers the better terms.", followup: "If Asian Paints matched Birla Opus's 20-day credit term tomorrow, would that fully neutralize Opus's dealer-economics advantage, or would other factors (dealer margins, contractor incentives) still leave a gap? What else would AP need to match?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "While both were part of Opus's launch strategy, that doesn't make them equally structural — one is a recurring cash-flow benefit and the other is a one-time capital item, and that difference in DURATION of impact is what determines long-term structural significance, regardless of how they were originally bundled.", followup: "Even though both launched together, which one would still be actively influencing a dealer's decisions two years from now, and which one would have already 'done its job' once the machine was delivered?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Price discount is clearly part of the story, but the dashboard explicitly lists credit terms and machine economics as SEPARATE, named weapons in Opus's strategy table — reducing everything to price alone ignores these distinct, independently-significant levers.", followup: "If price discount were the ONLY factor, why would the dashboard bother listing tinting machines and credit terms as separate competitive weapons at all?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "The dashboard states '40% of brand loyalty in paints is actually contractor loyalty' and that Birla Opus pre-onboarded 3,00,000 contractors BEFORE even launching. Explain why attacking the CONTRACTOR first, rather than the consumer, was a more effective entry strategy for a new paint brand than a traditional Bollywood-celebrity consumer ad campaign would have been.",
+        context: "Contractor recommendation weight: 70-80% of homeowner's final brand decision · Birla Opus pre-onboarded 3,00,000 contractors before launch · AP active contractors ~3,50,000+ · Contractor incentives: better margins, free tools",
+        hint: "Think about WHO actually makes the final paint brand decision in most Indian households, versus who the OLD marketing model (Bollywood ads) was trying to influence.",
+        keywords: ["contractor", "decision maker", "recommend", "trust", "painter", "weight", "gatekeeper", "bypass", "consumer", "brand recall", "faster", "intermediary"],
+        partialKeywords: ["influence", "contractor", "launch", "strategy"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Right insight — the contractor/painter carries 70-80% weight in the actual brand decision, meaning the OLD model of building consumer brand recall through Bollywood ads was largely influencing a decision-maker who often isn't the final decision-maker at all. By pre-onboarding 3,00,000 contractors with better margins and free tools BEFORE launch, Birla Opus essentially captured the real point-of-sale gatekeeper first, letting contractor recommendations do the persuasion work at the moment it actually matters, which converts far faster than building unaided consumer brand awareness from zero over several years of advertising.", followup: "Given AP also has a large contractor base (~3.5L) built over decades, why might Opus's NEWER contractor relationships (built on financial incentives) still be vulnerable to AP winning some of them back, compared to AP's older, more established relationships?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've identified the contractor matters, but be specific about WHY targeting them first is structurally faster than a consumer campaign — tie it to the 70-80% decision-weight figure and what that implies about who the 'real' customer is in this category.", followup: "If a homeowner trusts their painter's recommendation 70-80% of the time, how much value does a Bollywood celebrity ad actually deliver if it never reaches or convinces that painter?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Think about the ACTUAL purchase journey for paint in most Indian households — does the homeowner typically choose the brand entirely independently, or does someone else heavily influence that choice at the point of purchase?", followup: "Who, according to the dashboard, carries the most weight in a homeowner's final paint brand decision — and how does that compare to who a TV ad campaign primarily targets?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "Asian Paints has roughly 3.5 lakh active contractors built over decades. Birla Opus already claims 4.5 lakh active contractors after only ~2 years. Does this larger Birla number mean Opus has already 'won' the contractor war?",
+        context: "Active contractors: AP ~3,50,000+ (established, long-running loyalty program) vs Birla Opus 4,50,000 (per company, aggressive new-entrant incentives) · Contractor preference shift table: AP declining (better Birla margins), Birla gaining (financial incentives)",
+        hint: "Raw headcount doesn't tell you about DEPTH or EXCLUSIVITY of the relationship. Could a contractor be 'counted' by a brand without genuinely recommending that brand first?",
+        options: ["Yes — more registered contractors automatically and proportionally means more influence over actual consumer purchases", "Not necessarily — raw contractor COUNT doesn't capture loyalty or depth of relationship; the dashboard's own contractor-preference table shows AP's preference is DECLINING while Birla's is GAINING, which is the more meaningful directional signal than the static headcount comparison, since a contractor registered with multiple brands for incentives isn't the same as one who actively recommends a brand first", "The comparison is meaningless because contractor numbers are always self-reported and therefore can never be trusted for any purpose", "Birla's number being 'per company' self-reported, while AP's isn't, is the only consideration that matters here"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Headcount and influence don't scale proportionally — a contractor registered for incentives with multiple brands doesn't deliver the same exclusive recommendation power as one with a single, deep brand relationship. Raw count alone overstates the comparison.", followup: "If a contractor is registered with BOTH Asian Paints and Birla Opus to collect incentives from each, how should that contractor be counted in either company's 'active contractor' figure — and does that complicate a simple headcount comparison?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly right — and the dashboard itself gives you the better signal to use: the contractor PREFERENCE SHIFT table shows AP's preference declining and Birla's gaining, which is a directional, relationship-quality signal that matters more than a static headcount snapshot. A bigger number today doesn't prove Birla has 'won' — it shows Birla has successfully recruited broadly, while the more decisive question is which way recommendation behavior is trending.", followup: "If AP's contractor preference keeps declining even while its raw headcount stays roughly flat, what would that combination specifically tell you that the headcount number alone wouldn't?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Self-reported figures can still carry useful directional information, especially when cross-checked against other dashboard data (like the preference-shift table) showing a consistent story — dismissing all self-reported data as untrustworthy throws away a lot of otherwise corroborated signal.", followup: "What OTHER piece of data in the dashboard, beyond the raw headcount, corroborates the idea that contractor sentiment is genuinely shifting toward Birla Opus?" },
+          { tag: "Partially right", cls: "partial-resp", text: "The self-reporting distinction is a fair point to flag, but it's not the ONLY or even the most important consideration — the more analytically useful angle is what the headcount comparison fails to capture about relationship depth and recommendation behavior, which the preference-shift data addresses more directly.", followup: "Beyond just 'who self-reported the number,' what's the deeper analytical reason raw contractor count is an incomplete metric for judging who's winning the contractor relationship?" }
+        ]
+      }
+    ]
+  },
+  trojan_horse_moat: {
+    title: "Page Industries or HDFC Bank? Stress-Testing the Moat Analogy",
+    questions: [
+      {
+        type: "mcq",
+        q: "CB Research argues paint is closer to the HDFC Bank disruption analogy than the Page Industries one. What's the ONE structural feature paint shares with banking but NOT with apparel that supports this framing?",
+        context: "Page Industries (Jockey): pure consumer decision, commoditized category, 2-3× brand premium replicable by D2C/fast fashion · HDFC Bank: faced Paytm/PhonePe/Razorpay/Jio Financial yet retained core loan book and relationship banking dominance · Paint: contractor influences 70-80% of brand decision",
+        hint: "In apparel, the consumer typically decides independently. In banking AND in paint, there's a specific kind of intermediary role sitting between the company and the end customer. What is it?",
+        options: ["Both banking and paint are regulated by the same government body, making the comparison valid", "Both have a significant intermediary/B2B-style influencer sitting between the company and the end consumer (a contractor in paint; relationship-driven, trust-based intermediation in banking), unlike apparel where the consumer typically makes the final choice largely independently — making disruption in both categories more about capturing a gatekeeper than winning a purely open consumer popularity contest", "Both industries have historically had exactly the same profit margin percentages", "Asian Paints and HDFC Bank are part of the same business conglomerate, making the comparison a matter of common ownership"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Regulatory similarity isn't the structural feature the dashboard is drawing on — banking and paint regulation have little in common; the actual parallel is about the DECISION-MAKING structure of each category, not who regulates them.", followup: "Setting aside regulation entirely, what's structurally similar about HOW a customer ends up choosing a specific bank versus how a homeowner ends up choosing a specific paint brand?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the structural parallel the dashboard draws — in both categories, an intermediary relationship (the contractor's recommendation in paint, trust-based relationship banking dynamics in finance) meaningfully shapes the final choice, unlike apparel's more direct, independent consumer decision. This is precisely why the dashboard treats paint's contractor-first disruption as 'more structural than Page's challenge.'", followup: "Given this parallel, what would the paint-sector equivalent of HDFC Bank's 'losing specific segments (UPI) while keeping core dominance (loans, deposits)' pattern actually look like for Asian Paints specifically?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "There's no factual basis for treating margins as identical across these very different industries — and even if margins happened to be similar at some point, that wouldn't be the structural mechanism the analogy is actually built on.", followup: "What's the actual structural mechanism (rather than a coincidental margin similarity) that the dashboard uses to justify comparing paint disruption to banking disruption?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Common ownership isn't the basis for this comparison at all — Asian Paints and HDFC Bank are unrelated companies; the analogy is purely about a SHARED STRUCTURAL PATTERN in how disruption plays out in each category, not any corporate connection between them.", followup: "If there's no ownership link between these two companies, what kind of comparison IS being made — a financial one, an ownership one, or a structural/pattern-based one?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "CB Research's verdict is 'Partially YES — moat eroding, not collapsed,' landing between full Page-style destruction and full HDFC-style resilience. Identify ONE piece of dashboard evidence supporting erosion, and ONE supporting resilience, then explain what specific FUTURE evidence would tip your view decisively toward one side or the other.",
+        context: "Erosion evidence: 30-40% dealer shelf space shifted to Birla, market share 59%→50% in 18 months (fastest in branded FMCG history), 65× P/E vs 3-5% growth reality · Resilience evidence: 15-country international ops (Birla has zero), Beautiful Homes ecosystem, Royale luxury segment, 44.3% gross margin recovery in Q3 FY26",
+        hint: "The dashboard explicitly names its own 'definitive test' for this question — what is it, and why would that single signal matter more than any single quarter's PAT number?",
+        keywords: ["erosion", "resilience", "beautiful homes", "international", "waterproofing", "15 countries", "shelf space", "evidence", "decisive", "tip", "future quarters", "premium segment"],
+        partialKeywords: ["evidence", "moat", "trojan", "quarters"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Good structure — erosion evidence: the 30-40% dealer shelf-space shift to Birla and the unprecedented 59%→50% share decline; resilience evidence: AP's untouched 15-country international business and the Beautiful Homes ecosystem, which Birla cannot easily replicate. The dashboard's own stated 'definitive test' is the market-share TREND over the next 2-3 quarters — specifically whether AP's losses concentrate in the mid-market (where Opus competes) while premium/luxury (Royale) and international hold firm, which would validate the HDFC-style 'transition, not destruction' reading, versus continued erosion spreading INTO the premium segment too, which would tip the view toward the more bearish Trojan Horse case.", followup: "If next quarter's data showed AP's OVERALL share stabilizing at ~50% but its PREMIUM segment specifically started losing share for the first time, would that be more reassuring or more alarming than the current pattern — and why?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've found evidence on at least one side, but be sure to name a SPECIFIC future signal (the dashboard names one directly) rather than a vague 'wait and see' — what exact metric, tracked over what time horizon, would the dashboard itself point you to?", followup: "Re-read the Trojan Horse panel's closing verdict — what specific phrase does it use to describe the 'definitive test' of whether the thesis holds?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Start by separating the dashboard's two named tables explicitly: one lists factors supporting the bearish ('Trojan Horse') case, the other lists factors supporting the bullish ('HDFC survived') case. Pull one specific, named item from each before trying to project forward.", followup: "Looking specifically at the 'Trojan Horse Case' table and the 'HDFC Bank Survived' table in the dashboard, name one specific row from each that you find most compelling." }
+        }
+      },
+      {
+        type: "mcq",
+        q: "If, two years from now, Asian Paints retains its premium/luxury segment dominance (Royale) and international business, but its mid-market share keeps eroding toward 45%, would that outcome validate the FULL Trojan Horse (Page-style) reading or the HDFC-style transition reading?",
+        context: "Page-style: full structural irrelevance/destruction, easily replicated commodity premium · HDFC-style: losing specific contestable segments (UPI-equivalent) while retaining core, harder-to-replicate dominance (loans/deposits-equivalent) · AP's harder-to-replicate assets: 15-country international ops, Royale luxury segment, Beautiful Homes ecosystem",
+        hint: "Page Industries' destruction would mean losing across the board, including its core brand premium. Does losing ONLY the segment a specific, well-funded rival is specifically attacking — while keeping the harder-to-replicate parts — match 'destruction,' or match something more selective?",
+        options: ["Full Trojan Horse (Page-style) — any market share loss at all, in any segment, proves the entire moat was always fake", "HDFC-style transition — losing a specific, identifiable, contestable segment (mid-market, price-sensitive) while RETAINING the harder-to-replicate segments (premium, international, service ecosystem) is exactly the selective pattern the dashboard describes as the HDFC parallel, not full destruction", "Neither framework would meaningfully apply to this specific outcome", "This particular outcome is logically impossible given current trends and therefore not worth analyzing"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Treating ANY share loss as proof of a fake moat sets an impossibly strict bar — even HDFC Bank, which the dashboard treats as the resilience benchmark, lost real share in specific segments (like UPI payments) without that proving its overall moat was fake.", followup: "If HDFC Bank lost some payments market share to Paytm/PhonePe but is still considered to have 'survived' disruption, why would the same standard not apply to AP losing mid-market paint share while keeping its premium and international business?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right read — this scenario is precisely the HDFC-style pattern: a SELECTIVE loss concentrated in the segment a specific rival is best positioned to attack, while the harder-to-replicate assets (international scale, luxury brand equity, service ecosystem) hold. That's qualitatively different from Page Industries' more total, commodity-level erosion across its whole business.", followup: "Given this scenario describes the dashboard's own bullish case actually playing out, why does CB Research's CURRENT verdict still say 'Partially YES' to the Trojan Horse question rather than already declaring the HDFC-style outcome confirmed?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "This is exactly the kind of scenario these two frameworks are DESIGNED to distinguish between — saying 'neither applies' avoids answering the actual analytical question the dashboard poses.", followup: "If neither framework applies to this clean, hypothetical scenario, what better framework would you propose instead — and how would it differ from the two already given?" },
+          { tag: "Partially right", cls: "partial-resp", text: "This outcome isn't actually implausible — it's close to the dashboard's OWN stated path (mid-market erosion continuing toward 45-47% while premium/international/service ecosystem hold), so calling it 'impossible' contradicts the dashboard's own FY28 framing.", followup: "Looking at the dashboard's stated FY28 share projection for AP (45-47%) and its bullish-case table (international, Beautiful Homes, Royale untouched), how close is this hypothetical scenario to what the dashboard itself anticipates?" }
+        ]
+      }
+    ]
+  },
+  industry_structure_shift: {
+    title: "From Near-Monopoly to Oligopoly: What Changes Permanently",
+    questions: [
+      {
+        type: "mcq",
+        q: "CB Research frames the sector's shift as roughly 'AP ~59% → AP ~45-47%, Birla ~17%, Berger ~21%, JSW ~9%' by FY28 — a near-monopoly becoming a genuine oligopoly. Even AFTER the current RM shock passes and margins normalize, what changes PERMANENTLY about every player's pricing behavior in an oligopoly versus a near-monopoly?",
+        context: "FY28 projected structure: AP ~45-47%, Berger ~20-21%, Birla Opus ~15-18%, JSW Dulux ~8-10%, Indigo ~similar/modest, Others ~2% · vs FY23: AP ~59% near-monopoly",
+        hint: "In a near-monopoly, a price hike mostly just collects more revenue. In an oligopoly with several credible rivals, what does a unilateral price hike risk that it didn't risk before?",
+        options: ["Nothing changes once RM costs normalize — pricing behavior fully reverts to pre-disruption patterns", "In an oligopoly, any player's price hike must now account for how rivals will react — pricing restraint becomes a PERMANENT feature of decision-making (not just an RM-shock-era phenomenon), since a unilateral hike risks share loss to credible competitors even in a calm raw-material environment", "Oligopoly market structures inevitably lead to illegal price-fixing arrangements among the players", "Only Asian Paints' pricing behavior is permanently affected; the other four players' pricing decisions are unaffected by the new structure"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "The competitive dynamics described throughout this dashboard (dealer switching, contractor preference shifts, price-gap sensitivity) aren't temporary RM-shock artifacts — they're structural features of having multiple credible, well-funded rivals that don't disappear once RM costs settle.", followup: "If RM costs fully normalized tomorrow, would Birla Opus's 50,000+ dealer network and 4.5L contractors simply disappear, removing the competitive pressure on AP's pricing? Why or why not?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly right — this is the lasting structural change. Pricing discipline imposed by having real rivals isn't an RM-shock-specific phenomenon; it's now a permanent feature of how every player (not just AP) has to think about price, since any one player's unilateral hike creates a price gap a rival can exploit, regardless of whether costs are currently elevated or not.", followup: "Given this permanent pricing discipline, what does that imply for the sector's LONG-RUN gross margin ceiling compared to the pre-disruption era — even once RM costs eventually ease?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Oligopoly structures don't automatically imply illegal collusion — most oligopolies (this one included, based on the dashboard's framing) compete vigorously on price, credit terms, and incentives precisely BECAUSE they're independently trying to win share from each other, which is the opposite of price-fixing.", followup: "Does the dashboard's description of Berger, AP, and Birla all independently cutting/hiking prices and competing on dealer terms sound more like coordinated collusion, or like vigorous independent competition? What's the difference?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Berger, Birla Opus, and JSW Dulux are all shown taking their OWN calibrated pricing decisions in direct response to each other (e.g., Birla pricing 5-12% below AP, deliberately calibrated) — this is a sector-wide dynamic, not something isolated to AP alone.", followup: "Looking at the price-hike-actions table in the dashboard, do ALL five companies show evidence of calibrating their pricing relative to competitors, or just Asian Paints?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "CRISIL projects organised paint revenue growth of just 3–5% despite 7–8% volume growth for FY27–28 — a forecast that looks past the immediate RM shock to a more 'normal' multi-year structure. Explain why this volume-revenue gap is now a STRUCTURAL feature of the new oligopoly, not just a temporary RM-driven anomaly.",
+        context: "CRISIL FY27-28 (forward, beyond the immediate RM shock): organised revenue growth 3-5% vs volume growth 7-8% · Five credible competing players each with growing share and overlapping price points",
+        hint: "If this gap were purely RM-driven, it should close once RM costs normalize. CRISIL is forecasting it to PERSIST into FY27-28 regardless — what does that imply about the cause?",
+        keywords: ["oligopoly", "competitive pricing", "structural", "permanent", "realization", "price compression", "multiple players", "normalized", "going forward", "anchor", "credible rivals"],
+        partialKeywords: ["volume", "revenue", "gap", "competition"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Right — CRISIL's projection extends INTO FY27-28, beyond the immediate RM shock window, which signals the volume-revenue gap is now treated as a feature of the market's new STRUCTURE, not a one-off cost-cycle artifact. In a genuine multi-player oligopoly, any single company trying to raise realization meaningfully risks losing volume to a credible, well-capitalized rival — so realization growth gets structurally capped below volume growth as a permanent competitive feature, independent of where the RM cycle happens to be in any given year.", followup: "If this structural cap on realization persists, what does it imply for how the SECTOR's overall profit pool grows over time — mostly through volume, mostly through pricing, or some new combination — and which companies are best positioned to win under that new pattern?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've noted the gap continues, but be precise about WHY a forecast looking past the immediate RM shock would still show this gap — what does that timing detail tell you about whether the cause is RM-related or competition-related?", followup: "Since CRISIL's forecast extends beyond when the current RM shock should have eased, what's the more durable explanation left standing for why the volume-revenue gap persists?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Notice the TIMEFRAME of CRISIL's projection (FY27-28) — that's later than when the current RM shock is expected to ease (Q1-Q2 FY27, per the dashboard's own RM section). If the gap is forecast to persist past the shock window, RM costs alone can't be the explanation.", followup: "If RM costs are expected to normalize by FY27-28 per the dashboard's own framing, but CRISIL still projects the volume-revenue gap persisting THROUGH FY27-28, what cause is left to explain it?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "Kansai Nerolac (~9% share, not one of this dashboard's five detailed companies) took a price hike of ~2-3% alongside Berger's larger ~11% hike in March 2026. What does a smaller, less-discussed player moving in close coordination with a larger rival's pricing decision suggest about oligopoly pricing dynamics, beyond what any single company's standalone strategy would suggest?",
+        context: "Price hikes Mar-Apr 2026: Berger ~11% (bold, staggered) · Kansai Nerolac ~2-3% (taken alongside Berger, same week) · Other players calibrated more cautiously (2-6%)",
+        hint: "Smaller players often don't set the pace in a market with a dominant leader — they tend to react to a leader's move rather than initiate independently. What does that pattern reveal about how interconnected pricing decisions are in this market?",
+        options: ["Nerolac and Berger must have a formal, explicit pricing arrangement between them, which would be an illegal collusive practice", "Smaller players often follow a price LEADER's move rather than initiate their own independently — a sign that pricing decisions in this oligopoly are watched closely and reacted to across the whole field, not decided purely in isolation by each company, without implying any actual collusive arrangement", "This is purely coincidental timing with no strategic significance whatsoever", "Nerolac's smaller hike alongside Berger's larger one proves the RM cost shock described elsewhere in the dashboard never actually happened"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Jumping to an allegation of explicit illegal collusion isn't supported by the dashboard and isn't the most useful or fair interpretation — 'price followership' (reacting to a market leader's signal) is a completely normal, legal oligopoly behavior pattern, distinct from coordinated collusion.", followup: "What's the difference between a smaller company independently choosing to follow a larger rival's pricing signal versus the two companies explicitly agreeing on prices together beforehand? Why does that distinction matter?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right, more measured interpretation — this 'price followership' pattern (smaller players reacting to a leader's pricing signal) is a well-known, legal feature of oligopoly markets generally, and it suggests the five-plus players in this sector are now watching and reacting to each other's moves closely, which is a structural change from the near-monopoly era where AP could set price largely without needing to watch anyone else's reaction.", followup: "If Asian Paints had been the one to initiate an 11% hike instead of Berger, would you expect Nerolac (and possibly Berger itself) to follow at a similar pace — and what would that tell you about WHO the market currently treats as the pricing leader?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "There's no basis to dismiss the timing as pure coincidence — a smaller, less-discussed player moving in close timing with a larger rival's pricing action is a recognizable behavioral pattern worth taking seriously as a signal about market structure, not waving away as random.", followup: "If this kind of close-timing pricing pattern repeated across multiple price-change events over time, would you still call it coincidental, or would you start to see it as a genuine market behavior pattern?" },
+          { tag: "Partially right", cls: "partial-resp", text: "The RM cost shock is independently corroborated elsewhere in the dashboard (TiO2/crude price spikes, the entire Raw Materials tab) — Nerolac's specific hike timing relative to Berger doesn't bear on whether the broader RM shock itself happened.", followup: "What evidence elsewhere in the dashboard (separate from the Nerolac/Berger pricing timing) independently confirms the RM cost shock actually occurred?" }
+        ]
+      }
+    ]
+  },
+  jswd_restructuring_signal: {
+    title: "Reading Through Restructuring Noise: JSW Dulux",
+    questions: [
+      {
+        type: "mcq",
+        q: "JSW Dulux's headline Q4 revenue growth is reported with a footnote (†) as '+6.2% retained' — implying the RAW reported revenue (including last year's now-divested Powder Coatings/IRC business in the comparison base) would actually show a DECLINE. Why is the 'retained basis' figure the economically meaningful one to focus on, not the raw YoY number?",
+        context: "JSW Dulux: Q4 Revenue ₹883 Cr (+6.2% retained†) · Powder Coatings + IRC business divested in Q2 FY26 for ₹1,874 Cr · Underlying retained-business volume growth +23% YoY",
+        hint: "If this year's revenue figure EXCLUDES a business that was still included in LAST year's comparison figure, is that a fair, like-for-like comparison?",
+        options: ["Raw YoY revenue growth figures are always meaningless for any company in any situation", "Comparing this year's revenue (without the divested business) against last year's revenue (WITH the divested business still included) is an apples-to-oranges comparison — the 'retained basis' figure removes the divested business from BOTH periods, isolating how the ongoing, comparable business is actually performing", "The retained-basis figure is simply the company's preferred marketing presentation, with no real analytical justification", "Both figures (raw YoY and retained-basis) are mathematically identical, so the distinction is purely cosmetic"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Raw YoY figures are perfectly meaningful for companies with a STABLE business structure year over year — the issue here is specific to JSW Dulux's major mid-year divestiture, not a universal flaw in YoY comparisons generally.", followup: "For a company that did NOT divest a major business mid-year, would the same retained-basis caveat be necessary? What's specific about JSW Dulux's situation that makes it necessary here?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly right — this is a standard and necessary adjustment whenever a company's business perimeter changes materially mid-comparison-period. Stripping the divested Powder Coatings/IRC business out of BOTH the current and prior period makes the +6.2% figure a genuine, comparable measure of the ongoing business, rather than an artifact of comparing two structurally different companies.", followup: "Given the retained-basis volume grew +23% — much faster than the +6.2% retained REVENUE growth — what does that gap suggest is happening to retained-business pricing/realization, similar to the broader sector-wide volume-revenue gap discussed elsewhere?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "This kind of like-for-like adjustment is a standard, widely-used accounting and analytical practice for companies undergoing divestitures — it's not a marketing spin tactic, it's necessary to make any meaningful YoY comparison at all after a business perimeter change.", followup: "If a company sells off 20% of its business mid-year, what would happen to its 'raw' YoY revenue comparison even if the REMAINING business grew strongly — and why would that be misleading without an adjustment?" },
+          { tag: "Partially right", cls: "partial-resp", text: "The two figures are explicitly NOT identical — that's exactly why the dashboard flags one with a footnote distinguishing it from the unadjusted figure; if they were the same number, there'd be no need to label one as 'retained basis' at all.", followup: "If the raw and retained-basis figures were truly identical, why would the dashboard bother adding a footnote (†) to distinguish them at all?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "JSW Dulux paid a total FY26 dividend of ₹206/share (₹50 'final' + ₹156 'special'). Given the company divested its Powder Coatings and IRC business for ₹1,874 Cr in the same year, explain why an investor should NOT simply extrapolate this dividend level into future years.",
+        context: "JSW Dulux FY26 total dividend: ₹206/share (₹50 final + ₹156 special) · Powder Coatings + IRC divestiture proceeds: ₹1,874 Cr (Q2 FY26) · JSW Dulux: zero debt",
+        hint: "Two very different things are bundled into that ₹206 figure — one tied to ongoing annual operations, and one tied to a single, non-repeatable event. Which is which?",
+        keywords: ["special dividend", "one-time", "divestiture proceeds", "not recurring", "sale proceeds", "sustainable", "normalize", "regular", "future", "extrapolate", "run-rate"],
+        partialKeywords: ["dividend", "future", "sustainable", "special"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Right reasoning — the ₹156 'special' component is explicitly tied to the one-off ₹1,874 Cr divestiture proceeds from selling the Powder Coatings/IRC business, not to recurring annual operating cash flow; only the ₹50 'final/regular' portion reflects an ongoing, repeatable payout level. Treating the full ₹206/share as next year's likely dividend run-rate would badly overstate the company's sustainable future payout capacity, since there's no comparable one-time asset sale expected to recur.", followup: "If you were modeling JSW Dulux's dividend for FY27 onward, what figure would be a more reasonable starting assumption — and what would have to happen (another divestiture, a special situation) for a similarly large special dividend to repeat?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You sense the dividend won't repeat at this level, but be specific: WHICH portion of the ₹206 is tied to the one-time event, and which portion reflects the genuinely recurring payout — that distinction is the whole basis of the caution.", followup: "Of the ₹50 'final' and ₹156 'special' components, which one is explicitly labeled in a way that signals it's NOT a routine, repeatable payout?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Look closely at how the dividend is broken into two distinct labeled components ('final' and 'special') rather than treating ₹206 as one undifferentiated number — the labeling itself is a strong clue about which part is sustainable.", followup: "Why might a company specifically label part of its dividend as 'special' rather than folding the entire ₹206 into its regular dividend policy?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "JSW Dulux's underlying retained-business volume grew 23% YoY — the fastest volume growth in the sector except Birla Opus. Yet the dashboard's overall verdict on JSW Dulux is the notably cautious 'Transition year — wait for JSW integration thesis.' Why might strong underlying volume growth still warrant this caution?",
+        context: "JSW Dulux: retained-business volume +23% YoY (sector's 2nd-fastest) · Same-year events: divestiture (₹1,874 Cr), company renaming (JSW Dulux Ltd, Apr 1, 2026), JSW Group ownership integration (61.2% stake from Dec 2025) · Separate flagged risk: JSW Group's broader high debt may limit paint investment",
+        hint: "A single quarter's volume number reflects DEMAND for the product. What ELSE is happening to this specific company at the same time, that a pure volume number can't capture?",
+        options: ["JSW Dulux's reported volume growth figures are likely fabricated and shouldn't be trusted at all", "A single quarter of restructuring-driven volume growth (occurring alongside a major divestiture, a corporate renaming, and new-ownership integration under JSW Group) carries more execution/integration risk than the same growth rate from a company with an unchanged business structure — the operational noise from these simultaneous changes adds uncertainty that pure volume data doesn't capture, separate from the also-flagged risk around JSW Group's broader debt constraints", "JSW Dulux's volume growth is entirely irrelevant to its investment case because the company carries zero debt", "The caution is based PURELY on JSW Group's broader debt situation, with the simultaneous restructuring/integration events having no bearing on it at all"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "There's no basis in the dashboard to call the volume figures fabricated — they're presented consistently alongside other retained-business metrics (PAT +51.6%, EBITDA figures) that tell a coherent story; the more useful question is about durability, not authenticity.", followup: "If you don't doubt the volume number itself, what's the more analytically useful concern to raise about a strong number that occurs during a period of major corporate change?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right read — strong volume growth during a quarter that ALSO includes a major divestiture, a renaming, and new-ownership integration is harder to read as a clean, repeatable trend than the same growth from a stable, unchanged business. The integration noise itself is a distinct source of uncertainty, which is why the dashboard's caution isn't solely about JSW Group's debt — it's about the combined effect of several simultaneous changes on predictability.", followup: "What specific data point, a year from now, would tell you whether JSW Dulux's 23% volume growth was a durable, repeatable trend versus a one-off bump tied to the restructuring transition itself?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Zero debt is a balance-sheet strength, but it doesn't address the SEPARATE concern here about whether a single quarter's volume growth, occurring amid major corporate restructuring, is a reliable signal of the company's ongoing trajectory.", followup: "How does having zero debt help address the question of whether THIS QUARTER's volume growth is likely to repeat next quarter?" },
+          { tag: "Partially right", cls: "partial-resp", text: "JSW Group's broader debt situation is a real, separately-flagged risk, but it's not the ONLY reason for caution here — the question specifically asks why strong VOLUME growth itself still warrants caution, which points more directly to the restructuring/integration noise than to the parent's balance sheet.", followup: "Setting aside JSW Group's debt entirely for a moment, what is it about the TIMING of this volume growth (occurring during a major restructuring) that would make you want to see it repeat before fully trusting it?" }
+        ]
+      }
+    ]
+  },
+  comparison_paint: {
+    title: "Five Companies, Five Different Bets",
+    questions: [
+      {
+        type: "mcq",
+        q: "Among the five companies — Asian Paints, Berger, Birla Opus, JSW Dulux, and Indigo Paints — which pairing represents fundamentally the SAME type of investment bet, despite being very different companies on the surface?",
+        context: "Birla Opus: backed by Aditya Birla Group/Grasim, ₹10,000 Cr capex committed, still loss-making, land-grab phase · JSW Dulux: backed by JSW Group (61.2% stake), post-divestiture restructuring, core PAT ~₹250-300 Cr · Both are conglomerate-funded challengers to AP's historical dominance",
+        hint: "Look past current profitability (one is loss-making, one isn't) to the STRUCTURE of the bet: who's funding it, and what is the funder betting on?",
+        options: ["Asian Paints and Indigo Paints — both are simply 'premium positioning' bets, with no further distinction needed beyond that label", "Birla Opus and JSW Dulux — both are conglomerate-backed entrants (Aditya Birla Group / JSW Group) using parent balance-sheet capital to fund a sustained challenge to Asian Paints' historical dominance, even though one is currently loss-making (Opus, in active land-grab mode) and the other is mid-restructuring (JSW Dulux, post-divestiture) — the underlying BET (conglomerate capital funding a paints land-grab) is structurally the same", "Berger and Birla Opus — both are pursuing identical, indistinguishable dealer-credit strategies with no meaningful difference", "All five companies represent fundamentally the same bet: a wager on overall Indian housing and construction demand growth, with no other distinguishing feature between them"],
+        correct: 1,
+        responses: [
+          { tag: "Off-track", cls: "wrong-resp", text: "Asian Paints and Indigo Paints occupy very different positions in the market (AP is the ~50%-share incumbent leader, Indigo is a ~3.5%-share small-cap niche player) — labeling both simply 'premium' glosses over the much more important difference in scale, risk profile, and what each company's valuation is actually betting on.", followup: "What's the key structural DIFFERENCE in risk and scale between Asian Paints and Indigo Paints that the label 'both premium' misses entirely?" },
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right pairing — strip away the surface-level differences (one loss-making and growing fast, one profitable but in transition) and both Birla Opus and JSW Dulux represent the same underlying structural bet: a large industrial conglomerate deploying its own balance sheet to fund a sustained multi-year assault on Asian Paints' historical near-monopoly, betting that patient capital plus aggressive dealer/contractor economics can permanently reshape market share.", followup: "Given they represent the same TYPE of bet, what's the single biggest difference between Birla Opus's and JSW Dulux's EXECUTION of that bet so far, based on what's in the dashboard?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Berger and Birla Opus actually compete head-on with quite different dealer economics — Birla offers free machines and 20-day credit specifically as a NEW entrant's disruption strategy, which isn't shown to be identical to Berger's established, more conventional dealer relationships.", followup: "Looking at the dealer-economics details given for Birla Opus specifically, what makes its strategy distinct from a typical established player like Berger's?" },
+          { tag: "Partially right", cls: "partial-resp", text: "Housing demand growth is a SHARED tailwind for the whole sector, but it doesn't explain the very different RISK PROFILES, funding structures, and competitive postures described for each of the five companies individually throughout the dashboard.", followup: "If overall housing demand were the only thing that mattered, why would the dashboard describe such different verdicts and risk profiles for each of the five companies individually?" }
+        ]
+      },
+      {
+        type: "free",
+        q: "If you had to monitor ONE number each quarter to test whether Asian Paints' moat is holding, and a DIFFERENT ONE number to test whether Birla Opus's land-grab is becoming a durable, profitable business — name both and justify why each is the right one given what's currently uncertain about each company's thesis.",
+        context: "AP's open question: does premium/international/Beautiful Homes hold even as mid-market erodes? · Birla Opus's open question: is the −₹120 Cr adjusted loss narrowing as scale increases, or persisting/widening?",
+        hint: "For each company, the dashboard's own framing already hints at what the SPECIFIC point of uncertainty is. Match the metric to the specific doubt, not just to 'overall performance.'",
+        keywords: ["market share", "premium segment", "beautiful homes", "international", "opus", "loss narrowing", "breakeven", "ebitda margin", "dealer", "per-quarter", "thesis specific", "mid-market"],
+        partialKeywords: ["track", "watch", "metric", "quarter"],
+        responses: {
+          good: { tag: "Excellent reasoning", cls: "correct-resp", text: "Strong answer — for Asian Paints, the sharpest metric is market share specifically within the PREMIUM/luxury segment (or international revenue trend), since the dashboard's own framing is that AP's central uncertainty is whether premium and international hold even as mid-market erodes; OVERALL market share blends in losses AP may not actually need to defend. For Birla Opus, the sharpest metric is the trend in its adjusted loss (or loss per dealer/contractor) relative to revenue growth — specifically whether that −₹120 Cr is NARROWING as scale increases, since the open question is whether growth is converting into durable profitability or just buying share at a constant or worsening cost.", followup: "If next quarter showed AP's overall share flat but its PREMIUM segment share also flat (not declining), while Birla Opus's adjusted loss WIDENED despite continued revenue growth — how would your read of each company's thesis change?" },
+          partial: { tag: "On the right track", cls: "partial-resp", text: "You've picked reasonable metrics, but make sure each one is specifically tied to what's UNCERTAIN about that company's particular thesis, rather than a generic 'how's the company doing' number like total revenue or PAT.", followup: "For Asian Paints specifically, why would tracking OVERALL market share be a less precise test than tracking PREMIUM-segment share specifically, given what the dashboard says AP's core moat actually is?" },
+          wrong: { tag: "Let's rebuild this", cls: "wrong-resp", text: "Go back to what each company's OPEN QUESTION actually is, as framed by the dashboard itself — AP's is about whether its harder-to-replicate assets hold up even as mid-market erodes; Opus's is about whether fast growth is turning into profitability, not just market share.", followup: "Re-read the Trojan Horse panel's conclusion for AP, and the Birla Opus card's framing for Opus — what specific open question does each one pose, and what single metric would most directly answer that question?" }
+        }
+      },
+      {
+        type: "mcq",
+        q: "Indigo Paints is described as 'most affordable small-cap — best margins' while Asian Paints is framed as 'improved, still premium — watch market share stabilisation.' Both carry genuine uncertainty, but of a DIFFERENT KIND. Which statement best captures the difference in the TYPE of risk each represents?",
+        context: "Indigo: P/E ~31×, best-in-sector margins (23.0% EBITDA, 48.6% gross), small scale (~₹4,712 Cr mkt cap) · Asian Paints: P/E ~59-65×, larger scale (~₹2,57,000 Cr mkt cap), market share under active pressure",
+        hint: "One company's risk is about whether its CURRENT strengths survive an attempt to grow much bigger. The other's risk is about whether its CURRENT size and price tag can be defended against well-funded attackers. These are not the same kind of risk.",
+        options: ["Indigo's risk is whether its margins survive if it tries to scale up and compete more directly with AP/Birla at greater size, while Asian Paints' risk is whether its CURRENT scale and valuation can be defended against two well-funded disruptors (Birla Opus and JSW Dulux) simultaneously", "Both companies face an identical type of valuation risk simply because both are valued using P/E multiples", "Indigo carries essentially no investment risk at all given its strong current margins", "Asian Paints carries essentially no investment risk at all given its international diversification"],
+        correct: 0,
+        responses: [
+          { tag: "Sharp thinking", cls: "correct-resp", text: "Exactly the right distinction — Indigo's risk is fundamentally about SCALING (can a small, high-margin niche player grow without diluting the very margins that make it attractive?), while AP's risk is about DEFENDING (can an already-large incumbent hold its scale and justify its premium valuation against two simultaneously well-funded challengers?). These are genuinely different risk types, even though both show up as 'uncertainty' in a simple valuation table.", followup: "Which of these two risk types — scaling risk or defending risk — do you think is generally easier to monitor and predict from the outside as an investor, and why?" },
+          { tag: "Common mistake", cls: "wrong-resp", text: "Using the same VALUATION TOOL (P/E) for both companies doesn't mean they face the same underlying business risk — the multiple is just the measurement; the actual risk driving each company's uncertainty is structurally different, as described in their respective dashboard sections.", followup: "If two companies are both valued using P/E, does that necessarily mean their underlying business risks are similar? What besides the valuation METHOD determines the actual risk?" },
+          { tag: "Off-track", cls: "wrong-resp", text: "Strong current margins don't eliminate risk — they describe today's performance, not whether that performance is durable if the company tries to grow, or vulnerable to competitive pressure as it scales, which is exactly the open question for Indigo specifically.", followup: "If Indigo's margins are currently excellent, what could still threaten them if the company pursued faster growth or larger scale, even without anything going visibly 'wrong' today?" },
+          { tag: "Partially right", cls: "partial-resp", text: "International diversification is a genuine strength for AP, but it doesn't eliminate risk entirely — AP's own dashboard sections explicitly flag market-share pressure and valuation de-rate risk as live, ongoing concerns even with international operations intact.", followup: "If international diversification fully eliminated AP's risk, why would CB Research's own valuation tab still flag 'watch market share stabilisation' as an open concern?" }
+        ]
+      }
+    ]
+  }
+};
+
 </script>
+</body>
+</html>
