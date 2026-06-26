@@ -345,9 +345,9 @@ footer span{color:#ffe0c0}
         </div>
       </div>
       <div class="edition-bar">
-        <span class="ebl">Macro:</span><span class="ebs">RBI &nbsp;·&nbsp; NPS &nbsp;·&nbsp; FDI / Regulations &nbsp;·&nbsp; PSU OFS &nbsp;·&nbsp; Jio &amp; NSE IPOs</span>
+        <span class="ebl">Macro:</span><span class="ebs">FAR Bonds / FPI Tax &nbsp;·&nbsp; Crude Oil Sectors &nbsp;·&nbsp; RBI &nbsp;·&nbsp; NPS &nbsp;·&nbsp; FDI / Regulations &nbsp;·&nbsp; PSU OFS &nbsp;·&nbsp; Jio &amp; NSE IPOs</span>
         &nbsp;&nbsp;
-        <span class="ebl">Sectors:</span><span class="ebs">Solar &nbsp;·&nbsp; Gold &nbsp;·&nbsp; Power / NTPC Green &nbsp;·&nbsp; Coal &nbsp;·&nbsp; 2-Wheelers &nbsp;·&nbsp; PV &nbsp;·&nbsp; Spare Parts &nbsp;·&nbsp; Cement &nbsp;·&nbsp; EMS</span>
+        <span class="ebl">Sectors:</span><span class="ebs">Paint / Aviation / OMC / Tyre (Crude) &nbsp;·&nbsp; Solar &nbsp;·&nbsp; Gold &nbsp;·&nbsp; Power / NTPC Green &nbsp;·&nbsp; Coal &nbsp;·&nbsp; 2-Wheelers &nbsp;·&nbsp; PV &nbsp;·&nbsp; Spare Parts &nbsp;·&nbsp; Cement &nbsp;·&nbsp; EMS</span>
       </div>
     </div>
   </div>
@@ -500,6 +500,77 @@ const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi','geopolit
 
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
+  {
+    id:30, date:'2026-06-26', sector:'fpi', cat:'macro', sectorLabel:'FPI / G-Sec / FAR', pillCls:'pill-fpi', time:'26 Jun 2026',
+    impact:'positive', breaking:true,
+    badges:['Tax Zero on Interest & Capital Gains','FAR Expanded: 15Y, 30Y, 40Y G-Secs Added','₹28,000 Cr FAR Inflows in 2026 So Far','Bloomberg Index Inclusion Decision Imminent'],
+    en:{
+      headline:'Government Bonds Go Tax-Free for FPIs — ₹28,000 Cr Already In, $25B Bloomberg Prize in Sight',
+      context:'On June 5, 2026, the Income-Tax (Amendment) Ordinance eliminated the 20% withholding tax on interest income and the 12.5% LTCG tax on government securities for all FPIs, with effect from April 1, 2026. The FAR was simultaneously expanded to include all new 15-, 30-, and 40-year G-Secs and Sovereign Green Bonds. The move directly addresses the tax friction that caused Bloomberg Global Aggregate Index to defer India\'s inclusion in January 2026.',
+      bullets:[
+        'FPI holdings in FAR securities jumped ₹8,795 Cr in the first week alone (June 3–10); total 2026 FAR inflows now stand at ₹28,000 Cr including ₹13,200 Cr in June\'s first fortnight alone',
+        'Bloomberg Global Aggregate Index — tracked by ~$2.5 lakh crore in global funds — is under active mid-2026 review; inclusion could trigger ~$25 billion of phased inflows from April 2027',
+        'Three other indices already include India: JP Morgan GBI-EM (joined June 2024, ~$236B AUM) and FTSE Russell EMGBI; Bloomberg remains the largest uncaptured prize',
+        'FAR expansion to 15Y/30Y/40Y tenors is structurally significant — long-duration passive funds need access across the full yield curve to take meaningful index-weight positions',
+        'FPIs currently hold just 2.96% of outstanding G-Secs (₹3.32 lakh crore as of June 10); domestic banks, insurance cos and RBI collectively hold ~75% — headroom for foreign participation is vast',
+        'Standard Chartered projects $5 billion in near-term FPI inflows; SBI Research notes lower long-end yields, reduced government borrowing cost, and rupee support as likely transmission channels',
+        'Risk: Remaining Bloomberg objections (Euroclear settlement eligibility, fund registration complexity, trading workflow automation) not formally resolved yet — tax removal alone may not be sufficient for inclusion'
+      ],
+      posPoints:['Rupee receives structural support as FAR inflows convert dollars to INR','Long-end bond yields soften, reducing government borrowing cost — fiscal positive','Debt mutual fund NAVs rise as G-Sec prices appreciate with yield compression','Bloomberg inclusion would bring automatic passive buying from $2.5 lakh crore index-tracking funds','FPI returns on Indian G-Secs improve 15–20% post tax removal, making India competitive vs peer EM bond markets'],
+      negPoints:['Bloomberg objections on Euroclear settlement and fund registration still unresolved — inclusion not guaranteed','Rupee depreciated ~7% in 2026 already, eroding dollar-denominated returns independently of tax changes','US Treasury yields at 4.5–5% offer safer risk-adjusted returns, limiting EM bond attractiveness globally','Capital can exit as rapidly as it enters — FAR inflows are "hot money" by nature and can amplify rupee volatility on reversal']
+    },
+    ta:{
+      headline:'அரசு பத்திரங்களில் FPI-க்கு வரி ஜீரோ! ₹28,000 கோடி வந்தது — Bloomberg Index ஆனால் ₹2 லட்சம் கோடி வரும்',
+      context:'June 5, 2026 Ordinance மூலம் FPI-கள் India Government Bonds-ல் earn பண்ணும் interest-க்கு 20% tax, capital gains-க்கு 12.5% tax — இரண்டும் ரத்து. FAR-ல் 15, 30, 40 ஆண்டு bonds சேர்க்கப்பட்டது. Bloomberg Global Index-ல் India include ஆனால் $25 billion (₹2 லட்சம் கோடி) வரும்.',
+      bullets:[
+        'June முதல் fortnight மட்டும் ₹13,200 கோடி FAR-ல் வந்தது; 2026 total ₹28,000 கோடி',
+        'Bloomberg Global Aggregate Index — $2.5 லட்சம் கோடி funds track பண்றது — mid-2026 review நடக்கிறது',
+        'JP Morgan Index-ல் India 2024-ல் சேர்ந்தது; Bloomberg மட்டும் remain',
+        'FPI-கள் இப்போது G-Sec market-ல் வெறும் 2.96% மட்டுமே — growth potential vast',
+        'Long-end bond yields குறையும் → Government borrowing cost குறையும் → fiscal positive',
+        'Standard Chartered $5 billion near-term inflow project பண்றது',
+        'Risk: Euroclear settlement, fund registration issues இன்னும் resolve ஆகலை'
+      ],
+      posPoints:['Rupee-க்கு structural support','Long-end yields குறையும் — fiscal relief','Debt Mutual Fund NAV உயரும்','Bloomberg include ஆனால் passive funds automatically buy செய்யும்','FPI returns 15–20% improve — India peer EM-களை விட competitive ஆகும்'],
+      negPoints:['Bloomberg objections fully resolved ஆகலை — inclusion uncertain','Rupee 2026-ல் ~7% depreciate ஆகியது — dollar returns erode','US Treasuries 4.5–5% yield தருகின்றன — safer alternative','FAR inflows reverse ஆனால் rupee மேலும் pressure ஆகும்']
+    }
+  },
+  {
+    id:29, date:'2026-06-24', sector:'macro', cat:'macro', sectorLabel:'Crude Oil / Sectors', pillCls:'pill-power', time:'24 Jun 2026',
+    impact:'mixed', breaking:true,
+    badges:['Brent at $76.71 — 4-Month Low','US-Iran Hormuz Deal Restores Supply','OMC + Aviation + Paint Win','ONGC / Oil India Lose Revenue'],
+    en:{
+      headline:'Crude Crashes to 4-Month Low at $76.71 — One Move, Two Opposite Outcomes for Indian Stocks',
+      context:'On June 24, 2026, Brent crude fell to $76.71/barrel — its lowest in four months — after reports of resumed oil tanker traffic through the Strait of Hormuz following the US-Iran framework agreement. The fall from ~$110+ in early April represents a ~30% correction. India imports 85% of its oil needs, making crude the single most important macro variable for sectors ranging from paint to aviation to upstream explorers.',
+      bullets:[
+        'The Strait of Hormuz handles ~20% of global oil supply; its near-closure from Feb–Apr 2026 was the largest single oil supply shock in decades, pushing Brent from ~$70 to $110+',
+        'Paint sector (Asian Paints, Berger, Kansai Nerolac): solvents and resins are crude derivatives; lower input costs translate to margin expansion within 1–2 quarters without retail price cuts',
+        'Aviation (IndiGo/InterGlobe Aviation): ATF accounts for 40–45% of operating costs; every $10/barrel fall in crude materially improves profitability and debt repayment capacity',
+        'OMCs (HPCL, BPCL, IOC): lower crude reduces inventory loss risk and widens marketing margins — but benefit is partially capped if the government orders retail fuel price cuts to pass savings to consumers',
+        'Tyre makers (Apollo, CEAT, JK Tyre) and specialty chemicals (Aarti Industries, Navin Fluorine): synthetic rubber, carbon black, and petrochemical feedstocks all fall with crude',
+        'Upstream losers — ONGC and Oil India: revenue realisation falls directly with crude price; every $5/barrel fall reduces their earnings substantially with near-zero cost offset',
+        'Macro transmission: lower crude shrinks India\'s import bill → reduces trade deficit and CAD pressure → supports rupee → reduces RBI intervention burden → creates space for rate cuts',
+        'The twist: a falling crude environment is often accompanied by a stronger US dollar, which can simultaneously weaken the rupee — partially offsetting import bill savings through other import channels'
+      ],
+      posPoints:['Paint, Tyre, Chemicals: raw material cost relief → margin expansion, earnings upgrades likely','Aviation: ATF savings = operating leverage improvement; IndiGo debt load eases','OMCs: marketing margin revival; inventory loss risk falls significantly','Macro: India\'s import bill shrinks, CAD improves, rupee gets support, RBI has more room','Rate cut probability rises if crude-driven disinflation feeds into CPI — positive for rate-sensitive sectors (banking, real estate, auto)'],
+      negPoints:['ONGC and Oil India: every dollar drop in crude directly reduces revenue — earnings under pressure','Government may order fuel price cuts, reducing OMC marketing margin gains to near zero','Stronger US dollar (typical in crude falls) can weaken rupee, increasing costs on non-oil imports','If crude fell due to weak global demand rather than supply normalisation, broader macro slowdown risk for Indian exports and metals','Cement sector gets partial tailwind (petcoke, diesel) but demand slowdown is the bigger risk if global growth weakens']
+    },
+    ta:{
+      headline:'Crude $76.71-க்கு விழுந்தது — ஒரே news, எதிர் எதிர் direction-ல் stocks!',
+      context:'June 24, 2026-ல் Brent Crude 4 மாத low $76.71-க்கு விழுந்தது. US-Iran deal பண்ணினதால் Strait of Hormuz-ல் shipping resume ஆச்சு. India 85% oil import பண்றது — ஒரு formula: "Crude produce பண்றவன் → விழுந்தால் LOSES. Crude consume பண்றவன் → விழுந்தால் WINS."',
+      bullets:[
+        'Paint: Asian Paints, Berger — raw materials cheap ஆகும் → margin கூடும்',
+        'Aviation: IndiGo-க்கு ATF cost 40–45% of expenses — குறைந்தால் profit jump',
+        'OMC: HPCL, BPCL, IOC — marketing margin improve; government price cut risk உண்டு',
+        'Tyre + Chemicals: synthetic rubber, feedstock cheap → margin benefit',
+        'ONGC, Oil India: revenue falls with price — earnings pressure',
+        'Macro: Import bill குறையும் → trade deficit improve → rupee support → rate cut space',
+        'Twist: Dollar strong ஆனால் rupee weak ஆகலாம் — partial offset'
+      ],
+      posPoints:['Paint, Tyre, Chemicals margin expansion — earnings upgrade potential','IndiGo profitability improve; debt repayment easy ஆகும்','OMC marketing margin revives — inventory loss risk குறையும்','India CAD improves, rupee gets tailwind','Rate cut possibility கூடும் — banking, auto, real estate benefit'],
+      negPoints:['ONGC, Oil India revenue மற்றும் earnings fall','Government retail price cut பண்ணினால் OMC benefit neutralize ஆகும்','Strong dollar → rupee weak → other imports expensive','Global demand weakness-ஆல் விழுந்தால் exports, metals affected','Cement: partial tailwind only — demand slowdown risk larger']
+    }
+  },
   {
     id:28, date:'2026-06-24', sector:'ipo', cat:'macro', sectorLabel:'IPO / Listings', pillCls:'pill-ipo', time:'24 Jun 2026',
     impact:'mixed', breaking:true,
@@ -1940,17 +2011,19 @@ function cardHTML(n) {
       <span class="card-time">${n.time}</span>
     </div>
     <h2 class="card-headline">${L.headline}</h2>
-    ${Array.isArray(L.context)
-      ? `<ul class="card-bullets">${L.context.map(b=>`<li>${b}</li>`).join('')}</ul>`
-      : `<p class="card-context">${L.context}</p>`
+    ${Array.isArray(L.bullets)
+      ? `<ul class="card-bullets">${L.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`
+      : Array.isArray(L.context)
+        ? `<ul class="card-bullets">${L.context.map(b=>`<li>${b}</li>`).join('')}</ul>`
+        : `<p class="card-context">${L.context||''}</p>`
     }
     ${imageBlock}
-    <div class="card-badges">${n.badges.map(b=>`<span class="cbadge ${bc}">${b}</span>`).join('')}</div>
+    <div class="card-badges">${(Array.isArray(n.badges)?n.badges:[]).map(b=>`<span class="cbadge ${bc}">${b}</span>`).join('')}</div>
     <div class="expand-hint"><span class="chevron">▾</span>&nbsp;${expandTxt}</div>
     <div class="impact-panel">
       <div class="impact-cols">
-        <div class="icol icol-pos"><div class="icol-title">${posTxt}</div>${L.pos.map(p=>`<div class="ipoint">${p}</div>`).join('')}</div>
-        <div class="icol icol-neg"><div class="icol-title">${negTxt}</div>${L.neg.map(p=>`<div class="ipoint">${p}</div>`).join('')}</div>
+        <div class="icol icol-pos"><div class="icol-title">${posTxt}</div>${(Array.isArray(L.posPoints)?L.posPoints:[]).map(p=>`<div class="ipoint">${p}</div>`).join('')}</div>
+        <div class="icol icol-neg"><div class="icol-title">${negTxt}</div>${(Array.isArray(L.negPoints)?L.negPoints:[]).map(p=>`<div class="ipoint">${p}</div>`).join('')}</div>
       </div>
       ${compareTable}
       ${dataTable}
