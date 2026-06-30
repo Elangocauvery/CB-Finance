@@ -413,6 +413,9 @@ input.chat-in{flex:1;padding:10px 14px;border:1px solid var(--border);border-rad
   </div>
   <div class="g2 gap-top">
     <div class="chart-box"><h3 id="titlePAT">PAT (₹ Cr) — Quarterly FY26</h3><canvas id="chartPAT" height="200"></canvas></div>
+    <div class="chart-box"><h3 id="titleEBITDAVal">EBITDA (₹ Cr) — Quarterly FY26</h3><canvas id="chartEBITDA" height="200"></canvas></div>
+  </div>
+  <div class="g2 gap-top">
     <div class="chart-box"><h3 id="titleSpread">Cotton-to-Yarn Spread (₹/kg) — Trend</h3><canvas id="chartSpread" height="200"></canvas></div>
   </div>
   <div class="card gap-top" style="background:var(--ns-soft);">
@@ -957,18 +960,22 @@ const CHART_DATA = {
     rev:[793.31,760.08,800.68,859.79],
     margin:[14.02,13.10,13.93,15.17],
     pat:[40.99,34.79,44.41,57.36],
+    ebitda:[111.24,99.56,111.54,130.40],
     titleRev:'Quarterly Revenue (₹ Cr) — FY26',
     titleMargin:'Quarterly EBITDA Margin % — FY26',
-    titlePAT:'Quarterly PAT (₹ Cr) — FY26'
+    titlePAT:'Quarterly PAT (₹ Cr) — FY26',
+    titleEBITDA:'Quarterly EBITDA (₹ Cr) — FY26'
   },
   annual:{
     labels:['FY23','FY24','FY25','FY26'],
     rev:[2800,3100,3305,3213.87],
     margin:[14.5,13.0,13.9,14.09],
     pat:[190,160,175.5,177.55],
+    ebitda:[406,403,459.5,452.80],
     titleRev:'Annual Revenue (₹ Cr) — FY23 to FY26',
     titleMargin:'Annual EBITDA Margin % — FY23 to FY26',
-    titlePAT:'Annual PAT (₹ Cr) — FY23 to FY26'
+    titlePAT:'Annual PAT (₹ Cr) — FY23 to FY26',
+    titleEBITDA:'Annual EBITDA (₹ Cr) — FY23 to FY26'
   }
 };
 const spreadData = {
@@ -1018,6 +1025,9 @@ function buildCharts(period){
   const pColors=d.pat.map(()=>ns);
   updateOrCreate('chartPAT',{type:'bar',plugins:[valueLabelPlugin],data:{labels:d.labels,datasets:[{data:d.pat,backgroundColor:pColors}]},options:{responsive:true,animation:{duration:400},plugins:{legend:{display:false},title:{display:true,text:d.titlePAT,font:{size:12}}},scales:{y:{ticks:{callback:v=>v.toLocaleString('en-IN')}}}}});
   safeSetText('titlePAT',d.titlePAT);
+  const eColors=d.ebitda.map(()=>'#1d4ed8');
+  updateOrCreate('chartEBITDA',{type:'bar',plugins:[valueLabelPlugin],data:{labels:d.labels,datasets:[{data:d.ebitda,backgroundColor:eColors}]},options:{responsive:true,animation:{duration:400},plugins:{legend:{display:false},title:{display:true,text:d.titleEBITDA,font:{size:12}}},scales:{y:{ticks:{callback:v=>v.toLocaleString('en-IN')}}}}});
+  safeSetText('titleEBITDAVal',d.titleEBITDA);
   // Spread chart always same
   if(!chartInstances['chartSpread']){
     chartInstances['chartSpread']=new Chart(document.getElementById('chartSpread'),{type:'line',plugins:[valueLabelPlugin],data:{labels:spreadData.labels,datasets:[{data:spreadData.data,borderColor:'#b8911e',backgroundColor:'rgba(184,145,30,.15)',tension:.4,pointRadius:6,pointBackgroundColor:'#b8911e'}]},options:{responsive:true,animation:{duration:400},plugins:{legend:{display:false},title:{display:true,text:'Cotton-to-Yarn Spread (₹/kg) — Reference Trend',font:{size:12}}},scales:{y:{ticks:{callback:v=>'₹'+v},min:60,max:140}}}});
