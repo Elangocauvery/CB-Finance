@@ -117,6 +117,7 @@ input.chat-in{flex:1;padding:10px 14px;border:1px solid var(--border);border-rad
   <button class="tab-btn" onclick="switchTab('companies',this)">🏭 Companies</button>
   <button class="tab-btn" onclick="switchTab('segments',this)">🗂️ Business Segments</button>
   <button class="tab-btn" onclick="switchTab('rawmat',this)">🛢️ Raw Material &amp; PVC Spread</button>
+  <button class="tab-btn" onclick="switchTab('mfrs',this)">🏗️ PVC Manufacturers in India</button>
   <button class="tab-btn" onclick="switchTab('demerger',this)">✂️ Demergers &amp; Restructuring</button>
   <button class="tab-btn" onclick="switchTab('comparison',this)">⚖️ Peer Comparison</button>
   <button class="tab-btn" onclick="switchTab('charts',this)">📈 Charts</button>
@@ -438,6 +439,167 @@ input.chat-in{flex:1;padding:10px 14px;border:1px solid var(--border);border-rad
   </div>
 </div>
 
+<!-- ========== PVC MANUFACTURERS IN INDIA TAB ========== -->
+<div id="tab-mfrs" class="panel">
+  <div class="sec-hdr">🏗️ PVC Manufacturers in India <span class="sec-note">Domestic Resin Producers · CPVC Capacity · The Grasim–Lubrizol Landmark</span></div>
+
+  <div class="card" style="background:var(--gold-soft);border-color:var(--gold);border-left:4px solid var(--gold);">
+    <div class="card-lbl" style="color:var(--gold);">📌 Why This Tab Matters for Pipe Companies</div>
+    <p style="line-height:1.8;">India's domestic PVC and CPVC resin production capacity determines how much of the ~60–68% import dependency the country can eventually close — and every new tonne of domestic capacity built shifts pricing power away from overseas suppliers and anti-dumping-duty-dependent policy buffers toward locally-anchored, more stable supply chains. For Finolex (backward-integrated), for Supreme and Astral (pure converters reliant on purchased resin), and for the sector's long-term margin structure, the build-out of domestic resin capacity is the single most consequential structural shift of the current decade. The June 2026 inauguration of the Grasim–Lubrizol CPVC plant at Vilayat is the headline event in this story.</p>
+  </div>
+
+  <!-- SUPPLY-DEMAND SNAPSHOT -->
+  <div class="card gap-top">
+    <div class="card-lbl">🗺️ India PVC Resin — Demand-Supply Snapshot (FY26)</div>
+    <div class="scroll-wrap" style="border:none;box-shadow:none;">
+      <table>
+        <thead><tr><th>Parameter</th><th class="num">Estimate (FY26)</th><th>Context</th></tr></thead>
+        <tbody>
+          <tr><td class="tb">India's total PVC demand</td><td class="num">~4.5–5 Million MT/yr</td><td>Construction, pipes, cables, packaging, auto</td></tr>
+          <tr><td class="tb">Domestic PVC resin production capacity</td><td class="num">~1.8–2.0 Million MT/yr</td><td>Covers ~35–40% of demand; balance imported</td></tr>
+          <tr><td class="tb">Import dependency (Suspension PVC)</td><td class="num">~60–68%</td><td>Shrinking toward &lt;30% by FY27–28 as new capacity commissions</td></tr>
+          <tr><td class="tb">CPVC compound demand (India)</td><td class="num">~3–4 Lakh MT/yr &amp; growing</td><td>~10–12% CAGR driven by plumbing premiumisation</td></tr>
+          <tr><td class="tb">Domestic CPVC resin capacity (pre-Grasim)</td><td class="num">Negligible (near-100% imported)</td><td>Almost entirely sourced from Lubrizol USA/Belgium; Grasim's Vilayat plant changes this structurally</td></tr>
+          <tr><td class="tb">Key import origins</td><td class="num">China, USA, Korea, Taiwan, Japan</td><td>Suspension grade; under DGTR anti-dumping / CVD scrutiny as of Mar 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DOMESTIC PRODUCERS TABLE -->
+  <div class="card gap-top">
+    <div class="card-lbl">🏭 Domestic PVC / CPVC Resin Producers — India</div>
+    <div class="scroll-wrap" style="border:none;box-shadow:none;">
+      <table>
+        <thead><tr><th>Company</th><th>Resin Type</th><th class="num">Capacity (MTPA)</th><th>Location</th><th>Listed</th><th>Key Note</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--fin-soft);">
+            <td class="tb" style="color:var(--fin);">Finolex Industries</td>
+            <td>Suspension PVC (S-PVC)</td>
+            <td class="num">~2,72,000</td>
+            <td>Ratnagiri, Maharashtra</td>
+            <td class="tpos">BSE/NSE</td>
+            <td>Only vertically-integrated pipe+resin player; EDC/ethylene route; captive resin feeds its own pipe capacity</td>
+          </tr>
+          <tr>
+            <td class="tb">Reliance Industries (RIL)</td>
+            <td>S-PVC</td>
+            <td class="num">~5,00,000+</td>
+            <td>Dahej, Gujarat (Hazira)</td>
+            <td class="tpos">BSE/NSE</td>
+            <td>Largest single-site PVC capacity in India; ethylene route via naphtha cracker</td>
+          </tr>
+          <tr>
+            <td class="tb">Chemplast Sanmar</td>
+            <td>Specialty Paste PVC (E-PVC)</td>
+            <td class="num">~1,07,000</td>
+            <td>Mettur &amp; Cuddalore, Tamil Nadu</td>
+            <td class="tpos">BSE/NSE</td>
+            <td>India's largest paste PVC maker; carbide route; Mettur plant est. 1967 — a legacy specialist</td>
+          </tr>
+          <tr>
+            <td class="tb">DCM Shriram (Shriram Vinyl)</td>
+            <td>S-PVC; specialty grades K52–K88</td>
+            <td class="num">~1,50,000 est.</td>
+            <td>Kota, Rajasthan</td>
+            <td class="tpos">BSE/NSE</td>
+            <td>Vertically integrated chlor-alkali + PVC; serves pipe, cable, profile industries; known for specialty K-value range</td>
+          </tr>
+          <tr>
+            <td class="tb">DCW Limited</td>
+            <td>S-PVC</td>
+            <td class="num">~80,000 est.</td>
+            <td>Sahupuram, Tamil Nadu</td>
+            <td class="tpos">BSE</td>
+            <td>One of India's oldest chemical companies; chlor-alkali + PVC with EDC integration; smaller capacity</td>
+          </tr>
+          <tr style="background:var(--ast-soft);">
+            <td class="tb" style="color:var(--ast);">Grasim Industries (Aditya Birla) + Lubrizol</td>
+            <td>CPVC Resin (Chlorinated PVC)</td>
+            <td class="num">50,000 (Phase 1) → 1,00,000 (full)</td>
+            <td>Vilayat (GIDC), Bharuch, Gujarat</td>
+            <td class="tpos">BSE/NSE (Grasim)</td>
+            <td>India's first large-scale CPVC resin plant; Phase 1 inaugurated June 17, 2026 — the sector's most important supply event of the decade</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:10.5px;color:var(--muted);margin-top:8px;">Capacities for unlisted units are estimates from industry and public disclosures; treat as indicative. Chemplast Sanmar is a subsidiary of Sanmar Chemicals Group and separately listed. Adani Group is mentioned in industry databases as a PVC-adjacent player via chlor-alkali interests but does not have a standalone PVC resin facility confirmed in public data as of FY26.</p>
+  </div>
+
+  <!-- GRASIM-LUBRIZOL DEEP-DIVE -->
+  <div style="background:#181511;color:#fff;border-radius:var(--radius);padding:16px 22px;margin-top:18px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:4px;">🌟 Grasim Industries × Lubrizol — India's First Large-Scale CPVC Resin Plant</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.08em;text-transform:uppercase;">Phase 1 Inaugurated June 17, 2026 · Vilayat, Bharuch, Gujarat</div>
+  </div>
+
+  <div class="g2 gap-top">
+    <div class="card" style="border-top:3px solid var(--ast);">
+      <div class="card-lbl" style="color:var(--ast);">🏛️ Background &amp; Partnership Structure</div>
+      <table>
+        <thead><tr><th>Element</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td class="tb">Partnership type</td><td>Technology + manufacturing collaboration — not a formal equity JV; Lubrizol provides the CPVC technology licence and process know-how; Grasim owns and operates the plant within its chlor-alkali complex</td></tr>
+          <tr><td class="tb">Grasim (Operator)</td><td>Flagship of the Aditya Birla Group; BSE: 500300; Chlor-Alkali &amp; Derivatives is one of its core chemical platforms alongside Paints (Birla Opus) and Viscose Staple Fibre</td></tr>
+          <tr><td class="tb">Lubrizol (Technology)</td><td>A Berkshire Hathaway company; 60-year presence in India; world's largest CPVC compound producer under brands FlowGuard Plus, Corzan, BlazeMaster; Dahej (Gujarat) compound plant doubled to 1,40,000 MT in 2025</td></tr>
+          <tr><td class="tb">Groundbreaking</td><td>October 2023 (Vilayat, Gujarat)</td></tr>
+          <tr><td class="tb">Phase 1 Inauguration</td><td>June 17, 2026 — inaugurated by Gujarat Chief Minister Bhupendra Patel</td></tr>
+          <tr><td class="tb">Plant location</td><td>GIDC Vilayat, Bharuch district, Gujarat — within Grasim's existing integrated chlor-alkali complex (feedstock chlorine available on-site)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="border-top:3px solid var(--ast);">
+      <div class="card-lbl" style="color:var(--ast);">⚙️ Capacity, Products &amp; Market</div>
+      <table>
+        <thead><tr><th>Parameter</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td class="tb">Phase 1 capacity</td><td class="num">50,000 MTPA CPVC resin (commissioned)</td></tr>
+          <tr><td class="tb">Full (Phase 2) capacity</td><td class="num">1,00,000 MTPA — to be world's largest single-site CPVC resin facility</td></tr>
+          <tr><td class="tb">Technology</td><td>Lubrizol's latest proprietary CPVC resin manufacturing process (post-chlorination of PVC)</td></tr>
+          <tr><td class="tb">Resin brands</td><td>Sold under Lubrizol's FlowGuard Plus, Corzan and BlazeMaster brand portfolios</td></tr>
+          <tr><td class="tb">Primary end-use</td><td>Hot &amp; cold water plumbing systems, fire sprinkler piping, industrial piping, HVAC</td></tr>
+          <tr><td class="tb">Target markets</td><td>India (primary), plus exports to Bangladesh, Indonesia, Nepal</td></tr>
+          <tr><td class="tb">Lubrizol's Dahej compound plant</td><td>Doubled from 70,000 MT → 1,40,000 MT in 2025; Vilayat resin feeds Dahej compounding → together, the largest integrated CPVC supply chain in Asia</td></tr>
+          <tr><td class="tb">Jobs created</td><td>4,000+ direct and indirect (combined Vilayat + Dahej projects)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="g2 gap-top">
+    <div class="card" style="background:var(--ast-soft);border-color:var(--ast);">
+      <div class="card-lbl" style="color:var(--ast);">🎯 Strategic Significance — Why June 2026 Is a Sector Watershed</div>
+      <p style="line-height:1.8;margin-bottom:8px;">Before this plant, <strong>virtually all CPVC resin used by Astral, Supreme and other Indian pipe makers was imported</strong> — primarily from Lubrizol's overseas facilities in the USA and Belgium. This made the sector's fastest-growing, highest-margin sub-category (CPVC plumbing) entirely dependent on a single global supplier's logistics, currency fluctuations, and overseas plant uptime. The Vilayat plant changes that structural vulnerability by creating a domestic, Make-in-India CPVC resin supply base for the first time.</p>
+      <p style="line-height:1.8;">For pipe companies specifically: domestic CPVC resin supply at Vilayat → lower freight cost, faster replenishment, shorter working-capital cycles, and a supply source insulated from international shipping disruptions (such as the Red Sea/Middle East disruptions that tightened PVC raw material supply through FY26).</p>
+    </div>
+    <div class="card">
+      <div class="card-lbl">📊 Impact on Each of Our 3 Companies</div>
+      <table>
+        <thead><tr><th>Company</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="tb" style="color:var(--fin);">Finolex</td>
+            <td>Indirect/neutral in the short term — Finolex makes <em>suspension PVC</em>, not CPVC. However, as the domestic supply of CPVC resin grows, the overall import dependency of the sector falls, reinforcing the ADD/BIS-driven spread improvements that directly benefit Finolex's resin margins.</td>
+          </tr>
+          <tr>
+            <td class="tb" style="color:var(--sup);">Supreme</td>
+            <td>Meaningful positive — CPVC volumes grew 38% in FY26 and are now a strategic pillar. Domestic Grasim–Lubrizol supply at Vilayat reduces Supreme's CPVC raw-material import dependency and freight exposure; management flagged this corridor explicitly in FY26 commentary.</td>
+          </tr>
+          <tr>
+            <td class="tb" style="color:var(--ast);">Astral</td>
+            <td>Most directly relevant — Astral's plumbing franchise is CPVC-first, and the Grasim–Lubrizol plant produces resin sold under the same Lubrizol brands (FlowGuard Plus, BlazeMaster) that Astral has used for its CPVC pipes since its founding. Domestic supply = working capital and supply-chain resilience improvement. Astral also has Grasim's Birla Opus paints as an emerging competitor in adjacent building-materials categories — a separate strategic watch point.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card gap-top" style="background:var(--surface2);">
+    <div class="card-lbl">🔭 Looking Ahead — Capacity Pipeline &amp; Import Substitution</div>
+    <p style="line-height:1.8;">India's PVC resin demand is projected to grow at ~5.5% CAGR through 2031. With ~2.5 million tonnes of new domestic PVC capacity expected online by FY27–28 (including Grasim's Vilayat Phase 2, potential RIL expansions, and DCM Shriram capacity additions), India's import dependency is expected to fall toward 30% or below from the current 60–68% level. This structural shift — from import-dependent to increasingly self-sufficient — is the single biggest medium-term driver for domestic resin producers like Finolex (who benefit from stronger domestic resin pricing) and for converters like Supreme and Astral (who gain supply security and potentially lower logistics costs for their CPVC inputs). The Grasim–Lubrizol combination at Vilayat (resin) + Dahej (compound) creates the first truly end-to-end domestic CPVC supply chain in India — a structural shift comparable in long-term significance to what Reliance's PVC expansion did for the suspension-grade market in the 2000s.</p>
+  </div>
+</div>
+
 <!-- ========== DEMERGERS & RESTRUCTURING TAB ========== -->
 <div id="tab-demerger" class="panel">
   <div class="sec-hdr">✂️ Demergers &amp; Corporate Restructuring <span class="sec-note">June 2026 — Astral's Chemicals Carve-Out</span></div>
@@ -672,6 +834,7 @@ input.chat-in{flex:1;padding:10px 14px;border:1px solid var(--border);border-rad
       <button class="preset-q" onclick="askPreset(this)">What is the raw material risk for Astral?</button>
       <button class="preset-q" onclick="askPreset(this)">Who are the promoters of each company?</button>
       <button class="preset-q" onclick="askPreset(this)">What is Supreme's debt position?</button>
+      <button class="preset-q" onclick="askPreset(this)">What is the Grasim Lubrizol CPVC plant?</button>
       <button class="preset-q" onclick="askPreset(this)">ஃபினோலெக்ஸ் வருவாய் என்ன?</button>
     </div>
   </div>
@@ -804,13 +967,17 @@ const KB={
   ta:{rev:"சுப்ரீம் இண்டஸ்ட்ரீஸின் FY26 ஒருங்கிணைந்த வருவாய் ₹11,217.67 கோடி (+7%); Q4 EBITDA ₹624 கோடி (+50%).",margin:"Q4 FY26 EBITDA மார்ஜின் 17.69%; CPVC அளவு FY26-ல் 38% வளர்ந்தது.",risk:"மதிப்பீடு மிக அதிகமாக கருதப்படுகிறது; 5 ஆண்டு EBIT வளர்ச்சி வெறும் ~2.5%."}},
  ast:{name:"Astral Limited",rev:"₹6,568.60 Cr (FY26, consol)",revGr:"+12.6%",ebitdaMargin:"16.9% (FY26); 19.16% (Q4 FY26)",pat:"₹534.70 Cr (FY26)",patGr:"+2.1%",q4Rev:"₹2,088.50 Cr",q4EbitdaMargin:"19.16%",volume:"2,63,026 MT plumbing (FY26, +15.8% YoY)",netDebt:"~Net Cash (₹943 Cr consol cash)",debtRisk:"LOW",segments:"2 segments: Plumbing (71% of FY26 revenue — PVC/CPVC pipes, drainage, fire sprinkler, water tanks) and Paints & Adhesives (29% — adhesives, sealants, construction chemicals, Astral Paints, Bathware).",promoter:"Engineer family-led promoter group — ~54.2% holding. Sandeep Engineer is Managing Director (re-appointed for 5 more years from Apr 2027).",moat:"Premium CPVC brand and fastest distribution expansion of the three — gained plumbing volume share (+24.2% Q4) even as the broader PVC industry contracted ~10% in the same quarter.",catalyst:"June 2026 board-approved demerger: Adhesives/Sealants/Construction Chemicals business spun into a separately listed Astral Chemie Ltd (1:1 share ratio); fittings-maker Al-Aziz Plastics merges into Astral. Kanpur facility ramp-up; paints targeted at ₹1,000 Cr revenue ambition.",risk:"Paints & Adhesives Q4 EBITDA margin fell sharply to 8.7% (from 13.3%) on brand-building spend; polymer/CPVC compound price volatility is a self-flagged top risk; demerger execution/NCLT timeline uncertainty; highest P/E (~69x) of the three.",brokerage:"Broad 'Buy' consensus; target prices clustered in the ₹1,720–1,750 range (29 analysts).",code:"NSE: ASTRAL · BSE: 532830",ratingScore:"7.0",ratingVerdict:"Growth Leader, Demerger in Progress",
   ta:{rev:"அஸ்ட்ரலின் FY26 ஒருங்கிணைந்த வருவாய் ₹6,568.60 கோடி (+12.6%); PAT ₹534.70 கோடி (+2.1%).",margin:"Q4 FY26 EBITDA மார்ஜின் 19.16%; பிளம்பிங் பிரிவு மார்ஜின் 22.9% — துறையில் சிறந்தது.",risk:"பெயிண்ட்ஸ் & அட்ஹெசிவ்ஸ் மார்ஜின் 13.3%-லிருந்து 8.7% ஆக குறைந்தது; demerger NCLT ஒப்புதல் நிலுவையில் உள்ளது."}}};
-const CO_KEYS=["fin","sup","ast"];
+const CO_KEYS=["fin","sup","ast","grasim"];
+KB.grasim={name:"Grasim × Lubrizol (CPVC Plant)",rev:"N/A — raw material producer, not a pipe company",ebitdaMargin:"N/A",volume:"50,000 MTPA (Phase 1); 1,00,000 MTPA (full Phase 2)",pat:"N/A",q4Rev:"N/A",q4EbitdaMargin:"N/A",netDebt:"Grasim Industries is separately listed (BSE: 500300)",debtRisk:"N/A",segments:"CPVC Resin manufacturing at Vilayat, Bharuch, Gujarat — within Grasim's integrated chlor-alkali complex. Lubrizol provides technology (proprietary CPVC resin process). Resin sold under Lubrizol's FlowGuard Plus, Corzan and BlazeMaster brands.",promoter:"Grasim Industries (Aditya Birla Group flagship) — Jayant V. Dhobley, Business Head & CEO Global Chemicals. Lubrizol is a Berkshire Hathaway specialty chemicals company; CEO Rebecca Liebert attended the inauguration.",catalyst:"Phase 1 (50,000 MTPA) inaugurated June 17, 2026 by Gujarat CM Bhupendra Patel — India's first large-scale CPVC resin plant, set to become world's largest single-site CPVC facility at 1,00,000 MTPA full capacity. Lubrizol's Dahej compound plant also doubled to 1,40,000 MT — together creates India's first end-to-end CPVC supply chain.",moat:"Technology lock-in via Lubrizol process licence; integrated chlor-alkali complex at Vilayat provides captive chlorine feedstock; combined with Dahej compounding, becomes the only company with end-to-end domestic CPVC capability.",risk:"Phase 2 commissioning timeline; global CPVC demand slowdown; competition from imports if anti-dumping measures are reversed.",brokerage:"Not a pipe company — no broker rating tracked here. Grasim Industries itself is rated separately as a diversified conglomerate.",code:"Grasim Industries — NSE: GRASIM · BSE: 500300",ratingScore:"N/A",ratingVerdict:"Strategic raw-material supplier — watershed event for India's CPVC import dependency",
+  ta:{rev:"கிரேசிம் × லுப்ரிசோல் — ஜூன் 17, 2026 அன்று விலாயத், குஜராத்தில் இந்தியாவின் முதல் பெரிய அளவிலான CPVC ரெசின் ஆலை திறக்கப்பட்டது. 50,000 MTPA திறன் (Phase 1); முழு திறன் 1,00,000 MTPA.",margin:"ரெசின் உற்பத்தியாளர் — பைப் நிறுவனம் அல்ல; மார்ஜின் தரவு பொருந்தாது.",risk:"Phase 2 தாமதம்; import anti-dumping நடவடிக்கைகள் மாற்றப்படலாம்."}};
+
 
 function findCompany(q){
   const l=q.toLowerCase();
   if(/finolex|ஃபினோலெக்ஸ்|பினோலெக்ஸ்/.test(l))return 'fin';
   if(/supreme|சுப்ரீம்/.test(l))return 'sup';
   if(/astral|அஸ்ட்ரல்/.test(l))return 'ast';
+  if(/grasim|lubrizol|aditya birla|cpvc resin plant|vilayat|grasim.lubrizol/.test(l))return 'grasim';
   return null;
 }
 function findTopic(q){
@@ -864,6 +1031,7 @@ function findCompanyIn(l,c){
   if(c==='fin')return /finolex|ஃபினோலெக்ஸ்/.test(l);
   if(c==='sup')return /supreme|சுப்ரீம்/.test(l);
   if(c==='ast')return /astral|அஸ்ட்ரல்/.test(l);
+  if(c==='grasim')return /grasim|lubrizol|aditya birla|cpvc resin plant|vilayat/.test(l);
   return false;
 }
 function appendMsg(text,who){
@@ -891,12 +1059,12 @@ const SOC={
   wrong:"Reconsider. Finolex's FY26 volumes actually declined 4.4% even as Q4 EBITDA margin nearly doubled — the entire improvement came from the PVC-EDC raw-material spread widening, not from selling more pipes. That distinction matters enormously for forecasting FY27.",
   followup:"If the PVC-EDC spread reverts to its FY25 level in FY27, what would you expect to happen to Finolex's EBITDA margin even if volumes stay flat?"},
  spread:{
-  q:"India imports 60-68% of its PVC resin. Anti-dumping duties and BIS quality norms in FY26 curtailed cheap imports and widened the domestic PVC-EDC spread. Who benefits more from this — Finolex (which makes its own resin) or Astral (a pure converter)?",
-  opts:["Astral benefits more — cheaper imports help converters","Finolex benefits more — it captures margin on the resin leg too, while converters like Astral just pay higher input costs","Neither is affected by resin prices","Both benefit equally in all scenarios"],
+  q:"Grasim and Lubrizol inaugurated India's first large-scale CPVC resin plant (50,000 MTPA) at Vilayat in June 2026, with plans to scale to 1,00,000 MTPA — the world's largest single-site CPVC facility. Before this, where did Indian pipe companies like Astral source their CPVC compound from, and why does this plant change the supply equation?",
+  opts:["They made their own CPVC resin in-house","Almost entirely from Lubrizol's overseas plants in the USA and Belgium — meaning import dependency, freight cost, and forex risk on their fastest-growing margin segment","From domestic PVC resin makers like Finolex, who then converted it","From small domestic chemical companies with no technology licence"],
   correct:1,
-  right:"Correct. A widening PVC-EDC spread is a direct EBITDA tailwind for Finolex as a resin producer — but for Astral and Supreme, who buy resin as an input, a tighter/pricier resin market is a cost headwind they must pass through to customers with a lag.",
-  wrong:"Think again. Anti-dumping duties raise the price of imported resin — that's good for Finolex, which makes its own resin and captures the wider spread, but it's a raw-material cost headwind for pure converters like Astral and Supreme, who must pass the higher cost to customers.",
-  followup:"Given this, why might Astral explicitly list 'polymer price volatility' as a top company risk in its own disclosures, while Finolex does not frame it the same way?"},
+  right:"Exactly. Before Vilayat, virtually all CPVC resin used by Astral, Supreme and others was sourced from Lubrizol's overseas plants — imported, freight-exposed, and subject to global logistics disruptions (like the Red Sea/Middle East tensions through FY26). The Vilayat plant creates the first domestic CPVC resin source at scale, shortening supply chains and reducing import dependency for this high-margin category.",
+  wrong:"Think about the supply structure before June 2026. CPVC resin is a specialty chemical requiring a specific technology licence (Lubrizol's post-chlorination process) — no Indian company had built this at scale. Astral and Supreme were importing their CPVC resin from Lubrizol's plants abroad, making their most profitable pipe category structurally import-dependent.",
+  followup:"If domestic CPVC resin supply from Vilayat lowers Astral and Supreme's working capital tied in imported inventory, what other financial metric (beyond margin) would you expect to improve — and how would you measure it?"},
  moat:{
   q:"Finolex is the only listed Indian pipe-maker with its own PVC resin plant. Why is full backward integration a more durable moat than simply having a strong pipe brand?",
   opts:["It isn't — brand always matters more than supply chain","It removes a structural cost-and-supply dependency on third-party resin suppliers that rivals can't replicate without billions in petrochemical capex","It guarantees Finolex will always have the lowest prices","It eliminates all raw material risk completely"],
