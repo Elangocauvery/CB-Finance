@@ -407,6 +407,7 @@ footer span{color:#ffe0c0}
           <option value="markets_2yr_high">Cash Market Turnover — 2-Yr High</option>
           <option value="crude_crash">Crude $76.71 — Winners &amp; Losers</option>
           <option value="fpi_gsec_tax">G-Secs Tax-Free for FPIs</option>
+          <option value="kotak_db_acq">Kotak — Deutsche Bank India Acquisition</option>
         </select>
       </div>
       <div class="assist-q-wrap">
@@ -516,6 +517,63 @@ const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi','geopolit
 
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
+  {
+    id:35, date:'2026-06-30', sector:'rbi', cat:'macro', sectorLabel:'Banking / Private Bank', pillCls:'pill-rbi', time:'30 Jun 2026',
+    impact:'positive', breaking:true,
+    badges:['₹282 Cr All-Cash Slump Sale','Adds ₹29,000 Cr Advances + ₹16,000 Cr Deposits','₹10,500 Cr Wealth AUM + 1.5L Customers','Closing ~Sep 2027 — Pending CCI/NSDL/CDSL Nod'],
+    en:{
+      headline:'Kotak Mahindra Bank to Acquire Deutsche Bank India\'s Retail & Wealth Business for ₹282 Crore',
+      context:[
+        'Kotak Mahindra Bank has signed a definitive agreement to acquire Deutsche Bank India\'s retail banking, affluent private banking and wealth management business for approximately ₹281.7 crore (~₹282 crore), in an all-cash slump sale. Deutsche Bank exits India retail to refocus on corporate and investment banking plus DWS asset management.',
+        'The business being acquired covers roughly ₹29,000 crore in advances, ₹16,000 crore in deposits and ₹10,500 crore in wealth AUM, serving about 1.5 lakh customers via a team of roughly 1,000 employees. Closing is expected by around September 2027, subject to CCI, NSDL and CDSL approvals.',
+        'The deal size is negligible against Kotak\'s ₹10.03 lakh crore group asset base — no dilution, no fresh capital raise. It is a capital-light way to deploy the bank\'s surplus CRAR (22.40% vs the 11.5% RBI floor) into an affluent/HNI client base that would otherwise take years to build organically.',
+        'The acquired book feeds Kotak\'s already high-margin wealth and private-banking subsidiary chain, which is the core of Kotak\'s "SOTP" investment case — subsidiaries already contribute ~27% of consolidated PAT, the highest among large private banks.',
+        'This is standalone-bank business, separate from the consolidated/subsidiary story, and the near-term earnings impact is likely to be modest given the deal\'s small size relative to Kotak\'s existing ₹5.72 lakh crore loan book.'
+      ],
+      compareTable:[
+        {title:'Deal Snapshot — Kotak / Deutsche Bank India Retail & Wealth',
+         headers:['Metric','Value'],
+         rows:[
+           ['Deal structure','All-cash slump sale'],
+           ['Consideration','~₹282 Cr (₹281.7 Cr)'],
+           ['Advances acquired','~₹29,000 Cr'],
+           ['Deposits acquired','~₹16,000 Cr'],
+           ['Wealth AUM acquired','~₹10,500 Cr'],
+           ['Customers','~1.5 lakh'],
+           ['Employees','~1,000'],
+           ['Expected closing','~Sep 2027 (pending CCI/NSDL/CDSL approvals)']
+         ]}
+      ],
+      posPoints:['Instant access to an affluent/HNI client base that is slow and costly to build organically, feeding Kotak\'s high-margin wealth & private-banking subsidiary chain','Deploys Kotak\'s surplus capital (CRAR 22.40% vs 11.5% RBI floor) into interest and fee-earning assets without a fresh capital raise — directly addresses the low standalone ROE criticism','Deal cost of ~₹282 Cr is trivial against Kotak\'s ₹10.03L Cr group assets — no dilution, minimal integration risk','Slump-sale structure is tax-efficient and operationally cleaner than a full merger'],
+      negPoints:['Deal size (~₹29,000 Cr advances) is small relative to Kotak\'s existing ₹5.72L Cr loan book — near-term earnings impact likely modest','This is standalone-bank business; it does not directly change the consolidated/SOTP subsidiary story that drives Kotak\'s valuation','Closing is roughly 14-15 months out (~Sep 2027) and subject to CCI/NSDL/CDSL approvals — integration and retention risk over that period','Customer and employee retention through a change of ownership is an execution risk common to all such carve-out deals']
+    },
+    ta:{
+      headline:'Deutsche Bank India-வின் Retail & Wealth Business-ஐ ₹282 கோடிக்கு வாங்கும் Kotak Mahindra Bank',
+      context:[
+        'Kotak Mahindra Bank, Deutsche Bank India-வின் retail banking, affluent private banking மற்றும் wealth management business-ஐ சுமார் ₹281.7 கோடிக்கு (~₹282 Cr) all-cash slump sale-ஆக வாங்க definitive agreement-ல் கையெழுத்திட்டுள்ளது. Deutsche Bank India retail-இலிருந்து விலகி corporate & investment banking மற்றும் DWS asset management-ல் கவனம் செலுத்தும்.',
+        'வாங்கப்படும் business-ல் சுமார் ₹29,000 கோடி advances, ₹16,000 கோடி deposits, ₹10,500 கோடி wealth AUM அடங்கும் — சுமார் 1.5 லட்சம் customers, ~1,000 employees. Closing எதிர்பார்க்கப்படுவது ~Sep 2027, CCI/NSDL/CDSL ஒப்புதல்களுக்கு உட்பட்டு.',
+        'இந்த deal size Kotak-ன் ₹10.03 லட்சம் கோடி group assets-உடன் ஒப்பிடும்போது சிறியது — dilution இல்லை, fresh capital raise தேவையில்லை. Kotak-ன் surplus CRAR-ஐ (22.40% vs RBI floor 11.5%) capital-light-ஆக deploy செய்யும் வழி இது — affluent/HNI client base organically உருவாக்க வருடங்கள் ஆகும்.',
+        'இந்த acquired book, Kotak-ன் ஏற்கனவே high-margin ஆன wealth & private-banking subsidiary chain-க்கு feed செய்யும் — Kotak-ன் "SOTP" investment case-ன் core இதுவே; subsidiaries ஏற்கனவே consolidated PAT-ல் ~27% contribute செய்கின்றன, large private banks-ல் அதிகபட்சம்.',
+        'இது standalone-bank business, consolidated/subsidiary story-லிருந்து தனி — Kotak-ன் ஏற்கனவே உள்ள ₹5.72 லட்சம் கோடி loan book-உடன் ஒப்பிடும்போது deal size சிறியது என்பதால் near-term earnings impact மிதமானதாக இருக்கக்கூடும்.'
+      ],
+      compareTable:[
+        {title:'Deal Snapshot — Kotak / Deutsche Bank India Retail & Wealth',
+         headers:['Metric','Value'],
+         rows:[
+           ['Deal structure','All-cash slump sale'],
+           ['Consideration','~₹282 Cr (₹281.7 Cr)'],
+           ['Advances acquired','~₹29,000 Cr'],
+           ['Deposits acquired','~₹16,000 Cr'],
+           ['Wealth AUM acquired','~₹10,500 Cr'],
+           ['Customers','~1.5 லட்சம்'],
+           ['Employees','~1,000'],
+           ['Expected closing','~Sep 2027 (CCI/NSDL/CDSL ஒப்புதல் வேண்டும்)']
+         ]}
+      ],
+      posPoints:['Affluent/HNI client base உடனடியாக கிடைக்கும் — organically உருவாக்க கடினமானது, Kotak-ன் high-margin wealth & private-banking subsidiary chain-க்கு feed செய்யும்','Kotak-ன் surplus capital-ஐ (CRAR 22.40% vs 11.5% RBI floor) fresh capital raise இல்லாமல் interest & fee-earning assets-ல் deploy செய்யும் — low standalone ROE விமர்சனத்திற்கு நேரடி பதில்','~₹282 Cr deal cost Kotak-ன் ₹10.03L Cr group assets-உடன் ஒப்பிடும்போது trivial — dilution இல்லை, integration risk குறைவு','Slump-sale structure tax-efficient, full merger-ஐ விட operationally cleaner'],
+      negPoints:['Deal size (~₹29,000 Cr advances) Kotak-ன் ஏற்கனவே உள்ள ₹5.72L Cr loan book-உடன் ஒப்பிடும்போது சிறியது — near-term earnings impact மிதமானதாக இருக்கக்கூடும்','இது standalone-bank business; Kotak-ன் valuation-ஐ drive செய்யும் consolidated/SOTP subsidiary story-ஐ நேரடியாக மாற்றாது','Closing சுமார் 14-15 மாதங்கள் தூரத்தில் (~Sep 2027), CCI/NSDL/CDSL ஒப்புதல்களுக்கு உட்பட்டது — அந்த காலகட்டத்தில் integration & retention risk','Ownership மாற்றத்தின் போது customer & employee retention — இது இது போன்ற carve-out deals அனைத்திற்கும் பொதுவான execution risk']
+    }
+  },
   {
     id:33, date:'2026-06-29', sector:'it', cat:'sector', sectorLabel:'IT / Services', pillCls:'pill-it', time:'29 Jun 2026',
     impact:'mixed', breaking:true,
@@ -2604,6 +2662,23 @@ const ASSIST_QA = {
     {q:"What is CAD and why does it matter for Indian equity markets?",
      a:"CAD (Current Account Deficit) is the difference between what India earns from abroad (exports, remittances, services) and what it pays abroad (imports, dividends). A high CAD means India needs foreign capital to finance the gap — making it dependent on FPI flows. If CAD widens, the rupee depreciates, imported inflation rises, and FPIs may reduce India exposure. For equity markets, a sustained high CAD is a structural headwind — it limits rupee stability and constrains RBI's ability to cut rates.",
      src:"Source: RBI Balance of Payments data; EIL Research analysis, June 2026"}
+  ],
+  kotak_db_acq:[
+    {q:"What exactly is Kotak Mahindra Bank acquiring from Deutsche Bank India?",
+     a:"Kotak has signed a definitive agreement to acquire Deutsche Bank India's retail banking, affluent private banking and wealth management business for approximately ₹282 crore (₹281.7 crore), an all-cash slump sale. The business covers roughly ₹29,000 crore in advances, ₹16,000 crore in deposits and ₹10,500 crore in wealth AUM, serving about 1.5 lakh customers via a team of roughly 1,000 employees.",
+     src:"Source: Kotak Mahindra Bank / Deutsche Bank India regulatory disclosures, June 2026"},
+    {q:"Why is Deutsche Bank exiting India's retail banking business?",
+     a:"Deutsche Bank is refocusing its India presence on corporate and investment banking plus DWS asset management, exiting the capital- and branch-intensive retail, affluent private banking and wealth segments where it lacked the scale of domestic private banks. This mirrors a broader pattern of global banks narrowing their India retail footprint to focus on higher-return institutional businesses.",
+     src:"Source: Deal disclosures; SectorWire analysis, June 2026"},
+    {q:"How does this deal benefit Kotak given its already-strong capital position?",
+     a:"Kotak carries a capital fortress — CRAR of 22.40% against the RBI's 11.5% floor, roughly double the mandated cushion. This surplus capital, if left undeployed, drags down ROE even though ROA is strong. The ₹282 crore outlay to add ₹29,000 crore of advances is a capital-light way to put that surplus to work in the affluent/HNI segment, which also feeds Kotak's high-margin wealth and private-banking subsidiary chain — directly addressing the low-ROE criticism analysts have flagged.",
+     src:"Source: Kotak Q4FY26 disclosures; Bernstein research; SectorWire analysis"},
+    {q:"When does the deal close and what approvals are pending?",
+     a:"Closing is expected by around September 2027, subject to approvals from the Competition Commission of India (CCI), NSDL and CDSL. The roughly 14-15 month gap between signing and closing is typical for a carve-out of this nature involving customer, deposit and depository record transfers.",
+     src:"Source: Deal disclosures, June 2026"},
+    {q:"Does this deal change Kotak's consolidated / SOTP valuation story?",
+     a:"Not materially in the near term. This is standalone-bank business — separate from the consolidated/sum-of-the-parts (SOTP) story built around Kotak's subsidiaries (securities, life insurance, AMC, NBFC), which already contribute about 27% of consolidated PAT. At ~₹29,000 crore of advances against Kotak's existing ₹5.72 lakh crore loan book, the immediate earnings impact is likely to be modest, though it does reinforce the wealth/private-banking subsidiary pipeline over time.",
+     src:"Source: Kotak FY26 standalone vs consolidated disclosures; SectorWire analysis"}
   ]
 };
 
