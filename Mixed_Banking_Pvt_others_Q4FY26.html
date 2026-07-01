@@ -186,8 +186,6 @@
       <button class="tab" data-tab="charts">📈 Charts</button>
       <button class="tab" data-tab="biz">🏛 Business Analysis</button>
       <button class="tab" data-tab="school">🎓 School</button>
-      <button class="tab" data-tab="ranking">🏆 Rankings</button>
-      <button class="tab" data-tab="socrates">🦉 Cauvery Socrates</button>
       <button class="tab" data-tab="rating">⭐ CB Rating</button>
       <button class="tab" data-tab="assist">💬 CB Assist</button>
     </nav>
@@ -198,8 +196,6 @@
   <section class="panel" id="charts"></section>
   <section class="panel" id="biz"></section>
   <section class="panel" id="school"></section>
-  <section class="panel" id="ranking"></section>
-  <section class="panel" id="socrates"></section>
   <section class="panel" id="rating"></section>
   <section class="panel" id="assist"></section>
 
@@ -492,7 +488,7 @@ const BIZ = {
   'Kotak Bank':{moat:'Capital Fortress + Highest-Margin Franchise + Subsidiary Powerhouse',
     model:'Conservative, high-NIM (4.67%) universal bank built by founder Uday Kotak; now led by CEO Ashok Vaswani (since Jan-2024), with ex-Bajaj Finance MD Anup Kumar Saha joining as Whole-time Director (Jan-2026). Standalone bank is deposit-led with the sector\'s richest CASA (43.3%) and a capital fortress (CRAR 22.4%, CET1 21.3%). The defining feature: Kotak is as much a financial conglomerate as a bank — subsidiaries (securities, AMC, life, prime/NBFC, investment banking) contribute a far larger share of consolidated profit than any large peer.',
     subs:[{n:'Kotak Securities (broking)',p:24},{n:'Kotak Mahindra Life Insurance',p:22},{n:'Kotak Mahindra Prime (NBFC)',p:20},{n:'Kotak AMC (MF AUM ₹5.55L Cr)',p:18},{n:'Kotak Mahindra Capital + others',p:16}],
-    subNote:'CRITICAL: Standalone PAT ₹14,008 Cr vs Consolidated PAT ₹19,288 Cr (FY26) — subsidiaries contribute ~27% of consolidated profit, the highest among large private banks. This is why Kotak must be valued on a consolidated / SOTP basis (book value ₹182, post 1:5 split Jan-2026). Headwind: RBI compliance overhang — KMIL (Kotak Mahindra Investments) halted new loan approvals Apr-2026 on an RBI directive; earlier card/digital embargo (Apr-2024) was lifted Feb-2025.',
+    subNote:'CRITICAL: Standalone PAT ₹14,008 Cr vs Consolidated PAT ₹19,288 Cr (FY26) — subsidiaries contribute ~27% of consolidated profit, the highest among large private banks. This is why Kotak must be valued on a consolidated / SOTP basis (book value ₹182, post 1:5 split Jan-2026). Headwind: RBI compliance overhang — KMIL (Kotak Mahindra Investments) halted new loan approvals Apr-2026 on an RBI directive; earlier card/digital embargo (Apr-2024) was lifted Feb-2025. Bolt-on (Jun-2026): definitive agreement to acquire Deutsche Bank India\'s retail banking, affluent private banking & wealth management business for ₹282 Cr (~₹281.7 Cr), all-cash slump sale — covers ~₹29,000 Cr advances, ~₹16,000 Cr deposits, ~₹10,500 Cr AUM, ~1.5L customers, ~1,000 employees; closing expected by ~Sep-2027 pending CCI/NSDL/CDSL approvals. Deal size is negligible vs Kotak\'s ₹10.03L Cr group assets — no dilution — but it is a capital-light way to deploy surplus CRAR into the affluent/wealth segment that feeds the high-margin subsidiary engine.',
     pills:['Highest CASA 43.3%','Capital Fortress','Subsidiary Engine ~27%','SOTP Story','RBI Compliance Watch']},
   'Union Bank':{moat:'PSU Scale + Post-Amalgamation Efficiency Gains',
     model:'One of India\'s largest PSU banks after the Andhra Bank + Corporation Bank amalgamation. Deposit base > ₹13 lakh Cr with deep rural/government reach and the lowest CD ratio (73.8%) — conservative deployment. PCR at 95% is among the highest, providing a buffer against asset-quality surprises. Earnings driven by NPA recoveries reversing into income.',
@@ -665,11 +661,11 @@ var CO = {
     spec:   'Capital Fortress + Highest-Margin Franchise + Subsidiary Powerhouse — Highest CASA 43.3%, Capital Fortress, Subsidiary Engine ~27%.',
     jv:     'Kotak Securities, Kotak Life, Kotak Mahindra Prime (NBFC), Kotak AMC (AUM ₹5.55L Cr), Kotak Capital.',
     export: 'Domestic bank; GIFT City IBU + NRI.',
-    delays: 'RBI compliance overhang — KMIL halted new loan approvals Apr-2026.',
+    delays: 'RBI compliance overhang — KMIL halted new loan approvals Apr-2026. Watch: Deutsche Bank India retail/wealth acquisition (₹282 Cr, signed Jun-2026) — closing expected ~Sep-2027, pending CCI/NSDL/CDSL approvals.',
     swot: {
       s: ['Capital fortress CRAR 22.4% / CET-1 21.3%', 'Richest CASA 43.3%, sector-best NIM 4.67%', 'Subsidiaries ~27% of consolidated PAT'],
       w: ['Low standalone ROE 12.3% (excess capital)', 'Flat FY24-26 standalone PAT'],
-      o: ['SOTP re-rating as subsidiaries surface', 'Capital deployment under new WTD'],
+      o: ['SOTP re-rating as subsidiaries surface', 'Capital deployment under new WTD', 'Deutsche Bank India retail/wealth bolt-on (₹282 Cr slump sale, signed Jun-2026)'],
       t: ['RBI compliance actions', 'Founder/succession perception'],
     },
   },
@@ -960,9 +956,6 @@ function showTab(id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
   if(id==='charts') setTimeout(drawChart,60);
-  if(id==='ranking') renderRanking();
-  if(id==='socrates') renderSocrates();
-  if(id==='rating') renderCBRating();
 }
 document.getElementById('tabNav').addEventListener('click',e=>{ if(e.target.dataset.tab) showTab(e.target.dataset.tab); });
 
@@ -1347,8 +1340,8 @@ function renderRating(){
    ════════════════════════════════════════════════════════════ */
 let LANG='en';
 const SUGGEST_CHIPS={
-  en:['What is NIM and why does it matter?','Which bank has the best asset quality?','Why is IndusInd Bank in trouble?','Tell me about Kotak Bank','Compare ROA of all banks','What is CASA ratio?','Which bank has lowest GNPA?','Why is P/BV important for banks?','How much profit comes from Kotak subsidiaries?','Highest NIM bank'],
-  ta:['NIM என்றால் என்ன?','எந்த வங்கி சிறந்த சொத்து தரம் கொண்டது?','IndusInd Bank ஏன் சிக்கலில்?','Kotak Bank பற்றி சொல்','அனைத்து வங்கிகளின் ROA ஒப்பீடு','CASA ratio என்றால் என்ன?','மிகக் குறைந்த GNPA எந்த வங்கி?','P/BV ஏன் முக்கியம்?','Kotak subsidiaries எவ்வளவு லாபம்?','அதிக NIM வங்கி']
+  en:['What is NIM and why does it matter?','Which bank has the best asset quality?','Why is IndusInd Bank in trouble?','Tell me about Kotak Bank','Compare ROA of all banks','What is CASA ratio?','Which bank has lowest GNPA?','Why is P/BV important for banks?','How much profit comes from Kotak subsidiaries?','Highest NIM bank','Kotak Deutsche Bank acquisition','Why is Kotak ROE low?'],
+  ta:['NIM என்றால் என்ன?','எந்த வங்கி சிறந்த சொத்து தரம் கொண்டது?','IndusInd Bank ஏன் சிக்கலில்?','Kotak Bank பற்றி சொல்','அனைத்து வங்கிகளின் ROA ஒப்பீடு','CASA ratio என்றால் என்ன?','மிகக் குறைந்த GNPA எந்த வங்கி?','P/BV ஏன் முக்கியம்?','Kotak subsidiaries எவ்வளவு லாபம்?','அதிக NIM வங்கி','Kotak Deutsche Bank கையகப்படுத்தல்','Kotak ROE ஏன் குறைவு?']
 };
 const USER_QA_KB=[
   {keywords:['nim','net interest margin','interest margin','வட்டி வரம்பு'],
@@ -1358,8 +1351,14 @@ const USER_QA_KB=[
     en:{title:'Asset Quality — GNPA & NNPA',body:`<p>GNPA% = bad loans / gross advances. NNPA% = after provisions. Q4 FY26: <strong>Best GNPA: TMB 0.73%</strong>. <strong>Best NNPA: Indian Bank 0.16%</strong> (PCR 98.3%). <strong>Worst GNPA: IndusInd 3.43%</strong> (up from 1.92%). <strong>Biggest improvement: SIB</strong> 3.20%→1.43%. Kotak clean at GNPA 1.20% / NNPA 0.25%. Rule: below 2% = healthy; 2–4% = watch; above 4% = stress.</p>`},
     ta:{title:'சொத்து தரம் — GNPA & NNPA',body:`<p>Q4 FY26: <strong>சிறந்த GNPA: TMB 0.73%</strong>. <strong>சிறந்த NNPA: Indian Bank 0.16%</strong>. <strong>மோசமான: IndusInd 3.43%</strong>. <strong>முன்னேற்றம்: SIB</strong> 3.20%→1.43%. Kotak GNPA 1.20%. விதி: 2% கீழ் = ஆரோக்கியம்.</p>`}},
   {keywords:['kotak','kotak bank','kotak mahindra'],
-    en:{title:'Kotak Mahindra Bank — Q4 FY26',body:`<p>PAT <strong>₹4,027 Cr</strong> (+13% YoY), NII ₹7,876 Cr, <strong>NIM 4.67%</strong> (sector-best among large banks), GNPA 1.20%, NNPA 0.25%. <strong>Capital fortress: CRAR 22.40%, CET-1 21.30%</strong>; richest CASA at <strong>43.3%</strong>. ROA 2.14%, ROE 12.27% (the low ROE = excess capital). Founder Uday Kotak (non-exec); CEO Ashok Vaswani; ex-Bajaj Finance MD Anup Kumar Saha joined as WTD Jan-2026. Stock split 1:5 (ex 14-Jan-2026). <strong>Key point: subsidiaries ≈27% of consolidated PAT</strong> (₹14,008 Cr standalone vs ₹19,288 Cr consolidated FY26). Watch: RBI compliance overhang — KMIL halted new loan approvals Apr-2026.</p>`},
-    ta:{title:'Kotak Mahindra Bank — Q4 FY26',body:`<p>PAT <strong>₹4,027 Cr</strong> (+13% YoY), NIM <strong>4.67%</strong> (large banks-ல் சிறந்தது), GNPA 1.20%. <strong>Capital fortress: CRAR 22.40%, CET-1 21.30%</strong>, CASA <strong>43.3%</strong> (அதிகம்). ROE 12.27% — excess capital காரணம். Stock split 1:5 (Jan-2026). <strong>முக்கியம்: subsidiaries ≈27% consolidated PAT</strong> (standalone ₹14,008 Cr vs consolidated ₹19,288 Cr). RBI compliance watch: KMIL new loans Apr-2026 நிறுத்தம்.</p>`}},
+    en:{title:'Kotak Mahindra Bank — Q4 FY26',body:`<p>PAT <strong>₹4,027 Cr</strong> (+13% YoY), NII ₹7,876 Cr, <strong>NIM 4.67%</strong> (sector-best among large banks), GNPA 1.20%, NNPA 0.25%. <strong>Capital fortress: CRAR 22.40%, CET-1 21.30%</strong>; richest CASA at <strong>43.3%</strong>. ROA 2.14%, ROE 12.27% (the low ROE = excess capital). Founder Uday Kotak (non-exec); CEO Ashok Vaswani; ex-Bajaj Finance MD Anup Kumar Saha joined as WTD Jan-2026. Stock split 1:5 (ex 14-Jan-2026). <strong>Key point: subsidiaries ≈27% of consolidated PAT</strong> (₹14,008 Cr standalone vs ₹19,288 Cr consolidated FY26). Watch: RBI compliance overhang — KMIL halted new loan approvals Apr-2026. <strong>Jun-2026: signed deal to acquire Deutsche Bank India's retail &amp; wealth business for ₹282 Cr</strong> (see dedicated topic below).</p>`},
+    ta:{title:'Kotak Mahindra Bank — Q4 FY26',body:`<p>PAT <strong>₹4,027 Cr</strong> (+13% YoY), NIM <strong>4.67%</strong> (large banks-ல் சிறந்தது), GNPA 1.20%. <strong>Capital fortress: CRAR 22.40%, CET-1 21.30%</strong>, CASA <strong>43.3%</strong> (அதிகம்). ROE 12.27% — excess capital காரணம். Stock split 1:5 (Jan-2026). <strong>முக்கியம்: subsidiaries ≈27% consolidated PAT</strong> (standalone ₹14,008 Cr vs consolidated ₹19,288 Cr). RBI compliance watch: KMIL new loans Apr-2026 நிறுத்தம். <strong>Jun-2026: Deutsche Bank India retail &amp; wealth business ₹282 Cr-க்கு வாங்கும் ஒப்பந்தம்</strong> (கீழே பார்க்கவும்).</p>`}},
+  {keywords:['deutsche bank','kotak deutsche','db acquisition','db retail','kotak acquires deutsche','deutsche bank india'],
+    en:{title:'Kotak – Deutsche Bank India Acquisition',body:`<p>Jun-2026: Kotak signed a definitive agreement to acquire <strong>Deutsche Bank India's retail banking, affluent private banking &amp; wealth management business for ₹282 Cr</strong> (~₹281.7 Cr), an all-cash <strong>slump sale</strong>. Business acquired: <strong>~₹29,000 Cr advances, ~₹16,000 Cr deposits, ~₹10,500 Cr AUM</strong>, ~1.5 lakh customers, ~1,000 employees. Closing expected by ~Sep-2027, subject to CCI/NSDL/CDSL approvals. Deutsche Bank exits India retail to focus on corporate/investment banking &amp; DWS asset management.</p><p><strong>Why it helps Kotak:</strong> (1) buys an affluent/HNI client base that is slow to build organically and feeds the high-margin wealth/PB subsidiary chain; (2) the ₹282 Cr outlay is trivial vs Kotak's ₹10.03L Cr group assets — no dilution; (3) it deploys Kotak's surplus capital (CRAR 22.4% vs 11.5% RBI floor) into interest &amp; fee-earning assets without a fresh capital raise — directly addresses the low-ROE criticism. Note: this is standalone-bank business, separate from consolidated/SOTP subsidiary value.</p>`},
+    ta:{title:'Kotak – Deutsche Bank India கையகப்படுத்தல்',body:`<p>Jun-2026: Kotak, Deutsche Bank India-வின் retail banking, affluent private banking &amp; wealth management business-ஐ <strong>₹282 Cr-க்கு</strong> (all-cash slump sale) வாங்க ஒப்பந்தம். <strong>~₹29,000 Cr advances, ~₹16,000 Cr deposits, ~₹10,500 Cr AUM</strong>, ~1.5 லட்சம் customers. Closing ~Sep-2027 (CCI/NSDL/CDSL approvals வேண்டும்). <strong>பயன்:</strong> affluent client base உடனடியாக கிடைக்கும்; ₹282 Cr Kotak-ன் ₹10.03L Cr assets-உடன் ஒப்பிடும்போது சிறியது — dilution இல்லை; surplus CRAR (22.4% vs 11.5% RBI floor)-ஐ fresh capital இல்லாமல் deploy செய்யும் — low ROE பிரச்சினைக்கு ஒரு தீர்வு அடி.</p>`}},
+  {keywords:['kotak roe low','why kotak roe','kotak return on equity','roe split bonus','kotak roe 12'],
+    en:{title:'Why Is Kotak\'s ROE Low? (Not the Split)',body:`<p>Kotak ROE 12.27% vs CRAR 22.40% — looks contradictory but isn't a split/bonus effect. <strong>A stock split (1:5, Jan-2026) or bonus issue does NOT change ROE</strong> — both change shares outstanding and per-share book value/EPS, but total equity and total PAT (the ROE numerator &amp; denominator) are untouched. Rule this out entirely.</p><p><strong>Real cause: capital inefficiency / surplus capital.</strong> CRAR 22.4% is ~2x the RBI floor (11.5%) and 200-600bps above the 16-20% "efficient growth bank" range. Capital not deployed into interest-earning advances drags ROE down even though ROA (2.14%) is genuinely strong — this is exactly what Bernstein flags as the key knock on the stock (TP ₹500, "Mkt-Perform, low RoE").</p><p><strong>Flip side — this is also headroom.</strong> Kotak can grow advances substantially for years purely out of existing capital, no QIP/rights issue needed. The Deutsche Bank India bolt-on (₹282 Cr → +₹29,000 Cr advances) is a live example of this surplus-capital deployment.</p>`},
+    ta:{title:'Kotak-ன் ROE ஏன் குறைவு? (Split காரணம் இல்லை)',body:`<p>Kotak ROE 12.27% vs CRAR 22.40%. <strong>1:5 split (Jan-2026) அல்லது bonus issue ROE-ஐ மாற்றாது</strong> — shares எண்ணிக்கை &amp; per-share BVPS/EPS மாறும், ஆனால் total equity &amp; total PAT மாறாது.</p><p><strong>உண்மையான காரணம்: capital inefficiency.</strong> CRAR 22.4% RBI floor (11.5%)-இன் ~2 மடங்கு, efficient range (16-20%)-க்கும் 200-600bps அதிகம். Deploy செய்யப்படாத capital ROE-ஐ குறைக்கிறது — ROA (2.14%) வலுவாக இருந்தும். Bernstein இதை முக்கிய குறையாக சொல்கிறது.</p><p><strong>மறுபக்கம் — இது வளர்ச்சி வாய்ப்பும் கூட.</strong> Kotak fresh capital இல்லாமல் advances-ஐ பெரிதும் வளர்க்க முடியும் — Deutsche Bank bolt-on (₹282 Cr → +₹29,000 Cr advances) இதற்கு உதாரணம்.</p>`}},
   {keywords:['subsidiary','subsidiaries','sotp','consolidated','kotak subsidiaries','துணை நிறுவன'],
     en:{title:'Subsidiaries & Why They Matter',body:`<p>For conglomerate banks, a big slice of value sits outside the standalone bank. <strong>Kotak: ~27% of consolidated PAT</strong> from subsidiaries (securities, life insurance, Prime/NBFC, AMC, investment banking) — the highest among large private banks, which is why Kotak must be valued on a consolidated/SOTP basis. <strong>ICICI: ~18–20%</strong> (ICICI Pru Life, ICICI Lombard, AMC, Securities). <strong>HDFC: ~15%</strong> (HDB Financial IPO, HDFC Life, HDFC AMC). By contrast <strong>TMB and CUB have no material subsidiaries</strong> — pure standalone lenders.</p>`},
     ta:{title:'துணை நிறுவனங்கள் — ஏன் முக்கியம்',body:`<p>Conglomerate banks-ல் மதிப்பின் பெரும்பகுதி standalone bank-க்கு வெளியே. <strong>Kotak: ~27% consolidated PAT</strong> subsidiaries-இல் இருந்து (securities, life, Prime NBFC, AMC) — large private banks-ல் அதிகம், எனவே SOTP basis-ல் value செய்ய வேண்டும். <strong>ICICI: ~18–20%</strong>, <strong>HDFC: ~15%</strong>. <strong>TMB, CUB</strong> — material subsidiaries இல்லை.</p>`}},
@@ -1585,390 +1584,8 @@ function dynamicAnswer(q){
 /* ════════════════════════════════════════════════════════════
    INIT
    ════════════════════════════════════════════════════════════ */
-
-/* ═══ CB RATING — Mixed Banking Q4 FY26 ═══ */
-function renderCBRating(){
-  const WEIGHTS = {
-    'ROA':20, 'ROE':15, 'NIM':15, 'GNPA':20, 'PCR':10,
-    'CTI':10, 'CASA':5, 'CET 1':5
-  };
-  const LOWER = {'GNPA':true,'CTI':true};
-
-  function scoreBank(b){
-    let total=0, wsum=0;
-    Object.entries(WEIGHTS).forEach(([m,w])=>{
-      const v=val(m,b,'Q4FY26'); if(v==null) return;
-      const lower=LOWER[m]||false;
-      const all=ALL_BANKS.map(bk=>val(m,bk,'Q4FY26')).filter(x=>x!=null);
-      const mn=Math.min(...all), mx=Math.max(...all);
-      const norm=mx===mn?0.5:(lower?(mx-v)/(mx-mn):(v-mn)/(mx-mn));
-      total+=norm*w; wsum+=w;
-    });
-    return wsum>0?Math.round(total/wsum*100)/10:0;
-  }
-
-  const scored=ALL_BANKS.map(b=>({b,s:scoreBank(b)})).sort((a,c)=>c.s-a.s);
-  const stars=s=>s>=8?'★★★★★':s>=6.5?'★★★★☆':s>=5?'★★★☆☆':s>=3.5?'★★☆☆☆':'★☆☆☆☆';
-  const grade=s=>s>=8.5?'A+':s>=7.5?'A':s>=6.5?'A−':s>=5.5?'B+':s>=4.5?'B':s>=3.5?'B−':'C';
-  const medals=['🥇','🥈','🥉'];
-
-  let html=`<div class="section-title">CB Earnings Quality Rating — Q4 FY26</div>
-  <div class="section-note">Composite score weighted across ROA (20%), GNPA (20%), ROE (15%), NIM (15%), PCR (10%), CTI (10%), CASA (5%), CET-1 (5%). Peer-relative normalised scoring. <b>Not a buy/sell/hold recommendation — analytical rating only.</b></div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:24px">`;
-
-  scored.forEach(({b,s},i)=>{
-    const roa=val('ROA',b,'Q4FY26'), gnpa=val('GNPA',b,'Q4FY26'), roe=val('ROE',b,'Q4FY26');
-    const nim=val('NIM',b,'Q4FY26'), pcr=val('PCR',b,'Q4FY26'), cti=val('CTI',b,'Q4FY26');
-    const g=grade(s);
-    const gc={'A+':'#1b5e20','A':'#2e7d32','A−':'#388e3c','B+':'#f57f17','B':'#e65100','B−':'#bf360c','C':'#b71c1c'}[g]||'#555';
-    html+=`<div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:16px">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <span style="font-size:20px">${medals[i]||'#'+(i+1)}</span>
-        <div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--text)">${b}</div>
-        <div style="font-size:11px;color:var(--muted)">${BANKS[b].type==='private'?'Private':'PSU'} · ${BANKS[b].tier}</div></div>
-        <div style="text-align:right"><div style="font-size:22px;font-weight:800;color:${gc}">${g}</div>
-        <div style="font-size:10px;color:var(--muted)">${stars(s)} ${s}/10</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:11px">
-        ${[['ROA',roa,'%'],['ROE',roe,'%'],['NIM',nim,'%'],['GNPA',gnpa,'%'],['PCR',pcr,'%'],['CTI',cti,'%']].map(([lbl,v2,u])=>`
-        <div style="background:var(--surface);border-radius:6px;padding:5px 8px">
-          <div style="color:var(--muted);font-size:9px">${lbl}</div>
-          <div style="font-weight:700;color:var(--text)">${v2!=null?v2.toFixed(2)+u:'—'}</div>
-        </div>`).join('')}
-      </div>
-    </div>`;
-  });
-  html+='</div>';
-
-  // Metric heatmap table
-  html+=`<div class="grp-head"><h3>Metric Heatmap — All 13 Banks</h3></div>
-  <div class="tbl-wrap"><table style="min-width:900px"><thead><tr>
-    <th>Bank</th><th>Grade</th><th>ROA</th><th>ROE</th><th>NIM</th><th>GNPA</th><th>PCR</th><th>CTI</th><th>CASA</th><th>CET-1</th>
-  </tr></thead><tbody>`;
-
-  scored.forEach(({b,s})=>{
-    const g=grade(s);
-    const gc={'A+':'#1b5e20','A':'#2e7d32','A−':'#388e3c','B+':'#f57f17','B':'#e65100','B−':'#bf360c','C':'#b71c1c'}[g]||'#555';
-    function cell(m,lower){
-      const v=val(m,b,'Q4FY26'); if(v==null) return '<td>—</td>';
-      const all=ALL_BANKS.map(bk=>val(m,bk,'Q4FY26')).filter(x=>x!=null);
-      const mn=Math.min(...all),mx=Math.max(...all);
-      const norm=mx===mn?0.5:(lower?(mx-v)/(mx-mn):(v-mn)/(mx-mn));
-      const cls=norm>0.66?'pos':norm>0.33?'neu':'neg';
-      return `<td class="mono ${cls}">${v.toFixed(2)}%</td>`;
-    }
-    html+=`<tr>
-      <td class="metric-name">${b} ${typePill(b)}</td>
-      <td style="font-weight:700;color:${gc}">${g}</td>
-      ${cell('ROA',false)}${cell('ROE',false)}${cell('NIM',false)}
-      ${cell('GNPA',true)}${cell('PCR',false)}${cell('CTI',true)}
-      ${cell('CASA',false)}${cell('CET 1',false)}
-    </tr>`;
-  });
-  html+='</tbody></table></div>';
-  document.getElementById('rating').innerHTML=html;
-}
-
-/* ═══ RANKINGS RENDERER ═══ */
-function renderRanking(){
-  const RANK_METRICS=['Net Profit (PAT)','ROA','ROE','NIM','CASA','GNPA','NNPA','PCR','CTI','CRAR','CET 1','P/BV'];
-  const LOWER_SET=new Set(['GNPA','NNPA','CTI']);
-
-  function composite(b){
-    let pts=0,cnt=0;
-    RANK_METRICS.forEach(m=>{
-      const v=val(m,b,'Q4FY26'); if(v==null)return;
-      const lower=LOWER_SET.has(m);
-      const all=ALL_BANKS.map(bk=>val(m,bk,'Q4FY26')).filter(x=>x!=null).sort((a,c)=>lower?a-c:c-a);
-      pts+=ALL_BANKS.length-all.indexOf(v); cnt++;
-    });
-    return cnt>0?Math.round(pts/cnt*10)/10:0;
-  }
-
-  const scored=ALL_BANKS.map(b=>({b,s:composite(b)})).sort((a,c)=>c.s-a.s);
-  const medals=['🥇','🥈','🥉','4','5','6','7','8','9','10','11','12','13'];
-
-  let html=`<div class="section-title">Company Rankings — Q4 FY26 · All 13 Banks</div>
-  <div class="section-note">Composite rank score across 12 metrics. Higher = better relative performance across the peer group. <b>Not a buy/sell/hold recommendation.</b></div>
-  <div class="tbl-wrap"><table style="min-width:680px"><thead>
-  <tr><th>Rank</th><th>Bank</th><th>Score</th><th>PAT ₹Cr</th><th>ROA %</th><th>ROE %</th><th>GNPA %</th><th>NIM %</th></tr>
-  </thead><tbody>`;
-
-  scored.forEach(({b,s},i)=>{
-    const pat=val('Net Profit (PAT)',b,'Q4FY26'),roa=val('ROA',b,'Q4FY26'),roe=val('ROE',b,'Q4FY26');
-    const gnpa=val('GNPA',b,'Q4FY26'),nim=val('NIM',b,'Q4FY26');
-    html+=`<tr${i<3?` style="background:rgba(255,165,0,${0.06-i*0.015})"`:''}>
-      <td style="font-size:16px;text-align:center">${medals[i]}</td>
-      <td class="metric-name">${b} ${typePill(b)}</td>
-      <td class="mono" style="font-weight:700;color:var(--accent)">${s}</td>
-      <td class="mono pos">₹${Math.round(pat||0).toLocaleString('en-IN')}</td>
-      <td class="mono${roa>=1.5?' pos':roa>=0.8?' neu':' neg'}">${roa?roa.toFixed(2)+'%':'—'}</td>
-      <td class="mono${roe>=15?' pos':roe>=10?' neu':' neg'}">${roe?roe.toFixed(2)+'%':'—'}</td>
-      <td class="mono${gnpa<=1.5?' pos':gnpa<=2.5?' neu':' neg'}">${gnpa?gnpa.toFixed(2)+'%':'—'}</td>
-      <td class="mono${nim>=4?' pos':nim>=3?' neu':' neg'}">${nim?nim.toFixed(2)+'%':'—'}</td>
-    </tr>`;
-  });
-  html+='</tbody></table></div>';
-  document.getElementById('ranking').innerHTML=html;
-}
-
-
-/* ═══ CAUVERY SOCRATES — MIXED BANKING Q4 FY26 ═══ */
-const SOC_TOPICS_MIXED = {
-  private_vs_psu: {
-    title: { en: "Large Private vs PSU — Who Won Q4 FY26?", ta: "பெரிய தனியார் vs PSU — Q4 FY26-ல் யார் வென்றனர்?" },
-    questions: [
-      {
-        type: "mcq",
-        q: { en: "🟡 ICICI Bank ROA: 2.28%, ROE: 17.2%. Indian Bank ROA: 1.20%, ROE: 18.54%. Indian Bank has higher ROE on lower ROA. What does this arithmetic reveal about the two banks — and which metric matters more for an equity investor?", ta: "🟡 ICICI Bank ROA: 2.28%, ROE: 17.2%. Indian Bank ROA: 1.20%, ROE: 18.54%. Indian Bank குறைந்த ROA-வில் அதிக ROE. இந்த கணிதம் இரண்டு வங்கிகளைப் பற்றி என்ன வெளிப்படுத்துகிறது?" },
-        context: "ICICI ROA: 2.28% · ROE: 17.2% · CET-1: 16.35% · Indian Bank ROA: 1.20% · ROE: 18.54% · CET-1: 14.10% · DuPont: ROE = ROA × (Assets/Equity)",
-        hint: { en: "ROE = ROA × leverage multiplier. Indian Bank earns less per rupee of assets but uses more leverage. Calculate the implied equity/assets ratio for each.", ta: "ROE = ROA × அந்நிய விகிதம். Indian Bank சொத்துக்கள் ஒவ்வொரு ரூபாயிலும் குறைவாக சம்பாதிக்கிறது ஆனால் அதிக அந்நியத்தை பயன்படுத்துகிறது." },
-        options: [{ en: "Indian Bank is better — higher ROE always signals superior shareholder returns", ta: "Indian Bank சிறந்தது — அதிக ROE எப்போதும் சிறந்த பங்குதாரர் வருமானத்தை குறிக்கிறது" }, { en: "ICICI is better — 2.28% ROA means it earns more per rupee of assets, showing genuine business quality; Indian Bank amplifies ROE through higher leverage, not better economics", ta: "ICICI சிறந்தது — 2.28% ROA சொத்துக்கள் ஒவ்வொரு ரூபாயிலும் அதிகம் சம்பாதிக்கிறது; Indian Bank சிறந்த பொருளாதாரம் அல்ல, அதிக அந்நியம் மூலம் ROE அதிகரிக்கிறது" }, { en: "Both are equal — ROA and ROE differences cancel out", ta: "இரண்டும் சமம் — ROA மற்றும் ROE வேறுபாடுகள் சமன் ஆகின்றன" }, { en: "Indian Bank is riskier — PSU banks should always trade at a discount to private banks", ta: "Indian Bank ஆபத்தானது — PSU வங்கிகள் எப்போதும் தனியார் வங்கிகளை விட தள்ளுபடியில் வர்த்தகம் செய்ய வேண்டும்" }],
-        correct: 1,
-        responses: [
-          { tag: { en: "Check the arithmetic", ta: "கணக்கீட்டை சரிபாருங்கள்" }, cls: "wrong-resp", text: { en: "ROE = ROA × (Assets/Equity). ICICI: 2.28% × 7.5x ≈ 17.1%. Indian Bank: 1.20% × 15.4x ≈ 18.5%. Indian Bank uses ~2x the leverage to generate marginally higher ROE. In a credit stress event, Indian Bank's thinner equity buffer amplifies losses far more. Which bank would you rather own in a downturn?", ta: "ROE = ROA × அந்நியம். ICICI: 2.28% × 7.5x ≈ 17.1%. Indian Bank: 1.20% × 15.4x ≈ 18.5%. Indian Bank சற்று அதிக ROE உருவாக்க ~2x அந்நியம் பயன்படுத்துகிறது. கடன் அழுத்த நிகழ்வில் எந்த வங்கி சொந்தமாக வைத்திருக்க விரும்புவீர்கள்?" }, followup: { en: "ICICI's provisions this quarter were just ₹96 Cr — down from ₹891 Cr a year ago. Does this ultra-low provision explain the 2.28% ROA spike, or is it genuine earnings quality? What would normalised ROA look like?", ta: "ICICI இந்த காலாண்டு வழங்கல்கள் ₹96 Cr மட்டுமே — ஒரு வருடம் முன்பு ₹891 Cr. இந்த மிகக் குறைந்த வழங்கல் 2.28% ROA உயர்வை விளக்குகிறதா, அல்லது உண்மையான வருவாய் தரமா?" } },
-          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Right. ROA is the purer measure of business quality — it strips out leverage. ICICI at 2.28% ROA generates ₹2.28 of profit per ₹100 of assets regardless of how those assets are financed. Now stress-test ICICI's ROA.", ta: "சரி. ROA வணிக தரத்தின் தூய்மையான அளவீடு — அது அந்நியத்தை நீக்குகிறது. ICICI 2.28% ROA-ல் சொத்துக்கள் எப்படி நிதியளிக்கப்பட்டாலும் ₹100-க்கு ₹2.28 லாபம் உருவாக்குகிறது." }, followup: { en: "ICICI's provisions fell from ₹891 Cr (Q4FY25) to just ₹96 Cr (Q4FY26) — an 89% drop. Strip out this provision benefit: what does ICICI's normalised ROA look like, and does it change your quality assessment?", ta: "ICICI வழங்கல்கள் ₹891 Cr (Q4FY25) இலிருந்து ₹96 Cr (Q4FY26) ஆக 89% வீழ்ச்சி. இந்த வழங்கல் நன்மையை நீக்கி: ICICI இயல்பான ROA எப்படி இருக்கும், உங்கள் தர மதிப்பீடு மாறுமா?" } },
-          { tag: { en: "Dig deeper", ta: "ஆழமாக ஆராயுங்கள்" }, cls: "wrong-resp", text: { en: "They absolutely do not cancel out. ICICI earns 190bps more ROA with similar ROE — meaning it achieves the same shareholder return with far less leverage risk. Indian Bank needs 2x the leverage to match. In banking, excess leverage is not a neutral fact — it amplifies both gains and losses symmetrically.", ta: "அவை நிச்சயமாக சமன் ஆவதில்லை. ICICI ஒரே ROE-உடன் 190bps அதிக ROA சம்பாதிக்கிறது — மிகக் குறைந்த அந்நிய ஆபத்துடன் அதே பங்குதாரர் வருமானம். Indian Bank பொருந்த 2x அந்நியம் தேவை. வங்கியில், அதிகப்படியான அந்நியம் நடுநிலை உண்மை அல்ல." }, followup: { en: "If both banks face a 100bps credit loss event (bad loans = 1% of assets), what is the P&L impact as a % of equity for ICICI versus Indian Bank? Which bank's CET-1 ratio takes the bigger hit?", ta: "இரண்டு வங்கிகளும் 100bps கடன் இழப்பு நிகழ்வை எதிர்கொண்டால், ICICI மற்றும் Indian Bank-க்கு சமபங்கு % P&L தாக்கம் என்ன? எந்த வங்கியின் CET-1 விகிதம் அதிக பாதிப்படைகிறது?" } },
-          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை" }, cls: "wrong-resp", text: { en: "Indian Bank's ROA of 1.20% with ROE of 18.54% is actually impressive for a PSU — it shows the NPA cleanup cycle has delivered real operating leverage. The PSU discount thesis is too blunt. Indian Bank P/BV of 3.04x already commands a premium above many private peers. What drives that premium?", ta: "1.20% ROA உடன் 18.54% ROE-உள்ள Indian Bank PSU-க்கு உண்மையில் சிறப்பானது — NPA சுத்தீகரிப்பு சுழற்சி உண்மையான இயக்க ஆதாயத்தை தந்துள்ளது. PSU தள்ளுபடி தேசம் மிகவும் கடினமானது. Indian Bank P/BV 3.04x ஏற்கனவே பல தனியார் சொந்தக்காரர்களை விட பிரீமியம்." }, followup: { en: "Indian Bank P/BV is 3.04x — higher than HDFC Bank (1.13x) and Axis Bank (2.12x). Apply Gordon Growth: (ROE−g)/(CoE−g) with CoE=13%, g=10%. What does Indian Bank's justified P/BV work out to — and what does 3.04x actual imply about market expectations?", ta: "Indian Bank P/BV 3.04x — HDFC Bank (1.13x) மற்றும் Axis Bank (2.12x)-ஐ விட அதிகம். Gordon Growth: (ROE−g)/(CoE−g), CoE=13%, g=10%. Indian Bank நியாயப்படுத்தப்பட்ட P/BV என்ன — 3.04x உண்மையான சந்தை எதிர்பார்ப்புகளைப் பற்றி என்ன குறிக்கிறது?" } }
-        ]
-      },
-      {
-        type: "mcq",
-        q: { en: "🔴 IndusInd Bank: PAT crashed from ₹2,349 Cr (Q4FY25) to ₹594 Cr (Q4FY26) — a 75% collapse. GNPA jumped from 1.92% to 3.43%. NIM compressed from 4.29% to 3.39%. Yet P/BV is still 1.77x. Is the market pricing in recovery — or is 1.77x a value trap?", ta: "🔴 IndusInd Bank: PAT ₹2,349 Cr (Q4FY25) இலிருந்து ₹594 Cr (Q4FY26) ஆக 75% வீழ்ச்சி. GNPA 1.92% இலிருந்து 3.43% ஆக உயர்ந்தது. NIM 4.29% இலிருந்து 3.39% ஆக சுருங்கியது. ஆனால் P/BV இன்னும் 1.77x. சந்தை மீட்சியை விலையிடுகிறதா — அல்லது 1.77x மதிப்பு ஆபத்தா?" },
-        context: "IndusInd PAT: ₹594 Cr (Q4FY26) vs ₹2,349 Cr (Q4FY25) · GNPA: 3.43% vs 1.92% · NIM: 3.39% vs 4.29% · PCR: 71.45% · ROA: 0.40% · CTI: 62.3% · CASA: 31.24% vs 37.56% · P/BV: 1.77x · BVPS: ₹479",
-        hint: { en: "Gordon Growth P/BV = (ROE−g)/(CoE−g). IndusInd ROE is 3.78%. At CoE=13%, g=10%, justified P/BV = (3.78−10)/(13−10) = negative. The formula breaks down when ROE < g. What does 1.77x actual P/BV imply in this situation?", ta: "Gordon Growth P/BV = (ROE−g)/(CoE−g). IndusInd ROE 3.78%. CoE=13%, g=10%: நியாயப்படுத்தப்பட்ட P/BV = (3.78−10)/(13−10) = எதிர்மறை. ROE < g-ஐ விட குறையும்போது சூத்திரம் உடைகிறது." },
-        options: [{ en: "Value trap — at 0.40% ROA and 3.78% ROE, no P/BV above 1x is justified on current numbers; market is speculating on recovery not pricing fundamentals", ta: "மதிப்பு ஆபத்து — 0.40% ROA மற்றும் 3.78% ROE-ல், தற்போதைய எண்களில் 1x-க்கு மேல் P/BV நியாயப்படுத்தப்படவில்லை; சந்தை மீட்சியில் ஊகிக்கிறது" }, { en: "Recovery play — IndusInd at 1.77x is cheap because NIM will recover to 4%+ as the MFI book cleans up", ta: "மீட்சி வாய்ப்பு — MFI புத்தகம் சுத்தமாவதால் NIM 4%+ மீளுவதால் IndusInd 1.77x-ல் மலிவானது" }, { en: "Fair value — 1.77x reflects the franchise value of the deposit base and distribution network independent of current earnings", ta: "நியாயமான மதிப்பு — 1.77x தற்போதைய வருவாயிலிருந்து சுயாதீனமாக வைப்பு தள மற்றும் விநியோக நெட்வொர்க்கின் தளம் மதிப்பை பிரதிபலிக்கிறது" }, { en: "Irrelevant — P/BV doesn't apply to banks under stress; use P/E instead", ta: "பொருத்தமற்றது — அழுத்தத்தில் உள்ள வங்கிகளுக்கு P/BV பொருந்தாது; P/E பயன்படுத்துங்கள்" }],
-        correct: 0,
-        responses: [
-          { tag: { en: "Sharp thinking", ta: "கூர்மையான சிந்தனை" }, cls: "correct-resp", text: { en: "Correct framing. Gordon Growth breaks down at ROE 3.78% < g 10% — the formula outputs a negative justified P/BV, meaning current earnings destroy value faster than growth creates it. 1.77x is pure recovery speculation. Now stress-test the recovery thesis.", ta: "சரியான கட்டமைப்பு. ROE 3.78% < g 10%-ல் Gordon Growth உடைகிறது — சூத்திரம் எதிர்மறை நியாயப்படுத்தப்பட்ட P/BV வெளியிடுகிறது, தற்போதைய வருவாய் வளர்ச்சி உருவாக்குவதை விட வேகமாக மதிப்பை அழிக்கிறது. 1.77x தூய மீட்சி ஊகம்." }, followup: { en: "For IndusInd to justify 1.77x P/BV, it needs ROE well above CoE. Using Gordon Growth in reverse with P/BV=1.77, CoE=13%, g=10%: implied ROE = P/BV×(CoE−g)+g = 1.77×3+10 = 15.31%. IndusInd earned 15%+ ROE in Q4FY25. What specific metrics must recover by when for that ROE to be credible?", ta: "IndusInd 1.77x P/BV நியாயப்படுத்த ROE CoE-ஐ விட அதிகமாக இருக்க வேண்டும். Gordon Growth தலைகீழாக: உட்பொதிக்கப்பட்ட ROE = 1.77×3+10 = 15.31%. IndusInd Q4FY25-ல் 15%+ ROE சம்பாதித்தது. அந்த ROE நம்பகமாக இருக்க எந்த குறிப்பிட்ட அளவீடுகள் எப்போது மீள வேண்டும்?" } },
-          { tag: { en: "Test the assumption", ta: "அனுமானத்தை சோதியுங்கள்" }, cls: "partial-resp", text: { en: "NIM recovery to 4%+ is the bull thesis. But NIM fell because the MFI/consumer book is stressed — GNPA jumped 151bps to 3.43% and CASA collapsed from 37.56% to 31.24%. These are three simultaneous deteriorations. Can all three reverse together in the next 4-6 quarters?", ta: "NIM 4%+ மீட்சி தேசமான தேசம். ஆனால் NIM குறைந்தது MFI/நுகர்வோர் புத்தகம் அழுத்தப்பட்டதால் — GNPA 151bps உயர்ந்து 3.43% மற்றும் CASA 37.56% இலிருந்து 31.24% ஆக வீழ்ந்தது. இவை மூன்று ஒரே நேர சரிவுகள். அடுத்த 4-6 காலாண்டுகளில் மூன்றும் ஒரே நேரத்தில் திரும்புமா?" }, followup: { en: "IndusInd's MFI (microfinance) book is the epicentre of the stress. MFI slippage rates industry-wide peaked at 8-10% in FY26. If IndusInd's MFI book is 15% of advances (₹47,000 Cr), model the additional NPA creation at 8% slippage — and what happens to GNPA and PCR?", ta: "IndusInd MFI (நுண்நிதி) புத்தகம் அழுத்தத்தின் மையம். MFI slippage விகிதங்கள் FY26-ல் தொழில்துறை முழுவதும் 8-10% உச்சம். IndusInd MFI புத்தகம் கடன்களில் 15% (₹47,000 Cr) என்றால், 8% slippage-ல் கூடுதல் NPA உருவாக்கத்தை மாதிரி செய்யுங்கள்." } },
-          { tag: { en: "Incomplete framework", ta: "முழுமையற்ற கட்டமைப்பு" }, cls: "wrong-resp", text: { en: "Franchise value is a real concept — but it must be earnings-backed to be durable. A deposit franchise that funds a deteriorating loan book at 0.40% ROA is consuming, not preserving, franchise value. PCR of 71.45% on 3.43% GNPA means ₹44,000 Cr of NPAs with only 71% coverage — the franchise argument requires this to resolve.", ta: "தளம் மதிப்பு உண்மையான கருத்து — ஆனால் நீடிக்க வருவாய் ஆதரவு இருக்க வேண்டும். 0.40% ROA-ல் சிதைந்துவரும் கடன் புத்தகத்தை நிதியளிக்கும் வைப்பு தளம் தளம் மதிப்பை பாதுகாக்காது, உட்கொள்கிறது. 3.43% GNPA-ல் PCR 71.45% என்பது ₹44,000 Cr NPA-கள் 71% மட்டுமே கவரேஜ்." }, followup: { en: "IndusInd's CASA fell from 37.56% to 31.24% — a 632bps decline in one year. This is the fastest CASA erosion in this 13-bank group. What specific event or structural shift caused this collapse — and how does it connect to the MFI book stress?", ta: "IndusInd CASA 37.56% இலிருந்து 31.24% ஆக — ஒரு வருடத்தில் 632bps வீழ்ச்சி. இது 13-வங்கி குழுவில் வேகமான CASA அரிப்பு. இந்த வீழ்ச்சியை ஏற்படுத்திய குறிப்பிட்ட நிகழ்வு அல்லது அமைப்பு மாற்றம் என்ன — MFI புத்தகம் அழுத்தத்துடன் எவ்வாறு இணைகிறது?" } },
-          { tag: { en: "Reconsider", ta: "மறுபரிசீலனை" }, cls: "wrong-resp", text: { en: "P/BV is specifically designed for banks under stress — it anchors value to the equity buffer regardless of current earnings. P/E collapses to meaninglessness when PAT swings from ₹2,349 Cr to ₹594 Cr in one year. IndusInd P/E on Q4FY26 earnings annualised is >80x — useless. P/BV at 1.77x at least grounds the discussion in tangible net assets.", ta: "P/BV குறிப்பாக அழுத்தத்தில் உள்ள வங்கிகளுக்கு வடிவமைக்கப்பட்டுள்ளது — தற்போதைய வருவாயிலிருந்து சுயாதீனமாக சமபங்கு இடையகத்தில் மதிப்பை நங்கூரமிடுகிறது. PAT ₹2,349 Cr இலிருந்து ₹594 Cr ஆக மாறும்போது P/E அர்த்தமின்மையாக வீழ்கிறது. IndusInd P/E >80x — பயனற்றது." }, followup: { en: "At P/BV of 1.77x on BVPS of ₹479, IndusInd market cap implies ~₹71,000 Cr equity value. What ROA would IndusInd need to earn 15% ROE on that equity — and is that ROA achievable given NIM of 3.39% and CTI of 62.3%?", ta: "BVPS ₹479-ல் P/BV 1.77x-ல், IndusInd சந்தை மூலதனம் ~₹71,000 Cr சமபங்கு மதிப்பை குறிக்கிறது. அந்த சமபங்கில் 15% ROE சம்பாதிக்க IndusInd என்ன ROA தேவை — NIM 3.39% மற்றும் CTI 62.3% கொண்டு அந்த ROA சாத்தியமா?" } }
-        ]
-      }
-    ]
-  },
-  nimspread: {
-    title: { en: "Yield, Cost & NIM Spread — Who Has the Edge?", ta: "Yield, செலவு & NIM Spread — யாருக்கு முன்னிலை?" },
-    questions: [
-      {
-        type: "mcq",
-        q: { en: "🟡 RBL Bank: NIM 4.41%, Yield on Advances 11.00%, Cost of Deposits 6.80%. Kotak Bank: NIM 4.67%, Yield 9.30%, Cost of Deposits 4.40%. Kotak earns more NIM on lower yield. What does this tell you about the two deposit franchises — and which bank has the more durable NIM?", ta: "🟡 RBL Bank: NIM 4.41%, Yield 11.00%, CoD 6.80%. Kotak Bank: NIM 4.67%, Yield 9.30%, CoD 4.40%. Kotak குறைந்த yield-ல் அதிக NIM சம்பாதிக்கிறது. இரண்டு வைப்பு தளங்களைப் பற்றி என்ன சொல்கிறது?" },
-        context: "RBL NIM: 4.41% · Yield: 11.00% · CoD: 6.80% · GNPA: 1.45% · ROA: 0.43% · RBL CASA: 33.6% · Kotak NIM: 4.67% · Yield: 9.30% · CoD: 4.40% · GNPA: 1.20% · ROA: 2.14% · Kotak CASA: 43.3%",
-        hint: { en: "Spread = Yield − Cost of Deposits. RBL spread: 11.00 − 6.80 = 4.20%. Kotak spread: 9.30 − 4.40 = 4.90%. Kotak has wider spread despite lower yield. Why does RBL need 11% lending yield — and why does its ROA land at just 0.43% despite that?", ta: "Spread = Yield − CoD. RBL spread: 4.20%. Kotak spread: 4.90%. Kotak குறைந்த yield இருந்தும் அகலமான spread. RBL-க்கு 11% lending yield ஏன் தேவை — அதன் ROA 0.43% மட்டுமே ஏன்?" },
-        options: [{ en: "RBL has better NIM potential — 11% yield signals higher loan pricing power", ta: "RBL சிறந்த NIM திறன் — 11% yield அதிக கடன் விலையீடு ஆற்றலை குறிக்கிறது" }, { en: "Kotak has the more durable NIM — 4.40% deposit cost (CASA 43.3%) makes the spread structurally wider; RBL's 11% yield reflects high-risk lending that comes with higher credit cost, which is why ROA is only 0.43% despite the apparent NIM advantage", ta: "Kotak மிகவும் நீடித்த NIM — 4.40% வைப்பு செலவு (CASA 43.3%) spread-ஐ அமைப்பு ரீதியாக அகலமாக்குகிறது; RBL 11% yield அதிக கடன் செலவுடன் வரும் அதிக-ஆபத்து கடனை பிரதிபலிக்கிறது" }, { en: "Both are equivalent — NIM of 4.41% vs 4.67% is too small a gap to distinguish franchise quality", ta: "இரண்டும் சமம் — 4.41% vs 4.67% NIM இடைவெளி தளம் தரத்தை வேறுபடுத்த மிகவும் சிறியது" }, { en: "RBL is better value — same NIM as Kotak but at much lower P/BV", ta: "RBL சிறந்த மதிப்பு — Kotak போல் NIM ஆனால் மிகவும் குறைந்த P/BV-ல்" }],
-        correct: 1,
-        responses: [
-          { tag: { en: "Look at the full picture", ta: "முழு படத்தை பாருங்கள்" }, cls: "wrong-resp", text: { en: "11% yield on advances signals RBL is lending to high-risk borrowers — its credit card, MFI, and SME book command premium rates because they carry higher default risk. The full P&L impact: RBL NIM 4.41% minus credit cost (GNPA 1.45%, provisions heavy) leaves ROA of just 0.43%. The yield is real; the credit cost eats it.", ta: "11% yield RBL அதிக-ஆபத்து கடன் பெறுவோருக்கு கடன் வழங்குகிறது என்பதை குறிக்கிறது — கிரெடிட் கார்டு, MFI, SME புத்தகம் அதிக தவணை விகிதங்களை வசூலிக்கும் ஏனெனில் அவை அதிக தவணை ஆபத்தை கொண்டுள்ளன. முழு P&L தாக்கம்: RBL NIM 4.41% கழித்தல் கடன் செலவு ROA 0.43% மட்டுமே விடுகிறது." }, followup: { en: "RBL Yield on Advances is 11.00% — highest in this 13-bank group. Yet ROA is 0.43% — second lowest. Map the full NIM→ROA waterfall for RBL: where does the 11% yield lose the most before reaching ROA?", ta: "RBL Yield 11.00% — 13-வங்கி குழுவில் அதிகமானது. ROA 0.43% — இரண்டாவது குறைவானது. RBL-க்கு முழு NIM→ROA waterfall வரைந்திடுங்கள்: 11% yield ROA அடைவதற்கு முன் எங்கு அதிகமாக இழக்கிறது?" } },
-          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Exactly — the NIM→ROA conversion is the real test. Kotak: NIM 4.67% → credit cost ~20bps → CTI 46% → ROA 2.14%. RBL: NIM 4.41% → credit cost ~200bps → CTI 65% → ROA 0.43%. Same NIM level; very different ROA. The deposit cost advantage IS the durable moat.", ta: "சரியாக — NIM→ROA மாற்றம் உண்மையான சோதனை. Kotak: NIM 4.67% → credit cost ~20bps → CTI 46% → ROA 2.14%. RBL: NIM 4.41% → credit cost ~200bps → CTI 65% → ROA 0.43%. ஒரே NIM; மிகவும் வேறுபட்ட ROA. வைப்பு செலவு நன்மை நீடித்த அகழி." }, followup: { en: "TMB has NIM 4.18% and ROA 2.05% — nearly matching Kotak's efficiency despite being 1/10th the size. What structural advantage allows a small Tamil Nadu bank to achieve ICICI/Kotak-level ROA conversion from NIM?", ta: "TMB NIM 4.18% மற்றும் ROA 2.05% — Kotak அளவில் 1/10-ஆக இருந்தும் கிட்டத்தட்ட Kotak திறனை பொருந்துகிறது. ஒரு சிறிய தமிழ்நாடு வங்கி ICICI/Kotak-நிலை ROA மாற்றத்தை எய்த என்ன அமைப்பு நன்மை அனுமதிக்கிறது?" } },
-          { tag: { en: "The gap matters greatly", ta: "இடைவெளி மிகவும் முக்கியம்" }, cls: "wrong-resp", text: { en: "26bps NIM gap is real but not the story. The story is why Kotak achieves 4.67% NIM on 9.30% yield while RBL needs 11.00% yield to get 4.41%. Kotak's 4.40% deposit cost is 240bps cheaper than RBL's 6.80%. That 240bps structural funding advantage is a permanent competitive moat — not a small gap to dismiss.", ta: "26bps NIM இடைவெளி உண்மையானது ஆனால் கதை அல்ல. கதை என்னவெனில் Kotak ஏன் 9.30% yield-ல் 4.67% NIM அடைகிறது, RBL 4.41% பெற 11.00% yield தேவை. Kotak 4.40% வைப்பு செலவு RBL-இன் 6.80%-ஐ விட 240bps மலிவு. அந்த 240bps அமைப்பு நிதி நன்மை நிரந்தர போட்டி அகழி." }, followup: { en: "At RBL's cost of deposits of 6.80%, what lending yield would it need to match Kotak's NIM of 4.67%? Is that lending yield achievable without taking significantly more credit risk than the current book?", ta: "RBL வைப்பு செலவு 6.80%-ல், Kotak NIM 4.67% பொருந்த என்ன lending yield தேவை? தற்போதைய புத்தகத்தை விட குறிப்பிடத்தக்க அதிக கடன் ஆபத்து எடுக்காமல் அந்த lending yield சாத்தியமா?" } },
-          { tag: { en: "Value needs a ROA foundation", ta: "மதிப்புக்கு ROA அடித்தளம் தேவை" }, cls: "wrong-resp", text: { en: "RBL P/BV of 1.50x versus Kotak 2.31x looks like a bargain — but factor in ROA. RBL ROA is 0.43%; Kotak is 2.14%. At Kotak-level ROA on RBL's asset base (₹130,000 Cr), RBL would earn ~₹2,800 Cr PAT versus actual ₹230 Cr. The P/BV discount reflects a genuine profitability gap, not mispricing.", ta: "RBL P/BV 1.50x மற்றும் Kotak 2.31x ஒரு பேரம் போல் தெரிகிறது — ஆனால் ROA-ஐ கணக்கிடுங்கள். RBL ROA 0.43%; Kotak 2.14%. Kotak-நிலை ROA RBL சொத்து தளத்தில் (₹130,000 Cr), RBL ~₹2,800 Cr PAT சம்பாதிக்கும் உண்மையான ₹230 Cr-க்கு பதிலாக. P/BV தள்ளுபடி உண்மையான லாபத்தன்மை இடைவெளியை பிரதிபலிக்கிறது." }, followup: { en: "RBL Bank's ROA improved from 0.13% (Q4FY25) to 0.43% (Q4FY26) — a 30bps improvement. What drove this improvement, and is the trajectory toward 1%+ ROA realistic within 6 quarters given the current NIM compression and CTI of 65%?", ta: "RBL Bank ROA 0.13% (Q4FY25) இலிருந்து 0.43% (Q4FY26) ஆக — 30bps மேம்பாடு. இந்த மேம்பாட்டை எது இயக்கியது, தற்போதைய NIM சுருக்கம் மற்றும் CTI 65% கொண்டு 6 காலாண்டுகளுக்குள் 1%+ ROA பாதை யதார்த்தமா?" } }
-        ]
-      }
-    ]
-  },
-  small_bank_alpha: {
-    title: { en: "Small Bank Alpha — TMB, CUB & SIB", ta: "சிறிய வங்கி ஆல்ஃபா — TMB, CUB & SIB" },
-    questions: [
-      {
-        type: "free",
-        q: { en: "🔴 TMB (Tamilnad Mercantile Bank): ROA 2.05%, NIM 4.18%, GNPA 0.73%, CTI 45%, PAT ₹374 Cr. These metrics beat HDFC Bank on ROA and GNPA. Yet TMB trades at P/BV of 2.50x while HDFC Bank trades at just 1.13x. Is TMB overvalued, or is HDFC Bank undervalued — and what framework resolves this?", ta: "🔴 TMB: ROA 2.05%, NIM 4.18%, GNPA 0.73%, CTI 45%, PAT ₹374 Cr. இந்த அளவீடுகள் ROA மற்றும் GNPA-ல் HDFC Bank-ஐ மிஞ்சுகின்றன. ஆனால் TMB P/BV 2.50x மற்றும் HDFC Bank 1.13x மட்டுமே. TMB அதிக மதிப்பிடப்பட்டதா, அல்லது HDFC Bank குறைமதிப்பிடப்பட்டதா?" },
-        context: "TMB: ROA 2.05%, NIM 4.18%, GNPA 0.73%, CTI 45%, PAT ₹374 Cr, P/BV 2.50x, ROE 18.0%, Advances ₹53,379 Cr · HDFC Bank: ROA 1.96%, NIM 3.38%, GNPA 1.15%, CTI 39.9%, PAT ₹19,221 Cr, P/BV 1.13x, ROE 14.1%, Advances ₹29.60 lakh crore",
-        hint: { en: "Apply Gordon Growth to both: P/BV = (ROE−g)/(CoE−g). Use CoE=13%, g=10% for TMB; CoE=12%, g=12% for HDFC Bank (larger, more predictable, deserves lower CoE and higher g). The framework resolves the apparent paradox.", ta: "இரண்டுக்கும் Gordon Growth பயன்படுத்துங்கள்: P/BV = (ROE−g)/(CoE−g). TMB-க்கு CoE=13%, g=10%; HDFC Bank-க்கு CoE=12%, g=12% (பெரியது, அதிக கணிக்கக்கூடியது, குறைந்த CoE மற்றும் அதிக g நியாயமானது)." },
-        keywords: ["gordon growth", "roe", "coe", "cost of equity", "growth", "scale", "franchise", "justified", "liquidity", "small", "large", "g assumption", "discount", "premium"],
-        partialKeywords: ["valuation", "p/bv", "growth", "roe", "franchise", "scale"],
-        responses: {
-          good: { tag: { en: "Investment-grade reasoning", ta: "முதலீட்டு-தர சிந்தனை" }, cls: "correct-resp", text: { en: "Excellent. Gordon Growth for TMB: (18−10)/(13−10) = 8/3 = 2.67x justified. Actual 2.50x — TMB is slightly undervalued on current metrics. HDFC Bank with CoE=12%, g=12%: (14.1−12)/(12−12) = undefined (g=CoE, perpetuity). Use g=11%: (14.1−11)/(12−11) = 3.1x justified versus 1.13x actual — HDFC Bank is massively undervalued, not TMB. The paradox resolves: HDFC Bank's lower P/BV reflects market skepticism on sustaining 14% ROE at ₹31 lakh crore scale, not cheap valuation.", ta: "சிறப்பு. TMB Gordon Growth: (18−10)/(13−10) = 2.67x நியாயப்படுத்தப்பட்டது. உண்மையான 2.50x — TMB தற்போதைய அளவீடுகளில் சற்று குறைமதிப்பிடப்பட்டது. HDFC Bank CoE=12%, g=11%: (14.1−11)/(12−11) = 3.1x நியாயப்படுத்தப்பட்டது 1.13x உண்மையானதை விட — HDFC Bank மிகவும் குறைமதிப்பிடப்பட்டது. முரண்பாடு தீர்கிறது: HDFC Bank குறைந்த P/BV ₹31 லட்சம் கோடி அளவில் 14% ROE தக்கவைக்கும் சந்தை சந்தேகத்தை பிரதிபலிக்கிறது." }, followup: { en: "HDFC Bank's ROE fell from 17% (pre-merger) to 14.1% (Q4FY26) post the HDFC Ltd merger, as the merged entity absorbed a lower-yield mortgage book. At what ROE does HDFC Bank's justified P/BV (CoE=12%, g=11%) match the current 1.13x actual — and is that ROE achievable?", ta: "HDFC Bank ROE HDFC Ltd இணைப்பிற்கு பின் 17% (இணைப்பிற்கு முன்) இலிருந்து 14.1% (Q4FY26) ஆக குறைந்தது. என்ன ROE-ல் HDFC Bank நியாயப்படுத்தப்பட்ட P/BV (CoE=12%, g=11%) தற்போதைய 1.13x உண்மையானதை பொருந்துகிறது — அந்த ROE சாத்தியமா?" } },
-          partial: { tag: { en: "Apply the formula", ta: "சூத்திரத்தை பயன்படுத்துங்கள்" }, cls: "partial-resp", text: { en: "You've identified the scale/franchise angle. Now quantify it through Gordon Growth. The key insight: HDFC Bank at ₹31 lakh crore scale deserves a lower cost of equity (more predictable, diversified) AND a higher sustainable growth assumption than TMB. These two adjustments to the formula resolve the P/BV paradox entirely — without them, HDFC looks optically cheap.", ta: "அளவு/தளம் கோணத்தை கண்டறிந்தீர்கள். இப்போது Gordon Growth மூலம் அளவீடு செய்யுங்கள். முக்கிய நுண்ணறிவு: HDFC Bank ₹31 லட்சம் கோடி அளவில் குறைந்த சமபங்கு செலவு (அதிக கணிக்கக்கூடியது) மற்றும் TMB-ஐ விட அதிக நீடித்த வளர்ச்சி அனுமானத்திற்கு தகுதியானது." }, followup: { en: "TMB operates only in Tamil Nadu and parts of AP/Karnataka. If TMB attempts pan-India expansion (as Karur Vysya Bank did), what typically happens to NIM, GNPA, and CTI in the first 3 years — and why do regional banks often destroy value when they scale nationally?", ta: "TMB தமிழ்நாடு மற்றும் AP/Karnataka பகுதிகளில் மட்டுமே செயல்படுகிறது. TMB பான்-இந்தியா விரிவாக்கம் முயன்றால் (Karur Vysya Bank போல்), முதல் 3 வருடங்களில் NIM, GNPA, CTI-க்கு என்ன பொதுவாக நடக்கும் — மற்றும் பிராந்திய வங்கிகள் தேசிய அளவில் விரிவடையும்போது மதிப்பை ஏன் அழிக்கின்றன?" } },
-          wrong: { tag: { en: "Use Gordon Growth to resolve it", ta: "Gordon Growth பயன்படுத்தி தீர்க்கவும்" }, cls: "wrong-resp", text: { en: "The paradox resolves through the cost of equity and growth assumptions. Apply Gordon Growth: P/BV = (ROE−g)/(CoE−g). TMB (ROE 18%, CoE 13%, g 10%) = (18−10)/(13−10) = 2.67x justified. HDFC Bank (ROE 14.1%, CoE 12%, g 11%) = (14.1−11)/(12−11) = 3.1x justified. Both are near or below fair value — HDFC Bank is dramatically undervalued on this model, which is why market skepticism (can it sustain 14% ROE at this scale?) keeps P/BV suppressed.", ta: "முரண்பாடு சமபங்கு செலவு மற்றும் வளர்ச்சி அனுமானங்கள் மூலம் தீர்கிறது. Gordon Growth பயன்படுத்துங்கள்: P/BV = (ROE−g)/(CoE−g). TMB (ROE 18%, CoE 13%, g 10%) = 2.67x நியாயப்படுத்தப்பட்டது. HDFC Bank (ROE 14.1%, CoE 12%, g 11%) = 3.1x நியாயப்படுத்தப்பட்டது. இரண்டும் நியாயமான மதிப்பில் அல்லது கீழே — HDFC Bank இந்த மாதிரியில் வியத்தகு அளவில் குறைமதிப்பிடப்பட்டது." }, followup: { en: "TMB's ROE is 18%, CET-1 is 22%, and GNPA is 0.73% — it has excess capital with strong asset quality. What strategic options should TMB's management consider to deploy the excess capital productively without destroying the metrics that justify the 2.50x P/BV?", ta: "TMB ROE 18%, CET-1 22%, GNPA 0.73% — வலுவான சொத்து தரத்துடன் அதிகப்படியான மூலதனம். 2.50x P/BV நியாயப்படுத்தும் அளவீடுகளை அழிக்காமல் அதிகப்படியான மூலதனை உற்பத்தியாக பயன்படுத்த TMB நிர்வாகம் என்ன மூலோபாய விருப்பங்களை பரிசீலிக்க வேண்டும்?" } }
-        }
-      }
-    ]
-  },
-  yes_bank_resurrection: {
-    title: { en: "YES Bank — The Resurrection Test", ta: "YES Bank — மீட்சி சோதனை" },
-    questions: [
-      {
-        type: "mcq",
-        q: { en: "🟡 YES Bank: PAT ₹1,068 Cr (+44.7% YoY), NIM 2.70%, GNPA 1.30% (from 1.60%), ROA 1.00%, P/BV 0.95x. It trades below book. The narrative is \"turnaround complete.\" What is the most important unresolved question before accepting this narrative?", ta: "🟡 YES Bank: PAT ₹1,068 Cr (+44.7% YoY), NIM 2.70%, GNPA 1.30% (1.60% இலிருந்து), ROA 1.00%, P/BV 0.95x. புத்தகத்திற்கு கீழே வர்த்தகம். \"மாற்றம் முடிந்தது\" என்ற கதை. இந்த கதையை ஏற்பதற்கு முன் மிக முக்கியமான தீர்க்கப்படாத கேள்வி என்ன?" },
-        context: "YES Bank PAT: ₹1,068 Cr (Q4FY26) vs ₹738 Cr (Q4FY25) · NIM: 2.70% · GNPA: 1.30% vs 1.60% · ROA: 1.00% · CTI: 69.5% · CASA: 35.1% · P/BV: 0.95x · Provisions: ₹341 Cr vs ₹318 Cr (Q4FY25) · YES Bank max deposit guarantee: ₹5 lakh (post-moratorium)",
-        hint: { en: "YES Bank's NIM of 2.70% and CTI of 69.5% are the two structural constraints. A bank cannot sustain 1%+ ROA long-term with NIM this low and costs this high — something must change. What must improve, and by how much?", ta: "YES Bank NIM 2.70% மற்றும் CTI 69.5% இரண்டு அமைப்பு தடைகள். ஒரு வங்கி இந்த குறைந்த NIM மற்றும் அதிக செலவுகளுடன் நீண்ட காலத்தில் 1%+ ROA நிலைத்திருக்க முடியாது — ஏதோ மாற வேண்டும்." },
-        options: [{ en: "Whether YES Bank can grow CASA above 40% to improve NIM", ta: "YES Bank NIM மேம்படுத்த CASA 40%-க்கு மேல் வளர்க்க முடியுமா" }, { en: "Whether CTI of 69.5% can structurally decline, AND whether NIM can expand beyond 3% — both simultaneously, because at current NIM and CTI, 1% ROA is near the ceiling not the floor", ta: "CTI 69.5% அமைப்பு ரீதியாக குறையுமா, மற்றும் NIM 3%-க்கு மேல் விரிவடையுமா — இரண்டும் ஒரே நேரத்தில், ஏனெனில் தற்போதைய NIM மற்றும் CTI-ல் 1% ROA சாத்தியமின்மையில் அல்ல, அது வரம்பில் உள்ளது" }, { en: "Whether the government will divest its stake in YES Bank", ta: "அரசு YES Bank-ல் தன் பங்கை விற்குமா" }, { en: "Whether YES Bank's GNPA can fall below 1% matching Kotak and HDFC", ta: "YES Bank GNPA Kotak மற்றும் HDFC பொருந்த 1%-க்கு கீழ் குறையுமா" }],
-        correct: 1,
-        responses: [
-          { tag: { en: "Important but incomplete", ta: "முக்கியம் ஆனால் முழுமையற்றது" }, cls: "partial-resp", text: { en: "CASA growth helps NIM — but YES Bank's CASA has only moved from 34.3% to 35.1% despite years of effort. The deposit franchise damage from the 2020 moratorium is structural, not cyclical. Even at 40% CASA, NIM might reach 3.0% — still insufficient to earn 1.5%+ ROA at 69.5% CTI. Both NIM AND CTI must move together.", ta: "CASA வளர்ச்சி NIM-க்கு உதவுகிறது — ஆனால் YES Bank CASA ஆண்டுகள் முயற்சிக்கு பிறகும் 34.3% இலிருந்து 35.1% மட்டுமே நகர்ந்தது. 2020 இடைநிறுத்தத்திலிருந்து வைப்பு தளம் சேதம் அமைப்பு, சுழற்சி அல்ல. 40% CASA-ல் கூட NIM 3.0% அடையலாம் — 69.5% CTI-ல் 1.5%+ ROA சம்பாதிக்க இன்னும் போதுமானதில்லை." }, followup: { en: "YES Bank's CTI is 69.5% — only slightly better than IDFC First's 71%. Both are carrying legacy infrastructure costs. In YES Bank's case, what specific cost lines prevent the CTI from declining to 50% (peer average) — and is this fixable within 3 years?", ta: "YES Bank CTI 69.5% — IDFC First 71%-ஐ விட சற்று சிறந்தது. இரண்டும் பழைய உள்கட்டமைப்பு செலவுகளை கொண்டுசெல்கின்றன. YES Bank-ல், CTI 50% (சொந்தக்காரர் சராசரி)-க்கு குறைவதை தடுக்கும் குறிப்பிட்ட செலவு வரிகள் என்ன — 3 வருடங்களுக்குள் இது சரிசெய்யக்கூடியதா?" } },
-          { tag: { en: "On track", ta: "சரியான பாதையில்" }, cls: "correct-resp", text: { en: "Correct — NIM and CTI are both binding constraints simultaneously. At NIM 2.70% and CTI 69.5%, the current 1% ROA has almost no buffer above the structural cost base. Neither fixing NIM alone nor CTI alone closes the gap; both must improve in parallel for YES Bank to sustainably earn above its cost of equity.", ta: "சரியாக. NIM 2.70% மற்றும் CTI 69.5%-ல், கணிதம் 1% ROA-ஐ சிரமப்பட்டு ஆதரிக்கிறது — கிட்டத்தட்ட இடையகமில்லை. NIM 3.2%+ தாண்ட வேண்டும் மற்றும் CTI 55%-க்கு கீழ் விழ வேண்டும் நிலையான 1.5%+ ROA-க்கு P/BV 1x-க்கு மேல் நியாயப்படுத்தும். இரண்டும் நகர வேண்டும்; எதுவும் தனியாக போதுமானதில்லை." }, followup: { en: "YES Bank's provision in Q4FY26 was ₹341 Cr — up from ₹22 Cr in Q3FY26 (which looked suspiciously low). Strip out the provision volatility: what is YES Bank's pre-provision operating profit (PPOP) to assets ratio — and is PPOP/Assets improving consistently?", ta: "YES Bank Q4FY26 வழங்கல் ₹341 Cr — Q3FY26-ல் ₹22 Cr இலிருந்து (சந்தேகமான குறைவாக தெரிந்தது). வழங்கல் ஏற்ற இறக்கத்தை நீக்கி: YES Bank pre-provision இயக்க லாபம் (PPOP) to assets விகிதம் என்ன — PPOP/Assets தொடர்ச்சியாக மேம்படுகிறதா?" } },
-          { tag: { en: "Secondary concern", ta: "இரண்டாம் நிலை கவலை" }, cls: "wrong-resp", text: { en: "Government divestiture is relevant for who controls YES Bank — but control doesn't change the fundamental P&L challenge. Whether the government holds 20% or 0%, YES Bank still needs NIM above 3% and CTI below 55% to earn sustainable 1.5%+ ROA. Ownership structure matters for governance; NIM and CTI matter for earnings.", ta: "அரசு விற்பனை YES Bank-ஐ யார் கட்டுப்படுத்துகிறார்கள் என்பதற்கு பொருத்தமானது — ஆனால் கட்டுப்பாடு அடிப்படை P&L சவாலை மாற்றாது. அரசு 20% அல்லது 0% வைத்திருந்தாலும், YES Bank-க்கு இன்னும் NIM 3%-க்கு மேல் மற்றும் CTI 55%-க்கு கீழ் தேவை. உரிமையாண்மை கட்டமைப்பு ஆட்சிக்கு முக்கியம்; NIM மற்றும் CTI வருவாய்க்கு முக்கியம்." }, followup: { en: "SBI holds ~24% in YES Bank (post rescue). If SBI decides to divest this stake via block deal, what impact would that have on YES Bank's stock price, depositor confidence, and CASA ratio? Is SBI's overhang a factor in YES Bank's sub-1x P/BV?", ta: "SBI YES Bank-ல் ~24% வைத்துள்ளது (மீட்புக்கு பின்). SBI இந்த பங்கை block deal மூலம் விற்க முடிவு செய்தால், YES Bank பங்கு விலை, வைப்புதாரர் நம்பிக்கை மற்றும் CASA விகிதத்தில் என்ன தாக்கம்? SBI overhang YES Bank sub-1x P/BV-ல் ஒரு காரணியா?" } },
-          { tag: { en: "Wrong lever", ta: "தவறான நெம்புகோல்" }, cls: "wrong-resp", text: { en: "GNPA improvement from 1.60% to 1.30% is positive but already largely priced in. YES Bank's P/BV below 1x is not primarily about credit risk — it's about earning power. Even at 0.50% GNPA (HDFC level), YES Bank's NIM of 2.70% and CTI of 69.5% would only produce ~0.8% ROA. The ceiling on earnings, not the floor on credit quality, is what keeps P/BV below 1x.", ta: "GNPA 1.60% இலிருந்து 1.30% மேம்பாடு நேர்மறையானது ஆனால் ஏற்கனவே பெரும்பாலும் விலையிடப்பட்டது. YES Bank P/BV 1x-க்கு கீழ் முதன்மையாக கடன் ஆபத்தைப் பற்றி அல்ல — வருவாய் ஆற்றல். 0.50% GNPA (HDFC நிலை) கூட, YES Bank NIM 2.70% மற்றும் CTI 69.5% ~0.8% ROA மட்டுமே உருவாக்கும்." }, followup: { en: "Apply Gordon Growth to YES Bank: ROE 8.2%, CoE 14% (higher due to franchise risk), g 8%. Justified P/BV = (8.2−8)/(14−8) = 0.033x. Yet it trades at 0.95x. What is the market embedding in 0.95x that the current ROE of 8.2% does not reflect?", ta: "YES Bank-க்கு Gordon Growth பயன்படுத்துங்கள்: ROE 8.2%, CoE 14% (தளம் ஆபத்தால் அதிகம்), g 8%. நியாயப்படுத்தப்பட்ட P/BV = (8.2−8)/(14−8) = 0.033x. ஆனால் 0.95x-ல் வர்த்தகம். தற்போதைய ROE 8.2% பிரதிபலிக்காத 0.95x-ல் சந்தை என்ன உட்பொதிக்கிறது?" } }
-        ]
-      }
-    ]
-  },
-  efficiency_war: {
-    title: { en: "Efficiency War — CTI & Operating Leverage", ta: "திறன் போர் — CTI & இயக்க ஆதாயம்" },
-    questions: [
-      {
-        type: "free",
-        q: { en: "🟡 HDFC Bank: CTI 39.9%, ROA 1.96%. ICICI Bank: CTI 39.8%, ROA 2.28%. Axis Bank: CTI 51.1%, ROA 1.50%. The HDFC-ICICI CTI gap is just 10bps yet their ROA gap is 32bps. Axis has CTI 11 percentage points higher yet ROA only 46bps lower. Explain the mechanics — why doesn't CTI linearly predict ROA in banking?", ta: "🟡 HDFC Bank: CTI 39.9%, ROA 1.96%. ICICI Bank: CTI 39.8%, ROA 2.28%. Axis Bank: CTI 51.1%, ROA 1.50%. HDFC-ICICI CTI இடைவெளி 10bps மட்டுமே ஆனால் ROA இடைவெளி 32bps. Axis CTI 11 சதவிகிதப் புள்ளிகள் அதிகம் ஆனால் ROA 46bps மட்டுமே குறைவு. வழிமுறையை விளக்கவும் — வங்கியில் CTI ஏன் ROA-ஐ நேரடியாக கணிக்கவில்லை?" },
-        context: "HDFC CTI: 39.9%, NIM: 3.38%, ROA: 1.96%, Provisions: ₹2,609 Cr · ICICI CTI: 39.8%, NIM: 4.32%, ROA: 2.28%, Provisions: ₹96 Cr · Axis CTI: 51.1%, NIM: 3.62%, ROA: 1.50%, Provisions: ₹3,522 Cr",
-        hint: { en: "ROA = f(NIM, Other Income, CTI, Credit Cost, Tax). Two banks with the same CTI can have very different ROA if NIM or credit cost differ. ICICI's provisions are ₹96 Cr; HDFC's are ₹2,609 Cr. That alone drives most of the ROA gap.", ta: "ROA = f(NIM, பிற வருமானம், CTI, கடன் செலவு, வரி). ஒரே CTI கொண்ட இரண்டு வங்கிகள் NIM அல்லது கடன் செலவு வேறுபட்டால் மிகவும் வேறுபட்ட ROA கொண்டிருக்கலாம். ICICI வழங்கல்கள் ₹96 Cr; HDFC ₹2,609 Cr." },
-        keywords: ["provision", "credit cost", "nim", "icici", "hdfc", "waterfall", "credit", "provisions", "other income", "fee", "axis", "low provision", "pcr", "normalised"],
-        partialKeywords: ["provision", "credit", "nim", "different", "not linear"],
-        responses: {
-          good: { tag: { en: "Precise analysis", ta: "துல்லியமான பகுப்பாய்வு" }, cls: "correct-resp", text: { en: "The ROA formula has four drivers, not one: NIM, fee income (Other Income), CTI, and credit cost. CTI at 39.9% vs 39.8% is noise — HDFC/ICICI are identical on efficiency. The ROA gap comes from: (1) ICICI NIM 4.32% vs HDFC 3.38% = 94bps NIM advantage; (2) ICICI provisions ₹96 Cr vs HDFC ₹2,609 Cr = ~85bps credit cost advantage on their respective asset bases. Axis CTI of 51.1% costs ~11 percentage points more of income as opex, yet Axis NIM (3.62%) and credit cost partly offset this, keeping ROA at 1.50% not 1.0%.", ta: "ROA சூத்திரம் ஒன்றல்ல நான்கு இயக்கிகளை கொண்டுள்ளது: NIM, கட்டண வருமானம், CTI, மற்றும் கடன் செலவு. CTI 39.9% vs 39.8% சத்தம் — HDFC/ICICI திறனில் ஒரே மாதிரி. ROA இடைவெளி வருகிறது: (1) ICICI NIM 4.32% vs HDFC 3.38% = 94bps NIM நன்மை; (2) ICICI வழங்கல்கள் ₹96 Cr vs HDFC ₹2,609 Cr = ~85bps கடன் செலவு நன்மை. Axis CTI 51.1% வருமானத்தில் ~11 சதவிகிதப் புள்ளிகள் அதிகமாக opex செலவு ஆனால் Axis NIM (3.62%) மற்றும் கடன் செலவு ஓரளவு ஈடுசெய்கின்றன." }, followup: { en: "ICICI's provisions were just ₹96 Cr this quarter — down from ₹891 Cr a year ago. This is the lowest in over 5 years. If normalised credit cost is ₹800 Cr (based on GNPA trajectory and slippage history), what is ICICI's normalised ROA — and does that change the HDFC vs ICICI quality ranking?", ta: "ICICI இந்த காலாண்டு வழங்கல்கள் ₹96 Cr — ஒரு வருடம் முன்பு ₹891 Cr இலிருந்து. இது 5 வருடங்களில் குறைவானது. இயல்பான கடன் செலவு ₹800 Cr என்றால் (GNPA பாதை மற்றும் slippage வரலாற்றின் அடிப்படையில்), ICICI இயல்பான ROA என்ன — HDFC vs ICICI தர வரிசை மாறுமா?" } },
-          partial: { tag: { en: "Add the provision layer", ta: "வழங்கல் அடுக்கை சேர்க்கவும்" }, cls: "partial-resp", text: { en: "NIM difference is correctly identified. Add the other key non-linear factor: credit cost. ICICI provisions are ₹96 Cr versus HDFC ₹2,609 Cr on broadly similar-sized books — this ₹2,513 Cr difference in provisions alone drives ~20bps of ROA gap. Axis's higher CTI is partially offset by its NIM and fee income, preventing a proportional ROA decline. CTI is one variable in a multi-variable equation.", ta: "NIM வேறுபாடு சரியாக கண்டறியப்பட்டது. மற்ற முக்கிய நேரடியற்ற காரணியை சேர்க்கவும்: கடன் செலவு. ICICI வழங்கல்கள் ₹96 Cr மற்றும் HDFC ₹2,609 Cr பரந்த ஒரே அளவிலான புத்தகங்களில் — இந்த ₹2,513 Cr வழங்கல் வேறுபாடு மட்டுமே ~20bps ROA இடைவெளியை இயக்குகிறது. Axis அதிக CTI NIM மற்றும் கட்டண வருமானத்தால் ஓரளவு ஈடுசெய்யப்படுகிறது. CTI பல-மாறி சமன்பாட்டில் ஒரு மாறி." }, followup: { en: "Build the complete NIM→ROA bridge for all three banks using the actual numbers. For each bank: start with NIM, subtract approximate credit cost (provisions/advances), subtract CTI impact, add other income contribution. Which variable explains the most of each bank's ROA versus peers?", ta: "உண்மையான எண்களை பயன்படுத்தி மூன்று வங்கிகளுக்கும் முழு NIM→ROA பாலத்தை கட்டுங்கள். ஒவ்வொரு வங்கிக்கும்: NIM-ல் தொடங்குங்கள், தோராயமான கடன் செலவு கழிக்கவும், CTI தாக்கம் கழிக்கவும், பிற வருமான பங்களிப்பு சேர்க்கவும்." } },
-          wrong: { tag: { en: "Banking ROA has four drivers", ta: "வங்கி ROA நான்கு இயக்கிகளை கொண்டுள்ளது" }, cls: "wrong-resp", text: { en: "CTI measures operating efficiency but ROA = (NIM + Other Income − OpEx − Provisions − Tax) / Assets. Two banks with identical CTI can have very different ROA if NIM differs (ICICI earns 94bps more NIM than HDFC) or credit cost differs (ICICI provisioned ₹96 Cr vs HDFC ₹2,609 Cr). The linearity breaks because there are four independent variables, not one.", ta: "CTI இயக்க திறனை அளவிடுகிறது ஆனால் ROA = (NIM + பிற வருமானம் − OpEx − வழங்கல்கள் − வரி) / சொத்துக்கள். ஒரே CTI கொண்ட இரண்டு வங்கிகள் NIM வேறுபட்டால் (ICICI HDFC-ஐ விட 94bps அதிக NIM சம்பாதிக்கிறது) அல்லது கடன் செலவு வேறுபட்டால் (ICICI ₹96 Cr vs HDFC ₹2,609 Cr) மிகவும் வேறுபட்ட ROA கொண்டிருக்கலாம். நேரியல்தன்மை உடைகிறது ஏனெனில் நான்கு சுயாதீன மாறிகள் உள்ளன, ஒன்று அல்ல." }, followup: { en: "Construct a single composite metric that captures ROA drivers better than any individual metric. What weights would you assign to NIM, CTI, credit cost, and other income ratio — and how does your composite score rank the 13 banks in this dashboard?", ta: "எந்த தனி அளவீட்டையும் விட ROA இயக்கிகளை சிறப்பாக பிடிக்கும் ஒரு கலவை அளவீட்டை உருவாக்குங்கள். NIM, CTI, கடன் செலவு மற்றும் பிற வருமான விகிதத்திற்கு என்ன எடைகளை ஒதுக்குவீர்கள் — உங்கள் கலவை மதிப்பெண் இந்த dashboard-ல் 13 வங்கிகளை எவ்வாறு வரிசைப்படுத்துகிறது?" } }
-        }
-      }
-    ]
-  }
-};
-
-let SOC_LANG_M='en';
-function LM(o){return (typeof o==='object'&&o!==null&&'en' in o)?(o[SOC_LANG_M]||o['en']):o;}
-
-const SOC_STATE_M={active:null,qi:0,answered:{},response:null,freeText:'',showHint:false};
-Object.keys(SOC_TOPICS_MIXED).forEach(k=>{SOC_STATE_M.answered[k]=new Set();});
-
-const CLS_MAP_M={
-  'correct-resp':{panel:'background:#f1f8f2;border:1.5px solid #2e7d32',tag:'color:#1b5e20'},
-  'partial-resp': {panel:'background:#fffde7;border:1.5px solid #f9a825',tag:'color:#7b5800'},
-  'wrong-resp':   {panel:'background:#fff5f5;border:1.5px solid #c62828',tag:'color:#7f0000'}
-};
-
-function socGetDoneM(tid){return SOC_STATE_M.answered[tid]?SOC_STATE_M.answered[tid].size:0;}
-function toggleSocLangM(){SOC_LANG_M=SOC_LANG_M==='en'?'ta':'en'; SOC_STATE_M.active?renderSocrates():renderSocWelcome();}
-
-function renderSocWelcome(){
-  const pills=Object.entries(SOC_TOPICS_MIXED).map(([k,t])=>{
-    const d=socGetDoneM(k),tot=t.questions.length;
-    return `<button onclick="socOpenTopicM('${k}')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--text);font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap" onmouseover="this.style.borderColor='#e86a1a';this.style.color='#c2590a'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">${LM(t.title).split('—')[0].trim()} <span style="font-size:10px;color:var(--muted)">${d}/${tot}</span></button>`;
-  }).join('');
-  const langBtn=`<button onclick="toggleSocLangM()" style="margin-left:auto;flex-shrink:0;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">${SOC_LANG_M==='en'?'தமிழில் படி':'Read in English'}</button>`;
-  document.getElementById('socrates').innerHTML=`
-    <div style="padding:0 0 32px">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 20px;border-bottom:1px solid var(--border);margin-bottom:32px;align-items:center">
-        <span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;flex-shrink:0">${SOC_LANG_M==='en'?'Topics':'தலைப்புகள்'}</span>
-        ${pills}${langBtn}
-      </div>
-      <div style="max-width:580px;margin:0 auto;text-align:center">
-        <div style="font-size:52px;margin-bottom:14px">🦉</div>
-        <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px">${SOC_LANG_M==='en'?'Cauvery Socrates — Mixed Banking Q4 FY26':'காவேரி சாக்ரடீஸ் — கலப்பு வங்கி Q4 FY26'}</div>
-        <div style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:28px">${SOC_LANG_M==='en'?'HDFC · ICICI · Axis · Kotak · IndusInd · YES Bank · RBL · Karnataka · SIB · CUB · TMB · Union · Indian Bank<br>Smart questions. Real Q4 FY26 data. Every number from this dashboard.':'HDFC · ICICI · Axis · Kotak · IndusInd · YES Bank · RBL · Karnataka · SIB · CUB · TMB · Union · Indian Bank<br>கூர்மையான கேள்விகள். உண்மையான Q4 FY26 தரவு. ஒவ்வொரு எண்ணும் இந்த dashboard-இலிருந்து.'}</div>
-        <div style="font-size:13px;color:var(--accent);font-weight:600">↑ ${SOC_LANG_M==='en'?'Select a topic above to begin':'தொடங்க மேலே தலைப்பை தேர்வு செய்யுங்கள்'}</div>
-      </div>
-      <div style="text-align:center;margin-top:32px;font-size:10px;color:var(--muted)">⚠️ SEBI: ${SOC_LANG_M==='en'?'Educational only — not investment advice.':'கல்வி நோக்கங்களுக்கு மட்டுமே — முதலீட்டு ஆலோசனை அல்ல.'}</div>
-    </div>`;
-}
-
-function renderSocrates(){
-  const tid=SOC_STATE_M.active; if(!tid){renderSocWelcome();return;}
-  const tdata=SOC_TOPICS_MIXED[tid], q=tdata.questions[SOC_STATE_M.qi];
-  const tot=tdata.questions.length, done=socGetDoneM(tid), pct=Math.round(done/tot*100);
-  const langBtn=`<button onclick="toggleSocLangM()" style="padding:5px 12px;border-radius:16px;border:1.5px solid var(--border);background:var(--card);color:var(--accent);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">${SOC_LANG_M==='en'?'தமிழில் படி':'Read in English'}</button>`;
-  const pills=Object.entries(SOC_TOPICS_MIXED).map(([k,t])=>{
-    const d=socGetDoneM(k),tot3=t.questions.length,act=SOC_STATE_M.active===k;
-    return `<button onclick="socOpenTopicM('${k}')" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1.5px solid ${act?'#e86a1a':'var(--border)'};background:${act?'rgba(232,106,26,0.1)':'var(--card)'};color:${act?'#c2590a':'var(--text)'};font-size:12px;font-weight:${act?700:500};cursor:pointer;font-family:inherit;white-space:nowrap">${LM(t.title).split('—')[0].trim()} <span style="font-size:10px;opacity:0.7">${d}/${tot3}${d===tot3?' ✓':''}</span></button>`;
-  }).join('');
-  let body='';
-  if(q.type==='mcq'){
-    body='<div style="display:flex;flex-direction:column;gap:8px">';
-    q.options.forEach((opt,i)=>{
-      let extra='background:var(--surface);border:1.5px solid var(--border);color:var(--text)';
-      if(SOC_STATE_M.response){
-        if(i===q.correct) extra='background:#f1f8f2;border:1.5px solid #2e7d32;color:#1a3d1e';
-        else if(i===SOC_STATE_M.response.chosenIdx&&i!==q.correct) extra='background:#fff5f5;border:1.5px solid #c62828;color:#3d0a0a';
-      }
-      body+=`<button onclick="socSelectMCQM(${i})" ${SOC_STATE_M.response?'disabled':''} style="${extra};text-align:left;padding:11px 16px;border-radius:10px;cursor:${SOC_STATE_M.response?'default':'pointer'};font-size:13.5px;line-height:1.5;font-family:inherit;width:100%">${LM(opt)}</button>`;
-    });
-    body+='</div>';
-  } else {
-    body=`<textarea id="socFreeM" oninput="SOC_STATE_M.freeText=this.value" ${SOC_STATE_M.response?'disabled':''} placeholder="${SOC_LANG_M==='en'?'Write your reasoning — reference actual Q4FY26 numbers from the context above…':'உங்கள் கருத்தை எழுதுங்கள் — மேலே context-இலிருந்து Q4FY26 எண்களை குறிப்பிடுங்கள்…'}" style="width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;color:var(--text);padding:12px 14px;font-size:13.5px;line-height:1.6;font-family:inherit;resize:vertical;min-height:110px;outline:none">${SOC_STATE_M.freeText||''}</textarea>`;
-    if(!SOC_STATE_M.response) body+=`<button onclick="socSubmitFreeM()" style="margin-top:8px;background:#e86a1a;border:none;color:#fff;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">${SOC_LANG_M==='en'?'Submit Answer':'பதில் சமர்ப்பிக்கவும்'}</button>`;
-  }
-  let respHtml='';
-  if(SOC_STATE_M.response){
-    const s=CLS_MAP_M[SOC_STATE_M.response.cls]||CLS_MAP_M['wrong-resp'];
-    respHtml=`<div style="margin-top:16px;border-radius:10px;padding:16px;${s.panel}">
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;${s.tag}">${LM(SOC_STATE_M.response.tag)}</div>
-      <div style="font-size:13.5px;line-height:1.65;color:var(--text);margin-bottom:12px">${LM(SOC_STATE_M.response.text)}</div>
-      <div style="background:#fff8f0;border:1.5px solid #f5dcc8;border-radius:8px;padding:10px 14px">
-        <div style="font-size:10px;font-weight:700;color:#c2590a;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🔁 ${SOC_LANG_M==='en'?'Socrates asks…':'சாக்ரடீஸ் கேட்கிறார்…'}</div>
-        <div style="font-size:13px;color:#3d2010;line-height:1.55">${LM(SOC_STATE_M.response.followup)}</div>
-      </div>
-    </div>`;
-    const unanswered=[...Array(tot).keys()].filter(i=>!SOC_STATE_M.answered[tid].has(i));
-    if(unanswered.length>0) respHtml+=`<button onclick="socNextQM()" style="margin-top:14px;background:var(--card);border:1.5px solid var(--border);color:var(--text);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">${SOC_LANG_M==='en'?'Next Question →':'அடுத்த கேள்வி →'}</button>`;
-    else respHtml+=`<div style="margin-top:14px;padding:14px;background:#f1f8f2;border:1.5px solid #2e7d32;border-radius:8px;text-align:center;font-size:13px;font-weight:600;color:#1b5e20">🏆 ${SOC_LANG_M==='en'?'Topic complete! Select another topic above.':'தலைப்பு முடிந்தது! மேலே மற்றொரு தலைப்பை தேர்வு செய்யுங்கள்.'}</div>`;
-  }
-  document.getElementById('socrates').innerHTML=`
-    <div style="padding:0 0 32px">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 20px;border-bottom:1px solid var(--border);margin-bottom:24px;align-items:center">
-        <span style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;flex-shrink:0">${SOC_LANG_M==='en'?'Topics':'தலைப்புகள்'}</span>
-        ${pills}${langBtn}
-      </div>
-      <div style="max-width:740px;margin:0 auto">
-        <div style="margin-bottom:14px">
-          <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px">${LM(tdata.title)}</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            ${[q.type==='mcq'?'⬜ MCQ':'✏️ Open',`Q${SOC_STATE_M.qi+1}/${tot}`,`${done} ${SOC_LANG_M==='en'?'done':'முடிந்தது'}`].map(t=>`<span style="font-size:11px;padding:2px 9px;border-radius:4px;background:var(--surface);border:1px solid var(--border);color:var(--muted)">${t}</span>`).join('')}
-          </div>
-          <div style="background:var(--border);border-radius:4px;height:4px;margin-top:10px">
-            <div style="background:linear-gradient(90deg,#e86a1a,#c2590a);height:4px;border-radius:4px;width:${pct}%;transition:width .4s"></div>
-          </div>
-        </div>
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px">
-          <div style="font-size:15.5px;font-weight:600;color:var(--text);line-height:1.6;margin-bottom:14px">${LM(q.q)}</div>
-          <div style="background:#fff8f3;border:1.5px solid #f5dcc8;border-radius:8px;padding:10px 14px;margin-bottom:14px">
-            <div style="font-size:10px;font-weight:700;color:#c2590a;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">📊 ${SOC_LANG_M==='en'?'Context — Q4 FY26 Actual Data':'Context — Q4 FY26 உண்மையான தரவு'}</div>
-            <div style="font-size:12px;color:#3d2010;line-height:1.7">${q.context}</div>
-          </div>
-          <button onclick="SOC_STATE_M.showHint=!SOC_STATE_M.showHint;renderSocrates()" style="background:var(--card);border:1.5px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:6px;font-size:11px;cursor:pointer;margin-bottom:12px;font-family:inherit">${SOC_STATE_M.showHint?(SOC_LANG_M==='en'?'💡 Hide Hint':'💡 குறிப்பை மறை'):(SOC_LANG_M==='en'?'💡 Show Hint':'💡 குறிப்பை காட்டு')}</button>
-          ${SOC_STATE_M.showHint?`<div style="background:#fffaf3;border:1.5px solid #f5dcc8;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#3d2010;line-height:1.6">${LM(q.hint)}</div>`:''}
-          ${body}${respHtml}
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:20px;font-size:10px;color:var(--muted)">⚠️ SEBI: ${SOC_LANG_M==='en'?'Educational only — not investment advice.':'கல்வி நோக்கங்களுக்கு மட்டுமே — முதலீட்டு ஆலோசனை அல்ல.'}</div>
-    </div>`;
-}
-
-function socOpenTopicM(tid){
-  const tot=SOC_TOPICS_MIXED[tid].questions.length, done=socGetDoneM(tid);
-  const first=[...Array(tot).keys()].find(i=>!SOC_STATE_M.answered[tid].has(i))??0;
-  Object.assign(SOC_STATE_M,{active:tid,qi:done<tot?first:0,response:null,showHint:false,freeText:''});
-  renderSocrates();
-}
-function socSelectMCQM(i){
-  if(SOC_STATE_M.response)return;
-  const q=SOC_TOPICS_MIXED[SOC_STATE_M.active].questions[SOC_STATE_M.qi];
-  SOC_STATE_M.response={...q.responses[i],chosenIdx:i};
-  SOC_STATE_M.answered[SOC_STATE_M.active].add(SOC_STATE_M.qi);
-  renderSocrates();
-}
-function socSubmitFreeM(){
-  if(SOC_STATE_M.response)return;
-  const ft=document.getElementById('socFreeM');
-  const text=ft?ft.value:SOC_STATE_M.freeText; if(!text.trim())return;
-  SOC_STATE_M.freeText=text;
-  const q=SOC_TOPICS_MIXED[SOC_STATE_M.active].questions[SOC_STATE_M.qi];
-  const input=text.toLowerCase();
-  const hits=q.keywords.filter(k=>input.includes(k.toLowerCase())).length;
-  const partial=q.partialKeywords.filter(k=>input.includes(k.toLowerCase())).length;
-  SOC_STATE_M.response=hits>=3?q.responses.good:(hits>=1||partial>=1)?q.responses.partial:q.responses.wrong;
-  SOC_STATE_M.answered[SOC_STATE_M.active].add(SOC_STATE_M.qi);
-  renderSocrates();
-}
-function socNextQM(){
-  const tot=SOC_TOPICS_MIXED[SOC_STATE_M.active].questions.length;
-  const unanswered=[...Array(tot).keys()].filter(i=>!SOC_STATE_M.answered[SOC_STATE_M.active].has(i));
-  if(unanswered.length>0) Object.assign(SOC_STATE_M,{qi:unanswered[0],response:null,showHint:false,freeText:''});
-  renderSocrates();
-}
-
 function init(){
   renderDash(); renderFinShell(); renderChartsShell(); renderBiz(); renderSchool(); renderRating(); renderAssistShell();
-
-  renderSocWelcome();
 }
 init();
 
