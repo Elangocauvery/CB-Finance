@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudeep Pharma · Beta Drugs · Shilpa Medicare · Privi Speciality — Q4 FY26 Dashboard · CBF26</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f0f4f8; --card: #ffffff; --card2: #f8fafc;
+    --border: #e2e8f0; --accent: #0369a1; --green: #16a34a;
+    --amber: #d97706; --red: #dc2626; --purple: #7c3aed;
+    --text: #0f172a; --muted: #64748b; --light: #e0f2fe;
+    --cdmo: #0891b2; --ncdmo: #7c3aed;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
+  .header{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 60%,#0891b2 100%);color:#fff;padding:28px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+  .header h1{font-size:1.55rem;font-weight:700;letter-spacing:-.3px}
+  .header p{opacity:.85;margin-top:4px;font-size:.88rem}
+  .badge-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .badge{padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
+  .b-q4{background:rgba(22,163,74,.3);color:#bbf7d0}
+  .b-q3{background:rgba(217,119,6,.3);color:#fde68a}
+  .b-est{background:rgba(99,102,241,.3);color:#c7d2fe}
+  nav{background:#fff;border-bottom:2px solid var(--border);display:flex;gap:0;overflow-x:auto;position:sticky;top:96px;z-index:90;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  nav button{padding:13px 18px;border:none;background:none;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s}
+  nav button.active{color:var(--accent);border-bottom-color:var(--accent);background:#f0f9ff}
+  nav button:hover:not(.active){color:var(--text);background:var(--bg)}
+  .tab{display:none;padding:24px 28px;max-width:1400px;margin:0 auto}
+  .tab.active{display:block}
+  .section-title{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px;margin-bottom:28px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:box-shadow .2s,transform .15s}
+  .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px)}
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+  .card-name{font-size:1.05rem;font-weight:700}
+  .card-sub{font-size:.78rem;color:var(--muted);margin-top:2px}
+  .tag{padding:2px 8px;border-radius:12px;font-size:.7rem;font-weight:700}
+  .tag-cdmo{background:#cffafe;color:#0e7490}
+  .tag-hybrid{background:#fef3c7;color:#92400e}
+  .tag-generic{background:#ede9fe;color:#5b21b6}
+  .tag-q4{background:#dcfce7;color:#166534}
+  .tag-flag{background:#fee2e2;color:#991b1b}
+  .cbr{padding:2px 9px;border-radius:10px;font-size:.72rem;font-weight:800;white-space:nowrap;letter-spacing:.2px}
+  .cbr-a{background:#dcfce7;color:#166534}
+  .cbr-b{background:#cffafe;color:#0e7490}
+  .cbr-c{background:#fef9c3;color:#854d0e}
+  .cbr-d{background:#ffedd5;color:#9a3412}
+  .metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0}
+  .metric{background:var(--card2);border-radius:8px;padding:8px 10px;text-align:center}
+  .metric-val{font-size:1rem;font-weight:700;color:var(--accent)}
+  .metric-lbl{font-size:.68rem;color:var(--muted);margin-top:2px}
+  .metric-green .metric-val{color:var(--green)}
+  .metric-amber .metric-val{color:var(--amber)}
+  .metric-red .metric-val{color:var(--red)}
+  .usp-row{font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.55}
+  .usp-row strong{color:var(--text)}
+  .vert-list{list-style:none;margin-top:8px}
+  .vert-list li{font-size:.78rem;color:var(--muted);padding:5px 0 5px 18px;position:relative;border-bottom:1px solid #f1f5f9;line-height:1.5}
+  .vert-list li:last-child{border-bottom:none}
+  .vert-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  /* Debt bar */
+  .debt-bar-wrap{margin-top:8px}
+  .debt-label{display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:3px}
+  .debt-bar{height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden}
+  .debt-fill{height:100%;border-radius:3px;transition:width .8s ease}
+  .debt-low{background:var(--green)}
+  .debt-mid{background:var(--amber)}
+  .debt-high{background:var(--red)}
+  /* Filter bar */
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .filter-bar button{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:.8rem;font-weight:600;color:var(--muted);transition:all .15s}
+  .filter-bar button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .chart-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:22px;margin-bottom:28px}
+  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .chart-title{font-size:.9rem;font-weight:700;margin-bottom:14px;color:var(--text)}
+  .chart-wrap{position:relative;height:280px}
+  .tbl-wrap{overflow-x:auto;margin-bottom:28px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  thead tr{background:linear-gradient(135deg,#0c4a6e,#0369a1);color:#fff}
+  th{padding:11px 12px;text-align:left;font-size:.78rem;font-weight:700;white-space:nowrap;cursor:pointer;user-select:none}
+  th:hover{background:rgba(255,255,255,.15)}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.82rem;vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:nth-child(even) td{background:#f8fafc}
+  tr:hover td{background:#f0f9ff}
+  .sort-icon{opacity:.6;font-size:.7rem;margin-left:4px}
+  .td-green{color:var(--green);font-weight:700}
+  .td-red{color:var(--red);font-weight:700}
+  .td-amber{color:var(--amber);font-weight:700}
+  .td-muted{color:var(--muted)}
+  .info-box{background:var(--light);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:18px;font-size:.83rem;line-height:1.6}
+  .warn-box{background:#fffbeb;border-left:4px solid var(--amber);border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:18px;font-size:.83rem;line-height:1.6}
+  .flag-box{background:#fef2f2;border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:.76rem;line-height:1.55;color:#991b1b}
+  .lang-bar{background:#fff;border-bottom:1px solid var(--border);padding:6px 28px;display:flex;align-items:center;gap:10px;font-size:.79rem;color:var(--muted)}
+  .lbtn{padding:3px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:.76rem;font-weight:600;cursor:pointer;background:#fff;color:var(--muted)}
+  .lbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .en{display:block}.ta{display:none}
+  body.tm .en{display:none}body.tm .ta{display:block}
+  .cb-logo{display:flex;align-items:center;gap:10px;margin-top:12px}
+  .cb-logo-mark{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#fff 0%,#e0f2fe 100%);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;color:#0369a1;letter-spacing:-.5px;flex-shrink:0;border:2px solid rgba(255,255,255,.4)}
+  .cb-logo-text{font-size:.78rem;line-height:1.35;color:rgba(255,255,255,.9)}
+  .cb-logo-text strong{font-size:.88rem;color:#fff;display:block;letter-spacing:.3px}
+  .cb-watermark{position:fixed;bottom:18px;right:18px;z-index:9999;pointer-events:none;display:flex;align-items:center;gap:7px;background:rgba(3,105,161,.08);border:1px solid rgba(3,105,161,.18);border-radius:30px;padding:5px 12px 5px 8px;backdrop-filter:blur(4px)}
+  .cb-watermark-icon{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#0369a1,#0891b2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.72rem;color:#fff;letter-spacing:-.3px;flex-shrink:0}
+  .cb-watermark-text{font-size:.68rem;color:var(--muted);font-weight:600;white-space:nowrap}
+  .cb-watermark-text span{color:var(--accent)}
+  /* Q&A / CB Assist */
+  .acc-item{border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden}
+  .acc-head{background:#f8fafc;padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.88rem}
+  .acc-head:hover{background:#e0f2fe}
+  .acc-body{display:none;padding:6px 16px 12px}
+  .acc-body.open{display:block}
+  .qa-item{border:1px solid var(--border);border-radius:8px;margin-bottom:7px;overflow:hidden}
+  .qa-q{background:#f8fafc;padding:10px 14px;cursor:pointer;font-size:.81rem;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+  .qa-q:hover{background:#e0f2fe}
+  .qa-a{display:none;padding:10px 14px;font-size:.79rem;color:var(--muted);line-height:1.65;border-top:1px solid var(--border)}
+  .qa-a.open{display:block}
+  .qa-chat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:22px}
+  .qa-chat-row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .qa-sel{padding:7px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.8rem;font-weight:600;background:#fff}
+  .qa-inp{flex:1;min-width:180px;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.8rem;outline:none}
+  .qa-inp:focus{border-color:var(--accent)}
+  .qa-btn{padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.8rem;font-weight:700}
+  .qa-resp{padding:12px;background:#f8fafc;border-radius:8px;font-size:.79rem;line-height:1.7;display:none;margin-top:6px}
+  /* Socrates */
+  .soc-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .soc-q{font-weight:700;font-size:.92rem;margin-bottom:10px;color:var(--text)}
+  .soc-q .soc-num{color:var(--accent);margin-right:6px}
+  .soc-hint{font-size:.76rem;color:var(--muted);margin-bottom:10px;font-style:italic}
+  .soc-input{width:100%;min-height:64px;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.82rem;font-family:inherit;outline:none;resize:vertical}
+  .soc-input:focus{border-color:var(--accent)}
+  .soc-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .soc-btn{padding:7px 14px;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700}
+  .soc-btn.sec{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+  .soc-reveal{display:none;margin-top:12px;padding:12px 14px;background:#f0fdf4;border-left:4px solid var(--green);border-radius:0 8px 8px 0;font-size:.8rem;line-height:1.65;color:#14532d}
+  .soc-reveal.open{display:block}
+  .soc-tag{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.68rem;font-weight:700;background:#e0e7ff;color:#3730a3;margin-bottom:8px}
+  .soc-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .soc-filter button{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:.8rem;font-weight:600;color:var(--muted)}
+  .soc-filter button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .soc-progress{font-size:.78rem;color:var(--muted);margin-bottom:14px}
+  /* Results tab — mobile-friendly company sub-tabs */
+  .subnav{display:flex;gap:6px;overflow-x:auto;margin-bottom:20px;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .subnav button{flex:0 0 auto;padding:10px 16px;border-radius:10px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--muted);white-space:nowrap}
+  .subnav button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .res-panel{display:none}
+  .res-panel.active{display:block}
+  .res-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;padding:14px 16px;background:linear-gradient(135deg,#0c4a6e,#0369a1);border-radius:10px;color:#fff}
+  .res-head h3{font-size:1.05rem;font-weight:800}
+  .res-head span{font-size:.76rem;opacity:.85}
+  .res-subtitle{font-size:.86rem;font-weight:700;color:var(--accent);margin:16px 0 8px;display:flex;align-items:center;gap:6px}
+  .biz-model-box{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:6px;font-size:.81rem;line-height:1.65;color:var(--muted)}
+  .biz-model-box strong{color:var(--text)}
+  @media(max-width:700px){
+    .header h1{font-size:1.15rem}
+    .metrics{grid-template-columns:1fr 1fr}
+    .chart-grid{grid-template-columns:1fr}
+    nav button{padding:10px 13px;font-size:.78rem}
+    .tab{padding:16px 14px}
+    .subnav button{padding:9px 13px;font-size:.78rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🧪 Pharma &amp; Speciality Chemicals — Q4 FY26 Business &amp; Investment Analysis</h1>
+  <p class="en">Sudeep Pharma · Beta Drugs · Shilpa Medicare · Privi Speciality Chemicals — 4 Companies · Q4 FY26 &amp; FY26 Annual Actuals · CBF26 Earnings Rating</p>
+  <p class="ta">சுதீப் பார்மா · பீட்டா டிரக்ஸ் · ஷில்பா மெடிகேர் · ப்ரிவி ஸ்பெஷாலிட்டி கெமிக்கல்ஸ் — 4 நிறுவனங்கள் · Q4 FY26 &amp; FY26 ஆண்டு முடிவுகள்</p>
+  <div class="badge-row">
+    <span class="badge b-q4">✓ Q4 FY26 Actuals (Mar-26 qtr)</span>
+    <span class="badge b-q3">★ FY26 Annual P&amp;L</span>
+    <span class="badge b-est">⭐ CBF26 Earnings Rating</span>
+    <span style="background:rgba(255,255,255,.15);color:#e0f2fe;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600">Updated: 6 Jul 2026 IST</span>
+  </div>
+  <div class="cb-logo">
+    <div class="cb-logo-mark">CB</div>
+    <div class="cb-logo-text"><strong>CB Research</strong>Pharma &amp; Speciality Chem · Investment Analysis</div>
+  </div>
+</div>
+
+<div class="cb-watermark">
+  <div class="cb-watermark-icon">CB</div>
+  <div class="cb-watermark-text"><span>CB Research</span> · Pharma+Chem Q4 FY26 · CBF26</div>
+</div>
+
+<nav id="nav">
+  <button class="active" onclick="switchTab('overview',this)">📊 Overview</button>
+  <button onclick="switchTab('cards',this)">🏢 Companies</button>
+  <button onclick="switchTab('business',this)">🏭 Business &amp; Verticals</button>
+  <button onclick="switchTab('results',this)">📑 Results</button>
+  <button onclick="switchTab('charts',this)">📈 Charts</button>
+  <button onclick="switchTab('socrates',this)">🦉 Cauvery Socrates</button>
+  <button onclick="switchTab('qa',this)">🤖 CB Assist</button>
+  <button onclick="switchTab('table',this)">📋 Data Table</button>
+</nav>
+<div class="lang-bar">
+  🌐 Language / மொழி:
+  <button class="lbtn on" onclick="setLang('en',this)">English</button>
+  <button class="lbtn" onclick="setLang('ta',this)">தமிழ்</button>
+</div>
+
+<!-- ═══════════════════════════ OVERVIEW ═══════════════════════════ -->
+<div id="tab-overview" class="tab active">
+  <div class="info-box">
+    <span class="en"><strong>Sector Snapshot — Q4 FY26 (Jan–Mar 2026):</strong> Three pharma names and one aroma/speciality-chemicals producer, spanning excipients, oncology formulations, diversified API/biologics/ADC, and fragrance chemicals. All four printed double-digit revenue growth in Q4 FY26. <strong>Shilpa Medicare</strong> was the standout with net profit up 643% YoY off a low base; <strong>Privi Speciality</strong> posted its highest-ever quarterly revenue with its Givaudan JV turning profitable; <strong>Sudeep Pharma</strong> delivered steady 16%/10% revenue/PAT growth in its first quarter as a listed company; <strong>Beta Drugs'</strong> exact Q4 print carries data-quality caveats across secondary sources — see the flag on its card and in the Results tab.</span>
+    <span class="ta">காலாண்டு 4 FY26 (ஜன–மார் 2026) இல் மூன்று மருந்து நிறுவனங்களும் ஒரு நறுமண வேதியியல் நிறுவனமும் வலுவான வளர்ச்சியை பதிவு செய்துள்ளன. ஷில்பா மெடிகேர் 643% லாப வளர்ச்சியுடன் முதன்மை பெற்றது; ப்ரிவி அதன் மிக உயர்ந்த காலாண்டு வருவாயை பதிவு செய்தது.</span>
+  </div>
+
+  <div class="section-title">📌 Q4 FY26 At a Glance</div>
+  <div class="grid">
+    <div class="card"><div class="card-name">Sudeep Pharma</div><div class="metrics"><div class="metric metric-green"><div class="metric-val">₹182.3 Cr</div><div class="metric-lbl">Q4 Rev (+16%)</div></div><div class="metric metric-green"><div class="metric-val">34.3%</div><div class="metric-lbl">EBITDA%</div></div><div class="metric metric-green"><div class="metric-val">₹48.5 Cr</div><div class="metric-lbl">Q4 PAT (+10%)</div></div></div></div>
+    <div class="card"><div class="card-name">Beta Drugs *</div><div class="metrics"><div class="metric metric-amber"><div class="metric-val">~₹105 Cr</div><div class="metric-lbl">Q4 Rev (est.)</div></div><div class="metric metric-amber"><div class="metric-val">n/d</div><div class="metric-lbl">EBITDA%</div></div><div class="metric metric-amber"><div class="metric-val">~₹9 Cr</div><div class="metric-lbl">Q4 PAT (est.)</div></div></div></div>
+    <div class="card"><div class="card-name">Shilpa Medicare</div><div class="metrics"><div class="metric metric-green"><div class="metric-val">₹436.99 Cr</div><div class="metric-lbl">Q4 Rev (+32%)</div></div><div class="metric metric-green"><div class="metric-val">27.4%</div><div class="metric-lbl">EBITDA%</div></div><div class="metric metric-green"><div class="metric-val">₹107.8 Cr</div><div class="metric-lbl">Q4 PAT (+643%)</div></div></div></div>
+    <div class="card"><div class="card-name">Privi Speciality</div><div class="metrics"><div class="metric metric-green"><div class="metric-val">₹727.5 Cr</div><div class="metric-lbl">Q4 Rev (+18.6%)</div></div><div class="metric metric-green"><div class="metric-val">25.4%</div><div class="metric-lbl">EBITDA%</div></div><div class="metric metric-green"><div class="metric-val">₹93.7 Cr</div><div class="metric-lbl">Q4 PAT (+41%)</div></div></div></div>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠️ Data note on Beta Drugs:</strong> FY26 annual figures (Revenue ₹396.0 Cr, PAT ₹41.5 Cr) are clearly reported and used as-is. The standalone Q4 FY26 print is not cleanly available across secondary aggregators — one source shows net sales of ₹54.4 Cr (+1.1% YoY) with PAT +282.5% YoY (EPS ₹5.26), inconsistent with residual arithmetic (FY26 annual minus 9M actuals ≈ ₹105 Cr revenue / ₹9 Cr PAT). Marked "*derived/unconfirmed" throughout — verify against the exchange filing before client use.
+  </div>
+
+  <div class="warn-box" style="margin-bottom:0">
+    <strong>⚠️ Disclaimer:</strong> This analysis is for educational and informational purposes only and does not constitute investment advice or a recommendation to buy/sell/hold any security. CB Research is a SEBI-registered Research Analyst entity; where third-party broker views are cited they are attributed by name. Figures are compiled from company exchange filings, investor presentations, and secondary financial news aggregators, and may contain rounding or classification differences — please verify against the audited results before use.
+  </div>
+</div>
+
+<!-- ═══════════════════════════ COMPANIES ═══════════════════════════ -->
+<div id="tab-cards" class="tab">
+
+  <div class="info-box" style="border-left-color:#2979FF;background:#eff6ff">
+    <span class="en"><strong>🔗 Linked to CB Finance26™ (CBF26):</strong> Each company below carries a <strong>CBF26 Earnings Rating</strong> — the fundamentals layer of the CB Finance26 framework, scoring the quality of the latest earnings on four pillars: <strong>Revenue growth · EBITDA growth · PAT growth · EBITDA margin</strong>.</span>
+    <span class="ta"><strong>🔗 CB Finance26™ (CBF26) உடன் இணைக்கப்பட்டது:</strong> ஒவ்வொரு நிறுவனத்திற்கும் CBF26 வருவாய் மதிப்பீடு உள்ளது.</span>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;border-left:4px solid #FF6A00">
+    <div style="font-weight:700;color:#1F2937;margin-bottom:8px">⭐ CBF26 Earnings Rating — Tiers</div>
+    <div style="font-size:.8rem;color:var(--muted);line-height:1.7">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:2px">
+        <span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:10px;font-size:.74rem;font-weight:700">CB-A · Strong</span>
+        <span style="background:#cffafe;color:#0e7490;padding:3px 10px;border-radius:10px;font-size:.74rem;font-weight:700">CB-B · Healthy</span>
+        <span style="background:#fef9c3;color:#854d0e;padding:3px 10px;border-radius:10px;font-size:.74rem;font-weight:700">CB-C · Stable</span>
+        <span style="background:#fee2e2;color:#991b1b;padding:3px 10px;border-radius:10px;font-size:.74rem;font-weight:700">Flagged · Data unconfirmed</span>
+      </div>
+      <div style="margin-top:8px;font-size:.74rem">⚠️ Rating measures <strong>earnings quality/momentum only</strong> — not valuation. It is <strong>not</strong> a buy/sell/hold call. CB Research house rule: no recommendations.</div>
+    </div>
+  </div>
+
+  <div class="section-title">📄 Q4 FY26 Quarterly P&amp;L — All 4 Companies (₹ Cr)</div>
+  <div class="tbl-wrap" style="margin-bottom:14px">
+    <table>
+      <thead><tr><th>Company</th><th>Revenue</th><th>Rev YoY</th><th>EBITDA</th><th>EBITDA %</th><th>PAT</th><th>PAT YoY</th><th>CBF26 Rating</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sudeep Pharma</strong></td><td>182.3</td><td class="td-green">+16.0%</td><td>62.6</td><td>34.3%</td><td class="td-green">48.5</td><td class="td-green">+9.7%</td><td><span class="cbr cbr-a">CB-A</span></td></tr>
+        <tr><td><strong>Beta Drugs</strong> *</td><td>~105.1</td><td class="td-muted">flagged</td><td class="td-muted">n/d</td><td class="td-muted">n/d</td><td class="td-amber">~9.0</td><td class="td-muted">flagged</td><td><span class="cbr cbr-b">CB-B*</span></td></tr>
+        <tr><td><strong>Shilpa Medicare</strong></td><td>436.99</td><td class="td-green">+32.1%</td><td>121.0</td><td class="td-green">27.4-28%</td><td class="td-green">107.79</td><td class="td-green">+642.9%</td><td><span class="cbr cbr-a">CB-A</span></td></tr>
+        <tr><td><strong>Privi Speciality</strong></td><td>727.5</td><td class="td-green">+18.6%</td><td>184.4</td><td class="td-green">25.4%</td><td class="td-green">93.7</td><td class="td-green">+40.9%</td><td><span class="cbr cbr-a">CB-A</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:.72rem;color:var(--muted);margin-bottom:26px;line-height:1.6">
+    Source: audited/reported Q4 FY26 (Jan–Mar 2026) consolidated results, BSE/NSE filings. <strong>*</strong> Beta Drugs Q4 figures are derived estimates — see data-quality flag on its card and in Results.
+  </div>
+
+  <div class="section-title">📅 FY26 Annual P&amp;L — All 4 Companies (₹ Cr)</div>
+  <div class="tbl-wrap" style="margin-bottom:14px">
+    <table>
+      <thead><tr><th>Company</th><th>FY26 Revenue</th><th>Rev YoY</th><th>EBITDA %</th><th>FY26 PAT</th><th>PAT YoY</th><th>CBF26 Rating</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sudeep Pharma</strong></td><td class="td-green">642.3</td><td class="td-green">+27.9%</td><td>34.6%</td><td class="td-green">174.3</td><td class="td-green">+25.7%</td><td><span class="cbr cbr-a">CB-A</span></td></tr>
+        <tr><td><strong>Beta Drugs</strong></td><td>396.0</td><td class="td-green">+9.4%</td><td class="td-muted">~23-25%*</td><td>41.5</td><td class="td-amber">~flat</td><td><span class="cbr cbr-c">CB-C</span></td></tr>
+        <tr><td><strong>Shilpa Medicare</strong></td><td class="td-green">1,538.87</td><td class="td-green">+19.6%</td><td class="td-green">29.0%</td><td class="td-green">243.33</td><td class="td-green">+110.8%</td><td><span class="cbr cbr-a">CB-A</span></td></tr>
+        <tr><td><strong>Privi Speciality</strong></td><td class="td-green">2,563.7</td><td class="td-green">+22.0%</td><td class="td-green">25.76%</td><td class="td-green">327.54</td><td class="td-green">+75.2%</td><td><span class="cbr cbr-a">CB-A</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:.72rem;color:var(--muted);margin-bottom:26px;line-height:1.6">
+    Source: audited/reported FY26 (year ended 31 Mar 2026) consolidated results, BSE/NSE filings. <strong>*</strong> Beta Drugs EBITDA margin is management's full-year guided range, not a reported actual for the full year.
+  </div>
+
+  <div class="filter-bar">
+    <button class="active" onclick="filterCards('all',this)">All (4)</button>
+    <button onclick="filterCards('generic',this)">Excipients/Minerals</button>
+    <button onclick="filterCards('hybrid',this)">Formulations/API</button>
+    <button onclick="filterCards('cdmo',this)">Speciality Chemicals</button>
+    <button onclick="filterCards('netcash',this)">Low Debt</button>
+  </div>
+  <div class="grid" id="cards-grid">
+
+    <div class="card" data-cat="generic netcash">
+      <div class="card-head">
+        <div><div class="card-name">Sudeep Pharma Ltd.</div><div class="card-sub">NSE/BSE: SUDEEPPHRM · Pharma Excipients &amp; Specialty Minerals</div></div>
+        <div style="text-align:right"><span class="tag tag-q4">✓ Q4 FY26</span><br><span class="tag tag-generic" style="margin-top:4px;display:inline-block">Excipients/Minerals</span></div>
+      </div>
+      <div class="metrics">
+        <div class="metric metric-green"><div class="metric-val">₹182.3 Cr</div><div class="metric-lbl">Revenue (+16% YoY)</div></div>
+        <div class="metric metric-green"><div class="metric-val">34.3%</div><div class="metric-lbl">EBITDA% (−300bps YoY)</div></div>
+        <div class="metric metric-green"><div class="metric-val">₹48.5 Cr</div><div class="metric-lbl">PAT (+9.7% YoY)</div></div>
+      </div>
+      <div class="debt-bar-wrap">
+        <div class="debt-label"><span style="font-size:.75rem;color:var(--muted)">Balance Sheet</span><span style="font-size:.75rem;color:var(--green);font-weight:700">Net debt ₹33.6 Cr — D/E 0.04x ✅</span></div>
+        <div class="debt-bar"><div class="debt-fill debt-low" style="width:5%"></div></div>
+      </div>
+      <div class="usp-row"><strong>USP:</strong> 6 manufacturing facilities (50,000 MT capacity), 200+ mineral-salt products across pharma/food/nutrition/industrial end-uses, 100+ export countries, newly acquired European nutrition platform (NSS).</div>
+      <div class="usp-row"><strong>Q4 FY26:</strong> First quarter as a listed company (IPO Nov 2025). Specialty Ingredients vertical now 44% of FY26 revenue vs 34% in FY25. Export 60% / Domestic 40%.</div>
+    </div>
+
+    <div class="card" data-cat="hybrid">
+      <div class="card-head">
+        <div><div class="card-name">Beta Drugs Ltd.</div><div class="card-sub">NSE: BETA (SME→Mainboard) · Oncology Formulations &amp; API</div></div>
+        <div style="text-align:right"><span class="tag tag-q4">✓ FY26 Annual</span><br><span class="tag tag-hybrid" style="margin-top:4px;display:inline-block">Oncology Formulations</span></div>
+      </div>
+      <div class="metrics">
+        <div class="metric metric-amber"><div class="metric-val">~₹105 Cr</div><div class="metric-lbl">Q4 Revenue (est.)</div></div>
+        <div class="metric metric-amber"><div class="metric-val">23-25%</div><div class="metric-lbl">EBITDA% (guided)</div></div>
+        <div class="metric metric-amber"><div class="metric-val">~₹9 Cr</div><div class="metric-lbl">Q4 PAT (est.)</div></div>
+      </div>
+      <div class="debt-bar-wrap">
+        <div class="debt-label"><span style="font-size:.75rem;color:var(--muted)">Balance Sheet</span><span style="font-size:.75rem;color:var(--amber);font-weight:700">Rising, CCD-funded (~₹146 Cr borrowings, Sep-25)</span></div>
+        <div class="debt-bar"><div class="debt-fill debt-mid" style="width:40%"></div></div>
+      </div>
+      <div class="usp-row"><strong>USP:</strong> Top-10 Indian oncology player; backward-integrated API (Adley Labs); expanding into 25+ export geographies including newly regulated Brazil/Mexico entry.</div>
+      <div class="usp-row"><strong>FY26 (confirmed):</strong> Revenue ₹396.0 Cr, PAT ₹41.5 Cr. Acquired 66.1% of Nivian Lifesciences (₹69.4 Cr) May 2026. Derma/cosmeceutical vertical turned profitable via Italian in-licensing (Promoitalia).</div>
+      <div class="flag-box">⚠️ Q4 FY26 standalone print unconfirmed/derived across secondary sources — see Results tab.</div>
+    </div>
+
+    <div class="card" data-cat="hybrid">
+      <div class="card-head">
+        <div><div class="card-name">Shilpa Medicare Ltd.</div><div class="card-sub">BSE: 530549 / NSE: SHILPAMED · API + Formulations + Biologics + ADC</div></div>
+        <div style="text-align:right"><span class="tag tag-q4">✓ Q4 FY26</span><br><span class="tag tag-hybrid" style="margin-top:4px;display:inline-block">Diversified Pharma</span></div>
+      </div>
+      <div class="metrics">
+        <div class="metric metric-green"><div class="metric-val">₹436.99 Cr</div><div class="metric-lbl">Revenue (+32.1% YoY)</div></div>
+        <div class="metric metric-green"><div class="metric-val">27.4-28%</div><div class="metric-lbl">EBITDA% (+40% YoY)</div></div>
+        <div class="metric metric-green"><div class="metric-val">₹107.8 Cr</div><div class="metric-lbl">PAT (+642.9% YoY)</div></div>
+      </div>
+      <div class="debt-bar-wrap">
+        <div class="debt-label"><span style="font-size:.75rem;color:var(--muted)">Balance Sheet</span><span style="font-size:.75rem;color:var(--amber);font-weight:700">Net debt ₹613 Cr (up from ₹550 Cr) — capex-funded</span></div>
+        <div class="debt-bar"><div class="debt-fill debt-mid" style="width:45%"></div></div>
+      </div>
+      <div class="usp-row"><strong>USP:</strong> Rare 4-layer integration — complex API, specialty/complex injectable formulations, biologics/biosimilars (Aflibercept, Nivolumab), and an emerging ADC manufacturing platform.</div>
+      <div class="usp-row"><strong>Q4 FY26:</strong> Highest-ever quarterly revenue/EBITDA. Adjusted PAT (ex-exceptional) ₹87 Cr for the quarter. Adjusted ROCE improved from 4% (FY23) to 17.4% (FY26).</div>
+    </div>
+
+    <div class="card" data-cat="cdmo">
+      <div class="card-head">
+        <div><div class="card-name">Privi Speciality Chemicals Ltd.</div><div class="card-sub">NSE: PRIVISCL · Aroma &amp; Fragrance Chemicals</div></div>
+        <div style="text-align:right"><span class="tag tag-q4">✓ Q4 FY26</span><br><span class="tag tag-cdmo" style="margin-top:4px;display:inline-block">Speciality Chemicals</span></div>
+      </div>
+      <div class="metrics">
+        <div class="metric metric-green"><div class="metric-val">₹727.5 Cr</div><div class="metric-lbl">Revenue (+18.6% YoY)</div></div>
+        <div class="metric metric-green"><div class="metric-val">25.4%</div><div class="metric-lbl">EBITDA% (+39.1% YoY)</div></div>
+        <div class="metric metric-green"><div class="metric-val">₹93.7 Cr</div><div class="metric-lbl">PAT (+40.9% YoY)</div></div>
+      </div>
+      <div class="debt-bar-wrap">
+        <div class="debt-label"><span style="font-size:.75rem;color:var(--muted)">Balance Sheet</span><span style="font-size:.75rem;color:var(--amber);font-weight:700">LT debt ₹511.1 Cr (up from ₹444.5 Cr); interest cover 9.88x</span></div>
+        <div class="debt-bar"><div class="debt-fill debt-mid" style="width:38%"></div></div>
+      </div>
+      <div class="usp-row"><strong>USP:</strong> Among the world's largest aroma/fragrance chemical manufacturers-exporters; Givaudan JV (PRIGIV) now profitable; single reporting segment; "5k:1k" vision (₹5,000 Cr revenue / ₹1,000 Cr EBITDA by FY29-30).</div>
+      <div class="usp-row"><strong>Q4 FY26:</strong> All-time-high quarterly revenue. Phase-1 capacity expansion (+54,000 MTPA) on track for 30 Jun 2026. Watch: promoter holding fell from 74.05% to 60.60% over the year.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════ BUSINESS MODELS & VERTICALS ═══════════════════════════ -->
+<div id="tab-business" class="tab">
+  <div class="info-box">
+    <span class="en">How each company makes money — segments, verticals, and the growth engines behind them.</span>
+    <span class="ta">ஒவ்வொரு நிறுவனமும் எவ்வாறு வருவாய் ஈட்டுகிறது — பிரிவுகள் மற்றும் வளர்ச்சி இயந்திரங்கள்.</span>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-name">Sudeep Pharma — 3 Verticals</div>
+      <ul class="vert-list">
+        <li><strong>Pharma &amp; Food Grade Minerals</strong> — calcium, magnesium, potassium, iron, zinc, sodium, copper salts used as excipients/actives across pharma, food and industrial applications. Core legacy business.</li>
+        <li><strong>Specialty Ingredients</strong> — AbsorBis branded high-absorption nutraceutical ingredients (sleep, muscle recovery); new battery-grade materials line, Phase 1 commissioning targeted April 2027. Grew from ₹172 Cr to ₹280 Cr in FY26 (now 44% of revenue).</li>
+        <li><strong>Nutrition (NSS Europe)</strong> — 85%-owned Nutrition Supplies Services (Netherlands), vitamin/mineral premix blends, acquired FY26 for a European manufacturing + customer-approval foothold.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-name">Beta Drugs — 3 Verticals</div>
+      <ul class="vert-list">
+        <li><strong>Oncology Formulations (Own Brand)</strong> — tablets, capsules, injections, lyophilized injections for cancer treatment; top-10 Indian oncology player; 6 brands tracking toward ₹5 Cr+ each in FY26.</li>
+        <li><strong>API / CDMO</strong> — backward-integrated oncology API manufacturing (Adley Labs) plus contract manufacturing for ~30 domestic/global CDMO clients.</li>
+        <li><strong>Dermatology / Cosmeceuticals</strong> — newly profitable division; exclusive in-licensing with Italian major Promoitalia for derma fillers/mesotherapy, targeting ₹30-100 Cr sales over 3-5 years.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-name">Shilpa Medicare — 4 Verticals</div>
+      <ul class="vert-list">
+        <li><strong>API</strong> — Onco and Non-Onco complex APIs; ₹985 Cr FY26 revenue (+16% YoY); 37 new DMF filings during the year.</li>
+        <li><strong>Formulations</strong> — complex injectables and NCEs; ₹618 Cr FY26 revenue (+30% YoY); pipeline includes Abraxane and Enzalutamide tablets (FY28), Rotigotine Transdermal Patch (Europe, FY27).</li>
+        <li><strong>Biologics</strong> — ~₹150 Cr FY26 revenue (~+100% YoY); Aflibercept and Nivolumab biosimilars in human clinical studies, approvals expected FY27.</li>
+        <li><strong>ADC (Antibody-Drug Conjugates)</strong> — emerging integrated manufacturing capability; facility qualification and Teduglutide lab development advancing.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-name">Privi Speciality Chemicals — Single Segment, Multiple Product Lines</div>
+      <ul class="vert-list">
+        <li><strong>Core Aroma Chemicals</strong> — musks, ambroxides and other key fragrance/flavour intermediates supplied globally to F&amp;F houses; reported as one segment under Ind AS 108.</li>
+        <li><strong>Givaudan JV (PRIGIV)</strong> — joint venture for high-end specialty aroma products; turned profitable for the first time in Q4 FY26.</li>
+        <li><strong>New Product Pipeline</strong> — ethyl maltol, maltol, cyclopentanone (mechanical completion targeted June 2027); biomass-conversion demonstration plant (₹70-75 Cr) in basic engineering stage.</li>
+        <li><strong>Capacity Expansion</strong> — Phase 1 (+54,000 MTPA) due 30 Jun 2026, underpinning the "5k:1k" medium-term vision for FY29-30.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ RESULTS — mobile-friendly company sub-tabs ═══════════════════════════ -->
+<div id="tab-results" class="tab">
+  <div class="info-box">
+    <span class="en"><strong>Tap a company below</strong> to jump straight to its quarterly and annual results — built this way so each company is one tap away on mobile instead of one long scroll.</span>
+    <span class="ta"><strong>கீழே ஒரு நிறுவனத்தைத் தட்டவும்</strong> — அதன் காலாண்டு மற்றும் ஆண்டு முடிவுகளுக்கு நேரடியாகச் செல்லும்.</span>
+  </div>
+
+  <div class="subnav" id="resSubnav">
+    <button class="active" onclick="switchResPanel('sudeep',this)">🧪 Sudeep Pharma</button>
+    <button onclick="switchResPanel('beta',this)">💊 Beta Drugs</button>
+    <button onclick="switchResPanel('shilpa',this)">🧬 Shilpa Medicare</button>
+    <button onclick="switchResPanel('privi',this)">🌸 Privi Speciality</button>
+  </div>
+
+  <!-- SUDEEP PHARMA -->
+  <div class="res-panel active" id="res-sudeep">
+    <div class="res-head"><h3>🧪 Sudeep Pharma Ltd.</h3><span>NSE/BSE: SUDEEPPHRM · Pharma Excipients &amp; Specialty Minerals</span></div>
+    <div class="biz-model-box"><strong>Business model:</strong> Manufactures pharmaceutical-grade mineral salts (calcium/magnesium/potassium/iron/zinc/sodium/copper) used as excipients and actives across pharma, food-nutrition and industrial applications, plus specialty nutraceutical ingredients (AbsorBis) and — via the FY26 Nutrition Supplies Services (NSS) acquisition — European vitamin/mineral premix blends. Export ~60% / Domestic ~40% of FY26 revenue.</div>
+
+    <div class="res-subtitle">📄 Quarterly Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>Q4 FY26 (Jan–Mar 26)</th><th>Q4 FY25 (Jan–Mar 25)</th><th>YoY</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue from Operations</td><td>182.3</td><td>157.2</td><td class="td-green">+16.0%</td></tr>
+        <tr><td>EBITDA</td><td>62.6</td><td>58.8</td><td class="td-green">+6.0%</td></tr>
+        <tr><td>EBITDA Margin</td><td>34.3%</td><td>37.3%</td><td class="td-amber">−300 bps</td></tr>
+        <tr><td>PAT</td><td>48.5</td><td>44.2</td><td class="td-green">+9.7%</td></tr>
+        <tr><td>PAT Margin</td><td>26.6%</td><td>28.1%</td><td class="td-amber">−150 bps</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="res-subtitle">📅 Annual Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>FY26</th><th>FY25</th><th>YoY</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue from Operations</td><td>642.3</td><td>501.9</td><td class="td-green">+27.9%</td></tr>
+        <tr><td>EBITDA</td><td>221.9</td><td>190.0</td><td class="td-green">+16.8%</td></tr>
+        <tr><td>EBITDA Margin</td><td>34.6%</td><td>37.8%</td><td class="td-amber">−320 bps</td></tr>
+        <tr><td>PAT</td><td>174.3</td><td>138.7</td><td class="td-green">+25.7%</td></tr>
+        <tr><td>Net Debt</td><td>33.6</td><td class="td-muted">n/a (unlisted)</td><td class="td-muted">D/E 0.04x</td></tr>
+        <tr><td>Working Capital Days</td><td>213</td><td>184</td><td class="td-red">+29 days</td></tr>
+      </tbody>
+    </table></div>
+    <div class="usp-row">Source: Sudeep Pharma Q4/FY26 earnings call transcript &amp; investor presentation, May 2026.</div>
+  </div>
+
+  <!-- BETA DRUGS -->
+  <div class="res-panel" id="res-beta">
+    <div class="res-head"><h3>💊 Beta Drugs Ltd.</h3><span>NSE: BETA · Oncology Formulations, API &amp; Dermatology</span></div>
+    <div class="biz-model-box"><strong>Business model:</strong> Manufactures oncology (anti-cancer) formulations — tablets, capsules, injections, lyophilized injections — under its own brands and for ~30 domestic/export CDMO partners, backward-integrated into oncology API (Adley Labs), and expanding into dermatology/cosmeceuticals via an Italian in-licensing tie-up (Promoitalia). Exports span 25+ geographies including newly regulated Latin American markets.</div>
+
+    <div class="warn-box">⚠️ <strong>Data-quality flag:</strong> A cleanly-reconciled Q4 FY26 standalone print was not available across secondary sources at the time of writing. Figures below combine a confirmed FY26 annual base with two inconsistent Q4-specific data points; treat the derived Q4 column as indicative only and confirm against the exchange filing/investor presentation before use.</div>
+
+    <div class="res-subtitle">📄 Quarterly Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>Q3 FY26 (Oct–Dec 25)</th><th>Q4 FY26 (derived)*</th><th>Alt. Q4 FY26 data point†</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue</td><td>87.3</td><td>~105.1*</td><td>54.4† (net sales, +1.1% YoY)</td></tr>
+        <tr><td>EBITDA Margin</td><td>19.5%</td><td class="td-muted">not disclosed separately</td><td class="td-muted">mgmt guidance: 23-25% full year</td></tr>
+        <tr><td>Net Profit</td><td>8.5</td><td>~9.0*</td><td>EPS ₹5.26, PAT +282.5% YoY†</td></tr>
+      </tbody>
+    </table></div>
+    <div class="usp-row">*Derived as FY26 annual actual minus 9-month (Apr–Dec 2025) actual. †As separately reported by one broking-app aggregator; internally inconsistent with the derived column — flagged, not reconciled.</div>
+
+    <div class="res-subtitle">📅 Annual Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>FY26</th><th>FY25</th><th>YoY</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue</td><td>396.0</td><td>362.0</td><td class="td-green">+9.4%</td></tr>
+        <tr><td>PAT</td><td>41.5</td><td>42.0</td><td class="td-amber">~flat / −1%</td></tr>
+        <tr><td>H1 FY26 Revenue (component)</td><td>203.6</td><td>180.3</td><td class="td-green">+12.9%</td></tr>
+        <tr><td>H1 FY26 EBITDA Margin</td><td>23.08%</td><td>22.36%</td><td class="td-green">+72 bps</td></tr>
+        <tr><td>Borrowings (Sep-25 snapshot)</td><td>146</td><td class="td-muted">~15 (FY24)</td><td class="td-red">CCD-funded ramp-up</td></tr>
+      </tbody>
+    </table></div>
+    <div class="usp-row">Source: Beta Drugs H1 FY26 investor note; Q3 FY26 filing; FY26 annual result summaries (multiple aggregators, cross-checked). Q4 standalone print flagged above.</div>
+  </div>
+
+  <!-- SHILPA MEDICARE -->
+  <div class="res-panel" id="res-shilpa">
+    <div class="res-head"><h3>🧬 Shilpa Medicare Ltd.</h3><span>BSE: 530549 / NSE: SHILPAMED · API + Formulations + Biologics + ADC</span></div>
+    <div class="biz-model-box"><strong>Business model:</strong> Diversified pharma platform spanning complex API (Onco/Non-Onco), specialty/complex injectable formulations and NCEs, biologics/biosimilars (Aflibercept, Nivolumab), and an emerging Antibody-Drug Conjugate (ADC) manufacturing capability — one of the few Indian mid-caps integrated across all four layers.</div>
+
+    <div class="res-subtitle">📄 Quarterly Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>Q4 FY26 (Jan–Mar 26)</th><th>Q4 FY25 (Jan–Mar 25)</th><th>YoY</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue from Operations</td><td>436.99</td><td>330.82</td><td class="td-green">+32.1%</td></tr>
+        <tr><td>EBITDA</td><td>121.0</td><td class="td-muted">~86.4 (implied)</td><td class="td-green">+40%</td></tr>
+        <tr><td>EBITDA Margin</td><td>27.4-28%</td><td class="td-muted">~26%</td><td class="td-green">~+150-200 bps</td></tr>
+        <tr><td>Net Profit (reported)</td><td>107.79</td><td>14.51</td><td class="td-green">+642.9%</td></tr>
+        <tr><td>Adjusted PAT (ex-exceptional)</td><td>87.0</td><td class="td-muted">n/a</td><td class="td-muted">—</td></tr>
+        <tr><td>Profit Before Tax</td><td>120.45</td><td>15.27</td><td class="td-green">+688.8%</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="res-subtitle">📅 Annual Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>FY26</th><th>FY25</th><th>YoY</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue from Operations</td><td>1,538.87</td><td>1,286.43</td><td class="td-green">+19.6%</td></tr>
+        <tr><td>EBITDA</td><td>445.0</td><td>~342.3</td><td class="td-green">+30.0%</td></tr>
+        <tr><td>EBITDA Margin</td><td>29.0%</td><td>26.0%</td><td class="td-green">+300 bps</td></tr>
+        <tr><td>Net Profit (reported)</td><td>243.33</td><td>78.29</td><td class="td-green">+110.8%</td></tr>
+        <tr><td>Adjusted PAT (ex-exceptional)</td><td>232.0</td><td class="td-muted">~98.7</td><td class="td-green">+135%</td></tr>
+        <tr><td>Net Debt</td><td>613.0</td><td>550.0</td><td class="td-red">+11.5%</td></tr>
+        <tr><td>API Segment Revenue</td><td>985.0</td><td>~849.1</td><td class="td-green">+16.0%</td></tr>
+        <tr><td>Formulations Segment Revenue</td><td>618.0</td><td>~475.4</td><td class="td-green">+30.0%</td></tr>
+        <tr><td>Biologics Segment Revenue</td><td>~150.0</td><td>~75.0</td><td class="td-green">~+100%</td></tr>
+      </tbody>
+    </table></div>
+    <div class="usp-row">Source: Shilpa Medicare Q4/FY26 audited results &amp; earnings call transcript, 22 May 2026.</div>
+  </div>
+
+  <!-- PRIVI SPECIALITY -->
+  <div class="res-panel" id="res-privi">
+    <div class="res-head"><h3>🌸 Privi Speciality Chemicals Ltd.</h3><span>NSE: PRIVISCL · Aroma &amp; Fragrance Chemicals</span></div>
+    <div class="biz-model-box"><strong>Business model:</strong> One of the world's leading manufacturers/exporters of aroma and fragrance chemicals (musks, ambroxides, key F&amp;F intermediates), reported as a single segment under Ind AS 108, with a Givaudan joint venture (PRIGIV) for high-end specialty products that turned profitable in Q4 FY26. Pursuing a "5k:1k" (₹5,000 Cr revenue / ₹1,000 Cr EBITDA) medium-term vision via capacity expansion and new-product commercialisation.</div>
+
+    <div class="res-subtitle">📄 Quarterly Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>Q4 FY26 (Jan–Mar 26)</th><th>Q3 FY26 (Oct–Dec 25)</th><th>Q4 FY25 (Jan–Mar 25)</th><th>YoY</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue from Operations</td><td>727.5</td><td>604.6</td><td>613.6</td><td class="td-green">+18.6%</td></tr>
+        <tr><td>Total Income</td><td>732.3 / 725.7</td><td>611.2</td><td>628.4</td><td class="td-green">+15.3-16.5%</td></tr>
+        <tr><td>EBITDA</td><td>184.4</td><td>~155.2</td><td>~132.6</td><td class="td-green">+39.1%</td></tr>
+        <tr><td>EBITDA Margin</td><td>25.4%</td><td>25.7%</td><td>21.6%</td><td class="td-green">+380 bps</td></tr>
+        <tr><td>PAT</td><td>93.7-94.1</td><td>74.9-78.0</td><td>66.5</td><td class="td-green">+40.9-47.1%</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="res-subtitle">📅 Annual Results (₹ Crore, Consolidated)</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Metric</th><th>FY26</th><th>FY25</th><th>YoY</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue from Operations</td><td>2,563.7</td><td>2,101.2</td><td class="td-green">+22.0%</td></tr>
+        <tr><td>Total Income</td><td>2,582.92</td><td>~2,122.0</td><td class="td-green">+21.7%</td></tr>
+        <tr><td>EBITDA</td><td>665.45</td><td>474.3</td><td class="td-green">+40.3%</td></tr>
+        <tr><td>EBITDA Margin</td><td>25.76%</td><td>22.35%</td><td class="td-green">+340 bps</td></tr>
+        <tr><td>PAT</td><td>327.54</td><td>187.0</td><td class="td-green">+75.2%</td></tr>
+        <tr><td>Long-term Debt (Mar-26)</td><td>511.1</td><td>444.5</td><td class="td-red">+15.0%</td></tr>
+        <tr><td>Final Dividend</td><td>₹10/share</td><td class="td-muted">—</td><td class="td-muted">—</td></tr>
+      </tbody>
+    </table></div>
+    <div class="usp-row">Source: Privi Speciality Chemicals Q4/FY26 audited results, investor presentation &amp; earnings call, 11-12 May 2026.</div>
+  </div>
+
+  <div class="warn-box" style="margin-top:10px;margin-bottom:0">
+    <strong>⚠️ Disclaimer:</strong> Figures are sourced from company exchange filings, investor presentations, and financial news aggregators as of early July 2026 and may differ slightly from final audited numbers due to rounding, standalone-vs-consolidated classification, or restatement. This is not investment advice.
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CHARTS ═══════════════════════════ -->
+<div id="tab-charts" class="tab">
+  <div class="section-title">📈 Visual Analytics</div>
+  <div class="chart-grid">
+    <div class="chart-card"><div class="chart-title">Revenue — Q4 FY26 (₹ Cr)</div><div class="chart-wrap"><canvas id="revChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">EBITDA (₹ Cr, absolute) — Q4 FY26</div><div class="chart-wrap"><canvas id="ebitdaAbsChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">EBITDA Margin % — Q4 FY26</div><div class="chart-wrap"><canvas id="ebitdaChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Net Profit (PAT) — Q4 FY26 (₹ Cr)</div><div class="chart-wrap"><canvas id="patChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Debt Profile (₹ Cr, latest reported)</div><div class="chart-wrap"><canvas id="debtChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">FY26 vs FY25 Annual Revenue (₹ Cr)</div><div class="chart-wrap"><canvas id="annualChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Qualitative Score Radar — All 4</div><div class="chart-wrap"><canvas id="radarChart"></canvas></div></div>
+  </div>
+  <div class="warn-box">⚠️ Beta Drugs Q4 figures on these charts use derived estimates (~₹105 Cr revenue / ~₹25 Cr EBITDA / ~₹9 Cr PAT) since its standalone Q4 EBITDA was not separately disclosed — see the Results tab data-quality flag. Radar chart scores are CB Research's qualitative 0-100 assessment (not raw reported figures), for relative comparison only.</div>
+</div>
+
+<!-- ═══════════════════════════ CAUVERY SOCRATES ═══════════════════════════ -->
+<div id="tab-socrates" class="tab">
+  <div class="info-box">
+    <span class="en"><strong>🦉 Cauvery Socrates</strong> — a Socratic learning tool. Instead of handing you the answer, each card asks a probing question built from these four companies' Q4 FY26 profiles. Type your own answer first, then click "Reveal CB View" to compare your reasoning against the dashboard's data-grounded perspective.</span>
+    <span class="ta"><strong>🦉 காவேரி சாக்ரடீஸ்</strong> — ஒரு சாக்ரடிக் கற்றல் கருவி. முதலில் உங்கள் சொந்த பதிலை எழுதவும், பின்னர் "CB பார்வையை காட்டு" என்பதைக் கிளிக் செய்யவும்.</span>
+  </div>
+
+  <div class="soc-filter" id="socFilter">
+    <button class="active" onclick="filterSoc('all',this)">All Questions</button>
+    <button onclick="filterSoc('sudeep',this)">Sudeep Pharma</button>
+    <button onclick="filterSoc('beta',this)">Beta Drugs</button>
+    <button onclick="filterSoc('shilpa',this)">Shilpa Medicare</button>
+    <button onclick="filterSoc('privi',this)">Privi Speciality</button>
+    <button onclick="filterSoc('cross',this)">Cross-Company</button>
+  </div>
+  <div class="soc-progress" id="socProgress">0 of 10 questions revealed this session</div>
+
+  <div id="socGrid"></div>
+</div>
+
+<!-- ═══════════════════════════ CB ASSIST ═══════════════════════════ -->
+<div id="tab-qa" class="tab">
+  <div class="section-title">🤖 CB Assist</div>
+  <div class="info-box">
+    <span class="en">Pre-loaded smart questions per company — plus an interactive box where you can ask your own question using the data in this dashboard. Bilingual, fully offline keyword-based — no external AI call.</span>
+    <span class="ta">ஒவ்வொரு நிறுவனத்திற்கும் முன்னே ஏற்றப்பட்ட கேள்வி-பதில்கள், மேலும் உங்கள் சொந்த கேள்விகளையும் கேட்கலாம்.</span>
+  </div>
+  <div id="qaAcc"></div>
+  <div class="qa-chat">
+    <div style="font-weight:700;font-size:.93rem;color:var(--accent);margin-bottom:10px">💬 Ask Your Own Question — Dashboard Data (No API Key)</div>
+    <div class="qa-chat-row">
+      <select id="qaSel" class="qa-sel">
+        <option value="sector">Sector / General</option>
+        <option value="sudeep">Sudeep Pharma</option>
+        <option value="beta">Beta Drugs</option>
+        <option value="shilpa">Shilpa Medicare</option>
+        <option value="privi">Privi Speciality Chemicals</option>
+      </select>
+      <input id="qaInp" class="qa-inp" type="text" placeholder="e.g. What was the Q4 revenue? / EBITDA margin? / debt levels? / moat?">
+      <button class="qa-btn" onclick="answerQ()">Ask ▶</button>
+    </div>
+    <div id="qaResp" class="qa-resp"></div>
+    <div style="font-size:.71rem;color:var(--muted);margin-top:6px">📌 Try: "revenue", "margin", "debt", "moat", "rank". Press Enter or click Ask.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ DATA TABLE ═══════════════════════════ -->
+<div id="tab-table" class="tab">
+  <div class="info-box">Click column headers to sort. ✓ = Q4 FY26 audited actual | * Beta Drugs Q4 figures are derived estimates — see Results tab flag. All figures ₹ Crore, consolidated. Source: BSE/NSE filings. No investment advice.</div>
+  <div class="tbl-wrap">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th onclick="sortGT(0)">Company<span class="sort-icon">⇅</span></th>
+          <th onclick="sortGT(1)">Q4 Revenue<span class="sort-icon">⇅</span></th>
+          <th onclick="sortGT(2)">Q4 EBITDA %<span class="sort-icon">⇅</span></th>
+          <th onclick="sortGT(3)">Q4 PAT<span class="sort-icon">⇅</span></th>
+          <th onclick="sortGT(4)">PAT YoY<span class="sort-icon">⇅</span></th>
+          <th onclick="sortGT(5)">FY26 Revenue<span class="sort-icon">⇅</span></th>
+          <th onclick="sortGT(6)">FY26 PAT<span class="sort-icon">⇅</span></th>
+          <th>Business Type</th>
+        </tr>
+      </thead>
+      <tbody id="mainTbody">
+        <tr><td><strong>Sudeep Pharma</strong></td><td>182.3</td><td class="td-green">34.3%</td><td>48.5</td><td class="td-green">+9.7%</td><td>642.3</td><td>174.3</td><td><span class="tag tag-generic">Excipients/Minerals</span></td></tr>
+        <tr><td><strong>Beta Drugs</strong> *</td><td>~105.1</td><td class="td-muted">n/d</td><td>~9.0</td><td class="td-muted">flagged</td><td>396.0</td><td>41.5</td><td><span class="tag tag-hybrid">Oncology Formulations</span></td></tr>
+        <tr><td><strong>Shilpa Medicare</strong></td><td>436.99</td><td class="td-green">27.4-28%</td><td>107.79</td><td class="td-green">+642.9%</td><td>1,538.87</td><td>243.33</td><td><span class="tag tag-hybrid">API+Formulations+Biologics+ADC</span></td></tr>
+        <tr><td><strong>Privi Speciality</strong></td><td>727.5</td><td class="td-green">25.4%</td><td>93.7</td><td class="td-green">+40.9%</td><td>2,563.7</td><td>327.54</td><td><span class="tag tag-cdmo">Aroma Chemicals</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="usp-row">*Beta Drugs Q4 figures are derived/estimated — see Results tab data-quality flag.</div>
+
+  <div class="warn-box" style="margin-top:20px;margin-bottom:0">
+    <strong>⚠️ Disclaimer:</strong> This analysis is for educational and informational purposes only. It does not constitute financial advice or a buy/sell/hold recommendation. All data is compiled from public sources and may contain estimates. Consult a SEBI-registered investment advisor before making investment decisions.
+  </div>
+</div>
+
+<script>
+// ══════════ Tab switching (main nav) ══════════
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='charts') setTimeout(initCharts,80);
+  if(name==='socrates'&&!document.getElementById('socGrid').children.length) buildSocrates();
+  if(name==='qa'&&!document.getElementById('qaAcc').children.length) buildQA();
+}
+
+// ══════════ Results tab — company sub-tabs (mobile-friendly) ══════════
+function switchResPanel(name,btn){
+  document.querySelectorAll('.res-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#resSubnav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('res-'+name).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('res-'+name).scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ══════════ Language ══════════
+function setLang(lang,btn){
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  lang==='ta'?document.body.classList.add('tm'):document.body.classList.remove('tm');
+}
+
+// ══════════ Card filter ══════════
+function filterCards(cat,btn){
+  document.querySelectorAll('.filter-bar button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#cards-grid .card').forEach(c=>{
+    c.style.display=(cat==='all'||(c.dataset.cat&&c.dataset.cat.includes(cat)))?'':'none';
+  });
+}
+
+// ══════════ Data table sort ══════════
+let gd={};
+function sortGT(col){
+  const tb=document.getElementById('mainTbody');
+  const rows=Array.from(tb.querySelectorAll('tr'));
+  const dir=(gd[col]=!gd[col]);
+  rows.sort((a,b)=>{
+    const av=a.cells[col].innerText.replace(/[^0-9.\-]/g,'');
+    const bv=b.cells[col].innerText.replace(/[^0-9.\-]/g,'');
+    const an=parseFloat(av),bn=parseFloat(bv);
+    if(isNaN(an)||isNaN(bn)) return dir? a.cells[col].innerText.localeCompare(b.cells[col].innerText) : b.cells[col].innerText.localeCompare(a.cells[col].innerText);
+    return dir? an-bn : bn-an;
+  });
+  rows.forEach(r=>tb.appendChild(r));
+}
+
+// ══════════ QA accordion data (per-company smart Q&A) ══════════
+const qaD = {
+  'Sudeep Pharma':[
+    {q:'How did Sudeep Pharma perform in Q4 FY26?',q_ta:'சுதீப் பார்மா Q4 FY26-இல் எப்படி செயல்பட்டது?',a:'Revenue ₹182.3 Cr (+16.0% YoY), EBITDA ₹62.6 Cr / 34.3% margin (+6.0% YoY, margin down ~300bps on gas/acid cost inflation), PAT ₹48.5 Cr (+9.7% YoY). ✓ Q4 FY26 Actual — first quarter as a listed company.',a_ta:'வருவாய் ₹182.3 கோடி (+16.0% YoY), EBITDA ₹62.6 கோடி / 34.3% (+6.0% YoY), நிகர லாபம் ₹48.5 கோடி (+9.7% YoY). பட்டியலிடப்பட்ட நிறுவனமாக முதல் காலாண்டு.'},
+    {q:'What is Sudeep Pharma\'s business mix?',q_ta:'சுதீப் பார்மாவின் வணிகக் கலவை என்ன?',a:'Three verticals: Pharma &amp; Food Grade Minerals (legacy core), Specialty Ingredients (AbsorBis + battery materials, now 44% of FY26 revenue), and Nutrition via the NSS Europe acquisition. Export 60% / Domestic 40%.',a_ta:'மூன்று பிரிவுகள்: மருந்து &amp; உணவு தர கனிமங்கள், சிறப்பு பொருட்கள் (AbsorBis), NSS ஐரோப்பா வழியாக ஊட்டச்சத்து. ஏற்றுமதி 60% / உள்நாட்டு 40%.'},
+    {q:'What is the key risk to watch?',q_ta:'கவனிக்க வேண்டிய முக்கிய அபாயம் என்ன?',a:'Working capital days rose from 184 to 213 due to new US/Europe warehousing and NSS inventory consolidation. Management targets normalising to 150-160 days in FY27. Input-cost inflation (gas, sulphuric/phosphoric acid) also pressured Q4 margins.',a_ta:'புதிய US/ஐரோப்பா கிடங்கு மற்றும் NSS சரக்கு ஒருங்கிணைப்பு காரணமாக செயல்பாட்டு மூலதன நாட்கள் 184-லிருந்து 213 ஆக உயர்ந்தது.'},
+  ],
+  'Beta Drugs':[
+    {q:'How did Beta Drugs perform in Q4 FY26?',q_ta:'பீட்டா டிரக்ஸ் Q4 FY26-இல் எப்படி செயல்பட்டது?',a:'⚠️ Data-quality flag: no cleanly-reconciled Q4 standalone print available. Derived estimate (FY26 annual minus 9M actual): ~₹105 Cr revenue, ~₹9 Cr PAT. A separate aggregator reports ₹54.4 Cr net sales and PAT +282.5% YoY (EPS ₹5.26) — internally inconsistent, not reconciled. Confirm against the exchange filing before use.',a_ta:'⚠️ தரவு தர எச்சரிக்கை: சரிபார்க்கப்பட்ட Q4 தனி முடிவு கிடைக்கவில்லை. மதிப்பிடப்பட்ட புள்ளிவிவரம்: ~₹105 கோடி வருவாய், ~₹9 கோடி நிகர லாபம்.'},
+    {q:'What is Beta Drugs\' business mix?',q_ta:'பீட்டா டிரக்ஸின் வணிகக் கலவை என்ன?',a:'Oncology Formulations (own brand), API/CDMO (backward-integrated, ~30 clients), and a newly profitable Dermatology/Cosmeceuticals vertical via an Italian in-licensing deal (Promoitalia).',a_ta:'புற்றுநோய் மருந்துகள் (சொந்த பிராண்டு), API/CDMO, புதிதாக லாபகரமான தோல் மருத்துவ பிரிவு.'},
+    {q:'What happened in FY26 confirmed results?',q_ta:'FY26 உறுதிசெய்யப்பட்ட முடிவுகளில் என்ன நடந்தது?',a:'FY26 revenue ₹396.0 Cr (+9.4% YoY), PAT ₹41.5 Cr (~flat YoY due to one-time CCD interest cost). Acquired 66.1% of Nivian Lifesciences (₹69.4 Cr) in May 2026.',a_ta:'FY26 வருவாய் ₹396.0 கோடி (+9.4% YoY), நிகர லாபம் ₹41.5 கோடி (கிட்டத்தட்ட மாறாதது). மே 2026-இல் Nivian Lifesciences-இல் 66.1% பங்கு கையகப்படுத்தல்.'},
+  ],
+  'Shilpa Medicare':[
+    {q:'How did Shilpa Medicare perform in Q4 FY26?',q_ta:'ஷில்பா மெடிகேர் Q4 FY26-இல் எப்படி செயல்பட்டது?',a:'Revenue ₹436.99 Cr (+32.1% YoY) — highest-ever quarterly revenue. EBITDA ₹121 Cr / 27.4-28% margin (+40% YoY). Net profit ₹107.79 Cr (+642.9% YoY off a weak base); Adjusted PAT ex-exceptional ₹87 Cr. ✓ Q4 FY26 Actual',a_ta:'வருவாய் ₹436.99 கோடி (+32.1% YoY) — மிக உயர்ந்த காலாண்டு வருவாயி. நிகர லாபம் ₹107.79 கோடி (+642.9% YoY).'},
+    {q:'What makes Shilpa Medicare distinctive?',q_ta:'ஷில்பா மெடிகேரை எது தனித்துவமாக்குகிறது?',a:'Rare 4-layer integration: complex API, specialty/complex injectable formulations, biologics/biosimilars (Aflibercept, Nivolumab), and an emerging ADC (Antibody-Drug Conjugate) manufacturing platform.',a_ta:'API, சிக்கலான ஊசி மருந்துகள், பயாலஜிக்ஸ், ADC உற்பத்தி ஆகிய 4 அடுக்குகளில் ஒருங்கிணைப்பு.'},
+    {q:'What is the FY27 outlook?',q_ta:'FY27 கண்ணோட்டம் என்ன?',a:'FY26 revenue ₹1,538.87 Cr (+19.6%), Adjusted PAT ₹232 Cr (+135%). Adjusted ROCE improved from 4% (FY23) to 17.4% (FY26). Pipeline: Rotigotine patch (Europe, FY27), Abraxane/Enzalutamide tablets (FY28), biosimilar approvals expected FY27. Net debt rose to ₹613 Cr funding a ₹361 Cr FY26 capex programme.',a_ta:'FY26 வருவாய் ₹1,538.87 கோடி (+19.6%). சரிசெய்யப்பட்ட நிகர லாபம் ₹232 கோடி (+135%). ROCE 4%-லிருந்து 17.4% ஆக மேம்பட்டது.'},
+  ],
+  'Privi Speciality':[
+    {q:'How did Privi Speciality perform in Q4 FY26?',q_ta:'ப்ரிவி ஸ்பெஷாலிட்டி Q4 FY26-இல் எப்படி செயல்பட்டது?',a:'Revenue ₹727.5 Cr (+18.6% YoY) — all-time-high quarterly revenue. EBITDA ₹184.4 Cr / 25.4% margin (+39.1% YoY). PAT ₹93.7-94.1 Cr (+40.9-47.1% YoY). ✓ Q4 FY26 Actual. The Givaudan JV (PRIGIV) turned profitable for the first time this quarter.',a_ta:'வருவாய் ₹727.5 கோடி (+18.6% YoY) — அனைத்து கால உயர்ந்த காலாண்டு வருவாய். Givaudan JV இந்த காலாண்டில் முதன்முறையாக லாபம் ஈட்டியது.'},
+    {q:'What is Privi\'s moat?',q_ta:'ப்ரிவியின் அகழி என்ன?',a:'Among the world\'s largest aroma/fragrance chemical manufacturers-exporters (musks, ambroxides, key F&F intermediates); a Givaudan JV for high-end specialty products; single reporting segment under Ind AS 108.',a_ta:'உலகின் மிகப்பெரிய நறுமண வேதிப்பொருள் உற்பத்தியாளர்களில் ஒன்று; Givaudan உடன் கூட்டு முயற்சி.'},
+    {q:'What is the "5k:1k" vision and the key risk?',q_ta:'"5k:1k" பார்வை மற்றும் முக்கிய அபாயம் என்ன?',a:'Management targets ₹5,000 Cr revenue / ₹1,000 Cr EBITDA by FY29-30 via capacity expansion (Phase 1, +54,000 MTPA, due 30 Jun 2026) and new products. Key risk to watch: promoter holding fell from 74.05% (Mar-25) to 60.60% (Mar-26), though absorbed by rising mutual-fund ownership (~9.5%).',a_ta:'நிர்வாகம் FY29-30-க்குள் ₹5,000 கோடி வருவாய் / ₹1,000 கோடி EBITDA இலக்கு. கவனிக்க வேண்டியது: ஊக்குவிப்பாளர் பங்கு 74.05%-லிருந்து 60.60% ஆகக் குறைந்துள்ளது.'},
+  ],
+  'sector':[
+    {q:'Which of these 4 companies had the strongest Q4 FY26?',q_ta:'இந்த 4 நிறுவனங்களில் யார் Q4 FY26-இல் மிகவும் வலுவாக இருந்தது?',a:'By PAT growth, Shilpa Medicare (+642.9% YoY, though off a low base and helped by exceptional items). By absolute scale and all-time-high revenue with clean YoY growth, Privi Speciality Chemicals (+18.6% revenue, +40.9% PAT) stands out. Sudeep Pharma delivered the steadiest, least-flagged quarter.',a_ta:'நிகர லாப வளர்ச்சியில் ஷில்பா மெடிகேர் (+642.9% YoY) முன்னணியில். வருவாய் அளவு மற்றும் சீரான வளர்ச்சியில் ப்ரிவி ஸ்பெஷாலிட்டி தனித்து நிற்கிறது.'},
+    {q:'Which company carries the most data-quality risk right now?',q_ta:'இப்போது எந்த நிறுவனம் அதிக தரவு தர அபாயத்தை கொண்டுள்ளது?',a:'Beta Drugs — its Q4 FY26 standalone print is not cleanly reconciled across secondary sources (see the flag on its card and in Results). Its FY26 annual figures (Revenue ₹396 Cr, PAT ₹41.5 Cr) are solid and confirmed.',a_ta:'பீட்டா டிரக்ஸ் — அதன் Q4 FY26 தனி முடிவு நம்பகமான தரவுகளால் சரிபார்க்கப்படவில்லை.'},
+    {q:'What is the common theme across all 4 companies this quarter?',q_ta:'இந்த காலாண்டில் 4 நிறுவனங்களுக்கும் பொதுவான கருப்பொருள் என்ன?',a:'All four posted double-digit YoY revenue growth in Q4 FY26 and are investing behind capacity/capability expansion — Sudeep (Nandesari + battery materials), Beta (Nivian acquisition + derma), Shilpa (ADC facility + biosimilars), Privi (Phase 1 capacity + Givaudan JV ramp-up).',a_ta:'நான்கு நிறுவனங்களும் Q4 FY26-இல் இரட்டை இலக்க வருவாய் வளர்ச்சியை பதிவு செய்துள்ளன, மேலும் திறன் விரிவாக்கத்தில் முதலீடு செய்கின்றன.'},
+  ],
+};
+function buildQA(){
+  const c=document.getElementById('qaAcc');
+  const order=['Sudeep Pharma','Beta Drugs','Shilpa Medicare','Privi Speciality','sector'];
+  order.forEach(co=>{
+    const qs=qaD[co];if(!qs)return;
+    const labelEn=co==='sector'?'🌐 Cross-Company Questions':'🏢 '+co;
+    const labelTa=co==='sector'?'🌐 நிறுவனங்கள் இடையேயான கேள்விகள்':co;
+    const items=qs.map(qa=>{
+      const qTa=qa.q_ta||qa.q, aTa=qa.a_ta||qa.a;
+      return `<div class="qa-item"><div class="qa-q" onclick="this.nextElementSibling.classList.toggle('open')"><span class="en">${qa.q}</span><span class="ta">${qTa}</span><span>▾</span></div><div class="qa-a"><span class="en">${qa.a}</span><span class="ta">${aTa}</span></div></div>`;
+    }).join('');
+    const item=document.createElement('div');
+    item.className='acc-item';
+    item.innerHTML=`<div class="acc-head" onclick="this.nextElementSibling.classList.toggle('open')"><span><span class="en">${labelEn}</span><span class="ta">${labelTa}</span></span><span>▾</span></div><div class="acc-body">${items}</div>`;
+    c.appendChild(item);
+  });
+}
+
+// ── Knowledge base for custom Q&A chat ──
+const kb = {
+  sudeep:{rev:'₹182.3 Cr (+16.0% YoY, Q4 FY26 actual)',ebitda:'34.3% Q4 / 34.6% FY26 (both down ~300bps YoY on input-cost inflation)',pat:'₹48.5 Cr (+9.7% YoY)',debt:'Net debt just ₹33.6 Cr; D/E 0.04x — very low leverage',rank:'CBF26: A',moat:'6 plants / 50,000 MT capacity, 200+ mineral-salt products, 100+ export countries, newly acquired NSS Europe nutrition platform',hi:'First quarter as a listed company (IPO Nov 2025, ₹895 Cr issue). Specialty Ingredients vertical grew to 44% of FY26 revenue from 34% in FY25.'},
+  beta:{rev:'~₹105.1 Cr derived estimate (Q4 FY26) — see data-quality flag; FY26 confirmed at ₹396.0 Cr',ebitda:'Not cleanly disclosed for Q4 standalone; FY26 guided range 23-25%',pat:'~₹9.0 Cr derived estimate (Q4 FY26); FY26 confirmed at ₹41.5 Cr',debt:'Borrowings rose sharply (~₹146 Cr by Sep-25) funded partly via convertible debentures',rank:'CBF26: B/C (flagged data quality on Q4)',moat:'Top-10 Indian oncology player, backward-integrated API, expanding into regulated LatAm markets',hi:'Acquired 66.1% of Nivian Lifesciences (₹69.4 Cr) in May 2026. Dermatology/cosmeceutical vertical turned profitable via Promoitalia in-licensing.'},
+  shilpa:{rev:'₹436.99 Cr (+32.1% YoY, Q4 FY26 actual) — highest-ever quarterly revenue; FY26 ₹1,538.87 Cr (+19.6%)',ebitda:'27.4-28% Q4 (+40% YoY) / 29.0% FY26 (+300bps YoY)',pat:'₹107.79 Cr reported (+642.9% YoY); Adjusted PAT ₹87 Cr ex-exceptional; FY26 PAT ₹243.33 Cr reported / ₹232 Cr adjusted',debt:'Net debt ₹613 Cr, up from ₹550 Cr, funding a ₹361 Cr FY26 capex programme',rank:'CBF26: A',moat:'Rare 4-layer integration: API, Formulations, Biologics, and an emerging ADC platform',hi:'Adjusted ROCE improved from 4% (FY23) to 17.4% (FY26). API ₹985 Cr FY26 (+16%), Formulations ₹618 Cr (+30%), Biologics ~₹150 Cr (~+100%).'},
+  privi:{rev:'₹727.5 Cr (+18.6% YoY, Q4 FY26 actual) — all-time-high; FY26 ₹2,563.7 Cr (+22.0%)',ebitda:'25.4% Q4 (+39.1% YoY) / 25.76% FY26 (+340bps YoY)',pat:'₹93.7-94.1 Cr (+40.9-47.1% YoY); FY26 PAT ₹327.54 Cr (+75.2% YoY)',debt:'Long-term debt ₹511.1 Cr (up from ₹444.5 Cr); interest coverage improved to 9.88x in Q4',rank:'CBF26: A',moat:'Among world\'s largest aroma/fragrance chemical manufacturers-exporters; Givaudan JV (PRIGIV) now profitable; "5k:1k" vision for FY29-30',hi:'Phase-1 capacity expansion (+54,000 MTPA) on track for 30 Jun 2026. Watch: promoter holding fell from 74.05% to 60.60% over the year, absorbed by rising mutual-fund ownership.'},
+  sector:{rev:'Combined Q4 FY26 revenue ~₹1,453 Cr across the four names (Sudeep 182.3 + Beta ~105.1 + Shilpa 436.99 + Privi 727.5)',ebitda:'Margins range from ~25% (Privi, Shilpa) to ~34% (Sudeep)',pat:'Combined Q4 FY26 PAT ~₹259 Cr; combined FY26 PAT ~₹786 Cr',debt:'Sudeep near debt-free (0.04x); Beta has rising CCD-funded leverage; Shilpa net debt ₹613 Cr; Privi LT debt ₹511 Cr with improving coverage',rank:'3 of 4 rated CBF26: A; Beta Drugs flagged pending Q4 data confirmation',moat:'Sudeep (mineral-salt scale + export reach), Beta (oncology brand depth), Shilpa (4-layer API/Formulations/Biologics/ADC integration), Privi (global aroma-chemical scale + Givaudan JV)',hi:'All four posted YoY revenue growth in Q4 FY26. Shilpa had the sharpest profit inflection; Privi posted its highest-ever quarterly revenue; Sudeep delivered its first print as a listed company; Beta Drugs data needs verification.'}
+};
+function answerQ(){
+  const q=document.getElementById('qaInp').value.trim();
+  const co=document.getElementById('qaSel').value;
+  const r=document.getElementById('qaResp');
+  const ta=document.body.classList.contains('tm');
+  if(!q){r.style.display='block';r.innerHTML=ta?'முதலில் ஒரு கேள்வியை உள்ளிடவும்.':'Please type a question first.';return;}
+  r.style.display='block';r.innerHTML=ta?'⏳ டாஷ்போர்டு தரவைத் தேடுகிறது...':'⏳ Looking up dashboard data...';
+  setTimeout(()=>{
+    const d=kb[co]||kb.sector;
+    const ql=q.toLowerCase();
+    const nm=document.getElementById('qaSel').options[document.getElementById('qaSel').selectedIndex].text;
+    const L=ta?{rev:'வருவாய்',ebitda:'EBITDA விளிம்பு',pat:'நிகர லாபம் (PAT)',bs:'கடன் நிலை',moat:'அகழி / USP',rank:'தரவரிசை',sum:'சுருக்கம்',hint:'💡 முயற்சிக்க: "வருவாய்", "விளிம்பு", "கடன்", "அகழி", "தரவரிசை"'}
+                :{rev:'Revenue',ebitda:'EBITDA',pat:'PAT',bs:'Debt/Balance Sheet',moat:'Moat/USP',rank:'CBF26 Rating',sum:'Summary',hint:'💡 Try: "revenue", "margin", "debt", "moat", "rank"'};
+    const has=(...ks)=>ks.some(k=>ql.includes(k));
+    let a='';
+    if(has('revenue','sales','turnover','வருவாய்')) a=`<strong>${nm} — ${L.rev}:</strong> ${d.rev}`;
+    else if(has('ebitda','margin','operating','விளிம்பு')) a=`<strong>${nm} — ${L.ebitda}:</strong> ${d.ebitda}`;
+    else if(has('pat','profit','earnings','net income','லாபம்')) a=`<strong>${nm} — ${L.pat}:</strong> ${d.pat}`;
+    else if(has('debt','cash','balance','leverage','கடன்')) a=`<strong>${nm} — ${L.bs}:</strong> ${d.debt}`;
+    else if(has('moat','usp','advantage','competi','அகழி')) a=`<strong>${nm} — ${L.moat}:</strong> ${d.moat}`;
+    else if(has('rank','rating','cbf','தரவரிசை')) a=`<strong>${nm} — ${L.rank}:</strong> ${d.rank}. ${d.hi}`;
+    else a=`<strong>${nm} — ${L.sum}:</strong><br>${L.rev}: ${d.rev}<br>${L.ebitda}: ${d.ebitda}<br>${L.pat}: ${d.pat}<br>${L.bs}: ${d.debt}<br>${L.rank}: ${d.rank}<br><em>${d.hi}</em><br><small style="color:var(--muted)">${L.hint}</small>`;
+    r.innerHTML=a;
+  },260);
+}
+
+// ══════════ Cauvery Socrates ══════════
+const SOC_Q=[
+  {cat:'sudeep', q:'Sudeep Pharma\'s Q4 FY26 EBITDA margin fell ~300bps YoY (37.3% → 34.3%) even though EBITDA rupee-value still grew 6%. What does that combination tell you about the source of the margin pressure — and should it worry a long-term investor?', hint:'Think about cost inflation vs. structural demand loss.', a:'The margin drag was cost-side (gas supply issues, sharp sulphuric/phosphoric acid price spikes, West Asia-linked supply disruption) — not a pricing or demand problem, since revenue still grew 16% and EBITDA in absolute terms grew too. Management has already pushed through price revisions with customers. A margin dip driven by input-cost inflation that is being actively repriced is generally less concerning than one caused by competitive/demand erosion — but working capital days rising from 184 to 213 is worth watching as a second-order effect on cash conversion.'},
+  {cat:'sudeep', q:'Sudeep Pharma just listed in November 2025 and its Specialty Ingredients vertical grew from 34% to 44% of revenue in one year. What risk does this mix-shift introduce that wasn\'t as relevant when the company was minerals-only?', hint:'Consider customer concentration, product newness, and capex-funded growth.', a:'A fast-growing newer vertical (Specialty Ingredients / AbsorBis / battery materials) is inherently less proven than the decades-old core mineral-salts business — fewer long-term customer contracts, less pricing history, and dependence on continued capex execution (Nandesari expansion, battery materials Phase 1 in Apr 2027). A bigger share of revenue riding on a newer, capex-heavy vertical raises execution risk even as it raises the growth ceiling.'},
+  {cat:'beta', q:'The Beta Drugs card on this dashboard carries an explicit data-quality flag: one aggregator shows Q4 revenue of ₹54.4 Cr, while working backward from the confirmed FY26 annual figure implies closer to ₹105 Cr. Before you use either number in a client note, what should you actually do?', hint:'This is a research-process question, not a finance question.', a:'Neither number should be used as-is. The correct step is to pull Beta Drugs\' actual BSE/NSE quarterly filing (or the investor presentation from the 15 May 2026 earnings call) and reconcile against it directly — secondary aggregators can misclassify standalone vs. consolidated, or "net sales" vs. "total income," which is the most likely source of this specific discrepancy. As a SEBI-registered research entity, publishing an unreconciled figure — even with a caveat — carries more risk than taking the extra step to verify against the primary source.'},
+  {cat:'beta', q:'Beta Drugs\' FY26 PAT (₹41.5 Cr) is roughly flat versus FY25 (₹42 Cr) despite 9.4% revenue growth and an 18% rise in H1 PAT (ex-CCD interest). What single line item explains most of the gap between "operationally better" and "flat reported profit"?', hint:'Look at what changed in the capital structure during the year.', a:'The one-time interest cost on convertible debentures (CCDs) issued during a preferential allotment. Management explicitly reported H1 PAT growth "excluding one-time interest on convertible debentures" at +18% — meaning the reported (unadjusted) full-year PAT absorbed a financing cost that masks otherwise-healthy operating improvement. A useful reminder to always check whether a "PAT" figure is pre- or post-exceptional/financing adjustments before comparing YoY.'},
+  {cat:'shilpa', q:'Shilpa Medicare\'s Q4 FY26 net profit rose 643% YoY, but Adjusted PAT (ex-exceptional items) was only ₹87 Cr against a reported ₹107.79 Cr. What is the difference between these two numbers actually made of, and which one should you trust for FY27 modelling?', hint:'The gap (~₹21 Cr) is not organic operating profit.', a:'The gap reflects exceptional/one-off items — the FY26 annual disclosures specifically mention a gain on the sale of a stake in Sravathi Advance Process Technologies and provisions for legal settlements. The Adjusted PAT (₹87 Cr quarter / ₹232 Cr full year) strips these out and is the more reliable base for forward modelling, since one-time gains from stake sales won\'t recur every quarter.'},
+  {cat:'shilpa', q:'Shilpa Medicare\'s net debt rose from ₹550 Cr to ₹613 Cr in FY26 even as Adjusted ROCE improved from 4% (FY23) to 17.4% (FY26) and EBITDA margin expanded 300bps. Is rising debt alongside rising ROCE a red flag here — why or why not?', hint:'Distinguish debt-funded growth capex from debt-funded operating shortfalls.', a:'Not necessarily — the company disclosed ₹361 Cr of FY26 capex "primarily funded by internal accruals," and the debt increase is modest (+11.5%) relative to the scale of margin and ROCE improvement. Rising leverage funding a capacity/pipeline build (Rotigotine, Abraxane, biosimilars, ADC facility) is different from rising leverage covering weak operating cash flow. Track whether ROCE and margin keep improving as new capacity utilises — if debt keeps rising while returns plateau, that would be the actual warning sign.'},
+  {cat:'privi', q:'Privi Speciality Chemicals\' promoter stake fell from 74.05% to 60.60% over the year, even as the stock posted an all-time-high quarterly revenue and PAT +41-47% YoY. The stock fell nearly 8% on results day. What does this divergence between fundamentals and stock reaction suggest?', hint:'Strong results didn\'t stop a sell-off — think about what markets weigh more heavily around insider behaviour.', a:'It suggests the market is treating sustained promoter selling (two consecutive quarters, 13.45 percentage points cumulatively) as a stronger signal than a single quarter\'s reported numbers — insider selling is often read as information about management\'s own view of near-term valuation, regardless of how good the headline print is. Note the offsetting detail: mutual fund holding rose from ~1.4% to ~9.5% over the same period, meaning institutions absorbed the stake without it becoming a liquidity problem.'},
+  {cat:'privi', q:'Privi\'s "5k:1k" vision targets ₹5,000 Cr revenue and ₹1,000 Cr EBITDA by FY29-30, versus FY26 actuals of ₹2,564 Cr revenue and ₹665 Cr EBITDA. What annual growth rate does that imply, and does Phase-1 capacity expansion (+54,000 MTPA by Jun 2026) alone get them there?', hint:'Do the compounding math over roughly 3-4 years, then think about what else has to go right.', a:'Getting from ~₹2,564 Cr to ₹5,000 Cr in 3-4 years requires roughly 18-24% CAGR — well above what a single Phase-1 expansion alone would likely deliver. Hitting "5k:1k" also requires the multi-speciality aroma chemicals project, new products (ethyl maltol, maltol, cyclopentanone — targeted mechanical completion June 2027), continued Givaudan JV ramp-up, and sustained ~25% EBITDA margins. Phase 1 alone is necessary but not sufficient.'},
+  {cat:'cross', q:'Three of these four companies (Sudeep, Shilpa, Privi) are rated CBF26: A, while Beta Drugs is flagged due to data uncertainty. If Beta Drugs\' true Q4 numbers turn out to match the higher, derived estimate (~₹105 Cr revenue, ~₹9 Cr PAT) rather than the lower aggregator figure, would you expect its rating to change — and what does that tell you about data hygiene versus business quality?', hint:'Separate "how good is the business" from "how confident are we in the number."', a:'The rating could plausibly move up once reconciled, purely because the uncertainty itself — not weak fundamentals — is what\'s holding it back. A rating can conflate "quality of the reported number" with "quality of the underlying business," and a name can be penalised for the former even when the latter (backward integration, brand depth, new derma vertical, LatAm expansion) looks reasonably strong. Once Beta Drugs\' Q4 filing is confirmed, this dashboard\'s rating should be revisited independent of any change in the business itself.'},
+  {cat:'cross', q:'Sudeep Pharma is nearly debt-free (D/E 0.04x) while Shilpa Medicare and Privi Speciality both carry rising debt to fund expansion (₹613 Cr and ₹511 Cr respectively). Does "least debt" automatically mean "least risky" across these three names?', hint:'Debt level alone doesn\'t capture what the debt is funding or what returns it\'s generating.', a:'No — debt level in isolation is an incomplete risk measure. Shilpa\'s debt funds capex behind a documented ROCE improvement (4%→17.4%) and multiple near-term catalysts; Privi\'s debt funds capacity behind a clear "5k:1k" roadmap with improving interest coverage (9.88x). Sudeep\'s low debt is partly a function of being newly IPO-funded rather than proof of superior capital discipline over a full cycle. A more useful question than "who has less debt" is "whose debt is generating the best incremental return, and whose balance sheet has the least cushion if a capex programme runs into delays."'}
+];
+let socAnswered=new Set();
+function buildSocrates(){
+  const grid=document.getElementById('socGrid');
+  grid.innerHTML='';
+  SOC_Q.forEach((item,i)=>{
+    const card=document.createElement('div');
+    card.className='soc-card';
+    card.dataset.cat=item.cat;
+    const catLabel={sudeep:'Sudeep Pharma',beta:'Beta Drugs',shilpa:'Shilpa Medicare',privi:'Privi Speciality',cross:'Cross-Company'}[item.cat];
+    card.innerHTML=`
+      <span class="soc-tag">${catLabel}</span>
+      <div class="soc-q"><span class="soc-num">Q${i+1}.</span>${item.q}</div>
+      <div class="soc-hint">💡 ${item.hint}</div>
+      <textarea class="soc-input" id="soc-inp-${i}" placeholder="Type your own answer/reasoning here first..."></textarea>
+      <div class="soc-actions">
+        <button class="soc-btn" onclick="revealSoc(${i})">Reveal CB View</button>
+        <button class="soc-btn sec" onclick="clearSoc(${i})">Clear</button>
+      </div>
+      <div class="soc-reveal" id="soc-rev-${i}"><strong>CB Research view:</strong> ${item.a}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+function revealSoc(i){
+  document.getElementById('soc-rev-'+i).classList.add('open');
+  socAnswered.add(i);
+  updateSocProgress();
+}
+function clearSoc(i){
+  document.getElementById('soc-inp-'+i).value='';
+  document.getElementById('soc-rev-'+i).classList.remove('open');
+}
+function updateSocProgress(){
+  document.getElementById('socProgress').textContent=socAnswered.size+' of '+SOC_Q.length+' questions revealed this session';
+}
+function filterSoc(cat,btn){
+  document.querySelectorAll('#socFilter button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#socGrid .soc-card').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
+  });
+}
+
+// ══════════ Charts ══════════
+let chartsInit=false;
+function initCharts(){
+  if(chartsInit)return;chartsInit=true;
+  const labels=['Sudeep Pharma','Beta Drugs*','Shilpa Medicare','Privi Speciality'];
+  const q4rev=[182.3,105.1,436.99,727.5];
+  const q4ebitdaM=[34.3,24.0,27.7,25.4];
+  const q4ebitdaAbs=[62.6,25.2,121.0,184.4];
+  const q4pat=[48.5,9.0,107.79,93.7];
+  const debts=[33.6,146,613,511.1];
+  const fy26rev=[642.3,396.0,1538.87,2563.7];
+  const fy25rev=[501.9,362.0,1286.43,2101.2];
+  const blue='rgba(3,105,161,0.85)',green='rgba(22,163,74,0.85)',amber='rgba(217,119,6,0.85)',grey='rgba(148,163,184,0.85)';
+  const def={plugins:{legend:{display:false}},responsive:true,maintainAspectRatio:false};
+
+  new Chart(document.getElementById('revChart'),{type:'bar',data:{labels,datasets:[{data:q4rev,backgroundColor:[blue,grey,blue,blue],borderRadius:4}]},options:{...def,scales:{y:{title:{display:true,text:'₹ Crore'}}}}});
+
+  new Chart(document.getElementById('ebitdaAbsChart'),{type:'bar',data:{labels,datasets:[{data:q4ebitdaAbs,backgroundColor:[blue,grey,blue,blue],borderRadius:4}]},options:{...def,plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:ctx=>ctx.dataIndex===1?'Beta Drugs EBITDA is a derived estimate — not separately disclosed':''}}},scales:{y:{title:{display:true,text:'₹ Crore'}}}}});
+
+  const ec=q4ebitdaM.map(v=>v>=30?green:v>=25?blue:amber);
+  new Chart(document.getElementById('ebitdaChart'),{type:'bar',data:{labels,datasets:[{data:q4ebitdaM,backgroundColor:ec,borderRadius:4}]},options:{...def,scales:{y:{min:0,max:40,title:{display:true,text:'EBITDA Margin %'}}}}});
+
+  new Chart(document.getElementById('patChart'),{type:'bar',data:{labels,datasets:[{data:q4pat,backgroundColor:green,borderRadius:4}]},options:{...def,scales:{y:{title:{display:true,text:'₹ Crore'}}}}});
+
+  const dc=debts.map(v=>v<50?green:v<300?amber:'rgba(220,38,38,0.75)');
+  new Chart(document.getElementById('debtChart'),{type:'bar',data:{labels,datasets:[{data:debts,backgroundColor:dc,borderRadius:4}]},options:{...def,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'₹'+ctx.raw+' Cr'}}},scales:{y:{title:{display:true,text:'₹ Cr Net/LT Debt'}}}}});
+
+  new Chart(document.getElementById('annualChart'),{type:'bar',data:{labels,datasets:[
+    {label:'FY25',data:fy25rev,backgroundColor:grey,borderRadius:4},
+    {label:'FY26',data:fy26rev,backgroundColor:blue,borderRadius:4}
+  ]},options:{...def,plugins:{legend:{display:true}},scales:{y:{title:{display:true,text:'₹ Crore'}}}}});
+
+  new Chart(document.getElementById('radarChart'),{type:'radar',data:{labels:['Revenue Scale','Margins','PAT Growth','Balance Sheet','Diversification','Data Confidence'],datasets:[
+    {label:'Sudeep Pharma',data:[35,80,55,95,45,90],borderColor:'#0369a1',backgroundColor:'rgba(3,105,161,.12)',pointRadius:3},
+    {label:'Beta Drugs',data:[25,55,40,50,55,35],borderColor:'#d97706',backgroundColor:'rgba(217,119,6,.10)',pointRadius:3},
+    {label:'Shilpa Medicare',data:[70,65,90,55,85,80],borderColor:'#16a34a',backgroundColor:'rgba(22,163,74,.10)',pointRadius:3},
+    {label:'Privi Speciality',data:[90,70,75,60,50,85],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,.10)',pointRadius:3},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:10}}},scales:{r:{min:0,max:100,ticks:{stepSize:20,font:{size:9}}}}}});
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('qaInp').addEventListener('keydown',e=>{if(e.key==='Enter')answerQ();});
+});
+</script>
+</body>
+</html>
