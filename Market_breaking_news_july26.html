@@ -409,6 +409,9 @@ footer span{color:#ffe0c0}
           <option value="crude_crash">Crude $76.71 — Winners &amp; Losers</option>
           <option value="fpi_gsec_tax">G-Secs Tax-Free for FPIs</option>
           <option value="kotak_db_acq">Kotak — Deutsche Bank India Acquisition</option>
+          <option value="icici_pru_airtel">ICICI Pru Life — Prudential plc Promoter Exit</option>
+          <option value="gold_monetisation">Gold Monetisation Scheme — Revamp</option>
+          <option value="demat_growth">Demat Accounts — June 2026 Record</option>
         </select>
       </div>
       <div class="assist-q-wrap">
@@ -1003,11 +1006,14 @@ function renderFeed() {
 }
 
 function buildTicker() {
-  const items=NEWS.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
-  const latest=items[0];
-  const L=activeLang==='ta'?latest.ta:latest.en;
-  const single=`<span class="ticker-item" onclick="showTickerPreview('${latest.id}')"><strong>${latest.sectorLabel}:</strong> ${L.headline}</span>`;
-  document.getElementById('ticker-scroll').innerHTML=Array(8).fill(single).join('');
+  const breakingToday=NEWS.filter(n=>n.breaking);
+  const items=(breakingToday.length?breakingToday:NEWS.slice()).sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
+  const isTA=activeLang==='ta';
+  const spans=items.map(n=>{
+    const L=isTA?n.ta:n.en;
+    return `<span class="ticker-item" onclick="showTickerPreview('${n.id}')"><strong>${n.sectorLabel}:</strong> ${L.headline}</span>`;
+  }).join('');
+  document.getElementById('ticker-scroll').innerHTML=spans+spans;
 }
 
 function showTickerPreview(id){
@@ -1474,8 +1480,44 @@ const ASSIST_QA_GAP = {
      src:"Source: FPI G-Sec Tax-Free infographic, SectorWire, June 2026"}
   ]
 };
+const ASSIST_QA_LATEST = {
+  icici_pru_airtel:[
+    {q:"Why is Prudential plc losing promoter status in ICICI Prudential Life?",
+     a:"Prudential plc is acquiring a controlling ~75% stake in Bharti Life Insurance. Indian insurance rules do not allow a foreign insurer to be promoter in two Indian life insurers at once, so Prudential will cut its ICICI Prudential Life holding to below 10% and become a financial investor instead of a promoter.",
+     src:"Source: ICICI Prudential Life / Prudential plc infographic, CB Research, July 2026"},
+    {q:"Why did the ICICI Prudential Life stock fall nearly 9% on this news?",
+     a:"The stock reacted sharply on supply-overhang and ownership-uncertainty concerns \u2014 large potential stake sales by Prudential could pressure the share price, and investors worried reduced promoter involvement may weaken strategic support or product collaboration.",
+     src:"Source: ICICI Prudential Life / Prudential plc infographic, CB Research, July 2026"},
+    {q:"Why might the long-term impact on ICICI Prudential Life be limited?",
+     a:"ICICI Bank remains the controlling shareholder and has said it will retain majority ownership and keep supporting the business. Prudential stays invested as a minority shareholder rather than exiting outright, and operating performance \u2014 earnings growth, policy sales, renewal income \u2014 remains strong through the transition.",
+     src:"Source: ICICI Prudential Life / Prudential plc infographic, CB Research, July 2026"}
+  ],
+  gold_monetisation:[
+    {q:"How does the Gold Monetisation Scheme (GMS) actually work?",
+     a:"You deposit gold (jewellery, bars, coins) at an authorised collection centre or bank, it's tested for purity, melted into standard bullion, and the equivalent quantity is credited to a Gold Deposit Account that earns interest. At maturity you can take back cash or equivalent gold based on the prevailing price \u2014 the process is described as safe, transparent and fully voluntary.",
+     src:"Source: Gold Monetisation Scheme infographic, CB Research, July 2026"},
+    {q:"Why did the earlier version of GMS struggle, and what's changing in the revamp?",
+     a:"The earlier scheme struggled on emotional attachment to ancestral jewellery, fear of tax scrutiny over the source of gold, low 2-2.5% p.a. returns, and a limited, slow collection network. The revamped scheme adds jewellers as collection partners alongside banks, widens the network, simplifies processing, improves purity-testing transparency and promises more attractive returns \u2014 exact new rates are yet to be announced.",
+     src:"Source: Gold Monetisation Scheme infographic, CB Research, July 2026"},
+    {q:"Is the Gold Monetisation Scheme the same as Sovereign Gold Bonds (SGB)?",
+     a:"No. GMS lets you deposit physical gold you already own to earn a return on it. SGB is a separate government bond you buy with cash, denominated in grams of gold, issued by RBI \u2014 no physical gold changes hands. SGB has in any case been discontinued for new issuance since February 2024, while GMS is the scheme now being revamped.",
+     src:"Source: Gold Monetisation Scheme infographic, CB Research, July 2026; RBI/PIB SGB issuance updates"}
+  ],
+  demat_growth:[
+    {q:"How many demat accounts were added in June 2026, and how does that compare to earlier months?",
+     a:"India added 25,73,020 new demat accounts in June 2026 \u2014 the highest monthly addition of the year, up 11.84% month-on-month, taking the total to 23,15,46,418. Every month in H1 2026 posted positive MoM growth, ranging from 9.97% in January to a high of 13.64% in April.",
+     src:"Source: CDSL/NSDL Demat Accounts infographic, CB Research, July 2026"},
+    {q:"Which depository leads demat account market share, CDSL or NSDL?",
+     a:"CDSL continues to lead decisively, with over 18.59 crore accounts as of June 2026 versus NSDL's 4.56 crore \u2014 roughly an 80:20 split of the 23.15 crore total accounts.",
+     src:"Source: CDSL/NSDL Demat Accounts infographic, CB Research, July 2026"},
+    {q:"What's driving the record demat account growth in June 2026?",
+     a:"The infographic attributes it to strong market recovery and renewed investor confidence after the sharp Jan-Mar 2026 correction, consistent with the broader DII-led ownership shift seen in Indian markets this year \u2014 domestic mutual funds and retail investors have kept participating even as FPIs stayed cautious.",
+     src:"Source: CDSL/NSDL Demat Accounts infographic, CB Research, July 2026"}
+  ]
+};
 Object.assign(ASSIST_QA, ASSIST_QA_GAP);
 Object.assign(ASSIST_QA, ASSIST_QA_NEW);
+Object.assign(ASSIST_QA, ASSIST_QA_LATEST);
 
 function assistTopicChange(){
   const topic = document.getElementById('assist-topic').value;
