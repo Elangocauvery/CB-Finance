@@ -571,6 +571,22 @@ function loadReports(){
 }
 
 // ── Phone helpers ─────────────────────────────────────────────────────────────
+// ── Safe storage: never crash when localStorage is blocked (Private
+//    Browsing, file://, in-app browsers, cookies-blocked settings) ──
+function safeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function safeSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+function safeRemove(k){ try{ localStorage.removeItem(k); }catch(e){} }
+
+// digits-only compare; treats '+91 98xxx', '098xxx' and '98xxx' as the same number
+function phoneDigits(p){ return String(p).replace(/\D/g,''); }
+function samePhone(a,b){
+  const da=phoneDigits(a), db=phoneDigits(b);
+  if(!da||!db) return false;
+  if(da===db) return true;
+  if(da.length>=10 && db.length>=10 && da.slice(-10)===db.slice(-10)) return true; // +91 / 0 prefixes
+  if(da.length>=8 && db.length>=8 && (da.endsWith(db)||db.endsWith(da))) return true; // country-code vs bare
+  return false;
+}
 function sanitizePhone(el){ el.value=el.value.replace(/[^\d+\s\-()]/g,'').slice(0,20); }
 function normalizePhone(r){ return r.replace(/[\s\-()]/g,'').trim(); }
 function isValidPhone(p){ const d=p.replace(/\D/g,''); return d.length>=7; }
@@ -578,16 +594,16 @@ function isValidPhone(p){ const d=p.replace(/\D/g,''); return d.length>=7; }
 // ── localStorage ──────────────────────────────────────────────────────────────
 function loadStored(){
   try{
-    const s=localStorage.getItem('cb_members');
+    const s=safeGet('cb_members');
     if(s){
       const d=JSON.parse(s);
-      if(d.phones) d.phones.forEach(p=>{ const n=normalizePhone(p); if(!MEMBERS.some(m=>normalizePhone(m)===n)) MEMBERS.push(p); });
+      if(d.phones) d.phones.forEach(p=>{ if(!MEMBERS.some(m=>samePhone(m,p))) MEMBERS.push(p); });
       if(d.names)  Object.assign(MEMBER_NAMES,d.names);
     }
   }catch(e){}
 }
 function saveMembers(){
-  try{ localStorage.setItem('cb_members',JSON.stringify({phones:MEMBERS,names:MEMBER_NAMES,saved:Date.now()})); }catch(e){}
+  safeSet('cb_members',JSON.stringify({phones:MEMBERS,names:MEMBER_NAMES,saved:Date.now()}));
 }
 
 // ── Session ───────────────────────────────────────────────────────────────────
@@ -601,13 +617,13 @@ function setWatermark(phone){
   const m=phone.length>6?phone.slice(0,3)+'XXXXX'+phone.slice(-2):phone;
   document.getElementById('wm').textContent='© CB Research 2026 · '+m;
   document.getElementById('memberChip').textContent='✅ '+m;
-  document.getElementById('welcomeName').textContent=MEMBER_NAMES[phone]||MEMBER_NAMES[normalizePhone(phone)]||m;
+  const nameKey=Object.keys(MEMBER_NAMES).find(k=>samePhone(k,phone)); document.getElementById('welcomeName').textContent=(nameKey&&MEMBER_NAMES[nameKey])||m;
 }
 
 window.addEventListener('load',()=>{
   loadStored();
-  const s=localStorage.getItem('cb_pv2');
-  if(s){ try{ const d=JSON.parse(s); if(Date.now()-d.time<86400000){ currentPhone=d.phone; setWatermark(d.phone); enterPortal(); return; } }catch(e){} localStorage.removeItem('cb_pv2'); }
+  const s=safeGet('cb_pv2');
+  if(s){ try{ const d=JSON.parse(s); if(Date.now()-d.time<86400000){ currentPhone=d.phone; setWatermark(d.phone); enterPortal(); return; } }catch(e){} safeRemove('cb_pv2'); }
   document.getElementById('termsModal').classList.add('show');
 });
 
@@ -620,9 +636,9 @@ function sendOTP(){
   const err=document.getElementById('err1');
   if(!isValidPhone(phone)){ showErr(err,'Enter a valid phone number.'); return; }
   if(!MEMBERS.length){ showErr(err,'⛔ No members configured yet.'); return; }
-  const found=MEMBERS.some(m=>normalizePhone(m)===phone);
+  const found=MEMBERS.some(m=>samePhone(m,phone));
   if(!found){ showErr(err,'⛔ Number not registered. Contact your group admin.'); return; }
-  currentPhone=MEMBERS.find(m=>normalizePhone(m)===phone)||phone;
+  currentPhone=MEMBERS.find(m=>samePhone(m,phone))||phone;
   generatedOTP=Math.floor(100000+Math.random()*900000).toString();
   setTimeout(()=>{
     document.getElementById('otpCode').textContent=generatedOTP;
@@ -648,7 +664,7 @@ function verifyOTP(){
   hideErr(err); clearInterval(countdownTimer);
   document.getElementById('otpBox').classList.remove('show');
   goStep(3);
-  localStorage.setItem('cb_pv2',JSON.stringify({phone:currentPhone,time:Date.now()}));
+  safeSet('cb_pv2',JSON.stringify({phone:currentPhone,time:Date.now()})); // best-effort — login proceeds even if storage is blocked
   setWatermark(currentPhone);
   setTimeout(enterPortal,1500);
 }
@@ -661,7 +677,7 @@ function enterPortal(){
   loadReports();
 }
 
-function logout(){ if(!confirm('Exit CB Research Portal?')) return; localStorage.removeItem('cb_pv2'); location.reload(); }
+function logout(){ if(!confirm('Exit CB Research Portal?')) return; safeRemove('cb_pv2'); location.reload(); }
 
 function otpMove(cell,idx){
   cell.value=cell.value.replace(/\D/,'').slice(0,1);
@@ -734,7 +750,7 @@ function renderMembers(filter){
 function updateStats(){
   document.getElementById('stTotal').textContent=MEMBERS.length;
   document.getElementById('stAdmins').textContent=ADMIN_PHONES.filter(p=>MEMBERS.includes(p)).length;
-  document.getElementById('stOnline').textContent=localStorage.getItem('cb_pv2')?'1+':'0';
+  document.getElementById('stOnline').textContent=safeGet('cb_pv2')?'1+':'0';
   document.getElementById('stMembers').textContent=MEMBERS.length;
 }
 
@@ -796,7 +812,7 @@ function bulkImport(){
 function clearStored(){
   if(!adminOK) return;
   if(!confirm('Clear stored members? Hardcoded members remain.')) return;
-  localStorage.removeItem('cb_members'); location.reload();
+  safeRemove('cb_members'); location.reload();
 }
 
 function showAdminMsg(msg,color){ const el=document.getElementById('adminMsg'); el.textContent=msg; el.style.color=color; el.style.display='flex'; clearTimeout(el._t); el._t=setTimeout(()=>el.style.display='none',3500); }
