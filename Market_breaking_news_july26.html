@@ -504,6 +504,47 @@ const MACRO_SECTORS = ['rbi','nps','ecomm','disinvest','markets','fpi','geopolit
 // ── NEWS DATA ── each story has en{} and ta{} blocks
 const NEWS = [
   {
+    id:8, date:"2026-07-17", sector:"markets", cat:"macro", sectorLabel:"Markets / Valuations", pillCls:"pill-markets", time:"17 Jul 2026",
+    impact:"mixed", breaking:true,
+    badges:["Angel One Mkt Cap ~₹30,500-31,200 Cr vs Groww ~₹1,32,800-1,34,900 Cr","Groww Shares Outstanding ~615-630 Cr vs Angel One ~91 Cr","Angel One P/E ~36x (Trailing) vs Groww ~54-62x","Angel One Did A 10:1 Stock Split In Feb 2026"],
+    en:{
+      headline:"Groww vs Angel One: Why A Lower Share Price Doesn't Mean A Cheaper Stock",
+      context:"Angel One shares trade at roughly ₹341-355 while Groww-parent Billionbrains Garage Ventures trades at roughly ₹212-219 — even though Groww's Q1 FY27 results (PAT +94.3% YoY, revenue +66% YoY) were arguably the stronger of the two prints this quarter. The reason has nothing to do with which company performed better: share price is simply market cap divided by shares outstanding, and Groww has roughly 6-7x as many shares in issue as Angel One. On an apples-to-apples basis — market cap and P/E — Groww is actually the more richly valued of the two stocks, not the cheaper one.",
+      compareTable:[
+        {title:"Angel One vs Groww — Price vs Value (16 Jul 2026)",
+         headers:["Metric","Angel One","Groww"],
+         rows:[
+           ["Share Price (16 Jul 2026)","~₹341-355","~₹212-219"],
+           ["Shares Outstanding","~91.2 Cr","~615-630 Cr"],
+           ["Market Capitalisation","~₹30,500-31,200 Cr","~₹1,32,800-1,34,900 Cr"],
+           ["Trailing P/E","~35.8x","~54-62x"],
+           ["Q1 FY27 PAT Growth (YoY)","+102.1%","+94.3%"],
+           ["Recent Price-Optics Event","10:1 Forward Stock Split, Feb 2026","None"]
+         ]}
+      ],
+      posPoints:["Reading market cap and P/E instead of raw price stops the story being misread as \"Groww is cheap\" — it isn't, on a like-for-like basis","Groww's large share count is purely a listing-structure artifact from its IPO/ESOP base, not a signal about the underlying business","Angel One's 10:1 split (Feb 2026) was pure arithmetic — it cut price and multiplied share count 10x with zero change in company value","Both stocks re-rated post-Q1-results with Citi, JPMorgan, Jefferies and Motilal Oswal all raising target prices, reflecting genuine confidence in both franchises"],
+      negPoints:["Retail investors commonly default to \"lower price = cheaper stock,\" which is exactly backwards here — Groww is priced at a much steeper earnings multiple","Groww's ~54-62x trailing P/E leaves little room for a growth or take-rate disappointment relative to Angel One's ~36x","Comparing Angel One's current ~₹340-355 price to its pre-split levels (~₹2,500-3,000) without adjusting for the split will always look like a crash that never happened","Analyst target prices and multiples move daily — figures here are a 16 Jul 2026 snapshot and should be verified on a live terminal before being quoted on-air"]
+    },
+    ta:{
+      headline:"Groww vs Angel One: Share Price குறைவா இருந்தா Stock Cheap-ஆ இருக்கும்னு அர்த்தம் இல்ல ஏன்?",
+      context:"Angel One Shares தற்போது ₹341-355 Range-ல Trade ஆகுது, Groww-parent Billionbrains Garage Ventures ₹212-219 Range-ல Trade ஆகுது — Groww-இன் Q1 FY27 Results (PAT +94.3% YoY, Revenue +66% YoY) இந்த Quarter-ல Angel One-ஐ விட Strong-ஆ இருந்தாலும் கூட. இதுக்கு காரணம் எந்த Company Better Perform பண்ணுச்சு-ன்னு இல்ல — Share Price என்பது Market Cap ÷ Shares Outstanding தான். Groww-ல Angel One-ஐ விட 6-7x அதிகமா Shares Outstanding இருக்கு. Market Cap மற்றும் P/E அடிப்படையில பார்த்தா, Groww தான் Actually Richer-ஆ Valued ஆன Stock, Cheaper இல்ல.",
+      compareTable:[
+        {title:"Angel One vs Groww — Price vs Value (16 Jul 2026)",
+         headers:["Metric","Angel One","Groww"],
+         rows:[
+           ["Share Price (16 Jul 2026)","~₹341-355","~₹212-219"],
+           ["Shares Outstanding","~91.2 Cr","~615-630 Cr"],
+           ["Market Capitalisation","~₹30,500-31,200 Cr","~₹1,32,800-1,34,900 Cr"],
+           ["Trailing P/E","~35.8x","~54-62x"],
+           ["Q1 FY27 PAT Growth (YoY)","+102.1%","+94.3%"],
+           ["Recent Price-Optics Event","10:1 Forward Stock Split, Feb 2026","None"]
+         ]}
+      ],
+      posPoints:["Raw Price-க்கு பதிலா Market Cap & P/E பார்த்தா \"Groww Cheap\"-ன்ற Misreading தவிர்க்கலாம் — Like-for-like அடிப்படையில Groww Cheap இல்ல","Groww-இன் அதிக Share Count, IPO/ESOP Base-ல இருந்து வந்த Listing-structure Artifact மட்டும் தான், Business Quality Signal இல்ல","Angel One-இன் 10:1 Split (Feb 2026) வெறும் Arithmetic — Company Value மாறாம Price-ஐ Cut பண்ணி Share Count-ஐ 10x Multiply பண்ணிருக்கு","Q1 Results-க்குப் பிறகு Citi, JPMorgan, Jefferies, Motilal Oswal எல்லாம் Target Price Raise பண்ணிருக்காங்க — Two Companies மேலயும் Genuine Confidence-ஐ காட்டுது"],
+      negPoints:["Retail Investors பொதுவா \"குறைந்த Price = Cheap Stock\"-ன்னு நினைப்பாங்க, ஆனா இங்க அதுக்கு நேர் எதிரா இருக்கு — Groww தான் அதிக Earnings Multiple-ல Priced ஆகி இருக்கு","Groww-இன் ~54-62x Trailing P/E, Angel One-இன் ~36x-ஐ ஒப்பிடும்போது Growth அல்லது Take-rate Disappointment-க்கு Room குறைவா தான் இருக்கு","Angel One-இன் இப்போதைய ~₹340-355 Price-ஐ Split-க்கு முந்தைய ~₹2,500-3,000 Level-உடன் Split-Adjust பண்ணாம Compare பண்ணா, நடக்காத Crash மாதிரி தோணும்","Analyst Target Prices & Multiples தினமும் மாறும் — இங்க இருக்குற Figures 16 Jul 2026 Snapshot, On-air Quote பண்ணுறதுக்கு முன்னாடி Live Terminal-ல Verify பண்ணுங்க"]
+    }
+  },
+  {
     id:1, date:'2026-07-26', sector:'markets', cat:'macro', sectorLabel:'Markets / Valuations', pillCls:'pill-markets', time:'26 Jul 2026',
     impact:'mixed', breaking:false,
     badges:['Nifty 50: -0.06% Over 2 Years (24,286 → 24,271)','GDP Growth Still Strong: FY24 8.2%, FY25 7.1%, FY26E 7.7%','Nasdaq +54.3%, S&P 500 +35.1% vs Nifty -0.06% (3-Yr)','Kotak Securities: Core Reason Is Fundamentals-Valuations Disconnect'],
