@@ -301,6 +301,19 @@ function renderDash(){
     <p style="font-size:12.8px;line-height:1.7;margin-top:8px">Segment-wise, O2C and Digital Services led; Retail\'s revenue grew but its margin and PAT came under visible pressure (EBITDA margin -80bps YoY, PAT -14.1% YoY) on rising finance costs. Oil &amp; Gas EBITDA was flat as KG-D6\'s natural decline offset better realisations. The "Others" bucket (New Energy + Media) stayed EBITDA-negative-trending as New Energy remains in a capex-heavy, pre-revenue investment phase. Two structural catalysts dominate management commentary: phased New Energy commissioning through FY27, and the Jio Platforms IPO (DRHP filed 19 Jun 2026).</p>
   </div>`;
 
+  const takeaways=`<div class="grp-head"><h3>5 Key Takeaways — Q1 FY27</h3></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th style="width:32px">#</th><th>Key Takeaway</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">1</td><td><b>Revenue crossed ₹3 lakh crore, a first</b></td><td style="white-space:normal;text-align:left">₹3,11,850 Cr, +25.4% YoY — led by O2C on higher crude prices</td></tr>
+      <tr><td class="mono">2</td><td><b>PAT "fall" is a base-effect, not weakness</b></td><td style="white-space:normal;text-align:left">Reported PAT -22.4% YoY only due to last year's one-off gain; recurring PAT actually +6.1% YoY</td></tr>
+      <tr><td class="mono">3</td><td><b>O2C grew on price, not margin</b></td><td style="white-space:normal;text-align:left">Revenue +30.4% YoY, but EBITDA margin slipped 100bps to 8.4%</td></tr>
+      <tr><td class="mono">4</td><td><b>Retail margin under pressure</b></td><td style="white-space:normal;text-align:left">EBITDA margin -80bps, PAT -14.1% YoY on rising finance costs</td></tr>
+      <tr><td class="mono">5</td><td><b>Jio IPO &amp; New Energy — the FY27 catalysts</b></td><td style="white-space:normal;text-align:left">DRHP filed; solar/battery giga-factories commissioning, not yet in the P&amp;L</td></tr>
+    </tbody>
+  </table></div>
+  <div class="chart-note">See the Business Segments, Financials and Valuation Snapshot tabs for the full supporting detail behind each of these five points.</div>`;
+
   const tbl=`<div class="grp-head"><h3>Q1 FY27 Segment Snapshot</h3><span class="cnt">₹ Crore · quarter ended 30 Jun 2026</span></div>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Segment</th><th>Revenue</th><th>Rev YoY</th><th>EBITDA</th><th>Margin %</th><th>EBITDA YoY</th></tr></thead>
@@ -320,7 +333,7 @@ function renderDash(){
   </table></div>
   <div class="chart-note">Retail figures are Reliance Retail Ventures Ltd (RRVL) standalone-consolidated subsidiary numbers; Digital Services figures are Jio Platforms Ltd (JPL) standalone-consolidated subsidiary numbers. Both are reported on a slightly different consolidation basis than RIL's own three-line segment note (O2C / Oil &amp; Gas / Others), so segment rows will not sum exactly to the Group Consolidated row — the gap reflects inter-segment eliminations and minority-interest adjustments. Do not compare segment margins to the decimal point across different disclosure sources.</div>`;
 
-  document.getElementById('dash').innerHTML=kpis+ctx+tbl;
+  document.getElementById('dash').innerHTML=kpis+ctx+takeaways+tbl;
 }
 
 /* ═══════════════════════════════════════════════════ 2 · FINANCIALS ═══ */
