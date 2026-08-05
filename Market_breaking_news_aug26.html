@@ -378,40 +378,10 @@ footer span{color:#ffe0c0}
         <div class="assist-label">Topic</div>
         <select class="assist-select" id="assist-topic" onchange="assistTopicChange()">
           <option value="">— Select Topic —</option>
-          <option value="rbi_rate">RBI &amp; Interest Rates</option>
-          <option value="rbi_div">RBI Dividend to Govt</option>
-          <option value="solar_almm">Solar — ALMM List-2</option>
-          <option value="solar_us">Solar — US Tariff</option>
-          <option value="nps">NPS — SLW &amp; SUR</option>
-          <option value="swiggy">Swiggy &amp; FEMA Rules</option>
-          <option value="coal_ofs">Coal India OFS</option>
-          <option value="ntpc_green">NTPC Green Energy</option>
-          <option value="shanthi_gold">Shanthi Gold Q4</option>
-          <option value="idbi_sale">IDBI Bank Privatisation</option>
           <option value="lic_ofs">LIC OFS — Govt Stake Sale</option>
-          <option value="indigo_loss">IndiGo Q4 Loss</option>
-          <option value="market_fall">May 29 Market Crash</option>
-          <option value="iran_deal">US-Iran Deal — Crude Impact</option>
-          <option value="ppi_may26">PPI (WPI) May 2026 Rise</option>
-          <option value="trade_deficit">Exports &amp; Trade Deficit</option>
-          <option value="jio_ipo">Jio Platforms IPO vs Airtel</option>
-          <option value="nse_ipo">NSE IPO vs BSE</option>
-          <option value="rbi_m3">RBI Money Creation — M0 to M3</option>
-          <option value="it_contrarian">IT Sector — Contrarian Call</option>
-          <option value="nagarro_acq">Persistent — Nagarro Acquisition</option>
-          <option value="it_macq_history">Decade of Indian IT M&amp;A</option>
-          <option value="rbl_bank">RBL Bank — Reality &amp; Road Ahead</option>
-          <option value="cbi_ofs">Central Bank of India OFS</option>
-          <option value="fpi_selloff">FPI Sell-Off — Who's Really Exiting</option>
-          <option value="power_crisis">Evening Power Crisis — Storage Gap</option>
-          <option value="hitachi_energy">Hitachi Energy Q4 Rally</option>
-          <option value="hdfc_commission">HDFC Bank Deposit Commission Row</option>
-          <option value="auto_leaders">Auto Leaders — TVS, Maruti, Tata, M&amp;M</option>
-          <option value="sfb_universal">SFB to Universal Bank Conversion</option>
-          <option value="markets_2yr_high">Cash Market Turnover — 2-Yr High</option>
-          <option value="crude_crash">Crude $76.71 — Winners &amp; Losers</option>
-          <option value="fpi_gsec_tax">G-Secs Tax-Free for FPIs</option>
-          <option value="kotak_db_acq">Kotak — Deutsche Bank India Acquisition</option>
+          <option value="jio_ipo">Jio Platforms IPO</option>
+          <option value="nse_ipo">NSE IPO</option>
+          <option value="gst_jul26">GST Collections — July 2026 Jump</option>
         </select>
       </div>
       <div class="assist-q-wrap">
@@ -503,13 +473,10 @@ const NEWS = [
     en:{
       headline:'Govt Expands LIC OFS from 2.5% to 6.5% After 3.32x Institutional Demand \u2014 Stock Falls Nearly 8%',
       bullets:[
-        'What was originally offered: The Government of India opened the OFS on 4 Aug 2026 with a base offer of just 2.5% of LIC\'s equity (~31.62 crore shares), with a green-shoe / oversubscription option to sell up to a further 4.0% (~50.60 crore shares) if demand was strong',
-        'How much it went up by: On the same day, DIPAM exercised the full green-shoe option after the non-retail (institutional) portion was oversubscribed 3.32x its base size \u2014 taking the total offer from 2.5% to 6.5% of equity, roughly 82.22 crore shares in all',
-        'Free float impact: The government currently holds 96.5% of LIC, with public float at just 3.5% since the May 2022 IPO. If this 6.5% OFS is fully placed, public shareholding rises to roughly 10% \u2014 which is also the level LIC needs to reach to meet SEBI\'s minimum public shareholding (MPS) norm ahead of its May 2027 deadline',
-        'Price impact: The floor price was fixed at \u20b9382/share, about 11% below the previous close of \u20b9428.50. LIC stock fell 7.2\u20137.9% intraday on 4 Aug 2026 to close near \u20b9391 on the BSE \u2014 CB Research reads this as a reaction to the discounted pricing and the sudden supply of shares, not a change in LIC\'s underlying fundamentals',
-        'Retail window: Opens 5 Aug 2026 (T+1 day) with a \u20b910/share discount to the retail cut-off price for retail investors and eligible employees; retail bids are capped at \u20b92,00,000, with ~8.22 crore shares (10% of the offer) reserved for retail and 50 lakh shares reserved for LIC employees',
-        'Proceeds: At the floor price, a fully-subscribed 6.5% stake could raise roughly \u20b931,400 crore \u2014 likely the single largest contributor to the government\'s FY27 disinvestment programme, which is targeting about \u20b980,000 crore for the year',
-        'Timing: The OFS lands just two days ahead of LIC\'s Q1 FY27 results, due 6 Aug 2026, with the management earnings call scheduled the same evening'
+        'The base offer was just 2.5% \u2014 a green-shoe option was built in from day one, and DIPAM exercised it in full within hours of the institutional book closing 3.32x oversubscribed (full structure in the table below)',
+        'One OFS, two jobs: it\'s both the government\'s single biggest FY27 disinvestment line item and the move that clears LIC\'s SEBI free-float requirement in one stroke (see free-float table below)',
+        'The ~8% stock fall looks like a straightforward pricing/supply reaction to the discounted floor price, not a fundamentals downgrade, in CB Research\'s view',
+        'Worth watching: Q1 FY27 results land just two days after the OFS closes, so sentiment around the stock could swing quickly either way'
       ],
       compareTable:[
         {title:'LIC OFS \u2014 Structure & Expansion',
@@ -524,6 +491,20 @@ const NEWS = [
          rows:[
            ['Post-IPO (since May 2022)','96.5%','3.5%'],
            ['After Full 6.5% OFS (if fully subscribed)','~90%','~10%']
+         ]},
+        {title:'Price, Retail Terms & Proceeds',
+         headers:['Item','Detail'],
+         rows:[
+           ['Floor Price','\u20b9382/share (~11% discount to prior close \u20b9428.50)'],
+           ['Stock Reaction (4 Aug 2026)','-7.2% to -7.9% intraday, closed ~\u20b9391 on BSE'],
+           ['Retail Window','Opens 5 Aug 2026 (T+1 day)'],
+           ['Retail Discount','\u20b910/share to cut-off price'],
+           ['Retail Bid Cap','\u20b92,00,000'],
+           ['Retail Reservation','~8.22 crore shares (10% of offer)'],
+           ['Employee Reservation','50 lakh shares'],
+           ['Expected Proceeds (Full Subscription)','~\u20b931,400 crore'],
+           ['Govt FY27 Disinvestment Target','~\u20b980,000 crore'],
+           ['LIC Q1 FY27 Results Date','6 Aug 2026']
          ]}
       ],
       posPoints:['Institutional book oversubscribed 3.32x signals healthy investor appetite for LIC even at a discounted floor price','Raising public float to ~10% helps LIC clear SEBI\'s minimum public shareholding requirement well ahead of the May 2027 deadline, removing a standing compliance overhang','Retail investors get a \u20b910/share discount to the cut-off price, with a dedicated ~8.22 crore-share retail reservation plus an employee quota','Proceeds of roughly \u20b931,400 crore (if fully subscribed) would be the single largest contributor yet to the government\'s FY27 disinvestment target of ~\u20b980,000 crore'],
@@ -532,13 +513,10 @@ const NEWS = [
     ta:{
       headline:'3.32x Institutional Demand-க்கு Aprum Govt LIC OFS-ஐ 2.5%-லிருந்து 6.5%-க்கு Expand பண்ணுச்சு \u2014 Stock Nearly 8% Fall',
       bullets:[
-        'Original Offer என்ன: 4 Aug 2026-ல் Govt of India OFS-ஐ Open பண்ணும்போது Base Offer வெறும் 2.5% LIC Equity (~31.62 crore shares) மட்டும்தான், Demand Strong-ஆ இருந்தா Innum 4.0% (~50.60 crore shares) Sell பண்ண Green-Shoe Option Vachiருந்தாங்க',
-        'எவ்வளவு Increase ஆச்சு: அதே நாள்ல, Institutional Portion 3.32x Oversubscribe ஆனதுக்கு Aprum DIPAM Full Green-Shoe Option-ஐ Exercise பண்ணுச்சு \u2014 Total Offer 2.5%-லிருந்து 6.5%-க்கு Poachu, Almost 82.22 Crore Shares',
-        'Free Float Impact: Govt இப்போ LIC-ல் 96.5% Vachiருக்கு, May 2022 IPO-க்கு Aprum Public Float வெறும் 3.5%தான். இந்த 6.5% OFS Full-ஆ Place ஆனா, Public Shareholding ~10%-க்கு Poagum \u2014 இதுதான் LIC May 2027 Deadline-க்கு Munnadi SEBI-Ude Minimum Public Shareholding (MPS) Norm-ஐ Meet பண்ண Venum Level',
-        'Price Impact: Floor Price \u20b9382/share-ஆ Fix ஆச்சு, Previous Close \u20b9428.50-ஐ Vida ~11% Discount. LIC Stock 4 Aug 2026-ல் Intraday-ல் 7.2\u20137.9% Fall ஆகி BSE-ல் \u20b9391 Aruகில Close ஆச்சு \u2014 CB Research Ithaiye Discount Pricing Mattrum Sudden Share Supply-Ude Reaction-ஆ Paакுது, LIC Fundamentals Weaken ஆனதா Illa',
-        'Retail Window: 5 Aug 2026 (T+1 Day) Open Aаkum, Retail Investors & Employees-க்கு Cut-off Price-ல் \u20b910/share Discount; Retail Bid Cap \u20b92,00,000, ~8.22 Crore Shares (10% Offer) Retail-க்கு Reserve, 50 Lakh Shares LIC Employees-க்கு',
-        'Proceeds: Floor Price-ல், Full Subscription Aanа 6.5% Stake ~\u20b931,400 Crore Raise Panлам \u2014 Govt-Ude FY27 Disinvestment Programme-க்கு (Target ~\u20b980,000 Crore) Ithuvarai-ல Largest Contribution',
-        'Timing: இந்த OFS, LIC-Ude Q1 FY27 Results (6 Aug 2026) Vara Rendu Naal Munnadiye Varuthu, அன்னு Maalai Earnings Call-Um Iருக்கு'
+        'Base Offer வெறும் 2.5%தான் \u2014 Green-Shoe Option Day 1-லேயே Vachiருந்தாங்க, Institutional Book 3.32x Oversubscribe Aan Ahoutham DIPAM Athai Full-ஆ Exercise Pannuchu (Full Structure Keezhe Table-ல)',
+        'Ondru OFS, Rendu Velai: Govt-Ude FY27-ல் Biggest Disinvestment Line Item-Um, LIC-Ude SEBI Free-Float Requirement-ஐ Ondre Move-ல Clear Panрадхuм Ithuதான் (Free-Float Table Keezhe Paаkalam)',
+        '~8% Stock Fall Discounted Floor Price-க்கு Straightforward Pricing/Supply Reaction Maadiri Iருக்கு, LIC Fundamentals Weaken Aаанadu Illa-ன்னு CB Research View',
+        'Kavanikka Vendiyathu: OFS Close Aана Rendu Naaл Kaзhichu Q1 FY27 Results Varuthu, So Stock Sentiment Vekamaа Eppadi Vendumaanaलum Poagalam'
       ],
       compareTable:[
         {title:'LIC OFS \u2014 Structure & Expansion',
@@ -553,6 +531,20 @@ const NEWS = [
          rows:[
            ['Post-IPO (since May 2022)','96.5%','3.5%'],
            ['After Full 6.5% OFS (if fully subscribed)','~90%','~10%']
+         ]},
+        {title:'Price, Retail Terms & Proceeds',
+         headers:['Item','Detail'],
+         rows:[
+           ['Floor Price','\u20b9382/share (~11% discount to prior close \u20b9428.50)'],
+           ['Stock Reaction (4 Aug 2026)','-7.2% to -7.9% intraday, closed ~\u20b9391 on BSE'],
+           ['Retail Window','Opens 5 Aug 2026 (T+1 day)'],
+           ['Retail Discount','\u20b910/share to cut-off price'],
+           ['Retail Bid Cap','\u20b92,00,000'],
+           ['Retail Reservation','~8.22 crore shares (10% of offer)'],
+           ['Employee Reservation','50 lakh shares'],
+           ['Expected Proceeds (Full Subscription)','~\u20b931,400 crore'],
+           ['Govt FY27 Disinvestment Target','~\u20b980,000 crore'],
+           ['LIC Q1 FY27 Results Date','6 Aug 2026']
          ]}
       ],
       posPoints:['Institutional Book 3.32x Oversubscribe Aanathu Discounted Floor Price-லேயே LIC-க்கு Healthy Investor Appetite Iருக்குனு Kaаттுது','Public Float ~10%-க்கு Poganathu LIC-க்கு May 2027 Deadline-க்கு Munnadiye SEBI Minimum Public Shareholding Requirement Meet Panna Help Pannuthu, Standing Compliance Overhang-ஐ Remove Pannuthu','Retail Investors-க்கு Cut-off Price-ல் \u20b910/share Discount, ~8.22 Crore-Share Dedicated Retail Reservation Mattrum Employee Quota Kooda Iருக்கு','Full Subscription Aanа ~\u20b931,400 Crore Proceeds, Govt-Ude FY27 Disinvestment Target ~\u20b980,000 Crore-க்கு Ithuvarai Largest Single Contribution Aаகும்'],
@@ -570,13 +562,10 @@ const NEWS = [
     en:{
       headline:'Jio & NSE IPOs: Where India\'s Two Biggest Mega-Issues Stand as SEBI Review Enters Its Final Stretch',
       bullets:[
-        'Jio Platforms filed its DRHP on 19 June 2026 for a 100% fresh issue of up to 27 crore shares (~2.9% of post-issue equity) \u2014 no Offer-for-Sale component, so every rupee raised stays in the business, largely for debt repayment at Reliance Jio Infocomm',
-        'SEBI sought routine clarifications on Jio\'s DRHP on 25 June 2026; on the standard 30\u201375 day review timeline, the realistic listing window is now August\u2013October 2026, with the price band still unannounced',
-        'NSE filed its DRHP on 17 June 2026 for a 100% Offer-for-Sale of up to 14.89 crore shares (~6% of equity), expected to raise \u20b928,000\u201330,000 crore \u2014 a pure sell-down where NSE itself receives zero IPO proceeds',
-        'NSE\'s biggest overhang cleared in July 2026: the exchange completed a \u20b91,491 crore SEBI settlement tied to the long-pending co-location and dark-fibre cases, removing the last major legal cloud ahead of listing',
-        'SEBI observations on NSE\'s DRHP are expected by the second week of August 2026, with the exchange targeting a September 2026 listing; global investor roadshows across the US, UK, Hong Kong and Singapore began 17 July 2026',
-        'LIC connection: LIC is NSE\'s largest shareholder at 10.72% and features among the selling shareholders in NSE\'s OFS \u2014 the same week LIC is running its own government-led OFS, tying the LIC, Jio and NSE stories together',
-        'If both list on schedule, they would rank among India\'s largest-ever public offerings \u2014 NSE\'s ~\u20b930,000 crore OFS and Jio\'s ~\u20b927,000\u201337,000 crore fresh issue'
+        'Jio\'s 100% fresh-issue structure means every rupee raised goes straight into debt repayment at Reliance Jio Infocomm \u2014 not a shareholder exit',
+        'NSE\'s IPO is the opposite: a pure sell-down where the exchange itself gets zero proceeds \u2014 existing shareholders are the ones cashing out',
+        'SEBI\'s queries on both DRHPs are reported to be largely about disclosure language, not fundamentals \u2014 a good sign for both timelines holding',
+        'Neat overlap: LIC is NSE\'s largest shareholder and a seller in its OFS, the same week LIC is running its own OFS \u2014 three of this edition\'s stories tie back to one entity'
       ],
       compareTable:[
         {title:'Jio Platforms vs NSE \u2014 IPO Structure',
@@ -589,6 +578,14 @@ const NEWS = [
            ['Proceeds to Company','Yes \u2014 full amount','No \u2014 selling shareholders receive proceeds'],
            ['Key Overhang','Routine SEBI clarifications','Co-location / dark-fibre case \u2014 now settled'],
            ['Expected Listing','Aug\u2013Oct 2026','Sep 2026 (targeted)']
+         ]},
+        {title:'Key Dates & Overhangs',
+         headers:['Event','Jio Platforms','NSE'],
+         rows:[
+           ['DRHP Filed','19 Jun 2026','17 Jun 2026'],
+           ['Overhang Status','Routine SEBI clarifications (25 Jun 2026)','\u20b91,491 crore co-location / dark-fibre settlement completed (Jul 2026)'],
+           ['Next Milestone','SEBI observations pending','Roadshows (US/UK/HK/Singapore) began 17 Jul 2026; SEBI observations expected 2nd week Aug 2026'],
+           ['LIC Link','\u2014','Largest shareholder (10.72%), also a selling shareholder in the OFS']
          ]}
       ],
       posPoints:['NSE\'s decade-long co-location / dark-fibre legal overhang is now settled (\u20b91,491 crore payment completed), clearing the single biggest obstacle to listing','SEBI\'s review of both DRHPs is reported to be progressing smoothly, with queries described as mostly about disclosure language rather than fundamental concerns','Jio\'s 100% fresh-issue structure means IPO proceeds go straight into debt reduction at Reliance Jio Infocomm, directly strengthening the balance sheet','Two of India\'s largest-ever IPOs listing in the same window could deepen market breadth and pull in fresh foreign and domestic institutional interest'],
@@ -597,13 +594,10 @@ const NEWS = [
     ta:{
       headline:'Jio & NSE IPOs: SEBI Review Final Stretch-க்கு Varum Sandhippil India-Ude Rendu Biggest Mega-Issues Enga Nikkuthu',
       bullets:[
-        'Jio Platforms 19 June 2026-ல் DRHP File பண்ணுச்சு, 100% Fresh Issue Up to 27 Crore Shares (~2.9% Post-Issue Equity) \u2014 OFS Component Illaame, Raise Aanа Ovvoru Rupaya Business-க்குلேயே Poagum, Mostly Reliance Jio Infocomm-Ude Debt Repayment-க்கு',
-        '25 June 2026-ல் SEBI Jio DRHP-க்கு Routine Clarifications Kettuchu; Standard 30\u201375 Naal Review Timeline-ல, Realistic Listing Window இப்போ August\u2013October 2026, Price Band Innum Announce Aагல',
-        'NSE 17 June 2026-ல் DRHP File பண்ணுச்சு, 100% Offer-for-Sale Up to 14.89 Crore Shares (~6% Equity), Expected \u20b928,000\u201330,000 Crore Raise \u2014 Pure Sell-Down, NSE-க்கே IPO Proceeds Ondrum Kidaikaаthu',
-        'NSE-Ude Biggest Overhang July 2026-ல் Clear Aаchu: Long-Pending Co-Location & Dark-Fibre Cases-க்கு \u20b91,491 Crore SEBI Settlement Complete Aаchu, Listing-க்கு Munnadi Last Major Legal Cloud Remove Aachu',
-        'NSE DRHP-க்கு SEBI Observations August 2026 Rendaam Vaaram Varumnu Expect Pannraanga, Exchange September 2026 Listing-ஐ Target Pannuthu; US, UK, Hong Kong, Singapore-ல் Global Investor Roadshows 17 July 2026-ல் Start Aаchu',
-        'LIC Connection: LIC-தான் NSE-Ude Largest Shareholder 10.72%-Ah Vachiருக்கு, NSE OFS-ல Selling Shareholders-ல் Onnu Kоода \u2014 அதே Vaaram LIC Thanoda Government-Led OFS-ஐயும் Run Pannuthu, LIC, Jio, NSE Moondrum Kadhaigalaаyும் Onnu Serkkuthu',
-        'Rendu Issues-Um Schedule-படி List Aanа, India-Ude Largest-Ever Public Offerings-ல் Onnu Ahum \u2014 NSE-Ude ~\u20b930,000 Crore OFS Mattrum Jio-Ude ~\u20b927,000\u201337,000 Crore Fresh Issue'
+        'Jio-Ude 100% Fresh-Issue Structure-ல Raise Aanа Ovvoru Rupaya Reliance Jio Infocomm-Ude Debt Repayment-க்கே Poagum \u2014 Shareholder Exit Illa',
+        'NSE-Ude IPO Ithuku Opposite: Pure Sell-Down, Exchange-க்கே Proceeds Ondrum Kidaikaаthu \u2014 Existing Shareholders-தான் Cash-Out Pannuraанga',
+        'Rendu DRHPs-Ku SEBI Queries Mostly Disclosure Language Pathi-தானa, Fundamental Concerns Illainu Report Aагुthu \u2014 Rendu Timelines-Um Hold Aаkum-Nnu Good Sign',
+        'Neat Overlap: LIC-தான் NSE-Ude Largest Shareholder, NSE OFS-ல Seller-Um Kооda \u2014 அதே Vaaram LIC Thanoda OFS-ஐயும் Run Pannuthu \u2014 Ivvide Moondru Kadhaigalum Onnu Serkkuthu'
       ],
       compareTable:[
         {title:'Jio Platforms vs NSE \u2014 IPO Structure',
@@ -616,10 +610,117 @@ const NEWS = [
            ['Proceeds to Company','Yes \u2014 full amount','No \u2014 selling shareholders receive proceeds'],
            ['Key Overhang','Routine SEBI clarifications','Co-location / dark-fibre case \u2014 now settled'],
            ['Expected Listing','Aug\u2013Oct 2026','Sep 2026 (targeted)']
+         ]},
+        {title:'Key Dates & Overhangs',
+         headers:['Event','Jio Platforms','NSE'],
+         rows:[
+           ['DRHP Filed','19 Jun 2026','17 Jun 2026'],
+           ['Overhang Status','Routine SEBI clarifications (25 Jun 2026)','\u20b91,491 crore co-location / dark-fibre settlement completed (Jul 2026)'],
+           ['Next Milestone','SEBI observations pending','Roadshows (US/UK/HK/Singapore) began 17 Jul 2026; SEBI observations expected 2nd week Aug 2026'],
+           ['LIC Link','\u2014','Largest shareholder (10.72%), also a selling shareholder in the OFS']
          ]}
       ],
       posPoints:['NSE-Ude Decade-Long Co-Location / Dark-Fibre Legal Overhang இப்போ Settle Aaгிடுச்சு (\u20b91,491 Crore Payment Complete), Listing-க்கு Biggest Obstacle Remove Aachu','Rendu DRHPs-Ku SEBI Review Smooth-ஆ Poagurathaаa Report Aагुthu, Queries Mostly Disclosure Language Pathi, Fundamental Concerns Illa','Jio-Ude 100% Fresh-Issue Structure-ல IPO Proceeds Neraaаya Reliance Jio Infocomm-Ude Debt Reduction-க்கு Poagum, Balance Sheet-ஐ Directly Strengthen Pannuthu','India-Ude Rendu Largest-Ever IPOs Same Window-ல List Aanа, Market Breadth Deepen Aаkum, Fresh Foreign & Domestic Institutional Interest-ஐ Pull-In Pannalam'],
       negPoints:['Rendu Issues-Ukkume Innum Confirmed Price Band, Lot Size Illa Listing Date Illa \u2014 Rendum SEBI-Ude Final Observations-ஐ Depend Pannuthu, Athu Innum Slip Aaаkalam','NSE OFS-ல் Exchange-க்கே Proceeds Ondrum Kidaikaаathu \u2014 LIC, SBI, GIC Re Maadiri Existing Shareholders-தான் Beneficiaries, Company Illa','Rendu \u20b925,000 Crore+ Mega-Issues Close-ஆ Varathu \u2014 Ongoing LIC OFS-Odu Serndhu \u2014 Near-Term Liquidity-ஐ Strain Panна, Same Institutional Order Books-க்கு Compete Panна Vaаibhpu Iருக்கு','NSE Pricing BSE-Odu Direct-ஆ Compare Aаkum, Aggressive-ஆ Feel Aanа BSE-Ude Recent Stronger Earnings Momentum-ஐ Vida Demand Kammiாaагலாம்']
+    }
+  },
+  {
+    id:3, date:'2026-08-01', sector:'macro', cat:'macro', sectorLabel:'GST / Tax Collections', pillCls:'pill-trade', time:'01 Aug 2026',
+    impact:'positive', breaking:true,
+    badges:['Gross GST +15.4% YoY to \u20b92.11 Lakh Crore \u2014 10th Month Above \u20b92 Lakh Crore','Import GST Surged 28.8% vs Domestic +10.1%','Net GST (Post-Refunds) +15.8% to \u20b91.81 Lakh Crore','April\u2013July FY27 Gross Collections +10.1% to \u20b98.43 Lakh Crore'],
+    companies:[
+      {name:'GST Collections (All-India, July 2026)', status:'15.4% YoY Growth \u2014 Broad-Based Across States, Skewed by Import Surge', cls:'cb-pos'}
+    ],
+    en:{
+      headline:'GST Collections Jump 15.4% to \u20b92.11 Lakh Crore in July 2026 \u2014 Is the GST & Income-Tax Relief Finally Paying Off?',
+      bullets:[
+        'Context: the GST 2.0 rate rationalisation (56th GST Council meeting, 3\u20134 Sept 2025) cut rates on a wide range of mass-consumption items to mostly 5%/18%, and Budget FY26 income-tax cuts raised the nil-tax threshold to \u20b912 lakh under the new regime \u2014 both meant to put more money in consumers\u2019 hands',
+        'Whether that\u2019s \u201cpaying off\u201d yet is genuinely a mixed picture \u2014 see the evidence table below rather than a single yes/no answer',
+        'CB Research view: read July as three things layered together \u2014 a gradually-building consumption tailwind that only became clearly visible from around January 2026, a one-off surge in import-linked GST, and continued e-invoicing/compliance gains \u2014 not a sudden one-month \u201ccuts kicked in\u201d moment'
+      ],
+      compareTable:[
+        {title:'GST Collections \u2014 July 2026 Snapshot',
+         headers:['Metric','Jul 2025','Jul 2026','YoY Change'],
+         rows:[
+           ['Gross GST Revenue','\u20b91.83 lakh crore','\u20b92.11 lakh crore','+15.4%'],
+           ['Net GST Revenue (post-refunds)','\u20b91.57 lakh crore','\u20b91.81 lakh crore','+15.8%'],
+           ['Domestic Gross GST','\u20b91.31 lakh crore','\u20b91.44\u20131.45 lakh crore','+10.1%'],
+           ['Import (IGST) Gross GST','~\u20b951,600 crore','\u20b966,511 crore','+28.8\u201329%'],
+           ['Total Refunds','\u20b926,495 crore','\u20b929,968 crore','+13.1%']
+         ]},
+        {title:'Cumulative April\u2013July FY27',
+         headers:['Metric','Value','YoY Growth'],
+         rows:[
+           ['Gross GST Collections','\u20b98.43 lakh crore','+10.1%'],
+           ['Net GST Collections','\u20b97.21 lakh crore','+9.2%']
+         ]},
+        {title:'State-Wise \u2014 Rising vs Declining (YoY)',
+         headers:['Rising States','YoY','Declining States','YoY'],
+         rows:[
+           ['Maharashtra','+13%','Himachal Pradesh','-22%'],
+           ['Karnataka','+12%','Uttarakhand','-18%'],
+           ['Gujarat','Strong','Puducherry','-17%'],
+           ['\u2014','\u2014','Madhya Pradesh','-10%'],
+           ['\u2014','\u2014','Andhra Pradesh','-5%'],
+           ['\u2014','\u2014','Tamil Nadu','-1%']
+         ]},
+        {title:'Did GST + Income-Tax Cuts \u201cPay Off\u201d? \u2014 Evidence For vs Against',
+         headers:['Supports \u201cPaying Off\u201d','Cautions Against That Read'],
+         rows:[
+           ['Jul 2026 vs Jul 2025 compares post-cut rates to pre-cut rates \u2014 15.4% growth on lower average tax rates implies real volumes grew even faster','NIPFP research found no immediate consumption bump from 2025-26 tax cuts; effect only visible from ~Jan 2026'],
+           ['10th straight month above \u20b92 lakh crore \u2014 durable, not one-off','~Half the growth is from a 28.8% import GST surge, not domestic consumption'],
+           ['Domestic GST still up a healthy 10.1%','State-wise spread is uneven \u2014 several states actually declined'],
+           ['\u2014','RBI repo/CRR cuts ran in parallel, so effects are hard to isolate to tax cuts alone']
+         ]}
+      ],
+      posPoints:['Tenth consecutive month above the \u20b92 lakh crore threshold \u2014 a sign of durable, not one-off, revenue momentum','Domestic collections (+10.1%) reflect genuine strength in retail, autos, FMCG, infrastructure and services \u2014 sectors directly tied to the consumption story','Gains in states like Andaman & Nicobar, Ladakh and Jharkhand suggest economic formalisation is spreading beyond traditional industrial hubs, not just concentrating in the usual large states','Because rates are lower than a year ago (post GST 2.0), a 15.4% rise in gross collections implies real transaction volumes grew even faster \u2014 a genuinely buoyant underlying economy, and tentative evidence that GST + income-tax relief is filtering through to spending'],
+      negPoints:['Nearly half the headline growth is coming from a 28.8% jump in import GST, not domestic consumption \u2014 a less repeatable, more volatile source of revenue than steady domestic demand','Independent research (NIPFP/Vision IAS) found no immediate consumption bump from the 2025-26 tax cuts, with effects only visible from around January 2026 \u2014 so crediting July\u2019s spike mainly to the cuts would be premature','The state-wise picture is uneven: several states (Himachal Pradesh -22%, Uttarakhand -18%, Puducherry -17%, MP -10%, Andhra Pradesh -5%, Tamil Nadu -1%) actually saw collections fall, so this is not a uniform national consumption boom','Elevated import GST growth also underscores India\u2019s continued reliance on imported capital goods and inputs, a reminder that PLI/Atmanirbhar Bharat localisation gains are still incomplete']
+    },
+    ta:{
+      headline:'July 2026-ல் GST Collections 15.4% Jump Aагி \u20b92.11 Lakh Crore \u2014 GST & Income-Tax Relief Kadaisiyaa Pay Off Aагுதா?',
+      bullets:[
+        'Context: GST 2.0 Rate Rationalisation (56th GST Council Meeting, 3\u20134 Sept 2025) Pala Mass-Consumption Items-க்கு Rate-ஐ Mostly 5%/18%-க்கு Kammi Pannuchu, Budget FY27 Income-Tax Cuts New Regime-ல் Nil-Tax Threshold-ஐ \u20b912 Lakh-க்கு Increase Pannuchu \u2014 Rendum Consumers Kaiyile Innum Money Iருக்க Pannaтхаன்',
+        'Ithu \u201cPay Off\u201d Aагுуidhaa-Nnu Genuine-ஆவே Mixed Picture \u2014 Keezhe Uள்ள Evidence Table-ல Paаkalam, Ondre Yes/No Answer Illa',
+        'CB Research View: July Spike-ஐ Moondru Things Serndhu Pathu Nalla Puriyum \u2014 January 2026-லிருந்து Clearly Visible Aana Gradually-Building Consumption Tailwind, Import-Linked GST-ல் One-Off Surge, Mattrum E-Invoicing/Compliance-லிருந்து Continued Gains \u2014 Rate Cuts Mattrume Ondru Maasam-ல \u201cSuddenly\u201d Kick-In Aаанadhu Illa'
+      ],
+      compareTable:[
+        {title:'GST Collections \u2014 July 2026 Snapshot',
+         headers:['Metric','Jul 2025','Jul 2026','YoY Change'],
+         rows:[
+           ['Gross GST Revenue','\u20b91.83 lakh crore','\u20b92.11 lakh crore','+15.4%'],
+           ['Net GST Revenue (post-refunds)','\u20b91.57 lakh crore','\u20b91.81 lakh crore','+15.8%'],
+           ['Domestic Gross GST','\u20b91.31 lakh crore','\u20b91.44\u20131.45 lakh crore','+10.1%'],
+           ['Import (IGST) Gross GST','~\u20b951,600 crore','\u20b966,511 crore','+28.8\u201329%'],
+           ['Total Refunds','\u20b926,495 crore','\u20b929,968 crore','+13.1%']
+         ]},
+        {title:'Cumulative April\u2013July FY27',
+         headers:['Metric','Value','YoY Growth'],
+         rows:[
+           ['Gross GST Collections','\u20b98.43 lakh crore','+10.1%'],
+           ['Net GST Collections','\u20b97.21 lakh crore','+9.2%']
+         ]},
+        {title:'State-Wise \u2014 Rising vs Declining (YoY)',
+         headers:['Rising States','YoY','Declining States','YoY'],
+         rows:[
+           ['Maharashtra','+13%','Himachal Pradesh','-22%'],
+           ['Karnataka','+12%','Uttarakhand','-18%'],
+           ['Gujarat','Strong','Puducherry','-17%'],
+           ['\u2014','\u2014','Madhya Pradesh','-10%'],
+           ['\u2014','\u2014','Andhra Pradesh','-5%'],
+           ['\u2014','\u2014','Tamil Nadu','-1%']
+         ]},
+        {title:'GST + Income-Tax Cuts Pay Off Aагுтхаа? \u2014 Evidence For vs Against',
+         headers:['\u201cPay Off\u201d-க்கு Support Pannும் Evidence','Ithaiye Vida Kavanikka Vendiyathu'],
+         rows:[
+           ['Jul 2026 vs Jul 2025 Compare Pannும்போது Post-Cut Rates-ஐ Pre-Cut Rates-Odu Compare Pannுthu \u2014 15.4% Growth Lower Average Tax Rates-லேயே Varुthu, Real Volumes Innum Fast-ஆ Grow Aаанathaa Artham','NIPFP Research Sollura Padi 2025-26 Tax Cuts-லிருந்து Immediate Consumption Bump Illa; Effect ~Jan 2026-லிருந்துதான் Visible'],
+           ['Continuous 10th Month \u20b92 Lakh Crore-ஐ Vida Mேலா \u2014 Durable, One-Off Illa','Growth-ல் Almost Half Import GST-Ude 28.8% Surge-லிருந்து, Domestic Consumption Illa'],
+           ['Domestic GST Innum Healthy-ஆ 10.1% Rise Aагியிருக்கு','State-Wise Spread Uneven \u2014 Pala States Actual-ஆ Decline Aагியிருக்கு'],
+           ['\u2014','RBI Repo/CRR Cuts Parallel-ஆ Iருந்துச்சு, So Effects-ஐ Tax Cuts Mattrumnu Isolate Panна Kastam']
+         ]}
+      ],
+      posPoints:['Continuous 10th Month \u20b92 Lakh Crore-ஐ Vida Mேலா \u2014 Durable Revenue Momentum-Ude Sign, One-Off Illa','Domestic Collections (+10.1%) Retail, Autos, FMCG, Infrastructure, Services-ல Genuine Strength-ஐ Reflect Pannuthu \u2014 Consumption Story-Odu Directly Tied Sectors','Andaman & Nicobar, Ladakh, Jharkhand Maadiri States-ல Gains Aаanathu Economic Formalisation Traditional Industrial Hubs-ஐ Vida Innum Spread Aагुthaанு Kaаттுthu','Rates Ippodhu Last Year-ஐ Vida Kammi (GST 2.0-க்கு Aprum), So 15.4% Gross Collections Rise-Nnaаla Real Transaction Volumes Innum Fast-ஆ Grow Aаананு Artham \u2014 Genuinely Buoyant Economy, GST + Income-Tax Relief Spending-க்கு Filter Aагுрадхu-க்கு Tentative Evidence'],
+      negPoints:['Headline Growth-ல் Almost Half Import GST-Ude 28.8% Jump-லிருந்துதான் Varுtu, Domestic Consumption Illa \u2014 Steady Domestic Demand-ஐ Vida Ithu Less Repeatable, More Volatile Revenue Source','NIPFP/Vision IAS Independent Research 2025-26 Tax Cuts-லிருந்து Immediate Consumption Bump Onnum Illainu Kandupidichirукku, Effects January 2026-லிருந்துதான் Visible \u2014 So July Spike-ஐ Mostly Tax Cuts-க்கு Credit Kodukkardhu Premature-ஆ Iருக்கும்',
+      'State-Wise Picture Uneven-ஆ Iருக்கு: Palа States (Himachal Pradesh -22%, Uttarakhand -18%, Puducherry -17%, MP -10%, Andhra Pradesh -5%, Tamil Nadu -1%) Actual-ஆ Collections Fall Aагиயிருக்கு, So Ithu Uniform National Consumption Boom Illa','Elevated Import GST Growth India-Ude Imported Capital Goods & Inputs Mேல Continued Reliance-ஐயும் Underline Pannuthu, PLI/Atmanirbhar Bharat Localisation Gains Innum Complete Aагаला-Nnu Reminder']
     }
   }
 ];
@@ -1130,6 +1231,20 @@ const ASSIST_QA = {
 };
 
 const ASSIST_QA_NEW = {
+  gst_jul26:[
+    {q:"How much did GST collections rise in July 2026, and what were the components?",
+     a:"Gross GST revenue rose 15.4% year-on-year to ₹2.11 lakh crore in July 2026 (from ₹1.83 lakh crore in July 2025) — the 10th straight month above ₹2 lakh crore. Domestic transactions grew 10.1% to ~₹1.44–1.45 lakh crore, while GST on imports surged 28.8–29% to ₹66,511 crore. Net GST (after refunds of ₹29,968 crore) rose 15.8% to ₹1.81 lakh crore.",
+     src:"Source: GST Department data released 1 Aug 2026; CBIC"},
+    {q:"Can the July 2026 GST jump be credited to the GST rate cuts and income-tax cuts finally paying off?",
+     a:"Partly, with an important nuance. Since July 2026 is compared against July 2025 — before the GST 2.0 rate cuts of September 2025 took effect — this month's 15.4% rise came on effectively lower average tax rates than a year ago, meaning underlying transaction volumes grew even faster than the headline number suggests. That does support the reform 'paying off' on volume. But independent research (NIPFP data, cited via Vision IAS, April 2026) found the tax-cut effect on consumption was 'nuanced,' with no immediate income-growth bump — a visible rise in the propensity to consume only showed up with a lag, mainly from January 2026 onwards, alongside other stimuli like RBI repo-rate and CRR cuts running in parallel.",
+     src:"Source: GST Council 56th meeting (3–4 Sept 2025); NIPFP data via Vision IAS, April 2026; SectorWire analysis"},
+    {q:"Was the July 2026 GST growth broad-based across all states?",
+     a:"No. Maharashtra (+13%), Karnataka (+12%) and Gujarat led the growth, but several states actually saw collections fall: Himachal Pradesh (-22%), Uttarakhand (-18%), Puducherry (-17%), Madhya Pradesh (-10%), Andhra Pradesh (-5%) and Tamil Nadu (-1%). This uneven spread suggests the national headline masks meaningful regional divergence.",
+     src:"Source: GST Department state-wise data, July 2026"},
+    {q:"Why did import GST grow so much faster than domestic GST in July 2026?",
+     a:"Import-related IGST collections rose 28.8–29% to ₹66,511 crore, nearly three times the 10.1% growth in domestic GST. This points to higher imports of raw materials, capital goods and finished products during the month — but it's also a less repeatable, more volatile revenue source than steady domestic demand, and it underscores India's continued reliance on imports even after PLI and Atmanirbhar Bharat localisation efforts.",
+     src:"Source: GST Department import/domestic split, July 2026; SectorWire analysis"}
+  ],
   lic_ofs:[
     {q:"What was originally offered in the LIC OFS, and by how much did it increase?",
      a:"The Government of India opened the OFS on 4 Aug 2026 with a base offer of just 2.5% of LIC's equity (~31.62 crore shares). After the non-retail (institutional) portion was oversubscribed 3.32x its base size, DIPAM exercised the full green-shoe / oversubscription option of a further 4.0% (~50.60 crore shares) — taking the total offer from 2.5% up to 6.5% of equity, roughly 82.22 crore shares in all.",
