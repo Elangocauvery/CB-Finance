@@ -34,6 +34,7 @@
   --c-unit:#0d9488;   /* Unit Economics */
   --c-market:#db2777; /* Market Terms */
   --c-fda:#dc2626;    /* FDA / Regulatory */
+  --c-dd:#4f46e5;      /* Drug Discovery */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden;font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink)}
@@ -98,6 +99,7 @@ html,body{height:100%;overflow:hidden;font-family:'Sora',sans-serif;background:v
 .cat-btn[data-c="unit"].active::before{background:var(--c-unit)}
 .cat-btn[data-c="market"].active::before{background:var(--c-market)}
 .cat-btn[data-c="fda"].active::before{background:var(--c-fda)}
+.cat-btn[data-c="dd"].active::before{background:var(--c-dd)}
 .cat-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
 .cat-n{flex:1;line-height:1.3}
 .cat-cnt{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink2);font-weight:700;
@@ -145,6 +147,7 @@ html,body{height:100%;overflow:hidden;font-family:'Sora',sans-serif;background:v
 .card[data-c="unit"]::before{background:var(--c-unit)}
 .card[data-c="market"]::before{background:var(--c-market)}
 .card[data-c="fda"]::before{background:var(--c-fda)}
+.card[data-c="dd"]::before{background:var(--c-dd)}
 
 .card-top{display:flex;align-items:flex-start;gap:11px}
 .card-ico{font-size:20px;line-height:1;flex-shrink:0;margin-top:1px}
@@ -822,6 +825,101 @@ const TERMS = [
       "Shareholding",
       "Catalyst"
     ]
+  },
+  {
+    "term": "NDA (New Drug Application)",
+    "aka": "New Chemical Entity Filing",
+    "icon": "🧪",
+    "cat": "dd",
+    "def": {
+      "en": "The application a company files with the US FDA to sell a brand-new molecule that has never been approved before. It must be backed by full pre-clinical data plus Phase I, II and III human trial results proving the drug is safe and effective. This is the innovator's route — long, expensive, and high-risk, but it earns years of market exclusivity if approved.",
+      "ta": "முன்னாடி approve ஆகாத, புது-ஆ கண்டுபிடிச்ச மருந்து மாலிக்யூலை US-ல் விக்க, ஒரு நிறுவனம் US FDA-ல் file பண்ற application. முழு pre-clinical data-வோடு, Phase I, II, III human trial results-உம் இணைத்து, மருந்து safe-ஆவும் effective-ஆவும் இருக்குன்னு prove பண்ணணும். இது innovator route — நீளமான, செலவு அதிகமான, high-risk journey, ஆனா approve ஆனா years-கணக்கில் market exclusivity கிடைக்கும்."
+    },
+    "cb": {
+      "en": "We watch NDA filings mainly at large innovator-focused companies. An NDA approval is a binary, stock-moving event — years of R&D spend either pay off or get written down. We track trial readouts (Phase III data especially) as the leading signal, since the NDA filing itself is largely a formality once Phase III succeeds.",
+      "ta": "பெரும்பாலும் innovator-focused நிறுவனங்களில் தான் NDA filings-ஐ நாங்கள் track பண்றோம். NDA approval ஒரு binary, stock-moving event — years-கணக்கான R&D spend pay off ஆகுமோ அல்லது write-down ஆகுமோ. Phase III trial data தான் leading signal, ஏன்னா அது success ஆனா NDA filing ஒரு formality தான்."
+    },
+    "tags": [
+      "Pharma",
+      "Regulatory",
+      "Innovator"
+    ]
+  },
+  {
+    "term": "ANDA (Abbreviated New Drug Application)",
+    "aka": "Generic Drug Filing",
+    "icon": "📑",
+    "cat": "dd",
+    "def": {
+      "en": "The filing route Indian and other generic makers use to sell a copy of an already-approved drug once its patent and exclusivity periods expire. Instead of repeating expensive Phase I-III efficacy trials, the company only has to prove bioequivalence — that its version delivers the drug into the bloodstream the same way as the original.",
+      "ta": "ஏற்கனவே approve ஆன ஒரு மருந்துக்கு patent, exclusivity periods முடிஞ்ச பிறகு, அதே மருந்தோட copy version-ஐ விக்க Indian உள்ளிட்ட generic companies use பண்ற filing route. விலை அதிகமான Phase I-III efficacy trials திரும்ப பண்ண வேண்டியதில்லை — bioequivalence மட்டும் prove பண்ணா போதும், அதாவது original மருந்து மாதிரியே body-ல் absorb ஆகுதுன்னு காட்டணும்."
+    },
+    "cb": {
+      "en": "The bulk of Indian pharma's US business runs through ANDAs. We track ANDA pipeline count and approval cadence as a growth signal for generics-focused companies, and we watch for \"first-to-file\" ANDAs specifically — these can carry 180 days of exclusivity and outsized profitability versus a crowded, multi-player generic launch.",
+      "ta": "Indian pharma companies-ன் US business-ல் பெரும்பகுதி ANDA வழியா தான். Generics-focused நிறுவனங்களுக்கு, ANDA pipeline count-உம் approval cadence-உம் ஒரு growth signal-ஆ நாங்கள் track பண்றோம். Especially \"first-to-file\" ANDAs-ஐ கவனிக்கிறோம் — இது 180 days exclusivity-உம், பல players போட்டியிடுற ஒரு generic launch-ஐ விட அதிக profitability-ஐயும் தரலாம்."
+    },
+    "tags": [
+      "Pharma",
+      "Regulatory",
+      "Generics"
+    ]
+  },
+  {
+    "term": "Hatch-Waxman Act",
+    "aka": "Drug Price Competition and Patent Term Restoration Act, 1984",
+    "icon": "⚖️",
+    "cat": "dd",
+    "def": {
+      "en": "The 1984 US law that created today's generic drug industry. It struck a balance: innovators get patent-term extensions to make up for years lost to FDA trials and review, while generic makers get a fast, low-cost ANDA pathway plus the right to challenge a weak or invalid patent before it expires (a Paragraph IV challenge).",
+      "ta": "இன்றைக்கு இருக்கிற generic drug industry-ஐ உருவாக்கின 1984 US சட்டம். இது ஒரு balance-ஐ create பண்ணது — FDA trials, review-ல் இழந்த years-க்கு ஈடா innovators-க்கு patent-term extension கொடுக்கும், அதே நேரம் generic makers-க்கு fast, low-cost ANDA pathway-உம், patent expire ஆகுறதுக்கு முன்னாடியே பலவீனமான patent-ஐ challenge பண்ற உரிமையும் (Paragraph IV challenge) கொடுக்கும்."
+    },
+    "cb": {
+      "en": "Every ANDA, Para IV challenge, and 180-day exclusivity window we track ultimately traces back to this one Act. When we explain why Indian generics can legally launch a drug before a US patent's stated expiry, Hatch-Waxman's patent-challenge and exclusivity framework is the answer.",
+      "ta": "நாங்கள் track பண்ற ஒவ்வொரு ANDA-வும், Para IV challenge-உம், 180-day exclusivity window-உம், கடைசியில் இந்த ஒரு Act-க்கே போய் சேரும். US patent-ன் official expiry date-க்கு முன்னாடியே Indian generics ஒரு மருந்தை legal-ஆ launch பண்ண முடியுதுன்னா, அதுக்கு காரணம் Hatch-Waxman-ன் patent-challenge, exclusivity framework தான்."
+    },
+    "tags": [
+      "Pharma",
+      "Regulatory",
+      "Patent Law"
+    ]
+  },
+  {
+    "term": "Clinical Trial Phases (I / II / III)",
+    "aka": "Drug Discovery Pipeline Stages",
+    "icon": "🧬",
+    "cat": "dd",
+    "def": {
+      "en": "The staged human-testing journey every new molecule must clear before an NDA can be filed. Phase I: a small group of healthy volunteers, testing mainly for safety and dosage. Phase II: a few hundred patients, testing whether the drug actually works and at what dose. Phase III: thousands of patients across multiple sites, the large confirmatory trial that generates the statistically robust efficacy and safety data FDA needs to approve the drug.",
+      "ta": "NDA file பண்ணுறதுக்கு முன்னாடி, ஒவ்வொரு புது மாலிக்யூலும் கடக்கணும்ன்னு இருக்கிற staged human-testing journey. Phase I: சின்ன குரூப் healthy volunteers-ல், முக்கியமா safety, dosage-ஐ test பண்றது. Phase II: நூற்றுக்கணக்கான patients-ல், மருந்து உண்மையிலேயே வேலை செய்யுதா, எந்த dose-ல்-ன்னு test பண்றது. Phase III: ஆயிரக்கணக்கான patients, multiple sites-ல் நடக்கும் பெரிய confirmatory trial — FDA approve பண்ண தேவையான statistically robust efficacy, safety data இதிலேர்ந்து வரும்."
+    },
+    "cb": {
+      "en": "Each phase-transition is a stock-moving milestone for a company with an innovator pipeline. Phase II \"proof of concept\" data is often the biggest single re-rating trigger, because it's the first real evidence the drug works in patients. We size position risk around trial readout dates the way we'd size risk around any binary corporate event.",
+      "ta": "Innovator pipeline வச்சிருக்கிற ஒரு நிறுவனத்துக்கு, ஒவ்வொரு phase-transition-உம் ஒரு stock-moving milestone. Phase II \"proof of concept\" data தான் பெரும்பாலும் மிகப்பெரிய single re-rating trigger — ஏன்னா patients-ல் மருந்து வேலை செய்யுதுன்னு காட்டுற முதல் real evidence அது. எந்த binary corporate event-க்கும் risk-ஐ எப்படி size பண்றோமோ, அதே மாதிரி trial readout dates-க்கு முன்னாடியும் position risk-ஐ size பண்றோம்."
+    },
+    "tags": [
+      "Pharma",
+      "R&D",
+      "Innovator"
+    ]
+  },
+  {
+    "term": "Paragraph IV (Para IV) Certification",
+    "aka": "Patent Challenge Filing",
+    "icon": "🚩",
+    "cat": "dd",
+    "def": {
+      "en": "A statement a generic maker includes with its ANDA, asserting that the branded drug's patent is either invalid or won't be infringed by the generic version — meaning the generic could legally launch before the patent's official expiry. It usually triggers patent litigation between the generic maker and the innovator. The first company to successfully file a Para IV on a given drug typically earns 180 days of marketing exclusivity over every other generic.",
+      "ta": "Branded மருந்துக்கு இருக்கிற patent invalid-ன்னோ, அல்லது தன்னோட generic version அதை infringe பண்ணாதுன்னோ சொல்லி, ஒரு generic maker தன்னோட ANDA-வோட சேர்த்து கொடுக்கிற statement — இதுன்னா patent-ன் official expiry date-க்கு முன்னாடியே generic-ஐ legal-ஆ launch பண்ணலாம். இது பொதுவா generic maker-க்கும் innovator-க்கும் இடையே patent litigation-ஐ trigger பண்ணும். ஒரு குறிப்பிட்ட மருந்துக்கு successful-ஆ முதல்-ல Para IV file பண்ற நிறுவனத்துக்கு, மற்ற எல்லா generics-ஐயும் விட 180 days marketing exclusivity கிடைக்கும்."
+    },
+    "cb": {
+      "en": "A successful \"first-to-file\" Para IV is one of the highest-value events in a generics company's pipeline — the 180-day exclusivity window often means near-branded pricing before competition floods in. We watch litigation outcomes closely: a settlement or court win clears the launch; a loss can delay it for years and force a write-off of development spend.",
+      "ta": "Successful-ஆ \"first-to-file\" Para IV பண்றது, ஒரு generics company-ன் pipeline-ல் மிக மதிப்புவாய்ந்த events-ல் ஒண்ணு — 180-day exclusivity window-ல், போட்டி வர முன்னாடியே கிட்டத்தட்ட branded pricing கிடைக்கும். Litigation outcomes-ஐ கவனமா track பண்றோம் — settlement அல்லது court win வந்தா launch clear ஆகும்; loss வந்தா years கணக்கில் delay ஆகி, development spend-ஐ write-off பண்ண வேண்டி வரலாம்."
+    },
+    "tags": [
+      "Pharma",
+      "Regulatory",
+      "Patent Law"
+    ]
   }
 ];
 
@@ -836,6 +934,7 @@ const CATS = {
   unit:    { label:{en:'Unit Economics',      ta:'யூனிட் எகனாமிக்ஸ்'},           color:'var(--c-unit)',     dot:'#0d9488' },
   market:  { label:{en:'Market Terms',        ta:'மார்க்கெட் சொற்கள்'},          color:'var(--c-market)',   dot:'#db2777' },
   fda:     { label:{en:'FDA / Regulatory',    ta:'FDA / ஒழுங்குமுறை'},           color:'var(--c-fda)',      dot:'#dc2626' },
+  dd:      { label:{en:'Drug Discovery',      ta:'மருந்து கண்டுபிடிப்பு'},         color:'var(--c-dd)',       dot:'#4f46e5' },
 };
 
 const TAG_COLORS = {
