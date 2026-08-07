@@ -165,7 +165,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
 
 /* ── ADDED: Search bar ── */
 /* ── PORTAL BODY ── */
-.p-search-area{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 16px 0;position:sticky;top:0;z-index:100}
+.p-search-area{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 16px 0;position:sticky;top:var(--hdr-h,90px);z-index:100}
 .p-search-box{display:flex;align-items:center;gap:8px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:8px 12px;margin-bottom:10px}
 .p-search-box svg{color:#94a3b8;flex-shrink:0;width:14px;height:14px}
 #reportSearch{flex:1;border:none;outline:none;font-family:inherit;font-size:14px;color:#0f172a;background:transparent;min-width:0}
@@ -664,7 +664,13 @@ function setWatermark(phone){
   const nameKey=Object.keys(MEMBER_NAMES).find(k=>samePhone(k,phone)); document.getElementById('welcomeName').textContent=(nameKey&&MEMBER_NAMES[nameKey])||m;
 }
 
+function syncHeaderHeight(){
+  const h=document.querySelector('.p-header');
+  if(h) document.documentElement.style.setProperty('--hdr-h', h.offsetHeight+'px');
+}
+window.addEventListener('resize',syncHeaderHeight);
 window.addEventListener('load',()=>{
+  syncHeaderHeight();
   loadStored();
   const s=safeGet('cb_pv2');
   if(s){ try{ const d=JSON.parse(s); if(Date.now()-d.time<86400000){ currentPhone=d.phone; setWatermark(d.phone); enterPortal(); return; } }catch(e){} safeRemove('cb_pv2'); }
@@ -720,6 +726,8 @@ function enterPortal(){
   const isAdmin=ADMIN_PHONES.some(p=>samePhone(p,currentPhone));
   if(btn) btn.classList.toggle('show',isAdmin);
   loadReports();
+  syncHeaderHeight();
+  setTimeout(syncHeaderHeight,50); // re-measure once layout settles (fonts/wrap)
 }
 
 function logout(){ if(!confirm('Exit CB Research Portal?')) return; safeRemove('cb_pv2'); location.reload(); }
