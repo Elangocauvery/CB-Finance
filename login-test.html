@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CB Research — Member Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#1a1a1a;
+    --muted:#6b6b6b;
+    --line:#e8e4dc;
+    --orange:#f2994a;
+    --orange-soft:#fdf1e6;
+    --orange-deep:#c9701f;
+    --panel:#fafaf8;
+    --error:#c0392b;
+    --success:#4a9d5f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .card{
+    width:100%;
+    max-width:400px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:36px 32px;
+    background:#fff;
+  }
+  .brand{
+    font-family:'Playfair Display',serif;
+    font-weight:700;
+    font-size:24px;
+    text-align:center;
+    margin-bottom:4px;
+  }
+  .brand span{color:var(--orange);}
+  .vanakam{
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:28px;
+  }
+  label{
+    display:block;
+    font-size:12px;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--muted);
+    margin-bottom:6px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  input{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    font-size:15px;
+    font-family:'Inter',sans-serif;
+    outline:none;
+    transition:border-color .15s;
+    margin-bottom:16px;
+  }
+  input:focus{border-color:var(--orange);}
+  .otp-row{
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    margin-bottom:16px;
+  }
+  .otp-cell{
+    width:44px;height:52px;
+    text-align:center;
+    font-size:20px;
+    font-family:'IBM Plex Mono',monospace;
+    padding:0;
+    margin-bottom:0;
+  }
+  button{
+    width:100%;
+    padding:13px;
+    background:var(--orange);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    font-family:'Inter',sans-serif;
+    cursor:pointer;
+    transition:background .15s;
+  }
+  button:hover{background:var(--orange-deep);}
+  button:disabled{background:#d8d4ca;cursor:not-allowed;}
+  .msg{
+    font-size:12px;
+    font-family:'IBM Plex Mono',monospace;
+    text-align:center;
+    margin-top:14px;
+    min-height:16px;
+  }
+  .msg.error{color:var(--error);}
+  .msg.success{color:var(--success);}
+  .step{display:none;}
+  .step.active{display:block;}
+  .back-link{
+    display:block;
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    margin-top:16px;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .disclaimer{
+    margin-top:28px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    font-size:10px;
+    color:var(--muted);
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="brand">CB <span>Research</span></div>
+  <div class="vanakam">Vanakam · Member Login</div>
+
+  <!-- STEP 1: Email entry -->
+  <div class="step active" id="stepEmail">
+    <label for="emailInput">Email address</label>
+    <input type="email" id="emailInput" placeholder="you@example.com" autocomplete="email">
+    <button id="sendBtn" onclick="sendCode()">Send sign-in link →</button>
+    <div class="msg" id="emailMsg"></div>
+  </div>
+
+  <!-- STEP 2: Check your inbox -->
+  <div class="step" id="stepOtp">
+    <div style="text-align:center;padding:10px 0 20px;">
+      <div style="font-size:28px;margin-bottom:10px;">📧</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;margin-bottom:6px;">Check your inbox</div>
+      <div style="font-size:13px;color:var(--muted);">We sent a sign-in link to <strong id="sentToEmail"></strong>. Click it to log in — this tab will update automatically.</div>
+    </div>
+    <span class="back-link" onclick="backToEmail()">← Use a different email</span>
+  </div>
+
+  <!-- STEP 3: Logged in -->
+  <div class="step" id="stepLoggedIn">
+    <div style="text-align:center;padding:20px 0;">
+      <div style="font-size:32px;margin-bottom:12px;">✓</div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;margin-bottom:6px;">You're in.</div>
+      <div style="font-size:13px;color:var(--muted);" id="welcomeMsg"></div>
+    </div>
+    <button onclick="signOut()" style="background:#1a1a1a;">Sign out</button>
+  </div>
+
+  <div class="disclaimer">
+    CB Research™ · For authorised members only · Not investment advice · Not SEBI-registered
+  </div>
+</div>
+
+<script>
+// ============================================================
+// SUPABASE CONNECTION — your real project
+// ============================================================
+const SUPABASE_URL = 'https://jeatwtcgjugmlmsgtjli.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_6FYw2Vu-KIGfX02RNEowBA_dRiDqlpI';
+
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentEmail = '';
+
+// ── Check if already logged in on page load (also handles the magic-link return trip) ──
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session) {
+    await ensureMemberRow(session.user);
+    showLoggedIn(session.user);
+  }
+})();
+
+// ── Listen for the moment the magic link finishes logging the user in ──
+sb.auth.onAuthStateChange(async (event, session) => {
+  if (event === 'SIGNED_IN' && session) {
+    await ensureMemberRow(session.user);
+    showLoggedIn(session.user);
+  }
+});
+
+// ── Step 1: send the magic link ──
+async function sendCode(){
+  const emailInput = document.getElementById('emailInput');
+  const email = emailInput.value.trim();
+  const msg = document.getElementById('emailMsg');
+  const btn = document.getElementById('sendBtn');
+
+  if (!email || !email.includes('@')) {
+    msg.textContent = 'Enter a valid email address.';
+    msg.className = 'msg error';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  msg.textContent = '';
+
+  const { error } = await sb.auth.signInWithOtp({
+    email: email,
+    options: {
+      shouldCreateUser: true,
+      emailRedirectTo: window.location.href   // bring them back to this same page
+    }
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Send sign-in link →';
+
+  if (error) {
+    msg.textContent = 'Error: ' + error.message;
+    msg.className = 'msg error';
+    return;
+  }
+
+  currentEmail = email;
+  msg.textContent = '';
+  document.getElementById('sentToEmail').textContent = email;
+  document.getElementById('stepEmail').classList.remove('active');
+  document.getElementById('stepOtp').classList.add('active');
+}
+
+// ── Create a members row on first login if one doesn't exist ──
+async function ensureMemberRow(user){
+  const { data: existing } = await sb
+    .from('members')
+    .select('id')
+    .eq('id', user.id)
+    .maybeSingle();
+
+  if (!existing) {
+    await sb.from('members').insert({
+      id: user.id,
+      phone: user.email,   // placeholder until phone OTP is added later
+      subscription_status: 'trial'
+    });
+  }
+}
+
+function showLoggedIn(user){
+  document.getElementById('stepEmail').classList.remove('active');
+  document.getElementById('stepOtp').classList.remove('active');
+  document.getElementById('stepLoggedIn').classList.add('active');
+  document.getElementById('welcomeMsg').textContent = user.email;
+}
+
+function backToEmail(){
+  document.getElementById('stepOtp').classList.remove('active');
+  document.getElementById('stepEmail').classList.add('active');
+}
+
+async function signOut(){
+  await sb.auth.signOut();
+  document.getElementById('stepLoggedIn').classList.remove('active');
+  document.getElementById('stepEmail').classList.add('active');
+  document.getElementById('emailInput').value = '';
+}
+</script>
+</body>
+</html>
